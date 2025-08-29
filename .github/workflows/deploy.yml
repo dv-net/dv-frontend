@@ -51,6 +51,9 @@ jobs:
           nvm use 22.18.0
           npm install -g yarn
           yarn install
+          sed -i "s|^VITE_APP_VERSION=.*|VITE_APP_VERSION=${GITHUB_REF_NAME} (${GITHUB_SHA::8})|" .env
+          cp .env apps/dv-admin/.env
+          cp .env apps/pay/.env
           yarn build-only
           rm -rf .git
           EOF
