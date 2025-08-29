@@ -1,0 +1,13 @@
+.global-table-transparent {
+	.ui-table {
+		&__header {
+			background: none;
+		}
+		&__body-row {
+			box-shadow: none;
+		}
+		&__wrapper {
+			border: none;
+		}
+	}
+}

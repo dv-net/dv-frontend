@@ -1,0 +1,46 @@
+.ui-dropdown__content-wrapper.global-dropdown__content-wrapper {
+	.ui-dropdown__content {
+		border-radius: 0 0 8px 8px;
+		min-height: 308px;
+	}
+}
+
+.ui-dropdown__content-wrapper.global-dropdown__wallets {
+	width: max-content !important;
+	margin-top: 5px;
+
+	.ui-dropdown__content {
+		padding: 8px 0;
+		max-width: unset;
+		min-width: 150px;
+		max-height: unset;
+		width: max-content !important;
+	}
+
+	.global-dropdown__wallets-list {
+		display: flex;
+		flex-direction: column;
+
+		.global-dropdown__wallets-item {
+			color: #000;
+			font-weight: 400;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			gap: 16px;
+			padding: 10px 16px;
+			font-size: 14px;
+			cursor: pointer;
+
+			@media (hover: hover) {
+				&:hover {
+					background-color: #e0e4e9;
+				}
+			}
+		}
+
+		&:last-child {
+			border-bottom: none;
+		}
+	}
+}

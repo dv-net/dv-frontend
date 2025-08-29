@@ -1,0 +1,181 @@
+// General
+.none {
+	display: none !important;
+}
+.w-full {
+	width: 100%;
+}
+.relative {
+	position: relative;
+}
+.center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.opacity {
+	opacity: 0.5;
+	pointer-events: none;
+}
+.uppercase {
+	text-transform: uppercase;
+}
+.ellipsis {
+	text-wrap: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.no-select {
+  user-select: none;
+}
+.pointer {
+	@media (hover: hover) {
+		&:hover {
+			cursor: pointer;
+		}
+	}
+}
+
+// Flex
+.flex {
+	display: flex;
+
+	&-center {
+		align-items: center;
+		justify-content: center;
+	}
+
+	&-x-start {
+		justify-content: flex-start;
+	}
+
+	&-x-center {
+		justify-content: center;
+	}
+
+	&-x-end {
+		justify-content: flex-end;
+	}
+
+	&-x-between {
+		justify-content: space-between;
+	}
+
+	&-x-around {
+		justify-content: space-around;
+	}
+
+	&-x-evenly {
+		justify-content: space-evenly;
+	}
+
+	&-y-start {
+		align-items: flex-start;
+	}
+
+	&-y-center {
+		align-items: center;
+	}
+
+	&-y-end {
+		align-items: flex-end;
+	}
+
+	&-column {
+		flex-direction: column;
+	}
+
+	&-row {
+		flex-direction: row;
+	}
+
+	&-grow-1 {
+		flex-grow: 1;
+	}
+
+	&-shrink-0 {
+		flex-shrink: 0;
+	}
+}
+
+// Generation (padding, margin, gap, font-size, line-height)
+// Generation px from 1 - 100
+$numbers: ();
+@for $i from 1 through 100 {
+	$numbers: append($numbers, #{$i}, comma);
+}
+
+@each $num in $numbers {
+	// Padding
+	.p-#{$num} {
+		padding: $num + px;
+	}
+	.pt-#{$num} {
+		padding-top: $num + px;
+	}
+	.pr-#{$num} {
+		padding-right: $num + px;
+	}
+	.pb-#{$num} {
+		padding-bottom: $num + px;
+	}
+	.pl-#{$num} {
+		padding-left: $num + px;
+	}
+	.px-#{$num} {
+		padding-left: $num + px;
+		padding-right: $num + px;
+	}
+	.py-#{$num} {
+		padding-top: $num + px;
+		padding-bottom: $num + px;
+	}
+
+	// Margin
+	.m-#{$num} {
+		margin: $num + px;
+	}
+	.mt-#{$num} {
+		margin-top: $num + px;
+	}
+	.mr-#{$num} {
+		margin-right: $num + px;
+	}
+	.mb-#{$num} {
+		margin-bottom: $num + px;
+	}
+	.ml-#{$num} {
+		margin-left: $num + px;
+	}
+	.mx-#{$num} {
+		margin-left: $num + px;
+		margin-right: $num + px;
+	}
+	.my-#{$num} {
+		margin-top: $num + px;
+		margin-bottom: $num + px;
+	}
+
+	// Font-size
+	.fz-#{$num} {
+		font-size: $num + px;
+	}
+
+	// Line-height
+	.lh-#{$num} {
+		line-height: $num + px;
+	}
+
+	// Gap
+	.gap-#{$num} {
+		gap: $num + px;
+	}
+}
+
+// Font-weight generation
+$numbers-font-weight: (100, 200, 300, 400, 500, 600, 700, 800, 900);
+@each $num in $numbers-font-weight {
+	.fw-#{$num} {
+		font-weight: $num;
+	}
+}

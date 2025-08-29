@@ -1,0 +1,27 @@
+.date-profile-select.ui-select__popper {
+	.ui-select__option {
+		padding: 8px 16px;
+		span {
+			display: flex;
+			flex-direction: column;
+			gap: 2px;
+			.top {
+				display: flex;
+				gap: 3px;
+				color: $black;
+				font-size: 14px;
+				font-weight: 700;
+				line-height: 20px;
+			}
+			.bottom {
+				color: $grey-opacity;
+				font-size: 12px;
+				font-weight: 400;
+				line-height: 16px;
+			}
+			.date-opacity {
+				font-weight: 400;
+			}
+		}
+	}
+}

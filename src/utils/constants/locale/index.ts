@@ -1,0 +1,39 @@
+import type { Locale } from "@dv.net/ui-kit/dist/components/UiLanguages/types";
+
+export const locales: Locale[] = [
+	{ id: 1, name: "Arabic", nativeName: "العربية", isoCode: "ar" },
+	{ id: 2, name: "Bulgarian", nativeName: "Български", isoCode: "bg" },
+	{ id: 3, name: "Czech", nativeName: "čeština", isoCode: "cs" },
+	{ id: 4, name: "Danish", nativeName: "Dansk", isoCode: "da" },
+	{ id: 5, name: "German", nativeName: "Deutsch", isoCode: "de" },
+	{ id: 6, name: "Greek", nativeName: "Ελληνικά", isoCode: "el" },
+	{ id: 7, name: "English", nativeName: "English", isoCode: "en" },
+	{ id: 8, name: "Spanish", nativeName: "Español", isoCode: "es" },
+	{ id: 9, name: "Estonian", nativeName: "Eesti", isoCode: "et" },
+	{ id: 10, name: "Finnish", nativeName: "Suomalainen", isoCode: "fi" },
+	{ id: 11, name: "French", nativeName: "Français", isoCode: "fr" },
+	{ id: 12, name: "Hungarian", nativeName: "Magyar", isoCode: "hu" },
+	{ id: 13, name: "Indonesian", nativeName: "Bahasa Indonesia", isoCode: "id" },
+	{ id: 14, name: "Italy", nativeName: "Italiano", isoCode: "it" },
+	{ id: 15, name: "Japanese", nativeName: "日本語", isoCode: "ja" },
+	{ id: 16, name: "Korean", nativeName: "한국어", isoCode: "ko" },
+	{ id: 17, name: "Lithuanian", nativeName: "Lietuvių", isoCode: "lt" },
+	{ id: 18, name: "Latvian", nativeName: "Latviešu", isoCode: "lv" },
+	{ id: 19, name: "Norwegian", nativeName: "Norsk", isoCode: "nb" },
+	{ id: 20, name: "Dutch", nativeName: "Nederlands", isoCode: "nl" },
+	{ id: 21, name: "Polish", nativeName: "Polski", isoCode: "pl" },
+	{ id: 22, name: "Portuguese", nativeName: "Português", isoCode: "pt" },
+	{ id: 23, name: "Romanian", nativeName: "Română", isoCode: "ro" },
+	{ id: 24, name: "Russian", nativeName: "Русский", isoCode: "ru" },
+	{ id: 25, name: "Slovak", nativeName: "slovenský", isoCode: "sk" },
+	{ id: 26, name: "Slovenian", nativeName: "Slovenščina", isoCode: "sl" },
+	{ id: 27, name: "Swedish", nativeName: "Svenska", isoCode: "sv" },
+	{ id: 28, name: "Turkish", nativeName: "Türkçe", isoCode: "tr" },
+	{ id: 29, name: "Ukrainian", nativeName: "Українська", isoCode: "uk" },
+	{ id: 30, name: "Chinese", nativeName: "中文", isoCode: "zh" },
+	{ id: 31, name: "Bengali", nativeName: "বাংলা", isoCode: "bn" },
+	{ id: 32, name: "Hindi", nativeName: "हिन्दी", isoCode: "hi" },
+	{ id: 33, name: "Swahili", nativeName: "Kiswahili", isoCode: "sw" }
+];
+
+export const localesI18nArray: string[] = locales.map((el) => el.isoCode);

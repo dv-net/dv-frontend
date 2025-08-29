@@ -1,0 +1,24 @@
+.ui-tooltip__content-wrapper {
+	.currency-label {
+		padding: 8px;
+		border-radius: 999px;
+		background-color: #fff;
+		color: $black;
+		font-size: 12px;
+		&.background-1 {
+			background-color: #c4b5fd;
+		}
+		&.background-2 {
+			background-color: #93c5fd;
+		}
+		&.background-0 {
+			background-color: #fde68a;
+		}
+		&.background-3 {
+			background-color: #86efac;
+		}
+		&.background-4 {
+			background-color: #fbbf24;
+		}
+	}
+}

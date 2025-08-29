@@ -1,0 +1,46 @@
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+pre {
+	padding: 0;
+	margin: 0;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+*:focus {
+	box-shadow: none;
+	outline: none;
+}
+
+a,
+a:link,
+a:hover,
+a:visited {
+	text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+	font-size: inherit;
+	font-weight: inherit;
+}
+
+ul,
+ul li {
+	list-style: none;
+}

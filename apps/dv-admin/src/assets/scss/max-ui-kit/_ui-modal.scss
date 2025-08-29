@@ -1,0 +1,74 @@
+.password-change-modal.ui-modal {
+	.ui-modal__content {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.ui-button {
+		padding: 0 6px;
+	}
+
+	.password-change-modal {
+		&__error {
+			margin-top: 4px;
+			font-size: 12px;
+			color: #dd4c1e;
+		}
+
+		&__badge {
+			padding: 8px 12px;
+			border-radius: 4px;
+			background: #e6faed;
+			color: #1f9649;
+			font-size: 12px;
+			font-weight: 500;
+			line-height: 16px;
+		}
+	}
+}
+
+.global-confirm-modal.ui-modal {
+	.ui-modal__content {
+		overflow: hidden;
+		min-width: 648px;
+		width: min-content;
+	}
+
+	.global-confirm-modal {
+		&__header {
+			display: flex;
+			justify-content: space-between;
+			background: #2f3039;
+			padding: 20px 22px;
+		}
+
+		&__header-left-side {
+			display: flex;
+			align-items: center;
+			color: #f7a700;
+			gap: 8px;
+		}
+
+		&__body {
+			color: #000;
+			font-weight: 400;
+			font-size: 22px;
+			line-height: 28px;
+			padding: 32px 28px;
+			width: 100%;
+		}
+
+		&__footer {
+			display: flex;
+			border-top: 1px solid #d9d9d9;
+			padding: 20px 28px;
+			gap: 16px;
+			width: 100%;
+
+			.ui-button {
+				width: 50%;
+			}
+		}
+	}
+}
