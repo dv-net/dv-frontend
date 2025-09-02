@@ -39,7 +39,7 @@ jobs:
           path: artifacts/dv-frontend.${{ github.ref_name }}.tar.gz
 
   release:
-    needs: build   # ждем сборки
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Download artifact

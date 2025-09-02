@@ -5,6 +5,11 @@
 
 
 ---
+## [1.0.8] - 2025-08-28
+
+- Add ci build for dv-merchant
+
+---
 ## [1.0.7] - 2025-08-28
 
 - Fix rules for withdrawal from the HTX DV-3299
