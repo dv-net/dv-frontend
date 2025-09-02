@@ -72,7 +72,9 @@
 						<div class="card__inner">
 							<blockchain-icon :type="blockchainCurrencyId[item.currency.blockchain]" />
 							<div class="card__blockchain">
-								<span>{{ item.currency.id.includes('BNBSmartChain') ? 'BSC' : getCurrentBlockchain(item.currency.id) }}</span>
+								<span>{{
+									item.currency.id.includes("BNBSmartChain") ? "BSC" : getCurrentBlockchain(item.currency.id)
+								}}</span>
 								<span v-if="item.currency.token_label" class="card__blockchain-label">
 									({{ item.currency.token_label }})
 								</span>

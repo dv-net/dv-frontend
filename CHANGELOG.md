@@ -2,6 +2,13 @@
 
 ## [Unreleased]
 
+
+
+---
+## [1.0.7] - 2025-08-28
+
+- Fix rules for withdrawal from the HTX DV-3299
+
 ---
 ## [1.0.6] - 2025-08-28
 
