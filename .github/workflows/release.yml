@@ -1,0 +1,55 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build
+        run: |
+          echo "VITE_API_URL=/api/v1" > .env
+          echo "VITE_APP_VERSION=${GITHUB_REF_NAME} (${GITHUB_SHA::7})" >> .env
+          yarn build-only
+
+      - name: Pack build
+        run: |
+          mkdir -p artifacts
+          cd dist
+          tar -czvf ../artifacts/dv-frontend.${GITHUB_REF_NAME}.tar.gz .
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dv-frontend-${{ github.ref_name }}
+          path: artifacts/dv-frontend.${{ github.ref_name }}.tar.gz
+
+  release:
+    needs: build   # ждем сборки
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dv-frontend-${{ github.ref_name }}
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dv-frontend.${{ github.ref_name }}.tar.gz
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
