@@ -28,17 +28,18 @@ jobs:
 
       - name: Pack build
         run: |
-          mkdir -p ../artifacts
+          mkdir -p artifacts
+          cd dist
           tar -czvf ../artifacts/dv-frontend.${GITHUB_REF_NAME}.tar.gz .
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: dv-frontend-${{ github.ref_name }}
-          path: artifacts/dv-frontend.${{ github.ref_name}}.tar.gz
+          path: artifacts/dv-frontend.${{ github.ref_name }}.tar.gz
 
   release:
-    needs: build
+    needs: build   # ждем сборки
     runs-on: ubuntu-latest
     steps:
       - name: Download artifact
