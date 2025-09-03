@@ -28,14 +28,14 @@
 
 	const transformationExchangeTickerList = computed<IUiSelectOptions[]>(() => {
 		const uniqueTickers = new Set<string>();
-		exchangeChainsList.value.forEach((item) => uniqueTickers.add(item.ticker_label));
+		exchangeChainsList.value.forEach((item) => uniqueTickers.add(item.ticker));
 		return [...uniqueTickers].map((item: string) => ({ value: item, label: item.toLocaleUpperCase("en") }));
 	});
 
 	const transformationExchangeChainsList = computed<IUiSelectOptions[]>(() => {
 		if (!form.value.ticker) return [];
 		return exchangeChainsList.value
-			.filter((item) => item.ticker === form.value.ticker)
+			.filter((item) => item.ticker.toLocaleLowerCase("en") === form.value.ticker.toLocaleLowerCase("en"))
 			.map((item) => ({
 				value: item.chain,
 				label: `${capitalizeFirstLetter(item.chain_label.toLocaleLowerCase("en"))} (${item.chain.toLocaleUpperCase("en")})`
@@ -48,14 +48,16 @@
 
 	const calculationCommissions = computed<IExchangeCalculationCommissions | null>(() => {
 		if (!form.value.ticker || !form.value.chain) return null;
-		const ticker: string = form.value.ticker.toLowerCase();
+		const ticker: string = form.value.ticker.toLocaleLowerCase("en");
 		const arrayTickerConst: string[] = ["usdt", "usdc"];
 		const findRule = withdrawalRules.value.find(
-			(item) => item.chain.toLowerCase() === form.value.chain.toLowerCase() && item.currency.toLowerCase() === ticker
+			(item) =>
+				item.chain.toLocaleLowerCase("en") === form.value.chain.toLocaleLowerCase("en") &&
+				item.currency.toLocaleLowerCase("en") === ticker
 		);
 		if (!findRule) return null;
 		const findRate = withdrawalCurrenciesRateSource.value.find(
-			(item) => item.from.toLowerCase() === ticker && item.to.toLowerCase() === "usdt"
+			(item) => item.from.toLocaleLowerCase("en") === ticker && item.to.toLocaleLowerCase("en") === "usdt"
 		);
 		let rate_usd: string = "";
 		if (arrayTickerConst.includes(ticker)) rate_usd = "1";

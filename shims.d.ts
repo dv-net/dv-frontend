@@ -1,6 +1,4 @@
 import "vite/client";
-
-
 import "axios";
 
 declare module "axios" {

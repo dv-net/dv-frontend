@@ -159,10 +159,10 @@ export const generateUUID = (): string => {
 	crypto.getRandomValues(buf);
 	buf[6] = (buf[6] & 0x0f) | 0x40;
 	buf[8] = (buf[8] & 0x3f) | 0x80;
-	return [...buf].map(b => b.toString(16).padStart(2, "0")).join("").replace(
-		/^(.{8})(.{4})(.{4})(.{4})(.{12})$/,
-		"$1-$2-$3-$4-$5"
-	);
+	return [...buf]
+		.map((b) => b.toString(16).padStart(2, "0"))
+		.join("")
+		.replace(/^(.{8})(.{4})(.{4})(.{4})(.{12})$/, "$1-$2-$3-$4-$5");
 };
 
 // URL validation

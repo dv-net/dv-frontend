@@ -1,35 +1,27 @@
 {
-  "extends": "@vue/tsconfig/tsconfig.dom.json",
-  "include": [
-    "shims.d.ts",
-    "src/**/*",
-    "src/**/*.vue",
-    "apps/**/*"
-  ],
-  "exclude": ["node_modules", "dist"],
-  "compilerOptions": {
-    "composite": true,
-    "strict": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "types": ["node"],
-    "sourceMap": true,
-    "useDefineForClassFields": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "target": "ESNext",
-    "module": "ESNext",
-    "lib": [
-      "ESNext",
-      "DOM"
-    ],
-    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+	"extends": "@vue/tsconfig/tsconfig.dom.json",
+	"include": ["shims.d.ts", "src/**/*", "src/**/*.vue", "apps/**/*"],
+	"exclude": ["node_modules", "dist"],
+	"compilerOptions": {
+		"composite": true,
+		"strict": true,
+		"noImplicitAny": true,
+		"strictNullChecks": true,
+		"types": ["node"],
+		"sourceMap": true,
+		"useDefineForClassFields": true,
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"target": "ESNext",
+		"module": "ESNext",
+		"lib": ["ESNext", "DOM"],
+		"tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
 
-    "baseUrl": ".",
-    "paths": {
-      "@dv-admin/*": ["apps/dv-admin/src/*"],
-      "@pay/*": ["apps/pay/src/*"],
-      "@shared/*": ["src/*"]
-    }
-  }
+		"baseUrl": ".",
+		"paths": {
+			"@dv-admin/*": ["apps/dv-admin/src/*"],
+			"@pay/*": ["apps/pay/src/*"],
+			"@shared/*": ["src/*"]
+		}
+	}
 }
