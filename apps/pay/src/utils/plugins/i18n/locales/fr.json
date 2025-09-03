@@ -26,10 +26,10 @@
 	"The higher the commission, the faster the process": "Plus la commission est élevée, plus la procédure est rapide",
 	"Wait for the payment to be confirmed by the network": "Attendre la confirmation du paiement par le réseau",
 	"Payment found": "Paiement trouvé",
-	"For your safety, DV.net blocks suspicious and illegal transactions": "Pour votre sécurité, DV.net bloque les transactions suspectes et illégales.",
+	"For your safety, DV.net blocks suspicious and illegal transactions": "Pour votre sécurité, DV.net bloque les transactions suspectes et illégales",
 	"Scan your DV.net deposit wallet address": "Scannez l'adresse de votre portefeuille de dépôt DV.net",
 	"Recommended commission": "Commission recommandée",
-	"Please note: the rate is approximate. Before transferring from the exchange, check the current rate at the time of the transaction": "Remarque : le taux est approximatif. Avant d'effectuer un transfert à partir de la bourse, vérifiez le taux en vigueur au moment de la transaction.",
+	"Please note: the rate is approximate. Before transferring from the exchange, check the current rate at the time of the transaction": "Remarque : le taux est approximatif. Avant d'effectuer un transfert à partir de la bourse, vérifiez le taux en vigueur au moment de la transaction",
 	"Copy the address": "Copier l'adresse",
 	"Permanent address": "Adresse permanente",
 	"Continue": "Continuer",
@@ -52,6 +52,6 @@
 	"Sum": "Somme",
 	"Change": "Changer",
 	"You pay via DV.net": "Vous payez via DV.net",
-	"Accept cryptocurrency on your website without paying intermediaries": "Acceptez les crypto-monnaies sur votre site web sans payer d'intermédiaires.",
+	"Accept cryptocurrency on your website without paying intermediaries": "Acceptez les crypto-monnaies sur votre site web sans payer d'intermédiaires",
 	"the cheapest way to accept cryptocurrency on your site": "le moyen le plus économique d'accepter les crypto-monnaies sur votre site"
 }
