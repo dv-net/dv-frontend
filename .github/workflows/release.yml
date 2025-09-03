@@ -22,7 +22,8 @@ jobs:
 
       - name: Build
         run: |
-          echo "VITE_API_URL=/api/v1" > .env
+          echo "VITE_API_URL=/api/v1" > apps/dv-admin/.env
+          echo "VITE_API_URL=/api/v1" > apps/pay/.env
           echo "VITE_APP_VERSION=${GITHUB_REF_NAME} (${GITHUB_SHA::7})" >> .env
           yarn build-only
 
