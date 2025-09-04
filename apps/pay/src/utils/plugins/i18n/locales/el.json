@@ -2,6 +2,11 @@
 	"staticStrings": {
 		"min": "Min"
 	},
+	"Copy the permanent address": "Αντιγράψτε την μόνιμη διεύθυνση",
+	"Chain commission": "Προμήθεια αλυσίδας",
+	"Selected chain": "Επιλεγμένη αλυσίδα",
+	"Contacts": "Επαφές",
+	"More about": "Περισσότερα για",
 	"select-blockchain": {
 		"one": "Επιλέξτε blockchain",
 		"two": "Επιλέξτε blockchain"
@@ -29,7 +34,6 @@
 	"For your safety, DV.net blocks suspicious and illegal transactions": "Για την ασφάλειά σας, η DV.net μπλοκάρει τις ύποπτες και παράνομες συναλλαγές",
 	"Scan your DV.net deposit wallet address": "Σαρώστε τη διεύθυνση του πορτοφολιού κατάθεσης DV.net",
 	"Recommended commission": "Συνιστώμενη προμήθεια",
-	"Please note: the rate is approximate. Before transferring from the exchange, check the current rate at the time of the transaction": "Σημείωση: η τιμή είναι κατά προσέγγιση. Πριν από τη μεταφορά από το ανταλλακτήριο, ελέγξτε την τρέχουσα ισοτιμία τη στιγμή της συναλλαγής",
 	"Copy the address": "Αντιγράψτε τη διεύθυνση",
 	"Permanent address": "Μόνιμη διεύθυνση",
 	"Continue": "Συνεχίστε",

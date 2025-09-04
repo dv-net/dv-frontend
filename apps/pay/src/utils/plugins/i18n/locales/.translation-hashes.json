@@ -1,4 +1,9 @@
 {
+	"Copy the permanent address": "87c237c5bf8cc0e73f077df5918f2c94",
+	"Chain commission": "28b15ff6c823b8f2508192f76eb7fc3c",
+	"Selected chain": "439c787e47464684dd428fc5fc66bdc4",
+	"Contacts": "9aa698f602b1e5694855cee73a683488",
+	"More about": "49fa2426b7903b3d4c89e2c1874d9346",
 	"minutes": "640fd0cc0ffa0316ae087652871f4486",
 	"Return to the store": "2f8f0bf6cb50e8d4f7522de276e0760e",
 	"An unexpected error occurred. Try logging in later or contact support": "d9be122ec21cb70dad5bc2938e55a85e",
@@ -22,7 +27,6 @@
 	"For your safety, DV.net blocks suspicious and illegal transactions": "d9227c36ab7a7c872af9851ccb3c6e78",
 	"Scan your DV.net deposit wallet address": "7e0cce9e0ce520137c42b806411af049",
 	"Recommended commission": "d48b3f70050b6d67f13f9396462c0386",
-	"Please note: the rate is approximate. Before transferring from the exchange, check the current rate at the time of the transaction": "0b16b1873a7be1301eb20e6e8ff12f9e",
 	"Copy the address": "c524d2d719b05d8201583c7ed9217fc9",
 	"Permanent address": "7c196152ef3b33d2b75546f2cd2fa915",
 	"Continue": "a0bfb8e59e6c13fc8d990781f77694fe",
@@ -46,8 +50,5 @@
 	"Change": "f4ec5f57bd4d31b803312d873be40da9",
 	"You pay via DV.net": "9d421afa33ca87661350b733ca940dab",
 	"Accept cryptocurrency on your website without paying intermediaries": "80bb90ef3bf2ee82bd05b1dadf687f3a",
-	"the cheapest way to accept cryptocurrency on your site": "48492639305995f734bdf3fceef33d62",
-	"staticStrings.min": "78d811e98514cd165dda532286610fd2",
-	"select-blockchain.one": "b27588d1b0ad2c0cd0e2c7f036926df9",
-	"select-blockchain.two": "b27588d1b0ad2c0cd0e2c7f036926df9"
+	"the cheapest way to accept cryptocurrency on your site": "48492639305995f734bdf3fceef33d62"
 }

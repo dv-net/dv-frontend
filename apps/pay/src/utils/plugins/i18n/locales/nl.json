@@ -2,6 +2,11 @@
 	"staticStrings": {
 		"min": "Min"
 	},
+	"Copy the permanent address": "Kopieer het permanente adres",
+	"Chain commission": "Ketencommissie",
+	"Selected chain": "Geselecteerde keten",
+	"Contacts": "Contacten",
+	"More about": "Meer over",
 	"select-blockchain": {
 		"one": "Selecteer blockchain",
 		"two": "Selecteer blockchain"
@@ -29,7 +34,6 @@
 	"For your safety, DV.net blocks suspicious and illegal transactions": "Voor jouw veiligheid blokkeert DV.net verdachte en illegale transacties",
 	"Scan your DV.net deposit wallet address": "Scan het adres van uw DV.net-stortingsportemonnee",
 	"Recommended commission": "Aanbevolen commissie",
-	"Please note: the rate is approximate. Before transferring from the exchange, check the current rate at the time of the transaction": "Let op: de koers is bij benadering. Controleer de huidige koers op het moment van de transactie voordat je een overboeking doet",
 	"Copy the address": "Kopieer het adres",
 	"Permanent address": "Vast adres",
 	"Continue": "Ga verder",

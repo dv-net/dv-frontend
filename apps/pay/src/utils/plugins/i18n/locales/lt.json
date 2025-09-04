@@ -2,6 +2,11 @@
 	"staticStrings": {
 		"min": "Min"
 	},
+	"Copy the permanent address": "Kopijuoti nuolatinį adresą",
+	"Chain commission": "Grandinė komisija",
+	"Selected chain": "Pasirinkta grandinė",
+	"Contacts": "Kontaktai",
+	"More about": "Daugiau apie",
 	"select-blockchain": {
 		"one": "Pasirinkite blokų grandinę",
 		"two": "Pasirinkite blokų grandinę"
@@ -29,7 +34,6 @@
 	"For your safety, DV.net blocks suspicious and illegal transactions": "Jūsų saugumui DV.net blokuoja įtartinus ir neteisėtus sandorius",
 	"Scan your DV.net deposit wallet address": "Nuskaitykite savo DV.net depozitinės piniginės adresą",
 	"Recommended commission": "Rekomenduojama komisija",
-	"Please note: the rate is approximate. Before transferring from the exchange, check the current rate at the time of the transaction": "Atkreipkite dėmesį, kad įkainis yra apytikslis. Prieš atlikdami pervedimą iš keityklos, patikrinkite sandorio metu galiojantį kursą",
 	"Copy the address": "Nukopijuokite adresą",
 	"Permanent address": "Nuolatinis adresas",
 	"Continue": "Tęsti",

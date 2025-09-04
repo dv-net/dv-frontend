@@ -1,6 +1,9 @@
 <script setup lang="ts">
 	import IconLogo from "@pay/components/icons/IconLogo.vue";
 	import LangSelect from "@pay/components/ui/langSelect/LangSelect.vue";
+	import { useI18n } from "vue-i18n";
+
+	const { locale } = useI18n()
 </script>
 
 <template>
@@ -9,6 +12,17 @@
 			<div class="container">
 				<div class="header__inner">
 					<icon-logo />
+					<nav class="header__nav">
+						<a class="header__link" target="_blank" :href="`https://dv.net/${ !locale || locale === 'en' ? '' : locale }`">
+							{{ $t('More about') }} Merchant
+						</a>
+						<a class="header__link" target="_blank" :href="`https://docs.dv.net/${ locale || 'en' }`">
+							FAQ
+						</a>
+						<a class="header__link" target="_blank" :href="`https://dv.net/${ !locale || locale === 'en' ? '' : locale }#support`">
+							{{ $t('Contacts') }}
+						</a>
+					</nav>
 					<lang-select for-header />
 				</div>
 			</div>
@@ -47,6 +61,25 @@
 			align-items: center;
 			&:deep(.ui-languages--trigger) {
 				height: 35px;
+			}
+		}
+		&__nav {
+			display: flex;
+			align-items: center;
+			gap: 64px;
+		}
+		&__link {
+			width: max-content;
+			color: $main-color;
+			font-weight: 500;
+			border-bottom: 2px solid transparent;
+			margin-top: 2px;
+			transition: border-bottom 0.3s ease-in-out;
+			@media (hover: hover) {
+				&:hover {
+					cursor: pointer;
+					border-bottom: 2px solid;
+				}
 			}
 		}
 	}

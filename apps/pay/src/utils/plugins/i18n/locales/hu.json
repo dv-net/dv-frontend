@@ -2,6 +2,11 @@
 	"staticStrings": {
 		"min": "Min"
 	},
+	"Copy the permanent address": "Másold le az állandó lakcímet",
+	"Chain commission": "Lánc megbízás",
+	"Selected chain": "Kiválasztott lánc",
+	"Contacts": "Kapcsolatok",
+	"More about": "További információk",
 	"select-blockchain": {
 		"one": "Válassza ki a blokkláncot",
 		"two": "Válassza ki a blokkláncot"
@@ -29,7 +34,6 @@
 	"For your safety, DV.net blocks suspicious and illegal transactions": "Az Ön biztonsága érdekében a DV.net blokkolja a gyanús és illegális tranzakciókat",
 	"Scan your DV.net deposit wallet address": "Szkennelje be a DV.net befizetési pénztárca címét",
 	"Recommended commission": "Ajánlott jutalék",
-	"Please note: the rate is approximate. Before transferring from the exchange, check the current rate at the time of the transaction": "Felhívjuk figyelmét, hogy az árak tájékoztató jellegűek. Mielőtt átutalna a pénzváltóból, ellenőrizze a tranzakció időpontjában érvényes árfolyamot",
 	"Copy the address": "Másolja a címet",
 	"Permanent address": "Állandó cím",
 	"Continue": "Folytatás",

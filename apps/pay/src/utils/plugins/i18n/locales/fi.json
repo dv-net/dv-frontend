@@ -2,6 +2,11 @@
 	"staticStrings": {
 		"min": "Min"
 	},
+	"Copy the permanent address": "Kopioi pysyvä osoite",
+	"Chain commission": "Ketju komissio",
+	"Selected chain": "Valittu ketju",
+	"Contacts": "Yhteystiedot",
+	"More about": "Lisätietoja",
 	"select-blockchain": {
 		"one": "Valitse lohkoketju",
 		"two": "Valitse lohkoketju"
@@ -29,7 +34,6 @@
 	"For your safety, DV.net blocks suspicious and illegal transactions": "Turvallisuutesi vuoksi DV.net estää epäilyttävät ja laittomat maksutapahtumat",
 	"Scan your DV.net deposit wallet address": "Skannaa DV.net-talletuslompakon osoitteesi",
 	"Recommended commission": "Suositeltu toimeksianto",
-	"Please note: the rate is approximate. Before transferring from the exchange, check the current rate at the time of the transaction": "Huomaa: hinta on likimääräinen. Ennen kuin siirrät valuutan vaihdosta, tarkista tapahtumahetkellä voimassa oleva kurssi",
 	"Copy the address": "Kopioi osoite",
 	"Permanent address": "Pysyvä osoite",
 	"Continue": "Jatka",

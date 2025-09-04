@@ -2,6 +2,11 @@
 	"staticStrings": {
 		"min": "Min"
 	},
+	"Copy the permanent address": "Kopeeri püsiaadress",
+	"Chain commission": "Ahelikomisjon",
+	"Selected chain": "Valitud ahel",
+	"Contacts": "Kontaktid",
+	"More about": "Rohkem teavet",
 	"select-blockchain": {
 		"one": "Valige blockchain",
 		"two": "Valige blockchain"
@@ -29,7 +34,6 @@
 	"For your safety, DV.net blocks suspicious and illegal transactions": "Teie ohutuse tagamiseks blokeerib DV.net kahtlased ja ebaseaduslikud tehingud",
 	"Scan your DV.net deposit wallet address": "Skaneeri oma DV.net hoiuse rahakoti aadress",
 	"Recommended commission": "Soovitatav komisjon",
-	"Please note: the rate is approximate. Before transferring from the exchange, check the current rate at the time of the transaction": "Pange tähele: hind on ligikaudne. Enne ülekandmist vahetusest kontrollige tehingu ajal kehtivat kurssi",
 	"Copy the address": "Kopeeri aadress",
 	"Permanent address": "Alaline aadress",
 	"Continue": "Jätka",

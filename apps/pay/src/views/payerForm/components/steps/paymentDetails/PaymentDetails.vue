@@ -2,32 +2,35 @@
 	import { UiCopyText, UiIcon, UiTooltip } from "@dv.net/ui-kit";
 	import { usePayerFormStore } from "@pay/stores/payerForm";
 	import { storeToRefs } from "pinia";
-	import BannerInfo from "@pay/views/payerForm/components/bannerInfo/BannerInfo.vue";
 	import { isDesktopDevice } from "@shared/utils/helpers/media.ts";
 	import QrcodeVue from "qrcode.vue";
 	import { computed } from "vue";
+	import CardSelectBlockchain
+		from "@pay/views/payerForm/components/steps/cardSelectBlockchain/CardSelectBlockchain.vue";
+	import type { CurrencyType } from "@pay/utils/types/blockchain";
+	import type { BlockchainType } from "@shared/utils/types/blockchain";
 
 	const { currentAddress, currentCurrency, currentChain } = storeToRefs(usePayerFormStore());
 	const { getAmountRate } = usePayerFormStore();
 
-	const currentPrice = computed<string>(() => getAmountRate(`${currentCurrency.value}.${currentChain.value}`));
+	const currentPrice = computed<string>(() => getAmountRate(currentCurrency.value as CurrencyType));
 </script>
 
 <template>
 	<div class="payment">
-		<div class="payment__top">
-			<h2 class="global-title-h2">{{ $t("Copy the address") }}</h2>
-			<banner-info
-				:message="
-					$t(
-						'Please note: the rate is approximate. Before transferring from the exchange, check the current rate at the time of the transaction'
-					)
-				"
+		<div class="flex flex-column gap-12">
+			<card-select-blockchain
+				type="currency"
+				:currency="currentCurrency as CurrencyType"
+			/>
+			<card-select-blockchain
+				type="blockchain"
+				:currency-id="`${currentCurrency}.${currentChain}` as BlockchainType"
 			/>
 		</div>
 		<div class="address">
 			<div class="address__label">
-				<span>{{ $t("Permanent address") }}</span>
+				<span>{{ $t("Copy the permanent address") }}</span>
 				<ui-tooltip
 					:title="$t('Permanent address')"
 					:text="$t('This is your permanent wallet, so we always wait for funds to arrive and credit them immediately')"
@@ -80,11 +83,6 @@
 		border-radius: 16px;
 		gap: 24px;
 		background-color: $form-background;
-		&__top {
-			display: flex;
-			flex-direction: column;
-			gap: 12px;
-		}
 		.address {
 			display: flex;
 			flex-direction: column;

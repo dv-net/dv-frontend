@@ -2,6 +2,11 @@
 	"staticStrings": {
 		"min": "Min"
 	},
+	"Copy the permanent address": "영구 주소 복사",
+	"Chain commission": "체인 수수료",
+	"Selected chain": "선택된 체인",
+	"Contacts": "연락처",
+	"More about": "더 알아보기",
 	"select-blockchain": {
 		"one": "블록체인 선택",
 		"two": "블록체인 선택"
@@ -29,7 +34,6 @@
 	"For your safety, DV.net blocks suspicious and illegal transactions": "DV.net은 사용자의 안전을 위해 의심스러운 불법 거래를 차단합니다",
 	"Scan your DV.net deposit wallet address": "DV.net 입금 지갑 주소를 스캔합니다",
 	"Recommended commission": "추천 수수료",
-	"Please note: the rate is approximate. Before transferring from the exchange, check the current rate at the time of the transaction": "참고: 환율은 대략적인 환율입니다. 거래소에서 송금하기 전에 거래 시점의 현재 환율을 확인하세요",
 	"Copy the address": "주소 복사",
 	"Permanent address": "영구 주소",
 	"Continue": "계속하기",

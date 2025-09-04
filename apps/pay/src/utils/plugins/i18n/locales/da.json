@@ -2,6 +2,11 @@
 	"staticStrings": {
 		"min": "Min"
 	},
+	"Copy the permanent address": "Kopier den permanente adresse",
+	"Chain commission": "Kædekommission",
+	"Selected chain": "Valgt kæde",
+	"Contacts": "Kontakter",
+	"More about": "Mere om",
 	"select-blockchain": {
 		"one": "Vælg blockchain",
 		"two": "Vælg blockchain"
@@ -29,7 +34,6 @@
 	"For your safety, DV.net blocks suspicious and illegal transactions": "For din sikkerheds skyld blokerer DV.net for mistænkelige og ulovlige transaktioner",
 	"Scan your DV.net deposit wallet address": "Scan din DV.net-indbetalingsadresse",
 	"Recommended commission": "Anbefalet kommission",
-	"Please note: the rate is approximate. Before transferring from the exchange, check the current rate at the time of the transaction": "Bemærk venligst: kursen er omtrentlig. Før du overfører fra børsen, skal du tjekke den aktuelle kurs på transaktionstidspunktet",
 	"Copy the address": "Kopier adressen",
 	"Permanent address": "Fast adresse",
 	"Continue": "Fortsæt",

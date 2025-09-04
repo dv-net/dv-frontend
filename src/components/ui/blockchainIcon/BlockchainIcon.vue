@@ -4,7 +4,6 @@
 	import IconBitcoin from "@shared/components/icons/blockchains/IconBitcoin.vue";
 	import IconEthereum from "@shared/components/icons/blockchains/IconEthereum.vue";
 	import IconUSDTTron from "@shared/components/icons/blockchains/IconUSDTTron.vue";
-	import IconUSDCTron from "@shared/components/icons/blockchains/IconUSDCTron.vue";
 	import IconUSDCEthereum from "@shared/components/icons/blockchains/IconUSDCEthereum.vue";
 	import IconUSDTEthereum from "@shared/components/icons/blockchains/IconUSDTEthereum.vue";
 	import IconLTCEthereum from "@shared/components/icons/blockchains/IconLTCEthereum.vue";
@@ -48,13 +47,12 @@
 		height?: string;
 	}>();
 
-	const icons: Record<string, Component> = {
+	const icons: Record<BlockchainType, Component> = {
 		"BCH.Bitcoincash": markRaw(IconBitcoincash),
 		"BTC.Bitcoin": markRaw(IconBitcoin),
 		"LTC.Litecoin": markRaw(IconLitecoin),
 		"TRX.Tron": markRaw(IconTRXTron),
 		"USDT.Tron": markRaw(IconUSDTTron),
-		"USDC.Tron": markRaw(IconUSDCTron),
 		"ETH.Ethereum": markRaw(IconEthereum),
 		"USDC.Ethereum": markRaw(IconUSDCEthereum),
 		"DAI.Ethereum": markRaw(IconDAIEthereum),
@@ -90,17 +88,9 @@
 </script>
 
 <template>
-	<component class="icon" :is="iconToShow" />
+	<component
+		class="flex-shrink-0"
+		:is="iconToShow"
+		:style="{ width, height, minWidth: width, minHeight: height, maxWidth: width, maxHeight: height }"
+	/>
 </template>
-
-<style>
-	.icon {
-		width: v-bind(width);
-		height: v-bind(height);
-		min-width: v-bind(width);
-		min-height: v-bind(height);
-		max-width: v-bind(width);
-		max-height: v-bind(height);
-		flex-shrink: 0;
-	}
-</style>

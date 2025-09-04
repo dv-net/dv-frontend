@@ -2,6 +2,11 @@
 	"staticStrings": {
 		"min": "Min"
 	},
+	"Copy the permanent address": "Kopieren sie die permanente adresse",
+	"Chain commission": "Kettenprovision",
+	"Selected chain": "Ausgewählte kette",
+	"Contacts": "Kontakte",
+	"More about": "Mehr über",
 	"select-blockchain": {
 		"one": "Blockchain auswählen",
 		"two": "Blockchain auswählen"
@@ -29,7 +34,6 @@
 	"For your safety, DV.net blocks suspicious and illegal transactions": "Zu Ihrer Sicherheit blockiert DV.net verdächtige und illegale Transaktionen",
 	"Scan your DV.net deposit wallet address": "Scannen Sie die Adresse Ihrer DV.net-Depot-Brieftasche",
 	"Recommended commission": "Empfohlene Kommission",
-	"Please note: the rate is approximate. Before transferring from the exchange, check the current rate at the time of the transaction": "Bitte beachten Sie: Der Kurs ist ein Richtwert. Prüfen Sie vor der Überweisung den aktuellen Kurs zum Zeitpunkt der Transaktion",
 	"Copy the address": "Kopieren Sie die Adresse",
 	"Permanent address": "Ständige Anschrift",
 	"Continue": "Weiter",

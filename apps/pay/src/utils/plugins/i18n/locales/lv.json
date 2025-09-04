@@ -2,6 +2,11 @@
 	"staticStrings": {
 		"min": "Min"
 	},
+	"Copy the permanent address": "Kopēt pastāvīgo adresi",
+	"Chain commission": "Ķēdes komisija",
+	"Selected chain": "Izvēlētā ķēde",
+	"Contacts": "Kontakti",
+	"More about": "Vairāk par",
 	"select-blockchain": {
 		"one": "Izvēlieties blokķēdi",
 		"two": "Izvēlieties blokķēdi"
@@ -29,7 +34,6 @@
 	"For your safety, DV.net blocks suspicious and illegal transactions": "Jūsu drošībai DV.net bloķē aizdomīgus un nelikumīgus darījumus",
 	"Scan your DV.net deposit wallet address": "Noskenējiet savu DV.net depozīta maka adresi",
 	"Recommended commission": "Ieteicamā komisija",
-	"Please note: the rate is approximate. Before transferring from the exchange, check the current rate at the time of the transaction": "Lūdzu, ņemiet vērā: norādītā cena ir aptuvena. Pirms pārskaitījuma veikšanas no valūtas maiņas, pārbaudiet aktuālo kursu darījuma veikšanas brīdī",
 	"Copy the address": "Kopēt adresi",
 	"Permanent address": "Pastāvīgā adrese",
 	"Continue": "Turpināt",

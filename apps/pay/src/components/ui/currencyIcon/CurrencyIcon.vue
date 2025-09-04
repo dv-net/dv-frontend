@@ -46,17 +46,9 @@
 </script>
 
 <template>
-	<component class="icon" :is="iconToShow" />
+	<component
+		class="flex-shrink-0"
+		:is="iconToShow"
+		:style="{ width, height, minWidth: width, minHeight: height, maxWidth: width, maxHeight: height }"
+	/>
 </template>
-
-<style>
-	.icon {
-		width: v-bind(width);
-		height: v-bind(height);
-		min-width: v-bind(width);
-		min-height: v-bind(height);
-		max-width: v-bind(width);
-		max-height: v-bind(height);
-		flex-shrink: 0;
-	}
-</style>

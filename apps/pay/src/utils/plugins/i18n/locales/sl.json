@@ -2,6 +2,11 @@
 	"staticStrings": {
 		"min": "Min"
 	},
+	"Copy the permanent address": "Kopiraj stalni naslov",
+	"Chain commission": "Verižna provizija",
+	"Selected chain": "Izbrana veriga",
+	"Contacts": "Kontakti",
+	"More about": "Več o",
 	"select-blockchain": {
 		"one": "Izberite verigo blokov",
 		"two": "Izberite verigo blokov"
@@ -29,7 +34,6 @@
 	"For your safety, DV.net blocks suspicious and illegal transactions": "DV.net za vašo varnost blokira sumljive in nezakonite transakcije",
 	"Scan your DV.net deposit wallet address": "Skenirajte svoj naslov denarnice za polog DV.net",
 	"Recommended commission": "Priporočena komisija",
-	"Please note: the rate is approximate. Before transferring from the exchange, check the current rate at the time of the transaction": "Opomba: cena je približna. Pred prenosom iz menjalnice preverite trenutni tečaj v času transakcije",
 	"Copy the address": "Kopirajte naslov",
 	"Permanent address": "Stalni naslov",
 	"Continue": "Nadaljuj",

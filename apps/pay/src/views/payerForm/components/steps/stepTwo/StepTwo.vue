@@ -4,25 +4,19 @@
 	import { usePayerFormStore } from "@pay/stores/payerForm";
 	import { storeToRefs } from "pinia";
 	import { getCurrentBlockchain } from "@shared/utils/helpers/general.ts";
-	import CardCurrency from "@pay/views/payerForm/components/steps/cardCurrency/CardCurrency.vue";
-	import type { CurrencyType } from "@pay/utils/types/blockchain";
 	import BlockchainIcon from "@shared/components/ui/blockchainIcon/BlockchainIcon.vue";
 	import { useRouter, useRoute } from "vue-router";
 	import NotFound from "@pay/views/payerForm/components/steps/notFound/NotFound.vue";
-	import { computed } from "vue";
 	import { blockchainCurrencyId } from "@shared/utils/constants/blockchain";
+	import CardSelectBlockchain
+		from "@pay/views/payerForm/components/steps/cardSelectBlockchain/CardSelectBlockchain.vue";
+	import type { CurrencyType } from "@pay/utils/types/blockchain";
 
-	const { filteredBlockchains, searchBlockchains, isLoading, currentStep, currentCurrency, currentChain, addresses } =
+	const { filteredBlockchains, searchBlockchains, isLoading, currentStep, currentCurrency, currentChain } =
 		storeToRefs(usePayerFormStore());
-	const { getAmountRate } = usePayerFormStore();
 
 	const router = useRouter();
 	const route = useRoute();
-
-	const currentCurrencyLabel = computed<string | null>(() => {
-		const find = addresses.value.find((item) => item.currency.code === currentCurrency.value);
-		return find ? find.currency.currency_label : null;
-	});
 
 	const setBlockchain = (currencyId: string) => {
 		if (!currencyId) return;
@@ -44,17 +38,12 @@
 		>
 			<template #prepend><ui-icon size="lg" type="400" name="search" /></template>
 		</ui-input>
-		<div v-if="isLoading || currentCurrency" class="currency">
-			<span class="currency__label">{{ $t("Selected currency") }}</span>
-			<ui-skeleton v-if="isLoading" :rows="1" :row-height="56" :item-border-radius="8" />
-			<card-currency
-				v-else
-				:currency="currentCurrency as CurrencyType"
-				:currency-label="currentCurrencyLabel"
-				mode="grey"
-				:is-hover-active="false"
-			/>
-		</div>
+		<ui-skeleton v-if="isLoading" :rows="1" :row-height="76" :item-border-radius="8" />
+		<card-select-blockchain
+			v-else-if="!isLoading && currentCurrency"
+			type="currency"
+			:currency="currentCurrency as CurrencyType"
+		/>
 		<div class="blockchains">
 			<span class="currency__label">{{ $t("Blockchains") }}</span>
 			<div v-if="isLoading" class="blockchains__cards">
@@ -80,7 +69,7 @@
 								</span>
 							</div>
 						</div>
-						<span class="card__price"> ~ {{ getAmountRate(item.currency.id) }} {{ currentCurrency }} </span>
+						<span class="card__commission">{{ $t('Chain commission') }} —</span>
 					</div>
 				</div>
 				<not-found v-else />
@@ -103,16 +92,6 @@
 		border-radius: 16px;
 		gap: 24px;
 		background-color: $form-background;
-		.currency {
-			display: flex;
-			flex-direction: column;
-			gap: 12px;
-			&__label {
-				color: $main-subtitle-color;
-				font-size: 16px;
-				font-weight: 500;
-			}
-		}
 		.blockchains {
 			display: flex;
 			flex-direction: column;
@@ -158,7 +137,7 @@
 						line-height: 20px;
 					}
 				}
-				&__price {
+				&__commission {
 					color: $main-text-grey-color;
 					font-size: 14px;
 					font-weight: 400;

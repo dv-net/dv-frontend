@@ -80,7 +80,7 @@
 		</ui-input>
 		<div class="block">
 			<span class="block__label">{{ $t("Popular") }}</span>
-			<div class="block__cards">
+			<div class="block__cards block__cards-popular">
 				<template v-if="isLoading">
 					<ui-skeleton v-for="item in 6" :key="item" :rows="1" :row-height="44" :item-border-radius="8" />
 				</template>
@@ -92,6 +92,7 @@
 						:currency-label="item.currency.currency_label"
 						:height="44"
 						mode="grey"
+						:is-show-price="false"
 						:selected="currentCurrency === getCurrentCoin(item.currency.id)"
 						@click="setCurrency(item.currency.id)"
 					/>
@@ -100,8 +101,8 @@
 		</div>
 		<div class="block">
 			<span class="block__label">{{ $t("Currencies") }}</span>
-			<div v-if="isLoading" class="tokens__cards">
-				<ui-skeleton v-for="item in 8" :key="item" :rows="1" :row-height="56" :item-border-radius="8" />
+			<div v-if="isLoading" class="block__cards">
+				<ui-skeleton v-for="item in 5" :key="item" :rows="1" :row-height="56" :item-border-radius="8" />
 			</div>
 			<template v-else>
 				<div v-if="filteredCurrencies.length" class="block__cards">
@@ -145,8 +146,11 @@
 			}
 			&__cards {
 				display: grid;
-				grid-template-columns: repeat(2, 1fr);
+				grid-template-columns: repeat(1, 1fr);
 				gap: 12px;
+				&-popular {
+					grid-template-columns: repeat(2, 1fr);
+				}
 			}
 		}
 	}

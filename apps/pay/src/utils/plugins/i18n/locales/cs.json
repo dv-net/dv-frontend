@@ -2,6 +2,11 @@
 	"staticStrings": {
 		"min": "Min"
 	},
+	"Copy the permanent address": "Zkopírovat trvalou adresu",
+	"Chain commission": "Řetězová komise",
+	"Selected chain": "Vybraný řetězec",
+	"Contacts": "Kontakty",
+	"More about": "Více o",
 	"select-blockchain": {
 		"one": "Vyberte blockchain",
 		"two": "Vyberte blockchain"
@@ -29,7 +34,6 @@
 	"For your safety, DV.net blocks suspicious and illegal transactions": "Pro vaši bezpečnost DV.net blokuje podezřelé a nelegální transakce",
 	"Scan your DV.net deposit wallet address": "Naskenujte adresu své peněženky DV.net",
 	"Recommended commission": "Doporučená komise",
-	"Please note: the rate is approximate. Before transferring from the exchange, check the current rate at the time of the transaction": "Upozornění: uvedená cena je přibližná. Před převodem ze směnárny si ověřte aktuální kurz v době transakce",
 	"Copy the address": "Zkopírujte adresu",
 	"Permanent address": "Adresa trvalého bydliště",
 	"Continue": "Pokračovat",
