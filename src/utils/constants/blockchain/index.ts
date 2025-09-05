@@ -3,6 +3,7 @@ import type { BlockchainType } from "@shared/utils/types/blockchain";
 export const blockchainCurrencyId: Record<string, BlockchainType> = {
 	bitcoincash: "BCH.Bitcoincash",
 	bsc: "BNB.BNBSmartChain",
+	bnbsmartchain: "BNB.BNBSmartChain",
 	ethereum: "ETH.Ethereum",
 	polygon: "POL.Polygon",
 	bitcoin: "BTC.Bitcoin",
