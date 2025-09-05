@@ -9,6 +9,7 @@ import type {
 import { useI18n } from "vue-i18n";
 import { formatAmountBlockchain, getCurrentBlockchain, getCurrentCoin } from "@shared/utils/helpers/general.ts";
 import type { BlockchainType } from "@shared/utils/types/blockchain";
+import type { CurrencyType } from "@pay/utils/types/blockchain";
 
 export const usePayerFormStore = defineStore("payerForm", () => {
 	const { locale } = useI18n();
@@ -132,10 +133,13 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 			: uniqueArray;
 	});
 
-	const getAmountRate = (currencyId: string): string => {
-		if (!amount.value || !rates.value || !(currencyId in rates?.value)) return "—";
-		const result: number = parseFloat(amount.value) / parseFloat(rates.value[currencyId]);
-		return formatAmountBlockchain(result, currencyId);
+	const getAmountRate = (currency: CurrencyType): string => {
+		if (!amount.value || !rates.value || !currency) return "—";
+		const find = Object.entries(rates.value)
+			.find(item => item[0].includes(currency))
+		if (!find) return "—";
+		const result: number = parseFloat(amount.value) / parseFloat(find[1]);
+		return formatAmountBlockchain(result, find[0]);
 	};
 
 	const checkValidationCurrencyAndChain = (

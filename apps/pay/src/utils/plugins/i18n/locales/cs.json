@@ -2,6 +2,11 @@
 	"staticStrings": {
 		"min": "Min"
 	},
+	"Copy the permanent address": "Zkopírovat trvalou adresu",
+	"Chain commission": "Řetězová komise",
+	"Selected chain": "Vybraný řetězec",
+	"Contacts": "Kontakty",
+	"More about": "Více o",
 	"select-blockchain": {
 		"one": "Vyberte blockchain",
 		"two": "Vyberte blockchain"
@@ -19,17 +24,16 @@
 	"Error": "Chyba",
 	"Helpdesk": "Helpdesk",
 	"Hash": "Hash",
-	"This is your permanent wallet, so we always wait for funds to arrive and credit them immediately": "Jedná se o vaši stálou peněženku, takže vždy počkáme na příchod peněz a ihned je připíšeme.",
+	"This is your permanent wallet, so we always wait for funds to arrive and credit them immediately": "Jedná se o vaši stálou peněženku, takže vždy počkáme na příchod peněz a ihned je připíšeme",
 	"Payment successfully approved": "Úspěšně schválená platba",
 	"Receiving and sending cryptocurrency": "Přijímání a odesílání kryptoměn",
 	"This store has been disabled by the administrator. Try to log in later or contact support": "Tento obchod byl správcem zakázán. Zkuste se přihlásit později nebo kontaktujte podporu",
 	"The higher the commission, the faster the process": "Čím vyšší provize, tím rychlejší proces",
-	"Wait for the payment to be confirmed by the network": "Počkejte na potvrzení platby ze strany sítě.",
+	"Wait for the payment to be confirmed by the network": "Počkejte na potvrzení platby ze strany sítě",
 	"Payment found": "Zjištěná platba",
-	"For your safety, DV.net blocks suspicious and illegal transactions": "Pro vaši bezpečnost DV.net blokuje podezřelé a nelegální transakce.",
+	"For your safety, DV.net blocks suspicious and illegal transactions": "Pro vaši bezpečnost DV.net blokuje podezřelé a nelegální transakce",
 	"Scan your DV.net deposit wallet address": "Naskenujte adresu své peněženky DV.net",
 	"Recommended commission": "Doporučená komise",
-	"Please note: the rate is approximate. Before transferring from the exchange, check the current rate at the time of the transaction": "Upozornění: uvedená cena je přibližná. Před převodem ze směnárny si ověřte aktuální kurz v době transakce.",
 	"Copy the address": "Zkopírujte adresu",
 	"Permanent address": "Adresa trvalého bydliště",
 	"Continue": "Pokračovat",

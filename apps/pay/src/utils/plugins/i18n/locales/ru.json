@@ -2,6 +2,11 @@
 	"staticStrings": {
 		"min": "Мин"
 	},
+    "Copy the permanent address": "Скопируйте постоянный адрес",
+    "Chain commission": "Комиссия сети",
+    "Selected chain": "Выбранная сеть",
+    "Contacts": "Контакты",
+    "More about": "Подробнее о",
 	"select-blockchain": {
 		"one": "Выбор сети",
 		"two": "Выберите сеть"
@@ -29,7 +34,6 @@
 	"For your safety, DV.net blocks suspicious and illegal transactions": "Для вашей безопасности, DV.net блокирует подозрительные и незаконные операции",
 	"Scan your DV.net deposit wallet address": "Отсканируйте адрес депозитного кошелька DV.net",
 	"Recommended commission": "Рекомендуемая комиссия",
-	"Please note: the rate is approximate. Before transferring from the exchange, check the current rate at the time of the transaction": "Обратите внимание: курс приблизительный. Перед переводом с биржи проверьте актуальный курс на момент операции",
 	"Copy the address": "Скопируйте адрес",
 	"Permanent address": "Постоянный адрес",
 	"Continue": "Продолжить",

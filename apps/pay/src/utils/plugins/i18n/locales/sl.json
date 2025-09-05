@@ -2,6 +2,11 @@
 	"staticStrings": {
 		"min": "Min"
 	},
+	"Copy the permanent address": "Kopiraj stalni naslov",
+	"Chain commission": "Verižna provizija",
+	"Selected chain": "Izbrana veriga",
+	"Contacts": "Kontakti",
+	"More about": "Več o",
 	"select-blockchain": {
 		"one": "Izberite verigo blokov",
 		"two": "Izberite verigo blokov"
@@ -19,17 +24,16 @@
 	"Error": "Napaka",
 	"Helpdesk": "Služba za pomoč uporabnikom",
 	"Hash": "Hash",
-	"This is your permanent wallet, so we always wait for funds to arrive and credit them immediately": "To je vaša stalna denarnica, zato vedno počakamo, da sredstva prispejo, in jih takoj nakažemo v dobro.",
+	"This is your permanent wallet, so we always wait for funds to arrive and credit them immediately": "To je vaša stalna denarnica, zato vedno počakamo, da sredstva prispejo, in jih takoj nakažemo v dobro",
 	"Payment successfully approved": "Plačilo je bilo uspešno odobreno",
 	"Receiving and sending cryptocurrency": "Prejemanje in pošiljanje kriptovalute",
 	"This store has been disabled by the administrator. Try to log in later or contact support": "To trgovino je upravitelj onemogočil. Poskusite se prijaviti pozneje ali se obrnite na podporo",
 	"The higher the commission, the faster the process": "Višja kot je provizija, hitrejši je postopek",
-	"Wait for the payment to be confirmed by the network": "Počakajte, da omrežje potrdi plačilo.",
+	"Wait for the payment to be confirmed by the network": "Počakajte, da omrežje potrdi plačilo",
 	"Payment found": "Najdeno plačilo",
 	"For your safety, DV.net blocks suspicious and illegal transactions": "DV.net za vašo varnost blokira sumljive in nezakonite transakcije",
 	"Scan your DV.net deposit wallet address": "Skenirajte svoj naslov denarnice za polog DV.net",
 	"Recommended commission": "Priporočena komisija",
-	"Please note: the rate is approximate. Before transferring from the exchange, check the current rate at the time of the transaction": "Opomba: cena je približna. Pred prenosom iz menjalnice preverite trenutni tečaj v času transakcije.",
 	"Copy the address": "Kopirajte naslov",
 	"Permanent address": "Stalni naslov",
 	"Continue": "Nadaljuj",

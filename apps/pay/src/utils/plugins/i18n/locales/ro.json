@@ -2,6 +2,11 @@
 	"staticStrings": {
 		"min": "Min"
 	},
+	"Copy the permanent address": "Copiați adresa permanentă",
+	"Chain commission": "Comision de lanț",
+	"Selected chain": "Lanț selectat",
+	"Contacts": "Contacte",
+	"More about": "Mai multe despre",
 	"select-blockchain": {
 		"one": "Selectați blockchain",
 		"two": "Selectați blockchain"
@@ -29,7 +34,6 @@
 	"For your safety, DV.net blocks suspicious and illegal transactions": "Pentru siguranța dumneavoastră, DV.net blochează tranzacțiile suspecte și ilegale",
 	"Scan your DV.net deposit wallet address": "Scanați adresa portofelului dvs. de depunere DV.net",
 	"Recommended commission": "Comisia recomandată",
-	"Please note: the rate is approximate. Before transferring from the exchange, check the current rate at the time of the transaction": "Vă rugăm să rețineți: rata este aproximativă. Înainte de a efectua un transfer de la bursă, verificați rata curentă la momentul tranzacției",
 	"Copy the address": "Copiați adresa",
 	"Permanent address": "Adresa permanentă",
 	"Continue": "Continuați",
@@ -53,5 +57,5 @@
 	"Change": "Schimbare",
 	"You pay via DV.net": "Plătiți prin DV.net",
 	"Accept cryptocurrency on your website without paying intermediaries": "Acceptați criptomonede pe site-ul dvs. fără a plăti intermediari",
-	"the cheapest way to accept cryptocurrency on your site": "cel mai ieftin mod de a accepta criptomonede pe site-ul dvs."
+	"the cheapest way to accept cryptocurrency on your site": "cel mai ieftin mod de a accepta criptomonede pe site-ul dvs"
 }

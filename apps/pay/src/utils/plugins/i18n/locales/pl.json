@@ -2,6 +2,11 @@
 	"staticStrings": {
 		"min": "Min"
 	},
+	"Copy the permanent address": "Skopiuj adres stały",
+	"Chain commission": "Chain commission",
+	"Selected chain": "Wybrany łańcuch",
+	"Contacts": "Kontakty",
+	"More about": "Więcej o",
 	"select-blockchain": {
 		"one": "Wybierz blockchain",
 		"two": "Wybierz blockchain"
@@ -24,12 +29,11 @@
 	"Receiving and sending cryptocurrency": "Odbieranie i wysyłanie kryptowalut",
 	"This store has been disabled by the administrator. Try to log in later or contact support": "Ten sklep został wyłączony przez administratora. Spróbuj zalogować się później lub skontaktuj się z pomocą techniczną",
 	"The higher the commission, the faster the process": "Im wyższa prowizja, tym szybszy proces",
-	"Wait for the payment to be confirmed by the network": "Poczekaj na potwierdzenie płatności przez sieć.",
+	"Wait for the payment to be confirmed by the network": "Poczekaj na potwierdzenie płatności przez sieć",
 	"Payment found": "Znaleziono płatność",
 	"For your safety, DV.net blocks suspicious and illegal transactions": "Dla Twojego bezpieczeństwa DV.net blokuje podejrzane i nielegalne transakcje",
 	"Scan your DV.net deposit wallet address": "Zeskanuj swój adres portfela depozytowego DV.net",
 	"Recommended commission": "Zalecana prowizja",
-	"Please note: the rate is approximate. Before transferring from the exchange, check the current rate at the time of the transaction": "Uwaga: kurs jest przybliżony. Przed dokonaniem przelewu z giełdy należy sprawdzić aktualny kurs w momencie dokonywania transakcji",
 	"Copy the address": "Skopiuj adres",
 	"Permanent address": "Stały adres",
 	"Continue": "Kontynuuj",

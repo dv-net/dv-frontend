@@ -7,4 +7,5 @@ export interface IProps {
 	height?: number;
 	selected?: boolean;
 	isHoverActive?: boolean;
+	isShowPrice?: boolean;
 }
