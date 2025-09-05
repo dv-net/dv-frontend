@@ -42,7 +42,7 @@
 			: "disabled";
 		await postUserSettings(
 			userSettings.value[findIndex],
-			t(userSettings.value[findIndex].value === "enabled" ? "Transfers included" : "Transfers are disabled")
+			t(userSettings.value[findIndex].value === "enabled" ? "Transfers are enabled" : "Transfers are disabled")
 		);
 	};
 </script>
