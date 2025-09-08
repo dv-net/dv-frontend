@@ -5,4 +5,10 @@
 	font-size: 20px;
 	font-weight: 600;
 	line-height: 120%;
+    @include mediamax(768) {
+      font-size: 18px;
+    }
+    @include mediamax(480) {
+      font-size: 16px;
+    }
 }

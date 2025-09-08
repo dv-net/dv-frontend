@@ -31,13 +31,19 @@
 		@include mediamax(1024) {
 			overflow-x: auto;
 			overflow-y: hidden;
-			width: calc(100vw - #{$padding-main * 2}px);
-			@supports (min-height: 100dvw) {
-				width: calc(100dvw - #{$padding-main * 2}px);
+			width: calc(100vw - #{$padding-main * 3}px);
+			@supports (width: 100dvw) {
+				width: calc(100dvw - #{$padding-main * 3}px);
 			}
 		}
 		@include mediamax(768) {
 			padding: 16px 24px;
+		}
+		@include mediamax(480) {
+			width: calc(100vw - #{$padding-main * 2}px);
+			@supports (width: 100dvw) {
+				width: calc(100dvw - #{$padding-main * 2}px);
+			}
 		}
 		&__inner {
 			display: flex;

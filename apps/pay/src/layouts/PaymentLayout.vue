@@ -108,5 +108,8 @@
 		flex-grow: 1;
 		display: flex;
 		padding: 40px 0;
+		@include mediamax(768) {
+			padding: 24px 0;
+		}
 	}
 </style>

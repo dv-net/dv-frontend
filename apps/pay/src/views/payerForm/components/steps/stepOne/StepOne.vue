@@ -137,6 +137,9 @@
 		border-radius: 16px;
 		gap: 24px;
 		background-color: $form-background;
+		@include mediamax(480) {
+			padding: 16px;
+		}
 		.block {
 			display: flex;
 			flex-direction: column;
@@ -150,6 +153,9 @@
 				gap: 12px;
 				&-popular {
 					grid-template-columns: repeat(2, 1fr);
+					@include mediamax(768) {
+						grid-template-columns: 1fr;
+					}
 				}
 			}
 		}

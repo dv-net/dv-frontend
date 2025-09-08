@@ -46,6 +46,7 @@
 		border: 1px solid $main-border-color;
 		min-height: 56px;
 		transition: border 0.3s ease-in-out;
+		word-break: break-word;
 		&.selected {
 			border: 1px solid #1968e5;
 		}
