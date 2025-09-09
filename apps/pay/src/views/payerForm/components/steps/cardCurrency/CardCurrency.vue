@@ -41,12 +41,16 @@
 		align-items: center;
 		justify-content: space-between;
 		gap: 8px;
-		padding: 8px 24px;
+		padding: 12px 24px;
 		border-radius: 8px;
 		border: 1px solid $main-border-color;
-		min-height: 56px;
 		transition: border 0.3s ease-in-out;
 		word-break: break-word;
+		font-size: 16px;
+		@include mediamax(768) {
+			font-size: 14px;
+			padding: 8px 12px;
+		}
 		&.selected {
 			border: 1px solid #1968e5;
 		}
@@ -76,7 +80,6 @@
 		}
 		&__label {
 			color: $main-text-grey-color;
-			font-size: 16px;
 			font-weight: 400;
 			line-height: 20px;
 		}

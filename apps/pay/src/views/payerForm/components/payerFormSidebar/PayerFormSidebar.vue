@@ -5,6 +5,7 @@
 	import { formatDollars, truncateHash } from "@shared/utils/helpers/general.ts";
 	import { computed } from "vue";
 	import BlockAdvertising from "@pay/views/payerForm/components/payerFormSidebar/blockAdvertising/BlockAdvertising.vue";
+	import WrapperBlock from "@pay/views/payerForm/components/wrapperBlock/WrapperBlock.vue";
 
 	const { payerId, store, amount, errorStore, currentStep } = storeToRefs(usePayerFormStore());
 
@@ -15,37 +16,39 @@
 
 <template>
 	<div class="sidebar">
-		<div v-if="isShowDetails" class="details">
-			<h2 class="global-title-h2">{{ $t("Payment details") }}</h2>
-			<div class="details__content">
-				<div class="row">
-					<span class="row__label">{{ $t("Payment ID") }}</span>
-					<div v-if="payerId" class="flex flex-y-center gap-8">
-						<span>{{ truncateHash(payerId, 12) }}</span>
-						<ui-copy-text :copied-text="payerId" color-icon="#A4A5B1" />
+		<wrapper-block v-if="isShowDetails">
+			<div class="details">
+				<h2 class="global-title-h2">{{ $t("Payment details") }}</h2>
+				<div class="details__content">
+					<div class="row">
+						<span class="row__label">{{ $t("Payment ID") }}</span>
+						<div v-if="payerId" class="flex flex-y-center gap-8">
+							<span>{{ truncateHash(payerId, 12) }}</span>
+							<ui-copy-text :copied-text="payerId" color-icon="#A4A5B1" />
+						</div>
+						<span v-else>—</span>
 					</div>
-					<span v-else>—</span>
+					<div class="row">
+						<span class="row__label">{{ $t("Site") }}</span>
+						<ui-link
+							v-if="store?.name && store?.site_url"
+							:href="store.site_url"
+							target="_blank"
+							size="xl"
+							class="flex flex-y-center gap-8"
+						>
+							<span>{{ store.name }}</span>
+							<ui-icon name="new-windows" type="400" />
+						</ui-link>
+						<span v-else>—</span>
+					</div>
 				</div>
-				<div class="row">
-					<span class="row__label">{{ $t("Site") }}</span>
-					<ui-link
-						v-if="store?.name && store?.site_url"
-						:href="store.site_url"
-						target="_blank"
-						size="xl"
-						class="flex flex-y-center gap-8"
-					>
-						<span>{{ store.name }}</span>
-						<ui-icon name="new-windows" type="400" />
-					</ui-link>
-					<span v-else>—</span>
+				<div class="details__bottom">
+					<span class="details__bottom-label">{{ $t("Sum") }}:</span>
+					<span class="details__bottom-price">{{ formatDollars(amount) }}</span>
 				</div>
 			</div>
-			<div class="details__bottom">
-				<span class="details__bottom-label">{{ $t("Sum") }}:</span>
-				<span class="details__bottom-price">{{ formatDollars(amount) }}</span>
-			</div>
-		</div>
+		</wrapper-block>
 		<block-advertising class="sidebar__advertising" />
 	</div>
 </template>
@@ -63,16 +66,9 @@
 		@include mediamax(1024) {
 			width: 100%;
 		}
-
 		.details {
 			display: flex;
 			flex-direction: column;
-			border-radius: 16px;
-			background-color: $form-background;
-			padding: 24px;
-			@include mediamax(480) {
-				padding: 16px;
-			}
 			&__content {
 				display: flex;
 				flex-direction: column;

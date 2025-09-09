@@ -9,6 +9,7 @@
 		from "@pay/views/payerForm/components/steps/cardSelectBlockchain/CardSelectBlockchain.vue";
 	import type { CurrencyType } from "@pay/utils/types/blockchain";
 	import type { BlockchainType } from "@shared/utils/types/blockchain";
+	import WrapperBlock from "@pay/views/payerForm/components/wrapperBlock/WrapperBlock.vue";
 
 	const { currentAddress, currentCurrency, currentChain } = storeToRefs(usePayerFormStore());
 	const { getAmountRate } = usePayerFormStore();
@@ -17,99 +18,113 @@
 </script>
 
 <template>
-	<div class="payment">
-		<div class="flex flex-column gap-12">
-			<card-select-blockchain
-				type="currency"
-				:currency="currentCurrency as CurrencyType"
-			/>
-			<card-select-blockchain
-				type="blockchain"
-				:currency-id="`${currentCurrency}.${currentChain}` as BlockchainType"
-			/>
-		</div>
-		<div class="address">
-			<div class="address__label">
-				<span>{{ $t("Copy the permanent address") }}</span>
-				<ui-tooltip
-					:title="$t('Permanent address')"
-					:text="$t('This is your permanent wallet, so we always wait for funds to arrive and credit them immediately')"
-				>
-					<ui-icon class="flex-shrink-0" name="help" type="filled" color="#A4A5B1" />
-				</ui-tooltip>
+	<wrapper-block>
+		<div class="payment">
+			<div class="flex flex-column gap-12">
+				<card-select-blockchain
+					type="currency"
+					:currency="currentCurrency as CurrencyType"
+				/>
+				<card-select-blockchain
+					type="blockchain"
+					:currency-id="`${currentCurrency}.${currentChain}` as BlockchainType"
+				/>
 			</div>
-			<div class="address__inner">
-				<div class="input">
-					<span class="input__text">{{ currentAddress || "—" }}</span>
-					<ui-copy-text v-if="currentAddress" :copied-text="currentAddress" color-icon="#A4A5B1" />
+			<div class="address">
+				<div class="address__label">
+					<span>{{ $t("Copy the permanent address") }}</span>
+					<ui-tooltip
+						:title="$t('Permanent address')"
+						:text="$t('This is your permanent wallet, so we always wait for funds to arrive and credit them immediately')"
+					>
+						<ui-icon class="flex-shrink-0" name="help" type="filled" color="#A4A5B1" />
+					</ui-tooltip>
 				</div>
-				<ui-tooltip :show-event="isDesktopDevice() ? 'hover' : 'click'" :teleport="false">
-					<template #text>
-						<div class="tooltip">
-							<qrcode-vue
-								class="tooltip__qr-code"
-								v-if="currentAddress"
-								:value="currentAddress"
-								level="M"
-								render-as="svg"
-							/>
-							<span class="tooltip__text">{{ $t("Scan the QR code") }}</span>
-						</div>
-					</template>
-					<div class="qr-code">
-						<ui-icon class="flex-shrink-0" name="qr-code-scanner" type="400" size="lg" />
+				<div class="address__inner">
+					<div class="input">
+						<span class="input__text">{{ currentAddress || "—" }}</span>
+						<ui-copy-text v-if="currentAddress" :copied-text="currentAddress" color-icon="#A4A5B1" />
 					</div>
-				</ui-tooltip>
-			</div>
-		</div>
-		<div class="sum">
-			<span class="sum__label">{{ $t("Sum") }}</span>
-			<div class="sum__inner">
-				<div class="sum__input">
-					<span>{{ currentPrice }} {{ currentCurrency }}</span>
-					<ui-copy-text :copied-text="currentPrice" color-icon="#A4A5B1" />
+					<ui-tooltip :show-event="isDesktopDevice() ? 'hover' : 'click'" :teleport="false">
+						<template #text>
+							<div class="tooltip">
+								<qrcode-vue
+									class="tooltip__qr-code"
+									v-if="currentAddress"
+									:value="currentAddress"
+									level="M"
+									render-as="svg"
+								/>
+								<span class="tooltip__text">{{ $t("Scan the QR code") }}</span>
+							</div>
+						</template>
+						<div class="qr-code">
+							<ui-icon class="flex-shrink-0" name="qr-code-scanner" type="400" size="lg" />
+						</div>
+					</ui-tooltip>
 				</div>
-				<span class="sum__description">{{ $t("Recommended commission") }}: —</span>
+			</div>
+			<div class="sum">
+				<span class="sum__label">{{ $t("Sum") }}</span>
+				<div class="sum__inner">
+					<div class="sum__input">
+						<span>{{ currentPrice }} {{ currentCurrency }}</span>
+						<ui-copy-text :copied-text="currentPrice" color-icon="#A4A5B1" />
+					</div>
+					<span class="sum__description">{{ $t("Recommended commission") }}: —</span>
+				</div>
 			</div>
 		</div>
-	</div>
+	</wrapper-block>
 </template>
 
 <style scoped lang="scss">
 	.payment {
-		padding: 24px;
 		display: flex;
 		flex-direction: column;
-		border-radius: 16px;
-		gap: 24px;
-		background-color: $form-background;
+		gap: 16px;
 		.address {
 			display: flex;
 			flex-direction: column;
 			gap: 12px;
+			@include mediamax(480) {
+				gap: 8px;
+			}
 			&__label {
 				display: flex;
 				align-items: center;
 				gap: 4px;
 				color: $main-subtitle-color;
+				@include mediamax(480) {
+					font-size: 14px;
+				}
 			}
 			&__inner {
 				display: flex;
 				align-items: center;
 				gap: 8px;
 				.input {
-					min-height: 56px;
 					flex-grow: 1;
 					display: flex;
 					align-items: center;
+					min-height: 56px;
 					gap: 12px;
 					padding: 8px 16px;
 					justify-content: space-between;
 					border-radius: 8px;
 					border: 1px solid $main-border-color;
 					background-color: $form-background;
+					@include mediamax(480) {
+						padding: 8px 12px;
+					}
 					&__text {
 						word-break: break-word;
+						@include mediamax(1024) {
+							font-size: 14px;
+						}
+						@include mediamax(480) {
+							font-size: 12px;
+						}
 					}
 				}
 				.qr-code {
@@ -137,8 +152,14 @@
 			display: flex;
 			flex-direction: column;
 			gap: 12px;
+			@include mediamax(480) {
+				gap: 8px;
+			}
 			&__label {
 				color: $main-subtitle-color;
+				@include mediamax(480) {
+					font-size: 14px;
+				}
 			}
 			&__inner {
 				display: flex;
@@ -152,10 +173,17 @@
 				gap: 12px;
 				height: 56px;
 				flex-grow: 1;
-				padding: 0 16px;
+				padding: 8px 16px;
 				border-radius: 8px;
 				border: 1px solid $main-border-color;
 				background-color: $form-background;
+				@include mediamax(1024) {
+					font-size: 14px;
+				}
+				@include mediamax(480) {
+					padding: 8px 12px;
+					font-size: 12px;
+				}
 			}
 			&__description {
 				color: $main-subtitle-color;

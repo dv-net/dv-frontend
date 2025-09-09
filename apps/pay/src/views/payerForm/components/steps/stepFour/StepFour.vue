@@ -6,6 +6,7 @@
 	import { usePayerFormStore } from "@pay/stores/payerForm";
 	import { storeToRefs } from "pinia";
 	import DisplayHash from "@shared/components/ui/displayHash/DisplayHash.vue";
+	import WrapperBlock from "@pay/views/payerForm/components/wrapperBlock/WrapperBlock.vue";
 
 	const { currentTransaction } = storeToRefs(usePayerFormStore());
 </script>
@@ -13,46 +14,48 @@
 <template>
 	<div class="screen">
 		<payment-details />
-		<div v-if="currentTransaction" class="info">
-			<div class="info__title">
-				<h2 class="global-title-h2">{{ $t("Payment found") }}</h2>
-				<ui-icon class="flex-shrink-0" name="check-circle" type="400" color="#1F9649" />
-			</div>
-			<div class="info__rows">
-				<div class="row">
-					<span class="row__label">{{ $t("Time of enrollment") }}</span>
-					<span class="row__value">~5 {{ $t("minutes") }}</span>
+		<wrapper-block v-if="currentTransaction">
+			<div class="info">
+				<div class="info__title">
+					<h2 class="global-title-h2">{{ $t("Payment found") }}</h2>
+					<ui-icon class="flex-shrink-0" name="check-circle" type="400" color="#1F9649" />
 				</div>
-				<div class="row">
-					<span class="row__label">{{ $t("Commission") }}</span>
-					<span class="row__value">—</span>
-				</div>
-				<div class="row">
-					<span class="row__label">{{ $t("Sum") }}</span>
-					<span class="row__value">
+				<div class="info__rows">
+					<div class="row">
+						<span class="row__label">{{ $t("Time of enrollment") }}</span>
+						<span class="row__value">~5 {{ $t("minutes") }}</span>
+					</div>
+					<div class="row">
+						<span class="row__label">{{ $t("Commission") }}</span>
+						<span class="row__value">—</span>
+					</div>
+					<div class="row">
+						<span class="row__label">{{ $t("Sum") }}</span>
+						<span class="row__value">
 						{{ formatAmountBlockchain(currentTransaction.amount, currentTransaction.currency_code) }}
 						{{ getCurrentCoin(currentTransaction.currency_code) }} ({{ formatDollars(currentTransaction.amount_usd) }})
 					</span>
+					</div>
+					<div class="row">
+						<span class="row__label">{{ $t("Hash") }}</span>
+						<display-hash
+							:is-link="false"
+							type="transaction"
+							:hash="currentTransaction.hash"
+							:currency-id="currentTransaction.currency_code"
+							color-icon="#A4A5B1"
+						/>
+					</div>
 				</div>
-				<div class="row">
-					<span class="row__label">{{ $t("Hash") }}</span>
-					<display-hash
-						:is-link="false"
-						type="transaction"
-						:hash="currentTransaction.hash"
-						:currency-id="currentTransaction.currency_code"
-						color-icon="#A4A5B1"
-					/>
+				<div class="info__banner">
+					<div class="info__banner-inner">
+						<span class="info__banner-title">{{ $t("Wait for the payment to be confirmed by the network") }}</span>
+						<span class="info__banner-subtitle">{{ $t("The higher the commission, the faster the process") }}</span>
+					</div>
+					<loader-dollar />
 				</div>
 			</div>
-			<div class="info__banner">
-				<div class="info__banner-inner">
-					<span class="info__banner-title">{{ $t("Wait for the payment to be confirmed by the network") }}</span>
-					<span class="info__banner-subtitle">{{ $t("The higher the commission, the faster the process") }}</span>
-				</div>
-				<loader-dollar />
-			</div>
-		</div>
+		</wrapper-block>
 	</div>
 </template>
 
@@ -65,9 +68,6 @@
 			display: flex;
 			flex-direction: column;
 			gap: 24px;
-			padding: 24px;
-			border-radius: 16px;
-			background-color: $form-background;
 			&__title {
 				display: flex;
 				align-items: center;

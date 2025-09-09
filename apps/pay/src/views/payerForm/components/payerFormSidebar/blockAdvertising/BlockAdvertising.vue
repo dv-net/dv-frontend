@@ -1,35 +1,34 @@
 <script setup lang="ts">
 	import { UiLink } from "@dv.net/ui-kit";
+	import WrapperBlock from "@pay/views/payerForm/components/wrapperBlock/WrapperBlock.vue";
 </script>
 
 <template>
-	<div class="advertising">
-		<div class="content">
-			<div class="content__inner">
-				<h2 class="global-title-h2">{{ $t("You pay via DV.net") }}</h2>
-				<p>{{ $t("Accept cryptocurrency on your website without paying intermediaries") }}</p>
+	<wrapper-block>
+		<div class="advertising">
+			<div class="content">
+				<div class="content__inner">
+					<h2 class="global-title-h2">{{ $t("You pay via DV.net") }}</h2>
+					<p>{{ $t("Accept cryptocurrency on your website without paying intermediaries") }}</p>
+				</div>
+				<img class="content__img" src="@pay/assets/images/shield.webp" alt="shield" />
 			</div>
-			<img class="content__img" src="@pay/assets/images/shield.webp" alt="shield" />
+			<div class="slogan">
+				<p class="slogan__inner">
+					<ui-link href="https://dv.net/" target="_blank">DaVinci Merchant</ui-link> -
+					{{ $t("the cheapest way to accept cryptocurrency on your site") }}
+				</p>
+			</div>
 		</div>
-		<div class="slogan">
-			<p class="slogan__inner">
-				<ui-link href="https://dv.net/" target="_blank">DaVinci Merchant</ui-link> -
-				{{ $t("the cheapest way to accept cryptocurrency on your site") }}
-			</p>
-		</div>
-	</div>
+	</wrapper-block>
 </template>
 
 <style scoped lang="scss">
 	.advertising {
 		display: flex;
 		flex-direction: column;
-		border-radius: 16px;
 		gap: 38px;
-		background-color: $form-background;
-		padding: 24px;
 		@include mediamax(480) {
-			padding: 16px;
 			gap: 16px;
 		}
 		.content {

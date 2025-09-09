@@ -1,16 +1,43 @@
 <script setup lang="ts">
 	import { usePayerFormStore } from "@pay/stores/payerForm";
 	import { storeToRefs } from "pinia";
+	import { ref, watch, nextTick } from "vue";
 
 	const { timeline, currentStep } = storeToRefs(usePayerFormStore());
+
+	const timelineRef = ref<HTMLDivElement | null>(null);
+	const itemRefs = ref<Array<HTMLDivElement | null>>([]);
+
+	const scrollToCurrentStep = () => {
+		nextTick(() => {
+			const currentItem = itemRefs.value[currentStep.value - 1];
+			const parent = timelineRef.value;
+			if (currentItem && parent) {
+				const parentRect = parent.getBoundingClientRect();
+				const itemRect = currentItem.getBoundingClientRect();
+				const offset = itemRect.left - parentRect.left
+					- parent.clientWidth / 2
+					+ itemRect.width / 2;
+				parent.scrollTo({
+					left: parent.scrollLeft + offset,
+					behavior: "smooth"
+				});
+			}
+		})
+	};
+
+	watch(currentStep, () => {
+		scrollToCurrentStep();
+	});
 </script>
 
 <template>
-	<div class="timeline">
+	<div class="timeline" ref="timelineRef">
 		<div class="timeline__inner">
 			<div
 				v-for="(item, index) in timeline"
 				:key="item.id"
+				:ref="el => itemRefs[index] = el"
 				class="timeline__item"
 				:class="[{ 'opacity-item': !item.isActive }, { success: currentStep === 5 && timeline.length - 1 === index }]"
 			>
@@ -38,12 +65,6 @@
 		}
 		@include mediamax(768) {
 			padding: 16px 24px;
-		}
-		@include mediamax(480) {
-			width: calc(100vw - #{$padding-main * 2}px);
-			@supports (width: 100dvw) {
-				width: calc(100dvw - #{$padding-main * 2}px);
-			}
 		}
 		&__inner {
 			display: flex;
