@@ -3,7 +3,7 @@
 	import type { IHotWalletsItem } from "@dv-admin/utils/types/api/apiGo";
 	import { ref } from "vue";
 	import type { UiButtonSize } from "@dv.net/ui-kit/dist/components/UiButton/types";
-	import type { Placement } from "@floating-ui/vue";
+	import type { UiPlacementType } from "@dv.net/ui-kit/dist/components/UiTooltip/types";
 	import IconCursor from "@dv-admin/components/icons/IconCursor.vue";
 	import TooltipHelper from "@dv-admin/components/ui/tooltipHelper/TooltipHelper.vue";
 	import { postApiWithdrawManual, postApiWithdrawProcessing } from "@dv-admin/services/api/hotWallets";
@@ -17,7 +17,7 @@
 		defineProps<{
 			data: IHotWalletsItem;
 			sizeButton?: UiButtonSize;
-			placement?: Placement;
+			placement?: UiPlacementType;
 			isCard?: boolean;
 		}>(),
 		{

@@ -135,8 +135,7 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 
 	const getAmountRate = (currency: CurrencyType): string => {
 		if (!amount.value || !rates.value || !currency) return "—";
-		const find = Object.entries(rates.value)
-			.find(item => item[0].includes(currency))
+		const find = Object.entries(rates.value).find((item) => item[0].includes(currency));
 		if (!find) return "—";
 		const result: number = parseFloat(amount.value) / parseFloat(find[1]);
 		return formatAmountBlockchain(result, find[0]);

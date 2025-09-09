@@ -46,9 +46,8 @@
 		try {
 			if (!formRef.value || !(await formRef.value.validate())) return;
 			await postUserChangeEmail(changeEmail.value);
-			await getUser();
 			handleCancelChangeEmail();
-			flagChangeEmail.value = true;
+			await getUser();
 			notify(t("Email has been changed, please confirm it now"), "success");
 		} catch (error: any) {
 			console.error(error);
@@ -58,14 +57,15 @@
 	const handleCancelChangeEmail = () => {
 		clearEmailCodeTimer();
 		stopEmailCodeTimer();
-		isEditingEmail.value = false;
 		changeEmail.value.email = "";
 		changeEmail.value.code = "";
+		flagChangeEmail.value = true;
+		isEditingEmail.value = false;
 	};
 
 	onMounted(async () => {
 		if (!hasEmailCodeLastSent.value) return;
-		const state = await resumeEmailCodeTimer();
+		const state = resumeEmailCodeTimer();
 		isEditingEmail.value = state === "resume";
 	});
 </script>

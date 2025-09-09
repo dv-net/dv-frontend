@@ -5,8 +5,7 @@
 	import { isDesktopDevice } from "@shared/utils/helpers/media.ts";
 	import QrcodeVue from "qrcode.vue";
 	import { computed } from "vue";
-	import CardSelectBlockchain
-		from "@pay/views/payerForm/components/steps/cardSelectBlockchain/CardSelectBlockchain.vue";
+	import CardSelectBlockchain from "@pay/views/payerForm/components/steps/cardSelectBlockchain/CardSelectBlockchain.vue";
 	import type { CurrencyType } from "@pay/utils/types/blockchain";
 	import type { BlockchainType } from "@shared/utils/types/blockchain";
 
@@ -19,14 +18,8 @@
 <template>
 	<div class="payment">
 		<div class="flex flex-column gap-12">
-			<card-select-blockchain
-				type="currency"
-				:currency="currentCurrency as CurrencyType"
-			/>
-			<card-select-blockchain
-				type="blockchain"
-				:currency-id="`${currentCurrency}.${currentChain}` as BlockchainType"
-			/>
+			<card-select-blockchain type="currency" :currency="currentCurrency as CurrencyType" />
+			<card-select-blockchain type="blockchain" :currency-id="`${currentCurrency}.${currentChain}` as BlockchainType" />
 		</div>
 		<div class="address">
 			<div class="address__label">

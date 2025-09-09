@@ -7,7 +7,6 @@
 	import { useNotifications } from "@shared/utils/composables/useNotifications";
 	import { useI18n } from "vue-i18n";
 	import DialogShowAddresses from "@dv-admin/views/hotWallets/components/filters/dialogShowAddresses/DialogShowAddresses.vue";
-	import { arrayBitcoinLike } from "@dv-admin/utils/constants/hotWallets";
 	import { useGeneralStore } from "@dv-admin/stores/general";
 	import { USER } from "@dv-admin/utils/constants/user";
 
@@ -24,6 +23,7 @@
 		isSelectedAllWallets
 	} = storeToRefs(useHotWalletsStore());
 	const { getWallets, postWithdrawMultipleManualOrProcessing, postWalletKeysHot } = useHotWalletsStore();
+	const { bitcoinLikeNetworks } = storeToRefs(useGeneralStore());
 	const { openOtpGlobalModal } = useGeneralStore();
 
 	const toggleView = defineModel<boolean>("toggleView", { required: true, default: false });
@@ -32,7 +32,7 @@
 	const isOpenModalSendWallets = ref<boolean>(false);
 
 	const isShowBtnSend = computed<boolean>(
-		() => arrayBitcoinLike.includes(currentBlockchainHotWallets.value) && !!includedWallets.value.length
+		() => bitcoinLikeNetworks.value.includes(currentBlockchainHotWallets.value) && !!includedWallets.value.length
 	);
 	const isShowBtnDownloadKeys = computed<boolean>(() => !!includedWallets.value.length);
 
