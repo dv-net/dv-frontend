@@ -3,7 +3,7 @@
 	import LangSelect from "@pay/components/ui/langSelect/LangSelect.vue";
 	import { useI18n } from "vue-i18n";
 
-	const { locale } = useI18n()
+	const { locale } = useI18n();
 </script>
 
 <template>
@@ -13,14 +13,20 @@
 				<div class="header__inner">
 					<icon-logo />
 					<nav class="header__nav">
-						<a class="header__link" target="_blank" :href="`https://dv.net/${ !locale || locale === 'en' ? '' : locale }`">
-							{{ $t('More about') }} Merchant
+						<a
+							class="header__link"
+							target="_blank"
+							:href="`https://dv.net/${!locale || locale === 'en' ? '' : locale}`"
+						>
+							{{ $t("More about") }} Merchant
 						</a>
-						<a class="header__link" target="_blank" :href="`https://docs.dv.net/${ locale || 'en' }`">
-							FAQ
-						</a>
-						<a class="header__link" target="_blank" :href="`https://dv.net/${ !locale || locale === 'en' ? '' : locale }#support`">
-							{{ $t('Contacts') }}
+						<a class="header__link" target="_blank" :href="`https://docs.dv.net/${locale || 'en'}`"> FAQ </a>
+						<a
+							class="header__link"
+							target="_blank"
+							:href="`https://dv.net/${!locale || locale === 'en' ? '' : locale}#support`"
+						>
+							{{ $t("Contacts") }}
 						</a>
 					</nav>
 					<lang-select for-header />

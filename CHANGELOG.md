@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+- Changed behavior in email confirmation DV-3323
+
 ---
 ## [1.0.10] - 2025-09-05
 

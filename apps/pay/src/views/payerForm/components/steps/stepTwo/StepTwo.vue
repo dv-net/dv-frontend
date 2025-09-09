@@ -8,8 +8,7 @@
 	import { useRouter, useRoute } from "vue-router";
 	import NotFound from "@pay/views/payerForm/components/steps/notFound/NotFound.vue";
 	import { blockchainCurrencyId } from "@shared/utils/constants/blockchain";
-	import CardSelectBlockchain
-		from "@pay/views/payerForm/components/steps/cardSelectBlockchain/CardSelectBlockchain.vue";
+	import CardSelectBlockchain from "@pay/views/payerForm/components/steps/cardSelectBlockchain/CardSelectBlockchain.vue";
 	import type { CurrencyType } from "@pay/utils/types/blockchain";
 
 	const { filteredBlockchains, searchBlockchains, isLoading, currentStep, currentCurrency, currentChain } =
@@ -69,7 +68,7 @@
 								</span>
 							</div>
 						</div>
-						<span class="card__commission">{{ $t('Chain commission') }} —</span>
+						<span class="card__commission">{{ $t("Chain commission") }} —</span>
 					</div>
 				</div>
 				<not-found v-else />

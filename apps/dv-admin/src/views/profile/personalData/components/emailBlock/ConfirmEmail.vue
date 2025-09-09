@@ -45,13 +45,13 @@
 
 	onMounted(async () => {
 		if (!hasEmailCodeLastSent.value) return;
-		if (flagChangeEmail) {
+		if (flagChangeEmail.value) {
 			flagChangeEmail.value = false;
 			stopEmailCodeTimer();
 			clearEmailCodeTimer();
 			return;
 		}
-		const state = await resumeEmailCodeTimer();
+		const state = resumeEmailCodeTimer();
 		isConfirming.value = state === "resume";
 	});
 </script>

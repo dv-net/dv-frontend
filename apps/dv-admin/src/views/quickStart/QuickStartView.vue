@@ -3,7 +3,7 @@
 	import { useI18n } from "vue-i18n";
 	import { storeToRefs } from "pinia";
 	import { useRouter } from "vue-router";
-	import { UiButton, UiInput, UiLink, UiSkeleton, UiTabs, UiTabsItem } from "@dv.net/ui-kit";
+	import { UiButton, UiForm, UiFormItem, UiInput, UiLink, UiSkeleton, UiTabs, UiTabsItem } from "@dv.net/ui-kit";
 	import BlockSection from "@dv-admin/components/ui/BlockSection/BlockSection.vue";
 	import CompletedIcon from "./components/CompletedIcon.vue";
 	import InProgressIcon from "./components/InProgressIcon.vue";
@@ -12,7 +12,7 @@
 	import Webhooks from "@dv-admin/views/projects/edit/main/components/webhooks/Webhooks.vue";
 	import Secrets from "@dv-admin/views/projects/edit/main/components/secrets/Secrets.vue";
 	import { useDashboardStore } from "@dv-admin/stores/dashboard";
-	import { getCurrentBlockchain } from "@shared/utils/helpers/general";
+	import { getCurrentBlockchain, isValidUrl } from "@shared/utils/helpers/general";
 	import DisplayHash from "@shared/components/ui/displayHash/DisplayHash.vue";
 	import BlockchainIcon from "@shared/components/ui/blockchainIcon/BlockchainIcon.vue";
 	import { getApiUserSettings } from "@dv-admin/services/api/systemSettings";
@@ -29,6 +29,8 @@
 	const router = useRouter();
 	const { t } = useI18n();
 
+	const formRef = ref<HTMLFormElement | null>(null);
+	const formError = ref<string>("");
 	const isLoadingFinishBtn = ref<boolean>(false);
 	const currentProjectId = ref<string>("");
 	const currentStep = ref<1 | 2 | 3 | 4>(2);
@@ -114,6 +116,12 @@
 	};
 
 	const saveProjectNameHandler = async () => {
+		if (!currentProject.value) return;
+		formError.value = "";
+		if (currentProject.value?.site !== null && !isValidUrl(currentProject.value?.site)) {
+			formError.value = t("Please enter a valid URL");
+			return;
+		}
 		await putOneProject(t("The project has been saved"));
 		goToNextStep();
 	};
@@ -188,12 +196,26 @@
 				</div>
 
 				<div v-if="step.isActive" class="step__content">
-					<form class="step__form" @submit.prevent="goToNextStep">
+					<ui-form
+						ref="formRef"
+						:model="currentProject"
+						class="step__form"
+						:class="{ 'step__form-gap': currentStep === 2 }"
+						@submit.prevent="goToNextStep"
+					>
 						<div v-if="currentStep === 2" class="form-group">
-							<span class="step__description">
-								{{ t("This URL will be used on the payment form to return the client to your store") }}
-							</span>
-							<UiInput v-model="currentProject.site" :placeholder="t('URL of your project')" class="gray-background" />
+							<ui-form-item
+								:error="formError"
+								name="site"
+								:label="$t('This URL will be used on the payment form to return the client to your store')"
+							>
+								<UiInput
+									v-model="currentProject.site"
+									:placeholder="t('URL of your project')"
+									is-empty-value-null
+									class="gray-background"
+								/>
+							</ui-form-item>
 						</div>
 
 						<div v-if="currentStep === 3" class="form-group">
@@ -291,7 +313,7 @@
 								{{ t(currentStep === 2 ? "Save" : "Next") }}
 							</UiButton>
 						</div>
-					</form>
+					</ui-form>
 				</div>
 			</div>
 
@@ -410,6 +432,9 @@
 				display: flex;
 				flex-direction: column;
 				gap: 20px;
+				&-gap {
+					gap: 0;
+				}
 			}
 
 			&__description {
