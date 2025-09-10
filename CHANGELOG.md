@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 - Changed behavior in email confirmation DV-3323
+- Adaptation of the payment form for mobile devices DV-3311
 
 ---
 ## [1.0.10] - 2025-09-05

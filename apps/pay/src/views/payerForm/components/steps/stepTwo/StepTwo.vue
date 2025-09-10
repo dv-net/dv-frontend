@@ -10,6 +10,7 @@
 	import { blockchainCurrencyId } from "@shared/utils/constants/blockchain";
 	import CardSelectBlockchain from "@pay/views/payerForm/components/steps/cardSelectBlockchain/CardSelectBlockchain.vue";
 	import type { CurrencyType } from "@pay/utils/types/blockchain";
+	import WrapperBlock from "@pay/views/payerForm/components/wrapperBlock/WrapperBlock.vue";
 
 	const { filteredBlockchains, searchBlockchains, isLoading, currentStep, currentCurrency, currentChain } =
 		storeToRefs(usePayerFormStore());
@@ -26,71 +27,72 @@
 </script>
 
 <template>
-	<div class="screen">
-		<h2 class="global-title-h2">{{ $t("select-blockchain.two") }}</h2>
-		<ui-input
-			v-model="searchBlockchains"
-			is-empty-value-null
-			clearable
-			@clear="searchBlockchains = null"
-			:placeholder="$t('Enter blockchain name to search')"
-		>
-			<template #prepend><ui-icon size="lg" type="400" name="search" /></template>
-		</ui-input>
-		<ui-skeleton v-if="isLoading" :rows="1" :row-height="76" :item-border-radius="8" />
-		<card-select-blockchain
-			v-else-if="!isLoading && currentCurrency"
-			type="currency"
-			:currency="currentCurrency as CurrencyType"
-		/>
-		<div class="blockchains">
-			<span class="currency__label">{{ $t("Blockchains") }}</span>
-			<div v-if="isLoading" class="blockchains__cards">
-				<ui-skeleton v-for="item in 3" :key="item" :rows="1" :row-height="56" :item-border-radius="8" />
-			</div>
-			<template v-else>
-				<div v-if="filteredBlockchains.length" class="blockchains__cards">
-					<div
-						v-for="item in filteredBlockchains"
-						:key="item.currency.id"
-						class="card"
-						:class="{ selected: currentChain === getCurrentBlockchain(item.currency.id) }"
-						@click="setBlockchain(item.currency.id)"
-					>
-						<div class="card__inner">
-							<blockchain-icon :type="blockchainCurrencyId[item.currency.blockchain]" />
-							<div class="card__blockchain">
-								<span>{{
-									item.currency.id.includes("BNBSmartChain") ? "BSC" : getCurrentBlockchain(item.currency.id)
-								}}</span>
-								<span v-if="item.currency.token_label" class="card__blockchain-label">
-									({{ item.currency.token_label }})
-								</span>
-							</div>
-						</div>
-						<span class="card__commission">{{ $t("Chain commission") }} —</span>
-					</div>
+	<wrapper-block>
+		<div class="screen">
+			<h2 class="global-title-h2">{{ $t("select-blockchain.two") }}</h2>
+			<ui-input
+				v-model="searchBlockchains"
+				is-empty-value-null
+				clearable
+				@clear="searchBlockchains = null"
+				:placeholder="$t('Enter blockchain name to search')"
+			>
+				<template #prepend><ui-icon size="lg" type="400" name="search" /></template>
+			</ui-input>
+			<ui-skeleton v-if="isLoading" :rows="1" :row-height="76" :item-border-radius="8" />
+			<card-select-blockchain
+				v-else-if="!isLoading && currentCurrency"
+				type="currency"
+				:currency="currentCurrency as CurrencyType"
+			/>
+			<div class="blockchains">
+				<span class="currency__label">{{ $t("Blockchains") }}</span>
+				<div v-if="isLoading" class="blockchains__cards">
+					<ui-skeleton v-for="item in 3" :key="item" :rows="1" :row-height="56" :item-border-radius="8" />
 				</div>
-				<not-found v-else />
-			</template>
+				<template v-else>
+					<div v-if="filteredBlockchains.length" class="blockchains__cards">
+						<div
+							v-for="item in filteredBlockchains"
+							:key="item.currency.id"
+							class="card"
+							:class="{ selected: currentChain === getCurrentBlockchain(item.currency.id) }"
+							@click="setBlockchain(item.currency.id)"
+						>
+							<div class="card__inner">
+								<blockchain-icon :type="blockchainCurrencyId[item.currency.blockchain]" />
+								<div class="card__blockchain">
+									<span>{{
+										item.currency.id.includes("BNBSmartChain") ? "BSC" : getCurrentBlockchain(item.currency.id)
+									}}</span>
+									<span v-if="item.currency.token_label" class="card__blockchain-label">
+										({{ item.currency.token_label }})
+									</span>
+								</div>
+							</div>
+							<span class="card__commission">{{ $t("Commission") }} —</span>
+						</div>
+					</div>
+					<not-found v-else />
+				</template>
+			</div>
+			<navigation-buttons
+				:is-disabled-btn-forward="!Boolean(currentChain)"
+				@click-btn-back="currentStep = 1"
+				@click-btn-forward="currentStep = 3"
+			/>
 		</div>
-		<navigation-buttons
-			class="mt-48"
-			:is-disabled-btn-forward="!Boolean(currentChain)"
-			@click-btn-back="currentStep = 1"
-			@click-btn-forward="currentStep = 3"
-		/>
-	</div>
+	</wrapper-block>
 </template>
 
 <style scoped lang="scss">
 	.screen {
-		padding: 24px;
 		display: flex;
 		flex-direction: column;
-		border-radius: 16px;
 		gap: 24px;
-		background-color: $form-background;
+		@include mediamax(768) {
+			gap: 20px;
+		}
 		.blockchains {
 			display: flex;
 			flex-direction: column;
@@ -105,12 +107,18 @@
 				align-items: center;
 				gap: 12px;
 				justify-content: space-between;
-				padding: 8px 24px;
+				padding: 12px 24px;
 				border-radius: 8px;
-				min-height: 56px;
 				border: 1px solid $main-border-color;
 				background-color: $form-background;
 				transition: border 0.3s ease-in-out;
+				@include mediamax(768) {
+					padding: 12px 16px;
+				}
+				@include mediamax(480) {
+					gap: 8px;
+					padding: 8px 12px;
+				}
 				&.selected {
 					border: 1px solid #1968e5;
 				}
@@ -129,17 +137,32 @@
 					display: flex;
 					align-items: center;
 					gap: 4px;
+					@include mediamax(576) {
+						font-size: 14px;
+					}
+					@include mediamax(480) {
+						font-size: 12px;
+					}
 					&-label {
 						color: $main-text-grey-color;
 						font-size: 16px;
 						font-weight: 400;
 						line-height: 20px;
+						@include mediamax(576) {
+							font-size: 14px;
+						}
+						@include mediamax(480) {
+							font-size: 12px;
+						}
 					}
 				}
 				&__commission {
 					color: $main-text-grey-color;
 					font-size: 14px;
 					font-weight: 400;
+					@include mediamax(480) {
+						font-size: 12px;
+					}
 				}
 			}
 		}

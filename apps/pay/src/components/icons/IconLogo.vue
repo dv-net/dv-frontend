@@ -1,5 +1,12 @@
 <template>
-	<svg width="110" height="32" viewBox="0 0 110 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<svg
+		class="flex-shrink-0"
+		width="110"
+		height="32"
+		viewBox="0 0 110 32"
+		fill="none"
+		xmlns="http://www.w3.org/2000/svg"
+	>
 		<g clip-path="url(#clip0_3607_31752)">
 			<rect width="110" height="31.9999" fill="transparent" />
 			<path

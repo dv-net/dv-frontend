@@ -4,24 +4,23 @@
 	import QrcodeVue from "qrcode.vue";
 	import { usePayerFormStore } from "@pay/stores/payerForm";
 	import { storeToRefs } from "pinia";
-	import { UiButton } from "@dv.net/ui-kit";
+	import WrapperBlock from "@pay/views/payerForm/components/wrapperBlock/WrapperBlock.vue";
 
-	const { currentStep, currentAddress } = storeToRefs(usePayerFormStore());
+	const { currentAddress } = storeToRefs(usePayerFormStore());
 </script>
 
 <template>
 	<div class="screen">
 		<payment-details />
-		<div class="info">
-			<div class="info__inner">
-				<span>{{ $t("Scan your DV.net deposit wallet address") }}</span>
-				<banner-info :message="$t('For your safety, DV.net blocks suspicious and illegal transactions')" />
+		<wrapper-block>
+			<div class="info">
+				<div class="info__inner">
+					<span>{{ $t("Scan your DV.net deposit wallet address") }}</span>
+					<banner-info :message="$t('For your safety, DV.net blocks suspicious and illegal transactions')" />
+				</div>
+				<qrcode-vue v-if="currentAddress" class="info__qr-code" :value="currentAddress" level="M" render-as="svg" />
 			</div>
-			<qrcode-vue v-if="currentAddress" class="info__qr-code" :value="currentAddress" level="M" render-as="svg" />
-		</div>
-		<ui-button size="xl" mode="neutral" @click="currentStep = 2">
-			{{ $t("Back") }}
-		</ui-button>
+		</wrapper-block>
 	</div>
 </template>
 
@@ -30,13 +29,25 @@
 		display: flex;
 		flex-direction: column;
 		gap: 24px;
+		@include mediamax(768) {
+			gap: 20px;
+		}
+		@include mediamax(480) {
+			gap: 12px;
+		}
 		.info {
-			padding: 24px;
-			border-radius: 16px;
-			background-color: $form-background;
 			display: flex;
 			align-items: center;
 			gap: 38px;
+			@include mediamax(768) {
+				gap: 24px;
+			}
+			@include mediamax(480) {
+				display: flex;
+				flex-direction: column;
+				align-items: unset;
+				gap: 12px;
+			}
 			&__inner {
 				display: flex;
 				flex-direction: column;
@@ -47,6 +58,15 @@
 				flex-shrink: 0;
 				width: 112px;
 				height: 112px;
+				@include mediamax(768) {
+					width: 100px;
+					height: 100px;
+				}
+				@include mediamax(480) {
+					width: 112px;
+					height: 112px;
+					align-self: center;
+				}
 			}
 		}
 	}
