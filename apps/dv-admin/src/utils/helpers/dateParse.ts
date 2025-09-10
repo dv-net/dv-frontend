@@ -85,10 +85,12 @@ export const getLastDaysRange = (
 	toDate.setUTCHours(0, 0, 0, 0);
 	const fromDate = new Date(toDate);
 	if (typeof days === "number") {
-		fromDate.setUTCDate(fromDate.getUTCDate() - days);
+		fromDate.setUTCDate(fromDate.getUTCDate() - days + 1);
 	} else {
 		fromDate.setUTCMonth(fromDate.getUTCMonth() - 1);
+		fromDate.setUTCDate(fromDate.getUTCDate() + 1);
 	}
+
 	return {
 		dateFrom: formatDate(fromDate),
 		dateTo: formatDate(toDate),
