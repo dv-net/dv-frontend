@@ -20,10 +20,7 @@
 	<wrapper-block>
 		<div class="payment">
 			<div class="flex flex-column gap-12">
-				<card-select-blockchain
-					type="currency"
-					:currency="currentCurrency as CurrencyType"
-				/>
+				<card-select-blockchain type="currency" :currency="currentCurrency as CurrencyType" />
 				<card-select-blockchain
 					type="blockchain"
 					:currency-id="`${currentCurrency}.${currentChain}` as BlockchainType"
@@ -34,7 +31,9 @@
 					<span>{{ $t("Copy the permanent address") }}</span>
 					<ui-tooltip
 						:title="$t('Permanent address')"
-						:text="$t('This is your permanent wallet, so we always wait for funds to arrive and credit them immediately')"
+						:text="
+							$t('This is your permanent wallet, so we always wait for funds to arrive and credit them immediately')
+						"
 					>
 						<ui-icon class="flex-shrink-0" name="help" type="filled" color="#A4A5B1" />
 					</ui-tooltip>

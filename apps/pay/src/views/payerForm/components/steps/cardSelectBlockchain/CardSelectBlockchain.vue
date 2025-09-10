@@ -56,10 +56,7 @@
 			<ui-icon name="check-circle" type="filled" color="#1F9649" :size="isMediaMax768 ? 'md' : 'lg'" />
 			<div class="content__inner">
 				<span>{{ $t(isTypeCurrency ? "Selected currency" : "Selected chain") }}</span>
-				<ui-link
-					@click="goToBack"
-					:size="isMediaMax480 ? 'md' : 'lg'"
-				>
+				<ui-link @click="goToBack" :size="isMediaMax480 ? 'md' : 'lg'">
 					{{ $t("Change") }}
 				</ui-link>
 			</div>
@@ -84,7 +81,9 @@
 				:type="'IconDefault' as BlockchainType"
 			/>
 			<div class="price__inner">
-				<span>{{ currentBlockchain.code === 'Bsc' ? 'BSC' : currentBlockchain.code }} {{ currentBlockchain.label }}</span>
+				<span
+					>{{ currentBlockchain.code === "Bsc" ? "BSC" : currentBlockchain.code }} {{ currentBlockchain.label }}</span
+				>
 				<span v-if="isTypeCurrency">≈ {{ getAmountRate(currency!) }}</span>
 				<span v-if="isTypeBlockchain">{{ $t("Commission") }} —</span>
 			</div>

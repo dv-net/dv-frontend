@@ -2,10 +2,10 @@
 	"staticStrings": {
 		"min": "Min"
 	},
-    "Copy the permanent address": "Copy the permanent address",
-    "Selected chain": "Selected chain",
-    "Contacts": "Contacts",
-    "More about": "More about",
+	"Copy the permanent address": "Copy the permanent address",
+	"Selected chain": "Selected chain",
+	"Contacts": "Contacts",
+	"More about": "More about",
 	"select-blockchain": {
 		"one": "Select blockchain",
 		"two": "Select blockchain"

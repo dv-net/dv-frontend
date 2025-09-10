@@ -27,9 +27,9 @@
 					validator: () => (form.value?.site !== null ? isValidUrl(form.value?.site) : true),
 					message: t("Please enter a valid URL")
 				}
-			],
-		}
-	})
+			]
+		};
+	});
 
 	const createNewStore = async () => {
 		try {
@@ -50,13 +50,7 @@
 	<div class="page">
 		<breadcrumbs :back-route-title="$t('Projects')" back-name-route="projects" />
 		<h1 class="global-title-h2 mb-8">{{ $t("Creating a store") }}</h1>
-		<ui-form
-			ref="formRef"
-			class="form"
-			:model="form"
-			:rules="rulesForm"
-			@submit.prevent="createNewStore"
-		>
+		<ui-form ref="formRef" class="form" :model="form" :rules="rulesForm" @submit.prevent="createNewStore">
 			<block-section class="flex flex-column" mode="grey-border">
 				<h2 class="global-title-h3 mb-16">{{ $t("Basic settings") }}</h2>
 				<ui-form-item name="name" :label="$t('Store name (will be displayed on the payment form)')">

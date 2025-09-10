@@ -15,15 +15,13 @@
 			if (currentItem && parent) {
 				const parentRect = parent.getBoundingClientRect();
 				const itemRect = currentItem.getBoundingClientRect();
-				const offset = itemRect.left - parentRect.left
-					- parent.clientWidth / 2
-					+ itemRect.width / 2;
+				const offset = itemRect.left - parentRect.left - parent.clientWidth / 2 + itemRect.width / 2;
 				parent.scrollTo({
 					left: parent.scrollLeft + offset,
 					behavior: "smooth"
 				});
 			}
-		})
+		});
 	};
 
 	watch(currentStep, () => {
@@ -37,7 +35,7 @@
 			<div
 				v-for="(item, index) in timeline"
 				:key="item.id"
-				:ref="el => itemRefs[index] = (el as HTMLDivElement | null)"
+				:ref="(el) => (itemRefs[index] = el as HTMLDivElement | null)"
 				class="timeline__item"
 				:class="[{ 'opacity-item': !item.isActive }, { success: currentStep === 5 && timeline.length - 1 === index }]"
 			>

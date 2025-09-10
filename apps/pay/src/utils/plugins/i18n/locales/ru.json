@@ -2,10 +2,10 @@
 	"staticStrings": {
 		"min": "Мин"
 	},
-    "Copy the permanent address": "Скопируйте постоянный адрес",
-    "Selected chain": "Выбранная сеть",
-    "Contacts": "Контакты",
-    "More about": "Подробнее о",
+	"Copy the permanent address": "Скопируйте постоянный адрес",
+	"Selected chain": "Выбранная сеть",
+	"Contacts": "Контакты",
+	"More about": "Подробнее о",
 	"select-blockchain": {
 		"one": "Выбор сети",
 		"two": "Выберите сеть"

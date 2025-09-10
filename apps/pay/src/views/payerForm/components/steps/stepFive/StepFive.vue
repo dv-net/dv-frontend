@@ -60,9 +60,11 @@
 					<div class="row">
 						<span class="row__label">{{ $t("Sum") }}</span>
 						<span class="row__value">
-						{{ formatAmountBlockchain(currentTransaction.amount, currentTransaction.currency_code) }}
-						{{ getCurrentCoin(currentTransaction.currency_code) }} ({{ formatDollars(currentTransaction.amount_usd) }})
-					</span>
+							{{ formatAmountBlockchain(currentTransaction.amount, currentTransaction.currency_code) }}
+							{{ getCurrentCoin(currentTransaction.currency_code) }} ({{
+								formatDollars(currentTransaction.amount_usd)
+							}})
+						</span>
 					</div>
 					<div class="row">
 						<span class="row__label">{{ $t("Hash") }}</span>

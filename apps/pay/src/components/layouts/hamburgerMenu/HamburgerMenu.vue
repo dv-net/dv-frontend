@@ -4,19 +4,19 @@
 	import { ref } from "vue";
 	import type { INavLinks } from "@pay/utils/types/schemas";
 
-	defineProps<{ navLinks: INavLinks[] }>()
+	defineProps<{ navLinks: INavLinks[] }>();
 
-	const isOpenMenu = ref<boolean>(false)
+	const isOpenMenu = ref<boolean>(false);
 
 	const goToSite = (link: string) => {
 		if (!link) return;
 		window.open(link, "_blank");
-	}
+	};
 
 	const toggleModal = () => {
-		isOpenMenu.value = !isOpenMenu.value
-		document.body.style.overflow = isOpenMenu.value ? "hidden" : "visible"
-	}
+		isOpenMenu.value = !isOpenMenu.value;
+		document.body.style.overflow = isOpenMenu.value ? "hidden" : "visible";
+	};
 </script>
 
 <template>
@@ -28,12 +28,7 @@
 		</div>
 		<div v-if="isOpenMenu" class="menu">
 			<nav class="menu__nav">
-				<div
-					v-for="item in navLinks"
-					:key="item.id"
-					class="item"
-					@click="goToSite(item.link)"
-				>
+				<div v-for="item in navLinks" :key="item.id" class="item" @click="goToSite(item.link)">
 					<div class="item__inner">
 						<ui-icon :name="item.iconName" color="rgb(22, 126, 180)" type="400" />
 						<a class="item__link" target="_blank" href="">

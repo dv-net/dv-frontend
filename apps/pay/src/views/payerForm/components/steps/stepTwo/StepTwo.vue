@@ -62,15 +62,15 @@
 							<div class="card__inner">
 								<blockchain-icon :type="blockchainCurrencyId[item.currency.blockchain]" />
 								<div class="card__blockchain">
-								<span>{{
+									<span>{{
 										item.currency.id.includes("BNBSmartChain") ? "BSC" : getCurrentBlockchain(item.currency.id)
 									}}</span>
 									<span v-if="item.currency.token_label" class="card__blockchain-label">
-									({{ item.currency.token_label }})
-								</span>
+										({{ item.currency.token_label }})
+									</span>
 								</div>
 							</div>
-							<span class="card__commission">{{ $t('Commission') }} —</span>
+							<span class="card__commission">{{ $t("Commission") }} —</span>
 						</div>
 					</div>
 					<not-found v-else />
