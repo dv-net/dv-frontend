@@ -8,8 +8,7 @@
 	import { useRouter, useRoute } from "vue-router";
 	import NotFound from "@pay/views/payerForm/components/steps/notFound/NotFound.vue";
 	import { blockchainCurrencyId } from "@shared/utils/constants/blockchain";
-	import CardSelectBlockchain
-		from "@pay/views/payerForm/components/steps/cardSelectBlockchain/CardSelectBlockchain.vue";
+	import CardSelectBlockchain from "@pay/views/payerForm/components/steps/cardSelectBlockchain/CardSelectBlockchain.vue";
 	import type { CurrencyType } from "@pay/utils/types/blockchain";
 	import WrapperBlock from "@pay/views/payerForm/components/wrapperBlock/WrapperBlock.vue";
 

@@ -5,8 +5,7 @@
 	import { isDesktopDevice } from "@shared/utils/helpers/media.ts";
 	import QrcodeVue from "qrcode.vue";
 	import { computed } from "vue";
-	import CardSelectBlockchain
-		from "@pay/views/payerForm/components/steps/cardSelectBlockchain/CardSelectBlockchain.vue";
+	import CardSelectBlockchain from "@pay/views/payerForm/components/steps/cardSelectBlockchain/CardSelectBlockchain.vue";
 	import type { CurrencyType } from "@pay/utils/types/blockchain";
 	import type { BlockchainType } from "@shared/utils/types/blockchain";
 	import WrapperBlock from "@pay/views/payerForm/components/wrapperBlock/WrapperBlock.vue";

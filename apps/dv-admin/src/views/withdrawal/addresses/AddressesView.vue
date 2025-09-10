@@ -24,10 +24,10 @@
 	import type { UiTableHeader } from "@dv.net/ui-kit/dist/components/UiTable/types";
 	import { useI18n } from "vue-i18n";
 	import { useNotifications } from "@shared/utils/composables/useNotifications";
-	import { arrayBitcoinLike } from "@dv-admin/utils/constants/hotWallets";
+	import { useGeneralStore } from "@dv-admin/stores/general";
 
 	const { notify } = useNotifications();
-
+	const { t } = useI18n();
 	const {
 		withdrawalCurrencyRules,
 		isLoading,
@@ -39,8 +39,8 @@
 		isShowBannerInfo
 	} = storeToRefs(useWithdrawalStore());
 	const { getWithdrawalCurrencyRules, getConnectedExchanges, getExchangeDepositAddresses } = useWithdrawalStore();
+	const { bitcoinLikeNetworks } = storeToRefs(useGeneralStore());
 
-	const { t } = useI18n();
 	const route = useRoute();
 	const textarea = ref<HTMLTextAreaElement | null>(null);
 	const isShowBannerWarning = ref<boolean>(false);
@@ -87,7 +87,7 @@
 		// Cannot delete address if it's specified in forwarding rules
 		const filteredAddresses = withdrawalCurrencyRules.value.addressees.map((item) => item.address);
 		if (
-			arrayBitcoinLike.includes(currencyId) &&
+			bitcoinLikeNetworks.value.includes(currencyId) &&
 			withdrawalCurrencyRules.value?.low_balance_rules?.mode === "manual" &&
 			withdrawalCurrencyRules.value?.low_balance_rules?.manual_address &&
 			!filteredAddresses.includes(withdrawalCurrencyRules.value.low_balance_rules.manual_address)

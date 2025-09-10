@@ -8,7 +8,9 @@
 	import { useSystemSettingsStore } from "@dv-admin/stores/systemSettings";
 	import type { UiFormRules } from "@dv.net/ui-kit/dist/components/UiForm/types";
 	import { useI18n } from "vue-i18n";
-	import { UiForm, UiFormItem } from "@dv.net/ui-kit";
+	import { UiForm, UiFormItem, UiLink } from "@dv.net/ui-kit";
+	import termsFile from "@dv-admin/assets/docs/End-User-Agreement.pdf";
+	import policyFile from "@dv-admin/assets/docs/Privacy-Policy.pdf";
 
 	const { t } = useI18n();
 
@@ -103,6 +105,14 @@
 						showPassword
 						filled
 					/>
+				</ui-form-item>
+				<ui-form-item>
+					<p class="checkbox-text">
+						{{ $t("By continuing registration you agree to") }} <br />
+						<ui-link :href="termsFile" target="_blank">{{ $t("Terms of Use") }}</ui-link>
+						{{ $t("and") }}
+						<ui-link :href="policyFile" target="_blank">{{ $t("Privacy Policy") }}</ui-link>
+					</p>
 				</ui-form-item>
 				<ui-button class="mt-8 w-full" native-type="submit" mode="neutral" size="xxl" :loading="isLoading">
 					{{ $t("Next") }}

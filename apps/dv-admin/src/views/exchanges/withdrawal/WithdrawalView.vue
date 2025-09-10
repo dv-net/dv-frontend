@@ -94,7 +94,13 @@
 				</template>
 
 				<template #body-cell-address="{ row }">
-					<display-hash type="address" :hash="row.address" size-icon="sm" :currency-id="row.currency_id" />
+					<display-hash
+						type="address"
+						:hash="row.address"
+						size-icon="sm"
+						:currency-id="row.currency_id"
+						:is-link="false"
+					/>
 				</template>
 
 				<template #body-cell-min_amount="{ row }">

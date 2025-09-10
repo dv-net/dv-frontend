@@ -4,7 +4,7 @@
 	import type { IProps } from "@pay/views/payerForm/components/steps/cardCurrency/types.ts";
 	import { usePayerFormStore } from "@pay/stores/payerForm";
 
-	const { getAmountRate } = usePayerFormStore()
+	const { getAmountRate } = usePayerFormStore();
 
 	const {
 		currency,
@@ -13,7 +13,7 @@
 		height = 56,
 		selected = false,
 		isHoverActive = true,
-		isShowPrice = true,
+		isShowPrice = true
 	} = defineProps<IProps>();
 </script>
 
@@ -55,7 +55,7 @@
 			border: 1px solid #1968e5;
 		}
 		&.mode-grey {
-			background-color: #F6F6F6;
+			background-color: #f6f6f6;
 		}
 		&.mode-white {
 			background-color: $form-background;
