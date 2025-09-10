@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+- Adaptation of the payment form for mobile devices DV-3311
+
 ---
 ## [1.0.10] - 2025-09-05
 

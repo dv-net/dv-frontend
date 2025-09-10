@@ -6,7 +6,7 @@
 	const { timeline, currentStep } = storeToRefs(usePayerFormStore());
 
 	const timelineRef = ref<HTMLDivElement | null>(null);
-	const itemRefs = ref<Array<HTMLDivElement | null>>([]);
+	const itemRefs = ref<(HTMLDivElement | null)[]>([]);
 
 	const scrollToCurrentStep = () => {
 		nextTick(() => {
@@ -37,7 +37,7 @@
 			<div
 				v-for="(item, index) in timeline"
 				:key="item.id"
-				:ref="el => itemRefs[index] = el"
+				:ref="el => itemRefs[index] = (el as HTMLDivElement | null)"
 				class="timeline__item"
 				:class="[{ 'opacity-item': !item.isActive }, { success: currentStep === 5 && timeline.length - 1 === index }]"
 			>
@@ -57,14 +57,20 @@
 		width: 100%;
 		@include mediamax(1024) {
 			overflow-x: auto;
+			padding: 16px 20px;
 			overflow-y: hidden;
-			width: calc(100vw - #{$padding-main * 3}px);
+			scrollbar-width: none;
+			-ms-overflow-style: none;
+			&::-webkit-scrollbar {
+				display: none;
+			}
+			width: calc(100vw - #{$padding-main * 2}px);
 			@supports (width: 100dvw) {
-				width: calc(100dvw - #{$padding-main * 3}px);
+				width: calc(100dvw - #{$padding-main * 2}px);
 			}
 		}
-		@include mediamax(768) {
-			padding: 16px 24px;
+		@include mediamax(480) {
+			padding: 12px 16px;
 		}
 		&__inner {
 			display: flex;
@@ -89,6 +95,14 @@
 			align-items: center;
 			gap: 12px;
 			flex-shrink: 0;
+			&:last-child {
+				@include mediamax(768) {
+					padding-right: 20px;
+				}
+				@include mediamax(480) {
+					padding-right: 16px;
+				}
+			}
 			&-label {
 				border-radius: 100%;
 				background-color: $label-header-form-background;

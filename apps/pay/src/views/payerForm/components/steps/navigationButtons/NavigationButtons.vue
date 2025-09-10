@@ -17,7 +17,7 @@
 <template>
 	<div class="actions">
 		<ui-button
-			class="actions__btn"
+			class="w-full"
 			type="secondary"
 			:size="isMediaMax480 ? 'lg' : 'xl'"
 			:disabled="isDisabledBtnBack"
@@ -26,7 +26,7 @@
 			{{ $t(nameBtnBack) }}
 		</ui-button>
 		<ui-button
-			class="actions__btn"
+			class="w-full"
 			:size="isMediaMax480 ? 'lg' : 'xl'"
 			mode="neutral"
 			:disabled="isDisabledBtnForward"
@@ -48,19 +48,7 @@
 		}
 		@include mediamax(768) {
 			margin-top: 16px;
-			grid-template-columns: 1fr;
 			gap: 8px;
-		}
-		&__btn {
-			width: 100%;
-			@include mediamax(768) {
-				&:nth-child(1) {
-					order: 2;
-				}
-				&:nth-child(2) {
-					order: 1;
-				}
-			}
 		}
 	}
 </style>

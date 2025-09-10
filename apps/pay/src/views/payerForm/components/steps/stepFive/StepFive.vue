@@ -10,8 +10,12 @@
 	import { usePayerFormStore } from "@pay/stores/payerForm";
 	import DisplayHash from "@shared/components/ui/displayHash/DisplayHash.vue";
 	import WrapperBlock from "@pay/views/payerForm/components/wrapperBlock/WrapperBlock.vue";
+	import { useMediaQuery } from "@shared/utils/composables/useMediaQuery.ts";
 
 	const { currentTransaction, payerId, store } = storeToRefs(usePayerFormStore());
+
+	const isMediaMax576 = useMediaQuery("(max-width: 576px)");
+	const isMediaMax768 = useMediaQuery("(max-width: 768px)");
 </script>
 
 <template>
@@ -26,7 +30,7 @@
 					<div class="row">
 						<span class="row__label">{{ $t("Payment ID") }}</span>
 						<div v-if="payerId" class="row__value flex flex-y-center gap-8">
-							<span>{{ truncateHash(payerId, 15) }}</span>
+							<span>{{ truncateHash(payerId, isMediaMax576 ? 6 : 14) }}</span>
 							<ui-copy-text :copied-text="payerId" color-icon="#A4A5B1" />
 						</div>
 						<span v-else>—</span>
@@ -37,7 +41,7 @@
 							v-if="store?.name && (store?.success_url || store.site_url)"
 							:href="store?.success_url || store.site_url"
 							target="_blank"
-							size="xl"
+							:size="isMediaMax768 ? 'lg' : 'xl'"
 							class="row__value flex flex-y-center gap-8"
 						>
 							<span>{{ store.name }}</span>
@@ -65,6 +69,7 @@
 						<display-hash
 							:is-link="false"
 							type="transaction"
+							:count-prefix="isMediaMax576 ? 6 : 14"
 							:hash="currentTransaction.hash"
 							:currency-id="currentTransaction.currency_code"
 							color-icon="#A4A5B1"
@@ -87,6 +92,12 @@
 		display: flex;
 		flex-direction: column;
 		gap: 24px;
+		@include mediamax(768) {
+			gap: 20px;
+		}
+		@include mediamax(480) {
+			gap: 12px;
+		}
 		.info {
 			display: flex;
 			flex-direction: column;
@@ -98,6 +109,9 @@
 				color: #1f9649;
 				font-size: 20px;
 				font-weight: 600;
+				@include mediamax(768) {
+					font-size: 16px;
+				}
 			}
 			&__rows {
 				display: flex;
@@ -109,12 +123,25 @@
 					gap: 80px;
 					justify-content: space-between;
 					font-weight: 400;
+					@include mediamax(768) {
+						gap: 54px;
+					}
+					@include mediamax(480) {
+						gap: 12px;
+					}
 					&__label {
 						color: $main-subtitle-color;
+						word-break: break-word;
+						@include mediamax(768) {
+							font-size: 14px;
+						}
 					}
 					&__value {
 						color: $main-text-grey-color;
 						word-break: break-word;
+						@include mediamax(768) {
+							font-size: 14px;
+						}
 					}
 				}
 			}
@@ -128,8 +155,14 @@
 				background-color: #fafcff;
 				&-title {
 					font-size: 18px;
+					@include mediamax(768) {
+						font-size: 16px;
+					}
 					&:deep(.ui-link) {
 						font-size: 18px;
+						@include mediamax(768) {
+							font-size: 16px;
+						}
 					}
 				}
 				&-subtitle {

@@ -7,8 +7,11 @@
 	import { storeToRefs } from "pinia";
 	import DisplayHash from "@shared/components/ui/displayHash/DisplayHash.vue";
 	import WrapperBlock from "@pay/views/payerForm/components/wrapperBlock/WrapperBlock.vue";
+	import { useMediaQuery } from "@shared/utils/composables/useMediaQuery.ts";
 
 	const { currentTransaction } = storeToRefs(usePayerFormStore());
+
+	const isMediaMax480 = useMediaQuery("(max-width: 480px)");
 </script>
 
 <template>
@@ -41,6 +44,7 @@
 						<display-hash
 							:is-link="false"
 							type="transaction"
+							:count-prefix="isMediaMax480 ? 8 : 14"
 							:hash="currentTransaction.hash"
 							:currency-id="currentTransaction.currency_code"
 							color-icon="#A4A5B1"
@@ -64,6 +68,12 @@
 		display: flex;
 		flex-direction: column;
 		gap: 24px;
+		@include mediamax(768) {
+			gap: 20px;
+		}
+		@include mediamax(480) {
+			gap: 12px;
+		}
 		.info {
 			display: flex;
 			flex-direction: column;
@@ -83,7 +93,15 @@
 					gap: 80px;
 					justify-content: space-between;
 					font-weight: 400;
+					@include mediamax(768) {
+						font-size: 14px;
+						gap: 54px;
+					}
+					@include mediamax(480) {
+						gap: 12px;
+					}
 					&__label {
+						word-break: break-word;
 						color: $main-subtitle-color;
 					}
 					&__value {
@@ -108,11 +126,20 @@
 				}
 				&-title {
 					font-size: 18px;
+					@include mediamax(768) {
+						font-size: 16px;
+					}
+					@include mediamax(480) {
+						font-size: 14px;
+					}
 				}
 				&-subtitle {
 					color: $main-subtitle-color;
 					font-size: 14px;
 					font-weight: 400;
+					@include mediamax(480) {
+						font-size: 12px;
+					}
 				}
 			}
 		}

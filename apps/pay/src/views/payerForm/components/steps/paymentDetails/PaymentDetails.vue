@@ -114,8 +114,12 @@
 					border-radius: 8px;
 					border: 1px solid $main-border-color;
 					background-color: $form-background;
+					@include mediamax(768) {
+						min-height: 48px;
+					}
 					@include mediamax(480) {
 						padding: 8px 12px;
+						min-height: 44px;
 					}
 					&__text {
 						word-break: break-word;
@@ -134,6 +138,14 @@
 					border-radius: 8px;
 					border: 1px solid $main-border-color;
 					background-color: $form-background;
+					@include mediamax(768) {
+						height: 48px;
+						width: 48px;
+					}
+					@include mediamax(480) {
+						height: 44px;
+						width: 44px;
+					}
 				}
 				.tooltip {
 					display: flex;
@@ -179,6 +191,12 @@
 				background-color: $form-background;
 				@include mediamax(1024) {
 					font-size: 14px;
+				}
+				@include mediamax(768) {
+					height: 48px;
+				}
+				@include mediamax(480) {
+					height: 44px;
 				}
 				@include mediamax(480) {
 					padding: 8px 12px;
