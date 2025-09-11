@@ -28,6 +28,7 @@
 		display: flex;
 		flex-direction: column;
 		gap: 38px;
+		flex-grow: 1;
 		@include mediamax(480) {
 			gap: 16px;
 		}
