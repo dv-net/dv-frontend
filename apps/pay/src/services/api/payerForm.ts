@@ -7,6 +7,11 @@ export const getApiPayerInfo = async (payerId: string, locale: string): Promise<
 	return resp.data.data;
 };
 
+export const getApiWalletConfirm = async (payerId: string, currency_id: string) => {
+	const config = { params: { currency_id } };
+	await api.get(`/public/wallet/${payerId}/confirm`, config);
+};
+
 export const getApiStoreTopup = async (
 	slug: string,
 	external_id: string,

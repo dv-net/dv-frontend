@@ -4,6 +4,7 @@ export type CurrencyType =
 	| "LTC"
 	| "TRX"
 	| "USDT"
+	| "USDD"
 	| "ETH"
 	| "USDC"
 	| "DAI"

@@ -13,6 +13,7 @@
 	import StepFive from "@pay/views/payerForm/components/steps/stepFive/StepFive.vue";
 	import StepError from "@pay/views/payerForm/components/steps/stepError/StepError.vue";
 	import BlockAdvertising from "@pay/views/payerForm/components/payerFormSidebar/blockAdvertising/BlockAdvertising.vue";
+	import { getApiWalletConfirm } from "@pay/services/api/payerForm.ts";
 
 	const {
 		currentStep,
@@ -75,6 +76,7 @@
 	watch(currentStep, (newValue: number) => {
 		// Highlight current step
 		timeline.value.forEach((item) => (item.isActive = item.id <= newValue));
+		if (newValue === 3 && payerId.value) getApiWalletConfirm(payerId.value, `${currentCurrency.value}.${currentChain.value}`)
 	});
 
 	onMounted(async () => {
