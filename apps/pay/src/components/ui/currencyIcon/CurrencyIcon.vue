@@ -15,6 +15,7 @@
 	import IconUsdc from "@shared/components/icons/blockchains/IconUsdc.vue";
 	import IconDai from "@shared/components/icons/blockchains/IconDai.vue";
 	import IconDefault from "@shared/components/icons/blockchains/iconDefault.vue";
+	import IconUsdd from "@shared/components/icons/blockchains/IconUsdd.vue";
 
 	const {
 		width = "24px",
@@ -27,19 +28,20 @@
 	}>();
 
 	const icons: Record<CurrencyType, Component> = {
+		USDT: IconUsdt,
+		USDC: IconUsdc,
+		USDD: IconUsdd,
 		BCH: IconBitcoincash,
 		BTC: IconBitcoin,
 		LTC: IconLitecoin,
 		TRX: IconTRXTron,
-		USDT: IconUsdt,
-		USDC: IconUsdc,
 		DAI: IconDai,
 		ETH: IconEthereum,
 		BNB: IconBinance,
 		POL: IconPolygon,
 		SOL: IconSOLSolana,
 		XMR: IconXMRMonero,
-		DOGE: IconDOGEDogecoin
+		DOGE: IconDOGEDogecoin,
 	};
 
 	const iconToShow = computed<Component>(() => icons[type] || markRaw(IconDefault));
