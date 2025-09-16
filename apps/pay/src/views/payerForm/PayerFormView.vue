@@ -24,7 +24,8 @@
 		timeline,
 		currentCurrency,
 		currentChain,
-		errorStore
+		errorStore,
+		isShowAdvertising
 	} = storeToRefs(usePayerFormStore());
 	const { getWalletTxFind, getStoreTopup, getPayerInfo, checkValidationCurrencyAndChain } = usePayerFormStore();
 
@@ -106,7 +107,7 @@
 				</transition>
 			</div>
 			<payer-form-sidebar />
-			<block-advertising class="form__advertising" />
+			<block-advertising v-if="isShowAdvertising" class="form__advertising" />
 		</div>
 	</div>
 </template>

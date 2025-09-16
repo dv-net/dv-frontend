@@ -7,15 +7,14 @@
 	import BlockAdvertising from "@pay/views/payerForm/components/payerFormSidebar/blockAdvertising/BlockAdvertising.vue";
 	import WrapperBlock from "@pay/views/payerForm/components/wrapperBlock/WrapperBlock.vue";
 
-	const { payerId, store, amount, errorStore, currentStep } = storeToRefs(usePayerFormStore());
+	const { payerId, store, amount, errorStore, currentStep, isShowAdvertising } = storeToRefs(usePayerFormStore());
 
-	const isShowDetails = computed<boolean>(() => {
-		return !errorStore.value && currentStep.value !== 5;
-	});
+	const isShowSidebar = computed<boolean>(() => currentStep.value !== 5);
+	const isShowDetails = computed<boolean>(() => !errorStore.value && (currentStep.value !== 5));
 </script>
 
 <template>
-	<div class="sidebar">
+	<div v-if="isShowSidebar" class="sidebar">
 		<wrapper-block v-if="isShowDetails">
 			<div class="details">
 				<h2 class="global-title-h2">{{ $t("Payment details") }}</h2>
@@ -49,7 +48,7 @@
 				</div>
 			</div>
 		</wrapper-block>
-		<block-advertising class="sidebar__advertising" />
+		<block-advertising v-if="isShowAdvertising" class="sidebar__advertising" />
 	</div>
 </template>
 

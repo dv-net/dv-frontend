@@ -51,7 +51,31 @@ export const PRECISION_CURRENCIES: Record<BlockchainType, number> = {
 	"TRX.Tron": 6,
 	"SOL.Solana": 6,
 	"USDT.Tron": 2,
-	"XMR.Monero": 6
+	"XMR.Monero": 6,
+	"USDD.Tron": 2,
+	"USD1.Tron": 2,
+	"USDE.Ethereum": 2,
+	"USDD.Ethereum": 2,
+	"USD1.Ethereum": 2,
+	"ARB.Ethereum": 6,
+	"CAKE.Ethereum": 6,
+	"PEPE.Ethereum": 6,
+	"ENA.Ethereum": 6,
+	"WLFI.Ethereum": 6,
+	"WLD.Ethereum": 6,
+	"PYUSD.Ethereum": 2,
+	"XAUT.Ethereum": 6,
+	"SAND.Ethereum": 6,
+	"SHIB.Ethereum": 6,
+	"USDD.BNBSmartChain": 2,
+	"USDE.BNBSmartChain": 2,
+	"CAKE.BNBSmartChain": 6,
+	"SHIB.BNBSmartChain": 6,
+	"USD1.BNBSmartChain": 2,
+	"WLFI.BNBSmartChain": 6,
+	"SAND.Polygon": 6,
+	"PYUSD.Arbitrum": 2,
+	"CAKE.Arbitrum": 6
 };
 
 export const blockchainPatterns: any = {

@@ -2,6 +2,11 @@
 	"staticStrings": {
 		"min": "Мин"
 	},
+	"Payment received successfully": "Платёж успешно получен",
+	"All cryptocurrencies": "Все криптовалюты",
+	"No commissions": "Нет комиссий",
+	"Crypto Processing": "Крипто Процессинг",
+	"Accept cryptocurrency on your website without commission and intermediaries": "Принимайте криптовалюту на своём сайте без комиссии и посредников",
 	"Copy the permanent address": "Скопируйте постоянный адрес",
 	"Selected chain": "Выбранная сеть",
 	"Contacts": "Контакты",

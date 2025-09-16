@@ -2,7 +2,12 @@
 	"staticStrings": {
 		"min": "Min"
 	},
-	"Copy the permanent address": "Copy the permanent address",
+    "Payment received successfully": "Payment received successfully",
+    "All cryptocurrencies": "All cryptocurrencies",
+    "No commissions": "No commissions",
+    "Crypto Processing": "Crypto Processing",
+    "Accept cryptocurrency on your website without commission and intermediaries": "Accept cryptocurrency on your website without commission and intermediaries",
+    "Copy the permanent address": "Copy the permanent address",
 	"Selected chain": "Selected chain",
 	"Contacts": "Contacts",
 	"More about": "More about",
