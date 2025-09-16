@@ -2,7 +2,8 @@
 
 ## [Unreleased]
 
-
+- Changed the receipt screen in the payment form DV-3364
+- Added icons of new coins DV-3348
 
 ## [1.0.12] - 2025-09-15
 

@@ -38,6 +38,8 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 	]);
 	const errorStore = ref<"error" | "store-disabled" | null>(null);
 
+	const isShowAdvertising = computed<boolean>(() => currentStep.value !== 5);
+
 	const getPayerInfo = async (id: string) => {
 		try {
 			isLoading.value = true;
@@ -187,6 +189,7 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		errorStore,
 		currentAddress,
 		filteredBlockchains,
+		isShowAdvertising,
 		getAmountRate,
 		getPayerInfo,
 		getWalletTxFind,
