@@ -6,8 +6,11 @@
 	import { computed } from "vue";
 	import BlockAdvertising from "@pay/views/payerForm/components/payerFormSidebar/blockAdvertising/BlockAdvertising.vue";
 	import WrapperBlock from "@pay/views/payerForm/components/wrapperBlock/WrapperBlock.vue";
+	import { useMediaQuery } from "@shared/utils/composables/useMediaQuery.ts";
 
 	const { payerId, store, amount, errorStore, currentStep, isShowAdvertising } = storeToRefs(usePayerFormStore());
+
+	const isMediaMax480 = useMediaQuery("(max-width: 480px)");
 
 	const isShowSidebar = computed<boolean>(() => currentStep.value !== 5);
 	const isShowDetails = computed<boolean>(() => !errorStore.value && (currentStep.value !== 5));
@@ -33,7 +36,7 @@
 							v-if="store?.name && store?.site_url"
 							:href="store.site_url"
 							target="_blank"
-							size="xl"
+							:size="isMediaMax480 ? 'lg' : 'xl'"
 							class="flex flex-y-center gap-8"
 						>
 							<span>{{ store.name }}</span>
@@ -93,6 +96,7 @@
 						justify-content: unset;
 						flex-direction: column;
 						gap: 4px;
+						font-size: 14px;
 					}
 					&__label {
 						@include mediamax(480) {

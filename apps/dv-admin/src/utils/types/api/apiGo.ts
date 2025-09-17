@@ -109,6 +109,19 @@ export interface IStoreApiKeyResponse {
 	created_at: string | null;
 }
 
+export interface IStoreGeneralSettingsList {
+	name: string
+	is_editable: boolean
+	two_factor_verification_required: boolean
+	available_values: string[]
+}
+export interface IStoreSettingsResponse extends IStoreGeneralSettingsList {
+	value: string
+}
+export interface IStoreSettingsList extends IStoreGeneralSettingsList {
+	value: boolean
+}
+
 export interface IStoreWebhooksResponse {
 	id?: string;
 	label: string;

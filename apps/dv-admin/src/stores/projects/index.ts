@@ -4,12 +4,17 @@ import {
 	getApiProjects,
 	getApiStoreArchivedList,
 	getApiStoreSecret,
+	getApiStoreSettingList,
 	postApiStoreArchive,
 	postApiStoreSecret,
 	postApiStoreUnarchive,
 	putApiOneProject
 } from "@dv-admin/services/api/projects";
-import type { ICurrencyStore, IStoreResponse } from "@dv-admin/utils/types/api/apiGo";
+import type {
+	ICurrencyStore,
+	IStoreResponse,
+	IStoreSettingsList,
+} from "@dv-admin/utils/types/api/apiGo";
 import { useNotifications } from "@shared/utils/composables/useNotifications";
 import { defineStore, storeToRefs } from "pinia";
 import { ref } from "vue";
@@ -42,6 +47,7 @@ export const useProjectsStore = defineStore("projects", () => {
 	const selectAllCurrenciesProject = ref<boolean>(false);
 	const selectedProject = ref<string | null>(null);
 	const archivedProjects = ref<IStoreResponse[]>([]);
+	const storeSettingList = ref<IStoreSettingsList[]>([]);
 
 	// CRUD for project information
 	const getProjects = async () => {
@@ -97,7 +103,9 @@ export const useProjectsStore = defineStore("projects", () => {
 				getOneProjects(uuid),
 				getKeyProject(uuid),
 				getWebhooksProject(uuid),
-				getStoreSecret(uuid)
+				getStoreSecret(uuid),
+				getStoreSettingList(uuid),
+				// postApiStoreSetting(uuid, { name: "external_wallet_email_notification", value: "disabled" }),
 			]);
 		} catch (error: any) {
 			throw error;
@@ -109,6 +117,16 @@ export const useProjectsStore = defineStore("projects", () => {
 		try {
 			const secret = await getApiStoreSecret(uuid);
 			if (secret) webhooksSecret.value = secret;
+		} catch (error: any) {
+			throw error;
+		}
+	};
+	const getStoreSettingList = async (uuid: string) => {
+		try {
+			const data = await getApiStoreSettingList(uuid);
+			if (data) {
+				storeSettingList.value = data.map(item => ({ ...item, value: item.value === "enabled" }));
+			}
 		} catch (error: any) {
 			throw error;
 		}
@@ -192,6 +210,7 @@ export const useProjectsStore = defineStore("projects", () => {
 		archivedProjects,
 		checkedCurrenciesProject,
 		selectAllCurrenciesProject,
+		storeSettingList,
 
 		postStoreSecret,
 		postStoreArchive,
@@ -200,6 +219,7 @@ export const useProjectsStore = defineStore("projects", () => {
 		getProjects,
 		getAllInfoProjects,
 		getOneProjects,
+		getStoreSettingList,
 		putOneProject,
 		getCurrenciesProject,
 		resetCurrentProject

@@ -2,6 +2,12 @@
 	"staticStrings": {
 		"min": "Min"
 	},
+    "Hide QR payment": "Hide QR payment",
+    "We are waiting for the payment to arrive": "We are waiting for the payment to arrive",
+    "Show QR code for payment": "Show QR code for payment",
+    "Payment status": "Payment status",
+    "Your permanent wallet — funds are credited to it automatically upon receipt": "Your permanent wallet — funds are credited to it automatically upon receipt",
+    "Sending a payment": "Sending a payment",
     "Payment received successfully": "Payment received successfully",
     "All cryptocurrencies": "All cryptocurrencies",
     "No commissions": "No commissions",
@@ -28,7 +34,6 @@
 	"Error": "Error",
 	"Helpdesk": "Helpdesk",
 	"Hash": "Hash",
-	"This is your permanent wallet, so we always wait for funds to arrive and credit them immediately": "This is your permanent wallet, so we always wait for funds to arrive and credit them immediately",
 	"Payment successfully approved": "Payment successfully approved",
 	"Receiving and sending cryptocurrency": "Receiving and sending cryptocurrency",
 	"This store has been disabled by the administrator. Try to log in later or contact support": "This store has been disabled by the administrator. Try to log in later or contact support",
@@ -51,7 +56,6 @@
 	"Ready": "Ready",
 	"Select currency for payment": "Select currency for payment",
 	"Enter the name of the currency": "Enter the name of the currency",
-	"Enter blockchain name to search": "Enter blockchain name to search",
 	"Popular": "Popular",
 	"Tokens": "Tokens",
 	"Payment details": "Payment details",

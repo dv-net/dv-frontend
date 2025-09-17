@@ -16,7 +16,6 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 
 	const isLoading = ref<boolean>(false);
 	const isPoolingProgress = ref<boolean>(true);
-	const searchBlockchains = ref<string | null>(null);
 	const currentStep = ref<number>(1);
 	const currentCurrency = ref<string | null>(null);
 	const currentChain = ref<string | null>(null);
@@ -29,14 +28,16 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 	const transactionsConfirmed = ref<IWalletTransactionResponse[]>([]);
 	const transactionsUnconfirmed = ref<IWalletTransactionResponse[]>([]);
 	const currentTransaction = ref<IWalletTransactionResponse | null>(null);
+	const errorStore = ref<"error" | "store-disabled" | null>(null);
+	const stepMap = ref<Record<number, number>>({
+		1: 1, 2: 2, 3: 3, 4: 3, 5: 4,
+	});
 	const timeline = ref([
 		{ id: 1, label: "Select currency", isActive: true },
 		{ id: 2, label: "select-blockchain.one", isActive: false },
-		{ id: 3, label: "Payment", isActive: false },
-		{ id: 4, label: "Confirmation", isActive: false },
-		{ id: 5, label: "Ready", isActive: false }
+		{ id: 3, label: "Sending a payment", isActive: false },
+		{ id: 4, label: "Ready", isActive: false }
 	]);
-	const errorStore = ref<"error" | "store-disabled" | null>(null);
 
 	const isShowAdvertising = computed<boolean>(() => currentStep.value !== 5);
 
@@ -125,14 +126,7 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		filteredCurrency.forEach((item) => {
 			if (!unique.has(item.currency.id)) unique.set(item.currency.id, item);
 		});
-		const uniqueArray: IPayerAddressResponse[] = Array.from(unique.values());
-		return searchBlockchains.value
-			? uniqueArray.filter((item) =>
-					getCurrentBlockchain(item.currency.id)
-						.toLocaleLowerCase("en")
-						.includes(searchBlockchains.value!.toLocaleLowerCase("en"))
-				)
-			: uniqueArray;
+		return Array.from(unique.values());
 	});
 
 	const getAmountRate = (currency: CurrencyType): string => {
@@ -173,7 +167,6 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		isLoading,
 		currentChain,
 		currentCurrency,
-		searchBlockchains,
 		currentStep,
 		amount,
 		payerId,
@@ -190,6 +183,7 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		currentAddress,
 		filteredBlockchains,
 		isShowAdvertising,
+		stepMap,
 		getAmountRate,
 		getPayerInfo,
 		getWalletTxFind,
