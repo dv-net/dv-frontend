@@ -10,10 +10,9 @@
 	import { useRoute, useRouter } from "vue-router";
 	import CardCurrency from "@pay/views/payerForm/components/steps/cardCurrency/CardCurrency.vue";
 	import NotFound from "@pay/views/payerForm/components/steps/notFound/NotFound.vue";
-	import NavigationButtons from "@pay/views/payerForm/components/steps/navigationButtons/NavigationButtons.vue";
 	import WrapperBlock from "@pay/views/payerForm/components/wrapperBlock/WrapperBlock.vue";
 
-	const { addresses, currentCurrency, currentStep, currentChain, isLoading, store } = storeToRefs(usePayerFormStore());
+	const { addresses, currentCurrency, currentStep, currentChain, isLoading } = storeToRefs(usePayerFormStore());
 
 	const router = useRouter();
 	const route = useRoute();
@@ -52,6 +51,7 @@
 		const token = getCurrentCoin(currencyId);
 		currentCurrency.value = token;
 		currentChain.value = null;
+		currentStep.value = 2;
 		router.replace({
 			query: {
 				...(route.query.amount ? { amount: route.query.amount } : {}),
@@ -59,11 +59,6 @@
 				token
 			}
 		});
-	};
-
-	const returnToStore = (url?: string) => {
-		if (!url) return;
-		window.open(url, "_blank");
 	};
 </script>
 
@@ -120,13 +115,6 @@
 					<not-found v-else />
 				</template>
 			</div>
-			<navigation-buttons
-				name-btn-back="Return to the store"
-				:is-disabled-btn-back="!Boolean(store?.return_url)"
-				:is-disabled-btn-forward="!Boolean(currentCurrency)"
-				@click-btn-back="returnToStore(store?.return_url)"
-				@click-btn-forward="currentStep = 2"
-			/>
 		</div>
 	</wrapper-block>
 </template>

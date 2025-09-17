@@ -14,7 +14,7 @@
 	import BlockchainCard from "@dv-admin/components/ui/blockchainCard/BlockchainCard.vue";
 	import { useRoute } from "vue-router";
 	import TooltipHelper from "@dv-admin/components/ui/tooltipHelper/TooltipHelper.vue";
-	import { computed, ref } from "vue";
+	import { computed, onMounted, ref } from "vue";
 	import { useI18n } from "vue-i18n";
 	import { putApiCurrenciesProject } from "@dv-admin/services/api/projects.ts";
 	import { useGeneralStore } from "@dv-admin/stores/general";

@@ -1,6 +1,5 @@
 <script setup lang="ts">
-	import { UiIcon, UiInput, UiSkeleton } from "@dv.net/ui-kit";
-	import NavigationButtons from "@pay/views/payerForm/components/steps/navigationButtons/NavigationButtons.vue";
+	import { UiSkeleton } from "@dv.net/ui-kit";
 	import { usePayerFormStore } from "@pay/stores/payerForm";
 	import { storeToRefs } from "pinia";
 	import { getCurrentBlockchain } from "@shared/utils/helpers/general.ts";
@@ -12,7 +11,7 @@
 	import type { CurrencyType } from "@pay/utils/types/blockchain";
 	import WrapperBlock from "@pay/views/payerForm/components/wrapperBlock/WrapperBlock.vue";
 
-	const { filteredBlockchains, searchBlockchains, isLoading, currentStep, currentCurrency, currentChain } =
+	const { filteredBlockchains, isLoading, currentStep, currentCurrency, currentChain } =
 		storeToRefs(usePayerFormStore());
 
 	const router = useRouter();
@@ -22,6 +21,7 @@
 		if (!currencyId) return;
 		const chain = getCurrentBlockchain(currencyId);
 		currentChain.value = chain;
+		currentStep.value = 3
 		router.replace({ query: { ...route.query, chain } });
 	};
 </script>
@@ -29,16 +29,6 @@
 <template>
 	<wrapper-block>
 		<div class="screen">
-			<h2 class="global-title-h2">{{ $t("select-blockchain.two") }}</h2>
-			<ui-input
-				v-model="searchBlockchains"
-				is-empty-value-null
-				clearable
-				@clear="searchBlockchains = null"
-				:placeholder="$t('Enter blockchain name to search')"
-			>
-				<template #prepend><ui-icon size="lg" type="400" name="search" /></template>
-			</ui-input>
 			<ui-skeleton v-if="isLoading" :rows="1" :row-height="76" :item-border-radius="8" />
 			<card-select-blockchain
 				v-else-if="!isLoading && currentCurrency"
@@ -46,7 +36,7 @@
 				:currency="currentCurrency as CurrencyType"
 			/>
 			<div class="blockchains">
-				<span class="currency__label">{{ $t("Blockchains") }}</span>
+				<h2 class="global-title-h2">{{ $t("select-blockchain.two") }}</h2>
 				<div v-if="isLoading" class="blockchains__cards">
 					<ui-skeleton v-for="item in 3" :key="item" :rows="1" :row-height="56" :item-border-radius="8" />
 				</div>
@@ -76,11 +66,6 @@
 					<not-found v-else />
 				</template>
 			</div>
-			<navigation-buttons
-				:is-disabled-btn-forward="!Boolean(currentChain)"
-				@click-btn-back="currentStep = 1"
-				@click-btn-forward="currentStep = 3"
-			/>
 		</div>
 	</wrapper-block>
 </template>
@@ -96,7 +81,10 @@
 		.blockchains {
 			display: flex;
 			flex-direction: column;
-			gap: 12px;
+			gap: 20px;
+			@include mediamax(1024) {
+				gap: 12px;
+			}
 			&__cards {
 				display: flex;
 				flex-direction: column;

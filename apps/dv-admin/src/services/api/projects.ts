@@ -94,3 +94,9 @@ export const getApiCurrenciesProject = async (uuid: string): Promise<BlockchainT
 export const putApiCurrenciesProject = async (uuid: string, body: ICurrencyRequest) => {
 	await api.put(`/dv-admin/store/${uuid}/currencies`, body);
 };
+
+export const getApiStoreSettingList = async (uuid: string) => {
+	const resp = await api.get(`/dv-admin/store-setting/list/${uuid}`);
+	console.log(resp.data.data);
+	return resp.data.data;
+};

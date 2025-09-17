@@ -2,6 +2,12 @@
 	"staticStrings": {
 		"min": "Мин"
 	},
+	"Hide QR payment": "Скрыть QR-платежа",
+	"We are waiting for the payment to arrive": "Ожидаем поступления платежа",
+	"Show QR code for payment": "Показать QR-код для платежа",
+	"Payment status": "Статус платежа",
+	"Your permanent wallet — funds are credited to it automatically upon receipt": "Ваш постоянный кошелёк — средства на него зачисляются автоматически при поступлении",
+	"Sending a payment": "Отправка платежа",
 	"Payment received successfully": "Платёж успешно получен",
 	"All cryptocurrencies": "Все криптовалюты",
 	"No commissions": "Нет комиссий",
@@ -28,7 +34,6 @@
 	"Error": "Ошибка",
 	"Helpdesk": "Служба поддержки",
 	"Hash": "Хеш",
-	"This is your permanent wallet, so we always wait for funds to arrive and credit them immediately": "Это постоянный ваш кошелек, поэтому мы всегда ждем на него поступления средств и сразу их зачисляем",
 	"Payment successfully approved": "Платеж успешно одобрен",
 	"Receiving and sending cryptocurrency": "Прием и отправка криптовалюты",
 	"This store has been disabled by the administrator. Try to log in later or contact support": "Данный магазин выключен администратором. Попробуйте зайти позже или обратиться в поддержку",
@@ -51,7 +56,6 @@
 	"Ready": "Готово",
 	"Select currency for payment": "Выберите валюту для оплаты",
 	"Enter the name of the currency": "Введите название валюты",
-	"Enter blockchain name to search": "Введите название сети для поиска",
 	"Popular": "Популярные",
 	"Tokens": "Токены",
 	"Payment details": "Детали платежа",

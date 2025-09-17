@@ -3,14 +3,15 @@
 	import { storeToRefs } from "pinia";
 	import { ref, watch, nextTick } from "vue";
 
-	const { timeline, currentStep } = storeToRefs(usePayerFormStore());
+	const { timeline, currentStep, stepMap } = storeToRefs(usePayerFormStore());
 
 	const timelineRef = ref<HTMLDivElement | null>(null);
 	const itemRefs = ref<(HTMLDivElement | null)[]>([]);
 
 	const scrollToCurrentStep = () => {
 		nextTick(() => {
-			const currentItem = itemRefs.value[currentStep.value - 1];
+			const step = stepMap.value[currentStep.value] || currentStep.value;
+			const currentItem = itemRefs.value[step - 1];
 			const parent = timelineRef.value;
 			if (currentItem && parent) {
 				const parentRect = parent.getBoundingClientRect();
