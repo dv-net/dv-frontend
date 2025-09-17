@@ -4,6 +4,11 @@
 		"h": "ч",
 		"s": "сек"
 	},
+	"Configuration": "Конфигурация",
+	"Sending a check": "Отправка чека",
+	"Sending a letter with wallets": "Отправка письма с кошельками",
+	"After payment, the user will be sent a receipt by email": "После оплаты, пользователю будет отправлен чек на почту",
+	"After the user has selected the currency and chain on the payment form, an email with a list of wallets will be sent to them": "После того, как пользователь на платежной форме выбрал валюту и блокчейн, ему на почту будет отправлено письмо со списком кошельков",
 	"You do not have any wallets specified in the withdrawal rules": "У вас не задан ни один кошелек в правилах вывода",
 	"Add addresses to withdrawal rules": "Добавить адреса в правила вывода",
 	"Remove address from address book and withdrawal rules": "Удалить адрес из адресной книги и правил вывода",

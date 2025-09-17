@@ -14,20 +14,22 @@
 	import BlockchainCard from "@dv-admin/components/ui/blockchainCard/BlockchainCard.vue";
 	import { useRoute } from "vue-router";
 	import TooltipHelper from "@dv-admin/components/ui/tooltipHelper/TooltipHelper.vue";
-	import { computed, onMounted, ref } from "vue";
+	import { computed, ref } from "vue";
 	import { useI18n } from "vue-i18n";
-	import { putApiCurrenciesProject } from "@dv-admin/services/api/projects.ts";
+	import { postApiStoreSetting, putApiCurrenciesProject } from "@dv-admin/services/api/projects.ts";
 	import { useGeneralStore } from "@dv-admin/stores/general";
 	import { UiForm } from "@dv.net/ui-kit";
 	import type { UiFormRules } from "@dv.net/ui-kit/dist/components/UiForm/types";
 	import { isValidUrl } from "@shared/utils/helpers/general.ts";
+	import { STORE_SETTING_LABELS, STORE_SETTING_TOOLTIPS } from "@dv-admin/utils/constants/projects";
 
 	const {
 		currentProject,
 		currenciesProject,
 		isLoadingEditProject,
 		checkedCurrenciesProject,
-		selectAllCurrenciesProject
+		selectAllCurrenciesProject,
+		storeSettingList
 	} = storeToRefs(useProjectsStore());
 	const { dictionary } = storeToRefs(useGeneralStore());
 	const { putOneProject, getCurrenciesProject } = useProjectsStore();
@@ -82,6 +84,10 @@
 		if (!currentProject.value) return;
 		if (!formRef.value || !(await formRef.value.validate())) return;
 		await putApiCurrenciesProject(uuid, { currency_ids: checkedCurrenciesProject.value });
+		await Promise.all(
+			storeSettingList.value
+				.map(({ name, value }) => postApiStoreSetting(uuid, { name, value: value ? "enabled" : "disabled" }))
+		)
 		await putOneProject(t("The project has been saved"));
 		await getCurrenciesProject(uuid);
 	};
@@ -129,13 +135,26 @@
 			</div>
 		</block-section>
 		<block-section class="store" mode="grey">
-			<div class="row">
-				<h4 class="row__title">{{ $t("Store status") }}</h4>
-				<div class="row__actions">
-					<p class="row__actions-text">
-						{{ $t("When you turn off a store, you also stop accepting payments for all invoices for that store") }}
-					</p>
-					<ui-switch v-model="currentProject.status" :text="$t('Store enabled')" />
+			<div class="configuration">
+				<h2 class="global-title-h3">{{ $t("Configuration") }}</h2>
+				<div class="configuration__list">
+					<div class="configuration__item">
+						<ui-switch v-model="currentProject.status" :text="$t('Store status')" />
+						<tooltip-helper
+							:title="$t('Store status')"
+							:text="$t('When you turn off a store, you also stop accepting payments for all invoices for that store')"
+						/>
+					</div>
+					<div v-for="item in storeSettingList" :key="item.name" class="configuration__item">
+						<ui-switch
+							v-model="item.value"
+							:text="item.name in STORE_SETTING_LABELS ? $t(STORE_SETTING_LABELS[item.name]) : item.name"
+						/>
+						<tooltip-helper
+							:title="item.name in STORE_SETTING_LABELS ? $t(STORE_SETTING_LABELS[item.name]) : item.name"
+							:text="item.name in STORE_SETTING_TOOLTIPS ? $t(STORE_SETTING_TOOLTIPS[item.name]) : item.name"
+						/>
+					</div>
 				</div>
 			</div>
 			<div class="row" v-if="currenciesProject?.length">
@@ -300,6 +319,31 @@
 					font-size: 16px;
 					font-weight: 400;
 					line-height: 20px;
+				}
+			}
+		}
+		.configuration {
+			display: flex;
+			flex-direction: column;
+			gap: 16px;
+			border-bottom: 1px solid #e1e8f1;
+			padding-bottom: 24px;
+			&__list {
+				display: flex;
+				align-items: center;
+				gap: 24px;
+			}
+			&__item {
+				display: flex;
+				align-items: center;
+				gap: 8px;
+				padding-right: 24px;
+				border-right: 1px solid $grey;
+				&:deep(.ui-switch__label) > p {
+					font-size: 14px;
+				}
+				&:last-child {
+					border-right: unset;
 				}
 			}
 		}

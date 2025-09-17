@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+- Payment form design changes DV-3380
+- Added notification settings in the store DV-3383
 - Changed the receipt screen in the payment form DV-3364
 - Added icons of new coins DV-3348
 

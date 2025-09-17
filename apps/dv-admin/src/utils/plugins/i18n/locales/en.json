@@ -4,7 +4,12 @@
 		"h": "h",
 		"s": "s"
 	},
-	"You do not have any wallets specified in the withdrawal rules": "You do not have any wallets specified in the withdrawal rules",
+    "Configuration": "Configuration",
+    "Sending a check": "Sending a check",
+    "Sending a letter with wallets": "Sending a letter with wallets",
+    "After payment, the user will be sent a receipt by email": "After payment, the user will be sent a receipt by email",
+    "After the user has selected the currency and chain on the payment form, an email with a list of wallets will be sent to them": "After the user has selected the currency and chain on the payment form, an email with a list of wallets will be sent to them",
+    "You do not have any wallets specified in the withdrawal rules": "You do not have any wallets specified in the withdrawal rules",
 	"Add addresses to withdrawal rules": "Add addresses to withdrawal rules",
 	"Remove address from address book and withdrawal rules": "Remove address from address book and withdrawal rules",
 	"Delete address from address book only": "Delete address from address book only",
