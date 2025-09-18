@@ -22,7 +22,7 @@ export default [
 		name: "settings-logs",
 		component: () => import("@dv-admin/views/settings/logs/LogsView.vue"),
 		meta: { layout: APP_LAYOUT.DEFAULT },
-		beforeEnter: auth
+		beforeEnter: admin
 	},
 	// {
 	// 	path: "/settings/logs/:slug",

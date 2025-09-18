@@ -4,6 +4,10 @@
 		"h": "h",
 		"s": "s"
 	},
+    "Message": "Message",
+    "Level": "Level",
+    "Search by logs": "Search by logs",
+    "Logging levels": "Logging levels",
     "Backend": "Backend",
     "Configuration": "Configuration",
     "Sending a check": "Sending a check",

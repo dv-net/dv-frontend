@@ -4,6 +4,10 @@
 		"h": "ч",
 		"s": "сек"
 	},
+	"Message": "Сообщение",
+	"Level": "Уровень",
+	"Search by logs": "Поиск по логам",
+	"Logging levels": "Уровни логирования",
 	"Backend": "Бэкэнд",
 	"Configuration": "Конфигурация",
 	"Sending a check": "Отправка чека",
