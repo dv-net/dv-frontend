@@ -4,6 +4,7 @@
 		"h": "h",
 		"s": "s"
 	},
+    "Backend": "Backend",
     "Configuration": "Configuration",
     "Sending a check": "Sending a check",
     "Sending a letter with wallets": "Sending a letter with wallets",

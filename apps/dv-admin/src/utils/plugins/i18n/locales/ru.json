@@ -4,6 +4,7 @@
 		"h": "ч",
 		"s": "сек"
 	},
+	"Backend": "Бэкэнд",
 	"Configuration": "Конфигурация",
 	"Sending a check": "Отправка чека",
 	"Sending a letter with wallets": "Отправка письма с кошельками",
