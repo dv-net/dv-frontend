@@ -22,15 +22,15 @@ export default [
 		name: "settings-logs",
 		component: () => import("@dv-admin/views/settings/logs/LogsView.vue"),
 		meta: { layout: APP_LAYOUT.DEFAULT },
-		beforeEnter: auth
+		beforeEnter: admin
 	},
-	{
-		path: "/settings/logs/:slug",
-		name: "settings-logs-show",
-		component: () => import("@dv-admin/views/settings/logs/show/ShowLogView.vue"),
-		meta: { layout: APP_LAYOUT.DEFAULT },
-		beforeEnter: auth
-	},
+	// {
+	// 	path: "/settings/logs/:slug",
+	// 	name: "settings-logs-show",
+	// 	component: () => import("@dv-admin/views/settings/logs/show/ShowLogView.vue"),
+	// 	meta: { layout: APP_LAYOUT.DEFAULT },
+	// 	beforeEnter: auth
+	// },
 	{
 		path: "/settings/system",
 		name: "settings-system",

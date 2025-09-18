@@ -6,8 +6,12 @@
 	import IconSystem from "@dv-admin/components/icons/systemSettings/IconSystem.vue";
 	import IconExchange from "@dv-admin/components/icons/systemSettings/IconExchange.vue";
 	import ListInfoItem from "@dv-admin/components/common/listInfoItem/ListInfoItem.vue";
+	import { storeToRefs } from "pinia";
+	import { useAuthStore } from "@dv-admin/stores/auth";
 
 	const { t } = useI18n();
+
+	const { isRootUser } = storeToRefs(useAuthStore());
 
 	const settingsList = computed<ISettingsItem[]>(() => [
 		// {
@@ -20,7 +24,7 @@
 		// },
 		{
 			id: 2,
-			isShow: true,
+			isShow: isRootUser.value,
 			icon: markRaw(IconKey),
 			title: t("Logs"),
 			text: t("The current status of your services is displayed here"),

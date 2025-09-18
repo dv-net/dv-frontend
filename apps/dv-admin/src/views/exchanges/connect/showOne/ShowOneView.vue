@@ -48,7 +48,7 @@
 <template>
 	<div class="page">
 		<breadcrumbs :back-route-title="$t('Crypto exchange connection selection')" />
-		<h1 class="global-title-h2 mt-24 mb-32">
+		<h1 class="global-title-h2 mb-8">
 			{{ $t("Connecting the crypto exchange") }}
 		</h1>
 		<block-section class="page__inner">

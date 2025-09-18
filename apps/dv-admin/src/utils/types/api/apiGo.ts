@@ -734,6 +734,12 @@ export interface IMonitorsResponse {
 	title: string;
 }
 
+export interface ILogsResponse {
+	level: string;
+	message: string;
+	time: string;
+}
+
 export interface IMonitorsMessagesResponse {
 	created_at: string;
 	message: string;

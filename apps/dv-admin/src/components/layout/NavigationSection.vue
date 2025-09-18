@@ -5,6 +5,7 @@
 	import type { RouteItem } from "@dv.net/ui-kit/dist/components/UiLayoutMenu/types";
 	import { storeToRefs } from "pinia";
 	import { useUserSettingsStore } from "@dv-admin/stores/userSettings";
+	import { useAuthStore } from "@dv-admin/stores/auth";
 
 	interface NavigationSectionProps {
 		title: string;
@@ -14,15 +15,17 @@
 
 	const router = useRouter();
 	const { quickStartGuideSetting } = storeToRefs(useUserSettingsStore());
+	const { isRootUser } = storeToRefs(useAuthStore());
 
 	const props = withDefaults(defineProps<NavigationSectionProps>(), {
 		title: "",
 		collapse: false
 	});
-
 	const emit = defineEmits<{
 		(e: "change"): void;
 	}>();
+
+	const pagesRequireAdminRights: string[] = ['/settings/logs'];
 
 	function onSelect(path: string) {
 		router.push(path);
@@ -57,11 +60,16 @@
 					path: item.path,
 					meta: {
 						...item.meta,
+						class: pagesRequireAdminRights.includes(item.path) && !isRootUser ? 'none' : '',
 						title: $t(item.meta.title)
 					},
 					children:
 						item.children && item.children.length
-							? item.children.map((item) => ({ ...item, meta: { ...item.meta, title: $t(item.meta.title) } }))
+							? item.children.map((item) => ({ ...item, meta: {
+								...item.meta,
+								title: $t(item.meta.title),
+								class: pagesRequireAdminRights.includes(item.path) && !isRootUser ? 'none' : '',
+							} }))
 							: []
 				}))
 			"

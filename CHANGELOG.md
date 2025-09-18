@@ -6,6 +6,7 @@
 
 ## [1.0.13] - 2025-09-17
 
+- Added display of logs DV-3371
 - Payment form design changes DV-3380
 - Added notification settings in the store DV-3383
 - Changed the receipt screen in the payment form DV-3364

@@ -59,4 +59,21 @@ export const TRANSFER_TYPES = {
 	CLOUD_DELEGATE: "cloud_delegate",
 	RESOURCES: "resources"
 } as const;
-export type ENUM_TRANSFER_TYPES = (typeof TRANSFER_TYPES)[keyof typeof TRANSFER_TYPES];
+
+export const LEVEL_LOGS: Record<string, string> = {
+	debug: "neutral",
+	info: "positive",
+	warn: "warning",
+	panic: "negative",
+	fatal: "negative",
+	error: "negative",
+} as const;
+
+export const OPTIONS_LEVEL_LOGS: IUiSelectOptions[] = [
+	{ value: "debug", label: "debug" },
+	{ value: "info", label: "info" },
+	{ value: "warn", label: "warn" },
+	{ value: "panic", label: "panic" },
+	{ value: "fatal", label: "fatal" },
+	{ value: "error", label: "error" },
+]
