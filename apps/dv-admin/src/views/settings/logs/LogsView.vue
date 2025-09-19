@@ -1,7 +1,7 @@
 <script setup lang="ts">
 	import { computed, onMounted, ref } from "vue";
 	import Breadcrumbs from "@dv-admin/components/ui/breadcrumbs/Breadcrumbs.vue";
-	import { UiInput, UiSelect, UiSkeleton, UiTabs, UiTabsItem } from "@dv.net/ui-kit";
+	import { UiCopyText, UiInput, UiSelect, UiSkeleton, UiTabs, UiTabsItem } from "@dv.net/ui-kit";
 	import { getApiLogsLast, getApiLogsLastProcessing } from "@dv-admin/services/api/monitors.ts";
 	import type { ILogsResponse } from "@dv-admin/utils/types/api/apiGo.ts";
 	import ShowStatus from "@dv-admin/components/ui/showStatus/ShowStatus.vue";
@@ -109,9 +109,9 @@
 		</div>
 		<block-section mode="grey-border" padding="lg">
 			<div class="header">
-				<span class="header__item">{{ $t('Date') }}</span>
-				<span class="header__item">{{ $t('Message') }}</span>
 				<span class="header__item">{{ $t('Level') }}</span>
+				<span class="header__item">{{ $t('Message') }}</span>
+				<span class="header__item">{{ $t('Date') }}</span>
 			</div>
 			<div v-if="isLoading" class="logs">
 				<ui-skeleton
@@ -124,13 +124,16 @@
 			<div v-else>
 				<div v-if="filteredLogs.length" class="logs">
 					<div class="logs__row" v-for="(item, index) in filteredLogs" :key="index">
-						<div class="logs__time">{{ formatDate(item.time) }}</div>
-						<div class="logs__message">{{ item.message }}</div>
 						<show-status
 							:mode="item.level in LEVEL_LOGS ? LEVEL_LOGS[item.level] : 'neutral'"
 							:text="item.level"
 							w-full
 						/>
+						<div class="logs__message">
+							<p class="logs__message-text">{{ item.message }}</p>
+							<ui-copy-text :copied-text="item.message" color-icon="#6b6d80" size-icon="sm" />
+						</div>
+						<div class="logs__time">{{ formatDate(item.time) }}</div>
 					</div>
 				</div>
 				<not-found-message v-else />
@@ -184,7 +187,7 @@
 			display: grid;
 			gap: 20px;
 			padding: 0 16px 12px;
-			grid-template-columns: 140px 1fr 100px;
+			grid-template-columns: 100px 1fr 140px;
 			&__item {
 				color: $secondary;
 				font-size: 14px;
@@ -211,7 +214,7 @@
 			}
 			&__row {
 				display: grid;
-				grid-template-columns: 140px 1fr 100px;
+				grid-template-columns: 100px 1fr 140px;
 				align-items: center;
 				gap: 20px;
 				padding: 12px 16px;
@@ -226,11 +229,16 @@
 				font-weight: 300;
 			}
 			&__message {
-				max-height: 128px;
-				font-weight: 400;
-				overflow-y: auto;
-				font-size: 14px;
-				word-break: break-word;
+				display: flex;
+				align-items: center;
+				gap: 8px;
+				&-text {
+					max-height: 128px;
+					font-weight: 400;
+					overflow-y: auto;
+					font-size: 14px;
+					word-break: break-word;
+				}
 			}
 		}
 	}
