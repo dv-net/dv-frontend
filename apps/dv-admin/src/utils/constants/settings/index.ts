@@ -73,7 +73,7 @@ export const OPTIONS_LEVEL_LOGS: IUiSelectOptions[] = [
 	{ value: "debug", label: "debug" },
 	{ value: "info", label: "info" },
 	{ value: "warn", label: "warn" },
-	{ value: "panic", label: "panic" },
-	{ value: "fatal", label: "fatal" },
 	{ value: "error", label: "error" },
+	{ value: "fatal", label: "fatal" },
+	{ value: "panic", label: "panic" },
 ]

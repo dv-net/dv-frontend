@@ -109,9 +109,9 @@
 		</div>
 		<block-section mode="grey-border" padding="lg">
 			<div class="header">
-				<span class="header__item">{{ $t('Date') }}</span>
-				<span class="header__item">{{ $t('Message') }}</span>
 				<span class="header__item">{{ $t('Level') }}</span>
+				<span class="header__item">{{ $t('Message') }}</span>
+				<span class="header__item">{{ $t('Date') }}</span>
 			</div>
 			<div v-if="isLoading" class="logs">
 				<ui-skeleton
@@ -124,13 +124,13 @@
 			<div v-else>
 				<div v-if="filteredLogs.length" class="logs">
 					<div class="logs__row" v-for="(item, index) in filteredLogs" :key="index">
-						<div class="logs__time">{{ formatDate(item.time) }}</div>
-						<div class="logs__message">{{ item.message }}</div>
 						<show-status
 							:mode="item.level in LEVEL_LOGS ? LEVEL_LOGS[item.level] : 'neutral'"
 							:text="item.level"
 							w-full
 						/>
+						<div class="logs__message">{{ item.message }}</div>
+						<div class="logs__time">{{ formatDate(item.time) }}</div>
 					</div>
 				</div>
 				<not-found-message v-else />
@@ -184,7 +184,7 @@
 			display: grid;
 			gap: 20px;
 			padding: 0 16px 12px;
-			grid-template-columns: 140px 1fr 100px;
+			grid-template-columns: 100px 1fr 140px;
 			&__item {
 				color: $secondary;
 				font-size: 14px;
@@ -211,7 +211,7 @@
 			}
 			&__row {
 				display: grid;
-				grid-template-columns: 140px 1fr 100px;
+				grid-template-columns: 100px 1fr 140px;
 				align-items: center;
 				gap: 20px;
 				padding: 12px 16px;
