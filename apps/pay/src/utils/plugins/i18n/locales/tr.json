@@ -2,6 +2,11 @@
 	"staticStrings": {
 		"min": "Min"
 	},
+	"Copy the permanent address": "Kalıcı adresi kopyala",
+	"Chain commission": "Zincir komisyonu",
+	"Selected chain": "Seçili zincir",
+	"Contacts": "Kişiler",
+	"More about": "Daha fazla hakkında",
 	"select-blockchain": {
 		"one": "Blok zincirini seçin",
 		"two": "Blok zincirini seçin"
@@ -29,7 +34,6 @@
 	"For your safety, DV.net blocks suspicious and illegal transactions": "Güvenliğiniz için DV.net şüpheli ve yasadışı işlemleri engeller",
 	"Scan your DV.net deposit wallet address": "DV.net para yatırma cüzdan adresinizi tarayın",
 	"Recommended commission": "Tavsiye edilen komisyon",
-	"Please note: the rate is approximate. Before transferring from the exchange, check the current rate at the time of the transaction": "Lütfen dikkat: kur yaklaşık değerlerdir. Borsadan transfer yapmadan önce, işlem anındaki geçerli kuru kontrol edin",
 	"Copy the address": "Adresi kopyalayın",
 	"Permanent address": "Daimi adres",
 	"Continue": "Devam et",

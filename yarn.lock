@@ -27,10 +27,10 @@
     "@babel/helper-string-parser" "^7.27.1"
     "@babel/helper-validator-identifier" "^7.27.1"
 
-"@dv.net/ui-kit@^7.2.12":
-  version "7.2.12"
-  resolved "https://registry.yarnpkg.com/@dv.net/ui-kit/-/ui-kit-7.2.12.tgz#2d94fbfd22ec83b2357cae376d70e231ff64f199"
-  integrity sha512-E19ToTamZ4ZdkcYqPfy7ECBO3v5AoevLCyHVdeuHrGGIm2aiNspkoYyZE0yZ1r/JZp8VaXxg91OWeHkg0V1hzg==
+"@dv.net/ui-kit@^7.2.13":
+  version "7.2.13"
+  resolved "https://registry.yarnpkg.com/@dv.net/ui-kit/-/ui-kit-7.2.13.tgz#a39ec0838be325395ba5394bc9586e8d7a1bef95"
+  integrity sha512-zr/54HDpc6NQ2vxuF9ilSGq+hfdoEVDpwn9sqnB9yzUmrnXJYTEoOfMCbWdovZi7r2RtpcYj0qzAAzE38TcAow==
   dependencies:
     "@floating-ui/vue" "^1.1.7"
     "@vuepic/vue-datepicker" "^11.0.2"

@@ -11,10 +11,12 @@
 	import { useRouter } from "vue-router";
 	import { truncateHash } from "@shared/utils/helpers/general.ts";
 	import { formatDate } from "@dv-admin/utils/helpers/dateParse";
+	import { storeToRefs } from "pinia";
 
 	const router = useRouter();
 	const { notify } = useNotifications();
 	const { t } = useI18n();
+	const { currentBlockchainHotWallets } = storeToRefs(useHotWalletsStore());
 	const { postWithdrawMultipleManualOrProcessing } = useHotWalletsStore();
 
 	const props = defineProps<{ currencyId: string }>();
@@ -77,13 +79,16 @@
 
 			<ui-skeleton v-if="isLoading" :row-height="73" :item-border-radius="8" :rows-gap="4" :rows="4" />
 
-			<ui-button
-				v-else-if="!addressees.length"
-				@click="router.push({ name: 'withdrawal-addresses', params: { currencyId: 'BTC.Bitcoin' } })"
-				class="mt-16"
-			>
-				{{ $t("Add BTC withdrawal addresses") }}
-			</ui-button>
+			<div v-else-if="!addressees.length">
+				<p>{{ $t("You do not have any wallets specified in the withdrawal rules") }}</p>
+				<ui-button
+					class="mt-16"
+					mode="neutral"
+					@click="router.push({ name: 'withdrawal-addresses', params: { currencyId: currentBlockchainHotWallets } })"
+				>
+					{{ $t("Add addresses to withdrawal rules") }}
+				</ui-button>
+			</div>
 
 			<template v-else>
 				<ui-input

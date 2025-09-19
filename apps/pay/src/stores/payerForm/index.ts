@@ -9,13 +9,13 @@ import type {
 import { useI18n } from "vue-i18n";
 import { formatAmountBlockchain, getCurrentBlockchain, getCurrentCoin } from "@shared/utils/helpers/general.ts";
 import type { BlockchainType } from "@shared/utils/types/blockchain";
+import type { CurrencyType } from "@pay/utils/types/blockchain";
 
 export const usePayerFormStore = defineStore("payerForm", () => {
 	const { locale } = useI18n();
 
 	const isLoading = ref<boolean>(false);
 	const isPoolingProgress = ref<boolean>(true);
-	const searchBlockchains = ref<string | null>(null);
 	const currentStep = ref<number>(1);
 	const currentCurrency = ref<string | null>(null);
 	const currentChain = ref<string | null>(null);
@@ -28,14 +28,18 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 	const transactionsConfirmed = ref<IWalletTransactionResponse[]>([]);
 	const transactionsUnconfirmed = ref<IWalletTransactionResponse[]>([]);
 	const currentTransaction = ref<IWalletTransactionResponse | null>(null);
+	const errorStore = ref<"error" | "store-disabled" | null>(null);
+	const stepMap = ref<Record<number, number>>({
+		1: 1, 2: 2, 3: 3, 4: 3, 5: 4,
+	});
 	const timeline = ref([
 		{ id: 1, label: "Select currency", isActive: true },
 		{ id: 2, label: "select-blockchain.one", isActive: false },
-		{ id: 3, label: "Payment", isActive: false },
-		{ id: 4, label: "Confirmation", isActive: false },
-		{ id: 5, label: "Ready", isActive: false }
+		{ id: 3, label: "Sending a payment", isActive: false },
+		{ id: 4, label: "Ready", isActive: false }
 	]);
-	const errorStore = ref<"error" | "store-disabled" | null>(null);
+
+	const isShowAdvertising = computed<boolean>(() => currentStep.value !== 5);
 
 	const getPayerInfo = async (id: string) => {
 		try {
@@ -122,20 +126,15 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		filteredCurrency.forEach((item) => {
 			if (!unique.has(item.currency.id)) unique.set(item.currency.id, item);
 		});
-		const uniqueArray: IPayerAddressResponse[] = Array.from(unique.values());
-		return searchBlockchains.value
-			? uniqueArray.filter((item) =>
-					getCurrentBlockchain(item.currency.id)
-						.toLocaleLowerCase("en")
-						.includes(searchBlockchains.value!.toLocaleLowerCase("en"))
-				)
-			: uniqueArray;
+		return Array.from(unique.values());
 	});
 
-	const getAmountRate = (currencyId: string): string => {
-		if (!amount.value || !rates.value || !(currencyId in rates?.value)) return "—";
-		const result: number = parseFloat(amount.value) / parseFloat(rates.value[currencyId]);
-		return formatAmountBlockchain(result, currencyId);
+	const getAmountRate = (currency: CurrencyType): string => {
+		if (!amount.value || !rates.value || !currency) return "—";
+		const find = Object.entries(rates.value).find((item) => item[0].includes(currency));
+		if (!find) return "—";
+		const result: number = parseFloat(amount.value) / parseFloat(find[1]);
+		return formatAmountBlockchain(result, find[0]);
 	};
 
 	const checkValidationCurrencyAndChain = (
@@ -168,7 +167,6 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		isLoading,
 		currentChain,
 		currentCurrency,
-		searchBlockchains,
 		currentStep,
 		amount,
 		payerId,
@@ -184,6 +182,8 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		errorStore,
 		currentAddress,
 		filteredBlockchains,
+		isShowAdvertising,
+		stepMap,
 		getAmountRate,
 		getPayerInfo,
 		getWalletTxFind,

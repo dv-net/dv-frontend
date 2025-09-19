@@ -3,6 +3,7 @@ import type {
 	IStoreApiKeyResponse,
 	IStoreRequest,
 	IStoreResponse,
+	IStoreSettingsResponse,
 	IStoreWebhooksResponse,
 	IStoreWebhookTestRequest,
 	IStoreWebhookTestResponse
@@ -94,3 +95,13 @@ export const getApiCurrenciesProject = async (uuid: string): Promise<BlockchainT
 export const putApiCurrenciesProject = async (uuid: string, body: ICurrencyRequest) => {
 	await api.put(`/dv-admin/store/${uuid}/currencies`, body);
 };
+
+export const getApiStoreSettingList = async (uuid: string): Promise<IStoreSettingsResponse[]> => {
+	const resp = await api.get(`/dv-admin/store-setting/list/${uuid}`);
+	return resp.data.data;
+};
+
+export const postApiStoreSetting = async (uuid: string, body: { name: string, value: string }) => {
+	await api.post(`/dv-admin/store-setting/${uuid}`, body);
+};
+

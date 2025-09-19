@@ -4,7 +4,6 @@
 	import IconBitcoin from "@shared/components/icons/blockchains/IconBitcoin.vue";
 	import IconEthereum from "@shared/components/icons/blockchains/IconEthereum.vue";
 	import IconUSDTTron from "@shared/components/icons/blockchains/IconUSDTTron.vue";
-	import IconUSDCTron from "@shared/components/icons/blockchains/IconUSDCTron.vue";
 	import IconUSDCEthereum from "@shared/components/icons/blockchains/IconUSDCEthereum.vue";
 	import IconUSDTEthereum from "@shared/components/icons/blockchains/IconUSDTEthereum.vue";
 	import IconLTCEthereum from "@shared/components/icons/blockchains/IconLTCEthereum.vue";
@@ -37,6 +36,30 @@
 	import IconDAIOptimism from "@shared/components/icons/blockchains/IconDAIOptimism.vue";
 	import IconDAIArbitrum from "@shared/components/icons/blockchains/IconDAIArbitrum.vue";
 	import IconDefault from "@shared/components/icons/blockchains/iconDefault.vue";
+	import IconUsddEthereum from "@shared/components/icons/blockchains/IconUsddEthereum.vue";
+	import IconUsddTron from "@shared/components/icons/blockchains/IconUsddTron.vue";
+	import IconUsddBsc from "@shared/components/icons/blockchains/IconUsddBsc.vue";
+	import IconUsdeEthereum from "@shared/components/icons/blockchains/IconUsdeEthereum.vue";
+	import IconUsdeBsc from "@shared/components/icons/blockchains/IconUsdeBsc.vue";
+	import IconArbEthereum from "@shared/components/icons/blockchains/IconArbEthereum.vue";
+	import IconCakeEthereum from "@shared/components/icons/blockchains/IconCakeEthereum.vue";
+	import IconCakeBsc from "@shared/components/icons/blockchains/IconCakeBsc.vue";
+	import IconCakeArbitrum from "@shared/components/icons/blockchains/IconCakeArbitrum.vue";
+	import IconShibEthereum from "@shared/components/icons/blockchains/IconShibEthereum.vue";
+	import IconShibBsc from "@shared/components/icons/blockchains/IconShibBsc.vue";
+	import IconPepeEthereum from "@shared/components/icons/blockchains/IconPepeEthereum.vue";
+	import IconEnaEthereum from "@shared/components/icons/blockchains/IconEnaEthereum.vue";
+	import IconWlfiEthereum from "@shared/components/icons/blockchains/IconWlfiEthereum.vue";
+	import IconWlfiBsc from "@shared/components/icons/blockchains/IconWlfiBsc.vue";
+	import IconUsd1Ethereum from "@shared/components/icons/blockchains/IconUsd1Ethereum.vue";
+	import IconUsd1Bsc from "@shared/components/icons/blockchains/IconUsd1Bsc.vue";
+	import IconUsd1Tron from "@shared/components/icons/blockchains/IconUsd1Tron.vue";
+	import IconWldEthereum from "@shared/components/icons/blockchains/IconWldEthereum.vue";
+	import IconPyusdEthereum from "@shared/components/icons/blockchains/IconPyusdEthereum.vue";
+	import IconPyusdArbitrum from "@shared/components/icons/blockchains/IconPyusdArbitrum.vue";
+	import IconXautEthereum from "@shared/components/icons/blockchains/IconXautEthereum.vue";
+	import IconSandEthereum from "@shared/components/icons/blockchains/IconSandEthereum.vue";
+	import IconSandPolygon from "@shared/components/icons/blockchains/IconSandPolygon.vue";
 
 	const {
 		width = "24px",
@@ -48,31 +71,54 @@
 		height?: string;
 	}>();
 
-	const icons: Record<string, Component> = {
+	const icons: Record<BlockchainType, Component> = {
 		"BCH.Bitcoincash": markRaw(IconBitcoincash),
 		"BTC.Bitcoin": markRaw(IconBitcoin),
 		"LTC.Litecoin": markRaw(IconLitecoin),
 		"TRX.Tron": markRaw(IconTRXTron),
 		"USDT.Tron": markRaw(IconUSDTTron),
-		"USDC.Tron": markRaw(IconUSDCTron),
+		"USDD.Tron": markRaw(IconUsddTron),
+		"USD1.Tron": markRaw(IconUsd1Tron),
 		"ETH.Ethereum": markRaw(IconEthereum),
 		"USDC.Ethereum": markRaw(IconUSDCEthereum),
 		"DAI.Ethereum": markRaw(IconDAIEthereum),
 		"USDT.Ethereum": markRaw(IconUSDTEthereum),
+		"USDE.Ethereum": markRaw(IconUsdeEthereum),
+		"USDD.Ethereum": markRaw(IconUsddEthereum),
+		"USD1.Ethereum": markRaw(IconUsd1Ethereum),
+		"SHIB.Ethereum": markRaw(IconShibEthereum),
+		"SAND.Ethereum": markRaw(IconSandEthereum),
+		"XAUT.Ethereum": markRaw(IconXautEthereum),
+		"WLD.Ethereum": markRaw(IconWldEthereum),
+		"PYUSD.Ethereum": markRaw(IconPyusdEthereum),
+		"ARB.Ethereum": markRaw(IconArbEthereum),
 		"LTC.Ethereum": markRaw(IconLTCEthereum),
+		"PEPE.Ethereum": markRaw(IconPepeEthereum),
+		"WLFI.Ethereum": markRaw(IconWlfiEthereum),
 		"TON.Ethereum": markRaw(IconTONEthereum),
+		"CAKE.Ethereum": markRaw(IconCakeEthereum),
+		"ENA.Ethereum": markRaw(IconEnaEthereum),
 		"BNB.BNBSmartChain": markRaw(IconBinance),
 		"USDT.BNBSmartChain": markRaw(IconUSDTBinance),
+		"USDD.BNBSmartChain": markRaw(IconUsddBsc),
 		"USDC.BNBSmartChain": markRaw(IconUSDCBinance),
+		"USDE.BNBSmartChain": markRaw(IconUsdeBsc),
 		"DAI.BNBSmartChain": markRaw(IconDAIBinance),
+		"CAKE.BNBSmartChain": markRaw(IconCakeBsc),
+		"SHIB.BNBSmartChain": markRaw(IconShibBsc),
+		"WLFI.BNBSmartChain": markRaw(IconWlfiBsc),
+		"USD1.BNBSmartChain": markRaw(IconUsd1Bsc),
 		"POL.Polygon": markRaw(IconPolygon),
 		"USDT.Polygon": markRaw(IconUSDTPolygon),
 		"USDC.Polygon": markRaw(IconUSDCPolygon),
 		"DAI.Polygon": markRaw(IconDAIPolygon),
+		"SAND.Polygon": markRaw(IconSandPolygon),
 		"ETH.Arbitrum": markRaw(IconETHArbitrum),
 		"USDT.Arbitrum": markRaw(IconUSDTArbitrum),
 		"USDC.Arbitrum": markRaw(IconUSDCArbitrum),
 		"DAI.Arbitrum": markRaw(IconDAIArbitrum),
+		"PYUSD.Arbitrum": markRaw(IconPyusdArbitrum),
+		"CAKE.Arbitrum": markRaw(IconCakeArbitrum),
 		"ETH.Optimism": markRaw(IconETHOptimism),
 		"USDT.Optimism": markRaw(IconUSDTOptimism),
 		"USDC.Optimism": markRaw(IconUSDCOptimism),
@@ -90,17 +136,9 @@
 </script>
 
 <template>
-	<component class="icon" :is="iconToShow" />
+	<component
+		class="flex-shrink-0"
+		:is="iconToShow"
+		:style="{ width, height, minWidth: width, minHeight: height, maxWidth: width, maxHeight: height }"
+	/>
 </template>
-
-<style>
-	.icon {
-		width: v-bind(width);
-		height: v-bind(height);
-		min-width: v-bind(width);
-		min-height: v-bind(height);
-		max-width: v-bind(width);
-		max-height: v-bind(height);
-		flex-shrink: 0;
-	}
-</style>

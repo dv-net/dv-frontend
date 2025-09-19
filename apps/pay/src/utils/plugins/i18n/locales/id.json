@@ -2,6 +2,11 @@
 	"staticStrings": {
 		"min": "Min"
 	},
+	"Copy the permanent address": "Salin alamat tetap",
+	"Chain commission": "Rantai komisi",
+	"Selected chain": "Rantai terpilih",
+	"Contacts": "Kontak",
+	"More about": "Lebih lanjut tentang",
 	"select-blockchain": {
 		"one": "Pilih blockchain",
 		"two": "Pilih blockchain"
@@ -29,7 +34,6 @@
 	"For your safety, DV.net blocks suspicious and illegal transactions": "Demi keamanan Anda, DV.net memblokir transaksi yang mencurigakan dan ilegal",
 	"Scan your DV.net deposit wallet address": "Pindai alamat dompet deposit DV.net Anda",
 	"Recommended commission": "Komisi yang direkomendasikan",
-	"Please note: the rate is approximate. Before transferring from the exchange, check the current rate at the time of the transaction": "Harap diperhatikan: nilai tukar merupakan perkiraan. Sebelum mentransfer dari bursa, periksa kurs saat ini pada saat transaksi",
 	"Copy the address": "Salin alamat",
 	"Permanent address": "Alamat permanen",
 	"Continue": "Lanjutkan",

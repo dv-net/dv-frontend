@@ -2,6 +2,11 @@
 	"staticStrings": {
 		"min": "Min"
 	},
+	"Copy the permanent address": "Скопіювати постійну адресу",
+	"Chain commission": "Ланцюгова комісія",
+	"Selected chain": "Обраний ланцюг",
+	"Contacts": "Контакти",
+	"More about": "Більше про",
 	"select-blockchain": {
 		"one": "Виберіть блокчейн",
 		"two": "Виберіть блокчейн"
@@ -16,7 +21,7 @@
 	"Time of enrollment": "Час зарахування на навчання",
 	"Scan the QR code": "Відскануйте QR-код",
 	"Commission": "Комісія",
-	"Error": "Помилка.",
+	"Error": "Помилка",
 	"Helpdesk": "Служба підтримки",
 	"Hash": "Хеш",
 	"This is your permanent wallet, so we always wait for funds to arrive and credit them immediately": "Це ваш постійний гаманець, тому ми завжди чекаємо на надходження коштів і зараховуємо їх негайно",
@@ -29,7 +34,6 @@
 	"For your safety, DV.net blocks suspicious and illegal transactions": "Для вашої безпеки DV.net блокує підозрілі та незаконні транзакції",
 	"Scan your DV.net deposit wallet address": "Відскануйте адресу вашого депозитного гаманця DV.net",
 	"Recommended commission": "Рекомендована комісія",
-	"Please note: the rate is approximate. Before transferring from the exchange, check the current rate at the time of the transaction": "Зверніть увагу: курс вказано орієнтовний. Перед переказом з біржі перевірте актуальний курс на момент здійснення транзакції",
 	"Copy the address": "Скопіюйте адресу",
 	"Permanent address": "Постійна адреса",
 	"Continue": "Продовжуйте",
@@ -40,12 +44,12 @@
 	"Selected currency": "Обрана валюта",
 	"Payment": "Оплата",
 	"Confirmation": "Підтвердження",
-	"Ready": "Готово.",
+	"Ready": "Готово",
 	"Select currency for payment": "Виберіть валюту для оплати",
 	"Enter the name of the currency": "Введіть назву валюти",
 	"Enter blockchain name to search": "Введіть назву блокчейну для пошуку",
 	"Popular": "Популярні",
-	"Tokens": "Жетони.",
+	"Tokens": "Жетони",
 	"Payment details": "Реквізити для оплати",
 	"Payment ID": "Ідентифікатор платежу",
 	"Site": "Сайт",

@@ -4,6 +4,34 @@
 
 
 
+## [1.0.13] - 2025-09-17
+
+- Added display of logs DV-3371
+- Payment form design changes DV-3380
+- Added notification settings in the store DV-3383
+- Changed the receipt screen in the payment form DV-3364
+- Added icons of new coins DV-3348
+
+## [1.0.12] - 2025-09-15
+
+- Changed payment form DV-3357
+
+---
+## [1.0.11] - 2025-09-10
+
+- Changed behavior in email confirmation DV-3323
+- Adaptation of the payment form for mobile devices DV-3311
+
+---
+## [1.0.10] - 2025-09-05
+
+- Change payment form
+  
+---
+## [1.0.9] - 2025-09-01
+
+- Change ci
+  
 ---
 ## [1.0.8] - 2025-08-28
 

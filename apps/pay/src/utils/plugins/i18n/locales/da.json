@@ -2,6 +2,11 @@
 	"staticStrings": {
 		"min": "Min"
 	},
+	"Copy the permanent address": "Kopier den permanente adresse",
+	"Chain commission": "Kædekommission",
+	"Selected chain": "Valgt kæde",
+	"Contacts": "Kontakter",
+	"More about": "Mere om",
 	"select-blockchain": {
 		"one": "Vælg blockchain",
 		"two": "Vælg blockchain"
@@ -19,17 +24,16 @@
 	"Error": "Fejl",
 	"Helpdesk": "Helpdesk",
 	"Hash": "Hash",
-	"This is your permanent wallet, so we always wait for funds to arrive and credit them immediately": "Dette er din permanente tegnebog, så vi venter altid på, at pengene ankommer, og krediterer dem med det samme.",
+	"This is your permanent wallet, so we always wait for funds to arrive and credit them immediately": "Dette er din permanente tegnebog, så vi venter altid på, at pengene ankommer, og krediterer dem med det samme",
 	"Payment successfully approved": "Betaling godkendt med succes",
 	"Receiving and sending cryptocurrency": "Modtagelse og afsendelse af kryptovaluta",
 	"This store has been disabled by the administrator. Try to log in later or contact support": "Denne butik er blevet deaktiveret af administratoren. Prøv at logge ind senere, eller kontakt support",
 	"The higher the commission, the faster the process": "Jo højere provision, jo hurtigere proces",
 	"Wait for the payment to be confirmed by the network": "Vent på, at betalingen bliver bekræftet af netværket",
 	"Payment found": "Betaling fundet",
-	"For your safety, DV.net blocks suspicious and illegal transactions": "For din sikkerheds skyld blokerer DV.net for mistænkelige og ulovlige transaktioner.",
+	"For your safety, DV.net blocks suspicious and illegal transactions": "For din sikkerheds skyld blokerer DV.net for mistænkelige og ulovlige transaktioner",
 	"Scan your DV.net deposit wallet address": "Scan din DV.net-indbetalingsadresse",
 	"Recommended commission": "Anbefalet kommission",
-	"Please note: the rate is approximate. Before transferring from the exchange, check the current rate at the time of the transaction": "Bemærk venligst: kursen er omtrentlig. Før du overfører fra børsen, skal du tjekke den aktuelle kurs på transaktionstidspunktet.",
 	"Copy the address": "Kopier adressen",
 	"Permanent address": "Fast adresse",
 	"Continue": "Fortsæt",

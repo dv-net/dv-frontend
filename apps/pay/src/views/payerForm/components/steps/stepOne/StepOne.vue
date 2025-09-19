@@ -10,9 +10,9 @@
 	import { useRoute, useRouter } from "vue-router";
 	import CardCurrency from "@pay/views/payerForm/components/steps/cardCurrency/CardCurrency.vue";
 	import NotFound from "@pay/views/payerForm/components/steps/notFound/NotFound.vue";
-	import NavigationButtons from "@pay/views/payerForm/components/steps/navigationButtons/NavigationButtons.vue";
+	import WrapperBlock from "@pay/views/payerForm/components/wrapperBlock/WrapperBlock.vue";
 
-	const { addresses, currentCurrency, currentStep, currentChain, isLoading, store } = storeToRefs(usePayerFormStore());
+	const { addresses, currentCurrency, currentStep, currentChain, isLoading } = storeToRefs(usePayerFormStore());
 
 	const router = useRouter();
 	const route = useRoute();
@@ -51,6 +51,7 @@
 		const token = getCurrentCoin(currencyId);
 		currentCurrency.value = token;
 		currentChain.value = null;
+		currentStep.value = 2;
 		router.replace({
 			query: {
 				...(route.query.amount ? { amount: route.query.amount } : {}),
@@ -59,94 +60,107 @@
 			}
 		});
 	};
-
-	const returnToStore = (url?: string) => {
-		if (!url) return;
-		window.open(url, "_blank");
-	};
 </script>
 
 <template>
-	<div class="screen">
-		<h2 class="global-title-h2">{{ $t("Select currency for payment") }}</h2>
-		<ui-input
-			v-model="searchCurrency"
-			is-empty-value-null
-			clearable
-			@clear="searchCurrency = null"
-			:placeholder="$t('Enter the name of the currency')"
-		>
-			<template #prepend><ui-icon size="lg" type="400" name="search" /></template>
-		</ui-input>
-		<div class="block">
-			<span class="block__label">{{ $t("Popular") }}</span>
-			<div class="block__cards">
-				<template v-if="isLoading">
-					<ui-skeleton v-for="item in 6" :key="item" :rows="1" :row-height="44" :item-border-radius="8" />
-				</template>
-				<template v-else>
-					<card-currency
-						v-for="item in filteredPopularCurrencies"
-						:key="item.currency.id"
-						:currency="getCurrentCoin(item.currency.id) as CurrencyType"
-						:currency-label="item.currency.currency_label"
-						:height="44"
-						mode="grey"
-						:selected="currentCurrency === getCurrentCoin(item.currency.id)"
-						@click="setCurrency(item.currency.id)"
-					/>
-				</template>
-			</div>
-		</div>
-		<div class="block">
-			<span class="block__label">{{ $t("Currencies") }}</span>
-			<div v-if="isLoading" class="tokens__cards">
-				<ui-skeleton v-for="item in 8" :key="item" :rows="1" :row-height="56" :item-border-radius="8" />
-			</div>
-			<template v-else>
-				<div v-if="filteredCurrencies.length" class="block__cards">
-					<card-currency
-						v-for="item in filteredCurrencies"
-						:key="item.currency.id"
-						:currency="getCurrentCoin(item.currency.id) as CurrencyType"
-						:currency-label="item.currency.currency_label"
-						:selected="currentCurrency === getCurrentCoin(item.currency.id)"
-						@click="setCurrency(item.currency.id)"
-					/>
+	<wrapper-block>
+		<div class="screen">
+			<h2 class="global-title-h2">{{ $t("Select currency for payment") }}</h2>
+			<ui-input
+				v-model="searchCurrency"
+				is-empty-value-null
+				clearable
+				@clear="searchCurrency = null"
+				:placeholder="$t('Enter the name of the currency')"
+			>
+				<template #prepend><ui-icon size="lg" type="400" name="search" /></template>
+			</ui-input>
+			<div class="block">
+				<span class="block__label">{{ $t("Popular") }}</span>
+				<div class="block__cards block__cards-popular">
+					<template v-if="isLoading">
+						<ui-skeleton v-for="item in 6" :key="item" :rows="1" :row-height="44" :item-border-radius="8" />
+					</template>
+					<template v-else>
+						<card-currency
+							v-for="item in filteredPopularCurrencies"
+							:key="item.currency.id"
+							:currency="getCurrentCoin(item.currency.id) as CurrencyType"
+							:currency-label="item.currency.currency_label"
+							:height="44"
+							mode="grey"
+							:is-show-price="false"
+							:selected="currentCurrency === getCurrentCoin(item.currency.id)"
+							@click="setCurrency(item.currency.id)"
+						/>
+					</template>
 				</div>
-				<not-found v-else />
-			</template>
+			</div>
+			<div class="block">
+				<span class="block__label">{{ $t("Currencies") }}</span>
+				<div v-if="isLoading" class="block__cards">
+					<ui-skeleton v-for="item in 5" :key="item" :rows="1" :row-height="56" :item-border-radius="8" />
+				</div>
+				<template v-else>
+					<div v-if="filteredCurrencies.length" class="block__cards">
+						<card-currency
+							v-for="item in filteredCurrencies"
+							:key="item.currency.id"
+							:currency="getCurrentCoin(item.currency.id) as CurrencyType"
+							:currency-label="item.currency.currency_label"
+							:selected="currentCurrency === getCurrentCoin(item.currency.id)"
+							@click="setCurrency(item.currency.id)"
+						/>
+					</div>
+					<not-found v-else />
+				</template>
+			</div>
 		</div>
-		<navigation-buttons
-			class="mt-48"
-			name-btn-back="Return to the store"
-			:is-disabled-btn-back="!Boolean(store?.return_url)"
-			:is-disabled-btn-forward="!Boolean(currentCurrency)"
-			@click-btn-back="returnToStore(store?.return_url)"
-			@click-btn-forward="currentStep = 2"
-		/>
-	</div>
+	</wrapper-block>
 </template>
 
 <style scoped lang="scss">
 	.screen {
-		padding: 24px;
 		display: flex;
 		flex-direction: column;
-		border-radius: 16px;
 		gap: 24px;
-		background-color: $form-background;
+		@include mediamax(480) {
+			gap: 20px;
+		}
 		.block {
 			display: flex;
 			flex-direction: column;
 			gap: 12px;
 			&__label {
 				color: $main-subtitle-color;
+				@include mediamax(768) {
+					font-size: 14px;
+				}
 			}
 			&__cards {
 				display: grid;
-				grid-template-columns: repeat(2, 1fr);
+				grid-template-columns: repeat(1, 1fr);
 				gap: 12px;
+				&-popular {
+					grid-template-columns: repeat(2, 1fr);
+					@include mediamax(480) {
+						gap: 8px;
+						&:deep(.card) {
+							font-size: 12px;
+							padding: 8px;
+							.card__block {
+								svg {
+									width: 20px !important;
+									height: 20px !important;
+									min-width: 20px !important;
+									min-height: 20px !important;
+									max-width: 20px !important;
+									max-height: 20px !important;
+								}
+							}
+						}
+					}
+				}
 			}
 		}
 	}

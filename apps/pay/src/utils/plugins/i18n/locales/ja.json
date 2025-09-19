@@ -2,6 +2,11 @@
 	"staticStrings": {
 		"min": "Min"
 	},
+	"Copy the permanent address": "固定住所をコピー",
+	"Chain commission": "チェーンの手数料",
+	"Selected chain": "選択されたチェーン",
+	"Contacts": "連絡先",
+	"More about": "もっと詳しく",
 	"select-blockchain": {
 		"one": "ブロックチェーンを選択",
 		"two": "ブロックチェーンを選択"
@@ -29,7 +34,6 @@
 	"For your safety, DV.net blocks suspicious and illegal transactions": "お客様の安全のために、DV.netは疑わしい違法な取引をブロックします。",
 	"Scan your DV.net deposit wallet address": "DV.netデポジットウォレットのアドレスをスキャンする",
 	"Recommended commission": "推奨コミッション",
-	"Please note: the rate is approximate. Before transferring from the exchange, check the current rate at the time of the transaction": "注意：レートは概算です。取引所から送金する前に、取引時の現在のレートを確認してください。",
 	"Copy the address": "アドレスをコピーする",
 	"Permanent address": "本籍地",
 	"Continue": "続ける",

@@ -12,6 +12,8 @@
 	import StepFour from "@pay/views/payerForm/components/steps/stepFour/StepFour.vue";
 	import StepFive from "@pay/views/payerForm/components/steps/stepFive/StepFive.vue";
 	import StepError from "@pay/views/payerForm/components/steps/stepError/StepError.vue";
+	import BlockAdvertising from "@pay/views/payerForm/components/payerFormSidebar/blockAdvertising/BlockAdvertising.vue";
+	import { getApiWalletConfirm } from "@pay/services/api/payerForm.ts";
 
 	const {
 		currentStep,
@@ -22,7 +24,9 @@
 		timeline,
 		currentCurrency,
 		currentChain,
-		errorStore
+		errorStore,
+		isShowAdvertising,
+		stepMap
 	} = storeToRefs(usePayerFormStore());
 	const { getWalletTxFind, getStoreTopup, getPayerInfo, checkValidationCurrencyAndChain } = usePayerFormStore();
 
@@ -73,7 +77,8 @@
 
 	watch(currentStep, (newValue: number) => {
 		// Highlight current step
-		timeline.value.forEach((item) => (item.isActive = item.id <= newValue));
+		timeline.value.forEach((item) => (item.isActive = item.id <= (stepMap.value[currentStep.value] || currentStep.value)));
+		if (newValue === 3 && payerId.value) getApiWalletConfirm(payerId.value, `${currentCurrency.value}.${currentChain.value}`)
 	});
 
 	onMounted(async () => {
@@ -96,13 +101,14 @@
 	<div class="form">
 		<payer-form-header />
 		<div class="form__inner">
-			<div class="flex-grow-1">
+			<div class="form__body">
 				<step-error v-if="errorStore" />
 				<transition v-else name="fade" mode="out-in">
 					<component :is="currentStepComponent" />
 				</transition>
 			</div>
 			<payer-form-sidebar />
+			<block-advertising v-if="isShowAdvertising" class="form__advertising" />
 		</div>
 	</div>
 </template>
@@ -113,9 +119,32 @@
 		display: flex;
 		flex-direction: column;
 		gap: 24px;
+		@include mediamax(480) {
+			gap: 12px;
+		}
 		&__inner {
 			display: flex;
 			gap: 24px;
+			@include mediamax(1024) {
+				width: 100%;
+				flex-direction: column;
+			}
+			@include mediamax(480) {
+				gap: 12px;
+			}
+		}
+		&__body {
+			flex-grow: 1;
+			@include mediamax(1024) {
+				order: 2;
+			}
+		}
+		&__advertising {
+			display: none;
+			@include mediamax(1024) {
+				display: flex;
+				order: 3;
+			}
 		}
 	}
 </style>

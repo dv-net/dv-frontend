@@ -2,6 +2,11 @@
 	"staticStrings": {
 		"min": "Min"
 	},
+	"Copy the permanent address": "Kopioi pysyvä osoite",
+	"Chain commission": "Ketju komissio",
+	"Selected chain": "Valittu ketju",
+	"Contacts": "Yhteystiedot",
+	"More about": "Lisätietoja",
 	"select-blockchain": {
 		"one": "Valitse lohkoketju",
 		"two": "Valitse lohkoketju"
@@ -19,17 +24,16 @@
 	"Error": "Virhe",
 	"Helpdesk": "Helpdesk",
 	"Hash": "Hash",
-	"This is your permanent wallet, so we always wait for funds to arrive and credit them immediately": "Tämä on pysyvä lompakkosi, joten odotamme aina varojen saapumista ja hyvitämme ne välittömästi.",
+	"This is your permanent wallet, so we always wait for funds to arrive and credit them immediately": "Tämä on pysyvä lompakkosi, joten odotamme aina varojen saapumista ja hyvitämme ne välittömästi",
 	"Payment successfully approved": "Maksu hyväksytty onnistuneesti",
 	"Receiving and sending cryptocurrency": "Kryptovaluutan vastaanottaminen ja lähettäminen",
 	"This store has been disabled by the administrator. Try to log in later or contact support": "Järjestelmänvalvoja on poistanut tämän kaupan käytöstä. Yritä kirjautua sisään myöhemmin tai ota yhteyttä asiakaspalveluun",
 	"The higher the commission, the faster the process": "Mitä korkeampi palkkio, sitä nopeampi prosessi",
-	"Wait for the payment to be confirmed by the network": "Odota, että verkko vahvistaa maksun.",
+	"Wait for the payment to be confirmed by the network": "Odota, että verkko vahvistaa maksun",
 	"Payment found": "Maksu löydetty",
-	"For your safety, DV.net blocks suspicious and illegal transactions": "Turvallisuutesi vuoksi DV.net estää epäilyttävät ja laittomat maksutapahtumat.",
+	"For your safety, DV.net blocks suspicious and illegal transactions": "Turvallisuutesi vuoksi DV.net estää epäilyttävät ja laittomat maksutapahtumat",
 	"Scan your DV.net deposit wallet address": "Skannaa DV.net-talletuslompakon osoitteesi",
 	"Recommended commission": "Suositeltu toimeksianto",
-	"Please note: the rate is approximate. Before transferring from the exchange, check the current rate at the time of the transaction": "Huomaa: hinta on likimääräinen. Ennen kuin siirrät valuutan vaihdosta, tarkista tapahtumahetkellä voimassa oleva kurssi.",
 	"Copy the address": "Kopioi osoite",
 	"Permanent address": "Pysyvä osoite",
 	"Continue": "Jatka",
@@ -52,6 +56,6 @@
 	"Sum": "Sum",
 	"Change": "Muuta",
 	"You pay via DV.net": "Maksat DV.netin kautta",
-	"Accept cryptocurrency on your website without paying intermediaries": "Hyväksy kryptovaluuttaa verkkosivustollasi maksamatta välittäjiä.",
+	"Accept cryptocurrency on your website without paying intermediaries": "Hyväksy kryptovaluuttaa verkkosivustollasi maksamatta välittäjiä",
 	"the cheapest way to accept cryptocurrency on your site": "halvin tapa hyväksyä kryptovaluuttaa sivustollasi"
 }

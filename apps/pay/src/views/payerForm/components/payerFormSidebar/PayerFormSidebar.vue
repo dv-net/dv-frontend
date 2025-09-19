@@ -4,62 +4,54 @@
 	import { UiCopyText, UiIcon, UiLink } from "@dv.net/ui-kit";
 	import { formatDollars, truncateHash } from "@shared/utils/helpers/general.ts";
 	import { computed } from "vue";
+	import BlockAdvertising from "@pay/views/payerForm/components/payerFormSidebar/blockAdvertising/BlockAdvertising.vue";
+	import WrapperBlock from "@pay/views/payerForm/components/wrapperBlock/WrapperBlock.vue";
+	import { useMediaQuery } from "@shared/utils/composables/useMediaQuery.ts";
 
-	const { payerId, store, amount, errorStore, currentStep } = storeToRefs(usePayerFormStore());
+	const { payerId, store, amount, errorStore, currentStep, isShowAdvertising } = storeToRefs(usePayerFormStore());
 
-	const isShowDetails = computed<boolean>(() => {
-		return !errorStore.value && currentStep.value !== 5;
-	});
+	const isMediaMax480 = useMediaQuery("(max-width: 480px)");
+
+	const isShowSidebar = computed<boolean>(() => currentStep.value !== 5);
+	const isShowDetails = computed<boolean>(() => !errorStore.value && (currentStep.value !== 5));
 </script>
 
 <template>
-	<div class="sidebar">
-		<div v-if="isShowDetails" class="details">
-			<h2 class="global-title-h2">{{ $t("Payment details") }}</h2>
-			<div class="details__content">
-				<div class="row">
-					<span>{{ $t("Payment ID") }}</span>
-					<div v-if="payerId" class="flex flex-y-center gap-8">
-						<span>{{ truncateHash(payerId, 15) }}</span>
-						<ui-copy-text :copied-text="payerId" color-icon="#A4A5B1" />
+	<div v-if="isShowSidebar" class="sidebar">
+		<wrapper-block v-if="isShowDetails">
+			<div class="details">
+				<h2 class="global-title-h2">{{ $t("Payment details") }}</h2>
+				<div class="details__content">
+					<div class="row">
+						<span class="row__label">{{ $t("Payment ID") }}</span>
+						<div v-if="payerId" class="flex flex-y-center gap-8">
+							<span>{{ truncateHash(payerId, 12) }}</span>
+							<ui-copy-text :copied-text="payerId" color-icon="#A4A5B1" />
+						</div>
+						<span v-else>—</span>
 					</div>
-					<span v-else>—</span>
+					<div class="row">
+						<span class="row__label">{{ $t("Site") }}</span>
+						<ui-link
+							v-if="store?.name && store?.site_url"
+							:href="store.site_url"
+							target="_blank"
+							:size="isMediaMax480 ? 'lg' : 'xl'"
+							class="flex flex-y-center gap-8"
+						>
+							<span>{{ store.name }}</span>
+							<ui-icon name="new-windows" type="400" />
+						</ui-link>
+						<span v-else>—</span>
+					</div>
 				</div>
-				<div class="row">
-					<span>{{ $t("Site") }}</span>
-					<ui-link
-						v-if="store?.name && store?.site_url"
-						:href="store.site_url"
-						target="_blank"
-						size="xl"
-						class="flex flex-y-center gap-8"
-					>
-						<span>{{ store.name }}</span>
-						<ui-icon name="new-windows" type="400" />
-					</ui-link>
-					<span v-else>—</span>
+				<div class="details__bottom">
+					<span class="details__bottom-label">{{ $t("Sum") }}:</span>
+					<span class="details__bottom-price">{{ formatDollars(amount) }}</span>
 				</div>
 			</div>
-			<div class="details__bottom">
-				<span class="details__bottom-label">{{ $t("Sum") }}:</span>
-				<span class="details__bottom-price">{{ formatDollars(amount) }}</span>
-			</div>
-		</div>
-		<div class="advertising">
-			<div class="content">
-				<div class="content__inner">
-					<h2 class="global-title-h2">{{ $t("You pay via DV.net") }}</h2>
-					<p>{{ $t("Accept cryptocurrency on your website without paying intermediaries") }}</p>
-				</div>
-				<img src="@pay/assets/images/shield.webp" alt="shield" />
-			</div>
-			<div class="slogan">
-				<p class="slogan__inner">
-					<ui-link href="https://dv.net/" target="_blank">DaVinci Merchant</ui-link> -
-					{{ $t("the cheapest way to accept cryptocurrency on your site") }}
-				</p>
-			</div>
-		</div>
+		</wrapper-block>
+		<block-advertising v-if="isShowAdvertising" class="sidebar__advertising" />
 	</div>
 </template>
 
@@ -70,18 +62,25 @@
 		gap: 24px;
 		width: 492px;
 		flex-shrink: 0;
+		@include mediamax(1180) {
+			width: 400px;
+		}
+		@include mediamax(1024) {
+			width: 100%;
+		}
 		.details {
 			display: flex;
 			flex-direction: column;
-			border-radius: 16px;
-			background-color: $form-background;
-			padding: 24px;
 			&__content {
 				display: flex;
 				flex-direction: column;
 				gap: 12px;
 				padding: 20px 0 44px;
 				border-bottom: 1px solid $main-border-color;
+				@include mediamax(480) {
+					gap: 8px;
+					padding: 12px 0 20px;
+				}
 				.row {
 					display: flex;
 					align-items: center;
@@ -91,6 +90,20 @@
 					font-size: 16px;
 					font-weight: 400;
 					line-height: 130%;
+					@include mediamax(480) {
+						display: flex;
+						align-items: unset;
+						justify-content: unset;
+						flex-direction: column;
+						gap: 4px;
+						font-size: 14px;
+					}
+					&__label {
+						@include mediamax(480) {
+							font-size: 14px;
+							opacity: 0.6;
+						}
+					}
 					&__site {
 						color: $main-text-link-and-price-color;
 					}
@@ -101,53 +114,29 @@
 				display: flex;
 				align-items: center;
 				justify-content: space-between;
+				@include mediamax(480) {
+					padding-top: 16px;
+				}
 				&-label {
 					font-size: 20px;
 					font-weight: 500;
+					@include mediamax(480) {
+						font-size: 16px;
+					}
 				}
 				&-price {
 					color: $main-text-link-and-price-color;
 					font-size: 32px;
+					@include mediamax(480) {
+						font-size: 24px;
+					}
 					font-weight: 700;
 				}
 			}
 		}
-		.advertising {
-			display: flex;
-			flex-direction: column;
-			border-radius: 16px;
-			gap: 38px;
-			background-color: $form-background;
-			padding: 24px;
-			.content {
-				display: flex;
-				gap: 12px;
-				justify-content: space-between;
-				&__inner {
-					display: flex;
-					flex-direction: column;
-					gap: 12px;
-					color: $main-text-grey-color;
-					font-size: 16px;
-					font-weight: 400;
-					line-height: 140%;
-					max-width: 324px;
-					width: 100%;
-				}
-			}
-			.slogan {
-				border-radius: 12px;
-				border: 1px solid rgba(25, 104, 229, 0.1);
-				background-color: rgba(25, 104, 229, 0.02);
-				padding: 8px 20px;
-				&__inner {
-					max-width: 345px;
-					width: 100%;
-					color: $main-text-grey-color;
-					font-size: 14px;
-					font-weight: 400;
-					line-height: 140%;
-				}
+		&__advertising {
+			@include mediamax(1024) {
+				display: none;
 			}
 		}
 	}

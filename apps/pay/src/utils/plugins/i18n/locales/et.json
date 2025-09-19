@@ -2,6 +2,11 @@
 	"staticStrings": {
 		"min": "Min"
 	},
+	"Copy the permanent address": "Kopeeri püsiaadress",
+	"Chain commission": "Ahelikomisjon",
+	"Selected chain": "Valitud ahel",
+	"Contacts": "Kontaktid",
+	"More about": "Rohkem teavet",
 	"select-blockchain": {
 		"one": "Valige blockchain",
 		"two": "Valige blockchain"
@@ -19,17 +24,16 @@
 	"Error": "Viga",
 	"Helpdesk": "Kasutajatugi",
 	"Hash": "Hash",
-	"This is your permanent wallet, so we always wait for funds to arrive and credit them immediately": "See on teie püsiv rahakott, seega ootame alati raha saabumist ja krediteerime seda kohe.",
+	"This is your permanent wallet, so we always wait for funds to arrive and credit them immediately": "See on teie püsiv rahakott, seega ootame alati raha saabumist ja krediteerime seda kohe",
 	"Payment successfully approved": "Makse edukalt heaks kiidetud",
 	"Receiving and sending cryptocurrency": "Krüptoraha vastuvõtmine ja saatmine",
 	"This store has been disabled by the administrator. Try to log in later or contact support": "See pood on administraatori poolt välja lülitatud. Proovige hiljem sisse logida või võtke ühendust klienditoega",
 	"The higher the commission, the faster the process": "Mida suurem on komisjonitasu, seda kiiremini toimub protsess",
 	"Wait for the payment to be confirmed by the network": "Oodake, et võrk kinnitaks makse sooritamist",
 	"Payment found": "Makse leitud",
-	"For your safety, DV.net blocks suspicious and illegal transactions": "Teie ohutuse tagamiseks blokeerib DV.net kahtlased ja ebaseaduslikud tehingud.",
+	"For your safety, DV.net blocks suspicious and illegal transactions": "Teie ohutuse tagamiseks blokeerib DV.net kahtlased ja ebaseaduslikud tehingud",
 	"Scan your DV.net deposit wallet address": "Skaneeri oma DV.net hoiuse rahakoti aadress",
 	"Recommended commission": "Soovitatav komisjon",
-	"Please note: the rate is approximate. Before transferring from the exchange, check the current rate at the time of the transaction": "Pange tähele: hind on ligikaudne. Enne ülekandmist vahetusest kontrollige tehingu ajal kehtivat kurssi.",
 	"Copy the address": "Kopeeri aadress",
 	"Permanent address": "Alaline aadress",
 	"Continue": "Jätka",
