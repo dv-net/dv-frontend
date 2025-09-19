@@ -1,7 +1,7 @@
 <script setup lang="ts">
 	import { computed, onMounted, ref } from "vue";
 	import Breadcrumbs from "@dv-admin/components/ui/breadcrumbs/Breadcrumbs.vue";
-	import { UiInput, UiSelect, UiSkeleton, UiTabs, UiTabsItem } from "@dv.net/ui-kit";
+	import { UiCopyText, UiInput, UiSelect, UiSkeleton, UiTabs, UiTabsItem } from "@dv.net/ui-kit";
 	import { getApiLogsLast, getApiLogsLastProcessing } from "@dv-admin/services/api/monitors.ts";
 	import type { ILogsResponse } from "@dv-admin/utils/types/api/apiGo.ts";
 	import ShowStatus from "@dv-admin/components/ui/showStatus/ShowStatus.vue";
@@ -129,7 +129,10 @@
 							:text="item.level"
 							w-full
 						/>
-						<div class="logs__message">{{ item.message }}</div>
+						<div class="logs__message">
+							<p class="logs__message-text">{{ item.message }}</p>
+							<ui-copy-text :copied-text="item.message" color-icon="#6b6d80" size-icon="sm" />
+						</div>
 						<div class="logs__time">{{ formatDate(item.time) }}</div>
 					</div>
 				</div>
@@ -226,11 +229,16 @@
 				font-weight: 300;
 			}
 			&__message {
-				max-height: 128px;
-				font-weight: 400;
-				overflow-y: auto;
-				font-size: 14px;
-				word-break: break-word;
+				display: flex;
+				align-items: center;
+				gap: 8px;
+				&-text {
+					max-height: 128px;
+					font-weight: 400;
+					overflow-y: auto;
+					font-size: 14px;
+					word-break: break-word;
+				}
 			}
 		}
 	}
