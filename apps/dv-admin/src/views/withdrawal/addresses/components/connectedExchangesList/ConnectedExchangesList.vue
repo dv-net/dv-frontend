@@ -134,7 +134,7 @@
 										:is-link="false"
 										:currency-id="item.currency"
 									/>
-									<ui-tag v-if="item.is_used" :text="$t('Used')" mode="positive" />
+									<ui-tag v-if="item.is_used" :text="$t('It is used')" mode="positive" />
 								</div>
 								<div class="table__column table__column--amount">
 									min: {{ formatAmountBlockchain(item.min_deposit_amount, item.currency) }}

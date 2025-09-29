@@ -7,12 +7,22 @@
 	import { loadLocaleMessages, updateTranslationsUiKit } from "@pay/utils/plugins/i18n/helpers";
 	import type { Locale } from "@dv.net/ui-kit/dist/components/UiLanguages/types";
 	import type { IProps } from "@pay/components/ui/langSelect/types";
+	import { usePayerFormStore } from "@pay/stores/payerForm";
+	import { useRoute } from "vue-router";
 
 	const { locale } = useI18n();
 	const { t } = useI18n();
+	const { getStartInfo } = usePayerFormStore()
+	const route = useRoute();
 
 	const { forHeader = false, isHidden = false } = defineProps<IProps>();
+
 	const isShowModalLanguage = ref<boolean>(false);
+	const isStoreForm: boolean = route.name === "payer-store";
+	const slug = route.params.slug as string | undefined;
+	const payerIdQuery = route.params.payerId as string | undefined;
+	const externalId = route.params.externalId as string | undefined;
+	const email = route.query.email as string | undefined;
 
 	const currentLocale = computed<Locale>({
 		get: () => {
@@ -31,6 +41,7 @@
 			currentLocale.value = locale;
 			await loadLocaleMessages(locale.isoCode);
 			updateTranslationsUiKit(locale.isoCode, t);
+			await getStartInfo(isStoreForm, slug, externalId, payerIdQuery, email)
 		} catch (error: any) {
 			console.error(`Failed to load messages for ${locale.isoCode}`, error);
 		}

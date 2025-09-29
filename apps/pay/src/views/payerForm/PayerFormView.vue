@@ -28,7 +28,7 @@
 		isShowAdvertising,
 		stepMap
 	} = storeToRefs(usePayerFormStore());
-	const { getWalletTxFind, getStoreTopup, getPayerInfo, checkValidationCurrencyAndChain } = usePayerFormStore();
+	const { getWalletTxFind, checkValidationCurrencyAndChain, getStartInfo } = usePayerFormStore();
 
 	const route = useRoute();
 
@@ -82,12 +82,7 @@
 	});
 
 	onMounted(async () => {
-		if (isStoreForm) {
-			if (slug && externalId) await getStoreTopup(slug, externalId, email);
-		} else {
-			payerId.value = payerIdQuery || null;
-			if (payerId.value) await getPayerInfo(payerId.value);
-		}
+		await getStartInfo(isStoreForm, slug, externalId, payerIdQuery, email)
 		getQueryParams();
 		void startPolling();
 	});

@@ -30,10 +30,9 @@
 						</div>
 						<span v-else>—</span>
 					</div>
-					<div class="row">
+					<div v-if="store?.name && store?.site_url" class="row">
 						<span class="row__label">{{ $t("Site") }}</span>
 						<ui-link
-							v-if="store?.name && store?.site_url"
 							:href="store.site_url"
 							target="_blank"
 							:size="isMediaMax480 ? 'lg' : 'xl'"
@@ -42,7 +41,6 @@
 							<span>{{ store.name }}</span>
 							<ui-icon name="new-windows" type="400" />
 						</ui-link>
-						<span v-else>—</span>
 					</div>
 				</div>
 				<div class="details__bottom">

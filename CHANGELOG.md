@@ -2,7 +2,7 @@
 
 ## [Unreleased]
 
-
+- Re-requesting payment form information when changing the language DV-3432
 
 ## [1.0.13] - 2025-09-17
 

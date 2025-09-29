@@ -43,7 +43,6 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 
 	const getPayerInfo = async (id: string) => {
 		try {
-			isLoading.value = true;
 			const data = await getApiPayerInfo(id, locale.value);
 			if (data.store) store.value = data.store;
 			if (data.rates) rates.value = data.rates;
@@ -54,14 +53,11 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		} catch (error: any) {
 			getError(error.status);
 			throw error;
-		} finally {
-			isLoading.value = false;
 		}
 	};
 
 	const getStoreTopup = async (slug: string, external_id: string, email?: string) => {
 		try {
-			isLoading.value = true;
 			const data = await getApiStoreTopup(slug, external_id, locale.value, email);
 			if (data.store) store.value = data.store;
 			if (data.rates) rates.value = data.rates;
@@ -72,6 +68,26 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 			}
 		} catch (error: any) {
 			getError(error.status);
+			throw error;
+		}
+	};
+
+	const getStartInfo = async (
+		isStoreForm: boolean,
+		slug?: string,
+		externalId?: string,
+		payerIdQuery?: string,
+		email?: string
+	) => {
+		try {
+			isLoading.value = true;
+			if (isStoreForm) {
+				if (slug && externalId) await getStoreTopup(slug, externalId, email);
+			} else {
+				payerId.value = payerIdQuery || null;
+				if (payerId.value) await getPayerInfo(payerId.value);
+			}
+		} catch (error: any) {
 			throw error;
 		} finally {
 			isLoading.value = false;
@@ -188,6 +204,7 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		getPayerInfo,
 		getWalletTxFind,
 		getStoreTopup,
-		checkValidationCurrencyAndChain
+		checkValidationCurrencyAndChain,
+		getStartInfo
 	};
 });
