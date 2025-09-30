@@ -4,6 +4,7 @@
 	import BlockchainIcon from "@shared/components/ui/blockchainIcon/BlockchainIcon.vue";
 	import TooltipHelper from "@dv-admin/components/ui/tooltipHelper/TooltipHelper.vue";
 	import { capitalizeFirstLetter, getCurrentBlockchain, getCurrentCoin } from "@shared/utils/helpers/general.ts";
+	import type { BlockchainType } from "@shared/utils/types/blockchain";
 
 	const { row } = defineProps<{ row: IAddressBookList }>();
 
@@ -11,6 +12,11 @@
 		currencies
 			.filter((c) => c.currency_id.toLowerCase().includes(blockchain === "bsc" ? "bnbsmartchain" : blockchain))
 			.sort((a, b) => a.currency_id.localeCompare(b.currency_id));
+
+	const getChain = (currency_id: BlockchainType) => {
+		const chain: string = getCurrentBlockchain(currency_id);
+		return chain === 'BNBSmartChain' ? 'BSC' : chain
+	}
 </script>
 
 <template>
@@ -19,7 +25,7 @@
 			<div class="fz-16 flex flex-y-center gap-4">
 				<span>{{ getCurrentCoin(row.currency_id) }}</span>
 				<span class="grey-opacity">|</span>
-				<span>{{ getCurrentBlockchain(row.currency_id) }}</span>
+				<span>{{ getChain(row.currency_id) }}</span>
 			</div>
 			<blockchain-icon :type="row.currency_id" width="20px" height="20px" />
 		</template>

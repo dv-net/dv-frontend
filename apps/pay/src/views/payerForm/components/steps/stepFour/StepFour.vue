@@ -12,7 +12,7 @@
 	import { useMediaQuery } from "@shared/utils/composables/useMediaQuery.ts";
 	import LoaderSpinner from "@pay/components/ui/loaderSpinner/LoaderSpinner.vue";
 	import type { CurrencyType } from "@pay/utils/types/blockchain";
-	import NotFound from "@dv-admin/views/search/components/notFound/NotFound.vue";
+	import NotFound from "@pay/views/payerForm/components/steps/notFound/NotFound.vue";
 	import CurrencyIcon from "@pay/components/ui/currencyIcon/CurrencyIcon.vue";
 	import BannerInfo from "@pay/views/payerForm/components/steps/bannerInfo/BannerInfo.vue";
 	import BlockchainIcon from "@shared/components/ui/blockchainIcon/BlockchainIcon.vue";

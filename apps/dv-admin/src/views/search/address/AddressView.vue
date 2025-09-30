@@ -71,7 +71,6 @@
 				blockchain: currentBlockchainTab.value
 			};
 			const data = await getApiTransaction(params);
-			console.log(data.items);
 			if (data?.items) transferHistory.value = data.items;
 		} catch (error: any) {
 			console.error(error);

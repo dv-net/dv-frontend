@@ -11,7 +11,7 @@
 	import DisplayHash from "@shared/components/ui/displayHash/DisplayHash.vue";
 	import WrapperBlock from "@pay/views/payerForm/components/wrapperBlock/WrapperBlock.vue";
 	import { useMediaQuery } from "@shared/utils/composables/useMediaQuery.ts";
-	import NotFound from "@dv-admin/views/search/components/notFound/NotFound.vue";
+	import NotFound from "@pay/views/payerForm/components/steps/notFound/NotFound.vue";
 	import CurrencyIcon from "@pay/components/ui/currencyIcon/CurrencyIcon.vue";
 	import type { CurrencyType } from "@pay/utils/types/blockchain";
 	import BannerInfo from "@pay/views/payerForm/components/steps/bannerInfo/BannerInfo.vue";

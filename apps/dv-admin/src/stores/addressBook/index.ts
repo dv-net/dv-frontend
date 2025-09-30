@@ -98,19 +98,7 @@ export const useAddressBookStore = defineStore("addressBook", () => {
 			})();
 			if (!body) return;
 			await deleteApiWithdrawalAddressBook(body);
-			const filterFn = (item: IAddressBookList) => {
-				switch (row.type) {
-					case ADDRESS_BOOK_TYPES.REGULAR:
-						return item?.id !== row.id;
-					case ADDRESS_BOOK_TYPES.UNIVERSAL:
-						return !(item?.address === row.address && item?.blockchain === row.blockchain && item.is_universal);
-					case ADDRESS_BOOK_TYPES.EVM:
-						return !(item?.address === row.address && item.is_evm);
-					default:
-						return true;
-				}
-			};
-			addressBookList.value = addressBookList.value.filter(filterFn);
+			await getWithdrawalAddressBook()
 			notify(t("Address removed"), "success");
 		} catch (error: any) {
 			throw error;

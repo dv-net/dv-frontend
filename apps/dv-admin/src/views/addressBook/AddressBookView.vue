@@ -23,7 +23,7 @@
 
 	const headers = computed<UiTableHeader[]>(() => [
 		{ name: "type", label: t("Address type"), width: "150" },
-		{ name: "blockchain", label: t("Blockchain"), width: "180" },
+		{ name: "blockchain", label: t("Blockchain"), width: "200" },
 		{ name: "address", label: t("Address"), width: "250" },
 		{ name: "name", label: t("Name") },
 		{ name: "withdrawal-rules", label: t("Rules"), width: "80" },
