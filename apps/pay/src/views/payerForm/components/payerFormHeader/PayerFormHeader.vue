@@ -36,12 +36,18 @@
 			<div
 				v-for="(item, index) in timeline"
 				:key="item.id"
-				:ref="(el) => (itemRefs[index] = el as HTMLDivElement | null)"
-				class="timeline__item"
-				:class="[{ 'opacity-item': !item.isActive }, { success: currentStep === 5 && timeline.length - 1 === index }]"
+				class="timeline__block"
+				:class="{ 'opacity-item': !item.isActive }"
 			>
-				<span class="timeline__item-label">{{ item.id }}</span>
-				<span class="timeline__item-text">{{ $t(item.label) }}</span>
+				<div
+					:ref="(el) => (itemRefs[index] = el as HTMLDivElement | null)"
+					class="timeline__item"
+					:class="{ success: currentStep === 5 && timeline.length - 1 === index }"
+				>
+					<span class="timeline__item-label">{{ item.id }}</span>
+					<span class="timeline__item-text">{{ $t(item.label) }}</span>
+				</div>
+				<div v-if="index < timeline.length - 1" class="timeline__line"></div>
 			</div>
 		</div>
 	</div>
@@ -55,8 +61,10 @@
 		border-radius: 16px;
 		width: 100%;
 		@include mediamax(1024) {
-			overflow-x: auto;
 			padding: 16px 20px;
+		}
+		@include mediamax(768) {
+			overflow-x: auto;
 			overflow-y: hidden;
 			scrollbar-width: none;
 			-ms-overflow-style: none;
@@ -76,17 +84,33 @@
 			align-items: center;
 			justify-content: space-between;
 			width: 100%;
+			@include mediamax(768) {
+				width: 720px;
+				min-width: 720px;
+			}
+		}
+		&__block {
+			display: flex;
+			align-items: center;
+			flex-grow: 1;
+			&:last-child {
+				flex-grow: unset;
+			}
+			&.opacity-item {
+				opacity: 0.2;
+				cursor: not-allowed;
+			}
+		}
+		&__line {
+			margin: 0 16px;
+			width: 100%;
+			height: 1px;
+			background-color: $label-header-form-background;
 			@include mediamax(1024) {
-				width: 1024px;
-				min-width: 1024px;
+				margin: 0 12px;
 			}
 			@include mediamax(768) {
-				display: flex;
-				align-items: center;
-				justify-content: unset;
-				gap: 40px;
-				width: 100%;
-				min-width: unset;
+				margin: 0 8px;
 			}
 		}
 		&__item {
@@ -94,13 +118,8 @@
 			align-items: center;
 			gap: 12px;
 			flex-shrink: 0;
-			&:last-child {
-				@include mediamax(768) {
-					padding-right: 20px;
-				}
-				@include mediamax(480) {
-					padding-right: 16px;
-				}
+			@include mediamax(768) {
+				gap: 8px;
 			}
 			&-label {
 				border-radius: 100%;
@@ -112,7 +131,7 @@
 				flex-shrink: 0;
 				font-size: 14px;
 				font-weight: 500;
-				@include mediamax(768) {
+				@include mediamax(1024) {
 					font-size: 12px;
 					width: 20px;
 					height: 20px;
@@ -120,13 +139,9 @@
 			}
 			&-text {
 				font-size: 16px;
-				@include mediamax(768) {
+				@include mediamax(1024) {
 					font-size: 14px;
 				}
-			}
-			&.opacity-item {
-				opacity: 0.2;
-				cursor: not-allowed;
 			}
 			&.success {
 				color: #1f9649;

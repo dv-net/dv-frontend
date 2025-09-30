@@ -9,6 +9,7 @@
 	const {
 		currency,
 		currencyLabel,
+		tokens,
 		mode = "white",
 		height = 56,
 		selected = false,
@@ -30,6 +31,15 @@
 				<span>{{ currency }}</span>
 				<span v-if="currencyLabel" class="card__label">({{ currencyLabel }})</span>
 			</div>
+		</div>
+		<div v-if="tokens && tokens.length" class="card__tokens">
+			<span
+				v-for="item in tokens"
+				:key="item"
+				class="card__token"
+			>
+				{{ item }}
+			</span>
 		</div>
 		<span v-if="isShowPrice" class="card__price">≈ {{ getAmountRate(currency) }}</span>
 	</div>
@@ -82,6 +92,24 @@
 			color: $main-text-grey-color;
 			font-weight: 400;
 			line-height: 20px;
+		}
+		&__tokens {
+			display: flex;
+			align-items: center;
+			flex-wrap: wrap;
+			gap: 4px;
+			@include mediamax(768) {
+				display: none;
+			}
+		}
+		&__token {
+			padding: 4px 6px;
+			@extend .center;
+			border-radius: 6px;
+			border: 1px solid #E1E8F1;
+			color: $main-text-grey-color;
+			font-size: 10px;
+			font-weight: 500;
 		}
 		&__price {
 			color: $main-text-grey-color;

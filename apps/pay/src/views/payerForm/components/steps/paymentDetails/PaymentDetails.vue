@@ -4,30 +4,59 @@
 	import { storeToRefs } from "pinia";
 	import { isDesktopDevice } from "@shared/utils/helpers/media.ts";
 	import QrcodeVue from "qrcode.vue";
-	import { computed, ref } from "vue";
+	import { computed, onMounted, ref, watch } from "vue";
 	import CardSelectBlockchain from "@pay/views/payerForm/components/steps/cardSelectBlockchain/CardSelectBlockchain.vue";
 	import type { CurrencyType } from "@pay/utils/types/blockchain";
 	import type { BlockchainType } from "@shared/utils/types/blockchain";
 	import WrapperBlock from "@pay/views/payerForm/components/wrapperBlock/WrapperBlock.vue";
 	import BlockchainIcon from "@shared/components/ui/blockchainIcon/BlockchainIcon.vue";
-	import Loader from "@pay/components/ui/loader/Loader.vue";
+	import LoaderSpinner from "@pay/components/ui/loaderSpinner/LoaderSpinner.vue";
+	import { useMediaQuery } from "@shared/utils/composables/useMediaQuery.ts";
 
 	const { currentAddress, currentCurrency, currentChain, currentStep } = storeToRefs(usePayerFormStore());
 	const { getAmountRate } = usePayerFormStore();
 
+	const isMediaMax768 = useMediaQuery("(max-width: 768px)");
+	const isMediaMax480 = useMediaQuery("(max-width: 480px)");
+
 	const isShowQrCode = ref<boolean>(false)
+	const priceRefOne = ref<HTMLDivElement | null>(null)
+	const priceRefTwo = ref<HTMLDivElement | null>(null)
 
 	const currentPrice = computed<string>(() => getAmountRate(currentCurrency.value as CurrencyType));
+
+	const setWidthPriceRef = () => {
+		if (priceRefOne.value && priceRefTwo.value) {
+			priceRefOne.value.style.width = `unset`;
+			priceRefTwo.value.style.width = `unset`;
+			if (isMediaMax480.value) return;
+			const width: number = Math.max(priceRefOne.value.offsetWidth, priceRefTwo.value.offsetWidth) + 1
+			priceRefOne.value.style.width = `${width}px`;
+			priceRefTwo.value.style.width = `${width}px`;
+		}
+	}
+
+	watch(isMediaMax768, () => setWidthPriceRef())
+	watch(isMediaMax480, () => setWidthPriceRef())
+
+	onMounted(() => {
+		setWidthPriceRef()
+	})
 </script>
 
 <template>
 	<wrapper-block>
 		<div class="payment">
 			<div class="flex flex-column gap-12">
-				<card-select-blockchain type="currency" :currency="currentCurrency as CurrencyType" />
+				<card-select-blockchain
+					type="currency"
+					:currency="currentCurrency as CurrencyType"
+					v-model:price-ref="priceRefOne"
+				/>
 				<card-select-blockchain
 					type="blockchain"
 					:currency-id="`${currentCurrency}.${currentChain}` as BlockchainType"
+					v-model:price-ref="priceRefTwo"
 				/>
 			</div>
 			<div class="payment__inner">
@@ -37,9 +66,7 @@
 						<ui-tooltip
 							:show-event="isDesktopDevice() ? 'hover' : 'click'"
 							:title="$t('Permanent address')"
-							:text="
-							$t('Your permanent wallet — funds are credited to it automatically upon receipt')
-						"
+							:text="$t('Your permanent wallet — funds are credited to it automatically upon receipt')"
 						>
 							<ui-icon class="flex-shrink-0" name="help" type="filled" color="#A4A5B1" />
 						</ui-tooltip>
@@ -68,27 +95,18 @@
 			<div v-if="currentStep === 3" class="status">
 				<div class="status__top">
 					<h3 class="global-title-h2">{{ $t("Payment status") }}</h3>
-					<div
-						class="status__top-qr"
-						:class="{ 'selected': isShowQrCode }"
-						@click="isShowQrCode = !isShowQrCode"
-					>
-						<span>{{ $t(isShowQrCode ? 'Hide QR payment' : 'Show QR code for payment') }}</span>
+					<div class="status__top-qr" :class="{ selected: isShowQrCode }" @click="isShowQrCode = !isShowQrCode">
+						<span>{{ $t(isShowQrCode ? "Hide QR payment" : "Show QR code for payment") }}</span>
 						<ui-icon name="qr-code-scanner" type="400" />
 					</div>
 				</div>
 				<div class="status__bottom">
 					<div class="pending">
-						<loader />
-						<span class="pending__text">{{ $t('We are waiting for the payment to arrive') }}</span>
+						<loader-spinner :width="isMediaMax480 ? '32px' : '44px'" />
+						<span class="pending__text">{{ $t("We are waiting for the payment to arrive") }}</span>
 					</div>
 					<div v-if="currentAddress && isShowQrCode" class="qr">
-						<qrcode-vue
-							:value="currentAddress"
-							class="qr__code"
-							level="M"
-							render-as="svg"
-						/>
+						<qrcode-vue :value="currentAddress" class="qr__code" level="M" render-as="svg" />
 					</div>
 				</div>
 			</div>
@@ -244,7 +262,7 @@
 						font-size: 10px;
 					}
 					&.selected {
-						color: #1968E5;
+						color: #1968e5;
 					}
 					& > span {
 						text-align: right;

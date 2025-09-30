@@ -1,7 +1,11 @@
 {
 	"staticStrings": {
-		"min": "Мин"
+		"min": "мин",
+		"s": "сек"
 	},
+	"Approximate deposit time": "Примерное время зачисления",
+	"Passed": "Прошло",
+	"confirmations": "подтверждений",
 	"Hide QR payment": "Скрыть QR-платежа",
 	"We are waiting for the payment to arrive": "Ожидаем поступления платежа",
 	"Show QR code for payment": "Показать QR-код для платежа",

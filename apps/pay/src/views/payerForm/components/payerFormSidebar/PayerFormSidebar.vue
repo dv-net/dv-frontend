@@ -12,8 +12,8 @@
 
 	const isMediaMax480 = useMediaQuery("(max-width: 480px)");
 
-	const isShowSidebar = computed<boolean>(() => currentStep.value !== 5);
-	const isShowDetails = computed<boolean>(() => !errorStore.value && (currentStep.value !== 5));
+	const isShowSidebar = computed<boolean>(() => ![4,5].includes(currentStep.value));
+	const isShowDetails = computed<boolean>(() => !errorStore.value && isShowSidebar.value);
 </script>
 
 <template>

@@ -16,6 +16,8 @@
 
 	const { type, currency, currencyId } = defineProps<IProps>();
 
+	const priceRef = defineModel<HTMLDivElement | null | undefined>('priceRef');
+
 	const isMediaMax768 = useMediaQuery("(max-width: 768px)");
 	const isMediaMax480 = useMediaQuery("(max-width: 480px)");
 
@@ -61,7 +63,7 @@
 				</ui-link>
 			</div>
 		</div>
-		<div class="price">
+		<div class="price" ref="priceRef">
 			<currency-icon
 				v-if="isTypeCurrency"
 				:width="isMediaMax768 ? '24px' : '32px'"

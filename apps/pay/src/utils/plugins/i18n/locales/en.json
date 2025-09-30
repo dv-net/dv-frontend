@@ -1,7 +1,11 @@
 {
-	"staticStrings": {
-		"min": "Min"
-	},
+    "staticStrings": {
+      "min": "min",
+      "s": "s"
+    },
+    "Approximate deposit time": "Approximate deposit time",
+    "Passed": "Passed",
+    "confirmations": "confirmations",
     "Hide QR payment": "Hide QR payment",
     "We are waiting for the payment to arrive": "We are waiting for the payment to arrive",
     "Show QR code for payment": "Show QR code for payment",

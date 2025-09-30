@@ -19,31 +19,64 @@
 
 	const searchCurrency = ref<string | null>(null);
 
-	const filteredPopularCurrencies = computed<IPayerAddressResponse[]>(() => {
-		const unique = new Map<CurrencyType, IPayerAddressResponse>();
-		addresses.value.forEach((item) => {
-			const coin = getCurrentCoin(item.currency.id) as CurrencyType;
-			if (POPULAR_CURRENCY.includes(coin) && !unique.has(coin)) unique.set(coin, item);
-		});
-		return Array.from(unique.values());
-	});
+	// TODO: delete
+	// const filteredPopularCurrencies = computed<IPayerAddressResponse[]>(() => {
+	// 	const unique = new Map<CurrencyType, IPayerAddressResponse>();
+	// 	addresses.value.forEach((item) => {
+	// 		const coin = getCurrentCoin(item.currency.id) as CurrencyType;
+	// 		if (POPULAR_CURRENCY.includes(coin) && !unique.has(coin)) unique.set(coin, item);
+	// 	});
+	// 	return Array.from(unique.values());
+	// });
+
+	// TODO: delete
+	// const filteredCurrencies = computed<IPayerAddressResponse[]>(() => {
+	// 	const unique = new Map<CurrencyType, IPayerAddressResponse>();
+	// 	addresses.value.forEach((item) => {
+	// 		const coin = getCurrentCoin(item.currency.id) as CurrencyType;
+	// 		if (!unique.has(coin) && !POPULAR_CURRENCY.includes(coin)) {
+	// 			unique.set(coin, item);
+	// 		}
+	// 	});
+	// 	const uniqueArray: IPayerAddressResponse[] = Array.from(unique.values());
+	// 	return searchCurrency.value
+	// 		? uniqueArray.filter((item) =>
+	// 				getCurrentCoin(item.currency.id)
+	// 					.toLocaleLowerCase("en")
+	// 					.includes(searchCurrency.value!.toLocaleLowerCase("en"))
+	// 			)
+	// 		: uniqueArray;
+	// });
 
 	const filteredCurrencies = computed<IPayerAddressResponse[]>(() => {
 		const unique = new Map<CurrencyType, IPayerAddressResponse>();
 		addresses.value.forEach((item) => {
 			const coin = getCurrentCoin(item.currency.id) as CurrencyType;
-			if (!unique.has(coin) && !POPULAR_CURRENCY.includes(coin)) {
-				unique.set(coin, item);
+			if (!unique.has(coin)) {
+				const tokens = addresses.value
+					.filter(el => getCurrentCoin(el.currency.id) === coin)
+					.map(c => c.currency.token_label)
+					.filter(Boolean) as string[]
+				unique.set(coin, { ...item, currency: { ...item.currency, tokens } });
 			}
 		});
-		const uniqueArray: IPayerAddressResponse[] = Array.from(unique.values());
-		return searchCurrency.value
-			? uniqueArray.filter((item) =>
-					getCurrentCoin(item.currency.id)
-						.toLocaleLowerCase("en")
-						.includes(searchCurrency.value!.toLocaleLowerCase("en"))
-				)
-			: uniqueArray;
+		let uniqueArray: IPayerAddressResponse[] = Array.from(unique.values());
+		if (searchCurrency.value) {
+			const searchLower = searchCurrency.value.toLocaleLowerCase("en");
+			uniqueArray = uniqueArray.filter((item) =>
+				getCurrentCoin(item.currency.id).toLocaleLowerCase("en").includes(searchLower)
+			);
+		}
+		uniqueArray.sort((a, b) => {
+			const coinA = getCurrentCoin(a.currency.id);
+			const coinB = getCurrentCoin(b.currency.id);
+			const aIsPopular = POPULAR_CURRENCY.includes(coinA as CurrencyType);
+			const bIsPopular = POPULAR_CURRENCY.includes(coinB as CurrencyType);
+			if (aIsPopular && !bIsPopular) return -1;
+			if (!aIsPopular && bIsPopular) return 1;
+			return 0;
+		});
+		return uniqueArray;
 	});
 
 	const setCurrency = (currencyId: string) => {
@@ -75,27 +108,28 @@
 			>
 				<template #prepend><ui-icon size="lg" type="400" name="search" /></template>
 			</ui-input>
-			<div class="block">
-				<span class="block__label">{{ $t("Popular") }}</span>
-				<div class="block__cards block__cards-popular">
-					<template v-if="isLoading">
-						<ui-skeleton v-for="item in 6" :key="item" :rows="1" :row-height="44" :item-border-radius="8" />
-					</template>
-					<template v-else>
-						<card-currency
-							v-for="item in filteredPopularCurrencies"
-							:key="item.currency.id"
-							:currency="getCurrentCoin(item.currency.id) as CurrencyType"
-							:currency-label="item.currency.currency_label"
-							:height="44"
-							mode="grey"
-							:is-show-price="false"
-							:selected="currentCurrency === getCurrentCoin(item.currency.id)"
-							@click="setCurrency(item.currency.id)"
-						/>
-					</template>
-				</div>
-			</div>
+			<!-- TODO: delete -->
+<!--			<div class="block">-->
+<!--				<span class="block__label">{{ $t("Popular") }}</span>-->
+<!--				<div class="block__cards block__cards-popular">-->
+<!--					<template v-if="isLoading">-->
+<!--						<ui-skeleton v-for="item in 6" :key="item" :rows="1" :row-height="44" :item-border-radius="8" />-->
+<!--					</template>-->
+<!--					<template v-else>-->
+<!--						<card-currency-->
+<!--							v-for="item in filteredPopularCurrencies"-->
+<!--							:key="item.currency.id"-->
+<!--							:currency="getCurrentCoin(item.currency.id) as CurrencyType"-->
+<!--							:currency-label="item.currency.currency_label"-->
+<!--							:height="44"-->
+<!--							mode="grey"-->
+<!--							:is-show-price="false"-->
+<!--							:selected="currentCurrency === getCurrentCoin(item.currency.id)"-->
+<!--							@click="setCurrency(item.currency.id)"-->
+<!--						/>-->
+<!--					</template>-->
+<!--				</div>-->
+<!--			</div>-->
 			<div class="block">
 				<span class="block__label">{{ $t("Currencies") }}</span>
 				<div v-if="isLoading" class="block__cards">
@@ -108,6 +142,7 @@
 							:key="item.currency.id"
 							:currency="getCurrentCoin(item.currency.id) as CurrencyType"
 							:currency-label="item.currency.currency_label"
+							:tokens="item.currency.tokens"
 							:selected="currentCurrency === getCurrentCoin(item.currency.id)"
 							@click="setCurrency(item.currency.id)"
 						/>

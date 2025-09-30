@@ -1,5 +1,5 @@
 import { type Ref, isRef } from "vue";
-import { PRECISION_CURRENCIES } from "@shared/utils/constants/blockchain";
+import { DEFAULT_CURRENCIES_INFO, DEFAULT_CURRENCY_PRECISION } from "@shared/utils/constants/blockchain";
 import type { BlockchainType } from "@shared/utils/types/blockchain";
 import { URL_REGEX } from "@shared/utils/constants/regex";
 
@@ -61,9 +61,9 @@ export const formatAmountBlockchain = (
 	setCount?: number,
 	errorValue = "—"
 ): string => {
-	const precisionCurrency: number | null =
-		currencyId && currencyId in PRECISION_CURRENCIES ? PRECISION_CURRENCIES[currencyId as BlockchainType] : null;
-	const count: number = setCount || precisionCurrency || 6;
+	const precisionCurrency: number =
+		currencyId && currencyId in DEFAULT_CURRENCIES_INFO ? DEFAULT_CURRENCIES_INFO[currencyId as BlockchainType].precision : DEFAULT_CURRENCY_PRECISION;
+	const count: number = setCount || precisionCurrency;
 	const num: number = parseFloat(amount);
 	if (isNaN(num) || !isFinite(num)) return errorValue;
 	if (count === 0) {

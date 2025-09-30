@@ -69,6 +69,7 @@
 		flex-shrink: 0;
 		display: flex;
 		align-items: center;
+		background-color: $form-background;
 		&__inner {
 			flex-grow: 1;
 			display: flex;

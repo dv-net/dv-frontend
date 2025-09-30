@@ -9,7 +9,8 @@ export interface IInfoCurrency {
 	is_bitcoin_like: boolean;
 	is_evm_like: boolean;
 	currency_label: string | null;
-	token_label: string;
+	token_label: string | null;
+	tokens?: string[]
 }
 
 export interface IPayerAddressResponse {

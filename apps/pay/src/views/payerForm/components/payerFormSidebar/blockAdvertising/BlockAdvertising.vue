@@ -11,7 +11,7 @@
 					<h2 class="global-title-h2">{{ $t("You pay via DV.net") }}</h2>
 					<p>{{ $t("Accept cryptocurrency on your website without paying intermediaries") }}</p>
 				</div>
-				<img class="content__img" src="@pay/assets/images/shield.webp" alt="shield" />
+				<img class="content__img" src="/static/shield.png" alt="shield" />
 			</div>
 			<div class="slogan">
 				<p class="slogan__inner">

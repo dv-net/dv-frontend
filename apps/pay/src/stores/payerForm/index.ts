@@ -39,7 +39,7 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		{ id: 4, label: "Ready", isActive: false }
 	]);
 
-	const isShowAdvertising = computed<boolean>(() => currentStep.value !== 5);
+	const isShowAdvertising = computed<boolean>(() => ![4,5].includes(currentStep.value));
 
 	const getPayerInfo = async (id: string) => {
 		try {
