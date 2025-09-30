@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [1.0.14] - 2025-09-30
+
 - Design review DV-3422
 - Re-requesting payment form information when changing the language DV-3432
 
