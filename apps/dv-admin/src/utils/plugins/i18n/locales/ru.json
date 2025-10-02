@@ -4,6 +4,12 @@
 		"h": "ч",
 		"s": "сек"
 	},
+	"IP address added to whitelist": "IP адрес добавлен в белый список",
+	"ip already exists in whitelist": "IP уже существует в белом списке",
+	"Whitelist your IP address to protect access to your tokens": "Добавьте свой IP-адрес в белый список, чтобы защитить доступ к вашим токенам",
+	"Adding an IP to the whitelist": "Добавление IP в белый список",
+	"IP address": "IP адрес",
+	"Please enter a valid IP address": "Введите корректный IP адрес",
 	"full disable system notification is not allowed": "Уведомление о полном отключении системы не допускается",
 	"Unauthenticated": "Неаутентифицированный",
 	"transfer init: internal: process evm: the address is occupied by another transaction": "Адрес занят другой транзакцией",

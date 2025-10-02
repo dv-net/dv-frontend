@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+- Added whitelists DV-3433
 - Change payment form DV-3458
 
 ## [1.0.14] - 2025-09-30

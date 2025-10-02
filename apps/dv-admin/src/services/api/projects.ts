@@ -6,7 +6,7 @@ import type {
 	IStoreSettingsResponse,
 	IStoreWebhooksResponse,
 	IStoreWebhookTestRequest,
-	IStoreWebhookTestResponse
+	IStoreWebhookTestResponse,
 } from "@dv-admin/utils/types/api/apiGo";
 import api from "@dv-admin/utils/plugins/api";
 import type { BlockchainType } from "@shared/utils/types/blockchain";
@@ -105,3 +105,16 @@ export const postApiStoreSetting = async (uuid: string, body: { name: string, va
 	await api.post(`/dv-admin/store-setting/${uuid}`, body);
 };
 
+
+export const deleteApiWhitelistsProject = async (uuid: string, ip: string): Promise<void> => {
+	await api.delete(`/dv-admin/store/${uuid}/whitelists/${ip}`);
+};
+
+export const getApiWhitelistsProject = async (uuid: string): Promise<string[]> => {
+	const resp = await api.get(`/dv-admin/store/${uuid}/whitelists`);
+	return resp.data.data;
+};
+
+export const patchApiWhitelistsProject = async (uuid: string, ip: string) => {
+	await api.patch(`/dv-admin/store/${uuid}/whitelists`, { ip });
+};

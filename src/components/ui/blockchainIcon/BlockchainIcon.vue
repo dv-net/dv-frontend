@@ -60,6 +60,7 @@
 	import IconXautEthereum from "@shared/components/icons/blockchains/IconXautEthereum.vue";
 	import IconSandEthereum from "@shared/components/icons/blockchains/IconSandEthereum.vue";
 	import IconSandPolygon from "@shared/components/icons/blockchains/IconSandPolygon.vue";
+	import IconArbArbitrum from "@shared/components/icons/blockchains/IconArbArbitrum.vue";
 
 	const {
 		width = "24px",
@@ -113,6 +114,7 @@
 		"USDC.Polygon": markRaw(IconUSDCPolygon),
 		"DAI.Polygon": markRaw(IconDAIPolygon),
 		"SAND.Polygon": markRaw(IconSandPolygon),
+		"ARB.Arbitrum": markRaw(IconArbArbitrum),
 		"ETH.Arbitrum": markRaw(IconETHArbitrum),
 		"USDT.Arbitrum": markRaw(IconUSDTArbitrum),
 		"USDC.Arbitrum": markRaw(IconUSDCArbitrum),

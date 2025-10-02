@@ -22,6 +22,7 @@ export const DEFAULT_CURRENCY_DEPOSIT_TIME: number = 2;
 export const DEFAULT_CURRENCY_PRECISION: number = 6;
 
 export const DEFAULT_CURRENCIES_INFO: Record<BlockchainType, { precision: number; depositTime: number; confirmations: number }> = {
+	"ARB.Arbitrum": { precision: 2, depositTime: 2, confirmations: 20 },
 	"DAI.Arbitrum": { precision: 2, depositTime: 2, confirmations: 20 },
 	"ETH.Arbitrum": { precision: 6, depositTime: 2, confirmations: 20 },
 	"ETH.Optimism": { precision: 6, depositTime: 2, confirmations: 20 },

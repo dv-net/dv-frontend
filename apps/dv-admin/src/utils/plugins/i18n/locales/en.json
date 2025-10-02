@@ -4,6 +4,12 @@
 		"h": "h",
 		"s": "s"
 	},
+    "IP address added to whitelist": "IP address added to whitelist",
+    "ip already exists in whitelist": "IP already exists in whitelist",
+    "Whitelist your IP address to protect access to your tokens": "Whitelist your IP address to protect access to your tokens",
+    "Adding an IP to the whitelist": "Adding an IP to the whitelist",
+    "IP address": "IP address",
+    "Please enter a valid IP address": "Please enter a valid IP address",
     "full disable system notification is not allowed": "Full disable system notification is not allowed",
     "Unauthenticated": "Unauthenticated",
     "transfer init: internal: process evm: the address is occupied by another transaction": "The address is occupied by another transaction",

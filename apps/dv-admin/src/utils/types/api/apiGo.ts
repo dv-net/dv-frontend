@@ -109,6 +109,14 @@ export interface IStoreApiKeyResponse {
 	created_at: string | null;
 }
 
+export interface IWhitelistsPatchRequest {
+	ip: string | null;
+}
+
+export interface IWhitelistsResponse {
+	ip: string;
+}
+
 export interface IStoreGeneralSettingsList {
 	name: string
 	is_editable: boolean
@@ -199,10 +207,6 @@ export interface ICurrencyStore {
 	code: string;
 	name: string;
 	enabled: boolean;
-}
-
-export interface IWhitelistsPatchRequest {
-	ip: string;
 }
 
 export interface IExternalWalletRequest {

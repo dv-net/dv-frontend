@@ -24,6 +24,7 @@ import { useProjectsWebhooksStore } from "@dv-admin/stores/projects/webhooks";
 import { webhooksFormStartData } from "@dv-admin/stores/projects/utils";
 import { useSystemSettingsStore } from "@dv-admin/stores/systemSettings";
 import { useAuthStore } from "@dv-admin/stores/auth";
+import { useWhiteListProjectStore } from "@dv-admin/stores/projects/whiteList";
 
 const { notify } = useNotifications();
 
@@ -35,6 +36,7 @@ export const useProjectsStore = defineStore("projects", () => {
 	const { openOtpGlobalModal } = useGeneralStore();
 	const { getWebhooksProject } = useProjectsWebhooksStore();
 	const { getKeyProject } = useApiKeysProjectStore();
+	const { getWhitelistsProject } = useWhiteListProjectStore()
 
 	const isLoading = ref<boolean>(false);
 	const isLoadingEditProject = ref<boolean>(false);
@@ -105,7 +107,7 @@ export const useProjectsStore = defineStore("projects", () => {
 				getWebhooksProject(uuid),
 				getStoreSecret(uuid),
 				getStoreSettingList(uuid),
-				// postApiStoreSetting(uuid, { name: "external_wallet_email_notification", value: "disabled" }),
+				getWhitelistsProject(uuid),
 			]);
 		} catch (error: any) {
 			throw error;
