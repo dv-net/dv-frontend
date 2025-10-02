@@ -60,8 +60,14 @@
 		timeout = setTimeout(() => startPolling(), 3000);
 	};
 
+	const toPositiveNumber = (val: any, fallback = 0): number => {
+		if (!val) return fallback;
+		const num = parseFloat(val || "0");
+		return num > 0 ? num : fallback;
+	}
+
 	const getQueryParams = () => {
-		amount.value = price || store.value?.minimal_payment || "1";
+		amount.value = toPositiveNumber(price, toPositiveNumber(store.value?.minimal_payment, 1));
 		if (token && checkValidationCurrencyAndChain(token)) currentCurrency.value = token;
 		if (chain && checkValidationCurrencyAndChain(undefined, chain)) currentChain.value = chain;
 		if (currencyId && checkValidationCurrencyAndChain(undefined, undefined, currencyId)) {

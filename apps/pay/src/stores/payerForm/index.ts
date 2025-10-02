@@ -20,7 +20,7 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 	const currentCurrency = ref<string | null>(null);
 	const currentChain = ref<string | null>(null);
 	const payerId = ref<string | null>(null);
-	const amount = ref<string | null>(null);
+	const amount = ref<number | null>(null);
 	const rates = ref<Record<string, string> | null>(null);
 	const store = ref<IPayerStoreResponse | null>(null);
 	const addresses = ref<IPayerAddressResponse[]>([]);
@@ -149,7 +149,7 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		if (!amount.value || !rates.value || !currency) return "—";
 		const find = Object.entries(rates.value).find((item) => item[0].includes(currency));
 		if (!find) return "—";
-		const result: number = parseFloat(amount.value) / parseFloat(find[1]);
+		const result: number = amount.value / parseFloat(find[1]);
 		return formatAmountBlockchain(result, find[0]);
 	};
 

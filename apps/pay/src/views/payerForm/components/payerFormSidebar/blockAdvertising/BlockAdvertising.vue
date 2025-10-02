@@ -1,10 +1,14 @@
 <script setup lang="ts">
 	import { UiLink } from "@dv.net/ui-kit";
 	import WrapperBlock from "@pay/views/payerForm/components/wrapperBlock/WrapperBlock.vue";
+
+	const goToLanding = () => {
+		window.open("https://dv.net/", "_blank");
+	}
 </script>
 
 <template>
-	<wrapper-block>
+	<wrapper-block class="wrapper-block" @click="goToLanding">
 		<div class="advertising">
 			<div class="content">
 				<div class="content__inner">
@@ -15,7 +19,7 @@
 			</div>
 			<div class="slogan">
 				<p class="slogan__inner">
-					<ui-link href="https://dv.net/" target="_blank">DaVinci Merchant</ui-link> -
+					<ui-link>DaVinci Merchant</ui-link> -
 					{{ $t("the cheapest way to accept cryptocurrency on your site") }}
 				</p>
 			</div>
@@ -24,6 +28,17 @@
 </template>
 
 <style scoped lang="scss">
+	.wrapper-block {
+		border: 1px solid transparent;
+		transition: all 0.3s ease-in-out;
+		@media (hover: hover) {
+			&:hover {
+				cursor: pointer;
+				border: 1px solid rgba(22, 126, 180, 0.44);
+				box-shadow: 0 4px 12px 1px rgba(171, 176, 187, 0.06), 0 4px 24px 1px rgba(171, 176, 187, 0.24);
+			}
+		}
+	}
 	.advertising {
 		display: flex;
 		flex-direction: column;

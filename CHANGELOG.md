@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+- Change payment form DV-3458
+
 ## [1.0.14] - 2025-09-30
 
 - Design review DV-3422

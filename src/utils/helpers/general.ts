@@ -9,6 +9,11 @@ export const capitalizeFirstLetter = (str: string, locale?: string): string => {
 	return str.charAt(0).toLocaleUpperCase(locale || "en") + str.slice(1);
 };
 
+export const changeChainBsc = (chain: string): string => {
+	if (!chain) return "";
+	return chain === 'BNBSmartChain' ? 'BSC' : chain
+}
+
 // Check if it's JSON
 export const checkIsJSON = (str: any): boolean => {
 	try {

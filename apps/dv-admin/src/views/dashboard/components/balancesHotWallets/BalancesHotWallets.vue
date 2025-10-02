@@ -6,7 +6,7 @@
 	import { UiIcon, UiSkeleton } from "@dv.net/ui-kit";
 	import BlockSection from "@dv-admin/components/ui/BlockSection/BlockSection.vue";
 	import BlockchainIcon from "@shared/components/ui/blockchainIcon/BlockchainIcon.vue";
-	import { formatDollars, getCurrentBlockchain, getCurrentCoin } from "@shared/utils/helpers/general";
+	import { changeChainBsc, formatDollars, getCurrentBlockchain, getCurrentCoin } from "@shared/utils/helpers/general";
 	import { useHotWalletsStore } from "@dv-admin/stores/hotWallets";
 	import { getDeclensionWallets } from "@dv-admin/utils/helpers/declensions";
 
@@ -92,11 +92,7 @@
 					<div class="blockchain__content">
 						<span class="blockchain__content-title">{{ getCurrentCoin(item.currency.id) }}</span>
 						<span class="blockchain__content-subtitle">
-							{{
-								getCurrentBlockchain(item.currency.id) === "BNBSmartChain"
-									? "BSC"
-									: getCurrentBlockchain(item.currency.id)
-							}}
+							{{ changeChainBsc(getCurrentBlockchain(item.currency.id)) }}
 						</span>
 					</div>
 				</div>

@@ -88,7 +88,7 @@
 							</div>
 							<ui-copy-text :copied-text="currentPrice" color-icon="#A4A5B1" />
 						</div>
-						<span class="sum__description">{{ $t("Recommended commission") }}: —</span>
+<!--						<span class="sum__description">{{ $t("Recommended commission") }}: —</span>-->
 					</div>
 				</div>
 			</div>

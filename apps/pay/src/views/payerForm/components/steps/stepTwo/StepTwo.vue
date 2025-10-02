@@ -2,7 +2,7 @@
 	import { UiSkeleton } from "@dv.net/ui-kit";
 	import { usePayerFormStore } from "@pay/stores/payerForm";
 	import { storeToRefs } from "pinia";
-	import { getCurrentBlockchain } from "@shared/utils/helpers/general.ts";
+	import { changeChainBsc, getCurrentBlockchain } from "@shared/utils/helpers/general.ts";
 	import BlockchainIcon from "@shared/components/ui/blockchainIcon/BlockchainIcon.vue";
 	import { useRouter, useRoute } from "vue-router";
 	import NotFound from "@pay/views/payerForm/components/steps/notFound/NotFound.vue";
@@ -21,7 +21,7 @@
 		if (!currencyId) return;
 		const chain = getCurrentBlockchain(currencyId);
 		currentChain.value = chain;
-		currentStep.value = 3
+		currentStep.value = 3;
 		router.replace({ query: { ...route.query, chain } });
 	};
 </script>
@@ -52,15 +52,13 @@
 							<div class="card__inner">
 								<blockchain-icon :type="blockchainCurrencyId[item.currency.blockchain]" />
 								<div class="card__blockchain">
-									<span>{{
-										item.currency.id.includes("BNBSmartChain") ? "BSC" : getCurrentBlockchain(item.currency.id)
-									}}</span>
+									<span>{{ changeChainBsc(getCurrentBlockchain(item.currency.id)) }}</span>
 									<span v-if="item.currency.token_label" class="card__blockchain-label">
 										({{ item.currency.token_label }})
 									</span>
 								</div>
 							</div>
-							<span class="card__commission">{{ $t("Commission") }} —</span>
+<!--							<span class="card__commission">{{ $t("Commission") }} —</span>-->
 						</div>
 					</div>
 					<not-found v-else />

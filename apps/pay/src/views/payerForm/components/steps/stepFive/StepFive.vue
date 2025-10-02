@@ -75,10 +75,10 @@
 						<span class="row__label">{{ $t("Time of enrollment") }}:</span>
 						<span class="row__value">~5 {{ $t("minutes") }}</span>
 					</div>
-					<div class="row">
-						<span class="row__label">{{ $t("Commission") }}:</span>
-						<span class="row__value">—</span>
-					</div>
+<!--					<div class="row">-->
+<!--						<span class="row__label">{{ $t("Commission") }}:</span>-->
+<!--						<span class="row__value">—</span>-->
+<!--					</div>-->
 					<div class="row">
 						<span class="row__label">{{ $t("Sum") }}:</span>
 						<span class="row__value">

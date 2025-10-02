@@ -121,10 +121,10 @@
 							</span>
 						</div>
 					</div>
-					<div class="row">
-						<span class="row__label">{{ $t("Commission") }}:</span>
-						<span class="row__value">—</span>
-					</div>
+<!--					<div class="row">-->
+<!--						<span class="row__label">{{ $t("Commission") }}:</span>-->
+<!--						<span class="row__value">—</span>-->
+<!--					</div>-->
 					<div class="row">
 						<span class="row__label">{{ $t("Hash") }}:</span>
 						<display-hash

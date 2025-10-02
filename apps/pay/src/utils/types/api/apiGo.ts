@@ -10,7 +10,9 @@ export interface IInfoCurrency {
 	is_evm_like: boolean;
 	currency_label: string | null;
 	token_label: string | null;
-	tokens?: string[]
+	blockchains?: string[]
+	contract_address: string
+	is_native: boolean
 }
 
 export interface IPayerAddressResponse {

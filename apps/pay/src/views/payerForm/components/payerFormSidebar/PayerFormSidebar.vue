@@ -49,7 +49,10 @@
 				</div>
 			</div>
 		</wrapper-block>
-		<block-advertising v-if="isShowAdvertising" class="sidebar__advertising" />
+		<block-advertising
+			v-if="isShowAdvertising"
+			class="sidebar__advertising"
+		/>
 	</div>
 </template>
 
