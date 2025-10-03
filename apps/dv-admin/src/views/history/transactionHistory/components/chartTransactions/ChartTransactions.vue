@@ -108,7 +108,7 @@
 			:height="300"
 			:data="{
 				labels: transactionsStats.map((item) =>
-					filterTransactions.resolution === 'day' ? formatDate(item.date).split(' ')[0] : formatDate(item.date)
+					filterTransactions.resolution === 'day' ? formatDate(item.date, undefined, 'UTC').split(', ')[0] : formatDate(item.date, undefined, 'UTC')
 				),
 				datasets: [
 					{

@@ -7,7 +7,12 @@ import type {
 	IPayerStoreResponse
 } from "@pay/utils/types/api/apiGo.ts";
 import { useI18n } from "vue-i18n";
-import { formatAmountBlockchain, getCurrentBlockchain, getCurrentCoin } from "@shared/utils/helpers/general.ts";
+import {
+	changeChainBsc,
+	formatAmountBlockchain,
+	getCurrentBlockchain,
+	getCurrentCoin
+} from "@shared/utils/helpers/general.ts";
 import type { BlockchainType } from "@shared/utils/types/blockchain";
 import type { CurrencyType } from "@pay/utils/types/blockchain";
 
@@ -145,6 +150,21 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		return Array.from(unique.values());
 	});
 
+	const filteredCurrencies = computed<IPayerAddressResponse[]>(() => {
+		const unique = new Map<CurrencyType, IPayerAddressResponse>();
+		addresses.value.forEach((item) => {
+			const coin = getCurrentCoin(item.currency.id) as CurrencyType;
+			if (!unique.has(coin)) {
+				const blockchains = addresses.value
+					.filter((el) => getCurrentCoin(el.currency.id) === coin)
+					.map((c) => changeChainBsc(getCurrentBlockchain(c.currency.id)))
+					.filter(Boolean) as string[];
+				unique.set(coin, { ...item, currency: { ...item.currency, blockchains } });
+			}
+		});
+		return Array.from(unique.values());
+	});
+
 	const getAmountRate = (currency: CurrencyType): string => {
 		if (!amount.value || !rates.value || !currency) return "—";
 		const find = Object.entries(rates.value).find((item) => item[0].includes(currency));
@@ -200,6 +220,7 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		filteredBlockchains,
 		isShowAdvertising,
 		stepMap,
+		filteredCurrencies,
 		getAmountRate,
 		getPayerInfo,
 		getWalletTxFind,

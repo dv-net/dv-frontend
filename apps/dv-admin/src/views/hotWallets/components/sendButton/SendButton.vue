@@ -9,6 +9,7 @@
 	import { postApiWithdrawManual, postApiWithdrawProcessing } from "@dv-admin/services/api/hotWallets";
 	import { useNotifications } from "@shared/utils/composables/useNotifications";
 	import { useI18n } from "vue-i18n";
+	import { getApiWithdrawalCurrencyRules } from "@dv-admin/services/api/withdrawal.ts";
 
 	const { notify } = useNotifications();
 	const { t } = useI18n();
@@ -36,6 +37,11 @@
 	) => {
 		try {
 			if (type === "rules") {
+				const data = await getApiWithdrawalCurrencyRules(currency_id);
+				if (!data?.addressees || !data?.addressees?.length) {
+					notify(t("You have not added the address to the withdrawal rules"));
+					return;
+				}
 				await postApiWithdrawManual(currency_id, wallet_address_id);
 				notify(t("Money sent according to withdrawal rules"), "success");
 			} else if (type === "processing") {

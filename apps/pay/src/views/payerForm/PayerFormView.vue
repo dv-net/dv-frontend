@@ -2,7 +2,7 @@
 	import PayerFormHeader from "@pay/views/payerForm/components/payerFormHeader/PayerFormHeader.vue";
 	import PayerFormSidebar from "@pay/views/payerForm/components/payerFormSidebar/PayerFormSidebar.vue";
 	import StepOne from "@pay/views/payerForm/components/steps/stepOne/StepOne.vue";
-	import { useRoute } from "vue-router";
+	import { useRoute, useRouter } from "vue-router";
 	import { type Component, computed, onMounted, onUnmounted, watch } from "vue";
 	import { usePayerFormStore } from "@pay/stores/payerForm";
 	import { storeToRefs } from "pinia";
@@ -26,11 +26,14 @@
 		currentChain,
 		errorStore,
 		isShowAdvertising,
-		stepMap
+		stepMap,
+		filteredBlockchains,
+		filteredCurrencies
 	} = storeToRefs(usePayerFormStore());
 	const { getWalletTxFind, checkValidationCurrencyAndChain, getStartInfo } = usePayerFormStore();
 
 	const route = useRoute();
+	const router = useRouter();
 
 	const isStoreForm: boolean = route.name === "payer-store";
 	const price = route.query.amount as string | undefined;
@@ -64,7 +67,17 @@
 		if (!val) return fallback;
 		const num = parseFloat(val || "0");
 		return num > 0 ? num : fallback;
-	}
+	};
+
+	const updateQuery = () => {
+		const query: Record<string, any> = {
+			...(amount.value && { amount: amount.value }),
+			...(email && { email }),
+			...(currentCurrency.value && { token: currentCurrency.value }),
+			...(currentChain.value && { chain: currentChain.value }),
+		};
+		router.replace({ query });
+	};
 
 	const getQueryParams = () => {
 		amount.value = toPositiveNumber(price, toPositiveNumber(store.value?.minimal_payment, 1));
@@ -77,18 +90,35 @@
 		if (currentCurrency.value && currentChain.value) {
 			currentStep.value = 3;
 		} else if (currentCurrency.value) {
-			currentStep.value = 2;
+			if (filteredBlockchains.value.length === 1) {
+				currentChain.value = getCurrentBlockchain(filteredBlockchains.value[0].currency.id);
+				currentStep.value = 3;
+				updateQuery();
+			} else {
+				currentStep.value = 2;
+			}
+			return;
+		} else if (filteredCurrencies.value.length === 1) {
+			currentCurrency.value = getCurrentCoin(filteredCurrencies.value[0].currency.id);
+			currentChain.value = filteredBlockchains.value.length === 1
+				? getCurrentBlockchain(filteredBlockchains.value[0].currency.id)
+				: null;
+			currentStep.value = currentChain.value ? 3 : 2;
+			updateQuery();
 		}
 	};
 
 	watch(currentStep, (newValue: number) => {
-		// Highlight current step
-		timeline.value.forEach((item) => (item.isActive = item.id <= (stepMap.value[currentStep.value] || currentStep.value)));
-		if (newValue === 3 && payerId.value) getApiWalletConfirm(payerId.value, `${currentCurrency.value}.${currentChain.value}`)
+		timeline.value.forEach(
+			(item) => (item.isActive = item.id <= (stepMap.value[currentStep.value] || currentStep.value))
+		);
+		if (newValue === 3 && payerId.value) {
+			getApiWalletConfirm(payerId.value, `${currentCurrency.value}.${currentChain.value}`);
+		}
 	});
 
 	onMounted(async () => {
-		await getStartInfo(isStoreForm, slug, externalId, payerIdQuery, email)
+		await getStartInfo(isStoreForm, slug, externalId, payerIdQuery, email);
 		getQueryParams();
 		void startPolling();
 	});

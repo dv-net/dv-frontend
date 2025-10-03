@@ -28,7 +28,7 @@
 						:class="{ currency__icon__checkbox: true, isChecked: item.isSelected }"
 					/>
 
-					<BlockchainIcon
+					<blockchain-icon
 						v-if="!item.isSelected"
 						:type="item.currency_id"
 						width="36px"

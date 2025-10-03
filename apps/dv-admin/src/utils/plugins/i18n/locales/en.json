@@ -4,6 +4,7 @@
 		"h": "h",
 		"s": "s"
 	},
+    "You have not added the address to the withdrawal rules": "You have not added the address to the withdrawal rules",
     "IP address added to whitelist": "IP address added to whitelist",
     "ip already exists in whitelist": "IP already exists in whitelist",
     "Whitelist your IP address to protect access to your tokens": "Whitelist your IP address to protect access to your tokens",

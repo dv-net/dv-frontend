@@ -4,6 +4,7 @@
 		"h": "ч",
 		"s": "сек"
 	},
+	"You have not added the address to the withdrawal rules": "У вас не добавлен адрес в правила вывода",
 	"IP address added to whitelist": "IP адрес добавлен в белый список",
 	"ip already exists in whitelist": "IP уже существует в белом списке",
 	"Whitelist your IP address to protect access to your tokens": "Добавьте свой IP-адрес в белый список, чтобы защитить доступ к вашим токенам",

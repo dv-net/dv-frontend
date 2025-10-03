@@ -5,33 +5,22 @@
 	import { POPULAR_CURRENCY } from "@pay/utils/constants/blockchain";
 	import { computed, ref } from "vue";
 	import type { IPayerAddressResponse } from "@pay/utils/types/api/apiGo.ts";
-	import { changeChainBsc, getCurrentBlockchain, getCurrentCoin } from "@shared/utils/helpers/general.ts";
+	import { getCurrentBlockchain, getCurrentCoin } from "@shared/utils/helpers/general.ts";
 	import type { CurrencyType } from "@pay/utils/types/blockchain";
 	import { useRoute, useRouter } from "vue-router";
 	import CardCurrency from "@pay/views/payerForm/components/steps/cardCurrency/CardCurrency.vue";
 	import NotFound from "@pay/views/payerForm/components/steps/notFound/NotFound.vue";
 	import WrapperBlock from "@pay/views/payerForm/components/wrapperBlock/WrapperBlock.vue";
 
-	const { addresses, currentCurrency, currentStep, currentChain, isLoading, filteredBlockchains } = storeToRefs(usePayerFormStore());
+	const { currentCurrency, currentStep, currentChain, isLoading, filteredBlockchains, filteredCurrencies } = storeToRefs(usePayerFormStore());
 
 	const router = useRouter();
 	const route = useRoute();
 
 	const searchCurrency = ref<string | null>(null);
 
-	const filteredCurrencies = computed<IPayerAddressResponse[]>(() => {
-		const unique = new Map<CurrencyType, IPayerAddressResponse>();
-		addresses.value.forEach((item) => {
-			const coin = getCurrentCoin(item.currency.id) as CurrencyType;
-			if (!unique.has(coin)) {
-				const blockchains = addresses.value
-					.filter((el) => getCurrentCoin(el.currency.id) === coin)
-					.map((c) => changeChainBsc(getCurrentBlockchain(c.currency.id)))
-					.filter(Boolean) as string[];
-				unique.set(coin, { ...item, currency: { ...item.currency, blockchains } });
-			}
-		});
-		let uniqueArray: IPayerAddressResponse[] = Array.from(unique.values());
+	const currenciesList = computed<IPayerAddressResponse[]>(() => {
+		let uniqueArray: IPayerAddressResponse[] = filteredCurrencies.value;
 		if (searchCurrency.value) {
 			const searchLower = searchCurrency.value.toLocaleLowerCase("en");
 			uniqueArray = uniqueArray.filter((item) =>
@@ -56,11 +45,8 @@
 		const token = getCurrentCoin(currencyId);
 		currentCurrency.value = token;
 		currentChain.value = null;
-		const query: Record<string, any> = {
-			...(route.query.amount && { amount: route.query.amount }),
-			...(route.query.email && { email: route.query.email }),
-			token,
-		};
+		const query: Record<string, any> = { ...route.query, token };
+
 		if (filteredBlockchains.value.length === 1) {
 			const chain = getCurrentBlockchain(currencyId);
 			currentChain.value = chain;
@@ -92,9 +78,9 @@
 					<ui-skeleton v-for="item in 5" :key="item" :rows="1" :row-height="56" :item-border-radius="8" />
 				</div>
 				<template v-else>
-					<div v-if="filteredCurrencies.length" class="block__cards">
+					<div v-if="currenciesList.length" class="block__cards">
 						<card-currency
-							v-for="item in filteredCurrencies"
+							v-for="item in currenciesList"
 							:key="item.currency.id"
 							:currency="getCurrentCoin(item.currency.id) as CurrencyType"
 							:currency-label="item.currency.currency_label"
