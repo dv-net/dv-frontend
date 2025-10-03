@@ -115,17 +115,12 @@
 		if (newValue === 3 && payerId.value) {
 			getApiWalletConfirm(payerId.value, `${currentCurrency.value}.${currentChain.value}`);
 		}
+		router.push({
+			name: `payer-wallet-step${newValue}`,
+			params: { payerId: payerId.value },
+			query: { ...route.query }
+		})
 	});
-
-	watch(
-		() => route.query.step as string | undefined,
-		(newStep) => {
-			if (!newStep) return;
-			const step: number = parseFloat(newStep)
-			if (!step || !(step in stepComponents)) return;
-			currentStep.value = step;
-		}, { immediate: true }
-	)
 
 	onMounted(async () => {
 		await getStartInfo(isStoreForm, slug, externalId, payerIdQuery, email);
@@ -145,7 +140,8 @@
 			<div class="form__body">
 				<step-error v-if="errorStore" />
 				<transition v-else name="fade" mode="out-in">
-					<component :is="currentStepComponent" />
+<!--					<component :is="currentStepComponent" />-->
+					<router-view />
 				</transition>
 			</div>
 			<payer-form-sidebar />
