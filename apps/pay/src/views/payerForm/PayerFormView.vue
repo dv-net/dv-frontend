@@ -117,6 +117,16 @@
 		}
 	});
 
+	watch(
+		() => route.query.step as string | undefined,
+		(newStep) => {
+			if (!newStep) return;
+			const step: number = parseFloat(newStep)
+			if (!step || !(step in stepComponents)) return;
+			currentStep.value = step;
+		}, { immediate: true }
+	)
+
 	onMounted(async () => {
 		await getStartInfo(isStoreForm, slug, externalId, payerIdQuery, email);
 		getQueryParams();
