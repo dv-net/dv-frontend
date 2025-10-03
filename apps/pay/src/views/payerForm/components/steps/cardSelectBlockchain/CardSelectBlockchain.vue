@@ -83,9 +83,9 @@
 				:type="'IconDefault' as BlockchainType"
 			/>
 			<div class="price__inner">
-				<span
-					>{{ currentBlockchain.code === "Bsc" ? "BSC" : currentBlockchain.code }} {{ currentBlockchain.label }}</span
-				>
+				<span>
+					{{ currentBlockchain.code === "Bsc" ? "BSC" : currentBlockchain.code }} {{ currentBlockchain.label }}
+				</span>
 				<span v-if="isTypeCurrency">≈ {{ getAmountRate(currency!) }}</span>
 <!--				<span v-if="isTypeBlockchain">{{ $t("Commission") }} —</span>-->
 			</div>
