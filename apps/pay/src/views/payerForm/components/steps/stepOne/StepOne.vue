@@ -40,7 +40,7 @@
 		return uniqueArray;
 	});
 
-	const setCurrency = (currencyId: string) => {
+	const setCurrency = async (currencyId: string) => {
 		if (!currencyId) return;
 		const token = getCurrentCoin(currencyId);
 		currentCurrency.value = token;
@@ -50,12 +50,14 @@
 		if (filteredBlockchains.value.length === 1) {
 			const chain = getCurrentBlockchain(currencyId);
 			currentChain.value = chain;
-			currentStep.value = 3;
 			query.chain = chain;
+			query.step = 3;
 		} else {
-			currentStep.value = 2;
+			query.step = 2;
+			delete query.chain;
 		}
-		router.replace({ query });
+		await router.push({ query });
+		currentStep.value = filteredBlockchains.value.length === 1 ? 3 : 2;
 	};
 </script>
 

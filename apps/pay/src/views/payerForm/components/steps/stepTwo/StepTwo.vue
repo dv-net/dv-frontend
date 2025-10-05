@@ -17,12 +17,13 @@
 	const router = useRouter();
 	const route = useRoute();
 
-	const setBlockchain = (currencyId: string) => {
+	const setBlockchain = async (currencyId: string) => {
 		if (!currencyId) return;
 		const chain = getCurrentBlockchain(currencyId);
 		currentChain.value = chain;
+		const query = { ...route.query, chain, step: 3 };
+		await router.push({ query });
 		currentStep.value = 3;
-		router.replace({ query: { ...route.query, chain } });
 	};
 </script>
 

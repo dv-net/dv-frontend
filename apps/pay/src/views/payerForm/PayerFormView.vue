@@ -71,12 +71,13 @@
 
 	const updateQuery = () => {
 		const query: Record<string, any> = {
+			...route.query,
 			...(amount.value && { amount: amount.value }),
 			...(email && { email }),
 			...(currentCurrency.value && { token: currentCurrency.value }),
 			...(currentChain.value && { chain: currentChain.value }),
 		};
-		router.replace({ query });
+		router.push({ query });
 	};
 
 	const getQueryParams = () => {
@@ -108,6 +109,13 @@
 		}
 	};
 
+	const parseStepFromQuery = (stepQuery: string | undefined): number => {
+		if (!stepQuery) return 1;
+		const step = parseFloat(stepQuery);
+		if (!step || !(step in stepComponents)) return 1;
+		return step;
+	};
+
 	watch(currentStep, (newValue: number) => {
 		timeline.value.forEach(
 			(item) => (item.isActive = item.id <= (stepMap.value[currentStep.value] || currentStep.value))
@@ -115,12 +123,12 @@
 		if (newValue === 3 && payerId.value) {
 			getApiWalletConfirm(payerId.value, `${currentCurrency.value}.${currentChain.value}`);
 		}
-		router.push({
-			name: `payer-wallet-step${newValue}`,
-			params: { payerId: payerId.value },
-			query: { ...route.query }
-		})
+		router.push({ query: { ...route.query, step: newValue } })
 	});
+
+	watch(() => route.query.step as string | undefined, (newValue) => {
+		currentStep.value = parseStepFromQuery(newValue);
+	}, { immediate: true });
 
 	onMounted(async () => {
 		await getStartInfo(isStoreForm, slug, externalId, payerIdQuery, email);
@@ -140,8 +148,7 @@
 			<div class="form__body">
 				<step-error v-if="errorStore" />
 				<transition v-else name="fade" mode="out-in">
-<!--					<component :is="currentStepComponent" />-->
-					<router-view />
+					<component :is="currentStepComponent" />
 				</transition>
 			</div>
 			<payer-form-sidebar />
