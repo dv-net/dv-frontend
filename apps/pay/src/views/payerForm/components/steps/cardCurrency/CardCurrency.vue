@@ -9,7 +9,7 @@
 	const {
 		currency,
 		currencyLabel,
-		tokens,
+		blockchains,
 		mode = "white",
 		height = 56,
 		selected = false,
@@ -28,16 +28,12 @@
 		<div class="card__block">
 			<currency-icon :type="currency as CurrencyType" />
 			<div class="card__inner">
-				<span>{{ currency }}</span>
-				<span v-if="currencyLabel" class="card__label">({{ currencyLabel }})</span>
+				<span class="card__currency">{{ currency }}</span>
+				<span v-if="currencyLabel" class="card__label">{{ currencyLabel }}</span>
 			</div>
 		</div>
-		<div v-if="tokens && tokens.length" class="card__tokens">
-			<span
-				v-for="item in tokens"
-				:key="item"
-				class="card__token"
-			>
+		<div class="card__blockchains">
+			<span v-for="item in blockchains" :key="item" class="card__blockchain">
 				{{ item }}
 			</span>
 		</div>
@@ -50,9 +46,8 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		gap: 8px;
-		padding: 12px 24px;
-		border-radius: 8px;
+		padding: 12px 20px;
+		border-radius: 12px;
 		border: 1px solid $main-border-color;
 		transition: border 0.3s ease-in-out;
 		word-break: break-word;
@@ -81,37 +76,48 @@
 		&__block {
 			display: flex;
 			align-items: center;
-			gap: 8px;
+			gap: 12px;
 		}
 		&__inner {
 			display: flex;
-			align-items: center;
-			gap: 4px;
+			flex-direction: column;
+			justify-content: center;
+			min-width: 76px;
+			padding-right: 8px;
+		}
+		&__currency {
+			font-size: 16px;
+			font-weight: 500;
+			line-height: 20px;
 		}
 		&__label {
 			color: $main-text-grey-color;
-			font-weight: 400;
-			line-height: 20px;
+			font-size: 10px;
+			font-weight: 500;
+			line-height: 12px;
 		}
-		&__tokens {
+		&__blockchains {
+			flex-grow: 1;
 			display: flex;
 			align-items: center;
 			flex-wrap: wrap;
 			gap: 4px;
+			padding: 0 38px 0 0;
 			@include mediamax(768) {
 				display: none;
 			}
 		}
-		&__token {
-			padding: 4px 6px;
+		&__blockchain {
+			padding: 6px 10px;
 			@extend .center;
-			border-radius: 6px;
-			border: 1px solid #E1E8F1;
+			border-radius: 100px;
+			background-color: #f7f9fb;
 			color: $main-text-grey-color;
 			font-size: 10px;
 			font-weight: 500;
 		}
 		&__price {
+			flex-shrink: 0;
 			color: $main-text-grey-color;
 			font-weight: 500;
 		}

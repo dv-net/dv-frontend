@@ -135,7 +135,7 @@ export const useExchangeSettingsStore = defineStore("exchangeSettings", () => {
 
 	const resetExchangeSettings = () => {
 		isShowBannerSuccess.value = false;
-		depositAddresses.value = []
+		depositAddresses.value = [];
 	};
 
 	return {

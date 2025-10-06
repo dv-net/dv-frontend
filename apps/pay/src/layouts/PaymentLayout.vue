@@ -31,7 +31,9 @@
 		<header class="header">
 			<div class="container">
 				<div class="header__inner">
-					<icon-logo />
+					<a class="header__logo" href="https://dv.net" target="_blank">
+						<icon-logo />
+					</a>
 					<nav class="nav">
 						<a v-for="item in navLinks" :key="item.id" class="nav__link" target="_blank" :href="item.link">
 							{{ item.text }}
@@ -78,6 +80,15 @@
 			gap: 12px;
 			&:deep(.ui-languages--trigger) {
 				height: 35px;
+			}
+		}
+		&__logo {
+			transition: transform 0.1s ease-in-out;
+			@media (hover: hover) {
+				&:hover {
+					transform: scale(1.01);
+					cursor: pointer;
+				}
 			}
 		}
 		.nav {

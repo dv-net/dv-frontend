@@ -7,7 +7,12 @@ import type {
 	IPayerStoreResponse
 } from "@pay/utils/types/api/apiGo.ts";
 import { useI18n } from "vue-i18n";
-import { formatAmountBlockchain, getCurrentBlockchain, getCurrentCoin } from "@shared/utils/helpers/general.ts";
+import {
+	changeChainBsc,
+	formatAmountBlockchain,
+	getCurrentBlockchain,
+	getCurrentCoin
+} from "@shared/utils/helpers/general.ts";
 import type { BlockchainType } from "@shared/utils/types/blockchain";
 import type { CurrencyType } from "@pay/utils/types/blockchain";
 
@@ -20,7 +25,7 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 	const currentCurrency = ref<string | null>(null);
 	const currentChain = ref<string | null>(null);
 	const payerId = ref<string | null>(null);
-	const amount = ref<string | null>(null);
+	const amount = ref<number | null>(null);
 	const rates = ref<Record<string, string> | null>(null);
 	const store = ref<IPayerStoreResponse | null>(null);
 	const addresses = ref<IPayerAddressResponse[]>([]);
@@ -30,7 +35,11 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 	const currentTransaction = ref<IWalletTransactionResponse | null>(null);
 	const errorStore = ref<"error" | "store-disabled" | null>(null);
 	const stepMap = ref<Record<number, number>>({
-		1: 1, 2: 2, 3: 3, 4: 3, 5: 4,
+		1: 1,
+		2: 2,
+		3: 3,
+		4: 3,
+		5: 4
 	});
 	const timeline = ref([
 		{ id: 1, label: "Select currency", isActive: true },
@@ -39,7 +48,7 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		{ id: 4, label: "Ready", isActive: false }
 	]);
 
-	const isShowAdvertising = computed<boolean>(() => ![4,5].includes(currentStep.value));
+	const isShowAdvertising = computed<boolean>(() => ![4, 5].includes(currentStep.value));
 
 	const getPayerInfo = async (id: string) => {
 		try {
@@ -145,11 +154,26 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		return Array.from(unique.values());
 	});
 
+	const filteredCurrencies = computed<IPayerAddressResponse[]>(() => {
+		const unique = new Map<CurrencyType, IPayerAddressResponse>();
+		addresses.value.forEach((item) => {
+			const coin = getCurrentCoin(item.currency.id) as CurrencyType;
+			if (!unique.has(coin)) {
+				const blockchains = addresses.value
+					.filter((el) => getCurrentCoin(el.currency.id) === coin)
+					.map((c) => changeChainBsc(getCurrentBlockchain(c.currency.id)))
+					.filter(Boolean) as string[];
+				unique.set(coin, { ...item, currency: { ...item.currency, blockchains } });
+			}
+		});
+		return Array.from(unique.values());
+	});
+
 	const getAmountRate = (currency: CurrencyType): string => {
 		if (!amount.value || !rates.value || !currency) return "—";
 		const find = Object.entries(rates.value).find((item) => item[0].includes(currency));
 		if (!find) return "—";
-		const result: number = parseFloat(amount.value) / parseFloat(find[1]);
+		const result: number = amount.value / parseFloat(find[1]);
 		return formatAmountBlockchain(result, find[0]);
 	};
 
@@ -200,6 +224,7 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		filteredBlockchains,
 		isShowAdvertising,
 		stepMap,
+		filteredCurrencies,
 		getAmountRate,
 		getPayerInfo,
 		getWalletTxFind,

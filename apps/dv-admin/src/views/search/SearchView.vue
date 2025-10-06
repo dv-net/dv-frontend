@@ -55,12 +55,7 @@
 
 <template>
 	<div class="page">
-		<breadcrumbs
-			v-if="!isMainSearchPage"
-			class="mb-24"
-			:back-route-title="$t('Search')"
-			back-name-route="search"
-		/>
+		<breadcrumbs v-if="!isMainSearchPage" class="mb-24" :back-route-title="$t('Search')" back-name-route="search" />
 		<h1 class="global-title-h1">{{ currentTitle }}</h1>
 		<block-section class="search" mode="grey" padding="xxl">
 			<form class="search__form" @submit.prevent="getSearchData()">

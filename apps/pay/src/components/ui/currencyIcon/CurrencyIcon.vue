@@ -34,7 +34,7 @@
 		height = "24px",
 		type
 	} = defineProps<{
-		type: CurrencyType;
+		type?: CurrencyType;
 		width?: string;
 		height?: string;
 	}>();
@@ -65,10 +65,10 @@
 		SHIB: IconShib,
 		SOL: IconSOLSolana,
 		XMR: IconXMRMonero,
-		DOGE: IconDOGEDogecoin,
+		DOGE: IconDOGEDogecoin
 	};
 
-	const iconToShow = computed<Component>(() => icons[type] || markRaw(IconDefault));
+	const iconToShow = computed<Component>(() => (type && type in icons ? icons[type] : markRaw(IconDefault)));
 </script>
 
 <template>

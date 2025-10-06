@@ -16,8 +16,6 @@
 
 	const { type, currency, currencyId } = defineProps<IProps>();
 
-	const priceRef = defineModel<HTMLDivElement | null | undefined>('priceRef');
-
 	const isMediaMax768 = useMediaQuery("(max-width: 768px)");
 	const isMediaMax480 = useMediaQuery("(max-width: 480px)");
 
@@ -63,7 +61,7 @@
 				</ui-link>
 			</div>
 		</div>
-		<div class="price" ref="priceRef">
+		<div class="price">
 			<currency-icon
 				v-if="isTypeCurrency"
 				:width="isMediaMax768 ? '24px' : '32px'"
@@ -83,11 +81,11 @@
 				:type="'IconDefault' as BlockchainType"
 			/>
 			<div class="price__inner">
-				<span
-					>{{ currentBlockchain.code === "Bsc" ? "BSC" : currentBlockchain.code }} {{ currentBlockchain.label }}</span
-				>
+				<span>
+					{{ currentBlockchain.code === "Bsc" ? "BSC" : currentBlockchain.code }} {{ currentBlockchain.label }}
+				</span>
 				<span v-if="isTypeCurrency">≈ {{ getAmountRate(currency!) }}</span>
-				<span v-if="isTypeBlockchain">{{ $t("Commission") }} —</span>
+				<!--				<span v-if="isTypeBlockchain">{{ $t("Commission") }} —</span>-->
 			</div>
 		</div>
 	</div>

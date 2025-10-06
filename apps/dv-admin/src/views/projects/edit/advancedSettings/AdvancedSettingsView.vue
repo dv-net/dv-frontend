@@ -18,10 +18,13 @@
 	import { useI18n } from "vue-i18n";
 	import { postApiStoreSetting, putApiCurrenciesProject } from "@dv-admin/services/api/projects.ts";
 	import { useGeneralStore } from "@dv-admin/stores/general";
-	import { UiForm } from "@dv.net/ui-kit";
+	import { UiForm, UiTable } from "@dv.net/ui-kit";
 	import type { UiFormRules } from "@dv.net/ui-kit/dist/components/UiForm/types";
 	import { isValidUrl } from "@shared/utils/helpers/general.ts";
 	import { STORE_SETTING_LABELS, STORE_SETTING_TOOLTIPS } from "@dv-admin/utils/constants/projects";
+	import DialogWhitelist from "@dv-admin/views/projects/edit/advancedSettings/components/dialogWhitelist/DialogWhitelist.vue";
+	import { useWhiteListProjectStore } from "@dv-admin/stores/projects/whiteList";
+	import type { UiTableHeader } from "@dv.net/ui-kit/dist/components/UiTable/types";
 
 	const {
 		currentProject,
@@ -33,11 +36,14 @@
 	} = storeToRefs(useProjectsStore());
 	const { dictionary } = storeToRefs(useGeneralStore());
 	const { putOneProject, getCurrenciesProject } = useProjectsStore();
+	const { whitelistsProject, isLoadingDeleteWhiteList } = storeToRefs(useWhiteListProjectStore());
+	const { deleteWhitelistsProject } = useWhiteListProjectStore();
 	const { t } = useI18n();
 
 	const route = useRoute();
 	const uuid = route.params.id as string;
 	const formRef = ref<HTMLFormElement | null>(null);
+	const isOpenDialogWhitelists = ref<boolean>(false);
 
 	const linkPayForm = computed<string>(() => {
 		if (!dictionary.value || !currentProject.value) return "";
@@ -45,6 +51,11 @@
 		const location = findSetting && findSetting.value ? findSetting.value : window.location.origin;
 		return `${location}/pay/store/${currentProject.value.id}/<${t("your client ID")}>`;
 	});
+
+	const headers = computed<UiTableHeader[]>(() => [
+		{ name: "ip", label: "IP" },
+		{ name: "action", label: t("Actions"), width: "150" }
+	]);
 
 	const rulesForm = computed<UiFormRules>(() => {
 		return {
@@ -85,9 +96,10 @@
 		if (!formRef.value || !(await formRef.value.validate())) return;
 		await putApiCurrenciesProject(uuid, { currency_ids: checkedCurrenciesProject.value });
 		await Promise.all(
-			storeSettingList.value
-				.map(({ name, value }) => postApiStoreSetting(uuid, { name, value: value ? "enabled" : "disabled" }))
-		)
+			storeSettingList.value.map(({ name, value }) =>
+				postApiStoreSetting(uuid, { name, value: value ? "enabled" : "disabled" })
+			)
+		);
 		await putOneProject(t("The project has been saved"));
 		await getCurrenciesProject(uuid);
 	};
@@ -178,6 +190,32 @@
 						</div>
 					</ui-checkbox-group>
 				</div>
+			</div>
+		</block-section>
+		<block-section>
+			<div class="flex flex-y-center flex-x-between">
+				<h3 class="global-title-h3">{{ $t("Whitelist") }}</h3>
+				<ui-button mode="neutral" leftIconName="add" leftIconSize="md" size="lg" @click="isOpenDialogWhitelists = true">
+					{{ $t("Add") }} IP
+				</ui-button>
+				<dialog-whitelist v-model:is-open="isOpenDialogWhitelists" :uuid="uuid" />
+			</div>
+			<div class="whitelist">
+				<p class="whitelist__title">
+					{{ $t("Whitelist your IP address to protect access to your tokens") }}
+				</p>
+				<ui-table :headers="headers" :data="whitelistsProject" table-layout="fixed">
+					<template #body-cell-action="{ row }">
+						<ui-button
+							type="negative"
+							size="sm"
+							:loading="isLoadingDeleteWhiteList[row.ip]"
+							@click="deleteWhitelistsProject(uuid, row.ip)"
+						>
+							{{ $t("Delete") }}
+						</ui-button>
+					</template>
+				</ui-table>
 			</div>
 		</block-section>
 		<block-section class="form">
@@ -290,6 +328,15 @@
 						}
 					}
 				}
+			}
+		}
+		.whitelist {
+			&__title {
+				margin: 8px 0 16px;
+				color: #828282;
+				font-size: 16px;
+				font-weight: 400;
+				line-height: 20px;
 			}
 		}
 		.form {

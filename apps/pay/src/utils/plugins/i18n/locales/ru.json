@@ -3,6 +3,9 @@
 		"min": "мин",
 		"s": "сек"
 	},
+	"All assets": "Все активы",
+	"Select cryptocurrency for payment": "Выберите криптовалюту для оплаты",
+	"Enter cryptocurrency, chain or contract": "Введите криптовалюту, сеть или контракт",
 	"store is disabled": "Магазин отключен",
 	"Approximate deposit time": "Примерное время зачисления",
 	"Passed": "Прошло",
@@ -59,8 +62,6 @@
 	"Payment": "Оплата",
 	"Confirmation": "Подтверждение",
 	"Ready": "Готово",
-	"Select currency for payment": "Выберите валюту для оплаты",
-	"Enter the name of the currency": "Введите название валюты",
 	"Popular": "Популярные",
 	"Tokens": "Токены",
 	"Payment details": "Детали платежа",

@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+- Added lottie animation DV-3486
+- Added whitelists DV-3433
+- Change payment form DV-3458
+
 ## [1.0.14] - 2025-09-30
 
 - Design review DV-3422

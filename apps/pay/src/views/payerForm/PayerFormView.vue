@@ -2,7 +2,7 @@
 	import PayerFormHeader from "@pay/views/payerForm/components/payerFormHeader/PayerFormHeader.vue";
 	import PayerFormSidebar from "@pay/views/payerForm/components/payerFormSidebar/PayerFormSidebar.vue";
 	import StepOne from "@pay/views/payerForm/components/steps/stepOne/StepOne.vue";
-	import { useRoute } from "vue-router";
+	import { useRoute, useRouter } from "vue-router";
 	import { type Component, computed, onMounted, onUnmounted, watch } from "vue";
 	import { usePayerFormStore } from "@pay/stores/payerForm";
 	import { storeToRefs } from "pinia";
@@ -26,11 +26,14 @@
 		currentChain,
 		errorStore,
 		isShowAdvertising,
-		stepMap
+		stepMap,
+		filteredBlockchains,
+		filteredCurrencies
 	} = storeToRefs(usePayerFormStore());
 	const { getWalletTxFind, checkValidationCurrencyAndChain, getStartInfo } = usePayerFormStore();
 
 	const route = useRoute();
+	const router = useRouter();
 
 	const isStoreForm: boolean = route.name === "payer-store";
 	const price = route.query.amount as string | undefined;
@@ -60,8 +63,25 @@
 		timeout = setTimeout(() => startPolling(), 3000);
 	};
 
+	const toPositiveNumber = (val: any, fallback = 0): number => {
+		if (!val) return fallback;
+		const num = parseFloat(val || "0");
+		return num > 0 ? num : fallback;
+	};
+
+	const updateQuery = () => {
+		const query: Record<string, any> = {
+			...route.query,
+			...(amount.value && { amount: amount.value }),
+			...(email && { email }),
+			...(currentCurrency.value && { token: currentCurrency.value }),
+			...(currentChain.value && { chain: currentChain.value })
+		};
+		router.push({ query });
+	};
+
 	const getQueryParams = () => {
-		amount.value = price || store.value?.minimal_payment || "1";
+		amount.value = toPositiveNumber(price, toPositiveNumber(store.value?.minimal_payment, 1));
 		if (token && checkValidationCurrencyAndChain(token)) currentCurrency.value = token;
 		if (chain && checkValidationCurrencyAndChain(undefined, chain)) currentChain.value = chain;
 		if (currencyId && checkValidationCurrencyAndChain(undefined, undefined, currencyId)) {
@@ -71,18 +91,50 @@
 		if (currentCurrency.value && currentChain.value) {
 			currentStep.value = 3;
 		} else if (currentCurrency.value) {
-			currentStep.value = 2;
+			if (filteredBlockchains.value.length === 1) {
+				currentChain.value = getCurrentBlockchain(filteredBlockchains.value[0].currency.id);
+				currentStep.value = 3;
+				updateQuery();
+			} else {
+				currentStep.value = 2;
+			}
+			return;
+		} else if (filteredCurrencies.value.length === 1) {
+			currentCurrency.value = getCurrentCoin(filteredCurrencies.value[0].currency.id);
+			currentChain.value =
+				filteredBlockchains.value.length === 1 ? getCurrentBlockchain(filteredBlockchains.value[0].currency.id) : null;
+			currentStep.value = currentChain.value ? 3 : 2;
+			updateQuery();
 		}
 	};
 
+	const parseStepFromQuery = (stepQuery: string | undefined): number => {
+		if (!stepQuery) return 1;
+		const step = parseFloat(stepQuery);
+		if (!step || !(step in stepComponents)) return 1;
+		return step;
+	};
+
 	watch(currentStep, (newValue: number) => {
-		// Highlight current step
-		timeline.value.forEach((item) => (item.isActive = item.id <= (stepMap.value[currentStep.value] || currentStep.value)));
-		if (newValue === 3 && payerId.value) getApiWalletConfirm(payerId.value, `${currentCurrency.value}.${currentChain.value}`)
+		timeline.value.forEach(
+			(item) => (item.isActive = item.id <= (stepMap.value[currentStep.value] || currentStep.value))
+		);
+		if (newValue === 3 && payerId.value) {
+			getApiWalletConfirm(payerId.value, `${currentCurrency.value}.${currentChain.value}`);
+		}
+		router.push({ query: { ...route.query, step: newValue } });
 	});
 
+	watch(
+		() => route.query.step as string | undefined,
+		(newValue) => {
+			currentStep.value = parseStepFromQuery(newValue);
+		},
+		{ immediate: true }
+	);
+
 	onMounted(async () => {
-		await getStartInfo(isStoreForm, slug, externalId, payerIdQuery, email)
+		await getStartInfo(isStoreForm, slug, externalId, payerIdQuery, email);
 		getQueryParams();
 		void startPolling();
 	});
@@ -98,9 +150,9 @@
 		<div class="form__inner">
 			<div class="form__body">
 				<step-error v-if="errorStore" />
-				<transition v-else name="fade" mode="out-in">
-					<component :is="currentStepComponent" />
-				</transition>
+				<!--				<transition v-else name="fade" mode="out-in">-->
+				<component :is="currentStepComponent" />
+				<!--				</transition>-->
 			</div>
 			<payer-form-sidebar />
 			<block-advertising v-if="isShowAdvertising" class="form__advertising" />

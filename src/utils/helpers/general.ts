@@ -9,6 +9,11 @@ export const capitalizeFirstLetter = (str: string, locale?: string): string => {
 	return str.charAt(0).toLocaleUpperCase(locale || "en") + str.slice(1);
 };
 
+export const changeChainBsc = (chain: string): string => {
+	if (!chain) return "";
+	return chain === "BNBSmartChain" ? "BSC" : chain;
+};
+
 // Check if it's JSON
 export const checkIsJSON = (str: any): boolean => {
 	try {
@@ -62,7 +67,9 @@ export const formatAmountBlockchain = (
 	errorValue = "—"
 ): string => {
 	const precisionCurrency: number =
-		currencyId && currencyId in DEFAULT_CURRENCIES_INFO ? DEFAULT_CURRENCIES_INFO[currencyId as BlockchainType].precision : DEFAULT_CURRENCY_PRECISION;
+		currencyId && currencyId in DEFAULT_CURRENCIES_INFO
+			? DEFAULT_CURRENCIES_INFO[currencyId as BlockchainType].precision
+			: DEFAULT_CURRENCY_PRECISION;
 	const count: number = setCount || precisionCurrency;
 	const num: number = parseFloat(amount);
 	if (isNaN(num) || !isFinite(num)) return errorValue;

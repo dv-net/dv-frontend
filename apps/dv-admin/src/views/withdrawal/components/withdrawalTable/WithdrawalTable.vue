@@ -34,61 +34,56 @@
 
 <template>
 	<block-section class="cryptocurrencies">
-		<template v-if="isLoading">
-			<ui-skeleton :rows="1" :rowHeight="20" :item-border-radius="8" />
-			<ui-skeleton :rows="17" :rowHeight="52" :item-border-radius="8" :rows-gap="1" />
-		</template>
-		<template v-else>
-			<div class="cryptocurrencies__header">
-				<div>{{ $t("Cryptocurrency") }}</div>
-				<div class="flex gap-4">
-					{{ $t("Regular addresses") }}
-					<tooltip-helper
-						:title="$t('Regular addresses')"
-						:text="$t('Added by you manually (for example, a cold wallet).')"
-					/>
-					/
-					{{ $t("crypto exchange") }}
-					<tooltip-helper
-						:title="$t('Exchange')"
-						:text="$t('Withdrawal addresses added by you for specific crypto exchanges.')"
-					/>
-				</div>
-				<div />
+		<div class="cryptocurrencies__header">
+			<div>{{ $t("Cryptocurrency") }}</div>
+			<div class="flex gap-4">
+				{{ $t("Regular addresses") }}
+				<tooltip-helper
+					:title="$t('Regular addresses')"
+					:text="$t('Added by you manually (for example, a cold wallet).')"
+				/>
+				/
+				{{ $t("crypto exchange") }}
+				<tooltip-helper
+					:title="$t('Exchange')"
+					:text="$t('Withdrawal addresses added by you for specific crypto exchanges.')"
+				/>
 			</div>
-			<div class="cryptocurrencies__rows">
-				<div v-for="item in withdrawalRules" :key="item.id" class="cryptocurrencies__row">
-					<div>
-						<blockchain-card :type="item.currency.id" />
+			<div />
+		</div>
+		<ui-skeleton v-if="isLoading" :rows="15" :rowHeight="45" :item-border-radius="8" :rows-gap="8" />
+		<div v-else class="cryptocurrencies__rows">
+			<div v-for="item in withdrawalRules" :key="item.id" class="cryptocurrencies__row">
+				<div>
+					<blockchain-card :type="item.currency.id" />
+				</div>
+				<div class="addresses">
+					<div v-if="item?.addressees?.length" class="addresses__text addresses__text--green">
+						{{ displayMessageWallets(item) }}
 					</div>
-					<div class="addresses">
-						<div v-if="item?.addressees?.length" class="addresses__text addresses__text--green">
-							{{ displayMessageWallets(item) }}
-						</div>
-						<div v-else class="addresses__text">
-							<span>{{ $t("Not set") }}</span>
-							<tooltip-helper
-								:title="$t('Add wallets')"
-								:text="
-									$t(
-										'All funds received on hot wallets will remain there. It is necessary to specify your wallets for transfer'
-									)
-								"
-							/>
-						</div>
-					</div>
-					<div>
-						<ui-button
-							type="secondary"
-							size="sm"
-							@click="router.push({ name: `withdrawal-addresses`, params: { currencyId: item?.currency?.id } })"
-						>
-							{{ $t("Change wallets") }}
-						</ui-button>
+					<div v-else class="addresses__text">
+						<span>{{ $t("Not set") }}</span>
+						<tooltip-helper
+							:title="$t('Add wallets')"
+							:text="
+								$t(
+									'All funds received on hot wallets will remain there. It is necessary to specify your wallets for transfer'
+								)
+							"
+						/>
 					</div>
 				</div>
+				<div>
+					<ui-button
+						type="secondary"
+						size="sm"
+						@click="router.push({ name: `withdrawal-addresses`, params: { currencyId: item?.currency?.id } })"
+					>
+						{{ $t("Change wallets") }}
+					</ui-button>
+				</div>
 			</div>
-		</template>
+		</div>
 	</block-section>
 </template>
 

@@ -40,6 +40,7 @@ export type BlockchainType =
 	| "USDC.Polygon"
 	| "DAI.Polygon"
 	| "SAND.Polygon"
+	| "ARB.Arbitrum"
 	| "ETH.Arbitrum"
 	| "USDT.Arbitrum"
 	| "USDC.Arbitrum"

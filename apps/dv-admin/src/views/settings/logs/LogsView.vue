@@ -11,26 +11,26 @@
 	import BlockSection from "@dv-admin/components/ui/BlockSection/BlockSection.vue";
 
 	const isLoading = ref<boolean>(false);
-	const currentTab = ref<'backend' | 'processing'>("backend");
+	const currentTab = ref<"backend" | "processing">("backend");
 	const logsLast = ref<ILogsResponse[]>([]);
 	const logsLastProcessing = ref<ILogsResponse[]>([]);
 	const selectedLevels = ref<string | null>(null);
 	const searchQuery = ref<string | null>(null);
-	const optionsTab = ref<{ value: 'backend' | 'processing'; label: string }[]>([
+	const optionsTab = ref<{ value: "backend" | "processing"; label: string }[]>([
 		{ value: "backend", label: "Backend" },
 		{ value: "processing", label: "Processing" }
 	]);
 
-	const isBackend = computed<boolean>(() => currentTab.value === 'backend')
+	const isBackend = computed<boolean>(() => currentTab.value === "backend");
 	const filteredLogs = computed<ILogsResponse[]>(() => {
-		const source = isBackend.value ? logsLast.value : logsLastProcessing.value
+		const source = isBackend.value ? logsLast.value : logsLastProcessing.value;
 		if (!selectedLevels.value && !searchQuery.value) return source;
 		return source.filter((log) => {
 			const matchLevel = !selectedLevels.value || log.level === selectedLevels.value;
 			const matchSearch = !searchQuery.value || log.message.toLowerCase().includes(searchQuery.value.toLowerCase());
 			return matchLevel && matchSearch;
-		})
-	})
+		});
+	});
 
 	const getLogsLast = async () => {
 		try {
@@ -109,9 +109,9 @@
 		</div>
 		<block-section mode="grey-border" padding="lg">
 			<div class="header">
-				<span class="header__item">{{ $t('Level') }}</span>
-				<span class="header__item">{{ $t('Message') }}</span>
-				<span class="header__item">{{ $t('Date') }}</span>
+				<span class="header__item">{{ $t("Level") }}</span>
+				<span class="header__item">{{ $t("Message") }}</span>
+				<span class="header__item">{{ $t("Date") }}</span>
 			</div>
 			<div v-if="isLoading" class="logs">
 				<ui-skeleton
@@ -139,25 +139,25 @@
 				<not-found-message v-else />
 			</div>
 		</block-section>
-		</div>
+	</div>
 
-		<!--  TODO: Do not delete 	-->
-		<!--		<ui-table-->
-		<!--			:headers="headers"-->
-		<!--			:loading="isLoading"-->
-		<!--			:data="monitorsTypes"-->
-		<!--			@cell-click="handleGoToMonitor"-->
-		<!--			@rowClick="handleGoToMonitor"-->
-		<!--			:row-class="() => 'pointer'"-->
-		<!--			table-layout="fixed"-->
-		<!--		>-->
-		<!--			<template #body-cell-created_at="{ row }">-->
-		<!--				{{ formatDate(row.created_at) }}-->
-		<!--			</template>-->
-		<!--			<template #body-cell-direct_icon>-->
-		<!--				<ui-icon name="chevron-right" type="filled" />-->
-		<!--			</template>-->
-		<!--		</ui-table>-->
+	<!--  TODO: Do not delete 	-->
+	<!--		<ui-table-->
+	<!--			:headers="headers"-->
+	<!--			:loading="isLoading"-->
+	<!--			:data="monitorsTypes"-->
+	<!--			@cell-click="handleGoToMonitor"-->
+	<!--			@rowClick="handleGoToMonitor"-->
+	<!--			:row-class="() => 'pointer'"-->
+	<!--			table-layout="fixed"-->
+	<!--		>-->
+	<!--			<template #body-cell-created_at="{ row }">-->
+	<!--				{{ formatDate(row.created_at) }}-->
+	<!--			</template>-->
+	<!--			<template #body-cell-direct_icon>-->
+	<!--				<ui-icon name="chevron-right" type="filled" />-->
+	<!--			</template>-->
+	<!--		</ui-table>-->
 </template>
 
 <style scoped lang="scss">

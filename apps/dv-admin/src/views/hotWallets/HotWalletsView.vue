@@ -11,8 +11,8 @@
 	import HotWalletsCards from "@dv-admin/views/hotWallets/components/hotWalletsCards/HotWalletsCards.vue";
 	import TooltipHelper from "@dv-admin/components/ui/tooltipHelper/TooltipHelper.vue";
 	import { storeToRefs } from "pinia";
-	import BlockSection from "@dv-admin/components/ui/BlockSection/BlockSection.vue";
 	import { USER } from "@dv-admin/utils/constants/user";
+	import NotFoundMessage from "@dv-admin/components/ui/notFoundMessage/NotFoundMessage.vue";
 
 	const { getWallets, getWalletSummary, resetDataHotWallets } = useHotWalletsStore();
 	const { isHideLowBalance, isLoading, walletSummary } = storeToRefs(useHotWalletsStore());
@@ -90,8 +90,7 @@
 				</div>
 			</div>
 		</template>
-
-		<block-section v-else class="center">{{ $t("You don’t have any hot wallets yet.") }}</block-section>
+		<not-found-message v-else :text="$t(`You don’t have any hot wallets yet.`)" />
 	</div>
 </template>
 

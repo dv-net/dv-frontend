@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import { computed, ref, watch } from "vue";
+	import { computed, onMounted, ref, watch } from "vue";
 	import { useRouter } from "vue-router";
 	import { storeToRefs } from "pinia";
 	import { useGeneralStore } from "@dv-admin/stores/general";
@@ -75,6 +75,10 @@
 		},
 		{ deep: true }
 	);
+
+	onMounted(async () => {
+		await getSystemVersions();
+	});
 </script>
 
 <template>
@@ -145,7 +149,7 @@
 				</div>
 				<div class="card__bottom">
 					<ui-confirm :method="handleUpdateVersions" @click.stop :title="`${$t('Update all')}?`">
-						<ui-button mode="neutral" size="md" :disabled="isDisabledBtn" :loading="isLoadingUpdateVersions">
+						<ui-button mode="neutral" size="lg" :disabled="isDisabledBtn" :loading="isLoadingUpdateVersions">
 							{{ $t("Update all") }}
 						</ui-button>
 					</ui-confirm>

@@ -12,7 +12,7 @@
 
 	const { locale } = useI18n();
 	const { t } = useI18n();
-	const { getStartInfo } = usePayerFormStore()
+	const { getStartInfo } = usePayerFormStore();
 	const route = useRoute();
 
 	const { forHeader = false, isHidden = false } = defineProps<IProps>();
@@ -41,7 +41,7 @@
 			currentLocale.value = locale;
 			await loadLocaleMessages(locale.isoCode);
 			updateTranslationsUiKit(locale.isoCode, t);
-			await getStartInfo(isStoreForm, slug, externalId, payerIdQuery, email)
+			await getStartInfo(isStoreForm, slug, externalId, payerIdQuery, email);
 		} catch (error: any) {
 			console.error(`Failed to load messages for ${locale.isoCode}`, error);
 		}

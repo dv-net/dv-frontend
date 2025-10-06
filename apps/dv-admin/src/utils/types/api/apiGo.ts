@@ -109,17 +109,25 @@ export interface IStoreApiKeyResponse {
 	created_at: string | null;
 }
 
+export interface IWhitelistsPatchRequest {
+	ip: string | null;
+}
+
+export interface IWhitelistsResponse {
+	ip: string;
+}
+
 export interface IStoreGeneralSettingsList {
-	name: string
-	is_editable: boolean
-	two_factor_verification_required: boolean
-	available_values: string[]
+	name: string;
+	is_editable: boolean;
+	two_factor_verification_required: boolean;
+	available_values: string[];
 }
 export interface IStoreSettingsResponse extends IStoreGeneralSettingsList {
-	value: string
+	value: string;
 }
 export interface IStoreSettingsList extends IStoreGeneralSettingsList {
-	value: boolean
+	value: boolean;
 }
 
 export interface IStoreWebhooksResponse {
@@ -199,10 +207,6 @@ export interface ICurrencyStore {
 	code: string;
 	name: string;
 	enabled: boolean;
-}
-
-export interface IWhitelistsPatchRequest {
-	ip: string;
 }
 
 export interface IExternalWalletRequest {

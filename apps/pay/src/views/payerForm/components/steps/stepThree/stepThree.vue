@@ -4,59 +4,31 @@
 	import { storeToRefs } from "pinia";
 	import { isDesktopDevice } from "@shared/utils/helpers/media.ts";
 	import QrcodeVue from "qrcode.vue";
-	import { computed, onMounted, ref, watch } from "vue";
+	import { computed, ref } from "vue";
 	import CardSelectBlockchain from "@pay/views/payerForm/components/steps/cardSelectBlockchain/CardSelectBlockchain.vue";
 	import type { CurrencyType } from "@pay/utils/types/blockchain";
 	import type { BlockchainType } from "@shared/utils/types/blockchain";
 	import WrapperBlock from "@pay/views/payerForm/components/wrapperBlock/WrapperBlock.vue";
 	import BlockchainIcon from "@shared/components/ui/blockchainIcon/BlockchainIcon.vue";
-	import LoaderSpinner from "@pay/components/ui/loaderSpinner/LoaderSpinner.vue";
-	import { useMediaQuery } from "@shared/utils/composables/useMediaQuery.ts";
+	import loaderTransactionPending from "@pay/assets/animations/loaderTransactionPending.json";
+	import { LottieAnimation } from "lottie-web-vue";
 
 	const { currentAddress, currentCurrency, currentChain, currentStep } = storeToRefs(usePayerFormStore());
 	const { getAmountRate } = usePayerFormStore();
 
-	const isMediaMax768 = useMediaQuery("(max-width: 768px)");
-	const isMediaMax480 = useMediaQuery("(max-width: 480px)");
-
-	const isShowQrCode = ref<boolean>(false)
-	const priceRefOne = ref<HTMLDivElement | null>(null)
-	const priceRefTwo = ref<HTMLDivElement | null>(null)
+	const isShowQrCode = ref<boolean>(false);
 
 	const currentPrice = computed<string>(() => getAmountRate(currentCurrency.value as CurrencyType));
-
-	const setWidthPriceRef = () => {
-		if (priceRefOne.value && priceRefTwo.value) {
-			priceRefOne.value.style.width = `unset`;
-			priceRefTwo.value.style.width = `unset`;
-			if (isMediaMax480.value) return;
-			const width: number = Math.max(priceRefOne.value.offsetWidth, priceRefTwo.value.offsetWidth) + 1
-			priceRefOne.value.style.width = `${width}px`;
-			priceRefTwo.value.style.width = `${width}px`;
-		}
-	}
-
-	watch(isMediaMax768, () => setWidthPriceRef())
-	watch(isMediaMax480, () => setWidthPriceRef())
-
-	onMounted(() => {
-		setWidthPriceRef()
-	})
 </script>
 
 <template>
 	<wrapper-block>
 		<div class="payment">
 			<div class="flex flex-column gap-12">
-				<card-select-blockchain
-					type="currency"
-					:currency="currentCurrency as CurrencyType"
-					v-model:price-ref="priceRefOne"
-				/>
+				<card-select-blockchain type="currency" :currency="currentCurrency as CurrencyType" />
 				<card-select-blockchain
 					type="blockchain"
 					:currency-id="`${currentCurrency}.${currentChain}` as BlockchainType"
-					v-model:price-ref="priceRefTwo"
 				/>
 			</div>
 			<div class="payment__inner">
@@ -88,7 +60,7 @@
 							</div>
 							<ui-copy-text :copied-text="currentPrice" color-icon="#A4A5B1" />
 						</div>
-						<span class="sum__description">{{ $t("Recommended commission") }}: —</span>
+						<!--						<span class="sum__description">{{ $t("Recommended commission") }}: —</span>-->
 					</div>
 				</div>
 			</div>
@@ -102,7 +74,7 @@
 				</div>
 				<div class="status__bottom">
 					<div class="pending">
-						<loader-spinner :width="isMediaMax480 ? '32px' : '44px'" />
+						<lottie-animation class="pending__loader" :animation-data="loaderTransactionPending" :loop="true" />
 						<span class="pending__text">{{ $t("We are waiting for the payment to arrive") }}</span>
 					</div>
 					<div v-if="currentAddress && isShowQrCode" class="qr">
@@ -288,6 +260,9 @@
 					border: 1px solid $main-border-color;
 					background: $form-background;
 					flex-grow: 1;
+					&__loader {
+						width: 200px;
+					}
 					&__text {
 						color: $main-text-grey-color;
 						font-size: 16px;

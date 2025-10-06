@@ -7,7 +7,6 @@
 	import type { UiTableHeader } from "@dv.net/ui-kit/dist/components/UiTable/types";
 	import { useI18n } from "vue-i18n";
 	import { ADDRESS_BOOK_MODE_TYPE, ADDRESS_BOOK_TYPE_LABELS } from "@dv-admin/utils/constants/addressBook";
-	import { truncateHash } from "@shared/utils/helpers/general.ts";
 	import { useRouter } from "vue-router";
 	import ShowStatus from "@dv-admin/components/ui/showStatus/ShowStatus.vue";
 	import type { IAddressBookList } from "@dv-admin/utils/types/schemas";
@@ -77,7 +76,7 @@
 			</template>
 			<template #body-cell-address="{ row }">
 				<div class="flex flex-y-center gap-8">
-					<span>{{ truncateHash(row.address) }}</span>
+					<span>{{ row.address }}</span>
 					<ui-copy-text :copied-text="row.address" color-icon="#6B6D80" size-icon="sm" />
 				</div>
 			</template>
