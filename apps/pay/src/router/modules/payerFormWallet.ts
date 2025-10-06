@@ -6,6 +6,6 @@ export default [
 		path: "/wallet/:payerId",
 		name: "payer-wallet",
 		component: PayerFormView,
-		meta: { layout: APP_LAYOUT.PAYMENT },
+		meta: { layout: APP_LAYOUT.PAYMENT }
 	}
 ];

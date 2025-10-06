@@ -15,7 +15,7 @@ export const useWhiteListProjectStore = defineStore("whiteListProject", () => {
 		try {
 			const data = await getApiWhitelistsProject(uuid);
 			if (data) {
-				whitelistsProject.value = data.map(item => ({ ip: item }))
+				whitelistsProject.value = data.map((item) => ({ ip: item }));
 			}
 		} catch (error: any) {
 			throw error;

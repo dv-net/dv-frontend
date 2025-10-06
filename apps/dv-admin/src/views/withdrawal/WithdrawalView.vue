@@ -43,13 +43,7 @@
 <template>
 	<div class="page">
 		<h1 class="global-title-h1">{{ $t("Withdrawal rules") }}</h1>
-		<ui-skeleton
-			v-if="isLoading"
-			:rows="1"
-			:rowHeight="78"
-			:item-border-radius="12"
-			class="mt-32 mb-24"
-		/>
+		<ui-skeleton v-if="isLoading" :rows="1" :rowHeight="78" :item-border-radius="12" class="mt-32 mb-24" />
 		<div v-else class="info">
 			<div class="info__content">
 				<div class="info__inner-text">

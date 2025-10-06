@@ -25,7 +25,7 @@
 		(e: "change"): void;
 	}>();
 
-	const pagesRequireAdminRights: string[] = ['/settings/logs'];
+	const pagesRequireAdminRights: string[] = ["/settings/logs"];
 
 	function onSelect(path: string) {
 		router.push(path);
@@ -65,11 +65,14 @@
 					},
 					children:
 						item.children && item.children.length
-							? item.children.map((item) => ({ ...item, meta: {
-								...item.meta,
-								title: $t(item.meta.title),
-								class: pagesRequireAdminRights.includes(item.path) && !isRootUser ? 'none' : '',
-							} }))
+							? item.children.map((item) => ({
+									...item,
+									meta: {
+										...item.meta,
+										title: $t(item.meta.title),
+										class: pagesRequireAdminRights.includes(item.path) && !isRootUser ? 'none' : ''
+									}
+								}))
 							: []
 				}))
 			"

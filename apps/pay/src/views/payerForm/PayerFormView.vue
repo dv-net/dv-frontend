@@ -75,7 +75,7 @@
 			...(amount.value && { amount: amount.value }),
 			...(email && { email }),
 			...(currentCurrency.value && { token: currentCurrency.value }),
-			...(currentChain.value && { chain: currentChain.value }),
+			...(currentChain.value && { chain: currentChain.value })
 		};
 		router.push({ query });
 	};
@@ -101,9 +101,8 @@
 			return;
 		} else if (filteredCurrencies.value.length === 1) {
 			currentCurrency.value = getCurrentCoin(filteredCurrencies.value[0].currency.id);
-			currentChain.value = filteredBlockchains.value.length === 1
-				? getCurrentBlockchain(filteredBlockchains.value[0].currency.id)
-				: null;
+			currentChain.value =
+				filteredBlockchains.value.length === 1 ? getCurrentBlockchain(filteredBlockchains.value[0].currency.id) : null;
 			currentStep.value = currentChain.value ? 3 : 2;
 			updateQuery();
 		}
@@ -123,12 +122,16 @@
 		if (newValue === 3 && payerId.value) {
 			getApiWalletConfirm(payerId.value, `${currentCurrency.value}.${currentChain.value}`);
 		}
-		router.push({ query: { ...route.query, step: newValue } })
+		router.push({ query: { ...route.query, step: newValue } });
 	});
 
-	watch(() => route.query.step as string | undefined, (newValue) => {
-		currentStep.value = parseStepFromQuery(newValue);
-	}, { immediate: true });
+	watch(
+		() => route.query.step as string | undefined,
+		(newValue) => {
+			currentStep.value = parseStepFromQuery(newValue);
+		},
+		{ immediate: true }
+	);
 
 	onMounted(async () => {
 		await getStartInfo(isStoreForm, slug, externalId, payerIdQuery, email);
@@ -147,9 +150,9 @@
 		<div class="form__inner">
 			<div class="form__body">
 				<step-error v-if="errorStore" />
-				<transition v-else name="fade" mode="out-in">
-					<component :is="currentStepComponent" />
-				</transition>
+				<!--				<transition v-else name="fade" mode="out-in">-->
+				<component :is="currentStepComponent" />
+				<!--				</transition>-->
 			</div>
 			<payer-form-sidebar />
 			<block-advertising v-if="isShowAdvertising" class="form__advertising" />

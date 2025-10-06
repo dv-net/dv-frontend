@@ -12,7 +12,8 @@
 	import NotFound from "@pay/views/payerForm/components/steps/notFound/NotFound.vue";
 	import WrapperBlock from "@pay/views/payerForm/components/wrapperBlock/WrapperBlock.vue";
 
-	const { currentCurrency, currentStep, currentChain, isLoading, filteredBlockchains, filteredCurrencies } = storeToRefs(usePayerFormStore());
+	const { currentCurrency, currentStep, currentChain, isLoading, filteredBlockchains, filteredCurrencies } =
+		storeToRefs(usePayerFormStore());
 
 	const router = useRouter();
 	const route = useRoute();
@@ -23,9 +24,10 @@
 		let uniqueArray: IPayerAddressResponse[] = filteredCurrencies.value;
 		if (searchCurrency.value) {
 			const searchLower = searchCurrency.value.toLocaleLowerCase("en");
-			uniqueArray = uniqueArray.filter((item) =>
-				item.currency.id.toLocaleLowerCase("en").includes(searchLower) ||
-				searchCurrency.value === item.currency.contract_address
+			uniqueArray = uniqueArray.filter(
+				(item) =>
+					item.currency.id.toLocaleLowerCase("en").includes(searchLower) ||
+					searchCurrency.value === item.currency.contract_address
 			);
 		}
 		uniqueArray.sort((a, b) => {

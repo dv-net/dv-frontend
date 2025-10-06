@@ -34,7 +34,7 @@ export const locales: Locale[] = [
 	{ id: 31, name: "Bengali", nativeName: "বাংলা", isoCode: "bn" },
 	{ id: 32, name: "Hindi", nativeName: "हिन्दी", isoCode: "hi" },
 	{ id: 33, name: "Swahili", nativeName: "Kiswahili", isoCode: "sw" },
-	{ id: 34, name: "Vietnam", nativeName: "Tiếng Việt", isoCode: "vi" },
+	{ id: 34, name: "Vietnam", nativeName: "Tiếng Việt", isoCode: "vi" }
 ];
 
 export const localesI18nArray: string[] = locales.map((el) => el.isoCode);

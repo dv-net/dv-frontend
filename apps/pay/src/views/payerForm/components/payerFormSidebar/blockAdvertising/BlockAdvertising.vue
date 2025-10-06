@@ -4,7 +4,7 @@
 
 	const goToLanding = () => {
 		window.open("https://dv.net/", "_blank");
-	}
+	};
 </script>
 
 <template>
@@ -35,7 +35,9 @@
 			&:hover {
 				cursor: pointer;
 				border: 1px solid rgba(22, 126, 180, 0.44);
-				box-shadow: 0 4px 12px 1px rgba(171, 176, 187, 0.06), 0 4px 24px 1px rgba(171, 176, 187, 0.24);
+				box-shadow:
+					0 4px 12px 1px rgba(171, 176, 187, 0.06),
+					0 4px 24px 1px rgba(171, 176, 187, 0.24);
 			}
 		}
 	}

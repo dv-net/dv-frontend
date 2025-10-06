@@ -59,7 +59,7 @@
 									</span>
 								</div>
 							</div>
-<!--							<span class="card__commission">{{ $t("Commission") }} —</span>-->
+							<!--							<span class="card__commission">{{ $t("Commission") }} —</span>-->
 						</div>
 					</div>
 					<not-found v-else />

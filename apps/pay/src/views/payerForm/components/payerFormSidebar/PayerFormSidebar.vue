@@ -12,7 +12,7 @@
 
 	const isMediaMax480 = useMediaQuery("(max-width: 480px)");
 
-	const isShowSidebar = computed<boolean>(() => ![4,5].includes(currentStep.value));
+	const isShowSidebar = computed<boolean>(() => ![4, 5].includes(currentStep.value));
 	const isShowDetails = computed<boolean>(() => !errorStore.value && isShowSidebar.value);
 </script>
 
@@ -42,6 +42,10 @@
 							<ui-icon name="new-windows" type="400" />
 						</ui-link>
 					</div>
+					<div v-else-if="store?.name && !store?.site_url" class="row">
+						<span class="row__label">{{ $t("Site") }}</span>
+						<span>{{ store.name }}</span>
+					</div>
 				</div>
 				<div class="details__bottom">
 					<span class="details__bottom-label">{{ $t("Sum") }}:</span>
@@ -49,10 +53,7 @@
 				</div>
 			</div>
 		</wrapper-block>
-		<block-advertising
-			v-if="isShowAdvertising"
-			class="sidebar__advertising"
-		/>
+		<block-advertising v-if="isShowAdvertising" class="sidebar__advertising" />
 	</div>
 </template>
 

@@ -67,7 +67,7 @@
 		height = "24px",
 		type
 	} = defineProps<{
-		type: BlockchainType;
+		type?: BlockchainType;
 		width?: string;
 		height?: string;
 	}>();
@@ -134,7 +134,7 @@
 		"DOGE.Dogecoin": markRaw(IconDOGEDogecoin)
 	};
 
-	const iconToShow = computed<Component>(() => icons[type] || markRaw(IconDefault));
+	const iconToShow = computed<Component>(() => (type && type in icons ? icons[type] : markRaw(IconDefault)));
 </script>
 
 <template>

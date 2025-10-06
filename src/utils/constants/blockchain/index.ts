@@ -21,7 +21,10 @@ export const DEFAULT_CURRENCY_CONFIRMATION: number = 20;
 export const DEFAULT_CURRENCY_DEPOSIT_TIME: number = 2;
 export const DEFAULT_CURRENCY_PRECISION: number = 6;
 
-export const DEFAULT_CURRENCIES_INFO: Record<BlockchainType, { precision: number; depositTime: number; confirmations: number }> = {
+export const DEFAULT_CURRENCIES_INFO: Record<
+	BlockchainType,
+	{ precision: number; depositTime: number; confirmations: number }
+> = {
 	"ARB.Arbitrum": { precision: 2, depositTime: 2, confirmations: 20 },
 	"DAI.Arbitrum": { precision: 2, depositTime: 2, confirmations: 20 },
 	"ETH.Arbitrum": { precision: 6, depositTime: 2, confirmations: 20 },
@@ -80,7 +83,7 @@ export const DEFAULT_CURRENCIES_INFO: Record<BlockchainType, { precision: number
 	"WLFI.BNBSmartChain": { precision: 6, depositTime: 2, confirmations: 20 },
 	"SAND.Polygon": { precision: 6, depositTime: 2, confirmations: 12 },
 	"PYUSD.Arbitrum": { precision: 2, depositTime: 2, confirmations: 20 },
-	"CAKE.Arbitrum": { precision: 6, depositTime: 2, confirmations: 20 },
+	"CAKE.Arbitrum": { precision: 6, depositTime: 2, confirmations: 20 }
 };
 
 export const blockchainPatterns: any = {

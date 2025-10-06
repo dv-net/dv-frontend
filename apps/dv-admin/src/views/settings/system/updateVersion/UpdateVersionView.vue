@@ -77,8 +77,8 @@
 	);
 
 	onMounted(async () => {
-		await getSystemVersions()
-	})
+		await getSystemVersions();
+	});
 </script>
 
 <template>

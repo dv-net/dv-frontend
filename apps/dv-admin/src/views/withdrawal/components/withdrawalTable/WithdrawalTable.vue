@@ -51,13 +51,7 @@
 			</div>
 			<div />
 		</div>
-		<ui-skeleton
-			v-if="isLoading"
-			:rows="15"
-			:rowHeight="45"
-			:item-border-radius="8"
-			:rows-gap="8"
-		/>
+		<ui-skeleton v-if="isLoading" :rows="15" :rowHeight="45" :item-border-radius="8" :rows-gap="8" />
 		<div v-else class="cryptocurrencies__rows">
 			<div v-for="item in withdrawalRules" :key="item.id" class="cryptocurrencies__row">
 				<div>
@@ -72,10 +66,10 @@
 						<tooltip-helper
 							:title="$t('Add wallets')"
 							:text="
-									$t(
-										'All funds received on hot wallets will remain there. It is necessary to specify your wallets for transfer'
-									)
-								"
+								$t(
+									'All funds received on hot wallets will remain there. It is necessary to specify your wallets for transfer'
+								)
+							"
 						/>
 					</div>
 				</div>

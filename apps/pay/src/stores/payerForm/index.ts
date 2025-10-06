@@ -35,7 +35,11 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 	const currentTransaction = ref<IWalletTransactionResponse | null>(null);
 	const errorStore = ref<"error" | "store-disabled" | null>(null);
 	const stepMap = ref<Record<number, number>>({
-		1: 1, 2: 2, 3: 3, 4: 3, 5: 4,
+		1: 1,
+		2: 2,
+		3: 3,
+		4: 3,
+		5: 4
 	});
 	const timeline = ref([
 		{ id: 1, label: "Select currency", isActive: true },
@@ -44,7 +48,7 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		{ id: 4, label: "Ready", isActive: false }
 	]);
 
-	const isShowAdvertising = computed<boolean>(() => ![4,5].includes(currentStep.value));
+	const isShowAdvertising = computed<boolean>(() => ![4, 5].includes(currentStep.value));
 
 	const getPayerInfo = async (id: string) => {
 		try {

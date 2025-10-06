@@ -33,11 +33,7 @@
 			</div>
 		</div>
 		<div class="card__blockchains">
-			<span
-				v-for="item in blockchains"
-				:key="item"
-				class="card__blockchain"
-			>
+			<span v-for="item in blockchains" :key="item" class="card__blockchain">
 				{{ item }}
 			</span>
 		</div>
@@ -115,7 +111,7 @@
 			padding: 6px 10px;
 			@extend .center;
 			border-radius: 100px;
-			background-color: #F7F9FB;
+			background-color: #f7f9fb;
 			color: $main-text-grey-color;
 			font-size: 10px;
 			font-weight: 500;

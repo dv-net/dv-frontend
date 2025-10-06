@@ -10,11 +10,7 @@ import {
 	postApiStoreUnarchive,
 	putApiOneProject
 } from "@dv-admin/services/api/projects";
-import type {
-	ICurrencyStore,
-	IStoreResponse,
-	IStoreSettingsList,
-} from "@dv-admin/utils/types/api/apiGo";
+import type { ICurrencyStore, IStoreResponse, IStoreSettingsList } from "@dv-admin/utils/types/api/apiGo";
 import { useNotifications } from "@shared/utils/composables/useNotifications";
 import { defineStore, storeToRefs } from "pinia";
 import { ref } from "vue";
@@ -36,7 +32,7 @@ export const useProjectsStore = defineStore("projects", () => {
 	const { openOtpGlobalModal } = useGeneralStore();
 	const { getWebhooksProject } = useProjectsWebhooksStore();
 	const { getKeyProject } = useApiKeysProjectStore();
-	const { getWhitelistsProject } = useWhiteListProjectStore()
+	const { getWhitelistsProject } = useWhiteListProjectStore();
 
 	const isLoading = ref<boolean>(false);
 	const isLoadingEditProject = ref<boolean>(false);
@@ -107,7 +103,7 @@ export const useProjectsStore = defineStore("projects", () => {
 				getWebhooksProject(uuid),
 				getStoreSecret(uuid),
 				getStoreSettingList(uuid),
-				getWhitelistsProject(uuid),
+				getWhitelistsProject(uuid)
 			]);
 		} catch (error: any) {
 			throw error;
@@ -127,7 +123,7 @@ export const useProjectsStore = defineStore("projects", () => {
 		try {
 			const data = await getApiStoreSettingList(uuid);
 			if (data) {
-				storeSettingList.value = data.map(item => ({ ...item, value: item.value === "enabled" }));
+				storeSettingList.value = data.map((item) => ({ ...item, value: item.value === "enabled" }));
 			}
 		} catch (error: any) {
 			throw error;

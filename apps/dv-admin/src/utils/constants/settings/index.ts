@@ -66,7 +66,7 @@ export const LEVEL_LOGS: Record<string, string> = {
 	warn: "warning",
 	panic: "negative",
 	fatal: "negative",
-	error: "negative",
+	error: "negative"
 } as const;
 
 export const OPTIONS_LEVEL_LOGS: IUiSelectOptions[] = [
@@ -75,5 +75,5 @@ export const OPTIONS_LEVEL_LOGS: IUiSelectOptions[] = [
 	{ value: "warn", label: "warn" },
 	{ value: "error", label: "error" },
 	{ value: "fatal", label: "fatal" },
-	{ value: "panic", label: "panic" },
-]
+	{ value: "panic", label: "panic" }
+];

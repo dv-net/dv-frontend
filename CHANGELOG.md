@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+- Added lottie animation DV-3486
 - Added whitelists DV-3433
 - Change payment form DV-3458
 

@@ -98,7 +98,7 @@ export const useAddressBookStore = defineStore("addressBook", () => {
 			})();
 			if (!body) return;
 			await deleteApiWithdrawalAddressBook(body);
-			await getWithdrawalAddressBook()
+			await getWithdrawalAddressBook();
 			notify(t("Address removed"), "success");
 		} catch (error: any) {
 			throw error;
