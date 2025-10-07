@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import { UiCopyText, UiIcon, UiTooltip } from "@dv.net/ui-kit";
+	import { UiCopyText, UiIcon, UiInput, UiTooltip } from "@dv.net/ui-kit";
 	import { usePayerFormStore } from "@pay/stores/payerForm";
 	import { storeToRefs } from "pinia";
 	import { isDesktopDevice } from "@shared/utils/helpers/media.ts";
@@ -12,13 +12,30 @@
 	import BlockchainIcon from "@shared/components/ui/blockchainIcon/BlockchainIcon.vue";
 	import loaderTransactionPending from "@pay/assets/animations/loaderTransactionPending.json";
 	import { LottieAnimation } from "lottie-web-vue";
+	import { useMediaQuery } from "@shared/utils/composables/useMediaQuery.ts";
 
-	const { currentAddress, currentCurrency, currentChain, currentStep } = storeToRefs(usePayerFormStore());
+	const { currentAddress, currentCurrency, currentChain, currentStep, filteredBlockchains } = storeToRefs(usePayerFormStore());
 	const { getAmountRate } = usePayerFormStore();
 
 	const isShowQrCode = ref<boolean>(false);
 
+	const isMediaMax768 = useMediaQuery("(max-width: 768px)");
+	const isMediaMax480 = useMediaQuery("(max-width: 480px)");
+
+	const isHideSelectCardChain = computed<boolean>(() => filteredBlockchains.value?.length === 1)
 	const currentPrice = computed<string>(() => getAmountRate(currentCurrency.value as CurrencyType));
+	const inputTextSum = computed<string>(() => `${currentPrice.value} ${currentCurrency.value}`)
+
+	const blockEdit = (event: KeyboardEvent) => {
+		const allowed = [
+			'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown',
+			'Tab', 'Home', 'End', 'Shift', 'Control', 'Alt',
+			'Meta'
+		]
+		if (!allowed.includes(event.key)) {
+			event.preventDefault()
+		}
+	}
 </script>
 
 <template>
@@ -27,6 +44,7 @@
 			<div class="flex flex-column gap-12">
 				<card-select-blockchain type="currency" :currency="currentCurrency as CurrencyType" />
 				<card-select-blockchain
+					v-if="!isHideSelectCardChain"
 					type="blockchain"
 					:currency-id="`${currentCurrency}.${currentChain}` as BlockchainType"
 				/>
@@ -43,24 +61,39 @@
 							<ui-icon class="flex-shrink-0" name="help" type="filled" color="#A4A5B1" />
 						</ui-tooltip>
 					</div>
-					<div class="address__inner">
-						<div class="input">
-							<span class="input__text">{{ currentAddress || "—" }}</span>
+					<ui-input
+						type="text"
+						v-model="currentAddress"
+						@keydown="blockEdit"
+						@beforeinput.prevent
+						@paste.prevent
+						:size="isMediaMax480 ? 'sm' : isMediaMax768 ? 'md' : 'xl'"
+						class="address__input"
+					>
+						<template #append>
 							<ui-copy-text v-if="currentAddress" :copied-text="currentAddress" color-icon="#A4A5B1" />
-						</div>
-					</div>
+						</template>
+					</ui-input>
 				</div>
 				<div class="sum">
 					<span class="sum__label">{{ $t("Sum") }}</span>
 					<div class="sum__inner">
-						<div class="sum__input">
-							<div class="flex flex-y-center gap-14">
+						<ui-input
+							type="text"
+							:size="isMediaMax768 ? 'md' : 'xl'"
+							v-model="inputTextSum"
+							@keydown="blockEdit"
+							@beforeinput.prevent
+							@paste.prevent
+							class="sum__input"
+						>
+							<template #prepend>
 								<blockchain-icon :type="`${currentCurrency}.${currentChain}` as BlockchainType" />
-								<span class="fw-500">{{ currentPrice }} {{ currentCurrency }}</span>
-							</div>
-							<ui-copy-text :copied-text="currentPrice" color-icon="#A4A5B1" />
-						</div>
-						<!--						<span class="sum__description">{{ $t("Recommended commission") }}: —</span>-->
+							</template>
+							<template #append>
+								<ui-copy-text v-if="currentPrice" :copied-text="currentPrice" color-icon="#A4A5B1" />
+							</template>
+						</ui-input>
 					</div>
 				</div>
 			</div>
@@ -112,32 +145,19 @@
 						font-size: 14px;
 					}
 				}
-				&__inner {
-					display: flex;
-					align-items: center;
-					gap: 8px;
-					.input {
-						flex-grow: 1;
-						display: flex;
-						align-items: center;
-						min-height: 56px;
-						gap: 12px;
-						padding: 8px 16px;
-						justify-content: space-between;
-						border-radius: 8px;
-						color: $main-text-grey-color;
-						border: 1px solid $main-border-color;
-						background-color: $form-background;
-						@include mediamax(768) {
-							min-height: 48px;
-						}
-						@include mediamax(480) {
-							padding: 8px 12px;
-							min-height: 36px;
-						}
-						&__text {
+				&__input {
+					padding: 0 16px;
+					@include mediamax(480) {
+						padding: 0 12px;
+					}
+					&:deep(.ui-input__inner) {
+						word-break: break-word;
+						.ui-input__input {
+							color: $main-text-grey-color;
+							font-size: 16px;
+							font-weight: 500;
 							word-break: break-word;
-							@include mediamax(1024) {
+							@include mediamax(768) {
 								font-size: 14px;
 							}
 							@include mediamax(480) {
@@ -169,26 +189,17 @@
 					gap: 6px;
 				}
 				&__input {
-					display: flex;
-					align-items: center;
-					justify-content: space-between;
-					gap: 12px;
-					min-height: 56px;
-					flex-grow: 1;
-					padding: 8px 16px;
-					border-radius: 8px;
-					color: $main-text-grey-color;
-					border: 1px solid $main-border-color;
-					background-color: $form-background;
-					@include mediamax(1024) {
-						font-size: 14px;
-					}
-					@include mediamax(768) {
-						min-height: 48px;
-					}
+					padding: 0 16px;
 					@include mediamax(480) {
-						padding: 8px 12px;
-						min-height: 36px;
+						padding: 0 12px;
+					}
+					&:deep(.ui-input__input) {
+						color: $main-text-grey-color;
+						font-size: 16px;
+						font-weight: 500;
+						@include mediamax(768) {
+							font-size: 14px;
+						}
 					}
 				}
 				&__description {
@@ -262,6 +273,10 @@
 					flex-grow: 1;
 					&__loader {
 						width: 200px;
+						@include mediamax(480) {
+							max-width: 200px;
+							width: 100%;
+						}
 					}
 					&__text {
 						color: $main-text-grey-color;

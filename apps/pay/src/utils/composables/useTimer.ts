@@ -1,7 +1,7 @@
 import { ref, computed, onMounted, onUnmounted } from "vue";
 import { useI18n } from "vue-i18n";
 
-export const useTimer = () => {
+export const useTimer = (startDateIso?: string) => {
 	const { t } = useI18n();
 	const counter = ref<number>(0);
 	let intervalId: ReturnType<typeof setInterval> | null = null;
@@ -16,6 +16,12 @@ export const useTimer = () => {
 	});
 
 	onMounted(() => {
+		if (startDateIso) {
+			const startTime = new Date(startDateIso).getTime();
+			if (!isNaN(startTime)) {
+				counter.value = Math.floor((Date.now() - startTime) / 1000);
+			}
+		}
 		intervalId = setInterval(() => {
 			counter.value++;
 		}, 1000);

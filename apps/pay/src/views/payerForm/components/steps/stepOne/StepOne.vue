@@ -2,7 +2,6 @@
 	import { UiIcon, UiInput, UiSkeleton } from "@dv.net/ui-kit";
 	import { usePayerFormStore } from "@pay/stores/payerForm";
 	import { storeToRefs } from "pinia";
-	import { POPULAR_CURRENCY } from "@pay/utils/constants/blockchain";
 	import { computed, ref } from "vue";
 	import type { IPayerAddressResponse } from "@pay/utils/types/api/apiGo.ts";
 	import { getCurrentBlockchain, getCurrentCoin } from "@shared/utils/helpers/general.ts";
@@ -12,7 +11,7 @@
 	import NotFound from "@pay/views/payerForm/components/steps/notFound/NotFound.vue";
 	import WrapperBlock from "@pay/views/payerForm/components/wrapperBlock/WrapperBlock.vue";
 
-	const { currentCurrency, currentStep, currentChain, isLoading, filteredBlockchains, filteredCurrencies } =
+	const { currentCurrency, currentStep, currentChain, isLoading, filteredBlockchains, filteredCurrencies, addresses } =
 		storeToRefs(usePayerFormStore());
 
 	const router = useRouter();
@@ -21,25 +20,24 @@
 	const searchCurrency = ref<string | null>(null);
 
 	const currenciesList = computed<IPayerAddressResponse[]>(() => {
-		let uniqueArray: IPayerAddressResponse[] = filteredCurrencies.value;
 		if (searchCurrency.value) {
-			const searchLower = searchCurrency.value.toLocaleLowerCase("en");
-			uniqueArray = uniqueArray.filter(
-				(item) =>
-					item.currency.id.toLocaleLowerCase("en").includes(searchLower) ||
-					searchCurrency.value === item.currency.contract_address
-			);
+			const searchValue: string = searchCurrency.value.trim()
+			const searchLower = searchValue.toLocaleLowerCase("en");
+			const contractList = new Set(addresses.value.map(item => item.currency.contract_address));
+			return filteredCurrencies.value.filter((item) => {
+				if (searchLower === 'bsc') {
+					return item.currency.id.toLocaleLowerCase("en").includes("bnbsmartchain")
+				} else if (item.currency.id.toLocaleLowerCase("en").includes(searchLower)) {
+					return true;
+				} else if (contractList.has(searchValue)) {
+					const findAddress = addresses.value.find(item => item.currency.contract_address === searchValue);
+					return findAddress && (getCurrentCoin(findAddress.currency.id) === getCurrentCoin(item.currency.id));
+				} else {
+					return false
+				}
+			});
 		}
-		uniqueArray.sort((a, b) => {
-			const coinA = getCurrentCoin(a.currency.id);
-			const coinB = getCurrentCoin(b.currency.id);
-			const aIsPopular = POPULAR_CURRENCY.includes(coinA as CurrencyType);
-			const bIsPopular = POPULAR_CURRENCY.includes(coinB as CurrencyType);
-			if (aIsPopular && !bIsPopular) return -1;
-			if (!aIsPopular && bIsPopular) return 1;
-			return 0;
-		});
-		return uniqueArray;
+		return filteredCurrencies.value;
 	});
 
 	const setCurrency = async (currencyId: string) => {

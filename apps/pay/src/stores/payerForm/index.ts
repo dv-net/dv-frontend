@@ -15,6 +15,7 @@ import {
 } from "@shared/utils/helpers/general.ts";
 import type { BlockchainType } from "@shared/utils/types/blockchain";
 import type { CurrencyType } from "@pay/utils/types/blockchain";
+import { SORT_CHAIN } from "@pay/utils/constants/blockchain";
 
 export const usePayerFormStore = defineStore("payerForm", () => {
 	const { locale } = useI18n();
@@ -151,7 +152,15 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		filteredCurrency.forEach((item) => {
 			if (!unique.has(item.currency.id)) unique.set(item.currency.id, item);
 		});
-		return Array.from(unique.values());
+		return Array.from(unique.values()).sort((a, b) => {
+			const aChain = getCurrentBlockchain(a.currency.id);
+			const bChain = getCurrentBlockchain(b.currency.id);
+			const ia = SORT_CHAIN.indexOf(aChain);
+			const ib = SORT_CHAIN.indexOf(bChain);
+			const ra = ia === -1 ? Number.MAX_SAFE_INTEGER : ia;
+			const rb = ib === -1 ? Number.MAX_SAFE_INTEGER : ib;
+			return ra === rb ? aChain.localeCompare(bChain) : ra - rb;
+		});
 	});
 
 	const filteredCurrencies = computed<IPayerAddressResponse[]>(() => {
@@ -163,7 +172,14 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 					.filter((el) => getCurrentCoin(el.currency.id) === coin)
 					.map((c) => changeChainBsc(getCurrentBlockchain(c.currency.id)))
 					.filter(Boolean) as string[];
-				unique.set(coin, { ...item, currency: { ...item.currency, blockchains } });
+				const sortedBlockchains = [...new Set(blockchains)].sort((a, b) => {
+					const ia = SORT_CHAIN.indexOf(a);
+					const ib = SORT_CHAIN.indexOf(b);
+					const ra = ia === -1 ? Number.MAX_SAFE_INTEGER : ia;
+					const rb = ib === -1 ? Number.MAX_SAFE_INTEGER : ib;
+					return ra === rb ? a.localeCompare(b) : ra - rb;
+				});
+				unique.set(coin, { ...item, currency: { ...item.currency, blockchains: sortedBlockchains } });
 			}
 		});
 		return Array.from(unique.values());

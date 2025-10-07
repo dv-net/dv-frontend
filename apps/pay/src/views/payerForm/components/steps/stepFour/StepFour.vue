@@ -10,14 +10,14 @@
 		DEFAULT_CURRENCY_CONFIRMATION,
 		DEFAULT_CURRENCY_DEPOSIT_TIME
 	} from "@shared/utils/constants/blockchain";
-	import { useTimer } from "@shared/utils/composables/useTimer.ts";
 	import loaderWaitingConfirmation from "@pay/assets/animations/loaderWaitingConfirmation.json";
 	import { LottieAnimation } from "lottie-web-vue";
 	import { computed } from "vue";
 	import TransactionBlockInfo from "@pay/views/payerForm/components/steps/transactionBlockInfo/TransactionBlockInfo.vue";
+	import { useTimer } from "@pay/utils/composables/useTimer.ts";
 
-	const { formattedTime, counter } = useTimer();
 	const { currentTransaction } = storeToRefs(usePayerFormStore());
+	const { formattedTime, counter } = useTimer(currentTransaction.value?.created_at);
 
 	// currentTransaction.value = {
 	// 	amount: "155",
