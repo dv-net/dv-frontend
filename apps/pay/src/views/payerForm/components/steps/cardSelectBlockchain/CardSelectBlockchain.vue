@@ -98,7 +98,7 @@
 		justify-content: space-between;
 		gap: 12px;
 		border-radius: 8px;
-		padding: 16px 20px;
+		padding: 16px;
 		background-color: #f6f6f6;
 		@include mediamax(768) {
 			font-size: 14px;

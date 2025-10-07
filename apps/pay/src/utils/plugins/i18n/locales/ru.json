@@ -3,6 +3,8 @@
 		"min": "мин",
 		"s": "сек"
 	},
+	"Payment by cryptocurrency in": "Оплата криптовалютой в",
+	"Payment by cryptocurrency": "Оплата криптовалютой",
 	"All assets": "Все активы",
 	"Select cryptocurrency for payment": "Выберите криптовалюту для оплаты",
 	"Enter cryptocurrency, chain or contract": "Введите криптовалюту, сеть или контракт",

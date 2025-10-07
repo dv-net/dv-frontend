@@ -9,8 +9,10 @@
 	import { getReplenishmentDeclension, getDate } from "@dv-admin/utils/helpers/dashboard";
 	import { getCurrentCoin } from "@shared/utils/helpers/general";
 	import type { UiTableHeader } from "@dv.net/ui-kit/dist/components/UiTable/types";
+	import { useGeneralStore } from "@dv-admin/stores/general";
 
 	const { depositSummary, isLoadingDeposit } = storeToRefs(useDashboardStore());
+	const { dictionary } = storeToRefs(useGeneralStore())
 	const { t, locale } = useI18n();
 
 	const isVisibleTable = computed<boolean>(() => {
@@ -38,6 +40,16 @@
 			columnClass: (row: any) => (row.isMoreDetails ? "column-alignment" : "")
 		}
 	]);
+
+	const isShowOnlyCoin = (currencyId: string): boolean => {
+		const currencies = dictionary.value?.available_currencies;
+		if (!currencies?.length) return false;
+		const targetCoin = getCurrentCoin(currencyId);
+		const matchingCoins = currencies
+			.map(({ id }) => getCurrentCoin(id))
+			.filter((coin) => coin === targetCoin);
+		return matchingCoins.length === 1;
+	};
 </script>
 
 <template>
@@ -67,16 +79,16 @@
 						{{ row.transactions_count }} {{ $t(getReplenishmentDeclension(row.transactions_count)) }}
 					</span>
 					<div class="detail__coins" :class="{ hidden: !row.isMoreDetails }">
-						<div class="detail__coin" v-for="item in row.details_by_currency" :key="item.currency">
+						<div
+							class="detail__coin"
+							v-for="item in row.details_by_currency"
+							:key="item.currency"
+						>
 							<span class="detail__coin-blue" :class="{ 'detail__coin-green': item.percentage > 50 }">
 								{{ item.percentage }}%
 							</span>
 							<span>
-								{{
-									item.currency.includes("USD") || item.currency.includes("DAI")
-										? item.currency.replace(".", " ")
-										: getCurrentCoin(item.currency)
-								}}
+								{{ isShowOnlyCoin(item.currency) ? getCurrentCoin(item.currency) : item.currency.replace(".", " ") }}
 							</span>
 						</div>
 					</div>

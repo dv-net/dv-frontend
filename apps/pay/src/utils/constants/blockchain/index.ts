@@ -1,3 +1,1 @@
-import type { CurrencyType } from "@pay/utils/types/blockchain";
-
-export const POPULAR_CURRENCY: CurrencyType[] = ["USDT", "BTC", "ETH", "LTC", "USDC", "TRX"];
+export const SORT_CHAIN: string[] = ["Tron", "Ethereum", "BSC", "BNBSmartChain", "Arbitrum", "Polygon", "Optimism"];

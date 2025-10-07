@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+- Automated the display of coins  DV-3521
+- Change payment form DV-3513
+
 ## [1.0.15] - 2025-10-06
 
 - Added lottie animation DV-3486

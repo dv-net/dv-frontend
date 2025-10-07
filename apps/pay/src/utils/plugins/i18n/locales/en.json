@@ -3,6 +3,8 @@
 		"min": "min",
 		"s": "s"
 	},
+    "Payment by cryptocurrency": "Payment by cryptocurrency",
+    "Payment by cryptocurrency in": "Payment by cryptocurrency in",
 	"All assets": "All assets",
 	"Select cryptocurrency for payment": "Select cryptocurrency for payment",
 	"Enter cryptocurrency, chain or contract": "Enter cryptocurrency, chain or contract",

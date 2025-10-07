@@ -14,6 +14,7 @@
 	import StepError from "@pay/views/payerForm/components/steps/stepError/StepError.vue";
 	import BlockAdvertising from "@pay/views/payerForm/components/payerFormSidebar/blockAdvertising/BlockAdvertising.vue";
 	import { getApiWalletConfirm } from "@pay/services/api/payerForm.ts";
+	import { useI18n } from "vue-i18n";
 
 	const {
 		currentStep,
@@ -34,6 +35,7 @@
 
 	const route = useRoute();
 	const router = useRouter();
+	const { t } = useI18n()
 
 	const isStoreForm: boolean = route.name === "payer-store";
 	const price = route.query.amount as string | undefined;
@@ -135,6 +137,7 @@
 
 	onMounted(async () => {
 		await getStartInfo(isStoreForm, slug, externalId, payerIdQuery, email);
+		document.title = store.value?.name ? `${t("Payment by cryptocurrency in")} ${store.value?.name}` : t("Payment by cryptocurrency")
 		getQueryParams();
 		void startPolling();
 	});
@@ -150,9 +153,7 @@
 		<div class="form__inner">
 			<div class="form__body">
 				<step-error v-if="errorStore" />
-				<!--				<transition v-else name="fade" mode="out-in">-->
-				<component :is="currentStepComponent" />
-				<!--				</transition>-->
+				<component v-else :is="currentStepComponent" />
 			</div>
 			<payer-form-sidebar />
 			<block-advertising v-if="isShowAdvertising" class="form__advertising" />
