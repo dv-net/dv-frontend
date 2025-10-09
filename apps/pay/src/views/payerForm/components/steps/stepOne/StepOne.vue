@@ -20,24 +20,23 @@
 	const searchCurrency = ref<string | null>(null);
 
 	const currenciesList = computed<IPayerAddressResponse[]>(() => {
-		if (searchCurrency.value) {
-			const searchValue: string = searchCurrency.value.trim()
-			const searchLower = searchValue.toLocaleLowerCase("en");
-			const contractList = new Set(addresses.value.map(item => item.currency.contract_address));
-			return filteredCurrencies.value.filter((item) => {
-				if (searchLower === 'bsc') {
-					return item.currency.id.toLocaleLowerCase("en").includes("bnbsmartchain")
-				} else if (item.currency.id.toLocaleLowerCase("en").includes(searchLower)) {
-					return true;
-				} else if (contractList.has(searchValue)) {
-					const findAddress = addresses.value.find(item => item.currency.contract_address === searchValue);
-					return findAddress && (getCurrentCoin(findAddress.currency.id) === getCurrentCoin(item.currency.id));
-				} else {
-					return false
-				}
-			});
-		}
-		return filteredCurrencies.value;
+		const searchValue = searchCurrency.value?.trim();
+		if (!searchValue) return filteredCurrencies.value;
+		const searchLower = searchValue.toLowerCase();
+		const searchAddresses = addresses.value
+			.map(item => {
+				const coin = getCurrentCoin(item.currency.id);
+				if (!coin) return null;
+				const isMatch =
+					(searchLower === 'bsc' && item.currency.id.toLowerCase().includes('bnbsmartchain')) ||
+					item.currency.id.toLowerCase().includes(searchLower) ||
+					item.currency.contract_address === searchValue;
+				return isMatch ? coin : null;
+			})
+			.filter(Boolean);
+		return filteredCurrencies.value.filter(item =>
+			searchAddresses.includes(getCurrentCoin(item.currency.id))
+		);
 	});
 
 	const setCurrency = async (currencyId: string) => {
