@@ -43,8 +43,12 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		5: 4
 	});
 	const timeline = ref([
-		{ id: 1, label: "Select currency", isActive: true },
-		{ id: 2, label: "select-blockchain.one", isActive: false },
+		{ id: 1, label: "Select currency", isActive: true, callback:
+				() => [4,5].includes(currentStep.value) ? false : currentStep.value = 1 }
+		,
+		{ id: 2, label: "select-blockchain.one", isActive: false, callback:
+				() => (filteredBlockchains.value.length > 1) && ![4,5].includes(currentStep.value) ? currentStep.value = 2 : false
+		},
 		{ id: 3, label: "Sending a payment", isActive: false },
 		{ id: 4, label: "Ready", isActive: false }
 	]);

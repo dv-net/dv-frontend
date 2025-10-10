@@ -10,7 +10,7 @@
 	import CardCurrency from "@pay/views/payerForm/components/steps/cardCurrency/CardCurrency.vue";
 	import NotFound from "@pay/views/payerForm/components/steps/notFound/NotFound.vue";
 	import WrapperBlock from "@pay/views/payerForm/components/wrapperBlock/WrapperBlock.vue";
-  import { convertToEnglishLayout } from "@shared/utils/helpers/keyboardLayout.ts";
+  import { convertToEnglishLayout } from "@pay/utils/helpers/keyboardLayout.ts";
 
 	const { currentCurrency, currentStep, currentChain, isLoading, filteredBlockchains, filteredCurrencies, addresses } =
 		storeToRefs(usePayerFormStore());
