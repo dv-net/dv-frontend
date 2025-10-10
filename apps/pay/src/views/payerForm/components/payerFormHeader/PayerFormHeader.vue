@@ -43,6 +43,7 @@
 					:ref="(el) => (itemRefs[index] = el as HTMLDivElement | null)"
 					class="timeline__item"
 					:class="{ success: currentStep === 5 && timeline.length - 1 === index }"
+					@click="item.callback && item.callback()"
 				>
 					<span class="timeline__item-label">{{ item.id }}</span>
 					<span class="timeline__item-text">{{ $t(item.label) }}</span>
@@ -93,12 +94,14 @@
 			display: flex;
 			align-items: center;
 			flex-grow: 1;
+			cursor: pointer;
 			&:last-child {
 				flex-grow: unset;
 			}
 			&.opacity-item {
 				opacity: 0.2;
 				cursor: not-allowed;
+				pointer-events: none;
 			}
 		}
 		&__line {

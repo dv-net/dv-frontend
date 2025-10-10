@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+- Change exchange rates DV-3537
+
 ## [1.0.16] - 2025-10-08
 
 - Automated the display of coins  DV-3521
