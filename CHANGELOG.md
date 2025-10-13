@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [1.0.17] - 2025-10-13
+
 - Change exchange rates DV-3537
 
 ## [1.0.16] - 2025-10-08
