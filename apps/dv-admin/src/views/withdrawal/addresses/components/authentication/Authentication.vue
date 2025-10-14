@@ -19,6 +19,9 @@
 			<h3 class="global-title-h3">{{ $t("Two-factor authentication") }}</h3>
 			<div class="authentication__inner">
 				<ui-input
+					id="totp"
+					name="totp"
+					autocomplete="one-time-code"
 					v-model="addressesTotp"
 					type="tel"
 					class="authentication__input"
