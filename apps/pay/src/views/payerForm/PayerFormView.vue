@@ -15,6 +15,7 @@
 	import BlockAdvertising from "@pay/views/payerForm/components/payerFormSidebar/blockAdvertising/BlockAdvertising.vue";
 	import { getApiWalletConfirm } from "@pay/services/api/payerForm.ts";
 	import { useI18n } from "vue-i18n";
+	import AudioPayment from "@pay/views/payerForm/components/audioPayment/AudioPayment.vue";
 
 	const {
 		currentStep,
@@ -29,7 +30,7 @@
 		isShowAdvertising,
 		stepMap,
 		filteredBlockchains,
-		filteredCurrencies
+		filteredCurrencies,
 	} = storeToRefs(usePayerFormStore());
 	const { getWalletTxFind, checkValidationCurrencyAndChain, getStartInfo } = usePayerFormStore();
 
@@ -148,6 +149,7 @@
 </script>
 
 <template>
+	<audio-payment />
 	<div class="form">
 		<payer-form-header />
 		<div class="form__inner">

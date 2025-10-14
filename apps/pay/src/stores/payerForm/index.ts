@@ -35,13 +35,9 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 	const transactionsUnconfirmed = ref<IWalletTransactionResponse[]>([]);
 	const currentTransaction = ref<IWalletTransactionResponse | null>(null);
 	const errorStore = ref<"error" | "store-disabled" | null>(null);
-	const stepMap = ref<Record<number, number>>({
-		1: 1,
-		2: 2,
-		3: 3,
-		4: 3,
-		5: 4
-	});
+	const moneyCameAudioRef = ref<HTMLAudioElement | null>(null)
+	const paymentFoundAudioRef = ref<HTMLAudioElement | null>(null)
+	const stepMap = ref<Record<number, number>>({ 1: 1, 2: 2, 3: 3, 4: 3, 5: 4 });
 	const timeline = ref([
 		{ id: 1, label: "Select currency", isActive: true, callback:
 				() => [4,5].includes(currentStep.value) ? false : currentStep.value = 1 }
@@ -122,7 +118,9 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 				const newTransactions = checkForNewTransactions(transactionsLs);
 				if (newTransactions.length) {
 					currentTransaction.value = newTransactions[0];
-					return (currentStep.value = 4);
+					currentStep.value = 4
+					paymentFoundAudioRef.value?.play()
+					return;
 				}
 			}
 			// Wait for transaction to appear in Confirmed (this means payment has passed)
@@ -132,7 +130,9 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 					// Payment has passed, remove polling getWalletTxFind
 					isPoolingProgress.value = false;
 					localStorage.removeItem("transactions");
-					return (currentStep.value = 5);
+					currentStep.value = 5
+					moneyCameAudioRef.value?.play()
+					return;
 				}
 			}
 		} catch (error: any) {
@@ -245,6 +245,9 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		isShowAdvertising,
 		stepMap,
 		filteredCurrencies,
+		moneyCameAudioRef,
+		paymentFoundAudioRef,
+
 		getAmountRate,
 		getPayerInfo,
 		getWalletTxFind,

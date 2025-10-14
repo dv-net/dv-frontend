@@ -10,7 +10,7 @@
 	<div class="screen">
 		<div class="error">
 			<div class="error__img">
-				<img src="/static/error.webp" alt="shield" />
+				<img src="/static/error.webp" alt="error" />
 			</div>
 			<div class="content">
 				<h3 class="content__title">{{ $t("Error") }}</h3>

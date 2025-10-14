@@ -1,6 +1,34 @@
 <script setup lang="ts">
 	import { UiLink } from "@dv.net/ui-kit";
 	import WrapperBlock from "@pay/views/payerForm/components/wrapperBlock/WrapperBlock.vue";
+	import { LottieAnimation } from "lottie-web-vue";
+	import shield from "@pay/assets/animations/shield.json";
+	import { ref } from "vue";
+
+	const shieldAnim = ref();
+	const isHovering = ref<boolean>(false);
+	const isPlaying = ref<boolean>(false);
+
+	const handleMouseEnter = () => {
+		isHovering.value = true;
+		if (!isPlaying.value) {
+			shieldAnim.value?.goToAndPlay?.(0);
+			isPlaying.value = true;
+		}
+	};
+
+	const handleMouseLeave = () => {
+		isHovering.value = false;
+	};
+
+	const handleComplete = () => {
+		if (isHovering.value) {
+			shieldAnim.value?.goToAndPlay?.(0);
+			isPlaying.value = true;
+		} else {
+			isPlaying.value = false;
+		}
+	};
 
 	const goToLanding = () => {
 		window.open("https://dv.net/", "_blank");
@@ -8,14 +36,26 @@
 </script>
 
 <template>
-	<wrapper-block class="wrapper-block" @click="goToLanding">
+	<wrapper-block
+		class="wrapper-block"
+		@click="goToLanding"
+		@mouseenter="handleMouseEnter"
+		@mouseleave="handleMouseLeave"
+	>
 		<div class="advertising">
 			<div class="content">
 				<div class="content__inner">
 					<h2 class="global-title-h2">{{ $t("You pay via DV.net") }}</h2>
 					<p>{{ $t("Accept cryptocurrency on your website without paying intermediaries") }}</p>
 				</div>
-				<img class="content__img" src="/static/shield.png" alt="shield" />
+				<lottie-animation
+					ref="shieldAnim"
+					class="content__animation"
+					:animation-data="shield"
+					:auto-play="false"
+					:loop="false"
+					@complete="handleComplete"
+				/>
 			</div>
 			<div class="slogan">
 				<p class="slogan__inner">
@@ -50,6 +90,7 @@
 			gap: 16px;
 		}
 		.content {
+			position: relative;
 			display: flex;
 			gap: 12px;
 			justify-content: space-between;
@@ -63,18 +104,40 @@
 				line-height: 140%;
 				max-width: 324px;
 				width: 100%;
+				@include mediamax(1180) {
+					max-width: 290px;
+				}
+				@include mediamax(1024) {
+					max-width: 324px;
+				}
 				@include mediamax(480) {
 					font-size: 14px;
 					font-weight: 500;
 					line-height: 16px;
+					max-width: 250px;
 				}
 			}
-			&__img {
+			&__animation {
+				position: absolute;
+				top: -22px;
+				right: -24px;
 				display: flex;
 				flex-shrink: 0;
 				align-self: baseline;
+				width: 120px;
+				@include mediamax(1180) {
+					width: 100px;
+					top: -18px;
+				}
+				@include mediamax(1024) {
+					width: 100px;
+					top: -18px;
+					right: -18px;
+				}
 				@include mediamax(480) {
-					width: 44px;
+					width: 80px;
+					top: -15px;
+					right: -15px;
 				}
 			}
 		}

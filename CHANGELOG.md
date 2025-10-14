@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+- Added audio payment form DV-3522
+- Added animation shield DV-3481
+- Added a 2FA trigger to the input DV-3559
+
 ## [1.0.17] - 2025-10-13
 
 - Change exchange rates DV-3537
