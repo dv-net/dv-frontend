@@ -104,3 +104,13 @@ A dedicated payment processing interface:
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+<br>
+
+<div align="center">
+
+**© 2025 DV.net** • [DV Technologies Ltd.](https://dv.net)
+
+*Built with ❤️ for the crypto community*
+
+</div>
