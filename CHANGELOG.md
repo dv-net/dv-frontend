@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+- Added animation to the login page DV-3586
 - Added audio payment form DV-3522
 - Added animation shield DV-3481
 - Added a 2FA trigger to the input DV-3559

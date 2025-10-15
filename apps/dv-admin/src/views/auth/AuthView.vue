@@ -5,7 +5,6 @@
 	import { DESCRIPTIONS_AUTH, TITLES_AUTH } from "@dv-admin/utils/constants/auth";
 	import successLoginLogoAnimation from "@dv-admin/assets/animations/success-login-logo.json";
 	import { LottieAnimation } from "lottie-web-vue";
-	import authCommonImg from "@dv-admin/assets/images/auth/auth-common-img.png";
 	import hiHand from "@dv-admin/assets/images/auth/hi-hand.png";
 
 	const route = useRoute();
@@ -17,7 +16,7 @@
 
 	<div class="auth">
 		<div class="img-container">
-			<img :src="authCommonImg" alt=" " loading="lazy" class="auth-img" />
+			<video src="/dv-admin/static/video/login-1360x1800.webm" autoplay muted :loop="false" playsinline />
 		</div>
 		<div class="content">
 			<div class="content__header">
@@ -59,11 +58,13 @@
 			border-radius: 32px 40px 40px 32px;
 			width: 680px;
 			height: 900px;
-
-			.auth-img {
-				margin: auto;
-				transform: translateX(-13px);
-				height: 678px;
+			overflow: hidden;
+			video {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				object-position: center;
+				display: block;
 			}
 		}
 
