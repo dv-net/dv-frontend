@@ -16,7 +16,7 @@
 
 	<div class="auth">
 		<div class="img-container">
-			<video src="/dv-admin/static/video/login-1360x1800.webm" autoplay muted :loop="false" playsinline />
+			<video src="/static/video/login-1360x1800.webm" autoplay muted :loop="false" playsinline />
 		</div>
 		<div class="content">
 			<div class="content__header">
