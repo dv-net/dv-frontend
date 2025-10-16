@@ -19,6 +19,8 @@ const KEYBOARD_LAYOUTS: Record<string, Record<string, string>> = {
 		'ü': '[', 'ö': ';', 'ä': '\'',
 		'Ü': '{', 'Ö': ':', 'Ä': '"',
 		'ß': '-',
+		// QWERTZ <-> QWERTY swaps
+		'z': 'y', 'Z': 'Y', 'y': 'z', 'Y': 'Z',
 	},
 	spanish: {
 		'ñ': ';',
@@ -27,6 +29,14 @@ const KEYBOARD_LAYOUTS: Record<string, Record<string, string>> = {
 	portuguese: {
 		'ç': '\'',
 		'Ç': '"',
+	},
+	french: {
+		// AZERTY <-> QWERTY swaps (map typed AZERTY letters back to intended US letters)
+		'a': 'q', 'A': 'Q',
+		'q': 'a', 'Q': 'A',
+		'z': 'w', 'Z': 'W',
+		'w': 'z', 'W': 'Z',
+		',': 'm',
 	},
 	greek: {
 		'ς': 'w', 'ε': 'e', 'ρ': 'r', 'τ': 't', 'υ': 'y', 'θ': 'u', 'ι': 'i', 'ο': 'o', 'π': 'p',
@@ -64,12 +74,13 @@ const KEYBOARD_LAYOUTS: Record<string, Record<string, string>> = {
 		'ㅋ': 'z', 'ㅌ': 'x', 'ㅊ': 'c', 'ㅍ': 'v', 'ㅠ': 'b', 'ㅜ': 'n', 'ㅡ': 'm',
 	},
 	bulgarian: {
-		'я': 'q', 'в': 'w', 'е': 'e', 'р': 'r', 'т': 't', 'ъ': 'y', 'у': 'u', 'и': 'i', 'о': 'o', 'п': 'p', 'ш': '[', 'щ': ']',
-		'а': 'a', 'с': 's', 'д': 'd', 'ф': 'f', 'г': 'g', 'х': 'h', 'й': 'j', 'к': 'k', 'л': 'l', ';': ';', '\'': '\'',
-		'з': 'z', 'ь': 'x', 'ц': 'c', 'ж': 'v', 'б': 'b', 'н': 'n', 'м': 'm',
-		'Я': 'Q', 'В': 'W', 'Е': 'E', 'Р': 'R', 'Т': 'T', 'Ъ': 'Y', 'У': 'U', 'И': 'I', 'О': 'O', 'П': 'P', 'Ш': '{', 'Щ': '}',
-		'А': 'A', 'С': 'S', 'Д': 'D', 'Ф': 'F', 'Г': 'G', 'Х': 'H', 'Й': 'J', 'К': 'K', 'Л': 'L',
-		'З': 'Z', 'Ь': 'X', 'Ц': 'C', 'Ж': 'V', 'Б': 'B', 'Н': 'N', 'М': 'M',
+		// Transliteration-style mapping for tokens/networks
+		'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ж': 'zh', 'з': 'z', 'и': 'i', 'й': 'y',
+		'к': 'k', 'л': 'l', 'м': 'm', 'н': 'n', 'о': 'o', 'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'у': 'u',
+		'ф': 'f', 'х': 'h', 'ц': 'c', 'ч': 'ch', 'ш': 'sh', 'щ': 'sht', 'ъ': 'y', 'ь': 'x', 'ю': 'yu', 'я': 'ya',
+		'А': 'A', 'Б': 'B', 'В': 'V', 'Г': 'G', 'Д': 'D', 'Е': 'E', 'Ж': 'Zh', 'З': 'Z', 'И': 'I', 'Й': 'Y',
+		'К': 'K', 'Л': 'L', 'М': 'M', 'Н': 'N', 'О': 'O', 'П': 'P', 'Р': 'R', 'С': 'S', 'Т': 'T', 'У': 'U',
+		'Ф': 'F', 'Х': 'H', 'Ц': 'C', 'Ч': 'Ch', 'Ш': 'Sh', 'Щ': 'Sht', 'Ъ': 'Y', 'Ь': 'X', 'Ю': 'Yu', 'Я': 'Ya',
 	},
 	romanian: {
 		'ă': 'a', 'â': 'a', 'î': 'i', 'ș': 's', 'ț': 't',
@@ -239,7 +250,7 @@ const convertWithLayout = (text: string, layout: Record<string, string>): string
 const detectLayout = (text: string): keyof typeof KEYBOARD_LAYOUTS | null => {
 	if (!text) return null;
 	const chars = text.split('');
-	const priorityLayouts = ['russian', 'ukrainian', 'arabic', 'hebrew', 'greek', 'hindi', 'thai', 'korean', 'japanese', 'chinese'];
+	const priorityLayouts = ['russian', 'ukrainian', 'bulgarian', 'german', 'french', 'arabic', 'hebrew', 'greek', 'hindi', 'thai', 'korean', 'japanese', 'chinese'];
 	for (const layoutName of priorityLayouts) {
 		const layout = KEYBOARD_LAYOUTS[layoutName as keyof typeof KEYBOARD_LAYOUTS];
 		if (!layout) continue;
