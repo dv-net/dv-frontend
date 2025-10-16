@@ -11,6 +11,7 @@
 	import NotFound from "@pay/views/payerForm/components/steps/notFound/NotFound.vue";
 	import WrapperBlock from "@pay/views/payerForm/components/wrapperBlock/WrapperBlock.vue";
   import { convertToEnglishLayout } from "@pay/utils/helpers/keyboardLayout.ts";
+	import { useI18n } from "vue-i18n";
 
 	const { currentCurrency, currentStep, currentChain, isLoading, filteredBlockchains, filteredCurrencies, addresses } =
 		storeToRefs(usePayerFormStore());
@@ -18,12 +19,14 @@
 	const router = useRouter();
 	const route = useRoute();
 
+	const { locale } = useI18n()
+
 	const searchCurrency = ref<string | null>(null);
 
 	const currenciesList = computed<IPayerAddressResponse[]>(() => {
 		const searchValue = searchCurrency.value?.trim();
 		if (!searchValue) return filteredCurrencies.value;
-		const searchLower = convertToEnglishLayout(searchValue.toLowerCase());
+		const searchLower = convertToEnglishLayout(searchValue.toLowerCase(), locale.value);
 		const searchAddresses = addresses.value
 			.map(item => {
 				const coin = getCurrentCoin(item.currency.id);

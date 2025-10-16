@@ -39,12 +39,15 @@ const KEYBOARD_LAYOUTS: Record<string, Record<string, string>> = {
 		',': 'm',
 	},
 	greek: {
-		'ς': 'w', 'ε': 'e', 'ρ': 'r', 'τ': 't', 'υ': 'y', 'θ': 'u', 'ι': 'i', 'ο': 'o', 'π': 'p',
-		'α': 'a', 'σ': 's', 'δ': 'd', 'φ': 'f', 'γ': 'g', 'η': 'h', 'ξ': 'j', 'κ': 'k', 'λ': 'l',
-		'ζ': 'z', 'χ': 'x', 'ψ': 'c', 'ω': 'v', 'β': 'b', 'ν': 'n', 'μ': 'm',
-		'Σ': 'W', 'Ε': 'E', 'Ρ': 'R', 'Τ': 'T', 'Υ': 'Y', 'Θ': 'U', 'Ι': 'I', 'Ο': 'O', 'Π': 'P',
-		'Α': 'A', 'Δ': 'D', 'Φ': 'F', 'Γ': 'G', 'Η': 'H', 'Ξ': 'J', 'Κ': 'K', 'Λ': 'L',
-		'Ζ': 'Z', 'Χ': 'X', 'Ψ': 'C', 'Ω': 'V', 'Β': 'B', 'Ν': 'N', 'Μ': 'M',
+		// Greek phonetic layout - maps Greek output chars to English input
+		'π': 'p', 'υ': 'u', 'σ': 's', 'δ': 'd', 'χ': 'x', 'α': 'a', 'τ': 't',
+		'ε': 'e', 'ρ': 'r', 'η': 'h', 'ι': 'i', 'ο': 'o', 'ψ': 'c', 'λ': 'l',
+		'β': 'b', 'γ': 'g', 'μ': 'm', 'ν': 'n', 'θ': 't', 'κ': 'k',
+		'Π': 'P', 'Υ': 'U', 'Σ': 'S', 'Δ': 'D', 'Χ': 'X', 'Α': 'A', 'Τ': 'T',
+		'Ε': 'E', 'Ρ': 'R', 'Η': 'H', 'Ι': 'I', 'Ο': 'O', 'Ψ': 'C', 'Λ': 'L',
+		'Β': 'B', 'Γ': 'G', 'Μ': 'M', 'Ν': 'N', 'Θ': 'T', 'Κ': 'K',
+		'ς': 's', 'ζ': 'z', 'ξ': 'x', 'φ': 'f', 'ω': 'o',
+		'Ζ': 'Z', 'Ξ': 'X', 'Φ': 'F', 'Ω': 'O',
 	},
 	arabic: {
 		'ض': 'q', 'ص': 'w', 'ث': 'e', 'ق': 'r', 'ف': 't', 'غ': 'y', 'ع': 'u', 'ه': 'i', 'خ': 'o', 'ح': 'p',
@@ -178,18 +181,22 @@ const KEYBOARD_LAYOUTS: Record<string, Record<string, string>> = {
 		'ظ': 'z', 'ط': 'x', 'ز': 'c', 'ر': 'v', 'ذ': 'b', 'د': 'n', 'پ': 'm', 'و': ',', 'چ': '.',
 	},
 	bengali: {
-		'ৌ': 'q', 'ৈ': 'w', 'া': 'e', 'ী': 'r', 'ূ': 't', 'ব': 'y', 'হ': 'u', 'গ': 'i', 'দ': 'o', 'জ': 'p', 'ড': '[', '়': ']',
-		'ো': 'a', 'ে': 's', '্': 'd', 'ি': 'f', 'ু': 'g', 'প': 'h', 'র': 'j', 'ক': 'k', 'ত': 'l', 'চ': ';', 'ট': '\'',
-		'ং': 'z', 'ম': 'x', 'ন': 'c', 'ল': 'b', 'স': 'n', 'য': '.', 'শ': 's', 'ষ': 's',
-		'খ': 'k', 'ঘ': 'g', 'ঙ': 'n', 'ছ': 'c', 'ঝ': 'j', 'ঞ': 'n', 'ঠ': 't', 'ঢ': 'd', 'ণ': 'n',
-		'থ': 't', 'ধ': 'd', 'ফ': 'f', 'ভ': 'b',
+		// Bengali phonetic layout - maps Bengali output chars to English input
+		// Based on Google Input Tools Bengali (Phonetic)
+		'ো': 'a', 'ী': 'r', 'ব': 'b', 'ম': 'c', 'প': 'h', 'ূ': 't', 'ে': 's', '্': 'd', 'ল': 'l', 'গ': 'g',
+		'া': 'a', 'হ': 'h', 'দ': 'd', 'ত': 't', 'ক': 'k', 'ন': 'n', 'স': 's', 'র': 'r', 'জ': 'j', 'উ': 'u',
+		'ি': 'i', 'ু': 'u', 'চ': 'c', 'ট': 't', 'ং': 'm', 'য': 'y', 'শ': 's', 'ষ': 's', 'খ': 'x', 'ঘ': 'g',
+		'ঙ': 'n', 'ছ': 'c', 'ঝ': 'j', 'ঞ': 'n', 'ঠ': 't', 'ঢ': 'd', 'ণ': 'n', 'থ': 't', 'ধ': 'd', 'ফ': 'p', 'ভ': 'b',
+		'অ': 'a', 'এ': 'e', 'ও': 'o', 'ই': 'i', 'ৈ': 'e', 'ৌ': 'o',
 	},
 	hindi: {
-		'ौ': 'q', 'ै': 'w', 'ा': 'e', 'ी': 'r', 'ू': 't', 'ब': 'y', 'ह': 'u', 'ग': 'i', 'द': 'o', 'ज': 'p', 'ड': '[', '़': ']',
-		'ो': 'a', 'े': 's', '्': 'd', 'ि': 'f', 'ु': 'g', 'प': 'h', 'र': 'j', 'क': 'k', 'त': 'l', 'च': ';', 'ट': '\'',
-		'ं': 'z', 'म': 'x', 'न': 'c', 'व': 'v', 'ल': 'b', 'स': 'n', 'य': '.',
-		'ख': 'k', 'घ': 'g', 'ङ': 'n', 'छ': 'c', 'झ': 'j', 'ञ': 'n', 'ठ': 't', 'ढ': 'd', 'ण': 'n',
-		'थ': 't', 'ध': 'd', 'फ': 'f', 'भ': 'b', 'श': 's', 'ष': 's',
+		// Hindi phonetic layout - maps Hindi output chars to English input
+		// Based on Google Input Tools Hindi (Phonetic)
+		'ो': 'a', 'ी': 'r', 'व': 'b', 'म': 'c', 'प': 'h', 'ू': 't', 'े': 's', '्': 'd', 'ल': 'l', 'ग': 'g',
+		'ा': 'a', 'ह': 'h', 'द': 'd', 'त': 't', 'क': 'k', 'न': 'n', 'स': 's', 'र': 'r', 'ज': 'j', 'उ': 'u',
+		'ि': 'i', 'ु': 'u', 'च': 'c', 'ट': 't', 'ं': 'm', 'य': 'y', 'श': 's', 'ष': 's', 'ख': 'x', 'घ': 'g',
+		'ङ': 'n', 'छ': 'c', 'झ': 'j', 'ञ': 'n', 'ठ': 't', 'ढ': 'd', 'ण': 'n', 'थ': 't', 'ध': 'd', 'फ': 'p', 'भ': 'b',
+		'अ': 'a', 'ए': 'e', 'ओ': 'o', 'इ': 'i', 'ब': 'b', 'ै': 'e', 'ौ': 'o',
 	},
 	danish: {
 		'æ': ';', 'ø': '\'', 'å': '[',
@@ -242,6 +249,49 @@ const KEYBOARD_LAYOUTS: Record<string, Record<string, string>> = {
 	},
 };
 
+// Мапа локалей (ISO 639-1) на названия клавиатурных раскладок
+const LOCALE_TO_LAYOUT: Record<string, keyof typeof KEYBOARD_LAYOUTS> = {
+	'ru': 'russian',
+	'uk': 'ukrainian',
+	'bg': 'bulgarian',
+	'de': 'german',
+	'fr': 'french',
+	'el': 'greek',
+	'ar': 'arabic',
+	'he': 'hebrew',
+	'hi': 'hindi',
+	'bn': 'bengali',
+	'th': 'thai',
+	'ko': 'korean',
+	'ja': 'japanese',
+	'zh': 'chinese',
+	'pl': 'polish',
+	'cs': 'czech',
+	'tr': 'turkish',
+	'ro': 'romanian',
+	'sr': 'serbian',
+	'lt': 'lithuanian',
+	'lv': 'latvian',
+	'et': 'estonian',
+	'hu': 'hungarian',
+	'sk': 'slovak',
+	'be': 'belarusian',
+	'kk': 'kazakh',
+	'ka': 'georgian',
+	'hy': 'armenian',
+	'mn': 'mongolian',
+	'vi': 'vietnamese',
+	'fa': 'persian',
+	'da': 'danish',
+	'fi': 'finnish',
+	'no': 'norwegian',
+	'sv': 'swedish',
+	'it': 'italian',
+	'sl': 'slovenian',
+	'es': 'spanish',
+	'pt': 'portuguese',
+};
+
 const convertWithLayout = (text: string, layout: Record<string, string>): string => {
 	if (!text) return '';
 	return text.split('').map(char => layout[char] || char).join('');
@@ -271,8 +321,24 @@ const detectLayout = (text: string): keyof typeof KEYBOARD_LAYOUTS | null => {
 	return bestMatch[0] as keyof typeof KEYBOARD_LAYOUTS;
 };
 
-export const convertToEnglishLayout = (text: string): string => {
+/**
+ * Конвертирует текст, набранный на национальной раскладке, в английские символы
+ * @param text - Текст для конвертации
+ * @param userLocale - Локаль пользователя (например, 'ru', 'uk', 'de'). Если указана, используется соответствующая раскладка. Если не указана или не найдена - используется автодетект.
+ * @returns Текст, конвертированный в английскую раскладку
+ */
+export const convertToEnglishLayout = (text: string, userLocale?: string): string => {
 	if (!text) return '';
+	
+	// Если передана локаль, пытаемся использовать соответствующую раскладку
+	if (userLocale) {
+		const layoutName = LOCALE_TO_LAYOUT[userLocale.toLowerCase()];
+		if (layoutName && KEYBOARD_LAYOUTS[layoutName]) {
+			return convertWithLayout(text, KEYBOARD_LAYOUTS[layoutName]);
+		}
+	}
+	
+	// Fallback на автодетект (если локаль не передана или не найдена)
 	const detectedLayout = detectLayout(text);
 	if (!detectedLayout) return text;
 	return convertWithLayout(text, KEYBOARD_LAYOUTS[detectedLayout]);
