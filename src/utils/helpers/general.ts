@@ -172,6 +172,7 @@ export const copiedText = async (text: string) => {
 
 // uuid - 9f2b3ef7-2e06-4f02-bf4b-6f19f2a1e05c
 export const generateUUID = (): string => {
+	if (crypto.randomUUID) return crypto.randomUUID();
 	const buf = new Uint8Array(16);
 	crypto.getRandomValues(buf);
 	buf[6] = (buf[6] & 0x0f) | 0x40;
