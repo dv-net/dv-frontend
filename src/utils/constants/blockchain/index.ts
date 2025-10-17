@@ -10,7 +10,7 @@ export const blockchainCurrencyId: Record<string, BlockchainType> = {
 	litecoin: "LTC.Litecoin",
 	tron: "TRX.Tron",
 	dogecoin: "DOGE.Dogecoin",
-	arbitrum: "ETH.Arbitrum",
+	arbitrum: "ARB.Arbitrum",
 	optimism: "ETH.Optimism",
 	linea: "ETH.Linea",
 	solana: "SOL.Solana",

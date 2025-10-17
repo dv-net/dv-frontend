@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import { getCurrentCoin } from "@shared/utils/helpers/general.ts";
+	import { formatDollars, getCurrentCoin, formatAmountBlockchain } from "@shared/utils/helpers/general.ts";
 	import { storeToRefs } from "pinia";
 	import { usePayerFormStore } from "@pay/stores/payerForm";
 	import WrapperBlock from "@pay/views/payerForm/components/wrapperBlock/WrapperBlock.vue";
@@ -14,13 +14,13 @@
 	const { currentTransaction } = storeToRefs(usePayerFormStore());
 
 	// currentTransaction.value = {
-	// 	amount: "155",
-	// 	amount_usd: "750",
+	// 	amount: "123436454.0099123456",
+	// 	amount_usd: "542",
 	// 	created_at: "2025-09-17T12:34:56Z",
 	// 	currency_code: "BTC.Bitcoin",
 	// 	hash: "0x9f2c3d8b7a6f1e5c4a2b3c9d8e7f6a1b0c9d8e7f6a1b2c3d4e5f6a7b8c9d0e1f",
 	// 	type: "deposit"
-	// }
+	// };
 </script>
 
 <template>
@@ -34,8 +34,9 @@
 							<div class="content__title">{{ $t("Payment received successfully") }}!</div>
 							<div class="content__amount">
 								<currency-icon :type="getCurrentCoin(currentTransaction.currency_code) as CurrencyType" />
-								<span>{{ currentTransaction.amount }}</span>
+								<span>{{ formatAmountBlockchain(currentTransaction.amount, currentTransaction.currency_code, undefined, "—", true) }}</span>
 								<span>{{ getCurrentCoin(currentTransaction.currency_code) }}</span>
+								<span class="content__amount-usd">({{ formatDollars(currentTransaction.amount_usd, "$", "—", 2) }})</span>
 							</div>
 						</div>
 					</div>
@@ -107,6 +108,14 @@
 						line-height: 32px;
 						@include mediamax(768) {
 							font-size: 24px;
+						}
+						&-usd {
+							color: $main-text-grey-color;
+							font-weight: 400;
+							font-size: 20px;
+							@include mediamax(768) {
+								font-size: 16px;
+							}
 						}
 					}
 				}

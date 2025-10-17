@@ -64,7 +64,8 @@ export const formatAmountBlockchain = (
 	amount: any,
 	currencyId?: string,
 	setCount?: number,
-	errorValue = "—"
+	errorValue = "—",
+	isFormattedIntegerPart: boolean = false
 ): string => {
 	const precisionCurrency: number =
 		currencyId && currencyId in DEFAULT_CURRENCIES_INFO
@@ -73,11 +74,20 @@ export const formatAmountBlockchain = (
 	const count: number = setCount || precisionCurrency;
 	const num: number = parseFloat(amount);
 	if (isNaN(num) || !isFinite(num)) return errorValue;
+	const numStr = String(amount);
+	const [integerPart, fractionalPart = ''] = numStr.split(".");
 	if (count === 0) {
-		return String(Math.floor(num));
+		const integerValue = Math.floor(num);
+		return isFormattedIntegerPart 
+			? integerValue.toLocaleString("en-US")
+			: String(integerValue);
 	}
-	const factor: number = 10 ** count;
-	return (Math.floor(num * factor) / factor).toFixed(count).replace(/\.?0+$/, "");
+	let finalFractional = fractionalPart.slice(0, count);
+	finalFractional = finalFractional.replace(/0+$/, '');
+	const formattedInteger = isFormattedIntegerPart
+		? parseFloat(integerPart).toLocaleString("en-US")
+		: integerPart;
+	return finalFractional ? `${formattedInteger}.${finalFractional}` : formattedInteger;
 };
 
 // BTC.Bitcoin - BTC

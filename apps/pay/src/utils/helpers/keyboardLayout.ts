@@ -19,7 +19,6 @@ const KEYBOARD_LAYOUTS: Record<string, Record<string, string>> = {
 		'ü': '[', 'ö': ';', 'ä': '\'',
 		'Ü': '{', 'Ö': ':', 'Ä': '"',
 		'ß': '-',
-		// QWERTZ <-> QWERTY swaps
 		'z': 'y', 'Z': 'Y', 'y': 'z', 'Y': 'Z',
 	},
 	spanish: {
@@ -31,7 +30,6 @@ const KEYBOARD_LAYOUTS: Record<string, Record<string, string>> = {
 		'Ç': '"',
 	},
 	french: {
-		// AZERTY <-> QWERTY swaps (map typed AZERTY letters back to intended US letters)
 		'a': 'q', 'A': 'Q',
 		'q': 'a', 'Q': 'A',
 		'z': 'w', 'Z': 'W',
@@ -39,7 +37,6 @@ const KEYBOARD_LAYOUTS: Record<string, Record<string, string>> = {
 		',': 'm',
 	},
 	greek: {
-		// Greek phonetic layout - maps Greek output chars to English input
 		'π': 'p', 'υ': 'u', 'σ': 's', 'δ': 'd', 'χ': 'x', 'α': 'a', 'τ': 't',
 		'ε': 'e', 'ρ': 'r', 'η': 'h', 'ι': 'i', 'ο': 'o', 'ψ': 'c', 'λ': 'l',
 		'β': 'b', 'γ': 'g', 'μ': 'm', 'ν': 'n', 'θ': 't', 'κ': 'k',
@@ -77,7 +74,6 @@ const KEYBOARD_LAYOUTS: Record<string, Record<string, string>> = {
 		'ㅋ': 'z', 'ㅌ': 'x', 'ㅊ': 'c', 'ㅍ': 'v', 'ㅠ': 'b', 'ㅜ': 'n', 'ㅡ': 'm',
 	},
 	bulgarian: {
-		// Transliteration-style mapping for tokens/networks
 		'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ж': 'zh', 'з': 'z', 'и': 'i', 'й': 'y',
 		'к': 'k', 'л': 'l', 'м': 'm', 'н': 'n', 'о': 'o', 'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'у': 'u',
 		'ф': 'f', 'х': 'h', 'ц': 'c', 'ч': 'ch', 'ш': 'sh', 'щ': 'sht', 'ъ': 'y', 'ь': 'x', 'ю': 'yu', 'я': 'ya',
@@ -181,8 +177,6 @@ const KEYBOARD_LAYOUTS: Record<string, Record<string, string>> = {
 		'ظ': 'z', 'ط': 'x', 'ز': 'c', 'ر': 'v', 'ذ': 'b', 'د': 'n', 'پ': 'm', 'و': ',', 'چ': '.',
 	},
 	bengali: {
-		// Bengali phonetic layout - based on actual test cases
-		// arb→োীব, bch→বমপ, bnb→বলব, btc→বূম, cake→মোকা, ena→ালো, eth→াূপ, ltc→তূম
 		'ো': 'a', 'ী': 'r', 'ব': 'b', 'ম': 'c', 'প': 'h', 'ূ': 't', 'া': 'e', 'ল': 'n', 'ক': 'k', 'ত': 'l',
 		'ে': 's', '্': 'd', 'হ': 'u', 'জ': 'p', 'দ': 'd', 'গ': 'i', 'ং': 'x', 'র': 'r',
 		'ি': 'i', 'ু': 'u', 'চ': 'c', 'ট': 't', 'য': 'y', 'শ': 's', 'ষ': 's', 'খ': 'k', 'ঘ': 'g',
@@ -190,8 +184,6 @@ const KEYBOARD_LAYOUTS: Record<string, Record<string, string>> = {
 		'অ': 'a', 'এ': 'e', 'ও': 'o', 'ই': 'i', 'ৈ': 'e', 'ৌ': 'o', 'ঃ': 't', 'ন': 'n', 'স': 's',
 	},
 	hindi: {
-		// Hindi phonetic layout - based on actual test cases
-		// arb→ोीव, bch→वमप, bnb→वलव, btc→वूम, cake→मोका, ena→ालो, eth→ाूप, ltc→तूम
 		'ो': 'a', 'ी': 'r', 'व': 'b', 'म': 'c', 'प': 'h', 'ू': 't', 'ा': 'e', 'ल': 'n', 'क': 'k', 'त': 'l',
 		'े': 's', '्': 'd', 'ह': 'u', 'ज': 'p', 'द': 'd', 'ग': 'i', 'ं': 'x', 'र': 'r', 'ें': 'x',
 		'ि': 'i', 'ु': 'u', 'च': 'c', 'ट': 't', 'य': 'y', 'श': 's', 'ष': 's', 'ख': 'k', 'घ': 'g',
@@ -249,7 +241,6 @@ const KEYBOARD_LAYOUTS: Record<string, Record<string, string>> = {
 	},
 };
 
-// Мапа локалей (ISO 639-1) на названия клавиатурных раскладок
 const LOCALE_TO_LAYOUT: Record<string, keyof typeof KEYBOARD_LAYOUTS> = {
 	'ru': 'russian',
 	'uk': 'ukrainian',
@@ -321,24 +312,14 @@ const detectLayout = (text: string): keyof typeof KEYBOARD_LAYOUTS | null => {
 	return bestMatch[0] as keyof typeof KEYBOARD_LAYOUTS;
 };
 
-/**
- * Конвертирует текст, набранный на национальной раскладке, в английские символы
- * @param text - Текст для конвертации
- * @param userLocale - Локаль пользователя (например, 'ru', 'uk', 'de'). Если указана, используется соответствующая раскладка. Если не указана или не найдена - используется автодетект.
- * @returns Текст, конвертированный в английскую раскладку
- */
 export const convertToEnglishLayout = (text: string, userLocale?: string): string => {
 	if (!text) return '';
-	
-	// Если передана локаль, пытаемся использовать соответствующую раскладку
 	if (userLocale) {
 		const layoutName = LOCALE_TO_LAYOUT[userLocale.toLowerCase()];
 		if (layoutName && KEYBOARD_LAYOUTS[layoutName]) {
 			return convertWithLayout(text, KEYBOARD_LAYOUTS[layoutName]);
 		}
 	}
-	
-	// Fallback на автодетект (если локаль не передана или не найдена)
 	const detectedLayout = detectLayout(text);
 	if (!detectedLayout) return text;
 	return convertWithLayout(text, KEYBOARD_LAYOUTS[detectedLayout]);

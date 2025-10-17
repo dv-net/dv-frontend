@@ -11,12 +11,14 @@
 	import Cards from "@dv-admin/views/dashboard/components/cards/Cards.vue";
 	import BalancesHotWallets from "@dv-admin/views/dashboard/components/balancesHotWallets/BalancesHotWallets.vue";
 	import { useAuthStore } from "@dv-admin/stores/auth";
+	import { useUserSettingsStore } from "@dv-admin/stores/userSettings";
 
 	const { getProcessingWallets, getDepositSummary, getBalanceCurrentExchange, getBalancesCold } = useDashboardStore();
 	const { transactions, transactionsPagination } = storeToRefs(useTransactionStore());
 	const { getTransaction } = useTransactionStore();
 	const { getWalletSummary, getWalletBalancesHot } = useHotWalletsStore();
 	const { isShowMainLoader } = storeToRefs(useAuthStore());
+	const { getUserSettings } = useUserSettingsStore()
 
 	const getAllDataPage = async () => {
 		try {
@@ -32,6 +34,7 @@
 				getWalletSummary(1),
 				getProcessingWallets(),
 				getWalletBalancesHot(),
+				getUserSettings(),
 				getBalanceCurrentExchange(),
 				getBalancesCold()
 			]);

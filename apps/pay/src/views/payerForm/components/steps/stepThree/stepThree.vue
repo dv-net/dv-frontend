@@ -4,7 +4,7 @@
 	import { storeToRefs } from "pinia";
 	import { isDesktopDevice } from "@shared/utils/helpers/media.ts";
 	import QrcodeVue from "qrcode.vue";
-	import { computed, ref } from "vue";
+	import { computed, onMounted, ref } from "vue";
 	import CardSelectBlockchain from "@pay/views/payerForm/components/steps/cardSelectBlockchain/CardSelectBlockchain.vue";
 	import type { CurrencyType } from "@pay/utils/types/blockchain";
 	import type { BlockchainType } from "@shared/utils/types/blockchain";
@@ -14,7 +14,7 @@
 	import { LottieAnimation } from "lottie-web-vue";
 	import { useMediaQuery } from "@shared/utils/composables/useMediaQuery.ts";
 
-	const { currentAddress, currentCurrency, currentChain, currentStep, filteredBlockchains } = storeToRefs(usePayerFormStore());
+	const { currentAddress, currentCurrency, currentChain, currentStep, timeline, filteredBlockchains } = storeToRefs(usePayerFormStore());
 	const { getAmountRate } = usePayerFormStore();
 
 	const isShowQrCode = ref<boolean>(false);
@@ -22,7 +22,6 @@
 	const isMediaMax768 = useMediaQuery("(max-width: 768px)");
 	const isMediaMax480 = useMediaQuery("(max-width: 480px)");
 
-	const isHideSelectCardChain = computed<boolean>(() => filteredBlockchains.value?.length === 1)
 	const currentPrice = computed<string>(() => getAmountRate(currentCurrency.value as CurrencyType));
 	const inputTextSum = computed<string>(() => `${currentPrice.value} ${currentCurrency.value}`)
 
@@ -36,6 +35,18 @@
 			event.preventDefault()
 		}
 	}
+
+	const infoCurrentChain = computed(() => {
+		const chains = filteredBlockchains.value || []
+		const isSingleChain = chains.length === 1
+		const isMultipleChains = chains.length > 1
+		const shouldDisplayChainUI = isSingleChain ? !chains[0].currency.is_native : true;
+		return { shouldDisplayChainUI, isSingleNativeChain: isMultipleChains }
+	})
+
+	onMounted(() => {
+		timeline.value[1].isActive = infoCurrentChain.value.isSingleNativeChain
+	})
 </script>
 
 <template>
@@ -44,9 +55,10 @@
 			<div class="flex flex-column gap-12">
 				<card-select-blockchain type="currency" :currency="currentCurrency as CurrencyType" />
 				<card-select-blockchain
-					v-if="!isHideSelectCardChain"
+					v-if="infoCurrentChain.shouldDisplayChainUI"
 					type="blockchain"
 					:currency-id="`${currentCurrency}.${currentChain}` as BlockchainType"
+					:is-show-btn-change="infoCurrentChain.isSingleNativeChain"
 				/>
 			</div>
 			<div class="payment__inner">
@@ -111,6 +123,7 @@
 						<span class="pending__text">{{ $t("We are waiting for the payment to arrive") }}</span>
 					</div>
 					<div v-if="currentAddress && isShowQrCode" class="qr">
+						<blockchain-icon class="qr__icon" width="26px" height="26px" :type="`${currentCurrency}.${currentChain}` as BlockchainType" />
 						<qrcode-vue :value="currentAddress" class="qr__code" level="M" render-as="svg" />
 					</div>
 				</div>
@@ -298,6 +311,13 @@
 					border: 1px solid $main-border-color;
 					background: $form-background;
 					align-self: stretch;
+					position: relative;
+					&__icon {
+						position: absolute;
+						top: 50%;
+						left: 50%;
+						transform: translate(-50%, -50%);
+					}
 					@include mediamax(768) {
 						padding: 20px 16px;
 					}
