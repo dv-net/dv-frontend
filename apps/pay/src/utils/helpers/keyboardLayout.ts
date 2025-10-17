@@ -19,6 +19,7 @@ const KEYBOARD_LAYOUTS: Record<string, Record<string, string>> = {
 		'ü': '[', 'ö': ';', 'ä': '\'',
 		'Ü': '{', 'Ö': ':', 'Ä': '"',
 		'ß': '-',
+		'z': 'y', 'Z': 'Y', 'y': 'z', 'Y': 'Z',
 	},
 	spanish: {
 		'ñ': ';',
@@ -28,13 +29,22 @@ const KEYBOARD_LAYOUTS: Record<string, Record<string, string>> = {
 		'ç': '\'',
 		'Ç': '"',
 	},
+	french: {
+		'a': 'q', 'A': 'Q',
+		'q': 'a', 'Q': 'A',
+		'z': 'w', 'Z': 'W',
+		'w': 'z', 'W': 'Z',
+		',': 'm',
+	},
 	greek: {
-		'ς': 'w', 'ε': 'e', 'ρ': 'r', 'τ': 't', 'υ': 'y', 'θ': 'u', 'ι': 'i', 'ο': 'o', 'π': 'p',
-		'α': 'a', 'σ': 's', 'δ': 'd', 'φ': 'f', 'γ': 'g', 'η': 'h', 'ξ': 'j', 'κ': 'k', 'λ': 'l',
-		'ζ': 'z', 'χ': 'x', 'ψ': 'c', 'ω': 'v', 'β': 'b', 'ν': 'n', 'μ': 'm',
-		'Σ': 'W', 'Ε': 'E', 'Ρ': 'R', 'Τ': 'T', 'Υ': 'Y', 'Θ': 'U', 'Ι': 'I', 'Ο': 'O', 'Π': 'P',
-		'Α': 'A', 'Δ': 'D', 'Φ': 'F', 'Γ': 'G', 'Η': 'H', 'Ξ': 'J', 'Κ': 'K', 'Λ': 'L',
-		'Ζ': 'Z', 'Χ': 'X', 'Ψ': 'C', 'Ω': 'V', 'Β': 'B', 'Ν': 'N', 'Μ': 'M',
+		'π': 'p', 'υ': 'u', 'σ': 's', 'δ': 'd', 'χ': 'x', 'α': 'a', 'τ': 't',
+		'ε': 'e', 'ρ': 'r', 'η': 'h', 'ι': 'i', 'ο': 'o', 'ψ': 'c', 'λ': 'l',
+		'β': 'b', 'γ': 'g', 'μ': 'm', 'ν': 'n', 'θ': 't', 'κ': 'k',
+		'Π': 'P', 'Υ': 'U', 'Σ': 'S', 'Δ': 'D', 'Χ': 'X', 'Α': 'A', 'Τ': 'T',
+		'Ε': 'E', 'Ρ': 'R', 'Η': 'H', 'Ι': 'I', 'Ο': 'O', 'Ψ': 'C', 'Λ': 'L',
+		'Β': 'B', 'Γ': 'G', 'Μ': 'M', 'Ν': 'N', 'Θ': 'T', 'Κ': 'K',
+		'ς': 's', 'ζ': 'z', 'ξ': 'x', 'φ': 'f', 'ω': 'o',
+		'Ζ': 'Z', 'Ξ': 'X', 'Φ': 'F', 'Ω': 'O',
 	},
 	arabic: {
 		'ض': 'q', 'ص': 'w', 'ث': 'e', 'ق': 'r', 'ف': 't', 'غ': 'y', 'ع': 'u', 'ه': 'i', 'خ': 'o', 'ح': 'p',
@@ -64,12 +74,12 @@ const KEYBOARD_LAYOUTS: Record<string, Record<string, string>> = {
 		'ㅋ': 'z', 'ㅌ': 'x', 'ㅊ': 'c', 'ㅍ': 'v', 'ㅠ': 'b', 'ㅜ': 'n', 'ㅡ': 'm',
 	},
 	bulgarian: {
-		'я': 'q', 'в': 'w', 'е': 'e', 'р': 'r', 'т': 't', 'ъ': 'y', 'у': 'u', 'и': 'i', 'о': 'o', 'п': 'p', 'ш': '[', 'щ': ']',
-		'а': 'a', 'с': 's', 'д': 'd', 'ф': 'f', 'г': 'g', 'х': 'h', 'й': 'j', 'к': 'k', 'л': 'l', ';': ';', '\'': '\'',
-		'з': 'z', 'ь': 'x', 'ц': 'c', 'ж': 'v', 'б': 'b', 'н': 'n', 'м': 'm',
-		'Я': 'Q', 'В': 'W', 'Е': 'E', 'Р': 'R', 'Т': 'T', 'Ъ': 'Y', 'У': 'U', 'И': 'I', 'О': 'O', 'П': 'P', 'Ш': '{', 'Щ': '}',
-		'А': 'A', 'С': 'S', 'Д': 'D', 'Ф': 'F', 'Г': 'G', 'Х': 'H', 'Й': 'J', 'К': 'K', 'Л': 'L',
-		'З': 'Z', 'Ь': 'X', 'Ц': 'C', 'Ж': 'V', 'Б': 'B', 'Н': 'N', 'М': 'M',
+		'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ж': 'zh', 'з': 'z', 'и': 'i', 'й': 'y',
+		'к': 'k', 'л': 'l', 'м': 'm', 'н': 'n', 'о': 'o', 'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'у': 'u',
+		'ф': 'f', 'х': 'h', 'ц': 'c', 'ч': 'ch', 'ш': 'sh', 'щ': 'sht', 'ъ': 'y', 'ь': 'x', 'ю': 'yu', 'я': 'ya',
+		'А': 'A', 'Б': 'B', 'В': 'V', 'Г': 'G', 'Д': 'D', 'Е': 'E', 'Ж': 'Zh', 'З': 'Z', 'И': 'I', 'Й': 'Y',
+		'К': 'K', 'Л': 'L', 'М': 'M', 'Н': 'N', 'О': 'O', 'П': 'P', 'Р': 'R', 'С': 'S', 'Т': 'T', 'У': 'U',
+		'Ф': 'F', 'Х': 'H', 'Ц': 'C', 'Ч': 'Ch', 'Ш': 'Sh', 'Щ': 'Sht', 'Ъ': 'Y', 'Ь': 'X', 'Ю': 'Yu', 'Я': 'Ya',
 	},
 	romanian: {
 		'ă': 'a', 'â': 'a', 'î': 'i', 'ș': 's', 'ț': 't',
@@ -167,18 +177,18 @@ const KEYBOARD_LAYOUTS: Record<string, Record<string, string>> = {
 		'ظ': 'z', 'ط': 'x', 'ز': 'c', 'ر': 'v', 'ذ': 'b', 'د': 'n', 'پ': 'm', 'و': ',', 'چ': '.',
 	},
 	bengali: {
-		'ৌ': 'q', 'ৈ': 'w', 'া': 'e', 'ী': 'r', 'ূ': 't', 'ব': 'y', 'হ': 'u', 'গ': 'i', 'দ': 'o', 'জ': 'p', 'ড': '[', '়': ']',
-		'ো': 'a', 'ে': 's', '্': 'd', 'ি': 'f', 'ু': 'g', 'প': 'h', 'র': 'j', 'ক': 'k', 'ত': 'l', 'চ': ';', 'ট': '\'',
-		'ং': 'z', 'ম': 'x', 'ন': 'c', 'ল': 'b', 'স': 'n', 'য': '.', 'শ': 's', 'ষ': 's',
-		'খ': 'k', 'ঘ': 'g', 'ঙ': 'n', 'ছ': 'c', 'ঝ': 'j', 'ঞ': 'n', 'ঠ': 't', 'ঢ': 'd', 'ণ': 'n',
-		'থ': 't', 'ধ': 'd', 'ফ': 'f', 'ভ': 'b',
+		'ো': 'a', 'ী': 'r', 'ব': 'b', 'ম': 'c', 'প': 'h', 'ূ': 't', 'া': 'e', 'ল': 'n', 'ক': 'k', 'ত': 'l',
+		'ে': 's', '্': 'd', 'হ': 'u', 'জ': 'p', 'দ': 'd', 'গ': 'i', 'ং': 'x', 'র': 'r',
+		'ি': 'i', 'ু': 'u', 'চ': 'c', 'ট': 't', 'য': 'y', 'শ': 's', 'ষ': 's', 'খ': 'k', 'ঘ': 'g',
+		'ঙ': 'n', 'ছ': 'c', 'ঝ': 'j', 'ঞ': 'n', 'ঠ': 't', 'ঢ': 'd', 'ণ': 'n', 'থ': 't', 'ধ': 'd', 'ফ': 'f', 'ভ': 'b',
+		'অ': 'a', 'এ': 'e', 'ও': 'o', 'ই': 'i', 'ৈ': 'e', 'ৌ': 'o', 'ঃ': 't', 'ন': 'n', 'স': 's',
 	},
 	hindi: {
-		'ौ': 'q', 'ै': 'w', 'ा': 'e', 'ी': 'r', 'ू': 't', 'ब': 'y', 'ह': 'u', 'ग': 'i', 'द': 'o', 'ज': 'p', 'ड': '[', '़': ']',
-		'ो': 'a', 'े': 's', '्': 'd', 'ि': 'f', 'ु': 'g', 'प': 'h', 'र': 'j', 'क': 'k', 'त': 'l', 'च': ';', 'ट': '\'',
-		'ं': 'z', 'म': 'x', 'न': 'c', 'व': 'v', 'ल': 'b', 'स': 'n', 'य': '.',
-		'ख': 'k', 'घ': 'g', 'ङ': 'n', 'छ': 'c', 'झ': 'j', 'ञ': 'n', 'ठ': 't', 'ढ': 'd', 'ण': 'n',
-		'थ': 't', 'ध': 'd', 'फ': 'f', 'भ': 'b', 'श': 's', 'ष': 's',
+		'ो': 'a', 'ी': 'r', 'व': 'b', 'म': 'c', 'प': 'h', 'ू': 't', 'ा': 'e', 'ल': 'n', 'क': 'k', 'त': 'l',
+		'े': 's', '्': 'd', 'ह': 'u', 'ज': 'p', 'द': 'd', 'ग': 'i', 'ं': 'x', 'र': 'r', 'ें': 'x',
+		'ि': 'i', 'ु': 'u', 'च': 'c', 'ट': 't', 'य': 'y', 'श': 's', 'ष': 's', 'ख': 'k', 'घ': 'g',
+		'ङ': 'n', 'छ': 'c', 'झ': 'j', 'ञ': 'n', 'ठ': 't', 'ढ': 'd', 'ण': 'n', 'थ': 't', 'ध': 'd', 'फ': 'f', 'भ': 'b',
+		'अ': 'a', 'ए': 'e', 'ओ': 'o', 'इ': 'i', 'ब': 'b', 'ै': 'e', 'ौ': 'o', 'ः': 't', 'न': 'n', 'स': 's',
 	},
 	danish: {
 		'æ': ';', 'ø': '\'', 'å': '[',
@@ -231,6 +241,48 @@ const KEYBOARD_LAYOUTS: Record<string, Record<string, string>> = {
 	},
 };
 
+const LOCALE_TO_LAYOUT: Record<string, keyof typeof KEYBOARD_LAYOUTS> = {
+	'ru': 'russian',
+	'uk': 'ukrainian',
+	'bg': 'bulgarian',
+	'de': 'german',
+	'fr': 'french',
+	'el': 'greek',
+	'ar': 'arabic',
+	'he': 'hebrew',
+	'hi': 'hindi',
+	'bn': 'bengali',
+	'th': 'thai',
+	'ko': 'korean',
+	'ja': 'japanese',
+	'zh': 'chinese',
+	'pl': 'polish',
+	'cs': 'czech',
+	'tr': 'turkish',
+	'ro': 'romanian',
+	'sr': 'serbian',
+	'lt': 'lithuanian',
+	'lv': 'latvian',
+	'et': 'estonian',
+	'hu': 'hungarian',
+	'sk': 'slovak',
+	'be': 'belarusian',
+	'kk': 'kazakh',
+	'ka': 'georgian',
+	'hy': 'armenian',
+	'mn': 'mongolian',
+	'vi': 'vietnamese',
+	'fa': 'persian',
+	'da': 'danish',
+	'fi': 'finnish',
+	'no': 'norwegian',
+	'sv': 'swedish',
+	'it': 'italian',
+	'sl': 'slovenian',
+	'es': 'spanish',
+	'pt': 'portuguese',
+};
+
 const convertWithLayout = (text: string, layout: Record<string, string>): string => {
 	if (!text) return '';
 	return text.split('').map(char => layout[char] || char).join('');
@@ -239,7 +291,7 @@ const convertWithLayout = (text: string, layout: Record<string, string>): string
 const detectLayout = (text: string): keyof typeof KEYBOARD_LAYOUTS | null => {
 	if (!text) return null;
 	const chars = text.split('');
-	const priorityLayouts = ['russian', 'ukrainian', 'arabic', 'hebrew', 'greek', 'hindi', 'thai', 'korean', 'japanese', 'chinese'];
+	const priorityLayouts = ['russian', 'ukrainian', 'bulgarian', 'german', 'french', 'arabic', 'hebrew', 'greek', 'hindi', 'thai', 'korean', 'japanese', 'chinese'];
 	for (const layoutName of priorityLayouts) {
 		const layout = KEYBOARD_LAYOUTS[layoutName as keyof typeof KEYBOARD_LAYOUTS];
 		if (!layout) continue;
@@ -260,8 +312,14 @@ const detectLayout = (text: string): keyof typeof KEYBOARD_LAYOUTS | null => {
 	return bestMatch[0] as keyof typeof KEYBOARD_LAYOUTS;
 };
 
-export const convertToEnglishLayout = (text: string): string => {
+export const convertToEnglishLayout = (text: string, userLocale?: string): string => {
 	if (!text) return '';
+	if (userLocale) {
+		const layoutName = LOCALE_TO_LAYOUT[userLocale.toLowerCase()];
+		if (layoutName && KEYBOARD_LAYOUTS[layoutName]) {
+			return convertWithLayout(text, KEYBOARD_LAYOUTS[layoutName]);
+		}
+	}
 	const detectedLayout = detectLayout(text);
 	if (!detectedLayout) return text;
 	return convertWithLayout(text, KEYBOARD_LAYOUTS[detectedLayout]);

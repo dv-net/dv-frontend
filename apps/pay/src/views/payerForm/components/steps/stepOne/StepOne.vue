@@ -10,7 +10,9 @@
 	import CardCurrency from "@pay/views/payerForm/components/steps/cardCurrency/CardCurrency.vue";
 	import NotFound from "@pay/views/payerForm/components/steps/notFound/NotFound.vue";
 	import WrapperBlock from "@pay/views/payerForm/components/wrapperBlock/WrapperBlock.vue";
-  import { convertToEnglishLayout } from "@pay/utils/helpers/keyboardLayout.ts";
+	import { convertToEnglishLayout } from "@pay/utils/helpers/keyboardLayout.ts";
+	import { useI18n } from "vue-i18n";
+	import { transliterate } from "https://cdn.jsdelivr.net/npm/transliteration@2.3.5/dist/browser/bundle.esm.min.js";
 
 	const { currentCurrency, currentStep, currentChain, isLoading, filteredBlockchains, filteredCurrencies, addresses } =
 		storeToRefs(usePayerFormStore());
@@ -18,27 +20,47 @@
 	const router = useRouter();
 	const route = useRoute();
 
+	const { locale } = useI18n();
+
 	const searchCurrency = ref<string | null>(null);
 
 	const currenciesList = computed<IPayerAddressResponse[]>(() => {
 		const searchValue = searchCurrency.value?.trim();
 		if (!searchValue) return filteredCurrencies.value;
-		const searchLower = convertToEnglishLayout(searchValue.toLowerCase());
-		const searchAddresses = addresses.value
-			.map(item => {
-				const coin = getCurrentCoin(item.currency.id);
-				if (!coin) return null;
-				const isMatch =
-					(searchLower === 'bsc' && item.currency.id.toLowerCase().includes('bnbsmartchain')) ||
-					item.currency.id.toLowerCase().includes(searchLower) ||
-					item.currency.contract_address === searchValue;
-				return isMatch ? coin : null;
-			})
-			.filter(Boolean);
-		return filteredCurrencies.value.filter(item =>
-			searchAddresses.includes(getCurrentCoin(item.currency.id))
+		const normalizedSearch = searchValue.toLowerCase();
+		const searchLower = convertToEnglishLayout(normalizedSearch, locale.value);
+		const searchLowerAlt = transliterate(normalizedSearch);
+		const matchedCoins = new Set<string>();
+		for (const item of addresses.value) {
+			const coin = getCurrentCoin(item.currency.id);
+			if (!coin) continue;
+			const currencyIdLower = item.currency.id.toLowerCase();
+			const { contract_address } = item.currency;
+			const matches = [
+				(searchLower === "bsc" && currencyIdLower.includes("bnbsmartchain")),
+				currencyIdLower.includes(searchLower),
+				currencyIdLower.includes(searchLowerAlt),
+				contract_address === searchValue,
+			];
+			if (matches.some(Boolean)) matchedCoins.add(coin);
+		}
+		const foundCurrencies = filteredCurrencies.value.filter(item =>
+			matchedCoins.has(getCurrentCoin(item.currency.id) as string)
 		);
+		return foundCurrencies.map(item => ({
+			...item,
+			currency: {
+				...item.currency,
+				blockchains: item.currency.blockchains?.map(blockchain => ({
+					...blockchain,
+					isActive:
+						blockchain.blockchain.toLowerCase().includes(searchLower) ||
+						blockchain.blockchain.toLowerCase().includes(searchLowerAlt),
+				})),
+			},
+		})) as IPayerAddressResponse[];
 	});
+
 
 	const setCurrency = async (currencyId: string) => {
 		if (!currencyId) return;

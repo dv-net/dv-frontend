@@ -119,9 +119,9 @@
 	};
 
 	watch(currentStep, (newValue: number) => {
-		timeline.value.forEach(
-			(item) => (item.isActive = item.id <= (stepMap.value[currentStep.value] || currentStep.value))
-		);
+		timeline.value.forEach((item) => {
+			item.isActive = item.id <= (stepMap.value[currentStep.value] || currentStep.value)
+		});
 		if (newValue === 3 && payerId.value) {
 			getApiWalletConfirm(payerId.value, `${currentCurrency.value}.${currentChain.value}`);
 		}

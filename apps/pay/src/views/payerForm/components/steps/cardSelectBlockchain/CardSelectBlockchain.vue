@@ -8,13 +8,13 @@
 	import BlockchainIcon from "@shared/components/ui/blockchainIcon/BlockchainIcon.vue";
 	import CurrencyIcon from "@pay/components/ui/currencyIcon/CurrencyIcon.vue";
 	import type { BlockchainType } from "@shared/utils/types/blockchain";
-	import { capitalizeFirstLetter } from "@shared/utils/helpers/general.ts";
+	import { capitalizeFirstLetter, formatAmountBlockchain } from "@shared/utils/helpers/general.ts";
 	import { useMediaQuery } from "@shared/utils/composables/useMediaQuery.ts";
 
 	const { addresses, currentStep } = storeToRefs(usePayerFormStore());
 	const { getAmountRate } = usePayerFormStore();
 
-	const { type, currency, currencyId } = defineProps<IProps>();
+	const { type, currency, currencyId, isShowBtnChange = true } = defineProps<IProps>();
 
 	const isMediaMax768 = useMediaQuery("(max-width: 768px)");
 	const isMediaMax480 = useMediaQuery("(max-width: 480px)");
@@ -56,7 +56,7 @@
 			<ui-icon name="check-circle" type="filled" color="#1F9649" :size="isMediaMax768 ? 'md' : 'lg'" />
 			<div class="content__inner">
 				<span>{{ $t(isTypeCurrency ? "Selected currency" : "Selected chain") }}</span>
-				<ui-link @click="goToBack" :size="isMediaMax480 ? 'md' : 'lg'">
+				<ui-link v-if="isShowBtnChange" @click="goToBack" :size="isMediaMax480 ? 'md' : 'lg'">
 					{{ $t("Change") }}
 				</ui-link>
 			</div>
@@ -84,7 +84,7 @@
 				<span>
 					{{ currentBlockchain.code === "Bsc" ? "BSC" : currentBlockchain.code }} {{ currentBlockchain.label }}
 				</span>
-				<span v-if="isTypeCurrency">≈ {{ getAmountRate(currency!) }}</span>
+				<span v-if="isTypeCurrency">≈ {{ formatAmountBlockchain(getAmountRate(currency!), currencyId, undefined, "—", true) }}</span>
 				<!--				<span v-if="isTypeBlockchain">{{ $t("Commission") }} —</span>-->
 			</div>
 		</div>
@@ -118,6 +118,7 @@
 			&__inner {
 				display: flex;
 				flex-direction: column;
+				justify-content: center;
 				gap: 4px;
 				color: $main-subtitle-color;
 				font-weight: 500;

@@ -16,6 +16,7 @@ import {
 import type { BlockchainType } from "@shared/utils/types/blockchain";
 import type { CurrencyType } from "@pay/utils/types/blockchain";
 import { SORT_CHAIN } from "@pay/utils/constants/blockchain";
+import { loaderShutdown } from "@pay/utils/helpers/general.ts";
 
 export const usePayerFormStore = defineStore("payerForm", () => {
 	const { locale } = useI18n();
@@ -39,11 +40,12 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 	const paymentFoundAudioRef = ref<HTMLAudioElement | null>(null)
 	const stepMap = ref<Record<number, number>>({ 1: 1, 2: 2, 3: 3, 4: 3, 5: 4 });
 	const timeline = ref([
-		{ id: 1, label: "Select currency", isActive: true, callback:
-				() => [4,5].includes(currentStep.value) ? false : currentStep.value = 1 }
-		,
-		{ id: 2, label: "select-blockchain.one", isActive: false, callback:
-				() => (filteredBlockchains.value.length > 1) && ![4,5].includes(currentStep.value) ? currentStep.value = 2 : false
+		{ id: 1, label: "Select currency", isActive: true, callback: () => [4,5].includes(currentStep.value) ? false : currentStep.value = 1 },
+		{
+			id: 2,
+			label: "select-blockchain.one",
+			isActive: false,
+			callback: () => (filteredBlockchains.value.length > 1) && ![4,5].includes(currentStep.value) ? currentStep.value = 2 : false
 		},
 		{ id: 3, label: "Sending a payment", isActive: false },
 		{ id: 4, label: "Ready", isActive: false }
@@ -101,6 +103,7 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 			throw error;
 		} finally {
 			isLoading.value = false;
+			loaderShutdown()
 		}
 	};
 
@@ -183,7 +186,13 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 					const rb = ib === -1 ? Number.MAX_SAFE_INTEGER : ib;
 					return ra === rb ? a.localeCompare(b) : ra - rb;
 				});
-				unique.set(coin, { ...item, currency: { ...item.currency, blockchains: sortedBlockchains } });
+				unique.set(coin, {
+					...item,
+					currency: {
+						...item.currency,
+						blockchains: sortedBlockchains.map(item => ({ blockchain: item, isActive: false }))
+					}
+				});
 			}
 		});
 		return Array.from(unique.values());

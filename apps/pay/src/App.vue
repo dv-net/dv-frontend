@@ -22,14 +22,6 @@
 	watch(locale, (value: string) => updateTranslationsUiKit(value, t), { immediate: true, deep: true });
 
 	onMounted(async () => {
-		const loaderContainer = document.getElementById("loader");
-		const body = document.body;
-		const app = document.getElementById("app");
-		if (loaderContainer) loaderContainer.style.display = "none";
-		if (body) body.style.removeProperty("overflow");
-		if (app) app.style.removeProperty("overflow");
-
-		// Loading translations
 		await loadLocaleMessages(locale.value);
 	});
 </script>

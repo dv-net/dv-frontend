@@ -5,4 +5,5 @@ export interface IProps {
 	type: "currency" | "blockchain";
 	currency?: CurrencyType;
 	currencyId?: BlockchainType;
+	isShowBtnChange?: boolean
 }
