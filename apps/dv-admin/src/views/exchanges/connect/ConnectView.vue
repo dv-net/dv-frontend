@@ -162,6 +162,7 @@
 					v-for="item in serviceList"
 					:key="item.id"
 				>
+					<div class="card__badge">{{ $t('Coming soon') }}</div>
 					<div class="card__top">
 						<component :is="item.icon" />
 					</div>
@@ -248,6 +249,21 @@
 					border-radius: 12px;
 					border: 1px solid #E1E8F1;
 					background-color: #F7F9FB;
+					position: relative;
+					&__badge {
+						position: absolute;
+						top: 10px;
+						right: 10px;
+						padding: 2px 8px;
+						border-radius: 12px;
+						background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+						color: #fff;
+						font-size: 10px;
+						font-weight: 500;
+						letter-spacing: 0.3px;
+						box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);
+						z-index: 1;
+					}
 					&__top {
 						display: flex;
 						align-items: center;
