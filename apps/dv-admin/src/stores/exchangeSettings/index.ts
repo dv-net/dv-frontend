@@ -62,19 +62,19 @@ export const useExchangeSettingsStore = defineStore("exchangeSettings", () => {
 			const findIndex: number = exchangeList.value.exchanges.findIndex((item) => item.slug === slug);
 			if (findIndex === -1) return;
 			exchangeList.value.exchanges[findIndex].keys = exchangeList.value.exchanges[findIndex].keys.map((item) => {
-				return { ...item, value: item.value || null };
+				return { ...item, value: item.value || null, valueEnteredUser: item.valueEnteredUser || null };
 			});
 			const accessKey = exchangeList.value.exchanges[findIndex].keys.find((item) => item.name === "access_key");
 			const apiKey = exchangeList.value.exchanges[findIndex].keys.find((item) => item.name === "api_key");
 			const secret = exchangeList.value.exchanges[findIndex].keys.find((item) => item.name === "secret_key");
 			const passphrase = exchangeList.value.exchanges[findIndex].keys.find((item) => item.name === "pass_phrase");
-			const key = accessKey?.value || apiKey?.value;
+			const key = accessKey?.valueEnteredUser || apiKey?.valueEnteredUser;
 			const body: IExchangeTestRequest = {
 				slug,
 				credentials: {
 					...(key ? { key } : {}),
-					...(secret?.value ? { secret: secret.value } : {}),
-					...(passphrase?.value ? { passphrase: passphrase.value } : {})
+					...(secret?.valueEnteredUser ? { secret: secret.valueEnteredUser } : {}),
+					...(passphrase?.valueEnteredUser ? { passphrase: passphrase.valueEnteredUser } : {})
 				}
 			};
 			// Check keys before connection

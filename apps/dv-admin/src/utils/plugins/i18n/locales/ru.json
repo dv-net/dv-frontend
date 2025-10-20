@@ -4,7 +4,9 @@
 		"h": "ч",
 		"s": "сек"
 	},
-	"In this section, you can view exchange rates and set a downward coefficient. We collect rates from all exchanges and select the most favorable one for you": "В этом разделе вы можете ознакомиться с курсами валют и установить им понижающий коэффициент. Мы собираем курсы со всех бирж и выбираем самый выгодный для вас",
+	"Other exchange services": "Прочие обменные сервисы",
+	"Connect an exchanger": "Подключить обменник",
+    "In this section, you can view exchange rates and set a downward coefficient. We collect rates from all exchanges and select the most favorable one for you": "В этом разделе вы можете ознакомиться с курсами валют и установить им понижающий коэффициент. Мы собираем курсы со всех бирж и выбираем самый выгодный для вас",
     "Rates": "Курсы",
     "Do not adjust": "Не корректировать",
 	"You have not added the address to the withdrawal rules": "У вас не добавлен адрес в правила вывода",

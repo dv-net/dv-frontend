@@ -650,6 +650,7 @@ export interface ISearchDataResponse {
 export interface IExchangeListKeysResponse {
 	name: string;
 	value: string | null;
+	valueEnteredUser: string | null;
 }
 
 export type ExchangeSlugType = "binance" | "okx" | "htx" | "bitget" | "kucoin" | "mexc" | "gate" | "bybit";

@@ -49,7 +49,7 @@
 				</div>
 				<div class="details__bottom">
 					<span class="details__bottom-label">{{ $t("Sum") }}:</span>
-					<span class="details__bottom-price">{{ formatDollars(amount) }}</span>
+					<span class="details__bottom-price">{{ formatDollars(amount, "$", "—", 2)  }}</span>
 				</div>
 			</div>
 		</wrapper-block>

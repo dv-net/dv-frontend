@@ -71,7 +71,14 @@
 								<ui-icon type="400" name="help" />
 							</ui-tooltip>
 						</div>
-						<ui-input size="lg" filled v-model="item.value" showPassword />
+						<ui-input
+							v-model="item.valueEnteredUser"
+							size="lg"
+							:placeholder="item.value || ''"
+							filled
+							showPassword
+							is-empty-value-null
+						/>
 					</div>
 				</div>
 				<div class="form__actions">
@@ -109,7 +116,7 @@
 								$t(isConnectCurrentExchange ? 'Crypto exchange edited' : 'Crypto exchange connected')
 							)
 						"
-						:disabled="!exchangeKeys.every((item) => item.value)"
+						:disabled="!exchangeKeys.every((item) => item.valueEnteredUser)"
 					>
 						{{ $t(isConnectCurrentExchange ? "Edit crypto exchange" : "Connect the crypto exchange") }}
 					</ui-button>
