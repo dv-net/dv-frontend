@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+- Added a section - other exchange services DV-3630
 - Change search payment form DV-3574
 - Added animation to the login page DV-3586
 - Added audio payment form DV-3522

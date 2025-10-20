@@ -13,6 +13,9 @@
 	import { useNotifications } from "@shared/utils/composables/useNotifications";
 	import { useI18n } from "vue-i18n";
 	import type { ExchangeSlugType } from "@dv-admin/utils/types/api/apiGo";
+	import IconFixedFloat from "@dv-admin/components/icons/exchanges/services/IconFixedFloat.vue";
+	import IconChangeNow from "@dv-admin/components/icons/exchanges/services/IconChangeNow.vue";
+	import IconUniswap from "@dv-admin/components/icons/exchanges/services/IconUniswap.vue";
 
 	const { exchangeList } = storeToRefs(useExchangeSettingsStore());
 	const { connectedExchanges, isLoadingConnectedExchanges } = storeToRefs(useWithdrawalStore());
@@ -27,6 +30,10 @@
 	const isShowActivateModal = ref(false);
 	const deletingExchange = ref<ExchangeSlugType | null>(null);
 	const activatingExchange = ref<ExchangeSlugType | null>(null);
+
+	const serviceList = [
+		{ id: 1, icon: IconFixedFloat }, { id: 2, icon: IconChangeNow }, { id: 3, icon: IconUniswap }
+	]
 
 	const goToShowConnectExchange = async (slug: string) => {
 		await router.push({ name: "exchanges-connect-one", params: { slug } });
@@ -147,12 +154,34 @@
 			</block-section>
 		</div>
 
+		<div class="services">
+			<h2 class="global-title-h2 mb-32">{{ $t('Other exchange services') }}</h2>
+			<div class="services__cards">
+				<div
+					class="card"
+					v-for="item in serviceList"
+					:key="item.id"
+				>
+					<div class="card__badge">{{ $t('Coming soon') }}</div>
+					<div class="card__top">
+						<component :is="item.icon" />
+					</div>
+					<ui-button
+						class="card__btn"
+						type="secondary"
+						disabled
+					>
+						{{ $t("Connect an exchanger") }}
+					</ui-button>
+				</div>
+			</div>
+		</div>
+
 		<delete-exchange-modal
 			v-model:isShowModal="isShowDeleteModal"
 			:handleDeleteKeys="handleDeleteKeys"
 			:deletingExchange="deletingExchange"
 		/>
-
 		<activate-exchange-modal v-model:isShowModal="isShowActivateModal" :activatingExchange="activatingExchange" />
 	</div>
 </template>
@@ -161,32 +190,29 @@
 	.page {
 		display: flex;
 		flex-direction: column;
-
 		&__cards {
 			display: grid;
 			grid-template-columns: repeat(3, 1fr);
 			gap: 12px;
-
+			padding-bottom: 32px;
+			margin-bottom: 32px;
+			border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 			.card {
 				display: flex;
 				flex-direction: column;
 				gap: 16px;
-
 				&__logo {
 					display: flex;
 					justify-content: center;
 					align-items: center;
 					height: 56px;
 				}
-
 				&__btn {
 					width: 100%;
 				}
-
 				&__btn-with-icon {
 					padding: 8px;
 				}
-
 				&__actions {
 					display: flex;
 					align-items: center;
@@ -194,7 +220,6 @@
 					position: relative;
 					z-index: 1;
 				}
-
 				&__active-exchange-title {
 					display: flex;
 					align-items: center;
@@ -205,6 +230,48 @@
 					top: -12px;
 					gap: 4px;
 					padding: 0 8px;
+				}
+			}
+		}
+		.services {
+			display: flex;
+			flex-direction: column;
+			&__cards {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 12px;
+				.card {
+					display: flex;
+					flex-direction: column;
+					gap: 16px;
+					align-items: center;
+					padding: 20px 15px;
+					border-radius: 12px;
+					border: 1px solid #E1E8F1;
+					background-color: #F7F9FB;
+					position: relative;
+					&__badge {
+						position: absolute;
+						top: 10px;
+						right: 10px;
+						padding: 2px 8px;
+						border-radius: 12px;
+						background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+						color: #fff;
+						font-size: 10px;
+						font-weight: 500;
+						letter-spacing: 0.3px;
+						box-shadow: 0 2px 6px rgba(102, 126, 234, 0.25);
+						z-index: 1;
+					}
+					&__top {
+						display: flex;
+						align-items: center;
+						flex-grow: 1;
+					}
+					&__btn {
+						width: 100%;
+					}
 				}
 			}
 		}

@@ -123,7 +123,7 @@
 						<span class="pending__text">{{ $t("We are waiting for the payment to arrive") }}</span>
 					</div>
 					<div v-if="currentAddress && isShowQrCode" class="qr">
-						<blockchain-icon class="qr__icon" width="26px" height="26px" :type="`${currentCurrency}.${currentChain}` as BlockchainType" />
+						<blockchain-icon class="qr__icon" width="24px" height="24px" :type="`${currentCurrency}.${currentChain}` as BlockchainType" />
 						<qrcode-vue :value="currentAddress" class="qr__code" level="M" render-as="svg" />
 					</div>
 				</div>
