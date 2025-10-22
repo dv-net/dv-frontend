@@ -1,24 +1,33 @@
 .ui-tooltip__content-wrapper {
-	.currency-label {
-		padding: 8px;
-		border-radius: 999px;
-		background-color: #fff;
-		color: $black;
-		font-size: 12px;
-		&.background-1 {
-			background-color: #c4b5fd;
-		}
-		&.background-2 {
-			background-color: #93c5fd;
-		}
-		&.background-0 {
-			background-color: #fde68a;
-		}
-		&.background-3 {
-			background-color: #86efac;
-		}
-		&.background-4 {
-			background-color: #fbbf24;
-		}
-	}
+  &.address-book-evm {
+    .ui-tooltip__content { max-width: 500px }
+  }
+  .currency-label {
+    padding: 8px;
+    border-radius: 999px;
+    background-color: #fff;
+    color: $black;
+    font-size: 12px;
+    &.background-1 { background-color: #c4b5fd; }
+    &.background-2 { background-color: #93c5fd; }
+    &.background-0 { background-color: #fde68a; }
+    &.background-3 { background-color: #86efac; }
+    &.background-4 { background-color: #fbbf24; }
+    &.background-5 { background-color: #f9a8d4; }
+    &.background-6 { background-color: #fca5a5; }
+    &.background-7 { background-color: #fcd34d; }
+    &.background-8 { background-color: #a5b4fc; }
+    &.background-9 { background-color: #67e8f9; }
+    &.background-10 { background-color: #bbf7d0; }
+    &.background-11 { background-color: #fbcfe8; }
+    &.background-12 { background-color: #fecdd3; }
+    &.background-13 { background-color: #d8b4fe; }
+    &.background-14 { background-color: #bef264; }
+    &.background-15 { background-color: #fca5f1; }
+    &.background-16 { background-color: #bae6fd; }
+    &.background-17 { background-color: #fdba74; }
+    &.background-18 { background-color: #bbf0f4; }
+    &.background-19 { background-color: #e9d5ff; }
+    &.background-20 { background-color: #fde1b7; }
+  }
 }

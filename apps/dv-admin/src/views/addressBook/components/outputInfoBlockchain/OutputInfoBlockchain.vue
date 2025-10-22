@@ -32,9 +32,9 @@
 	</div>
 
 	<div v-else-if="row.type === ADDRESS_BOOK_TYPES.UNIVERSAL" class="flex flex-y-center gap-8">
-		<span class="fz-16">{{ row.blockchain ? capitalizeFirstLetter(row.blockchain) : "—" }}</span>
+		<span class="fz-16 flex-shrink-0">{{ row.blockchain ? capitalizeFirstLetter(row.blockchain) : "—" }}</span>
 		<span class="grey-opacity">|</span>
-		<div v-if="row.currencies" class="flex flex-y-center gap-4">
+		<div v-if="row.currencies" class="flex flex-y-center gap-4" style="flex-wrap: wrap">
 			<blockchain-icon
 				v-for="item in row.currencies"
 				:key="item.currency_id"
@@ -47,7 +47,11 @@
 
 	<div v-else-if="row.type === ADDRESS_BOOK_TYPES.EVM" class="flex flex-y-center gap-4">
 		<span class="fz-16">{{ $t("All EVM blockchains") }}</span>
-		<tooltip-helper v-if="row.blockchains" :title="$t('All EVM blockchains')">
+		<tooltip-helper
+			v-if="row.blockchains"
+			:title="$t('All EVM blockchains')"
+			popper-class="address-book-evm"
+		>
 			<template #infoText>
 				<div class="flex flex-column gap-8 p-10">
 					<div v-for="item in row.blockchains" :key="item" class="flex flex-y-center gap-8">
