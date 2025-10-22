@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [1.0.18] - 2025-10-22
+
 - Added a section - other exchange services DV-3630
 - Change search payment form DV-3574
 - Added animation to the login page DV-3586
