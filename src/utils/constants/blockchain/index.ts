@@ -47,8 +47,6 @@ export const DEFAULT_CURRENCIES_INFO: Record<
 	"DOGE.Dogecoin": { precision: 8, depositTime: 1, confirmations: 1 },
 	"DAI.Ethereum": { precision: 2, depositTime: 2, confirmations: 12 },
 	"ETH.Ethereum": { precision: 6, depositTime: 2, confirmations: 12 },
-	"LTC.Ethereum": { precision: 6, depositTime: 2, confirmations: 12 },
-	"TON.Ethereum": { precision: 6, depositTime: 2, confirmations: 12 },
 	"USDC.Ethereum": { precision: 2, depositTime: 2, confirmations: 12 },
 	"USDT.Ethereum": { precision: 2, depositTime: 2, confirmations: 12 },
 	"LTC.Litecoin": { precision: 8, depositTime: 2, confirmations: 1 },
