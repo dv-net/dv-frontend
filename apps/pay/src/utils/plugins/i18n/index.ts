@@ -3,7 +3,7 @@ import { getLocaleLS, getLocaleUser } from "@shared/utils/helpers/locale";
 import { localesI18nArray } from "@shared/utils/constants/locale";
 
 const getLocale = (): string => {
-	const locale: string | null = getLocaleLS();
+	const locale: string | null = getLocaleLS(true);
 	const localeBrowser: string | null = getLocaleUser();
 	if (locale && localesI18nArray.includes(locale)) {
 		return locale;

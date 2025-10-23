@@ -31,7 +31,7 @@
 			return locales[0];
 		},
 		set: (value: Locale) => {
-			setLocaleLS(value.isoCode);
+			setLocaleLS(value.isoCode, true);
 			locale.value = value.isoCode;
 		}
 	});
