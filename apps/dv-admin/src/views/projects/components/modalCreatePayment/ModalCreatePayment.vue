@@ -14,7 +14,7 @@
 	import { useProjectsStore } from "@dv-admin/stores/projects";
 	import { storeToRefs } from "pinia";
 	import type { IUiSelectOptions } from "@dv-admin/utils/types/general";
-	import { generateUUID, getCurrentBlockchain, getCurrentCoin } from "@shared/utils/helpers/general";
+	import { getCurrentBlockchain, getCurrentCoin } from "@shared/utils/helpers/general";
 	import type { IExternalWalletRequest, IStoreResponse } from "@dv-admin/utils/types/api/apiGo";
 	import { useI18n } from "vue-i18n";
 	import { useNotifications } from "@shared/utils/composables/useNotifications";
@@ -22,6 +22,7 @@
 	import BlockchainCard from "@dv-admin/components/ui/blockchainCard/BlockchainCard.vue";
 	import type { BlockchainType } from "@shared/utils/types/blockchain";
 	import { postApiWalletAddresses } from "@dv-admin/services/api/hotWallets.ts";
+	import { v4 as uuidv4 } from "uuid";
 
 	const { currenciesProject } = storeToRefs(useProjectsStore());
 	const { getCurrenciesProject } = useProjectsStore();
@@ -74,7 +75,7 @@
 	};
 
 	const handleChangeCheckbox = (value: boolean) => {
-		form.value.store_external_id = value ? generateUUID() : null;
+		form.value.store_external_id = value ? uuidv4() : null;
 	};
 
 	const resetDataForm = () => {
@@ -87,7 +88,7 @@
 
 	watch(isShow, (value: boolean) => {
 		if (value) {
-			form.value.store_external_id = generateUUID();
+			form.value.store_external_id = uuidv4();
 			isGenerateStoreID.value = true;
 		}
 	});

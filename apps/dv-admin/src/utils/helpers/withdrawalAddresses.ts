@@ -1,8 +1,8 @@
-import { generateUUID } from "@shared/utils/helpers/general";
 import type { IWithdrawalAddressItemResponse } from "@dv-admin/utils/types/api/apiGo";
+import { v4 as uuidv4 } from "uuid";
 
 export const getFreshAddressee = () => ({
-	id: generateUUID(),
+	id: uuidv4(),
 	address: "",
 	name: "",
 	updated_at: "",

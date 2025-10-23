@@ -30,7 +30,11 @@
 		const normalizedSearch = searchValue.toLowerCase();
 		const searchLower = convertToEnglishLayout(normalizedSearch, locale.value);
 		const searchLowerAlt = transliterate(normalizedSearch);
+		const isShortQuery = searchValue.length <= 2;
 		const matchedCoins = new Set<string>();
+		const checkMatch = (text: string, query: string) => {
+			return isShortQuery ? text.startsWith(query) : text.includes(query);
+		};
 		for (const item of addresses.value) {
 			const coin = getCurrentCoin(item.currency.id);
 			if (!coin) continue;
@@ -38,8 +42,8 @@
 			const { contract_address } = item.currency;
 			const matches = [
 				(searchLower === "bsc" && currencyIdLower.includes("bnbsmartchain")),
-				currencyIdLower.includes(searchLower),
-				currencyIdLower.includes(searchLowerAlt),
+				checkMatch(currencyIdLower, searchLower),
+				checkMatch(currencyIdLower, searchLowerAlt),
 				contract_address === searchValue,
 			];
 			if (matches.some(Boolean)) matchedCoins.add(coin);
@@ -54,8 +58,8 @@
 				blockchains: item.currency.blockchains?.map(blockchain => ({
 					...blockchain,
 					isActive:
-						blockchain.blockchain.toLowerCase().includes(searchLower) ||
-						blockchain.blockchain.toLowerCase().includes(searchLowerAlt),
+						checkMatch(blockchain.blockchain.toLowerCase(), searchLower) ||
+						checkMatch(blockchain.blockchain.toLowerCase(), searchLowerAlt),
 				})),
 			},
 		})) as IPayerAddressResponse[];
