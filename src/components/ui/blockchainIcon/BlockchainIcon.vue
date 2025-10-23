@@ -6,9 +6,7 @@
 	import IconUSDTTron from "@shared/components/icons/blockchains/IconUSDTTron.vue";
 	import IconUSDCEthereum from "@shared/components/icons/blockchains/IconUSDCEthereum.vue";
 	import IconUSDTEthereum from "@shared/components/icons/blockchains/IconUSDTEthereum.vue";
-	import IconLTCEthereum from "@shared/components/icons/blockchains/IconLTCEthereum.vue";
 	import IconTRXTron from "@shared/components/icons/blockchains/IconTRXTron.vue";
-	import IconTONEthereum from "@shared/components/icons/blockchains/IconTONEthereum.vue";
 	import IconLitecoin from "@shared/components/icons/blockchains/IconLitecoin.vue";
 	import IconBitcoincash from "@shared/components/icons/blockchains/IconBitcoincash.vue";
 	import IconDAIEthereum from "@shared/components/icons/blockchains/IconDAIEthereum.vue";
@@ -93,10 +91,8 @@
 		"WLD.Ethereum": markRaw(IconWldEthereum),
 		"PYUSD.Ethereum": markRaw(IconPyusdEthereum),
 		"ARB.Ethereum": markRaw(IconArbEthereum),
-		"LTC.Ethereum": markRaw(IconLTCEthereum),
 		"PEPE.Ethereum": markRaw(IconPepeEthereum),
 		"WLFI.Ethereum": markRaw(IconWlfiEthereum),
-		"TON.Ethereum": markRaw(IconTONEthereum),
 		"CAKE.Ethereum": markRaw(IconCakeEthereum),
 		"ENA.Ethereum": markRaw(IconEnaEthereum),
 		"BNB.BNBSmartChain": markRaw(IconBinance),

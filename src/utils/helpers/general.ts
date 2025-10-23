@@ -170,19 +170,6 @@ export const copiedText = async (text: string) => {
 	await navigator.clipboard.writeText(text);
 };
 
-// uuid - 9f2b3ef7-2e06-4f02-bf4b-6f19f2a1e05c
-export const generateUUID = (): string => {
-	if (crypto.randomUUID) return crypto.randomUUID();
-	const buf = new Uint8Array(16);
-	crypto.getRandomValues(buf);
-	buf[6] = (buf[6] & 0x0f) | 0x40;
-	buf[8] = (buf[8] & 0x3f) | 0x80;
-	return [...buf]
-		.map((b) => b.toString(16).padStart(2, "0"))
-		.join("")
-		.replace(/^(.{8})(.{4})(.{4})(.{4})(.{12})$/, "$1-$2-$3-$4-$5");
-};
-
 // URL validation
 export const isValidUrl = (string: any) => {
 	try {

@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+- Update icons DV-3646
+
 ## [1.0.18] - 2025-10-22
 
 - Added a section - other exchange services DV-3630
