@@ -40,6 +40,7 @@ export const useHotWalletsStore = defineStore("hotWallets", () => {
 	const currentBlockchainHotWallets = ref<string>("all");
 	const selectedBlockchainFromDashboard = ref<string>();
 	const walletBalancesHot = ref<string>("");
+	const isLoadingWalletBalancesHot = ref<boolean>(true)
 	const isHideLowBalance = ref<boolean>(true);
 	const balanceFiatFrom = ref<number | null>(null);
 	const walletSeeds = ref<IWalletSeedsResponse>({});
@@ -122,6 +123,8 @@ export const useHotWalletsStore = defineStore("hotWallets", () => {
 			if (data) walletBalancesHot.value = data;
 		} catch (error: any) {
 			throw error;
+		} finally {
+			isLoadingWalletBalancesHot.value = false
 		}
 	};
 
@@ -228,6 +231,7 @@ export const useHotWalletsStore = defineStore("hotWallets", () => {
 		allWallets,
 		isSelectedAllWallets,
 		displayedWallets,
+		isLoadingWalletBalancesHot,
 		handleSelectWallet,
 		getWallets,
 		getWalletBalancesHot,

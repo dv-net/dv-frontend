@@ -84,6 +84,7 @@
 				:options="options"
 				size="md"
 				:placeholder="$t('Select currency')"
+				with-search
 				clearable
 				@change="getNewDataTransactions"
 				@clear="getNewDataTransactions"

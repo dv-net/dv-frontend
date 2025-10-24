@@ -15,7 +15,7 @@
 	import { useI18n } from "vue-i18n";
 
 	const { balancesExchanges, walletBalancesCold, isLoadingBalances } = storeToRefs(useDashboardStore());
-	const { walletBalancesHot } = storeToRefs(useHotWalletsStore());
+	const { walletBalancesHot, isLoadingWalletBalancesHot } = storeToRefs(useHotWalletsStore());
 	const { userSettings, isLoadingUpdateUserSettings } = storeToRefs(useUserSettingsStore());
 	const { postUserSettings } = useUserSettingsStore();
 
@@ -60,6 +60,7 @@
 					:no-current-exchange="!balancesExchanges?.total_usd"
 					:icon="IconHotWallets"
 					:amount="walletBalancesHot"
+					:is-loading-amount="isLoadingWalletBalancesHot"
 					:title="$t('On hot wallets')"
 					:tooltip-text="`${$t('This is the balance of funds that have come from your clients')}.`"
 				>

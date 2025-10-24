@@ -3,11 +3,13 @@
 	import BlockSection from "@dv-admin/components/ui/BlockSection/BlockSection.vue";
 	import type { Component } from "vue";
 	import TooltipHelper from "@dv-admin/components/ui/tooltipHelper/TooltipHelper.vue";
+	import LoaderSpinner from "@shared/components/ui/loaderSpinner/LoaderSpinner.vue";
 
-	defineProps<{
+	const { isLoadingAmount = false } = defineProps<{
 		icon: Component;
 		title: string;
 		amount?: string;
+		isLoadingAmount?: boolean;
 		color?: string;
 		tooltipText: string;
 		noCurrentExchange: boolean;
@@ -28,7 +30,10 @@
 					<span class="card__text">{{ title }}</span>
 					<tooltip-helper :title="title" :text="tooltipText" />
 				</div>
-				<span class="card__amount">
+				<div v-if="isLoadingAmount" class="card__loader">
+					<loader-spinner width="24px" />
+				</div>
+				<span v-else class="card__amount">
 					{{ formatDollars(amount) }}
 				</span>
 			</div>
@@ -54,6 +59,11 @@
 			display: flex;
 			align-items: center;
 			gap: 8px;
+		}
+		&__loader {
+			height: 40px;
+			display: flex;
+			align-items: center;
 		}
 
 		&__content {
