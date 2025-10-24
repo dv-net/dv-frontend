@@ -7,6 +7,8 @@ lerna-debug.log*
 
 node_modules
 .DS_Store
+.cursorrules
+.cursorignore
 dist
 dist-ssr
 dist-temp

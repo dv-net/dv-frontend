@@ -135,6 +135,7 @@
 							size="lg"
 							type="default"
 							:options="optionsCurrencies"
+							with-search
 							:teleport="false"
 							:placeholder="$t('Select currency')"
 						>

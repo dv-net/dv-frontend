@@ -22,23 +22,34 @@
 	} from "@dv.net/ui-kit/dist/helpers/animations-list";
 	import TooltipHelper from "@dv-admin/components/ui/tooltipHelper/TooltipHelper.vue";
 	import { useAuthEmailSectionStore } from "@dv-admin/stores/auth/authEmailSection";
+	import LoaderSpinner from "@shared/components/ui/loaderSpinner/LoaderSpinner.vue";
 
 	const { t } = useI18n();
 	const router = useRouter();
 	const route = useRoute();
-	const { walletBalancesHot } = storeToRefs(useHotWalletsStore());
+	const { walletBalancesHot, isLoadingWalletBalancesHot } = storeToRefs(useHotWalletsStore());
 	const { user, ownerData } = storeToRefs(useAuthStore());
 	const { logout } = useAuthStore();
 	const { checkEmailCodeSent } = useAuthEmailSectionStore();
 	const { isShowModalLanguage } = storeToRefs(useLayoutStore());
 	const { toggleMenu } = useLayoutStore();
 
+	const formattedBalance = computed((): { main: string; fractional: string } => {
+		const balance = parseFloat(walletBalancesHot.value);
+		if (isNaN(balance) || balance <= 0) return { main: "0", fractional: "" };
+		const formatted = formatDollars(walletBalancesHot.value);
+		if (balance > 0 && balance < 1) {
+			return {
+				main: formatted.replace(/\..*$/, ""),
+				fractional: balance >= 0.01 ? formatted.replace(/^.*?(?=\.)/, "") : ""
+			};
+		}
+		return { main: formatted, fractional: "" };
+	});
+
 	const profileMenuList = computed<ProfileMenuItem[][]>(() => [
 		[
-			{
-				name: "email",
-				isShow: !user.value?.email_verified_at
-			},
+			{ name: "email", isShow: !user.value?.email_verified_at },
 			{
 				name: "telegram",
 				isShow: !ownerData.value?.telegram,
@@ -102,28 +113,22 @@
 			<ui-icon-button size="lg" type="clear" icon-name="menu  1" icon-type="100" @click="toggleMenu" />
 			<icon-logo class="header__logo" @click="router.push({ name: 'dashboard' })" />
 		</div>
-		<div v-if="walletBalancesHot" class="header__balance">
+		<div class="header__balance">
 			<span class="header__balance-text">{{ $t("On hot wallets") }}</span>
-			<span>
-				<span class="header__balance-price">
-					{{
-						parseFloat(walletBalancesHot) > 0 && parseFloat(walletBalancesHot) < 1
-							? formatDollars(walletBalancesHot).replace(/\..*$/, "")
-							: formatDollars(walletBalancesHot)
-					}}
+			<loader-spinner v-if="isLoadingWalletBalancesHot" width="24px" />
+			<div v-else class="flex flex-center gap-4">
+				<span class="header__balance-amount">
+					<span class="header__balance-price">{{ formattedBalance.main }}</span>
+					<span v-if="formattedBalance.fractional" class="header__balance-price-fractional">
+						{{ formattedBalance.fractional }}
+					</span>
 				</span>
-				<span
-					v-if="parseFloat(walletBalancesHot) >= 0.01 && parseFloat(walletBalancesHot) < 1"
-					class="header__balance-price-fractional"
-				>
-					{{ formatDollars(walletBalancesHot).replace(/^.*?(?=\.)/, "") }}
-				</span>
-			</span>
-			<tooltip-helper
-				style="align-self: center"
-				:title="$t('Balance')"
-				:text="`${$t('This is the current balance of funds in your hot wallets')}.`"
-			/>
+				<tooltip-helper
+					style="align-self: center"
+					:title="$t('Balance')"
+					:text="`${$t('This is the current balance of funds in your hot wallets')}.`"
+				/>
+			</div>
 		</div>
 		<div class="header__profile">
 			<lang-select for-header is-hidden />
@@ -172,6 +177,11 @@
 			&-text {
 				margin-bottom: 3px;
 				color: #6b6d80;
+			}
+
+			&-amount {
+				display: flex;
+				align-items: baseline;
 			}
 
 			&-price {

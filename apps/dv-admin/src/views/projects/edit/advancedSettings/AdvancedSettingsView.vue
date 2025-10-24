@@ -204,7 +204,7 @@
 				<p class="whitelist__title">
 					{{ $t("Whitelist your IP address to protect access to your tokens") }}
 				</p>
-				<ui-table :headers="headers" :data="whitelistsProject" table-layout="fixed">
+				<ui-table v-if="whitelistsProject.length" :headers="headers" :data="whitelistsProject" table-layout="fixed" class="mt-16">
 					<template #body-cell-action="{ row }">
 						<ui-button
 							type="negative"
@@ -332,7 +332,7 @@
 		}
 		.whitelist {
 			&__title {
-				margin: 8px 0 16px;
+				margin-top: 8px;
 				color: #828282;
 				font-size: 16px;
 				font-weight: 400;

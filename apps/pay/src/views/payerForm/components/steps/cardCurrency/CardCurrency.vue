@@ -122,7 +122,7 @@
 			font-size: 10px;
 			font-weight: 500;
 			&.active {
-				background-color: #FBDFAA;
+				background-color: #e3edfc;
 			}
 		}
 		&__price {
