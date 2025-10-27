@@ -3,6 +3,10 @@
 		"min": "мин",
 		"s": "сек"
 	},
+	"Connect wallet": "Подключить кошелек",
+	"Hide": "Скрыть",
+
+
 	"Payment by cryptocurrency in": "Оплата криптовалютой в",
 	"Payment by cryptocurrency": "Оплата криптовалютой",
 	"All assets": "Все активы",
