@@ -17,7 +17,7 @@
 	import { formatDate } from "@dv-admin/utils/helpers/dateParse.ts";
 	import BlockSection from "@dv-admin/components/ui/BlockSection/BlockSection.vue";
 	import { UiCheckbox, UiSelect } from "@dv.net/ui-kit";
-	import { computed } from "vue";
+	import { computed, onBeforeUnmount, onMounted, ref } from "vue";
 	import type { IUiSelectOptions } from "@dv-admin/utils/types/general.ts";
 	import { getCurrentBlockchain, getCurrentCoin } from "@shared/utils/helpers/general.ts";
 	import { optionsChartTransactions } from "@dv-admin/utils/constants/history";
@@ -40,6 +40,9 @@
 	const { isHideLowBalance, transactionsStats, filterTransactions } = storeToRefs(useTransactionStore());
 	const { getTransaction, getTransactionStats } = useTransactionStore();
 	const { dictionary } = storeToRefs(useGeneralStore());
+
+	const chartRef = ref();
+	const isComponentMounted = ref<boolean>(false);
 
 	const options = computed<IUiSelectOptions[]>(() => {
 		if (!dictionary.value?.available_currencies?.length) return [];
@@ -66,13 +69,31 @@
 
 	const handleMouseEnter = () => {
 		const tooltip = document.getElementById("chartjs-tooltip");
-		if (tooltip) tooltip.style.display = "flex";
+		if (tooltip && isComponentMounted.value) {
+			tooltip.style.display = "flex";
+		}
 	};
 
 	const handleMouseLeave = () => {
-		const tooltip = document.getElementById("chartjs-tooltip");
-		if (tooltip) tooltip.style.display = "none";
+		cleanupTooltip()
 	};
+
+	const cleanupTooltip = () => {
+		const tooltip = document.getElementById("chartjs-tooltip");
+		if (tooltip) {
+			tooltip.style.display = "none";
+			tooltip.style.opacity = "0";
+		}
+	};
+
+	onMounted(() => {
+		isComponentMounted.value = true;
+	});
+
+	onBeforeUnmount(() => {
+		isComponentMounted.value = false;
+		cleanupTooltip();
+	});
 </script>
 
 <template>
