@@ -15,7 +15,7 @@
 	import { useMediaQuery } from "@shared/utils/composables/useMediaQuery.ts";
 	import WalletTronConnect from "@pay/views/payerForm/components/steps/stepThree/walletTronConnect/WalletTronConnect.vue";
 
-	const { currentAddress, currentCurrency, currentChain, currentStep, timeline, filteredBlockchains, amount } = storeToRefs(usePayerFormStore());
+	const { currentAddress, currentCurrency, currentChain, currentStep, timeline, filteredBlockchains } = storeToRefs(usePayerFormStore());
 	const { getAmountRate } = usePayerFormStore();
 
 	const isShowQrCode = ref<boolean>(false);
@@ -23,11 +23,6 @@
 	const isMediaMax768 = useMediaQuery("(max-width: 768px)");
 	const isMediaMax480 = useMediaQuery("(max-width: 480px)");
 	const showWalletConnect = ref<boolean>(false);
-
-	const handleTransactionSent = (txHash: string) => {
-		console.log('test');
-		// showWalletConnect.value = false;
-	};
 
 	const currentPrice = computed<string>(() => getAmountRate(currentCurrency.value as CurrencyType));
 	const inputTextSum = computed<string>(() => `${currentPrice.value} ${currentCurrency.value}`)
@@ -108,9 +103,7 @@
 						v-if="showWalletConnect && isTronSupported"
 						:recipient-address="currentAddress"
 						:amount="currentPrice"
-						:currency="currentCurrency"
 						:is-usdt-token="currentCurrency === 'USDT'"
-						@transaction-sent="handleTransactionSent"
 					/>
 				</transition>
 				<div class="sum">
