@@ -9,6 +9,7 @@ node_modules
 .DS_Store
 .cursorrules
 .cursorignore
+.cursor
 dist
 dist-ssr
 dist-temp
