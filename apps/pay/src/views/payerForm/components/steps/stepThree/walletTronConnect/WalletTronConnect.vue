@@ -4,6 +4,8 @@
 	import { formatAmountBlockchain } from "@shared/utils/helpers/general.ts";
 	import okxWalletImage from "@pay/assets/images/wallets/okx.png";
 	import tronLinkWalletImage from "@pay/assets/images/wallets/tronLink.png";
+	import walletConnectImage from "@pay/assets/images/wallets/walletConnect.png";
+	import { WalletConnectWallet, WalletConnectChainID } from "@tronweb3/walletconnect-tron";
 	import { usePolling } from "@shared/utils/composables/usePolling.ts";
 	import { TRON_USDT_CONTRACT } from "@pay/utils/constants/wallets";
 	import { useNotifications } from "@shared/utils/composables/useNotifications.ts";
@@ -16,6 +18,7 @@
 	const walletList = ref<any[]>([]);
 	const okxWallet = ref<any>(null);
 	const tronLinkWallet = ref<any>(null);
+	const wcWallet = ref<WalletConnectWallet | null>(null);
 
 	const handleSendTransaction = async (walletId: string) => {
 		try {
@@ -63,6 +66,16 @@
 			} else if (okxWallet.value && walletId === "okx") {
 				const resp = await okxWallet.value.request({ method: "tron_requestAccounts" });
 				if (resp.code === 200) await getAvailableWallets();
+			} else if (wcWallet.value && walletId === "walletConnect") {
+				const { address } = await wcWallet.value.connect();
+				if (!address) {
+					notify("Wallet connection error")
+					return;
+				}
+				const findIndex = walletList.value.findIndex(item => item.id === 'walletConnect')
+				if (findIndex === -1) return;
+				walletList.value[findIndex].initialized = true;
+				notify("The wallet has been successfully connected", 'success')
 			}
 		} catch (error: any) {
 			console.error(error);
@@ -98,12 +111,40 @@
 		if (isOkxInstalled) {
 			okxWallet.value = window.okxwallet.tronWeb;
 		}
+
+		// WalletConnect
+		wcWallet.value = new WalletConnectWallet({
+			network: WalletConnectChainID.Mainnet,
+			options: {
+				projectId: import.meta.env.VITE_WC_PROJECT_ID,
+				metadata: {
+					name: "DV.Net",
+					description: "Crypto payment gateway",
+					url: window.location.origin,
+					icons: ["https://www.svgrepo.com/show/533810/chef-man-cap.svg"]
+				}
+			},
+			web3ModalConfig: {
+				themeMode: "light",
+				themeVariables: { '--w3m-z-index': 1000 },
+				explorerRecommendedWalletIds: [
+					'1ae92b26df02f0abca6304df07debccd18262fdf5fe82daa81593582dac9a369',
+					'4622a2b2d6af1c9844944291e5e7351a6aa24cd7b23099efac1b2fd875da31a0'
+				]
+			}
+		});
+		const { address } = await wcWallet.value.checkConnectStatus();
+		walletList.value.push({
+			id: "walletConnect",
+			name: "WalletConnect",
+			icon: walletConnectImage,
+			detected: true,
+			initialized: Boolean(address)
+		});
 	};
 
 	onMounted(async () => {
-		await startPolling(async () => {
-			await getAvailableWallets();
-		});
+		await getAvailableWallets()
 	});
 
 	declare global {
@@ -118,7 +159,11 @@
 
 <template>
 	<div class="wallets">
-		<div v-for="wallet in walletList" :key="wallet.id" class="wallet">
+		<div
+			v-for="wallet in walletList"
+			:key="wallet.id"
+			class="wallet"
+		>
 			<div class="wallet__inner">
 				<img class="wallet__img" :src="wallet.icon" alt="Icon" />
 				<span class="wallet__name">{{ wallet.name }}</span>
@@ -136,7 +181,7 @@
 	.wallets {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
-		gap: 20px;
+		gap: 8px;
 		.wallet {
 			display: flex;
 			align-items: center;
@@ -160,7 +205,6 @@
 			&__img {
 				width: 24px;
 			}
-
 			&__state {
 				color: $main-text-grey-color;
 				font-size: 14px;

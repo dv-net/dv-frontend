@@ -25,6 +25,7 @@
 	},
 	"dependencies": {
 		"@dv.net/ui-kit": "^7.2.13",
+		"@tronweb3/walletconnect-tron": "^3.0.0",
 		"axios": "^1.11.0",
 		"chart.js": "^4.4.9",
 		"chartjs-plugin-crosshair": "^2.0.0",
@@ -33,6 +34,7 @@
 		"lottie-web-vue": "^2.0.7",
 		"pinia": "^3.0.2",
 		"qrcode.vue": "^3.4.1",
+		"tronweb": "^6.0.4",
 		"uuid": "^13.0.0",
 		"vue": "^3.5.15",
 		"vue-chartjs": "^5.3.2",
