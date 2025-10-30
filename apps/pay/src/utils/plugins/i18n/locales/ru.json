@@ -3,10 +3,13 @@
 		"min": "мин",
 		"s": "сек"
 	},
+	"Pay via TronLink / OKX Wallet": "Оплатить через TronLink / OKX Wallet",
 	"Connect wallet": "Подключить кошелек",
+	"Installed": "Установлен",
 	"Hide": "Скрыть",
 	"Not installed": "Не установлен",
 	"Connect": "Подключить",
+	"Connected": "Подключен",
 	"Pay": "Оплатить",
 	"Invalid amount": "Неверная сумма",
 	"Failed to get wallet address": "Не удалось получить адрес кошелька",

@@ -1,6 +1,37 @@
+<script setup lang="ts">
+const uniqueId: string = "uniqueId-usde"
+</script>
+
 <template>
-	<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-		<g clip-path="url(#clip0_7923_6571)">
+	<svg :width="24" :height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<defs>
+			<radialGradient
+				:id="`paint0_radial_${uniqueId}`"
+				cx="0"
+				cy="0"
+				r="1"
+				gradientUnits="userSpaceOnUse"
+				:gradientTransform="`translate(12.0254 3.65597) rotate(90) scale(24.8492 17.4914)`"
+			>
+				<stop offset="0.03125" stop-color="#3A3A3A" />
+				<stop offset="1" stop-color="#1C1C1C" />
+			</radialGradient>
+			<linearGradient
+				:id="`paint1_linear_${uniqueId}`"
+				x1="12.0007"
+				y1="-0.000780551"
+				x2="12.0007"
+				y2="24.0022"
+				gradientUnits="userSpaceOnUse"
+			>
+				<stop stop-color="white" />
+				<stop offset="1" stop-color="#111111" />
+			</linearGradient>
+			<clipPath :id="`clip0_${uniqueId}`">
+				<rect width="24" height="24" fill="white" />
+			</clipPath>
+		</defs>
+		<g :clip-path="`url(#clip0_${uniqueId})`">
 			<path
 				d="M12.0036 0.428223C18.398 0.428223 23.5775 5.60777 23.5775 12.0021C23.5775 18.3904 18.398 23.576 12.0036 23.576C5.60924 23.576 0.429688 18.3904 0.429688 12.0021C0.429688 5.60777 5.60924 0.428223 12.0036 0.428223Z"
 				fill="#111111"
@@ -9,12 +40,12 @@
 			/>
 			<path
 				d="M12.0022 0.216797C5.49305 0.216797 0.216797 5.49305 0.216797 12.0022C0.216797 18.5114 5.49305 23.7877 12.0022 23.7877C18.5114 23.7877 23.7877 18.5114 23.7877 12.0022C23.7877 5.49305 18.5114 0.216797 12.0022 0.216797Z"
-				fill="url(#paint0_radial_7923_6571)"
+				:fill="`url(#paint0_radial_${uniqueId})`"
 				fill-opacity="0.7"
 			/>
 			<path
 				d="M12.0022 0.216797C5.49305 0.216797 0.216797 5.49305 0.216797 12.0022C0.216797 18.5114 5.49305 23.7877 12.0022 23.7877C18.5114 23.7877 23.7877 18.5114 23.7877 12.0022C23.7877 5.49305 18.5114 0.216797 12.0022 0.216797Z"
-				stroke="url(#paint1_linear_7923_6571)"
+				:stroke="`url(#paint1_linear_${uniqueId})`"
 				stroke-width="0.431704"
 			/>
 			<path
@@ -28,32 +59,5 @@
 				fill="white"
 			/>
 		</g>
-		<defs>
-			<radialGradient
-				id="paint0_radial_7923_6571"
-				cx="0"
-				cy="0"
-				r="1"
-				gradientUnits="userSpaceOnUse"
-				gradientTransform="translate(12.0254 3.65597) rotate(90) scale(24.8492 17.4914)"
-			>
-				<stop offset="0.03125" stop-color="#3A3A3A" />
-				<stop offset="1" stop-color="#1C1C1C" />
-			</radialGradient>
-			<linearGradient
-				id="paint1_linear_7923_6571"
-				x1="12.0007"
-				y1="-0.000780551"
-				x2="12.0007"
-				y2="24.0022"
-				gradientUnits="userSpaceOnUse"
-			>
-				<stop stop-color="white" />
-				<stop offset="1" stop-color="#111111" />
-			</linearGradient>
-			<clipPath id="clip0_7923_6571">
-				<rect width="24" height="24" fill="white" />
-			</clipPath>
-		</defs>
 	</svg>
 </template>
