@@ -1,8 +1,22 @@
+<script setup lang="ts">
+const uniqueId: string = "uniqueId-ena-ethereum"
+</script>
+
 <template>
-	<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<svg :width="24" :height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<defs>
+			<radialGradient :id="`paint0_radial_${uniqueId}`" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(12.0289 3.50542) rotate(90) scale(25.301 17.8093)">
+				<stop offset="0.03125" stop-color="#3A3A3A"/>
+				<stop offset="1" stop-color="#1C1C1C"/>
+			</radialGradient>
+			<linearGradient :id="`paint1_linear_${uniqueId}`" x1="12.0011" y1="-0.224694" x2="12.0011" y2="24.2279" gradientUnits="userSpaceOnUse">
+				<stop stop-color="white"/>
+				<stop offset="1" stop-color="#111111"/>
+			</linearGradient>
+		</defs>
 		<path d="M12.0015 0.217041C18.509 0.217041 23.7862 5.49433 23.7862 12.0018C23.7862 18.5092 18.509 23.7865 12.0015 23.7865C5.49409 23.7865 0.216797 18.5092 0.216797 12.0018C0.216797 5.49433 5.49409 0.217041 12.0015 0.217041Z" fill="#111111" stroke="#111111" stroke-width="0.43406"/>
-		<path d="M12.002 0.00195312C5.37151 0.00195312 0.00195312 5.37151 0.00195312 12.002C0.00195312 18.6262 5.37151 24.002 12.002 24.002C18.6262 24.002 24.002 18.6324 24.002 12.002C24.002 5.37151 18.6262 0.00195312 12.002 0.00195312Z" fill="url(#paint0_radial_7925_7246)" fill-opacity="0.7"/>
-		<path d="M12.0012 0.223145C18.5087 0.223145 23.7798 5.49429 23.7798 12.0017C23.7798 18.5092 18.5087 23.7803 12.0012 23.7803C5.4938 23.7803 0.222656 18.5092 0.222656 12.0017C0.222656 5.49429 5.4938 0.223145 12.0012 0.223145Z" stroke="url(#paint1_linear_7925_7246)" stroke-width="0.439553"/>
+		<path d="M12.002 0.00195312C5.37151 0.00195312 0.00195312 5.37151 0.00195312 12.002C0.00195312 18.6262 5.37151 24.002 12.002 24.002C18.6262 24.002 24.002 18.6324 24.002 12.002C24.002 5.37151 18.6262 0.00195312 12.002 0.00195312Z" :fill="`url(#paint0_radial_${uniqueId})`" fill-opacity="0.7"/>
+		<path d="M12.0012 0.223145C18.5087 0.223145 23.7798 5.49429 23.7798 12.0017C23.7798 18.5092 18.5087 23.7803 12.0012 23.7803C5.4938 23.7803 0.222656 18.5092 0.222656 12.0017C0.222656 5.49429 5.4938 0.223145 12.0012 0.223145Z" :stroke="`url(#paint1_linear_${uniqueId})`" stroke-width="0.439553"/>
 		<path fill-rule="evenodd" clip-rule="evenodd" d="M9.3758 6.4231H9.11747L8.95141 6.61992L4.67668 11.645L4.36914 12.0018L4.67668 12.3585L8.95756 17.3836L9.12363 17.5805H9.38195H17.0888H17.6423V17.0269V13.8285H16.5352V16.4733H10.5936L14.1487 12.3647L14.4624 12.0018L14.1487 11.6389L10.5936 7.53022H16.5352V10.175H17.6423V6.97666V6.4231H17.0888H9.3758ZM9.38195 7.82545L5.82685 12.0018L9.38195 16.1781L12.9924 12.0018L9.38195 7.82545Z" fill="white"/>
 		<rect x="14.502" y="14.5015" width="9" height="9" rx="4.5" stroke="white"/>
 		<circle cx="19.002" cy="19.0015" r="4" fill="#EDEFF1"/>
@@ -12,15 +26,5 @@
 		<path d="M19.0021 18.3069L19.0026 18.3071V20.0181L19.0021 20.0185L17.3359 19.0509L19.0021 18.3069Z" fill="#373737"/>
 		<path d="M17.3359 19.3613L19.0021 21.6681V20.3284L17.3359 19.3613Z" fill="#898989"/>
 		<path d="M19.002 20.3284V21.6681L20.6691 19.3613L19.002 20.3284Z" fill="#323232"/>
-		<defs>
-			<radialGradient id="paint0_radial_7925_7246" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(12.0289 3.50542) rotate(90) scale(25.301 17.8093)">
-				<stop offset="0.03125" stop-color="#3A3A3A"/>
-				<stop offset="1" stop-color="#1C1C1C"/>
-			</radialGradient>
-			<linearGradient id="paint1_linear_7925_7246" x1="12.0011" y1="-0.224694" x2="12.0011" y2="24.2279" gradientUnits="userSpaceOnUse">
-				<stop stop-color="white"/>
-				<stop offset="1" stop-color="#111111"/>
-			</linearGradient>
-		</defs>
 	</svg>
 </template>

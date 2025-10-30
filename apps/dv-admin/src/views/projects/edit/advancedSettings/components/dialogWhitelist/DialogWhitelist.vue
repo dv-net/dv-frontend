@@ -58,7 +58,7 @@
 		>
 			<h2 class="global-title-h2 mb-32">{{ $t("Adding an IP to the whitelist") }}</h2>
 			<ui-form-item name="ip" :label="$t('IP address')">
-				<ui-input v-model="whitelist.ip" is-empty-value-null placeholder="999.99.99.999" size="lg" />
+				<ui-input v-model="whitelist.ip" is-empty-value-null placeholder="255.255.255.255" size="lg" />
 			</ui-form-item>
 			<ui-button mode="neutral" size="xl" native-type="submit" :loading="isLoadingAddIpWhitelist">
 				{{ $t("Add") }} IP
