@@ -89,23 +89,7 @@
 							<ui-copy-text v-if="currentAddress" :copied-text="currentAddress" color-icon="#A4A5B1" />
 						</template>
 					</ui-input>
-					<ui-button
-						v-if="isTronSupported"
-						type="secondary"
-						class="w-full"
-						@click="showWalletConnect = !showWalletConnect"
-					>
-						{{ $t(showWalletConnect ? "Hide" : "Connect wallet") }}
-					</ui-button>
 				</div>
-				<transition name="slide-fade">
-					<wallet-tron-connect
-						v-if="showWalletConnect && isTronSupported"
-						:recipient-address="currentAddress"
-						:amount="currentPrice"
-						:is-usdt-token="currentCurrency === 'USDT'"
-					/>
-				</transition>
 				<div class="sum">
 					<span class="sum__label">{{ $t("Sum") }}</span>
 					<div class="sum__inner">
@@ -127,6 +111,22 @@
 						</ui-input>
 					</div>
 				</div>
+				<ui-button
+					v-if="isTronSupported"
+					type="secondary"
+					class="w-full"
+					@click="showWalletConnect = !showWalletConnect"
+				>
+					{{ $t(showWalletConnect ? "Hide" : "Pay via TronLink / OKX Wallet") }}
+				</ui-button>
+				<transition name="slide-fade">
+					<wallet-tron-connect
+						v-if="showWalletConnect && isTronSupported"
+						:recipient-address="currentAddress"
+						:amount="currentPrice"
+						:is-usdt-token="currentCurrency === 'USDT'"
+					/>
+				</transition>
 			</div>
 			<div v-if="currentStep === 3" class="status">
 				<div class="status__top">
