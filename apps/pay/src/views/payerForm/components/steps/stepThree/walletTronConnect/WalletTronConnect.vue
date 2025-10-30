@@ -7,9 +7,11 @@
 	import { usePolling } from "@shared/utils/composables/usePolling.ts";
 	import { TRON_USDT_CONTRACT } from "@pay/utils/constants/wallets";
 	import { useNotifications } from "@shared/utils/composables/useNotifications.ts";
+	import { useI18n } from "vue-i18n";
 
 	const { startPolling } = usePolling();
 	const { notify } = useNotifications();
+	const { t } = useI18n()
 
 	const { recipientAddress, amount, isUsdtToken } = defineProps<IProps>();
 
@@ -20,11 +22,11 @@
 	const handleSendTransaction = async (walletId: string) => {
 		try {
 			const numericAmount = typeof amount === "string" ? parseFloat(amount) : amount;
-			if (!numericAmount || Number.isNaN(numericAmount)) throw new Error("Invalid amount");
+			if (!numericAmount || Number.isNaN(numericAmount)) throw new Error(t("Invalid amount"));
 			const tronWeb = walletId === "okx" ? okxWallet.value : tronLinkWallet.value.tronWeb;
 			if (!tronWeb) throw new Error("TronWeb not found for the selected wallet");
 			const fromAddress = tronWeb.defaultAddress.base58;
-			if (!fromAddress) throw new Error("Failed to get wallet address");
+			if (!fromAddress) throw new Error(t("Failed to get wallet address"));
 			const balanceSun = await tronWeb.trx.getBalance(fromAddress);
 			const balanceTRX = balanceSun / 1_000_000;
 			const estimatedFee = 0.01;
@@ -126,9 +128,9 @@
 				<span class="wallet__name">{{ wallet.name }}</span>
 			</div>
 			<div class="wallet__state">
-				<span v-if="wallet.initialized" @click="handleSendTransaction(wallet.id)">Оплатить</span>
-				<span v-else-if="!wallet.initialized && wallet.detected" @click="handleConnect(wallet.id)">Подключить</span>
-				<span v-else>Не установлен</span>
+				<span v-if="wallet.initialized" @click="handleSendTransaction(wallet.id)">{{ $t('Pay') }}</span>
+				<span v-else-if="!wallet.initialized && wallet.detected" @click="handleConnect(wallet.id)">{{ $t('Connect') }}</span>
+				<span v-else>{{ $t('Not installed') }}</span>
 			</div>
 		</div>
 	</div>

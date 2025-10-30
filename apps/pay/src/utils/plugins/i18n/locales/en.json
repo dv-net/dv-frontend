@@ -3,6 +3,13 @@
 		"min": "min",
 		"s": "s"
 	},
+    "Connect wallet": "Connect wallet",
+    "Hide": "Hide",
+    "Not installed": "Not installed",
+    "Connect": "Connect",
+    "Pay": "Pay",
+    "Invalid amount": "Invalid amount",
+    "Failed to get wallet address": "Failed to get wallet address",
     "Payment by cryptocurrency": "Payment by cryptocurrency",
     "Payment by cryptocurrency in": "Payment by cryptocurrency in",
 	"All assets": "All assets",
