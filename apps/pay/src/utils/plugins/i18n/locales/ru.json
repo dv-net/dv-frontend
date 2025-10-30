@@ -10,8 +10,6 @@
 	"Pay": "Оплатить",
 	"Invalid amount": "Неверная сумма",
 	"Failed to get wallet address": "Не удалось получить адрес кошелька",
-
-
 	"Payment by cryptocurrency in": "Оплата криптовалютой в",
 	"Payment by cryptocurrency": "Оплата криптовалютой",
 	"All assets": "Все активы",
