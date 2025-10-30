@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+- Added payment okx & tronLink DV-3669
+
 ## [1.0.19] - 2025-10-27
 
 - Update icons DV-3646
