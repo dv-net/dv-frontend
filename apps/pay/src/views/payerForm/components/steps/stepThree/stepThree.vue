@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import { UiCopyText, UiIcon, UiInput, UiTooltip } from "@dv.net/ui-kit";
+	import { UiButton, UiCopyText, UiIcon, UiInput, UiTooltip } from "@dv.net/ui-kit";
 	import { usePayerFormStore } from "@pay/stores/payerForm";
 	import { storeToRefs } from "pinia";
 	import { isDesktopDevice } from "@shared/utils/helpers/media.ts";
@@ -13,6 +13,7 @@
 	import loaderTransactionPending from "@pay/assets/animations/loaderTransactionPending.json";
 	import { LottieAnimation } from "lottie-web-vue";
 	import { useMediaQuery } from "@shared/utils/composables/useMediaQuery.ts";
+	import WalletTronConnect from "@pay/views/payerForm/components/steps/stepThree/walletTronConnect/WalletTronConnect.vue";
 
 	const { currentAddress, currentCurrency, currentChain, currentStep, timeline, filteredBlockchains } = storeToRefs(usePayerFormStore());
 	const { getAmountRate } = usePayerFormStore();
@@ -21,9 +22,11 @@
 
 	const isMediaMax768 = useMediaQuery("(max-width: 768px)");
 	const isMediaMax480 = useMediaQuery("(max-width: 480px)");
+	const showWalletConnect = ref<boolean>(false);
 
 	const currentPrice = computed<string>(() => getAmountRate(currentCurrency.value as CurrencyType));
 	const inputTextSum = computed<string>(() => `${currentPrice.value} ${currentCurrency.value}`)
+	const isTronSupported = computed<boolean>(() => currentChain.value === "Tron");
 
 	const blockEdit = (event: KeyboardEvent) => {
 		const allowed = [
@@ -86,7 +89,23 @@
 							<ui-copy-text v-if="currentAddress" :copied-text="currentAddress" color-icon="#A4A5B1" />
 						</template>
 					</ui-input>
+					<ui-button
+						v-if="isTronSupported"
+						type="secondary"
+						class="w-full"
+						@click="showWalletConnect = !showWalletConnect"
+					>
+						{{ $t(showWalletConnect ? "Hide" : "Connect wallet") }}
+					</ui-button>
 				</div>
+				<transition name="slide-fade">
+					<wallet-tron-connect
+						v-if="showWalletConnect && isTronSupported"
+						:recipient-address="currentAddress"
+						:amount="currentPrice"
+						:is-usdt-token="currentCurrency === 'USDT'"
+					/>
+				</transition>
 				<div class="sum">
 					<span class="sum__label">{{ $t("Sum") }}</span>
 					<div class="sum__inner">
@@ -224,6 +243,10 @@
 					}
 				}
 			}
+			.slide-fade-enter-active,
+			.slide-fade-leave-active { transition: all 0.3s ease }
+			.slide-fade-enter-from { opacity: 0; transform: translateY(-10px) }
+			.slide-fade-leave-to { opacity: 0; transform: translateY(-10px) }
 		}
 		.status {
 			display: flex;

@@ -85,10 +85,12 @@
 		await Promise.all([getTransactionsCurrentBlockchain(), getTransferHistory()]);
 	};
 
+	const handleChangeBlockchainTabs = async () => {
+		await Promise.all([getTransactionsCurrentBlockchain(), getTransferHistory()]);
+	}
+
 	onMounted(async () => {
-		if (hash && !wallets.value.length) {
-			await getSearchData(hash);
-		}
+		if (hash && !wallets.value.length) await getSearchData(hash);
 		await getAllInfo();
 	});
 
@@ -148,7 +150,7 @@
 				class="assets__tabs"
 				mode="light"
 				v-model="currentBlockchainTab"
-				@change="getTransactionsCurrentBlockchain"
+				@change="handleChangeBlockchainTabs"
 			>
 				<ui-tabs-item
 					v-for="item in wallets[currentIndexWallet].blockchains"

@@ -67,14 +67,33 @@ export const optionsChartTransactions: any = {
 					tooltipEl = document.createElement("div");
 					tooltipEl.id = "chartjs-tooltip";
 					tooltipEl.className = "chartjs-tooltip";
+					tooltipEl.style.position = "absolute";
+					tooltipEl.style.pointerEvents = "none";
+					tooltipEl.style.zIndex = "1000";
+					tooltipEl.style.opacity = "0";
+					tooltipEl.style.display = "none";
 					document.body.appendChild(tooltipEl);
 				}
-				if (tooltipModel.opacity === 0 || !tooltipModel.dataPoints?.length) {
-					tooltipEl.style.opacity = "0";
+				
+				if (tooltipModel.opacity === 0 || !tooltipModel.dataPoints?.length || !tooltipModel.dataPoints[0]) {
+					if (tooltipEl) {
+						tooltipEl.style.opacity = "0";
+						tooltipEl.style.display = "none";
+					}
 					return;
 				}
+				
 				const point = tooltipModel.dataPoints[0];
 				const price = point.dataset.data[point.dataIndex];
+				
+				if (typeof price !== 'number' || isNaN(price)) {
+					if (tooltipEl) {
+						tooltipEl.style.opacity = "0";
+						tooltipEl.style.display = "none";
+					}
+					return;
+				}
+				
 				tooltipEl.innerHTML = `
 					<div class="chartjs-tooltip__top">${point.label}</div>
 					<div class="chartjs-tooltip__content">
@@ -82,14 +101,25 @@ export const optionsChartTransactions: any = {
 						<span class="chartjs-tooltip__price">${formatDollars(price, "$", "", 2)}</span>
 					</div>
     		`;
-				const canvas = context.chart.canvas;
-				const canvasRect = canvas.getBoundingClientRect();
-				const scrollY = window.scrollY;
-				const scrollX = window.scrollX;
-				requestAnimationFrame(() => {
+				
+				const canvas = context.chart?.canvas;
+				if (!canvas) {
 					if (tooltipEl) {
-						const tooltipWidth = tooltipEl?.offsetWidth;
+						tooltipEl.style.opacity = "0";
+						tooltipEl.style.display = "none";
+					}
+					return;
+				}
+				
+				const canvasRect = canvas.getBoundingClientRect();
+				const scrollY = window.scrollY || 0;
+				const scrollX = window.scrollX || 0;
+				
+				requestAnimationFrame(() => {
+					if (tooltipEl && tooltipEl.parentNode) {
+						const tooltipWidth = tooltipEl.offsetWidth || 0;
 						tooltipEl.style.opacity = "1";
+						tooltipEl.style.display = "flex";
 						tooltipEl.style.left = `${canvasRect.left + scrollX + tooltipModel.caretX - tooltipWidth / 2}px`;
 						tooltipEl.style.top = `${canvasRect.top + scrollY + tooltipModel.caretY + 10}px`;
 					}

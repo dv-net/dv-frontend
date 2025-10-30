@@ -92,6 +92,7 @@
 		<div class="screen">
 			<h2 class="global-title-h2">{{ $t("Select cryptocurrency for payment") }}</h2>
 			<ui-input
+				class="screen__search"
 				v-model="searchCurrency"
 				is-empty-value-null
 				clearable
@@ -131,6 +132,15 @@
 		gap: 24px;
 		@include mediamax(480) {
 			gap: 20px;
+		}
+		&__search {
+			&:deep(.ui-input__input) {
+				&::placeholder {
+					@include mediamax(480) {
+						font-size: 12px;
+					}
+				}
+			}
 		}
 		.block {
 			display: flex;

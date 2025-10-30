@@ -1,0 +1,1 @@
+export const TRON_USDT_CONTRACT: string = "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t";
