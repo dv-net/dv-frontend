@@ -122,7 +122,8 @@
 			font-size: 10px;
 			font-weight: 500;
 			&.active {
-				background-color: #e3edfc;
+				background-color: #D9EFFF;
+				color: #303345;
 			}
 		}
 		&__price {
