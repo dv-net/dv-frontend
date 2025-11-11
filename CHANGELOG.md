@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+- Added skeleton in hot wallets DV-3774
+
 ## [1.0.20] - 2025-11-11
 
 - Added a trial warning when registering at cloud.dv.net DV-3774

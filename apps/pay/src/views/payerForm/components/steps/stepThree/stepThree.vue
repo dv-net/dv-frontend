@@ -27,6 +27,7 @@
 	const currentPrice = computed<string>(() => getAmountRate(currentCurrency.value as CurrencyType));
 	const inputTextSum = computed<string>(() => `${currentPrice.value} ${currentCurrency.value}`)
 	const isTronSupported = computed<boolean>(() => currentChain.value === "Tron");
+	const isShowWalletConnect = computed<boolean>(() => showWalletConnect.value && isTronSupported.value && isDesktopDevice());
 
 	const blockEdit = (event: KeyboardEvent) => {
 		const allowed = [
@@ -121,7 +122,7 @@
 				</ui-button>
 				<transition name="slide-fade">
 					<wallet-tron-connect
-						v-if="showWalletConnect && isTronSupported"
+						v-if="isShowWalletConnect"
 						:recipient-address="currentAddress"
 						:amount="currentPrice"
 						:token="currentCurrency"
