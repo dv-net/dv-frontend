@@ -2,28 +2,31 @@
 	import { UiLink } from "@dv.net/ui-kit";
 	import WrapperBlock from "@pay/views/payerForm/components/wrapperBlock/WrapperBlock.vue";
 	import { LottieAnimation } from "lottie-web-vue";
-	import shield from "@pay/assets/animations/shield.json";
-	import { ref } from "vue";
+	import { onMounted, ref, shallowRef } from "vue";
+	import { isDesktopDevice } from "@shared/utils/helpers/media.ts";
 
-	const shieldAnim = ref();
+	const shieldAnimRef = ref();
 	const isHovering = ref<boolean>(false);
 	const isPlaying = ref<boolean>(false);
+	const shieldAnim = shallowRef<unknown>(null);
 
 	const handleMouseEnter = () => {
+		if (!shieldAnim.value) return;
 		isHovering.value = true;
 		if (!isPlaying.value) {
-			shieldAnim.value?.goToAndPlay?.(0);
+			shieldAnimRef.value?.goToAndPlay?.(0);
 			isPlaying.value = true;
 		}
 	};
 
 	const handleMouseLeave = () => {
+		if (!shieldAnim.value) return;
 		isHovering.value = false;
 	};
 
 	const handleComplete = () => {
 		if (isHovering.value) {
-			shieldAnim.value?.goToAndPlay?.(0);
+			shieldAnimRef.value?.goToAndPlay?.(0);
 			isPlaying.value = true;
 		} else {
 			isPlaying.value = false;
@@ -33,6 +36,15 @@
 	const goToLanding = () => {
 		window.open("https://dv.net/", "_blank");
 	};
+
+	onMounted(async () => {
+		try {
+			const module = await import("@pay/assets/animations/shield.json");
+			shieldAnim.value = module.default;
+		} catch (error) {
+			console.error(error);
+		}
+	});
 </script>
 
 <template>
@@ -49,13 +61,15 @@
 					<p>{{ $t("Accept cryptocurrency on your website without paying intermediaries") }}</p>
 				</div>
 				<lottie-animation
-					ref="shieldAnim"
+					v-if="isDesktopDevice() && shieldAnim"
+					ref="shieldAnimRef"
 					class="content__animation"
-					:animation-data="shield"
+					:animation-data="shieldAnim"
 					:auto-play="false"
 					:loop="false"
 					@complete="handleComplete"
 				/>
+				<img v-else class="content__animation" src="/static/shield.png" alt="shield" loading="lazy" />
 			</div>
 			<div class="slogan">
 				<p class="slogan__inner">

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import { UiRadio, UiRadioGroup, UiLink } from "@dv.net/ui-kit/dist";
+	import { UiRadio, UiRadioGroup, UiLink, UiSkeleton } from "@dv.net/ui-kit/dist";
 	import BlockchainCard from "@dv-admin/components/ui/blockchainCard/BlockchainCard.vue";
 	import { useHotWalletsStore } from "@dv-admin/stores/hotWallets";
 	import { storeToRefs } from "pinia";
@@ -61,7 +61,16 @@
 			</div>
 
 			<div class="table__body">
+				<div v-if="isLoadingWalletSummary" class="flex flex-column py-4">
+					<ui-skeleton
+						:rows="isMinimizedWallets ? 3 : filteredWallets.length || 3"
+						:row-height="36"
+						:item-border-radius="8"
+						:rows-gap="2"
+					/>
+				</div>
 				<div
+					v-else
 					class="row"
 					v-for="item in filteredWallets"
 					:key="item.currency.id"
@@ -78,6 +87,7 @@
 					<div class="row__column row__column--bitcoin">{{ formatDollars(item.balance_usd) }}</div>
 				</div>
 
+
 				<div v-if="walletSummary.length > 3" class="flex center py-10">
 					<ui-link @click="isMinimizedWallets = !isMinimizedWallets" size="lg" class="global-link-dashed">
 						{{ isMinimizedWallets ? `${$t("Show all")} (${walletSummary.length})` : $t("Hide") }}
@@ -86,7 +96,13 @@
 			</div>
 
 			<div class="table__footer">
-				<div class="table__footer-inner" @click="handleClickRow('all')">
+				<ui-skeleton
+					v-if="isLoadingWalletSummary"
+					:rows="1"
+					:row-height="32"
+					:item-border-radius="8"
+				/>
+				<div v-else class="table__footer-inner" @click="handleClickRow('all')">
 					<div class="table__footer-column table__footer-column--actions">
 						<ui-radio value="all" />
 						<span>{{ $t("By all coins") }}</span>
