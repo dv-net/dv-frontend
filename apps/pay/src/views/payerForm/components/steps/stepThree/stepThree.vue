@@ -124,7 +124,7 @@
 						v-if="showWalletConnect && isTronSupported"
 						:recipient-address="currentAddress"
 						:amount="currentPrice"
-						:is-usdt-token="currentCurrency === 'USDT'"
+						:token="currentCurrency"
 					/>
 				</transition>
 			</div>

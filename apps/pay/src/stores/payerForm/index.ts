@@ -40,7 +40,11 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 	const paymentFoundAudioRef = ref<HTMLAudioElement | null>(null)
 	const stepMap = ref<Record<number, number>>({ 1: 1, 2: 2, 3: 3, 4: 3, 5: 4 });
 	const timeline = ref([
-		{ id: 1, label: "Select currency", isActive: true, callback: () => [4,5].includes(currentStep.value) ? false : currentStep.value = 1 },
+		{
+			id: 1,
+			label: "Select currency",
+			isActive: true,
+			callback: () => [4,5].includes(currentStep.value) ? false : currentStep.value = 1 },
 		{
 			id: 2,
 			label: "select-blockchain.one",

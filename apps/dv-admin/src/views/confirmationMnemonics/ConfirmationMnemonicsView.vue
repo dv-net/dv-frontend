@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import { UiSelect, UiInput, UiButton, UiCopyText } from "@dv.net/ui-kit";
+	import { UiSelect, UiInput, UiButton, UiCopyText, UiIcon } from "@dv.net/ui-kit";
 	import type { IUiSelectOptions } from "@dv-admin/utils/types/general.ts";
 	import { computed, onMounted, ref } from "vue";
 	import { useI18n } from "vue-i18n";
@@ -20,6 +20,7 @@
 	const mnemonic = ref(Array(Number(countWord.value)).fill(""));
 	const mnemonicCopy = ref(Array(Number(countWord.value)).fill(""));
 	const isShowMnemonic = ref<boolean>(false);
+	const isCloud = ref<boolean>(window.location.host === 'cloud.dv.net')
 	const options = computed<IUiSelectOptions[]>(() => {
 		return [
 			{ label: t("12-word phrase"), value: "12" },
@@ -83,6 +84,19 @@
 <template>
 	<div class="page">
 		<div class="mnemonic">
+			<div v-if="isCloud" class="warning">
+				<ui-icon name="error" type="400" color="#ff9e00" />
+				<p class="warning__inner">
+					<span>{{ $t("Important: You are using a trial cloud version") }}</span>
+					<span class="warning__text">
+						{{ $t('Remember that DV.net is an open-source solution. The cloud version should be used only for getting acquainted with the system and for test integrations. We do not make any profit from the cloud version and are not responsible for your funds. For full independence and security, we recommend deploying it on your own server') }}
+					</span>
+					<span>
+						{{ $t('You can find detailed instructions and source code on our') }}
+						<a href="https://github.com/dv-net" class="warning__link" target="_blank">GitHub</a>
+					</span>
+				</p>
+			</div>
 			<h1 class="global-title-h1">{{ $t("Generate seed phrase") }}</h1>
 			<div class="mnemonic__top">
 				<ui-select v-model="countWord" :options="options" @change="getMnemonicGenerate" />
@@ -129,6 +143,35 @@
 	.page {
 		@extend .center;
 		flex-grow: 1;
+		.warning {
+			display: flex;
+			gap: 8px;
+			border-radius: 8px;
+			border: 1px solid #ff9e00;
+			background-color: #fff3e0;
+			padding: 12px;
+			&__inner {
+				display: flex;
+				flex-direction: column;
+				gap: 8px;
+				color: $black;
+				font-size: 18px;
+				font-weight: 500;
+			}
+			&__text {
+				font-size: 16px;
+				font-weight: 400;
+			}
+			&__link {
+				color: $blue;
+				@media (hover: hover) {
+					&:hover {
+						text-decoration: underline;
+						cursor: pointer;
+					}
+				}
+			}
+		}
 		.mnemonic {
 			display: flex;
 			flex-direction: column;

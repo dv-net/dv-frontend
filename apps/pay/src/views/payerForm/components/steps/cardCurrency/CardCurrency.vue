@@ -4,6 +4,9 @@
 	import type { IProps } from "@pay/views/payerForm/components/steps/cardCurrency/types.ts";
 	import { usePayerFormStore } from "@pay/stores/payerForm";
 	import { formatAmountBlockchain } from "@shared/utils/helpers/general.ts";
+	import { blockchainCurrencyId } from "@shared/utils/constants/blockchain";
+	import type { BlockchainType } from "@shared/utils/types/blockchain";
+	import BlockchainIcon from "@shared/components/ui/blockchainIcon/BlockchainIcon.vue";
 
 	const { getAmountRate } = usePayerFormStore();
 
@@ -34,14 +37,15 @@
 			</div>
 		</div>
 		<div class="card__blockchains">
-			<span
+			<div
 				v-for="item in blockchains"
 				:key="item.blockchain"
 				class="card__blockchain"
 				:class="{ 'active': item.isActive }"
 			>
-				{{ item.blockchain }}
-			</span>
+				<blockchain-icon :type="blockchainCurrencyId[item.blockchain.toLocaleLowerCase('en')] as BlockchainType" width="12px" height="12px" />
+				<span>{{ item.blockchain }}</span>
+			</div>
 		</div>
 		<span v-if="isShowPrice" class="card__price">≈ {{ formatAmountBlockchain(getAmountRate(currency), undefined, undefined, "—", true) }}</span>
 	</div>
@@ -114,7 +118,10 @@
 			}
 		}
 		&__blockchain {
-			padding: 6px 10px;
+			display: flex;
+			align-items: center;
+			gap: 4px;
+			padding: 4px 6px 4px 4px;
 			@extend .center;
 			border-radius: 100px;
 			background-color: #f7f9fb;

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 	import BlockSection from "@dv-admin/components/ui/BlockSection/BlockSection.vue";
 	import IconHotWallets from "@dv-admin/components/icons/dashboard/IconHotWallets.vue";
-	import { UiButton, UiSkeleton } from "@dv.net/ui-kit/dist";
+	import { UiButton, UiIcon, UiSkeleton } from "@dv.net/ui-kit/dist";
 	import IconExchange from "@dv-admin/components/icons/dashboard/IconExchange.vue";
 	import IconColdWallet from "@dv-admin/components/icons/dashboard/IconColdWallets.vue";
 	import { storeToRefs } from "pinia";
@@ -11,7 +11,6 @@
 	import { useExchangeSettingsStore } from "@dv-admin/stores/exchangeSettings";
 	import { useHotWalletsStore } from "@dv-admin/stores/hotWallets";
 	import Card from "@dv-admin/views/dashboard/components/cards/card/Card.vue";
-	import IconError from "@dv-admin/components/icons/dashboard/IconError.vue";
 	import { useI18n } from "vue-i18n";
 
 	const { balancesExchanges, walletBalancesCold, isLoadingBalances } = storeToRefs(useDashboardStore());
@@ -146,7 +145,7 @@
 		</div>
 
 		<div v-if="currentTransfersStatus === 'system_suspended'" class="cards__warning">
-			<icon-error class="flex-shrink-0" />
+			<ui-icon name="error" type="400" color="#dd4c1e" />
 			<p class="warning__text">
 				{{
 					$t(

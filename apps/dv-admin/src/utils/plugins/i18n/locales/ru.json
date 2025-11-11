@@ -4,6 +4,9 @@
 		"h": "ч",
 		"s": "сек"
 	},
+	"Remember that DV.net is an open-source solution. The cloud version should be used only for getting acquainted with the system and for test integrations. We do not make any profit from the cloud version and are not responsible for your funds. For full independence and security, we recommend deploying it on your own server": "Помните, что DV.net — это Open Source решение. Облачную версию следует использовать только для ознакомления с системой и тестовых интеграций. Мы не зарабатываем в облачной версии и не несём ответственности за ваши средства. Для полной независимостии безопасности рекомендуем развернуть его на своем сервере",
+	"You can find detailed instructions and source code on our": "Подробную инструкцию и исходный код вы можете найти на нашем",
+	"Important: You are using a trial cloud version": "Важно: Вы используете пробную облачную версию",
 	"Coming soon": "Скоро появится",
 	"Other exchange services": "Прочие обменные сервисы",
 	"Connect an exchanger": "Подключить обменник",
