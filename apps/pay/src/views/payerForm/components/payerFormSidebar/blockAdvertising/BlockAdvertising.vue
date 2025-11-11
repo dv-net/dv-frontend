@@ -61,7 +61,7 @@
 					<p>{{ $t("Accept cryptocurrency on your website without paying intermediaries") }}</p>
 				</div>
 				<lottie-animation
-					v-if="isDesktopDevice() && shieldAnim"
+					v-if="isDesktopDevice() && shieldAnim && false"
 					ref="shieldAnimRef"
 					class="content__animation"
 					:animation-data="shieldAnim"
@@ -69,7 +69,7 @@
 					:loop="false"
 					@complete="handleComplete"
 				/>
-				<img v-else class="content__animation" src="/static/shield.png" alt="shield" loading="lazy" />
+				<img v-else class="content__animation" src="/static/shieldScreensaver.png" alt="shield" loading="lazy" />
 			</div>
 			<div class="slogan">
 				<p class="slogan__inner">
