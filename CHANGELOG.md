@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [1.0.20] - 2025-11-11
+
 - Added a trial warning when registering at cloud.dv.net DV-3774
 - Chain logos have been added to the payment form DV-3771
 - Added payment okx & tronLink DV-3669
