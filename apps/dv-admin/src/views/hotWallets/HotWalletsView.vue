@@ -15,7 +15,7 @@
 	import NotFoundMessage from "@dv-admin/components/ui/notFoundMessage/NotFoundMessage.vue";
 
 	const { getWallets, getWalletSummary, resetDataHotWallets } = useHotWalletsStore();
-	const { isHideLowBalance, isLoading, walletSummary } = storeToRefs(useHotWalletsStore());
+	const { isHideLowBalance, isLoading, walletSummary, isLoadingWalletSummary } = storeToRefs(useHotWalletsStore());
 
 	const isOpenModalSeeds = ref<boolean>(false);
 	const toggleView = ref<boolean>(false);
@@ -54,13 +54,13 @@
 			<save-phrases-dialog v-model="isOpenModalSeeds" type="seeds" />
 		</div>
 
-		<template v-if="walletSummary.length === 0 && isLoading">
+		<template v-if="!walletSummary.length && (isLoading || isLoadingWalletSummary)">
 			<ui-skeleton :rows="1" :row-height="20" :item-border-radius="16" class="mb-30" />
 			<ui-skeleton :rows="1" :row-height="315" :item-border-radius="16" class="mb-24" />
 			<ui-skeleton :rows="1" :row-height="210" :item-border-radius="16" />
 		</template>
 
-		<template v-else-if="walletSummary.length !== 0">
+		<template v-else-if="walletSummary.length">
 			<div class="flex flex-y-center gap-8 mb-30">
 				<ui-switch
 					v-model="isHideLowBalance"
@@ -90,7 +90,10 @@
 				</div>
 			</div>
 		</template>
-		<not-found-message v-else :text="$t(`You don’t have any hot wallets yet.`)" />
+		<not-found-message
+			v-else
+			:text="$t(`You don’t have any hot wallets yet.`)"
+		/>
 	</div>
 </template>
 
