@@ -1,7 +1,7 @@
 <script setup lang="ts">
 	import { computed, onMounted, ref } from "vue";
 	import Breadcrumbs from "@dv-admin/components/ui/breadcrumbs/Breadcrumbs.vue";
-	import { UiCopyText, UiInput, UiSelect, UiSkeleton, UiTabs, UiTabsItem } from "@dv.net/ui-kit";
+	import { UiButton, UiCopyText, UiInput, UiSelect, UiSkeleton, UiTabs, UiTabsItem } from "@dv.net/ui-kit";
 	import { getApiLogsLast, getApiLogsLastProcessing } from "@dv-admin/services/api/monitors.ts";
 	import type { ILogsResponse } from "@dv-admin/utils/types/api/apiGo.ts";
 	import ShowStatus from "@dv-admin/components/ui/showStatus/ShowStatus.vue";
@@ -137,6 +137,11 @@
 					</div>
 				</div>
 				<not-found-message v-else />
+			</div>
+			<div class="flex flex-center flex-x-end mt-12">
+				<ui-button mode="neutral" :disabled="isLoading" @click="getAllLogs">
+					{{ $t('Update.verb') }}
+				</ui-button>
 			</div>
 		</block-section>
 	</div>

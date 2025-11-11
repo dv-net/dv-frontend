@@ -1,23 +1,25 @@
 <script setup lang="ts">
-	import { ref, onMounted } from "vue";
+	import { ref, onMounted, computed } from "vue";
 	import type { IProps } from "@pay/views/payerForm/components/steps/stepThree/walletTronConnect/IProps.ts";
 	import { formatAmountBlockchain } from "@shared/utils/helpers/general.ts";
 	import okxWalletImage from "@pay/assets/images/wallets/okx.png";
 	import tronLinkWalletImage from "@pay/assets/images/wallets/tronLink.png";
 	import { usePolling } from "@shared/utils/composables/usePolling.ts";
-	import { TRON_USDT_CONTRACT } from "@pay/utils/constants/wallets";
+	import { TRON_CONTRACTS } from "@pay/utils/constants/wallets";
 	import { useNotifications } from "@shared/utils/composables/useNotifications.ts";
 	import { useI18n } from "vue-i18n";
 
 	const { startPolling } = usePolling();
 	const { notify } = useNotifications();
-	const { t } = useI18n()
+	const { t } = useI18n();
 
-	const { recipientAddress, amount, isUsdtToken } = defineProps<IProps>();
+	const { recipientAddress, amount, token } = defineProps<IProps>();
 
 	const walletList = ref<any[]>([]);
 	const okxWallet = ref<any>(null);
 	const tronLinkWallet = ref<any>(null);
+
+	const isContractTron = computed<boolean>(() => Boolean(token) && Object.keys(TRON_CONTRACTS).includes(token!));
 
 	const handleSendTransaction = async (walletId: string) => {
 		try {
@@ -30,22 +32,28 @@
 			const balanceSun = await tronWeb.trx.getBalance(fromAddress);
 			const balanceTRX = balanceSun / 1_000_000;
 			const estimatedFee = 0.01;
-			if (isUsdtToken) {
-				const contract = await tronWeb.contract().at(TRON_USDT_CONTRACT);
+			if (isContractTron.value) {
+				const contract = await tronWeb.contract().at(TRON_CONTRACTS[token!]);
 				const balance = await contract.balanceOf(fromAddress).call();
-				const usdtBalanceFormatted = Number(balance) / 1_000_000;
-				if (usdtBalanceFormatted < numericAmount) {
-					throw new Error(`Insufficient USDT. Available: ${formatAmountBlockchain(usdtBalanceFormatted, 'USDT.Tron')} USDT, required: ${formatAmountBlockchain(numericAmount, 'USDT.Tron')} USDT`);
+				const balanceFormatted = Number(balance) / 1_000_000;
+				if (balanceFormatted < numericAmount) {
+					throw new Error(
+						`Insufficient ${token}. Available: ${formatAmountBlockchain(balanceFormatted, `${token}.Tron`)} ${token}, required: ${formatAmountBlockchain(numericAmount, `${token}.Tron`)} ${token}`
+					);
 				}
 				if (balanceTRX < estimatedFee) {
-					throw new Error(`Insufficient TRX for fees. Available: ${formatAmountBlockchain(balanceTRX, 'TRX.Tron')} TRX, required: ${formatAmountBlockchain(estimatedFee, 'TRX.Tron')} TRX`);
+					throw new Error(
+						`Insufficient TRX for fees. Available: ${formatAmountBlockchain(balanceTRX, "TRX.Tron")} TRX, required: ${formatAmountBlockchain(estimatedFee, "TRX.Tron")} TRX`
+					);
 				}
 				const amountInSmallestUnit = BigInt(Math.floor(numericAmount * 1_000_000));
 				await contract.transfer(recipientAddress, amountInSmallestUnit).send();
 			} else {
 				const requiredTRX = numericAmount + estimatedFee;
 				if (balanceTRX < requiredTRX) {
-					throw new Error(`Insufficient TRX. Available: ${formatAmountBlockchain(balanceTRX, 'TRX.Tron')} TRX, required: ${formatAmountBlockchain(requiredTRX, 'TRX.Tron')} TRX (incl. fee)`);
+					throw new Error(
+						`Insufficient TRX. Available: ${formatAmountBlockchain(balanceTRX, "TRX.Tron")} TRX, required: ${formatAmountBlockchain(requiredTRX, "TRX.Tron")} TRX (incl. fee)`
+					);
 				}
 				const amountInSun = tronWeb.toSun(numericAmount);
 				const transaction = await tronWeb.transactionBuilder.sendTrx(recipientAddress, amountInSun, fromAddress);
@@ -54,11 +62,11 @@
 			}
 		} catch (error: any) {
 			if (typeof error === "string") {
-				notify(error)
+				notify(error);
 			} else {
-				notify(error.message)
+				notify(error.message);
 			}
-			console.error(error)
+			console.error(error);
 		}
 	};
 
@@ -77,11 +85,11 @@
 
 	const handleClickWallet = async (wallet: any) => {
 		if (wallet.initialized) {
-			await handleSendTransaction(wallet.id)
+			await handleSendTransaction(wallet.id);
 		} else if (wallet.detected) {
-		 await handleConnect(wallet.id)
+			await handleConnect(wallet.id);
 		}
-	}
+	};
 
 	const getAvailableWallets = async () => {
 		walletList.value = [];
@@ -115,7 +123,7 @@
 	};
 
 	onMounted(async () => {
-		await startPolling(getAvailableWallets)
+		await startPolling(getAvailableWallets);
 	});
 
 	declare global {
@@ -134,7 +142,7 @@
 			v-for="wallet in walletList"
 			:key="wallet.id"
 			class="wallet"
-			:class="{ 'opacity': !wallet.detected }"
+			:class="{ opacity: !wallet.detected }"
 			@click="handleClickWallet(wallet)"
 		>
 			<div class="wallet__inner">
@@ -147,11 +155,11 @@
 					:class="{
 						'state--connected': wallet.initialized,
 						'state--installed': !wallet.initialized && wallet.detected,
-						'state--missing': !wallet.detected,
+						'state--missing': !wallet.detected
 					}"
 				>
 					<span class="state__dot" />
-					{{ wallet.initialized ? $t('Connected') : wallet.detected ? $t('Installed') : $t('Not installed') }}
+					{{ wallet.initialized ? $t("Connected") : wallet.detected ? $t("Installed") : $t("Not installed") }}
 				</span>
 			</div>
 		</div>
@@ -219,17 +227,23 @@
 					&--connected {
 						background: rgba(#16a34a, 0.12);
 						color: #16a34a;
-						.state__dot { background: #16a34a; }
+						.state__dot {
+							background: #16a34a;
+						}
 					}
 					&--installed {
 						background: rgba(#d97706, 0.12);
 						color: #d97706;
-						.state__dot { background: #d97706; }
+						.state__dot {
+							background: #d97706;
+						}
 					}
 					&--missing {
 						background: rgba(#94a3b8, 0.12);
 						color: #64748b;
-						.state__dot { background: #94a3b8; }
+						.state__dot {
+							background: #94a3b8;
+						}
 					}
 				}
 			}
