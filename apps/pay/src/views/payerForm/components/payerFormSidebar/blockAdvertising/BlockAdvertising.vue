@@ -61,7 +61,7 @@
 					<p>{{ $t("Accept cryptocurrency on your website without paying intermediaries") }}</p>
 				</div>
 				<lottie-animation
-					v-if="isDesktopDevice() && shieldAnim && false"
+					v-if="isDesktopDevice() && shieldAnim"
 					ref="shieldAnimRef"
 					class="content__animation"
 					:animation-data="shieldAnim"
