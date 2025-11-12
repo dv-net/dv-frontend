@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+- Added saving of scroll position after returning via breadcrumbs DV-3684
 - Added skeleton in hot wallets DV-3774
 
 ## [1.0.20] - 2025-11-11

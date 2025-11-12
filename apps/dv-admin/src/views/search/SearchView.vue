@@ -55,8 +55,9 @@
 
 <template>
 	<div class="page">
-		<breadcrumbs v-if="!isMainSearchPage" class="mb-24" :back-route-title="$t('Search')" back-name-route="search" />
-		<h1 class="global-title-h1">{{ currentTitle }}</h1>
+		<breadcrumbs v-if="!isMainSearchPage" class="mb-24" :back-route-title="$t('Search')" />
+		<h1 v-if="currentTitle" class="global-title-h1">{{ currentTitle }}</h1>
+		<ui-skeleton v-else :row-height="40" :rows="1" :item-border-radius="8" />
 		<block-section class="search" mode="grey" padding="xxl">
 			<form class="search__form" @submit.prevent="getSearchData()">
 				<p v-if="isMainSearchPage" class="search__text">
