@@ -4,6 +4,7 @@
 		"h": "h",
 		"s": "s"
 	},
+    "Change language": "Change language",
     "Remember that DV.net is an open-source solution. The cloud version should be used only for getting acquainted with the system and for test integrations. We do not make any profit from the cloud version and are not responsible for your funds. For full independence and security, we recommend deploying it on your own server": "Remember that DV.net is an open-source solution. The cloud version should be used only for getting acquainted with the system and for test integrations. We do not make any profit from the cloud version and are not responsible for your funds. For full independence and security, we recommend deploying it on your own server",
     "You can find detailed instructions and source code on our": "You can find detailed instructions and source code on our",
     "Important: You are using a trial cloud version": "Important: You are using a trial cloud version",

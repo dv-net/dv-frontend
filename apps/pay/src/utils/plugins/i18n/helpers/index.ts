@@ -24,4 +24,5 @@ export const updateTranslationsUiKit = (value: string, t: any) => {
 	config.uiTable.translations.noData = t("Not found");
 	config.uiNotification.translations.error = t("Error");
 	config.uiNotification.translations.success = t("Success");
+	config.uiLanguages.translations.changeLanguage = t("Change language");
 };

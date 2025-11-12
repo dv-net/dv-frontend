@@ -12,9 +12,8 @@
 	import { useRoute, useRouter } from "vue-router";
 	import BlockSection from "@dv-admin/components/ui/BlockSection/BlockSection.vue";
 	import Breadcrumbs from "@dv-admin/components/ui/breadcrumbs/Breadcrumbs.vue";
-	import { formatAmountBlockchain, formatDollars } from "@shared/utils/helpers/general.ts";
+	import { formatAmountBlockchain, formatDollars, generateUUID } from "@shared/utils/helpers/general.ts";
 	import { useUserSettingsStore } from "@dv-admin/stores/userSettings";
-	import { v4 as uuidv4 } from "uuid";
 
 	const route = useRoute();
 	const router = useRouter();
@@ -74,7 +73,7 @@
 
 	const withdrawHandler = async () => {
 		if (!formRef.value || !(await formRef.value.validate())) return;
-		form.value.request_id = uuidv4();
+		form.value.request_id = generateUUID();
 		await postWithdrawalFromProcessing(form.value, clearForm);
 	};
 

@@ -132,6 +132,18 @@ export const splitDomain = (url: string): { base: string; path: string } | null 
 	}
 };
 
+// uuid - 9f2b3ef7-2e06-4f02-bf4b-6f19f2a1e05c
+export const generateUUID = (): string => {
+	const buf = new Uint8Array(16);
+	crypto.getRandomValues(buf);
+	buf[6] = (buf[6] & 0x0f) | 0x40;
+	buf[8] = (buf[8] & 0x3f) | 0x80;
+	return [...buf]
+		.map((b) => b.toString(16).padStart(2, "0"))
+		.join("")
+		.replace(/^(.{8})(.{4})(.{4})(.{4})(.{12})$/, "$1-$2-$3-$4-$5");
+};
+
 // 436f6e74726163742076616c6964617465206572 / contract validation error: account [TH8QmAkt1vCwk26dc9oLnipsLWCgCBa6mr9] does not exist
 export const hexToText = (hex: string) => {
 	if (!hex) return "";

@@ -21,6 +21,7 @@ export const updateTranslationsUiKit = (value: string, t: any) => {
 	config.uiSelect.translations.multipleSelectedText = t("Selected");
 	config.uiLanguages.translations.modalSearchNotFound = t("Not found");
 	config.uiLanguages.translations.searchInputPlaceholder = t("Search");
+	config.uiLanguages.translations.changeLanguage = t("Change language");
 	config.uiTable.translations.noData = t("Not found");
 	config.uiDatePicker.translations.emptyPlaceholder = t("Select date");
 	config.uiDatePicker.translations.applyButton = t("Apply", { context: "apply to" });
