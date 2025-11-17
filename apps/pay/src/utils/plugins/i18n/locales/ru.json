@@ -3,6 +3,12 @@
 		"min": "мин",
 		"s": "сек"
 	},
+    "Latest payments": "Последние оплаты",
+    "from": "из",
+
+
+
+
     "Change language": "Изменить язык",
 	"Pay via TronLink / OKX Wallet": "Оплатить через TronLink / OKX Wallet",
 	"Connect wallet": "Подключить кошелек",

@@ -46,7 +46,10 @@ export const formatDollars = (
 		? parseFloat(integerPart).toLocaleString("ru-RU")
 		: parseFloat(integerPart);
 	const formattedFractionalPart = fractionalPart?.slice(0, countPartMoreOneDollar) || "";
-	return countPartMoreOneDollar > 0 && formattedFractionalPart
+	const hasMeaningfulFraction = Boolean(
+		countPartMoreOneDollar > 0 && formattedFractionalPart && parseInt(formattedFractionalPart, 10) > 0
+	);
+	return hasMeaningfulFraction
 		? `${currencyValue}${formattedIntegerPart}.${formattedFractionalPart}`
 		: currencyValue + formattedIntegerPart;
 };

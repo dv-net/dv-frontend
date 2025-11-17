@@ -25,4 +25,5 @@ export const updateTranslationsUiKit = (value: string, t: any) => {
 	config.uiNotification.translations.error = t("Error");
 	config.uiNotification.translations.success = t("Success");
 	config.uiLanguages.translations.changeLanguage = t("Change language");
+	config.uiPagination.translations.from = t("from");
 };
