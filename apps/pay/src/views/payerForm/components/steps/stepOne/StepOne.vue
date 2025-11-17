@@ -2,7 +2,7 @@
 	import { UiIcon, UiInput, UiSkeleton } from "@dv.net/ui-kit";
 	import { usePayerFormStore } from "@pay/stores/payerForm";
 	import { storeToRefs } from "pinia";
-	import { computed, ref } from "vue";
+	import { computed, ref, onMounted, onUnmounted } from "vue";
 	import type { IPayerAddressResponse } from "@pay/utils/types/api/apiGo.ts";
 	import { getCurrentBlockchain, getCurrentCoin } from "@shared/utils/helpers/general.ts";
 	import type { CurrencyType } from "@pay/utils/types/blockchain";
@@ -85,6 +85,13 @@
 		await router.push({ query });
 		currentStep.value = filteredBlockchains.value.length === 1 ? 3 : 2;
 	};
+
+	onMounted(() => {
+		document.documentElement.style.scrollbarGutter = "stable";
+	});
+	onUnmounted(() => {
+		document.documentElement.style.scrollbarGutter = "unset";
+	});
 </script>
 
 <template>
