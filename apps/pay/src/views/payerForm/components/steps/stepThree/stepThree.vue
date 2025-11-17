@@ -27,7 +27,7 @@
 	const currentPrice = computed<string>(() => getAmountRate(currentCurrency.value as CurrencyType));
 	const inputTextSum = computed<string>(() => `${currentPrice.value} ${currentCurrency.value}`)
 	const isTronSupported = computed<boolean>(() => currentChain.value === "Tron");
-	const isShowWalletConnect = computed<boolean>(() => showWalletConnect.value && isTronSupported.value && isDesktopDevice());
+	const isShowWalletConnect = computed<boolean>(() => showWalletConnect.value && isTronSupported.value);
 
 	const blockEdit = (event: KeyboardEvent) => {
 		const allowed = [

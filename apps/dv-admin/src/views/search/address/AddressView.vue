@@ -21,6 +21,8 @@
 	import { useSearchStore } from "@dv-admin/stores/search";
 	import { storeToRefs } from "pinia";
 	import { formatDate } from "@dv-admin/utils/helpers/dateParse.ts";
+	import type { UItableMeta } from "@dv.net/ui-kit/dist/components/UiTable/types";
+	import { parsePagination } from "@dv-admin/utils/helpers/parsePagination.ts";
 
 	const route = useRoute();
 	const { wallets, currentIndexWallet, searchValue } = storeToRefs(useSearchStore());
@@ -31,7 +33,9 @@
 	const currentBlockchainTab = ref<string>("");
 	const isLoadingTransactions = ref<boolean>(false);
 	const transactionsSearchAddress = ref<ITransactionDashboardItem[]>([]);
+	const transactionsSearchAddressPagination = ref<UItableMeta | null>(null);
 	const transferHistory = ref<ITransactionDashboardItem[]>([]);
+	const transferHistoryPagination = ref<UItableMeta | null>(null);
 
 	const filteredBlockchains = computed<IWalletInfoBlockchainAssetResponse[]>(() => {
 		if (!wallets.value[currentIndexWallet.value]?.blockchains?.length || !currentBlockchainTab.value) return [];
@@ -41,40 +45,48 @@
 		);
 	});
 
-	const getTransactionsCurrentBlockchain = async () => {
+	const getTransactionsCurrentBlockchain = async (page?: number) => {
 		try {
 			isLoadingTransactions.value = true;
 			const params: ITransactionRequest = {
-				page: 1,
-				page_size: 4,
+				page: page || 1,
+				page_size: 10,
 				type: "deposit",
 				wallet_address: wallets.value[currentIndexWallet.value]?.address,
 				blockchain: currentBlockchainTab.value
 			};
 			const data = await getApiTransaction(params);
-			if (data?.items) transactionsSearchAddress.value = data.items;
+			if (data) {
+				transactionsSearchAddress.value = data.items;
+				transactionsSearchAddressPagination.value = parsePagination(data.pagination);
+			}
 		} catch (error: any) {
 			console.error(error);
 			transactionsSearchAddress.value = [];
+			transactionsSearchAddressPagination.value = null
 		} finally {
 			isLoadingTransactions.value = false;
 		}
 	};
 
-	const getTransferHistory = async () => {
+	const getTransferHistory = async (page?: number) => {
 		try {
 			const params: ITransactionRequest = {
-				page: 1,
-				page_size: 4,
+				page: page || 1,
+				page_size: 10,
 				type: "transfer",
 				wallet_address: wallets.value[currentIndexWallet.value]?.address,
 				blockchain: currentBlockchainTab.value
 			};
 			const data = await getApiTransaction(params);
-			if (data?.items) transferHistory.value = data.items;
+			if (data) {
+				transferHistory.value = data.items;
+				transferHistoryPagination.value = parsePagination(data.pagination);
+			}
 		} catch (error: any) {
 			console.error(error);
 			transferHistory.value = [];
+			transferHistoryPagination.value = null
 		}
 	};
 
@@ -181,8 +193,12 @@
 		<address-info
 			:walletInfo="wallets[currentIndexWallet]"
 			:transferHistory="transferHistory"
+			:transferHistoryPagination="transferHistoryPagination"
 			:transactionsSearchAddress="transactionsSearchAddress"
+			:transactionsSearchAddressPagination="transactionsSearchAddressPagination"
 			:isLoadingTransactions="isLoadingTransactions"
+			@change-transactions="(pagination) => getTransactionsCurrentBlockchain(pagination.page)"
+			@change-transfers="(pagination) => getTransferHistory(pagination.page)"
 		/>
 	</div>
 </template>

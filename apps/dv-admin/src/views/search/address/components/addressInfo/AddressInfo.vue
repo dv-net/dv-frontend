@@ -15,6 +15,7 @@
 	const { t } = useI18n();
 
 	defineProps<IProps>();
+	const emits = defineEmits(["changeTransactions", "changeTransfers"])
 
 	const isReadMoreTransferHistory = ref<boolean>(false);
 	const hashPrefix = computed<number>(() => (isReadMoreTransferHistory.value ? 100 : 10));
@@ -64,7 +65,10 @@
 				:loading="isLoadingTransactions"
 				:headers="headers"
 				:data="transactionsSearchAddress"
+				:meta="transactionsSearchAddressPagination"
 				table-layout="fixed"
+				@change-pagination="(pagination) => emits('changeTransactions', pagination)"
+				:isShowPerPageSelect="false"
 			>
 				<template #body-cell-created_at="{ row }">
 					{{ formatDate(row.created_at) }}
@@ -83,6 +87,7 @@
 						</div>
 						<span class="blockchain__point">•</span>
 						<display-hash
+							size-icon="sm"
 							type="transaction"
 							:is-link="false"
 							:hash="row.tx_hash"
@@ -98,10 +103,6 @@
 					</ui-link>
 				</template>
 			</ui-table>
-
-			<ui-link :to="{ name: 'history' }">
-				{{ $t("Show statistics for the month") }}
-			</ui-link>
 		</div>
 
 		<div v-if="currentTabHistory === '2'">
@@ -116,7 +117,14 @@
 		</div>
 
 		<div v-if="currentTabHistory === '3'" class="history">
-			<ui-table :headers="headersHistory" :data="transferHistory" table-layout="fixed">
+			<ui-table
+				:headers="headersHistory"
+				:data="transferHistory"
+				table-layout="fixed"
+				:meta="transferHistoryPagination"
+				@change-pagination="(pagination) => emits('changeTransfers', pagination)"
+				:isShowPerPageSelect="false"
+			>
 				<template #body-cell-created_at="{ row }">
 					{{ formatDate(row.created_at) }}
 				</template>
