@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+- Fixed the issue with scrolling on the payment form DV-3748
 - Added saving of scroll position after returning via breadcrumbs DV-3684
 - Added skeleton in hot wallets DV-3774
 

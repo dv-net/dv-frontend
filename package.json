@@ -24,7 +24,7 @@
 		"format": "prettier --write ."
 	},
 	"dependencies": {
-		"@dv.net/ui-kit": "^7.2.18",
+		"@dv.net/ui-kit": "^7.2.19",
 		"axios": "^1.11.0",
 		"chart.js": "^4.4.9",
 		"chartjs-plugin-crosshair": "^2.0.0",
