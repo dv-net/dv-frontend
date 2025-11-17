@@ -118,7 +118,9 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 			if (data.confirmed) {
 				transactionsConfirmed.value = data.confirmed.map((transaction) => ({
 					...transaction,
-					is_less_than_24_hours: isLessThan24Hours(transaction.created_at, new Date().toISOString())
+					// TODO: DELETE!!!!!!!!!!!!!!!!!!!!!!!!!!
+					created_at: transaction.currency_code === "BNB.BNBSmartChain" ? "2025-11-17T10:03:00.960337Z" : transaction.created_at,
+					is_less_than_24_hours: isLessThan24Hours(transaction.currency_code === "BNB.BNBSmartChain" ? "2025-11-17T10:03:00.960337Z" : transaction.created_at, new Date().toISOString())
 				}));
 			}
 			if (data.unconfirmed) transactionsUnconfirmed.value = data.unconfirmed;

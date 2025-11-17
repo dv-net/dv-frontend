@@ -12,10 +12,13 @@
 	import BlockchainIcon from "@shared/components/ui/blockchainIcon/BlockchainIcon.vue";
 	import type { BlockchainType } from "@shared/utils/types/blockchain";
 	import { getLinkExplorer } from "@shared/utils/helpers/linkExplorer.ts";
+	import { formatDateToLocale, formatTimeAgo } from "@pay/utils/helpers/dateParse.ts";
+	import { useI18n } from "vue-i18n";
 
 	const { payerId, store, amount, errorStore, currentStep, isShowAdvertising, transactionsConfirmed } =
 		storeToRefs(usePayerFormStore());
 
+	const { t } = useI18n()
 	const isMediaMax480 = useMediaQuery("(max-width: 480px)");
 
 	const lastTransactions = ref<IWalletTransactionResponse[]>([]);
@@ -40,9 +43,9 @@
 	};
 
 	const handleOpenExplorer = (item: IWalletTransactionResponse) => {
-		const link = getLinkExplorer(item.currency_code, "transaction", item.hash)
-		if (link) window.open(link, "_blank")
-	}
+		const link = getLinkExplorer(item.currency_code, "transaction", item.hash);
+		if (link) window.open(link, "_blank");
+	};
 
 	watch(transactionsConfirmed, () => {
 		getLastTransactions();
@@ -104,7 +107,12 @@
 					/>
 				</div>
 				<div class="payments__body">
-					<div v-for="item in lastTransactions" :key="item.hash" class="card">
+					<div
+						v-for="item in lastTransactions"
+						:key="item.hash"
+						class="card"
+						:class="{ selected: item.is_less_than_24_hours }"
+					>
 						<div class="header">
 							<div class="content">
 								<blockchain-icon :type="item.currency_code as BlockchainType" width="32px" height="32px" />
@@ -117,10 +125,20 @@
 						</div>
 						<div class="body">
 							<span class="body__hash">{{ item.hash }}</span>
-							<ui-icon class="body__icon" type="400" name="new-windows" color="#A4A5B1" @click="handleOpenExplorer(item)" />
+							<ui-icon
+								class="body__icon"
+								type="400"
+								name="new-windows"
+								color="#A4A5B1"
+								@click="handleOpenExplorer(item)"
+							/>
 						</div>
 						<div v-if="item.is_less_than_24_hours" class="footer">
-
+							<div class="footer__label">
+								<span>{{ $t('new') }}</span>
+								<span>{{ formatTimeAgo(item.created_at, t) }}</span>
+							</div>
+							<div class="footer__date">{{ formatDateToLocale(item.created_at) }}</div>
 						</div>
 					</div>
 				</div>
@@ -239,6 +257,9 @@
 					border-radius: 12px;
 					border: 1px solid $main-border-color;
 					background-color: $form-background;
+					&.selected {
+						border-color: $main-text-link-and-price-color;
+					}
 					.header {
 						display: flex;
 						align-items: center;
@@ -298,6 +319,22 @@
 						display: flex;
 						align-items: center;
 						justify-content: space-between;
+						&__date {
+							color: $main-text-grey-color;
+							font-size: 12px;
+							font-weight: 400;
+						}
+						&__label {
+							border-radius: 27px;
+							background-color: $main-text-link-and-price-color;
+							display: flex;
+							padding: 4px 8px;
+							align-items: center;
+							gap: 4px;
+							color: #fff;
+							font-size: 12px;
+							font-weight: 400;
+						}
 					}
 				}
 			}

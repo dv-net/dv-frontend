@@ -1,3 +1,17 @@
+// Format UTC date string to local date format DD.MM.YYYY
+// Converts date from UTC timezone to browser timezone
+// Example: "2025-10-14T12:03:00.960337Z" -> "14.10.2025"
+export const formatDateToLocale = (dateUtc: string): string => {
+	if (!dateUtc || typeof dateUtc !== "string") return "";
+	const date = new Date(dateUtc);
+	if (isNaN(date.getTime())) return "";
+	const browserTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+	const formatter = new Intl.DateTimeFormat("ru-RU", {
+		timeZone: browserTimeZone, day: "2-digit", month: "2-digit", year: "numeric",
+	});
+	return formatter.format(date);
+};
+
 // Check if less than 24 hours passed between two dates (both dates should be in UTC 0)
 // Returns true if less than 24 hours, false if 24 hours or more
 export const isLessThan24Hours = (date1: string | Date, date2: string | Date): boolean => {
