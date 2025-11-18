@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [1.0.21] - 2025-11-18
+
 - Added a block with recent payments DV-3785
 - Address search has been changed form DV-3741
 - Fixed the issue with scrolling on the payment form DV-3748
