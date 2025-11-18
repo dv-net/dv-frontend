@@ -23,6 +23,7 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 	const { locale } = useI18n();
 
 	const isLoading = ref<boolean>(false);
+	const isLoadingWalletTxFind = ref<boolean>(true);
 	const isPoolingProgress = ref<boolean>(true);
 	const currentStep = ref<number>(1);
 	const currentCurrency = ref<string | null>(null);
@@ -112,15 +113,13 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		}
 	};
 
-		const getWalletTxFind = async (id: string) => {
+	const getWalletTxFind = async (id: string) => {
 		try {
 			const data = await getApiWalletTxFind(id);
 			if (data.confirmed) {
 				transactionsConfirmed.value = data.confirmed.map((transaction) => ({
 					...transaction,
-					// TODO: DELETE!!!!!!!!!!!!!!!!!!!!!!!!!!
-					created_at: transaction.currency_code === "BNB.BNBSmartChain" ? "2025-11-17T10:03:00.960337Z" : transaction.created_at,
-					is_less_than_24_hours: isLessThan24Hours(transaction.currency_code === "BNB.BNBSmartChain" ? "2025-11-17T10:03:00.960337Z" : transaction.created_at, new Date().toISOString())
+					is_less_than_24_hours: isLessThan24Hours(transaction.created_at, new Date().toISOString())
 				}));
 			}
 			if (data.unconfirmed) transactionsUnconfirmed.value = data.unconfirmed;
@@ -152,6 +151,8 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 			}
 		} catch (error: any) {
 			throw error;
+		} finally {
+			isLoadingWalletTxFind.value = false;
 		}
 	};
 
@@ -246,6 +247,7 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 
 	return {
 		isLoading,
+		isLoadingWalletTxFind,
 		currentChain,
 		currentCurrency,
 		currentStep,

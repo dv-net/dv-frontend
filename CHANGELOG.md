@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+- Added a block with recent payments DV-3785
 - Address search has been changed form DV-3741
 - Fixed the issue with scrolling on the payment form DV-3748
 - Added saving of scroll position after returning via breadcrumbs DV-3684

@@ -1,15 +1,14 @@
 {
 	"staticStrings": {
 		"min": "мин",
-		"s": "сек"
-	},
+		"s": "сек",
+        "h": "ч"
+    },
     "Latest payments": "Последние оплаты",
     "from": "из",
     "new": "новая",
-
-
-
-
+    "just now": "только что",
+    "ago": "назад",
     "Change language": "Изменить язык",
 	"Pay via TronLink / OKX Wallet": "Оплатить через TronLink / OKX Wallet",
 	"Connect wallet": "Подключить кошелек",

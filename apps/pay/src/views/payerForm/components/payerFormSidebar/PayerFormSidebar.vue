@@ -1,7 +1,7 @@
 <script setup lang="ts">
 	import { usePayerFormStore } from "@pay/stores/payerForm";
 	import { storeToRefs } from "pinia";
-	import { UiCopyText, UiIcon, UiLink, UiPagination } from "@dv.net/ui-kit";
+	import { UiCopyText, UiIcon, UiLink, UiPagination, UiSkeleton } from "@dv.net/ui-kit";
 	import { formatDollars, getCurrentBlockchain, getCurrentCoin, truncateHash } from "@shared/utils/helpers/general.ts";
 	import { computed, onMounted, ref, watch } from "vue";
 	import BlockAdvertising from "@pay/views/payerForm/components/payerFormSidebar/blockAdvertising/BlockAdvertising.vue";
@@ -15,7 +15,7 @@
 	import { formatDateToLocale, formatTimeAgo } from "@pay/utils/helpers/dateParse.ts";
 	import { useI18n } from "vue-i18n";
 
-	const { payerId, store, amount, errorStore, currentStep, isShowAdvertising, transactionsConfirmed } =
+	const { payerId, store, amount, errorStore, currentStep, isShowAdvertising, transactionsConfirmed, isLoadingWalletTxFind } =
 		storeToRefs(usePayerFormStore());
 
 	const { t } = useI18n()
@@ -27,6 +27,9 @@
 
 	const isShowSidebar = computed<boolean>(() => ![4, 5].includes(currentStep.value));
 	const isShowDetails = computed<boolean>(() => !errorStore.value && isShowSidebar.value);
+	const isShowLastPayments = computed<boolean>(() => {
+		return !errorStore.value && isShowSidebar.value && (isLoadingWalletTxFind.value || Boolean(transactionsConfirmed.value.length))
+	});
 
 	const getLastTransactions = () => {
 		const allTransactions = transactionsConfirmed.value || [];
@@ -93,7 +96,7 @@
 				</div>
 			</div>
 		</wrapper-block>
-		<wrapper-block v-if="isShowDetails">
+		<wrapper-block v-if="isShowLastPayments">
 			<div class="payments">
 				<div class="payments__top">
 					<h2 class="global-title-h2">{{ $t("Latest payments") }}</h2>
@@ -107,7 +110,15 @@
 					/>
 				</div>
 				<div class="payments__body">
+					<ui-skeleton
+						v-if="isLoadingWalletTxFind"
+						:rows="3"
+						:row-height="90"
+						:item-border-radius="12"
+						:rows-gap="24"
+					/>
 					<div
+						v-else
 						v-for="item in lastTransactions"
 						:key="item.hash"
 						class="card"
@@ -236,7 +247,9 @@
 				align-items: center;
 				justify-content: space-between;
 				gap: 8px;
-				&:deep(.ui-pagination__btns) {
+				min-height: 32px;
+				&:deep(.ui-pagination) {
+					flex-shrink: 0;
 					.ui-pagination__btn-first {
 						display: none;
 					}
@@ -290,11 +303,18 @@
 							color: $main-color;
 							font-size: 20px;
 							font-weight: 600;
+							@include mediamax(576) {
+								font-size: 18px;
+							}
+							@include mediamax(480) {
+								font-size: 16px;
+							}
 						}
 					}
 					.body {
 						display: flex;
 						align-items: center;
+						justify-content: space-between;
 						gap: 12px;
 						&__hash {
 							flex-grow: 1;
@@ -304,6 +324,12 @@
 							color: $main-subtitle-color;
 							font-size: 14px;
 							font-weight: 400;
+							@include mediamax(1024) {
+								text-wrap: unset;
+								text-overflow: unset;
+								overflow: unset;
+								word-break: break-word;
+							}
 						}
 						&__icon {
 							transition: transform 0.3s ease-in-out;
