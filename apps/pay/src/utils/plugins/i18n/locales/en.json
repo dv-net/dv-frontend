@@ -1,8 +1,14 @@
 {
 	"staticStrings": {
 		"min": "min",
-		"s": "s"
+		"s": "s",
+        "h": "h"
 	},
+    "Latest payments": "Latest payments",
+    "from": "from",
+    "new": "new",
+    "just now": "just now",
+    "ago": "ago",
     "Pay via TronLink / OKX Wallet": "Pay via TronLink / OKX Wallet",
     "Connect wallet": "Connect wallet",
     "Change language": "Change language",

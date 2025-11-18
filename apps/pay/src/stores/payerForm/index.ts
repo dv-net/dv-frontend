@@ -11,8 +11,9 @@ import {
 	changeChainBsc,
 	formatAmountBlockchain,
 	getCurrentBlockchain,
-	getCurrentCoin
+	getCurrentCoin,
 } from "@shared/utils/helpers/general.ts";
+import { isLessThan24Hours } from "@pay/utils/helpers/dateParse.ts";
 import type { BlockchainType } from "@shared/utils/types/blockchain";
 import type { CurrencyType } from "@pay/utils/types/blockchain";
 import { SORT_CHAIN } from "@pay/utils/constants/blockchain";
@@ -22,6 +23,7 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 	const { locale } = useI18n();
 
 	const isLoading = ref<boolean>(false);
+	const isLoadingWalletTxFind = ref<boolean>(true);
 	const isPoolingProgress = ref<boolean>(true);
 	const currentStep = ref<number>(1);
 	const currentCurrency = ref<string | null>(null);
@@ -114,7 +116,12 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 	const getWalletTxFind = async (id: string) => {
 		try {
 			const data = await getApiWalletTxFind(id);
-			if (data.confirmed) transactionsConfirmed.value = data.confirmed;
+			if (data.confirmed) {
+				transactionsConfirmed.value = data.confirmed.map((transaction) => ({
+					...transaction,
+					is_less_than_24_hours: isLessThan24Hours(transaction.created_at, new Date().toISOString())
+				}));
+			}
 			if (data.unconfirmed) transactionsUnconfirmed.value = data.unconfirmed;
 			const transactionsLs = localStorage.getItem("transactions");
 			if (!transactionsLs) {
@@ -144,6 +151,8 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 			}
 		} catch (error: any) {
 			throw error;
+		} finally {
+			isLoadingWalletTxFind.value = false;
 		}
 	};
 
@@ -238,6 +247,7 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 
 	return {
 		isLoading,
+		isLoadingWalletTxFind,
 		currentChain,
 		currentCurrency,
 		currentStep,
