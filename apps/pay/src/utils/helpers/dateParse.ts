@@ -1,31 +1,17 @@
-// Format UTC date string to local date format DD.MM.YYYY
-// Converts date from UTC timezone to browser timezone
-// Example: "2025-10-14T12:03:00.960337Z" -> "14.10.2025"
-export const formatDateToLocale = (dateUtc: string): string => {
-	if (!dateUtc || typeof dateUtc !== "string") return "";
-	const date = new Date(dateUtc);
-	if (isNaN(date.getTime())) return "";
-	const browserTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-	const formatter = new Intl.DateTimeFormat("ru-RU", {
-		timeZone: browserTimeZone, day: "2-digit", month: "2-digit", year: "numeric",
-	});
-	return formatter.format(date);
-};
-
-// Check if less than 24 hours passed between two dates (both dates should be in UTC 0)
-// Returns true if less than 24 hours, false if 24 hours or more
-export const isLessThan24Hours = (date1: string | Date, date2: string | Date): boolean => {
+// Check if less than 1 hour passed between two dates (both dates should be in UTC 0)
+// Returns true if less than 1 hour, false if 1 hour or more
+export const isLessThan1Hour = (date1: string | Date, date2: string | Date): boolean => {
 	if (!date1 || !date2) return false;
 	const date1Obj = typeof date1 === "string" ? new Date(date1) : date1;
 	const date2Obj = typeof date2 === "string" ? new Date(date2) : date2;
 	if (isNaN(date1Obj.getTime()) || isNaN(date2Obj.getTime())) return false;
 	const diffInMs = Math.abs(date2Obj.getTime() - date1Obj.getTime());
-	const diffInHours = diffInMs / 3600000; // milliseconds to hours
-	return diffInHours < 24;
+	const diffInHours = diffInMs / 3600000;
+	return diffInHours < 1;
 };
 
 // Format time ago from UTC date
-// Returns empty string if more than 24 hours
+// Returns empty string if more than 1 hour
 export const formatTimeAgo = (
 	dateUtc: string,
 	t: (key: string) => string
@@ -34,17 +20,9 @@ export const formatTimeAgo = (
 	const now = new Date();
 	const date = new Date(dateUtc);
 	if (isNaN(date.getTime())) return "";
-	if (!isLessThan24Hours(dateUtc, now)) return "";
+	if (!isLessThan1Hour(dateUtc, now)) return "";
 	const diffInMs = now.getTime() - date.getTime();
 	const diffInMinutes = Math.floor(diffInMs / 60000);
 	if (diffInMinutes < 1) return t("just now");
-	if (diffInMinutes < 60) {
-		return `${diffInMinutes} ${t("staticStrings.min")} ${t('ago')}`;
-	}
-	const hours = Math.floor(diffInMinutes / 60);
-	const minutes = diffInMinutes % 60;
-	if (minutes === 0) {
-		return `${hours}${t("staticStrings.h")} ${t('ago')}`;
-	}
-	return `${hours}${t("staticStrings.h")} ${minutes}${t("staticStrings.min")} ${t('ago')}`;
+	return `${diffInMinutes} ${t("staticStrings.min")} ${t('ago')}`;
 };

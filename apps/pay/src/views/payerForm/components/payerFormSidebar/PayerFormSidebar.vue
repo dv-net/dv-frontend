@@ -1,7 +1,7 @@
 <script setup lang="ts">
 	import { usePayerFormStore } from "@pay/stores/payerForm";
 	import { storeToRefs } from "pinia";
-	import { UiCopyText, UiIcon, UiLink, UiPagination, UiSkeleton } from "@dv.net/ui-kit";
+	import { UiCopyText, UiIcon, UiLink, UiPagination } from "@dv.net/ui-kit";
 	import { formatDollars, getCurrentBlockchain, getCurrentCoin, truncateHash } from "@shared/utils/helpers/general.ts";
 	import { computed, onMounted, ref, watch } from "vue";
 	import BlockAdvertising from "@pay/views/payerForm/components/payerFormSidebar/blockAdvertising/BlockAdvertising.vue";
@@ -12,10 +12,10 @@
 	import BlockchainIcon from "@shared/components/ui/blockchainIcon/BlockchainIcon.vue";
 	import type { BlockchainType } from "@shared/utils/types/blockchain";
 	import { getLinkExplorer } from "@shared/utils/helpers/linkExplorer.ts";
-	import { formatDateToLocale, formatTimeAgo } from "@pay/utils/helpers/dateParse.ts";
+	import { formatTimeAgo } from "@pay/utils/helpers/dateParse.ts";
 	import { useI18n } from "vue-i18n";
 
-	const { payerId, store, amount, errorStore, currentStep, isShowAdvertising, transactionsConfirmed, isLoadingWalletTxFind } =
+	const { payerId, store, amount, errorStore, currentStep, isShowAdvertising, transactionsConfirmed } =
 		storeToRefs(usePayerFormStore());
 
 	const { t } = useI18n()
@@ -28,7 +28,7 @@
 	const isShowSidebar = computed<boolean>(() => ![4, 5].includes(currentStep.value));
 	const isShowDetails = computed<boolean>(() => !errorStore.value && isShowSidebar.value);
 	const isShowLastPayments = computed<boolean>(() => {
-		return !errorStore.value && isShowSidebar.value && (isLoadingWalletTxFind.value || Boolean(transactionsConfirmed.value.length))
+		return !errorStore.value && isShowSidebar.value && Boolean(transactionsConfirmed.value.length)
 	});
 
 	const getLastTransactions = () => {
@@ -110,19 +110,11 @@
 					/>
 				</div>
 				<div class="payments__body">
-					<ui-skeleton
-						v-if="isLoadingWalletTxFind"
-						:rows="3"
-						:row-height="90"
-						:item-border-radius="12"
-						:rows-gap="24"
-					/>
 					<div
-						v-else
 						v-for="item in lastTransactions"
 						:key="item.hash"
 						class="card"
-						:class="{ selected: item.is_less_than_24_hours }"
+						:class="{ selected: item.is_less_than_1_hour }"
 					>
 						<div class="header">
 							<div class="content">
@@ -144,12 +136,11 @@
 								@click="handleOpenExplorer(item)"
 							/>
 						</div>
-						<div v-if="item.is_less_than_24_hours" class="footer">
+						<div v-if="item.is_less_than_1_hour" class="footer">
 							<div class="footer__label">
 								<span>{{ $t('new') }}</span>
 								<span>{{ formatTimeAgo(item.created_at, t) }}</span>
 							</div>
-							<div class="footer__date">{{ formatDateToLocale(item.created_at) }}</div>
 						</div>
 					</div>
 				</div>
@@ -345,11 +336,6 @@
 						display: flex;
 						align-items: center;
 						justify-content: space-between;
-						&__date {
-							color: $main-text-grey-color;
-							font-size: 12px;
-							font-weight: 400;
-						}
 						&__label {
 							border-radius: 27px;
 							background-color: $main-text-link-and-price-color;

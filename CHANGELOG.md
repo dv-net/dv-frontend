@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+- Changed a block with recent payments DV-3828
+
 ## [1.0.21] - 2025-11-18
 
 - Added a block with recent payments DV-3785
