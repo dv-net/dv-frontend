@@ -50,7 +50,7 @@ export interface IWalletTransactionResponse {
 	currency_code: string;
 	hash: string;
 	type: string;
-	is_less_than_24_hours?: boolean;
+	is_less_than_1_hour?: boolean;
 }
 
 export interface IWalletTxFindResponse {
