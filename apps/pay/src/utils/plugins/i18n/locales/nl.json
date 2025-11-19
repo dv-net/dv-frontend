@@ -1,8 +1,25 @@
 {
 	"staticStrings": {
 		"min": "min",
-		"s": "s"
+		"s": "s",
+		"h": "h"
 	},
+	"Latest payments": "Laatste betalingen",
+	"from": "van",
+	"new": "nieuw",
+	"just now": "zojuist",
+	"ago": "geleden",
+	"Pay via TronLink / OKX Wallet": "Betaal via TronLink / OKX Wallet",
+	"Connect wallet": "Verbind portemonnee",
+	"Change language": "Wijzig taal",
+	"Hide": "Verberg",
+	"Not installed": "Niet geïnstalleerd",
+	"Connect": "Verbind",
+	"Installed": "Geïnstalleerd",
+	"Pay": "Betalen",
+	"Connected": "Verbonden",
+	"Invalid amount": "Ongeldig bedrag",
+	"Failed to get wallet address": "Fout bij het ophalen van het walletadres",
 	"Payment by cryptocurrency": "Betaling met cryptovaluta",
 	"Payment by cryptocurrency in": "Betaling met cryptocurrency in",
 	"All assets": "Alle activa",
@@ -27,8 +44,10 @@
 	"Selected chain": "Geselecteerde keten",
 	"Contacts": "Contacten",
 	"More about": "Meer over",
-	"one": "Kies blockchain",
-	"two": "Kies blockchain",
+	"select-blockchain": {
+		"one": "Selecteer blockchain",
+		"two": "Selecteer blockchain"
+	},
 	"minutes": "minuten",
 	"Return to the store": "Terug naar de winkel",
 	"An unexpected error occurred. Try logging in later or contact support": "Er is een onverwachte fout opgetreden. Probeer later in te loggen of neem contact op met support",

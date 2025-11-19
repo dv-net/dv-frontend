@@ -1,8 +1,25 @@
 {
 	"staticStrings": {
 		"min": "min",
-		"s": "s"
+		"s": "s",
+		"h": "h"
 	},
+	"Latest payments": "En son ödemeler",
+	"from": "den",
+	"new": "yeni",
+	"just now": "az önce",
+	"ago": "önce",
+	"Pay via TronLink / OKX Wallet": "TronLink / OKX Cüzdan ile öde",
+	"Connect wallet": "Cüzdanı bağla",
+	"Change language": "Dili değiştir",
+	"Hide": "Gizle",
+	"Not installed": "Kurulu değil",
+	"Connect": "Bağlan",
+	"Installed": "Yüklendi",
+	"Pay": "Öde",
+	"Connected": "Bağlı",
+	"Invalid amount": "Geçersiz miktar",
+	"Failed to get wallet address": "Cüzdan adresi alınamadı",
 	"Payment by cryptocurrency": "Kripto para ile ödeme",
 	"Payment by cryptocurrency in": "Kripto para ile ödeme içinde",
 	"All assets": "Tüm varlıklar",
@@ -27,8 +44,10 @@
 	"Selected chain": "Seçili zincir",
 	"Contacts": "Kişiler",
 	"More about": "Daha fazla hakkında",
-	"one": "Blok zincirini seç",
-	"two": "Blok zincirini seç",
+	"select-blockchain": {
+		"one": "Blok zinciri seçin",
+		"two": "Blok zinciri seçin"
+	},
 	"minutes": "dakika",
 	"Return to the store": "Mağazaya geri dönün",
 	"An unexpected error occurred. Try logging in later or contact support": "Beklenmeyen bir hata oluştu. Daha sonra giriş yapmayı deneyin veya desteğe başvurun",

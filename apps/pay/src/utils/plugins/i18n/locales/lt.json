@@ -1,8 +1,25 @@
 {
 	"staticStrings": {
 		"min": "min",
-		"s": "s"
+		"s": "s",
+		"h": "h"
 	},
+	"Latest payments": "Naujausi mokėjimai",
+	"from": "iš",
+	"new": "naujas",
+	"just now": "ką tik",
+	"ago": "prieš",
+	"Pay via TronLink / OKX Wallet": "Mokėkite naudojant TronLink / OKX Wallet",
+	"Connect wallet": "Prisijungti prie piniginės",
+	"Change language": "Keisti kalbą",
+	"Hide": "Slėpti",
+	"Not installed": "Neįdiegta",
+	"Connect": "Prisijungti",
+	"Installed": "Įdiegta",
+	"Pay": "Mokėti",
+	"Connected": "Prisijungta",
+	"Invalid amount": "Neteisinga suma",
+	"Failed to get wallet address": "Nepavyko gauti piniginės adreso",
 	"Payment by cryptocurrency": "Mokėjimas kriptovaliuta",
 	"Payment by cryptocurrency in": "Mokėjimas naudojant kriptovaliutą į",
 	"All assets": "Visi aktyvai",
@@ -27,8 +44,10 @@
 	"Selected chain": "Pasirinkta grandinė",
 	"Contacts": "Kontaktai",
 	"More about": "Daugiau apie",
-	"one": "Pasirinkite blokų grandinę",
-	"two": "Pasirinkite blokų grandinę",
+	"select-blockchain": {
+		"one": "Pasirinkite blokų grandinę",
+		"two": "Pasirinkite blokų grandinę"
+	},
 	"minutes": "minutės",
 	"Return to the store": "Grįžti į parduotuvę",
 	"An unexpected error occurred. Try logging in later or contact support": "Įvyko netikėta klaida. Pabandykite prisijungti vėliau arba kreipkitės į palaikymo tarnybą",

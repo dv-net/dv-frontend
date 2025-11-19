@@ -1,8 +1,25 @@
 {
 	"staticStrings": {
 		"min": "min",
-		"s": "s"
+		"s": "s",
+		"h": "h"
 	},
+	"Latest payments": "Senaste betalningarna",
+	"from": "från",
+	"new": "ny",
+	"just now": "nyss",
+	"ago": "sedan",
+	"Pay via TronLink / OKX Wallet": "Betala med TronLink / OKX Wallet",
+	"Connect wallet": "Anslut plånbok",
+	"Change language": "Ändra språk",
+	"Hide": "Göm",
+	"Not installed": "Inte installerat",
+	"Connect": "Anslut",
+	"Installed": "Installerad",
+	"Pay": "Betala",
+	"Connected": "Ansluten",
+	"Invalid amount": "Ogiltigt belopp",
+	"Failed to get wallet address": "Misslyckades med att hämta plånboksadress",
 	"Payment by cryptocurrency": "Betalning med kryptovaluta",
 	"Payment by cryptocurrency in": "Betalning med kryptovaluta i",
 	"All assets": "Alla tillgångar",
@@ -27,8 +44,10 @@
 	"Selected chain": "Vald kedja",
 	"Contacts": "Kontakter",
 	"More about": "Mer om",
-	"one": "Välj blockkedja",
-	"two": "Välj blockkedja",
+	"select-blockchain": {
+		"one": "Välj blockkedja",
+		"two": "Välj blockkedja"
+	},
 	"minutes": "Protokoll",
 	"Return to the store": "Återvänd till butiken",
 	"An unexpected error occurred. Try logging in later or contact support": "Ett oväntat fel inträffade. Försök logga in senare eller kontakta support",

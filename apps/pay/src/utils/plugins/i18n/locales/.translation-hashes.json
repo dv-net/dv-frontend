@@ -1,4 +1,20 @@
 {
+	"Latest payments": "36c5f429143320701052ef048450b51e",
+	"from": "d98a07f84921b24ee30f86fd8cd85c3c",
+	"new": "22af645d1859cb5ca6da0c484f1f37ea",
+	"just now": "2654992d78afbd40bad349302a6f2b6a",
+	"ago": "6d0a578ca2f2c0e792fc923002fccbe3",
+	"Pay via TronLink / OKX Wallet": "a53c03c701a16752a76558e2c5389505",
+	"Connect wallet": "5dd344d9a1cb0786ff2c450a66778732",
+	"Change language": "91d656fbb78e3322a596f4d8ed753c05",
+	"Hide": "62a5e490880a92eef74f167d9dc6dca0",
+	"Not installed": "d12fb360f73c34226d1e50228875d8cf",
+	"Connect": "49ab28040dfa07f53544970c6d147e1e",
+	"Installed": "98dd43dfae05b11befe1f140e0ec787a",
+	"Pay": "99938b17c91170dfb0c2f3f8bc9f2a85",
+	"Connected": "2ec0d16e4ca169baedb9b2d50ec5c6d7",
+	"Invalid amount": "a9ced76f2dd6907220fa95b3a136b04a",
+	"Failed to get wallet address": "9906cffe5b23e144f13593176beeeb49",
 	"Payment by cryptocurrency": "9aec507bf3da4ca5d38c430b2287113a",
 	"Payment by cryptocurrency in": "14574ee6a3670a6f27b783ead60afd77",
 	"All assets": "fc5da13e796e9c1575110a818b93a72d",
@@ -23,8 +39,6 @@
 	"Selected chain": "439c787e47464684dd428fc5fc66bdc4",
 	"Contacts": "9aa698f602b1e5694855cee73a683488",
 	"More about": "49fa2426b7903b3d4c89e2c1874d9346",
-	"one": "b27588d1b0ad2c0cd0e2c7f036926df9",
-	"two": "b27588d1b0ad2c0cd0e2c7f036926df9",
 	"minutes": "640fd0cc0ffa0316ae087652871f4486",
 	"Return to the store": "2f8f0bf6cb50e8d4f7522de276e0760e",
 	"An unexpected error occurred. Try logging in later or contact support": "d9be122ec21cb70dad5bc2938e55a85e",
@@ -67,7 +81,5 @@
 	"Change": "f4ec5f57bd4d31b803312d873be40da9",
 	"You pay via DV.net": "9d421afa33ca87661350b733ca940dab",
 	"Accept cryptocurrency on your website without paying intermediaries": "80bb90ef3bf2ee82bd05b1dadf687f3a",
-	"the cheapest way to accept cryptocurrency on your site": "48492639305995f734bdf3fceef33d62",
-	"staticStrings.min": "d8bd79cc131920d5de426f914d17405a",
-	"staticStrings.s": "03c7c0ace395d80182db07ae2c30f034"
+	"the cheapest way to accept cryptocurrency on your site": "48492639305995f734bdf3fceef33d62"
 }

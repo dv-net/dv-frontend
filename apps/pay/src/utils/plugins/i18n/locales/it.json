@@ -1,8 +1,25 @@
 {
 	"staticStrings": {
 		"min": "min",
-		"s": "s"
+		"s": "s",
+		"h": "h"
 	},
+	"Latest payments": "Ultimi pagamenti",
+	"from": "da",
+	"new": "nuovo",
+	"just now": "appena ora",
+	"ago": "fa",
+	"Pay via TronLink / OKX Wallet": "Paga tramite TronLink / OKX Wallet",
+	"Connect wallet": "Connetti portafoglio",
+	"Change language": "Cambia lingua",
+	"Hide": "Nascondi",
+	"Not installed": "Non installato",
+	"Connect": "Connetti",
+	"Installed": "Installato",
+	"Pay": "Paga",
+	"Connected": "Connesso",
+	"Invalid amount": "Importo non valido",
+	"Failed to get wallet address": "Impossibile ottenere l'indirizzo del portafoglio",
 	"Payment by cryptocurrency": "Pagamento con criptovaluta",
 	"Payment by cryptocurrency in": "Pagamento tramite criptovaluta in",
 	"All assets": "Tutti gli asset",
@@ -27,8 +44,10 @@
 	"Selected chain": "Catena selezionata",
 	"Contacts": "Contatti",
 	"More about": "Maggiori informazioni su",
-	"one": "Seleziona blockchain",
-	"two": "Seleziona blockchain",
+	"select-blockchain": {
+		"one": "Seleziona blockchain",
+		"two": "Seleziona blockchain"
+	},
 	"minutes": "minuti",
 	"Return to the store": "Ritorno al negozio",
 	"An unexpected error occurred. Try logging in later or contact support": "Si è verificato un errore imprevisto. Provare ad accedere più tardi o contattare l'assistenza",

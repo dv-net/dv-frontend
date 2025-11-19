@@ -1,8 +1,25 @@
 {
 	"staticStrings": {
 		"min": "min",
-		"s": "s"
+		"s": "s",
+		"h": "h"
 	},
+	"Latest payments": "Seneste betalinger",
+	"from": "fra",
+	"new": "ny",
+	"just now": "lige nu",
+	"ago": "siden",
+	"Pay via TronLink / OKX Wallet": "Betal via TronLink / OKX Wallet",
+	"Connect wallet": "Tilslut tegnebog",
+	"Change language": "Skift sprog",
+	"Hide": "Skjul",
+	"Not installed": "Ikke installeret",
+	"Connect": "Tilslut",
+	"Installed": "Installeret",
+	"Pay": "Betal",
+	"Connected": "Forbundet",
+	"Invalid amount": "Ugyldigt beløb",
+	"Failed to get wallet address": "Kunne ikke hente tegnebogadresse",
 	"Payment by cryptocurrency": "Betaling med kryptovaluta",
 	"Payment by cryptocurrency in": "Betaling med kryptovaluta i",
 	"All assets": "Alle aktiver",
@@ -27,8 +44,10 @@
 	"Selected chain": "Valgt kæde",
 	"Contacts": "Kontakter",
 	"More about": "Mere om",
-	"one": "Vælg blockchain",
-	"two": "Vælg blockchain",
+	"select-blockchain": {
+		"one": "Vælg blockchain",
+		"two": "Vælg blockchain"
+	},
 	"minutes": "minutter",
 	"Return to the store": "Gå tilbage til butikken",
 	"An unexpected error occurred. Try logging in later or contact support": "Der opstod en uventet fejl. Prøv at logge ind senere, eller kontakt support",

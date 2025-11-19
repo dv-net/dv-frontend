@@ -1,8 +1,25 @@
 {
 	"staticStrings": {
 		"min": "min",
-		"s": "s"
+		"s": "s",
+		"h": "h"
 	},
+	"Latest payments": "Najnovšie platby",
+	"from": "z",
+	"new": "nový",
+	"just now": "právě teď",
+	"ago": "pred",
+	"Pay via TronLink / OKX Wallet": "Plať cez TronLink / OKX Wallet",
+	"Connect wallet": "Pripojiť peňaženku",
+	"Change language": "Zmeniť jazyk",
+	"Hide": "Skryť",
+	"Not installed": "Nie je nainštalované",
+	"Connect": "Pripojiť",
+	"Installed": "Nainštalované",
+	"Pay": "Zaplatiť",
+	"Connected": "Pripojený",
+	"Invalid amount": "Neplatná suma",
+	"Failed to get wallet address": "Nepodarilo sa získať adresu peňaženky",
 	"Payment by cryptocurrency": "Platba kryptomenou",
 	"Payment by cryptocurrency in": "Platba kryptomenou v",
 	"All assets": "Všetky aktíva",
@@ -27,8 +44,10 @@
 	"Selected chain": "Vybraná reťaz",
 	"Contacts": "Kontakty",
 	"More about": "Viac o",
-	"one": "Vyberte blockchain",
-	"two": "Vyberte blockchain",
+	"select-blockchain": {
+		"one": "Vyberte blockchain",
+		"two": "Vyberte blockchain"
+	},
 	"minutes": "zápisnice",
 	"Return to the store": "Návrat do obchodu",
 	"An unexpected error occurred. Try logging in later or contact support": "Vyskytla sa neočakávaná chyba. Skúste sa prihlásiť neskôr alebo kontaktujte podporu",

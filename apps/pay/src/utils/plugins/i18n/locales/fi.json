@@ -1,8 +1,25 @@
 {
 	"staticStrings": {
 		"min": "min",
-		"s": "s"
+		"s": "s",
+		"h": "h"
 	},
+	"Latest payments": "Viimeisimmät maksut",
+	"from": "from",
+	"new": "uusi",
+	"just now": "juuri nyt",
+	"ago": "kauan sitten",
+	"Pay via TronLink / OKX Wallet": "Maksa TronLink / OKX Walletin kautta",
+	"Connect wallet": "Yhdistä lompakko",
+	"Change language": "Vaihda kieli",
+	"Hide": "Piilottaa",
+	"Not installed": "Ei asennettu",
+	"Connect": "Yhdistä",
+	"Installed": "Asennettu",
+	"Pay": "Maksa",
+	"Connected": "Kytketty",
+	"Invalid amount": "Virheellinen määrä",
+	"Failed to get wallet address": "Lompakko-osoitteen hakeminen epäonnistui",
 	"Payment by cryptocurrency": "Maksu kryptovaluuttalla",
 	"Payment by cryptocurrency in": "Maksu kryptovaluutalla sisällä",
 	"All assets": "Kaikki varat",
@@ -27,8 +44,10 @@
 	"Selected chain": "Valittu ketju",
 	"Contacts": "Yhteystiedot",
 	"More about": "Lisätietoja",
-	"one": "Valitse lohkoketju",
-	"two": "Valitse lohkoketju",
+	"select-blockchain": {
+		"one": "Valitse lohkoketju",
+		"two": "Valitse lohkoketju"
+	},
 	"minutes": "minuuttia",
 	"Return to the store": "Paluu myymälään",
 	"An unexpected error occurred. Try logging in later or contact support": "Tapahtui odottamaton virhe. Yritä kirjautua sisään myöhemmin tai ota yhteyttä asiakaspalveluun",
