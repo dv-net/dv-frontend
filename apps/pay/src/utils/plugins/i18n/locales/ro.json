@@ -1,8 +1,25 @@
 {
 	"staticStrings": {
 		"min": "min",
-		"s": "s"
+		"s": "s",
+		"h": "h"
 	},
+	"Latest payments": "Plăți recente",
+	"from": "din",
+	"new": "nou",
+	"just now": "tocmai acum",
+	"ago": "în urmă",
+	"Pay via TronLink / OKX Wallet": "Plătește prin TronLink / OKX Wallet",
+	"Connect wallet": "Conectează portofelul",
+	"Change language": "Schimbă limba",
+	"Hide": "Ascunde",
+	"Not installed": "Nu este instalat",
+	"Connect": "Conectează-te",
+	"Installed": "Instalat",
+	"Pay": "Plătește",
+	"Connected": "Conectat",
+	"Invalid amount": "Sumă invalidă",
+	"Failed to get wallet address": "Nu s-a putut obtine adresa portofelului",
 	"Payment by cryptocurrency": "Plată prin criptomonede",
 	"Payment by cryptocurrency in": "Plată prin criptomonedă în",
 	"All assets": "Toate activele",
@@ -27,8 +44,10 @@
 	"Selected chain": "Lanț selectat",
 	"Contacts": "Contacte",
 	"More about": "Mai multe despre",
-	"one": "Selectează blockchain",
-	"two": "Selectează blockchain",
+	"select-blockchain": {
+		"one": "Selectează blockchain",
+		"two": "Selectează blockchain"
+	},
 	"minutes": "minute",
 	"Return to the store": "Întoarcerea la magazin",
 	"An unexpected error occurred. Try logging in later or contact support": "A apărut o eroare neașteptată. Încercați să vă conectați mai târziu sau contactați asistența",

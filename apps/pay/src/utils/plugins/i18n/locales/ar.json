@@ -1,8 +1,25 @@
 {
 	"staticStrings": {
 		"min": "min",
-		"s": "s"
+		"s": "s",
+		"h": "h"
 	},
+	"Latest payments": "أحدث المدفوعات",
+	"from": "من",
+	"new": "جديد",
+	"just now": "الآن فقط",
+	"ago": "منذ",
+	"Pay via TronLink / OKX Wallet": "ادفع عبر TronLink / OKX Wallet",
+	"Connect wallet": "ربط المحفظة",
+	"Change language": "تغيير اللغة",
+	"Hide": "إخفاء",
+	"Not installed": "غير مثبت",
+	"Connect": "اتصل",
+	"Installed": "تم التثبيت",
+	"Pay": "ادفع",
+	"Connected": "متصل",
+	"Invalid amount": "المبلغ غير صحيح",
+	"Failed to get wallet address": "فشل في الحصول على عنوان المحفظة",
 	"Payment by cryptocurrency": "الدفع بواسطة العملة المشفرة",
 	"Payment by cryptocurrency in": "الدفع بالعملة الرقمية في",
 	"All assets": "جميع الأصول",
@@ -27,8 +44,10 @@
 	"Selected chain": "السلسلة المختارة",
 	"Contacts": "جهات الاتصال",
 	"More about": "المزيد عن",
-	"one": "اختر سلسلة الكتل",
-	"two": "اختر سلسلة الكتل",
+	"select-blockchain": {
+		"one": "اختر سلسلة الكتل",
+		"two": "اختر سلسلة الكتل"
+	},
 	"minutes": "الدقائق",
 	"Return to the store": "العودة إلى المتجر",
 	"An unexpected error occurred. Try logging in later or contact support": "حدث خطأ غير متوقع. حاول تسجيل الدخول لاحقاً أو اتصل بالدعم",

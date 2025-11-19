@@ -1,8 +1,25 @@
 {
 	"staticStrings": {
 		"min": "min",
-		"s": "s"
+		"s": "s",
+		"h": "h"
 	},
+	"Latest payments": "Viimased maksed",
+	"from": "kust",
+	"new": "uus",
+	"just now": "just nüüd",
+	"ago": "tagasi",
+	"Pay via TronLink / OKX Wallet": "Maksa läbi TronLink / OKX Wallet",
+	"Connect wallet": "Ühenda rahakott",
+	"Change language": "Muuda keel",
+	"Hide": "Peida",
+	"Not installed": "Ei ole installitud",
+	"Connect": "Ühenda",
+	"Installed": "Paigaldatud",
+	"Pay": "Maksa",
+	"Connected": "Ühendatud",
+	"Invalid amount": "Kehtetu summa",
+	"Failed to get wallet address": "Ebaõnnestus saada rahakoti aadress",
 	"Payment by cryptocurrency": "Makse krüptovaluuta kaudu",
 	"Payment by cryptocurrency in": "Payment by cryptocurrency in",
 	"All assets": "Kõik varad",
@@ -27,8 +44,10 @@
 	"Selected chain": "Valitud ahel",
 	"Contacts": "Kontaktid",
 	"More about": "Rohkem teavet",
-	"one": "Vali plokiahel",
-	"two": "Vali plokiahel",
+	"select-blockchain": {
+		"one": "Vali plokiahel",
+		"two": "Vali plokiahel"
+	},
 	"minutes": "protokoll",
 	"Return to the store": "Tagasi kauplusesse",
 	"An unexpected error occurred. Try logging in later or contact support": "Tekkis ootamatu viga. Proovige hiljem sisse logida või võtke ühendust klienditoega",

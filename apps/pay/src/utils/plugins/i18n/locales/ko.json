@@ -1,8 +1,25 @@
 {
 	"staticStrings": {
 		"min": "min",
-		"s": "s"
+		"s": "s",
+		"h": "h"
 	},
+	"Latest payments": "최근 결제 내역",
+	"from": "에서",
+	"new": "새로운",
+	"just now": "방금",
+	"ago": "전에",
+	"Pay via TronLink / OKX Wallet": "TronLink / OKX Wallet으로 결제",
+	"Connect wallet": "지갑 연결",
+	"Change language": "언어 변경",
+	"Hide": "숨기다",
+	"Not installed": "설치되지 않음",
+	"Connect": "연결",
+	"Installed": "설치됨",
+	"Pay": "결제",
+	"Connected": "연결됨",
+	"Invalid amount": "잘못된 금액",
+	"Failed to get wallet address": "지갑 주소를 가져오지 못했습니다",
 	"Payment by cryptocurrency": "암호화폐로 결제",
 	"Payment by cryptocurrency in": "암호화폐로 결제",
 	"All assets": "모든 자산",
@@ -27,8 +44,10 @@
 	"Selected chain": "선택된 체인",
 	"Contacts": "연락처",
 	"More about": "더 알아보기",
-	"one": "블록체인 선택",
-	"two": "블록체인 선택",
+	"select-blockchain": {
+		"one": "블록체인 선택",
+		"two": "블록체인 선택"
+	},
 	"minutes": "분",
 	"Return to the store": "스토어로 돌아가기",
 	"An unexpected error occurred. Try logging in later or contact support": "예기치 않은 오류가 발생했습니다. 나중에 로그인하거나 지원팀에 문의하세요",

@@ -1,8 +1,25 @@
 {
 	"staticStrings": {
 		"min": "min",
-		"s": "s"
+		"s": "s",
+		"h": "h"
 	},
+	"Latest payments": "সর্বশেষ পেমেন্টসমূহ",
+	"from": "থেকে",
+	"new": "নতুন",
+	"just now": "এখনই",
+	"ago": "আগে",
+	"Pay via TronLink / OKX Wallet": "ট্রোনলিংক / OKX ওয়ালেটের মাধ্যমে পেমেন্ট করুন",
+	"Connect wallet": "ওয়ালেট সংযোগ করুন",
+	"Change language": "ভাষা পরিবর্তন করুন",
+	"Hide": "লুকাও",
+	"Not installed": "ইনস্টল করা হয়নি",
+	"Connect": "সংযোগ করুন",
+	"Installed": "ইনস্টল করা হয়েছে",
+	"Pay": "পরিশোধ করুন",
+	"Connected": "সংযুক্ত",
+	"Invalid amount": "অবৈধ পরিমাণ",
+	"Failed to get wallet address": "ওয়ালেট ঠিকানা পাওয়া যায়নি",
 	"Payment by cryptocurrency": "ক্রিপ্টোকারেন্সি দ্বারা অর্থ প্রদান",
 	"Payment by cryptocurrency in": "ক্রিপ্টোকারেন্সির মাধ্যমে পেমেন্ট ইন",
 	"All assets": "সব সম্পদ",
@@ -27,8 +44,10 @@
 	"Selected chain": "নির্বাচিত চেইন",
 	"Contacts": "যোগাযোগ",
 	"More about": "আরও সম্পর্কে",
-	"one": "ব্লকচেইন নির্বাচন করুন",
-	"two": "ব্লকচেইন নির্বাচন করুন",
+	"select-blockchain": {
+		"one": "ব্লকচেইন নির্বাচন করুন",
+		"two": "ব্লকচেইন নির্বাচন করুন"
+	},
 	"minutes": "মিনিট",
 	"Return to the store": "দোকানে ফিরে যান",
 	"An unexpected error occurred. Try logging in later or contact support": "একটি অপ্রত্যাশিত ত্রুটি ঘটেছে. পরে লগইন করার চেষ্টা করুন অথবা সহায়তার সাথে যোগাযোগ করুন",

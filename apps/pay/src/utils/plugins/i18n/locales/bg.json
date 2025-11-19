@@ -1,8 +1,25 @@
 {
 	"staticStrings": {
 		"min": "min",
-		"s": "s"
+		"s": "s",
+		"h": "h"
 	},
+	"Latest payments": "Последни плащания",
+	"from": "от",
+	"new": "нов",
+	"just now": "преди малко",
+	"ago": "преди",
+	"Pay via TronLink / OKX Wallet": "Платете чрез TronLink / OKX Wallet",
+	"Connect wallet": "Свържете портфейл",
+	"Change language": "Промени езика",
+	"Hide": "Скрий",
+	"Not installed": "Не е инсталиран",
+	"Connect": "Свържи се",
+	"Installed": "Инсталирано",
+	"Pay": "Плати",
+	"Connected": "Свързан",
+	"Invalid amount": "Невалидна сума",
+	"Failed to get wallet address": "Не успях да получа адрес на портфейл",
 	"Payment by cryptocurrency": "Плащане с криптовалута",
 	"Payment by cryptocurrency in": "Плащане чрез криптовалута в",
 	"All assets": "Всички активи",
@@ -27,8 +44,10 @@
 	"Selected chain": "Избрана верига",
 	"Contacts": "Контакти",
 	"More about": "Повече за",
-	"one": "Изберете блокчейн",
-	"two": "Изберете блокчейн",
+	"select-blockchain": {
+		"one": "Изберете блокчейн",
+		"two": "Изберете блокчейн"
+	},
 	"minutes": "минути",
 	"Return to the store": "Връщане в магазина",
 	"An unexpected error occurred. Try logging in later or contact support": "Възникна неочаквана грешка. Опитайте да влезете по-късно или се свържете с поддръжката",

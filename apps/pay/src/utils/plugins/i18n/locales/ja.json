@@ -1,8 +1,25 @@
 {
 	"staticStrings": {
 		"min": "min",
-		"s": "s"
+		"s": "s",
+		"h": "h"
 	},
+	"Latest payments": "最新の支払い",
+	"from": "から",
+	"new": "新しい",
+	"just now": "今しがた",
+	"ago": "以前",
+	"Pay via TronLink / OKX Wallet": "TronLink / OKX Wallet で支払う",
+	"Connect wallet": "ウォレットを接続",
+	"Change language": "言語を変更",
+	"Hide": "隠す",
+	"Not installed": "未インストール",
+	"Connect": "接続",
+	"Installed": "インストール済み",
+	"Pay": "支払う",
+	"Connected": "接続済み",
+	"Invalid amount": "無効な金額",
+	"Failed to get wallet address": "ウォレットアドレスの取得に失敗しました",
 	"Payment by cryptocurrency": "暗号通貨による支払い",
 	"Payment by cryptocurrency in": "暗号通貨による支払いに",
 	"All assets": "すべての資産",
@@ -27,8 +44,10 @@
 	"Selected chain": "選択されたチェーン",
 	"Contacts": "連絡先",
 	"More about": "もっと詳しく",
-	"one": "ブロックチェーンを選択",
-	"two": "ブロックチェーンを選択",
+	"select-blockchain": {
+		"one": "ブロックチェーンを選択",
+		"two": "ブロックチェーンを選択"
+	},
 	"minutes": "議事録",
 	"Return to the store": "店舗に戻る",
 	"An unexpected error occurred. Try logging in later or contact support": "予期せぬエラーが発生しました。後でログインしてみるか、サポートに連絡してください。",

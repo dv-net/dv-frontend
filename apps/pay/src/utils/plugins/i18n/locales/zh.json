@@ -1,8 +1,25 @@
 {
 	"staticStrings": {
 		"min": "min",
-		"s": "s"
+		"s": "s",
+		"h": "h"
 	},
+	"Latest payments": "最近的付款",
+	"from": "从",
+	"new": "新",
+	"just now": "刚刚",
+	"ago": "以前",
+	"Pay via TronLink / OKX Wallet": "通过 TronLink / OKX Wallet 支付",
+	"Connect wallet": "连接钱包",
+	"Change language": "切换语言",
+	"Hide": "隐藏",
+	"Not installed": "未安装",
+	"Connect": "连接",
+	"Installed": "已安装",
+	"Pay": "支付",
+	"Connected": "已连接",
+	"Invalid amount": "无效金额",
+	"Failed to get wallet address": "获取钱包地址失败",
 	"Payment by cryptocurrency": "以加密货币支付",
 	"Payment by cryptocurrency in": "以加密货币支付在",
 	"All assets": "所有资产",
@@ -27,8 +44,10 @@
 	"Selected chain": "选中的链条",
 	"Contacts": "联系人",
 	"More about": "更多关于",
-	"one": "选择区块链",
-	"two": "选择区块链",
+	"select-blockchain": {
+		"one": "选择区块链",
+		"two": "选择区块链"
+	},
 	"minutes": "分钟",
 	"Return to the store": "返回商店",
 	"An unexpected error occurred. Try logging in later or contact support": "出现意外错误。请尝试稍后登录或联系支持人员",

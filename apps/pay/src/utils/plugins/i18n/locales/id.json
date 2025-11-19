@@ -1,8 +1,25 @@
 {
 	"staticStrings": {
 		"min": "min",
-		"s": "s"
+		"s": "s",
+		"h": "h"
 	},
+	"Latest payments": "Pembayaran terbaru",
+	"from": "dari",
+	"new": "baru",
+	"just now": "baru saja",
+	"ago": "lalu",
+	"Pay via TronLink / OKX Wallet": "Bayar melalui TronLink / OKX Dompet",
+	"Connect wallet": "Hubungkan dompet",
+	"Change language": "Ganti bahasa",
+	"Hide": "Sembunyi",
+	"Not installed": "Tidak terinstal",
+	"Connect": "Hubungkan",
+	"Installed": "Terinstal",
+	"Pay": "Bayar",
+	"Connected": "Terhubung",
+	"Invalid amount": "Jumlah tidak valid",
+	"Failed to get wallet address": "Gagal mendapatkan alamat dompet",
 	"Payment by cryptocurrency": "Pembayaran dengan mata uang kripto",
 	"Payment by cryptocurrency in": "Pembayaran dengan kripto di",
 	"All assets": "Semua aset",
@@ -27,8 +44,10 @@
 	"Selected chain": "Rantai terpilih",
 	"Contacts": "Kontak",
 	"More about": "Lebih lanjut tentang",
-	"one": "Pilih blockchain",
-	"two": "Pilih blockchain",
+	"select-blockchain": {
+		"one": "Pilih blockchain",
+		"two": "Pilih blockchain"
+	},
 	"minutes": "menit",
 	"Return to the store": "Kembali ke toko",
 	"An unexpected error occurred. Try logging in later or contact support": "Terjadi kesalahan yang tidak diharapkan. Coba masuk lagi nanti atau hubungi dukungan",

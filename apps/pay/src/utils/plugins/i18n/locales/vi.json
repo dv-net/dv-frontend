@@ -1,8 +1,25 @@
 {
 	"staticStrings": {
 		"min": "min",
-		"s": "s"
+		"s": "s",
+		"h": "h"
 	},
+	"Latest payments": "Các khoản thanh toán mới nhất",
+	"from": "từ",
+	"new": "mới",
+	"just now": "vừa mới",
+	"ago": "trước",
+	"Pay via TronLink / OKX Wallet": "Thanh toán qua TronLink / OKX ví",
+	"Connect wallet": "Kết nối ví",
+	"Change language": "Đổi ngôn ngữ",
+	"Hide": "Ẩn",
+	"Not installed": "Chưa được cài đặt",
+	"Connect": "Kết nối",
+	"Installed": "Đã cài đặt",
+	"Pay": "Thanh toán",
+	"Connected": "Đã kết nối",
+	"Invalid amount": "Số tiền không hợp lệ",
+	"Failed to get wallet address": "Không thể lấy được địa chỉ ví",
 	"Payment by cryptocurrency": "Thanh toán bằng tiền điện tử",
 	"Payment by cryptocurrency in": "Thanh toán bằng tiền điện tử trong",
 	"All assets": "Tất cả tài sản",
@@ -27,8 +44,10 @@
 	"Selected chain": "Chuỗi đã chọn",
 	"Contacts": "Danh bạ",
 	"More about": "Xem thêm",
-	"one": "Chọn chuỗi khối",
-	"two": "Chọn chuỗi khối",
+	"select-blockchain": {
+		"one": "Chọn chuỗi khối",
+		"two": "Chọn chuỗi khối"
+	},
 	"minutes": "phút",
 	"Return to the store": "Quay lại cửa hàng",
 	"An unexpected error occurred. Try logging in later or contact support": "Đã xảy ra lỗi bất ngờ. Hãy thử đăng nhập lại sau hoặc liên hệ hỗ trợ",

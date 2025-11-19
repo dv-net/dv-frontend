@@ -1,8 +1,25 @@
 {
 	"staticStrings": {
 		"min": "min",
-		"s": "s"
+		"s": "s",
+		"h": "h"
 	},
+	"Latest payments": "Najnovejše plačila",
+	"from": "od",
+	"new": "nov",
+	"just now": "pravkar",
+	"ago": "pred",
+	"Pay via TronLink / OKX Wallet": "Plačaj preko TronLink / OKX Wallet",
+	"Connect wallet": "Poveži denarnico",
+	"Change language": "Spremeni jezik",
+	"Hide": "Skriti",
+	"Not installed": "Ni nameščen",
+	"Connect": "Poveži",
+	"Installed": "Nameščen",
+	"Pay": "Plačaj",
+	"Connected": "Povezan",
+	"Invalid amount": "Neveljaven znesek",
+	"Failed to get wallet address": "Neuspešno pridobiti naslov denarnice",
 	"Payment by cryptocurrency": "Plačilo s kriptovaluto",
 	"Payment by cryptocurrency in": "Plačilo s kriptovaluto v",
 	"All assets": "Vsa sredstva",
@@ -27,8 +44,10 @@
 	"Selected chain": "Izbrana veriga",
 	"Contacts": "Kontakti",
 	"More about": "Več o",
-	"one": "Izberi verigo blokov",
-	"two": "Izberi verigo blokov",
+	"select-blockchain": {
+		"one": "Izberi verigo blokov",
+		"two": "Izberi verigo blokov"
+	},
 	"minutes": "minute",
 	"Return to the store": "Vrnitev v trgovino",
 	"An unexpected error occurred. Try logging in later or contact support": "Zgodila se je nepričakovana napaka. Poskusite se prijaviti pozneje ali se obrnite na podporo",

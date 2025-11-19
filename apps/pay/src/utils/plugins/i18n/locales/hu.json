@@ -1,8 +1,25 @@
 {
 	"staticStrings": {
 		"min": "min",
-		"s": "s"
+		"s": "s",
+		"h": "h"
 	},
+	"Latest payments": "Legutóbbi kifizetések",
+	"from": "ból",
+	"new": "új",
+	"just now": "éppen most",
+	"ago": "ezelőtt",
+	"Pay via TronLink / OKX Wallet": "Fizessen TronLink / OKX Wallet használatával",
+	"Connect wallet": "Csatlakoztasd a pénztárcát",
+	"Change language": "Változtasd meg a nyelvet",
+	"Hide": "Elrejtsd",
+	"Not installed": "Nincs telepítve",
+	"Connect": "Csatlakozz",
+	"Installed": "Telepítve",
+	"Pay": "Fizet",
+	"Connected": "Csatlakoztatva",
+	"Invalid amount": "Érvénytelen összeg",
+	"Failed to get wallet address": "A pénztárca címének lekérése nem sikerült",
 	"Payment by cryptocurrency": "Fizetés kriptovalutával",
 	"Payment by cryptocurrency in": "Fizetés kriptovalutával",
 	"All assets": "Összes eszköz",
@@ -27,8 +44,10 @@
 	"Selected chain": "Kiválasztott lánc",
 	"Contacts": "Kapcsolatok",
 	"More about": "További információk",
-	"one": "Válassz blokkláncot",
-	"two": "Válassz blokkláncot",
+	"select-blockchain": {
+		"one": "Válassza ki a blokkláncot",
+		"two": "Válassza ki a blokkláncot"
+	},
 	"minutes": "percek",
 	"Return to the store": "Vissza a boltba",
 	"An unexpected error occurred. Try logging in later or contact support": "Váratlan hiba történt. Próbáljon meg később bejelentkezni, vagy lépjen kapcsolatba az ügyfélszolgálattal",

@@ -1,8 +1,25 @@
 {
 	"staticStrings": {
 		"min": "min",
-		"s": "s"
+		"s": "s",
+		"h": "h"
 	},
+	"Latest payments": "Τελευταίες πληρωμές",
+	"from": "από",
+	"new": "νέος",
+	"just now": "μόλις τώρα",
+	"ago": "πριν",
+	"Pay via TronLink / OKX Wallet": "Πληρώστε μέσω TronLink / OKX Wallet",
+	"Connect wallet": "Σύνδεσε πορτοφόλι",
+	"Change language": "Αλλαγή γλώσσας",
+	"Hide": "Κρύψου",
+	"Not installed": "Δεν εγκατεστημένο",
+	"Connect": "Σύνδεσε",
+	"Installed": "Εγκατεστημένο",
+	"Pay": "Πληρώνω",
+	"Connected": "Συνδεδεμένος",
+	"Invalid amount": "Μη έγκυρο ποσό",
+	"Failed to get wallet address": "Απέτυχε η λήψη διεύθυνσης πορτοφολιού",
 	"Payment by cryptocurrency": "Πληρωμή με κρυπτονόμισμα",
 	"Payment by cryptocurrency in": "Πληρωμή με κρυπτονόμισμα σε",
 	"All assets": "Όλα τα περιουσιακά στοιχεία",
@@ -27,8 +44,10 @@
 	"Selected chain": "Επιλεγμένη αλυσίδα",
 	"Contacts": "Επαφές",
 	"More about": "Περισσότερα για",
-	"one": "Επιλέξτε blockchain",
-	"two": "Επιλέξτε blockchain",
+	"select-blockchain": {
+		"one": "Επιλέξτε blockchain",
+		"two": "Επιλέξτε blockchain"
+	},
 	"minutes": "λεπτά",
 	"Return to the store": "Επιστροφή στο κατάστημα",
 	"An unexpected error occurred. Try logging in later or contact support": "Εμφανίστηκε ένα απροσδόκητο σφάλμα. Προσπαθήστε να συνδεθείτε αργότερα ή επικοινωνήστε με την υποστήριξη",

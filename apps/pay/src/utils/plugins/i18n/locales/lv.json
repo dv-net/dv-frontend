@@ -1,8 +1,25 @@
 {
 	"staticStrings": {
 		"min": "min",
-		"s": "s"
+		"s": "s",
+		"h": "h"
 	},
+	"Latest payments": "Jaunākie maksājumi",
+	"from": "no",
+	"new": "jauns",
+	"just now": "nupat",
+	"ago": "pirms",
+	"Pay via TronLink / OKX Wallet": "Maksājiet caur TronLink / OKX maku",
+	"Connect wallet": "Pieslēgt maciņu",
+	"Change language": "Mainīt valodu",
+	"Hide": "Paslēpt",
+	"Not installed": "Nav instalēts",
+	"Connect": "Savienot",
+	"Installed": "Instalēts",
+	"Pay": "Maksāt",
+	"Connected": "Savienots",
+	"Invalid amount": "Nederīgs daudzums",
+	"Failed to get wallet address": "Neizdevās iegūt maku adresi",
 	"Payment by cryptocurrency": "Maksājums ar kriptovalūtu",
 	"Payment by cryptocurrency in": "Payment by cryptocurrency in",
 	"All assets": "Visi aktīvi",
@@ -27,8 +44,10 @@
 	"Selected chain": "Izvēlētā ķēde",
 	"Contacts": "Kontakti",
 	"More about": "Vairāk par",
-	"one": "Izvēlieties blokķēdi",
-	"two": "Izvēlieties blokķēdi",
+	"select-blockchain": {
+		"one": "Izvēlieties blokķēdi",
+		"two": "Izvēlieties blokķēdi"
+	},
 	"minutes": "protokols",
 	"Return to the store": "Atgriešanās veikalā",
 	"An unexpected error occurred. Try logging in later or contact support": "Notika neparedzēta kļūda. Mēģiniet pieteikties vēlāk vai sazinieties ar atbalsta dienestu",

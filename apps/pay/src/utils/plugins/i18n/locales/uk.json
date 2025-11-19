@@ -1,8 +1,25 @@
 {
 	"staticStrings": {
 		"min": "min",
-		"s": "s"
+		"s": "s",
+		"h": "h"
 	},
+	"Latest payments": "Останні платежі",
+	"from": "від",
+	"new": "новий",
+	"just now": "щойно",
+	"ago": "тому",
+	"Pay via TronLink / OKX Wallet": "Оплатити через TronLink / OKX Wallet",
+	"Connect wallet": "Підключити гаманець",
+	"Change language": "Змінити мову",
+	"Hide": "Ховати",
+	"Not installed": "Не встановлено",
+	"Connect": "Підключитися",
+	"Installed": "Встановлено",
+	"Pay": "Платіть",
+	"Connected": "Підключено",
+	"Invalid amount": "Недійсна сума",
+	"Failed to get wallet address": "Не вдалося отримати адресу гаманця",
 	"Payment by cryptocurrency": "Оплата криптовалютою",
 	"Payment by cryptocurrency in": "Оплата криптовалютою в",
 	"All assets": "Усі активи",
@@ -27,8 +44,10 @@
 	"Selected chain": "Обраний ланцюг",
 	"Contacts": "Контакти",
 	"More about": "Більше про",
-	"one": "Виберіть блокчейн",
-	"two": "Виберіть блокчейн",
+	"select-blockchain": {
+		"one": "Виберіть блокчейн",
+		"two": "Виберіть блокчейн"
+	},
 	"minutes": "хвилини",
 	"Return to the store": "Повернутися до магазину",
 	"An unexpected error occurred. Try logging in later or contact support": "Виникла непередбачувана помилка. Спробуйте увійти пізніше або зверніться до служби підтримки",
