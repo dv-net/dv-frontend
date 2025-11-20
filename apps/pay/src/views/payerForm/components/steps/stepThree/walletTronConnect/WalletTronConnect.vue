@@ -5,7 +5,7 @@
 	import okxWalletImage from "@pay/assets/images/wallets/okx.png";
 	import tronLinkWalletImage from "@pay/assets/images/wallets/tronLink.png";
 	import { usePolling } from "@shared/utils/composables/usePolling.ts";
-	import { TRON_CONTRACTS } from "@pay/utils/constants/wallets";
+	import { TRON_CONTRACTS } from "@pay/utils/constants/connectWallet/tron.ts";
 	import { useNotifications } from "@shared/utils/composables/useNotifications.ts";
 	import { useI18n } from "vue-i18n";
 
