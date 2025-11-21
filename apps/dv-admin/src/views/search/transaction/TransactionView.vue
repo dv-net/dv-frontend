@@ -80,7 +80,7 @@
 				<row-element class="info__item" :label="$t('Currency')" :value="getCurrentCoin(transaction.currency_id)" />
 				<row-element class="info__item" :label="$t('Recipient')" :value="transaction.to_address" is-copy-value />
 				<row-element
-					class="info__item info__item--border-none"
+					class="info__item"
 					:label="$t('Blockchain')"
 					:value="capitalizeFirstLetter(transaction.blockchain)"
 				/>
@@ -90,6 +90,7 @@
 					:value="transaction.from_address"
 					is-copy-value
 				/>
+				<row-element class="info__item info__item--border-none" :label="$t('Status')" :value="transaction.is_confirmed ? $t('Confirmed') : $t('Unconfirmed')" />
 			</div>
 		</block-section>
 		<block-section v-if="receipt" class="info" radius="md">
