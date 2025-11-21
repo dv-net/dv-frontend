@@ -7,7 +7,6 @@
 		useSendTransaction,
 		useWriteContract,
 		useSwitchChain,
-		useChainId
 	} from "@wagmi/vue";
 	import {
 		chainIdMap,
@@ -18,7 +17,7 @@
 	import { UiButton, UiCopyText } from "@dv.net/ui-kit";
 	import IconWalletConnect from "@pay/components/icons/IconWalletConnect.vue";
 	import type { IProps } from "@pay/views/payerForm/components/steps/stepThree/walletEvmConnect/IProps.ts";
-	import { parseEther, parseUnits, type Address, erc20Abi, type Chain } from "viem";
+	import { parseEther, parseUnits, type Address, erc20Abi } from "viem";
 	import { storeToRefs } from "pinia";
 	import { usePayerFormStore } from "@pay/stores/payerForm";
 	import { useNotifications } from "@shared/utils/composables/useNotifications.ts";
@@ -31,8 +30,7 @@
 	const { disconnect } = useDisconnect();
 	const { sendTransaction, isPending: isPendingSendTransaction, error: errorSendTransaction, data: transactionHash } = useSendTransaction();
 	const { switchChain } = useSwitchChain();
-	const chainId = useChainId();
-	const { writeContract, isPending: isPendingContract } = useWriteContract();
+	const { writeContract, isPending: isPendingContract, error: errorWriteContract, data: contractHash } = useWriteContract();
 
 	const { chain, recipientAddress, token, amount } = defineProps<IProps>();
 
@@ -43,9 +41,7 @@
 		projectId: import.meta.env.VITE_PROJECT_ID_CONNECT_WALLET,
 		metadata: metadataWalletConnect,
 		features: {
-			analytics: false,
-			socials: false,
-			email: false
+			analytics: false, socials: false, email: false,
 		}
 	});
 
@@ -54,7 +50,7 @@
 		return connector.value.name || "WalletConnect";
 	});
 
-	const isLoadingBtn = computed<boolean>(() => isPendingSendTransaction.value || isConnecting.value);
+	const isLoadingBtn = computed<boolean>(() => isPendingSendTransaction.value || isPendingContract.value || isConnecting.value);
 
 	const tokenInfo = computed(() => {
 		if (!token || !chain) return null;
@@ -62,62 +58,50 @@
 		return addresses.value.find((item) => item.currency.id === currencyId)?.currency;
 	});
 
-	const handlePayment = () => {
+	const handlePayment = async () => {
 		try {
 			if (!recipientAddress || !amount || !token || !chain || !tokenInfo.value) return;
-			switchChain({ chainId: chainIdMap[chain] });
-
-			if (tokenInfo.value.is_native) {
-				sendTransaction({ to: recipientAddress, value: parseEther(amount) });
-			} else {
-				console.log("CONTRACT");
+			const targetChainId = chainIdMap[chain];
+			if (!targetChainId) {
+				notify(t('This currency or blockchain is not supported'));
+				return;
 			}
-
-			// await switchChain({ chainId: targetChain.id });
-			//
-			// if (info.is_native) {
-			// 	const decimals = info.precision || 18;
-			// 	const value = decimals === 18
-			// 		? parseEther(amount)
-			// 		: parseUnits(amount, decimals);
-			//
-			// 	const res = await sendTransaction({
-			// 		chainId: targetChain.id,
-			// 		to: recipientAddress as Address,
-			// 		value
-			// 	});
-			// 	console.log(res);
-			// } else {
-			// 	// Если токен ERC-20, используем writeContract
-			// 	if (!info.contract_address) {
-			// 		console.error('Contract address not found for token');
-			// 		return;
-			// 	}
-			//
-			// 	const decimals = info.precision || 18;
-			// 	const tokenAmount = parseUnits(amount, decimals);
-			//
-			// 	const res = await writeContract({
-			// 		chainId: targetChain.id,
-			// 		address: info.contract_address as Address,
-			// 		abi: erc20Abi,
-			// 		functionName: 'transfer',
-			// 		args: [recipientAddress as Address, tokenAmount]
-			// 	});
-			// 	console.log(res);
-			// }
+			switchChain({ chainId: targetChainId });
+			if (tokenInfo.value.is_native) {
+				sendTransaction({ to: recipientAddress as Address, value: parseEther(amount) });
+			} else {
+				if (!tokenInfo.value.contract_address) {
+					notify(t('Contract address not found for token'));
+					return;
+				}
+				const decimals = tokenInfo.value.precision || 18;
+				const tokenAmount = parseUnits(amount, decimals);
+				writeContract({
+					chainId: targetChainId,
+					address: tokenInfo.value.contract_address as Address,
+					abi: erc20Abi,
+					functionName: 'transfer',
+					args: [recipientAddress as Address, tokenAmount]
+				});
+			}
 		} catch (error: any) {
 			console.error(error);
+			notify(error?.message || t('Transaction failed'));
 		}
 	};
 
 	watch(errorSendTransaction, (error) => {
 		if (error) notify(error.message);
 	});
-
+	watch(errorWriteContract, (error) => {
+		if (error) notify(error.message);
+	});
 	watch(transactionHash, (hash) => {
 		if (hash) notify(`${t('Transaction sent')}: ${hash}`, "success");
-	})
+	});
+	watch(contractHash, (hash) => {
+		if (hash) notify(`${t('Transaction sent')}: ${hash}`, "success");
+	});
 </script>
 
 <template>

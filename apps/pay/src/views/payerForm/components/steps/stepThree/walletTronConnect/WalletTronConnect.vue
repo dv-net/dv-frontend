@@ -130,7 +130,6 @@
 		interface Window {
 			tronWeb: any;
 			tronLink: any;
-			ethereum: any;
 			okxwallet: any;
 		}
 	}
