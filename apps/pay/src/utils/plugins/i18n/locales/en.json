@@ -4,6 +4,7 @@
 		"s": "s",
         "h": "h"
 	},
+    "User rejected the request": "User rejected the request",
     "This currency or blockchain is not supported": "This currency or blockchain is not supported",
     "Contract address not found for token": "Contract address not found for token",
     "Transaction failed": "Transaction failed",

@@ -7,6 +7,7 @@
 		useSendTransaction,
 		useWriteContract,
 		useSwitchChain,
+		useReadContract,
 	} from "@wagmi/vue";
 	import {
 		chainIdMap,
@@ -58,6 +59,13 @@
 		return addresses.value.find((item) => item.currency.id === currencyId)?.currency;
 	});
 
+	const { data: tokenDecimals } = useReadContract({
+		chainId: computed(() => chain && (chain in chainIdMap) ? chainIdMap[chain] : undefined),
+		address: computed(() => tokenInfo.value?.contract_address as Address | undefined),
+		abi: erc20Abi,
+		functionName: 'decimals'
+	});
+
 	const handlePayment = async () => {
 		try {
 			if (!recipientAddress || !amount || !token || !chain || !tokenInfo.value) return;
@@ -74,7 +82,7 @@
 					notify(t('Contract address not found for token'));
 					return;
 				}
-				const decimals = tokenInfo.value.precision || 18;
+				const decimals = (tokenDecimals.value as number) || 18;
 				const tokenAmount = parseUnits(amount, decimals);
 				writeContract({
 					chainId: targetChainId,
@@ -91,10 +99,12 @@
 	};
 
 	watch(errorSendTransaction, (error) => {
-		if (error) notify(error.message);
+		if (!error) return;
+		notify(error.message.includes("User rejected the request") ? t("User rejected the request") : error.message);
 	});
 	watch(errorWriteContract, (error) => {
-		if (error) notify(error.message);
+		if (!error) return;
+		notify(error.message.includes("User rejected the request") ? t("User rejected the request") : error.message);
 	});
 	watch(transactionHash, (hash) => {
 		if (hash) notify(`${t('Transaction sent')}: ${hash}`, "success");
