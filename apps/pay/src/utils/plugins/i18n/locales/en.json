@@ -4,6 +4,8 @@
 		"s": "s",
         "h": "h"
 	},
+    "Disconnect": "Disconnect",
+    "Transaction sent": "Transaction sent",
     "Latest payments": "Latest payments",
     "from": "from",
     "new": "new",

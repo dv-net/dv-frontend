@@ -7,6 +7,16 @@ export const networksWalletConnect: [AppKitNetwork, ...AppKitNetwork[]] = [
 	mainnet, polygon, arbitrum, optimism, linea, bsc
 ]
 
+export const chainIdMap: Record<string, number> = {
+	Ethereum: mainnet.id,
+	Polygon: polygon.id,
+	Arbitrum: arbitrum.id,
+	Optimism: optimism.id,
+	Linea: linea.id,
+	BNBSmartChain: bsc.id,
+	BSC: bsc.id
+}
+
 export const wagmiAdapter = new WagmiAdapter({
 	networks: networksWalletConnect,
 	projectId: import.meta.env.VITE_PROJECT_ID_CONNECT_WALLET

@@ -30,7 +30,7 @@
 	const inputTextSum = computed<string>(() => `${currentPrice.value} ${currentCurrency.value}`)
 	const isTronSupported = computed<boolean>(() => currentChain.value === "Tron");
 	const isShowTronWalletConnect = computed<boolean>(() => showWalletConnect.value && isTronSupported.value);
-	const isEvmSupported = computed<boolean>(() => Boolean(currentChain.value) && evmArray.includes(currentChain.value));
+	const isEvmSupported = computed<boolean>(() => Boolean(currentChain.value) && evmArray.includes(currentChain.value!));
 
 	const blockEdit = (event: KeyboardEvent) => {
 		const allowed = [
@@ -131,7 +131,13 @@
 						:token="currentCurrency"
 					/>
 				</transition>
-				<wallet-evm-connect v-if="isEvmSupported" />
+				<wallet-evm-connect
+					v-if="isEvmSupported"
+					:recipient-address="currentAddress"
+					:amount="currentPrice"
+					:token="currentCurrency"
+					:chain="currentChain"
+				/>
 			</div>
 			<div v-if="currentStep === 3" class="status">
 				<div class="status__top">
