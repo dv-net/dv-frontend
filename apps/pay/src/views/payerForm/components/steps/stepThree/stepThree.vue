@@ -14,6 +14,8 @@
 	import { LottieAnimation } from "lottie-web-vue";
 	import { useMediaQuery } from "@shared/utils/composables/useMediaQuery.ts";
 	import WalletTronConnect from "@pay/views/payerForm/components/steps/stepThree/walletTronConnect/WalletTronConnect.vue";
+	import { evmArray } from "@pay/utils/constants/connectWallet/evm.ts";
+	import WalletEvmConnect from "@pay/views/payerForm/components/steps/stepThree/walletEvmConnect/WalletEvmConnect.vue";
 
 	const { currentAddress, currentCurrency, currentChain, currentStep, timeline, filteredBlockchains } = storeToRefs(usePayerFormStore());
 	const { getAmountRate } = usePayerFormStore();
@@ -27,7 +29,8 @@
 	const currentPrice = computed<string>(() => getAmountRate(currentCurrency.value as CurrencyType));
 	const inputTextSum = computed<string>(() => `${currentPrice.value} ${currentCurrency.value}`)
 	const isTronSupported = computed<boolean>(() => currentChain.value === "Tron");
-	const isShowWalletConnect = computed<boolean>(() => showWalletConnect.value && isTronSupported.value);
+	const isShowTronWalletConnect = computed<boolean>(() => showWalletConnect.value && isTronSupported.value);
+	const isEvmSupported = computed<boolean>(() => Boolean(currentChain.value) && evmArray.includes(currentChain.value!));
 
 	const blockEdit = (event: KeyboardEvent) => {
 		const allowed = [
@@ -122,12 +125,19 @@
 				</ui-button>
 				<transition name="slide-fade">
 					<wallet-tron-connect
-						v-if="isShowWalletConnect"
+						v-if="isShowTronWalletConnect"
 						:recipient-address="currentAddress"
 						:amount="currentPrice"
 						:token="currentCurrency"
 					/>
 				</transition>
+				<wallet-evm-connect
+					v-if="isEvmSupported"
+					:recipient-address="currentAddress"
+					:amount="currentPrice"
+					:token="currentCurrency"
+					:chain="currentChain"
+				/>
 			</div>
 			<div v-if="currentStep === 3" class="status">
 				<div class="status__top">

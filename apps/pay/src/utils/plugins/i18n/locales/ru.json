@@ -4,6 +4,11 @@
 		"s": "сек",
         "h": "ч"
     },
+    "This currency or blockchain is not supported": "Данная валюта или блокчейн не поддерживается",
+    "Contract address not found for token": "Адрес контракта для токена не найден",
+    "Transaction failed": "Транзакция не удалась",
+    "Disconnect": "Отключить",
+    "Transaction sent": "Транзакция отправлена",
     "Latest payments": "Последние оплаты",
     "from": "из",
     "new": "новая",

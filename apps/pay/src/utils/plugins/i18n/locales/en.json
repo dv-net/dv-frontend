@@ -4,6 +4,11 @@
 		"s": "s",
         "h": "h"
 	},
+    "This currency or blockchain is not supported": "This currency or blockchain is not supported",
+    "Contract address not found for token": "Contract address not found for token",
+    "Transaction failed": "Transaction failed",
+    "Disconnect": "Disconnect",
+    "Transaction sent": "Transaction sent",
     "Latest payments": "Latest payments",
     "from": "from",
     "new": "new",
