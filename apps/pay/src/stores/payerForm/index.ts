@@ -116,7 +116,9 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		try {
 			const data = await getApiWalletTxFind(id);
 			if (data.confirmed) {
-				transactionsConfirmed.value = data.confirmed.map((transaction) => ({
+				transactionsConfirmed.value = data.confirmed
+					.slice(0, 9)
+					.map((transaction) => ({
 					...transaction,
 					is_less_than_1_hour: isLessThan1Hour(transaction.created_at, new Date().toISOString())
 				}));

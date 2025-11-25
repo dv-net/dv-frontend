@@ -15,8 +15,11 @@
 		networksWalletConnect,
 		wagmiAdapter
 	} from "@pay/utils/constants/connectWallet/evm.ts";
-	import { UiButton, UiCopyText } from "@dv.net/ui-kit";
+	import { UiButton, UiCopyText, UiIcon } from "@dv.net/ui-kit";
 	import IconWalletConnect from "@pay/components/icons/IconWalletConnect.vue";
+	import iconMetaMask from "@pay/assets/images/wallets/metaMask.png";
+	import iconTrustWallet from "@pay/assets/images/wallets/trustWallet.png";
+	import iconOkxWallet from "@pay/assets/images/wallets/okx.png";
 	import type { IProps } from "@pay/views/payerForm/components/steps/stepThree/walletEvmConnect/IProps.ts";
 	import { parseEther, parseUnits, type Address, erc20Abi } from "viem";
 	import { storeToRefs } from "pinia";
@@ -25,7 +28,7 @@
 	import { useI18n } from "vue-i18n";
 
 	const { addresses } = storeToRefs(usePayerFormStore());
-	const { address, isConnected, isConnecting, connector } = useAccount();
+	const { address, isConnected, connector } = useAccount();
 	const { notify } = useNotifications()
 	const { t } = useI18n()
 	const { disconnect } = useDisconnect();
@@ -46,12 +49,24 @@
 		}
 	});
 
-	const walletName = computed<string>(() => {
-		if (!isConnected.value || !connector.value) return "";
-		return connector.value.name || "WalletConnect";
-	});
+const walletName = computed<string>(() => {
+	if (!isConnected.value || !connector.value) return "";
+	return connector.value.name || "WalletConnect";
+});
 
-	const isLoadingBtn = computed<boolean>(() => isPendingSendTransaction.value || isPendingContract.value || isConnecting.value);
+const walletIcon = computed(() => {
+	const iconByName: Record<string, string> = {
+		metamask: iconMetaMask,
+		trustwallet: iconTrustWallet,
+		okx: iconOkxWallet,
+	};
+	const normalized = walletName.value.trim().toLowerCase();
+	if (normalized === "walletconnect") return { type: "walletconnect", src: "" };
+	if (iconByName[normalized]) return { type: "image", src: iconByName[normalized] };
+	return { type: "default", src: "" };
+});
+
+	const isLoadingBtn = computed<boolean>(() => isPendingSendTransaction.value || isPendingContract.value);
 
 	const tokenInfo = computed(() => {
 		if (!token || !chain) return null;
@@ -98,13 +113,27 @@
 		}
 	};
 
+	const getError = (message: string) => {
+		if (!message) {
+			notify(t("User rejected the request"))
+			return;
+		}
+		if (message.includes("User rejected the request")) {
+			notify(t("User rejected the request"))
+		} else if (message.includes("The current chain of the wallet")) {
+			notify(t("An unexpected error occurred"))
+		} else {
+			notify(message)
+		}
+	}
+
 	watch(errorSendTransaction, (error) => {
 		if (!error) return;
-		notify(error.message.includes("User rejected the request") ? t("User rejected the request") : error.message);
+		getError(error.message)
 	});
 	watch(errorWriteContract, (error) => {
 		if (!error) return;
-		notify(error.message.includes("User rejected the request") ? t("User rejected the request") : error.message);
+		getError(error.message)
 	});
 	watch(transactionHash, (hash) => {
 		if (hash) notify(`${t('Transaction sent')}: ${hash}`, "success");
@@ -117,7 +146,8 @@
 <template>
 	<div class="flex flex-column gap-12">
 		<ui-button
-			@click="isConnected ? handlePayment() : modalConnectWallet.open()"
+			v-if="!isConnected"
+			@click="modalConnectWallet.open()"
 			:loading="isLoadingBtn"
 			type="secondary"
 			class="w-full flex flex-center gap-4"
@@ -127,7 +157,14 @@
 		</ui-button>
 		<div v-if="isConnected && address" class="info">
 			<div class="info__header">
-				<span class="info__name">{{ walletName }}</span>
+				<div class="info__wallet">
+					<div class="info__icon">
+						<icon-wallet-connect v-if="walletIcon.type === 'walletconnect'" />
+						<img v-else-if="walletIcon.type === 'image'" :src="walletIcon.src" alt="wallet" />
+						<ui-icon v-else name="account-balance_wallet  2" type="100" />
+					</div>
+					<span class="info__name">{{ walletName }}</span>
+				</div>
 				<span class="info__status">
 					<span class="info__dot" />
 					{{ $t("Connected") }}
@@ -135,11 +172,16 @@
 			</div>
 			<div class="info__address">
 				<span class="info__address-text">{{ address }}</span>
-				<ui-copy-text :copied-text="address" color-icon="#A4A5B1" />
+				<ui-copy-text :copied-text="address" size-icon="sm" color-icon="#A4A5B1" />
 			</div>
-			<ui-button @click="disconnect" type="secondary" size="sm" class="mt-4">
-				{{ $t("Disconnect") }}
-			</ui-button>
+			<div class="info__actions">
+				<ui-button :loading="isLoadingBtn" @click="handlePayment" size="sm" mode="neutral">
+					{{ $t("Pay") }}
+				</ui-button>
+				<ui-button @click="disconnect" type="secondary" size="sm">
+					{{ $t("Disconnect") }}
+				</ui-button>
+			</div>
 		</div>
 	</div>
 </template>
@@ -158,6 +200,29 @@
 			align-items: center;
 			justify-content: space-between;
 			gap: 8px;
+		}
+		&__wallet {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+		}
+		&__icon {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 28px;
+			height: 28px;
+			border-radius: 8px;
+			background: rgba(#6b6d80, 0.08);
+			img {
+				width: 20px;
+				height: 20px;
+				object-fit: contain;
+			}
+			:deep(svg) {
+				width: 20px;
+				height: 20px;
+			}
 		}
 		&__name {
 			font-weight: 500;
@@ -188,12 +253,21 @@
 			padding: 8px;
 			border-radius: 6px;
 			background: rgba(#6b6d80, 0.05);
+			word-break: break-word;
 		}
 		&__address-text {
 			font-family: monospace;
 			font-size: 13px;
 			color: $main-text-grey-color;
 			flex: 1;
+		}
+		&__actions {
+			width: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: flex-end;
+			gap: 8px;
+			margin-top: 4px;
 		}
 	}
 </style>
