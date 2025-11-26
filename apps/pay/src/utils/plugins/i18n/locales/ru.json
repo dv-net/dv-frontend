@@ -4,6 +4,7 @@
 		"s": "сек",
         "h": "ч"
     },
+    "Insufficient funds": "Недостаточно средств",
     "An unexpected error occurred": "Произошла непредвиденная ошибка",
     "User rejected the request": "Пользователь отклонил запрос",
     "This currency or blockchain is not supported": "Данная валюта или блокчейн не поддерживается",

@@ -23,18 +23,20 @@
 	import iconRabbyWallet from "@pay/assets/images/wallets/rabbyWallet.png";
 	import type { IProps } from "@pay/views/payerForm/components/steps/stepThree/walletEvmConnect/IProps.ts";
 	import { parseEther, parseUnits, type Address, erc20Abi } from "viem";
+	import { getBalance } from "viem/actions";
 	import { storeToRefs } from "pinia";
 	import { usePayerFormStore } from "@pay/stores/payerForm";
 	import { useNotifications } from "@shared/utils/composables/useNotifications.ts";
 	import { useI18n } from "vue-i18n";
+	import { getPublicClient } from "@wagmi/core";
 
-	const { addresses } = storeToRefs(usePayerFormStore());
-	const { address, isConnected, connector } = useAccount();
 	const { notify } = useNotifications()
 	const { t } = useI18n()
+	const { addresses } = storeToRefs(usePayerFormStore());
+	const { address, isConnected, connector } = useAccount();
 	const { disconnect } = useDisconnect();
 	const { sendTransaction, isPending: isPendingSendTransaction, error: errorSendTransaction, data: transactionHash } = useSendTransaction();
-	const { switchChain } = useSwitchChain();
+	const { switchChainAsync } = useSwitchChain();
 	const { writeContract, isPending: isPendingContract, error: errorWriteContract, data: contractHash } = useWriteContract();
 
 	const { chain, recipientAddress, token, amount } = defineProps<IProps>();
@@ -50,23 +52,23 @@
 		}
 	});
 
-const walletName = computed<string>(() => {
-	if (!isConnected.value || !connector.value) return "";
-	return connector.value.name || "WalletConnect";
-});
+	const walletName = computed<string>(() => {
+		if (!isConnected.value || !connector.value) return "";
+		return connector.value.name || "WalletConnect";
+	});
 
-const walletIcon = computed(() => {
-	const iconByName: Record<string, string> = {
-		metamask: iconMetaMask,
-		trustwallet: iconTrustWallet,
-		okx: iconOkxWallet,
-		rabbywallet: iconRabbyWallet,
-	};
-	const normalized = walletName.value.toLowerCase().replace(/\s+/g, '');
-	if (normalized === "walletconnect") return { type: "walletconnect", src: "" };
-	if (iconByName[normalized]) return { type: "image", src: iconByName[normalized] };
-	return { type: "default", src: "" };
-});
+	const walletIcon = computed(() => {
+		const iconByName: Record<string, string> = {
+			metamask: iconMetaMask,
+			trustwallet: iconTrustWallet,
+			okxwallet: iconOkxWallet,
+			rabbywallet: iconRabbyWallet,
+		};
+		const normalized = walletName.value.toLowerCase().replace(/\s+/g, '');
+		if (normalized === "walletconnect") return { type: "walletconnect", src: "" };
+		if (iconByName[normalized]) return { type: "image", src: iconByName[normalized] };
+		return { type: "default", src: "" };
+	});
 
 	const isLoadingBtn = computed<boolean>(() => isPendingSendTransaction.value || isPendingContract.value);
 
@@ -91,14 +93,45 @@ const walletIcon = computed(() => {
 				notify(t('This currency or blockchain is not supported'));
 				return;
 			}
-			switchChain({ chainId: targetChainId });
+			if (!address.value) {
+				notify(t('Connect wallet'));
+				return;
+			}
+			const userAddress = address.value as Address;
+			const publicClient = getPublicClient(wagmiAdapter.wagmiConfig, { chainId: targetChainId });
+			if (!publicClient) {
+				notify(t('Transaction failed'));
+				return;
+			}
 			if (tokenInfo.value.is_native) {
-				sendTransaction({ to: recipientAddress as Address, value: parseEther(amount) });
+				const nativeBalance = await getBalance(publicClient, { address: userAddress });
+				const needed = parseEther(amount);
+				if (nativeBalance < needed) {
+					notify(t('Insufficient funds'));
+					return;
+				}
 			} else {
 				if (!tokenInfo.value.contract_address) {
 					notify(t('Contract address not found for token'));
 					return;
 				}
+				const decimals = (tokenDecimals.value as number) || 18;
+				const tokenAmount = parseUnits(amount, decimals);
+				const tokenBalance = (await publicClient.readContract({
+					address: tokenInfo.value.contract_address as Address,
+					abi: erc20Abi,
+					functionName: 'balanceOf',
+					args: [userAddress]
+				})) as bigint;
+				if (tokenBalance < tokenAmount) {
+					notify(t('Insufficient funds'));
+					return;
+				}
+			}
+			await switchChainAsync({ chainId: targetChainId });
+			if (tokenInfo.value.is_native) {
+				sendTransaction({ to: recipientAddress as Address, value: parseEther(amount) });
+			} else {
 				const decimals = (tokenDecimals.value as number) || 18;
 				const tokenAmount = parseUnits(amount, decimals);
 				writeContract({
