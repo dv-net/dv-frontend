@@ -20,6 +20,7 @@
 	import iconMetaMask from "@pay/assets/images/wallets/metaMask.png";
 	import iconTrustWallet from "@pay/assets/images/wallets/trustWallet.png";
 	import iconOkxWallet from "@pay/assets/images/wallets/okx.png";
+	import iconRabbyWallet from "@pay/assets/images/wallets/rabbyWallet.png";
 	import type { IProps } from "@pay/views/payerForm/components/steps/stepThree/walletEvmConnect/IProps.ts";
 	import { parseEther, parseUnits, type Address, erc20Abi } from "viem";
 	import { storeToRefs } from "pinia";
@@ -59,8 +60,9 @@ const walletIcon = computed(() => {
 		metamask: iconMetaMask,
 		trustwallet: iconTrustWallet,
 		okx: iconOkxWallet,
+		rabbywallet: iconRabbyWallet,
 	};
-	const normalized = walletName.value.trim().toLowerCase();
+	const normalized = walletName.value.toLowerCase().replace(/\s+/g, '');
 	if (normalized === "walletconnect") return { type: "walletconnect", src: "" };
 	if (iconByName[normalized]) return { type: "image", src: iconByName[normalized] };
 	return { type: "default", src: "" };
@@ -151,9 +153,10 @@ const walletIcon = computed(() => {
 			:loading="isLoadingBtn"
 			type="secondary"
 			class="w-full flex flex-center gap-4"
+			left-icon-name="account-balance-wallet"
+			left-icon-size="md"
 		>
-			<icon-wallet-connect style="width: 24px" />
-			<span>{{ isConnected ? $t("Pay") : "WalletConnect" }}</span>
+			{{ $t('Connect wallet') }}
 		</ui-button>
 		<div v-if="isConnected && address" class="info">
 			<div class="info__header">
@@ -175,11 +178,11 @@ const walletIcon = computed(() => {
 				<ui-copy-text :copied-text="address" size-icon="sm" color-icon="#A4A5B1" />
 			</div>
 			<div class="info__actions">
-				<ui-button :loading="isLoadingBtn" @click="handlePayment" size="sm" mode="neutral">
-					{{ $t("Pay") }}
-				</ui-button>
 				<ui-button @click="disconnect" type="secondary" size="sm">
 					{{ $t("Disconnect") }}
+				</ui-button>
+				<ui-button :loading="isLoadingBtn" @click="handlePayment" size="sm" mode="neutral">
+					{{ $t("Pay") }}
 				</ui-button>
 			</div>
 		</div>
@@ -191,10 +194,13 @@ const walletIcon = computed(() => {
 		display: flex;
 		flex-direction: column;
 		gap: 8px;
-		padding: 12px;
+		padding: 12px 16px;
 		border: 1px solid $main-border-color;
 		border-radius: 8px;
 		background: rgba(#6b6d80, 0.02);
+		@include mediamax(480) {
+			padding: 12px;
+		}
 		&__header {
 			display: flex;
 			align-items: center;
@@ -260,6 +266,9 @@ const walletIcon = computed(() => {
 			font-size: 13px;
 			color: $main-text-grey-color;
 			flex: 1;
+			@include mediamax(480) {
+				font-size: 12px;
+			}
 		}
 		&__actions {
 			width: 100%;

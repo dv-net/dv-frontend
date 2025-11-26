@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import { UiButton, UiCopyText, UiIcon, UiInput, UiTooltip } from "@dv.net/ui-kit";
+	import { UiCopyText, UiIcon, UiInput, UiTooltip } from "@dv.net/ui-kit";
 	import { usePayerFormStore } from "@pay/stores/payerForm";
 	import { storeToRefs } from "pinia";
 	import { isDesktopDevice } from "@shared/utils/helpers/media.ts";
@@ -24,12 +24,10 @@
 
 	const isMediaMax768 = useMediaQuery("(max-width: 768px)");
 	const isMediaMax480 = useMediaQuery("(max-width: 480px)");
-	const showWalletConnect = ref<boolean>(false);
 
 	const currentPrice = computed<string>(() => getAmountRate(currentCurrency.value as CurrencyType));
 	const inputTextSum = computed<string>(() => `${currentPrice.value} ${currentCurrency.value}`)
 	const isTronSupported = computed<boolean>(() => currentChain.value === "Tron");
-	const isShowTronWalletConnect = computed<boolean>(() => showWalletConnect.value && isTronSupported.value);
 	const isEvmSupported = computed<boolean>(() => Boolean(currentChain.value) && evmArray.includes(currentChain.value!));
 
 	const blockEdit = (event: KeyboardEvent) => {
@@ -115,22 +113,12 @@
 						</ui-input>
 					</div>
 				</div>
-				<ui-button
+				<wallet-tron-connect
 					v-if="isTronSupported"
-					type="secondary"
-					class="w-full"
-					@click="showWalletConnect = !showWalletConnect"
-				>
-					{{ $t(showWalletConnect ? "Hide" : "Pay via TronLink / OKX Wallet") }}
-				</ui-button>
-				<transition name="slide-fade">
-					<wallet-tron-connect
-						v-if="isShowTronWalletConnect"
-						:recipient-address="currentAddress"
-						:amount="currentPrice"
-						:token="currentCurrency"
-					/>
-				</transition>
+					:recipient-address="currentAddress"
+					:amount="currentPrice"
+					:token="currentCurrency"
+				/>
 				<wallet-evm-connect
 					v-if="isEvmSupported"
 					:recipient-address="currentAddress"
@@ -254,10 +242,6 @@
 					}
 				}
 			}
-			.slide-fade-enter-active,
-			.slide-fade-leave-active { transition: all 0.3s ease }
-			.slide-fade-enter-from { opacity: 0; transform: translateY(-10px) }
-			.slide-fade-leave-to { opacity: 0; transform: translateY(-10px) }
 		}
 		.status {
 			display: flex;

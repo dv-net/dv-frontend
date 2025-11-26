@@ -126,15 +126,16 @@
 							</div>
 							<div class="header__amount">{{ formatDollars(item.amount_usd, "$", "—", 2) }}</div>
 						</div>
-						<div class="body">
-							<span class="body__hash">{{ item.hash }}</span>
-							<ui-icon
-								class="body__icon"
-								type="400"
-								name="new-windows"
-								color="#A4A5B1"
-								@click="handleOpenExplorer(item)"
-							/>
+						<div class="hash" @click="handleOpenExplorer(item)">
+							<span class="hash__text">{{ item.hash }}</span>
+							<div class="hash__icon">
+								<ui-icon
+									type="400"
+									name="new-windows"
+									size="sm"
+									color="#A4A5B1"
+								/>
+							</div>
 						</div>
 						<div v-if="item.is_less_than_1_hour" class="footer">
 							<div class="footer__label">
@@ -261,6 +262,9 @@
 					border-radius: 12px;
 					border: 1px solid $main-border-color;
 					background-color: $form-background;
+					@include mediamax(480) {
+						padding: 12px;
+					}
 					&.selected {
 						border-color: $main-text-link-and-price-color;
 					}
@@ -302,12 +306,13 @@
 							}
 						}
 					}
-					.body {
+					.hash {
 						display: flex;
 						align-items: center;
 						justify-content: space-between;
 						gap: 12px;
-						&__hash {
+						@extend .pointer;
+						&__text {
 							flex-grow: 1;
 							text-wrap: nowrap;
 							text-overflow: ellipsis;
@@ -321,13 +326,21 @@
 								overflow: unset;
 								word-break: break-word;
 							}
+							@include mediamax(480) {
+								font-size: 12px;
+							}
 						}
 						&__icon {
-							transition: transform 0.3s ease-in-out;
-							@media (hover: hover) {
-								&:hover {
-									cursor: pointer;
-									transform: scale(1.1);
+							width: 16px;
+							height: 16px;
+							flex-shrink: 0;
+							& > svg {
+								transition: transform 0.3s ease-in-out;
+								@media (hover: hover) {
+									&:hover {
+										cursor: pointer;
+										transform: scale(1.1);
+									}
 								}
 							}
 						}

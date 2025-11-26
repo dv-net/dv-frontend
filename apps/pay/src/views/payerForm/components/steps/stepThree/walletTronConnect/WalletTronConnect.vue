@@ -8,6 +8,8 @@
 	import { TRON_CONTRACTS } from "@pay/utils/constants/connectWallet/tron.ts";
 	import { useNotifications } from "@shared/utils/composables/useNotifications.ts";
 	import { useI18n } from "vue-i18n";
+import { UiButton, UiCopyText } from "@dv.net/ui-kit";
+	import WalletTronModal from "@pay/views/payerForm/components/steps/stepThree/walletTronConnect/walletTronModal/WalletTronModal.vue";
 
 	const { startPolling } = usePolling();
 	const { notify } = useNotifications();
@@ -18,8 +20,11 @@
 	const walletList = ref<any[]>([]);
 	const okxWallet = ref<any>(null);
 	const tronLinkWallet = ref<any>(null);
+	const isShowModalWallets = ref<boolean>(false)
 
 	const isContractTron = computed<boolean>(() => Boolean(token) && Object.keys(TRON_CONTRACTS).includes(token!));
+	const isAllConnectedWallets = computed<boolean>(() => walletList.value.every(item => item.initialized));
+	const connectedWallets = computed(() => walletList.value.filter(item => item.initialized));
 
 	const handleSendTransaction = async (walletId: string) => {
 		try {
@@ -76,11 +81,28 @@
 				await tronLinkWallet.value.request({ method: "tron_requestAccounts" });
 			} else if (okxWallet.value && walletId === "okx") {
 				const resp = await okxWallet.value.request({ method: "tron_requestAccounts" });
-				if (resp.code === 200) await getAvailableWallets();
+				if (resp?.code === 200) await getAvailableWallets();
 			}
 		} catch (error: any) {
 			console.error(error);
 		}
+	};
+
+	const handleDisconnectWallet = (walletId: string) => {
+		if (walletId !== "okx") return;
+		const findIndex = walletList.value.findIndex(item => item.id === walletId)
+		if (findIndex === -1) return;
+		walletList.value[findIndex].isLoading = true;
+		window.okxwallet
+			.request({ method: 'wallet_disconnect' })
+			.then(() => {
+				walletList.value[findIndex].initialized = false
+				okxWallet.value = null
+			})
+			.catch(console.error)
+			.finally(() => {
+				walletList.value[findIndex].isLoading = false
+			})
 	};
 
 	const handleClickWallet = async (wallet: any) => {
@@ -101,8 +123,11 @@
 			name: "TronLink",
 			icon: tronLinkWalletImage,
 			detected: isTronLinkInstalled,
-			initialized: isTronLinkInitialized
+			initialized: isTronLinkInitialized,
+			isLoading: false,
+			address: window?.tronLink?.tronWeb?.defaultAddress?.base58
 		});
+
 		if (isTronLinkInstalled) {
 			tronLinkWallet.value = window.tronLink;
 		}
@@ -115,7 +140,9 @@
 			name: "OKX Wallet",
 			icon: okxWalletImage,
 			detected: isOkxInstalled,
-			initialized: isOkxInitialized
+			initialized: isOkxInitialized,
+			isLoading: false,
+			address: window?.okxwallet?.tronWeb?.defaultAddress?.base58
 		});
 		if (isOkxInstalled) {
 			okxWallet.value = window.okxwallet.tronWeb;
@@ -137,113 +164,159 @@
 
 <template>
 	<div class="wallets">
-		<div
-			v-for="wallet in walletList"
-			:key="wallet.id"
-			class="wallet"
-			:class="{ opacity: !wallet.detected }"
-			@click="handleClickWallet(wallet)"
+		<ui-button
+			v-if="!isAllConnectedWallets"
+			type="secondary"
+			class="w-full"
+			left-icon-name="account-balance-wallet"
+			left-icon-size="md"
+			@click="isShowModalWallets = true"
 		>
-			<div class="wallet__inner">
-				<img class="wallet__img" :src="wallet.icon" alt="Icon" />
-				<span class="wallet__name">{{ wallet.name }}</span>
-			</div>
-			<div class="wallet__state">
-				<span
-					class="state"
-					:class="{
-						'state--connected': wallet.initialized,
-						'state--installed': !wallet.initialized && wallet.detected,
-						'state--missing': !wallet.detected
-					}"
-				>
-					<span class="state__dot" />
-					{{ wallet.initialized ? $t("Connected") : wallet.detected ? $t("Installed") : $t("Not installed") }}
-				</span>
+			{{ $t("Connect wallet") }}
+		</ui-button>
+		<div v-if="connectedWallets.length" class="wallets__list">
+			<div
+				v-for="item in connectedWallets"
+				:key="item.id"
+				class="info"
+			>
+				<div class="info__header">
+					<div class="info__wallet">
+						<div class="info__icon">
+							<img v-if="item.icon" :src="item.icon" alt="wallet" />
+						</div>
+						<span class="info__name">{{ item.name }}</span>
+					</div>
+					<span class="info__status">
+			<span class="info__dot" />
+			{{ $t("Connected") }}
+		</span>
+				</div>
+				<div class="info__address">
+					<span class="info__address-text">{{ item.address }}</span>
+					<ui-copy-text
+						v-if="item.address"
+						:copied-text="item.address"
+						size-icon="sm"
+						color-icon="#A4A5B1"
+					/>
+				</div>
+				<div class="info__actions">
+					<ui-button
+						v-if="item.id !== 'tronlink'"
+						@click="handleDisconnectWallet(item.id)"
+						type="secondary"
+						size="sm"
+						:loading="item.isLoading"
+					>
+						{{ $t("Disconnect") }}
+					</ui-button>
+					<ui-button @click="handleSendTransaction(item.id)" size="sm" mode="neutral">
+						{{ $t("Pay") }}
+					</ui-button>
+				</div>
 			</div>
 		</div>
+		<wallet-tron-modal
+			v-model:is-show="isShowModalWallets"
+			:wallets="walletList"
+			@select="handleClickWallet"
+		/>
 	</div>
 </template>
 
 <style scoped lang="scss">
 	.wallets {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 8px;
-		@include mediamax(768) {
-			grid-template-columns: 1fr;
-		}
-		.wallet {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+		&__list {
 			display: flex;
-			align-items: center;
-			justify-content: space-between;
-			gap: 8px;
-			border: 1px solid $main-border-color;
-			border-radius: 8px;
-			padding: 8px;
-			transition: border-color 0.3s ease-in-out;
-			@media (hover: hover) {
-				&:hover {
-					cursor: pointer;
-					border-color: $main-text-link-and-price-color;
-				}
-			}
-			@include mediamax(480) {
-				font-size: 14px;
-			}
-			&__inner {
+			flex-direction: column;
+			gap: 12px;
+			.info {
 				display: flex;
-				align-items: center;
+				flex-direction: column;
 				gap: 8px;
-			}
-			&__img {
-				width: 24px;
+				padding: 12px 16px;
+				border: 1px solid $main-border-color;
+				border-radius: 8px;
+				background: rgba(#6b6d80, 0.02);
 				@include mediamax(480) {
-					width: 20px;
+					font-size: 12px;
 				}
-			}
-			&__state {
-				display: flex;
-				align-items: center;
-				gap: 8px;
-				color: $main-text-grey-color;
-				font-size: 14px;
-				.state {
+				&__header {
+					display: flex;
+					align-items: center;
+					justify-content: space-between;
+					gap: 8px;
+				}
+				&__wallet {
+					display: flex;
+					align-items: center;
+					gap: 8px;
+				}
+				&__icon {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					width: 28px;
+					height: 28px;
+					border-radius: 8px;
+					background: rgba(#6b6d80, 0.08);
+					img {
+						width: 20px;
+						height: 20px;
+						object-fit: contain;
+					}
+				}
+				&__name {
+					font-weight: 500;
+					font-size: 14px;
+					color: $main-color;
+				}
+				&__status {
 					display: inline-flex;
 					align-items: center;
 					gap: 6px;
 					padding: 4px 8px;
 					border-radius: 24px;
 					font-size: 12px;
-					background: rgba($main-text-grey-color, 0.1);
-					&__dot {
-						display: inline-block;
-						width: 8px;
-						height: 8px;
-						border-radius: 100%;
-						background: $main-text-grey-color;
+					background: rgba(#16a34a, 0.12);
+					color: #16a34a;
+				}
+				&__dot {
+					display: inline-block;
+					width: 8px;
+					height: 8px;
+					border-radius: 100%;
+					background: #16a34a;
+				}
+				&__address {
+					display: flex;
+					align-items: center;
+					gap: 8px;
+					padding: 8px;
+					border-radius: 6px;
+					background: rgba(#6b6d80, 0.05);
+				}
+				&__address-text {
+					font-family: monospace;
+					font-size: 13px;
+					color: $main-text-grey-color;
+					flex: 1;
+					word-break: break-word;
+					@include mediamax(480) {
+						font-size: 12px;
 					}
-					&--connected {
-						background: rgba(#16a34a, 0.12);
-						color: #16a34a;
-						.state__dot {
-							background: #16a34a;
-						}
-					}
-					&--installed {
-						background: rgba(#d97706, 0.12);
-						color: #d97706;
-						.state__dot {
-							background: #d97706;
-						}
-					}
-					&--missing {
-						background: rgba(#94a3b8, 0.12);
-						color: #64748b;
-						.state__dot {
-							background: #94a3b8;
-						}
-					}
+				}
+				&__actions {
+					width: 100%;
+					display: flex;
+					align-items: center;
+					justify-content: flex-end;
+					gap: 8px;
+					margin-top: 4px;
 				}
 			}
 		}
