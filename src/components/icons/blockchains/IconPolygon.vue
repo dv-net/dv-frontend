@@ -1,5 +1,6 @@
 <script setup lang="ts">
-const uniqueId: string = "uniqueId-pol-polygon"
+import { generateUUID } from "@shared/utils/helpers/general.ts";
+const uniqueId: string = generateUUID()
 </script>
 
 <template>
