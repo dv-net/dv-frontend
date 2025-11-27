@@ -130,7 +130,11 @@
 			}
 			await switchChainAsync({ chainId: targetChainId });
 			if (tokenInfo.value.is_native) {
-				sendTransaction({ to: recipientAddress as Address, value: parseEther(amount) });
+				sendTransaction({
+					chainId: targetChainId,
+					to: recipientAddress as Address,
+					value: parseEther(amount)
+				});
 			} else {
 				const decimals = (tokenDecimals.value as number) || 18;
 				const tokenAmount = parseUnits(amount, decimals);
