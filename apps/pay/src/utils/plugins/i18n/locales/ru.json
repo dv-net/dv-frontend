@@ -4,6 +4,7 @@
 		"s": "сек",
         "h": "ч"
     },
+    "You have Trust Wallet installed, which may be intercepting TronLink requests. To connect via TronLink, temporarily disable Trust Wallet and refresh the page": "У вас установлен Trust Wallet, который может перехватывать запросы TronLink. Чтобы подключиться через TronLink, временно отключите Trust Wallet и обновите страницу",
     "Insufficient funds": "Недостаточно средств",
     "An unexpected error occurred": "Произошла непредвиденная ошибка",
     "User rejected the request": "Пользователь отклонил запрос",

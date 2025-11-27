@@ -12,6 +12,7 @@ const handleClose = () => {
 	isShow.value = false
 };
 const handleSelect = (wallet: ITronExtensionWallet) => {
+	if (wallet.initialized || !wallet.detected) return;
 	handleClose()
 	emit("select", wallet)
 };
@@ -36,7 +37,10 @@ const handleSelect = (wallet: ITronExtensionWallet) => {
 						v-for="wallet in wallets"
 						:key="wallet.id"
 						class="row"
-						:class="{ 'row--disabled': !wallet.detected }"
+						:class="[
+							{ 'row--disabled': !wallet.detected },
+							{ 'row--disabled-click': wallet.initialized },
+						]"
 						@click="handleSelect(wallet)"
 					>
 						<div class="row__info">
@@ -144,7 +148,10 @@ const handleSelect = (wallet: ITronExtensionWallet) => {
 				}
 				&--disabled {
 					opacity: 0.5;
-					pointer-events: none;
+					cursor: not-allowed !important;
+				}
+				&--disabled-click {
+					cursor: not-allowed !important;
 				}
 				&__info {
 					display: flex;

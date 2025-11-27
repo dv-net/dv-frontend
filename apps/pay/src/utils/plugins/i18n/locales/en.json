@@ -4,6 +4,7 @@
 		"s": "s",
         "h": "h"
 	},
+    "You have Trust Wallet installed, which may be intercepting TronLink requests. To connect via TronLink, temporarily disable Trust Wallet and refresh the page": "You have Trust Wallet installed, which may be intercepting TronLink requests. To connect via TronLink, temporarily disable Trust Wallet and refresh the page",
     "Insufficient funds": "Insufficient funds",
     "An unexpected error occurred": "An unexpected error occurred",
     "User rejected the request": "User rejected the request",

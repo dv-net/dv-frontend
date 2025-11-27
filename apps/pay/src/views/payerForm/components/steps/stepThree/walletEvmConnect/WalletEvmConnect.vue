@@ -155,7 +155,10 @@
 		}
 		if (message.includes("User rejected the request")) {
 			notify(t("User rejected the request"))
-		} else if (message.includes("The current chain of the wallet")) {
+		} else if (
+			message.includes("The current chain of the wallet") ||
+			message.includes("An unknown RPC error")
+		) {
 			notify(t("An unexpected error occurred"))
 		} else {
 			notify(message)

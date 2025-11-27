@@ -8,7 +8,7 @@
 	import { TRON_CONTRACTS } from "@pay/utils/constants/connectWallet/tron.ts";
 	import { useNotifications } from "@shared/utils/composables/useNotifications.ts";
 	import { useI18n } from "vue-i18n";
-import { UiButton, UiCopyText } from "@dv.net/ui-kit";
+	import { UiButton, UiCopyText } from "@dv.net/ui-kit";
 	import WalletTronModal from "@pay/views/payerForm/components/steps/stepThree/walletTronConnect/walletTronModal/WalletTronModal.vue";
 
 	const { startPolling } = usePolling();
@@ -78,6 +78,10 @@ import { UiButton, UiCopyText } from "@dv.net/ui-kit";
 	const handleConnect = async (walletId: string) => {
 		try {
 			if (tronLinkWallet.value && walletId === "tronlink") {
+				if (window.trustwallet) {
+					notify(t('You have Trust Wallet installed, which may be intercepting TronLink requests. To connect via TronLink, temporarily disable Trust Wallet and refresh the page'));
+					return
+				}
 				await tronLinkWallet.value.request({ method: "tron_requestAccounts" });
 			} else if (okxWallet.value && walletId === "okx") {
 				const resp = await okxWallet.value.request({ method: "tron_requestAccounts" });
@@ -116,7 +120,7 @@ import { UiButton, UiCopyText } from "@dv.net/ui-kit";
 	const getAvailableWallets = async () => {
 		walletList.value = [];
 		// TronLink info
-		const isTronLinkInstalled: boolean = Boolean(window?.tronLink);
+		const isTronLinkInstalled: boolean = Boolean(window?.tronLink) && Boolean(window?.tronLink?.tronlinkParams);
 		const isTronLinkInitialized: boolean = Boolean(window?.tronLink?.ready);
 		walletList.value.push({
 			id: "tronlink",
@@ -158,6 +162,7 @@ import { UiButton, UiCopyText } from "@dv.net/ui-kit";
 			tronWeb: any;
 			tronLink: any;
 			okxwallet: any;
+			trustwallet: any;
 		}
 	}
 </script>
