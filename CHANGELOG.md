@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+- Unified payment interface in Tron and EVM DV-3856
 - Added walletConnect for EVM DV-3767
 - Changed a block with recent payments DV-3828
 
