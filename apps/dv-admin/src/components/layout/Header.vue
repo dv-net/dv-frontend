@@ -17,6 +17,8 @@
 		loginAnimation,
 		notificationsAnimation,
 		personAnimation,
+		securityAnimation,
+		telegramAnimation
 	} from "@dv.net/ui-kit/dist/helpers/animations-list";
 	import TooltipHelper from "@dv-admin/components/ui/tooltipHelper/TooltipHelper.vue";
 	import { useAuthEmailSectionStore } from "@dv-admin/stores/auth/authEmailSection";
@@ -51,16 +53,14 @@
 			{
 				name: "telegram",
 				isShow: !ownerData.value?.telegram,
-				iconName: "telegram",
-				iconType: "social",
+				animationIcon: telegramAnimation,
 				label: "Telegram",
 				isActive: route.name === "profile-telegram",
 				action: () => router.push({ name: "profile-telegram" })
 			},
 			{
 				name: "lock",
-				iconName: "admin-panel_settings",
-				iconType: "100",
+				animationIcon: securityAnimation,
 				label: t("Email, Password and 2FA"),
 				isActive: route.name === "profile-personal-data",
 				action: () => router.push({ name: "profile-personal-data" })
