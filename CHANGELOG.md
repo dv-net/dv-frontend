@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+- In the mobile version of the payment form, the block has been moved down DV-3892
+
 ## [1.0.22] - 2025-11-28
 
 - Unified payment interface in Tron and EVM DV-3856

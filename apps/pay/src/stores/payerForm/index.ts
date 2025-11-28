@@ -57,6 +57,9 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 	]);
 
 	const isShowAdvertising = computed<boolean>(() => ![4, 5].includes(currentStep.value));
+	const isShowBlockLatestTransactions = computed<boolean>(() => {
+		return !errorStore.value && ![4, 5].includes(currentStep.value) && Boolean(transactionsConfirmed.value.length)
+	});
 
 	const getPayerInfo = async (id: string) => {
 		try {
@@ -264,6 +267,7 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		currentAddress,
 		filteredBlockchains,
 		isShowAdvertising,
+		isShowBlockLatestTransactions,
 		stepMap,
 		filteredCurrencies,
 		moneyCameAudioRef,
