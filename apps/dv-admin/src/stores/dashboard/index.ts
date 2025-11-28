@@ -26,6 +26,7 @@ import { useGeneralStore } from "@dv-admin/stores/general";
 import { useNotifications } from "@shared/utils/composables/useNotifications.ts";
 import { useI18n } from "vue-i18n";
 import { useRouter } from "vue-router";
+import { getCurrentCoin } from "@shared/utils/helpers/general.ts";
 
 const { notify } = useNotifications();
 
@@ -71,18 +72,33 @@ export const useDashboardStore = defineStore("dashboard", () => {
 			isLoadingDeposit.value = true;
 			const data = await getApiDepositSummary();
 			if (data) {
-				depositSummary.value = data.map((item) => {
-					const total = item.transactions_count;
-					const details = Object.entries(item.details_by_currency).map(([currency, data]) => ({ currency, ...data }));
-					return {
-						date: item.date,
-						sum_usd: item.sum_usd,
-						transactions_count: item.transactions_count,
-						type: item.type,
-						isMoreDetails: false,
-						details_by_currency: getDepositPercentages(details, total)
-					};
-				});
+				console.log(data);
+				// depositSummary.value = data.map((item) => ({
+				// 	...item,
+				// 	isMoreDetails: false,
+				// 	details_by_currency: Object.entries(item.details_by_currency).map(([currency, data]) => {
+				// 		const coin = getCurrentCoin(currency)
+				// 		return {
+				// 			...item,
+				// 			currency: coin,
+				// 		}
+				// 	})
+				// }))
+
+
+
+				// depositSummary.value = data.map((item) => {
+				// 	const total = item.transactions_count;
+				// 	const details = Object.entries(item.details_by_currency).map(([currency, data]) => ({ currency, ...data }));
+				// 	return {
+				// 		date: item.date,
+				// 		sum_usd: item.sum_usd,
+				// 		transactions_count: item.transactions_count,
+				// 		type: item.type,
+				// 		isMoreDetails: false,
+				// 		details_by_currency: getDepositPercentages(details, total)
+				// 	};
+				// });
 			}
 		} catch (error: any) {
 			throw error;
