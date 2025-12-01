@@ -72,33 +72,26 @@ export const useDashboardStore = defineStore("dashboard", () => {
 			isLoadingDeposit.value = true;
 			const data = await getApiDepositSummary();
 			if (data) {
-				console.log(data);
-				// depositSummary.value = data.map((item) => ({
-				// 	...item,
-				// 	isMoreDetails: false,
-				// 	details_by_currency: Object.entries(item.details_by_currency).map(([currency, data]) => {
-				// 		const coin = getCurrentCoin(currency)
-				// 		return {
-				// 			...item,
-				// 			currency: coin,
-				// 		}
-				// 	})
-				// }))
-
-
-
-				// depositSummary.value = data.map((item) => {
-				// 	const total = item.transactions_count;
-				// 	const details = Object.entries(item.details_by_currency).map(([currency, data]) => ({ currency, ...data }));
-				// 	return {
-				// 		date: item.date,
-				// 		sum_usd: item.sum_usd,
-				// 		transactions_count: item.transactions_count,
-				// 		type: item.type,
-				// 		isMoreDetails: false,
-				// 		details_by_currency: getDepositPercentages(details, total)
-				// 	};
-				// });
+				depositSummary.value = data.map((item) => {
+					const total = item.transactions_count;
+					const groupedByCurrency = new Map<string, { tx_count: number; sum_usd: string }>();
+					Object.entries(item.details_by_currency).forEach(([currencyId, currencyData]) => {
+						const coin = getCurrentCoin(currencyId);
+						const existing = groupedByCurrency.get(coin);
+						if (existing) {
+							existing.tx_count += currencyData.tx_count;
+							existing.sum_usd = (parseFloat(existing.sum_usd) + parseFloat(currencyData.sum_usd)).toString();
+						} else {
+							groupedByCurrency.set(coin, { tx_count: currencyData.tx_count, sum_usd: currencyData.sum_usd });
+						}
+					});
+					const details = Array.from(groupedByCurrency.entries()).map(([currency, data]) => ({
+						currency, tx_count: data.tx_count, sum_usd: data.sum_usd
+					}));
+					return {
+						...item, isMoreDetails: false, details_by_currency: getDepositPercentages(details, total)
+					};
+				});
 			}
 		} catch (error: any) {
 			throw error;

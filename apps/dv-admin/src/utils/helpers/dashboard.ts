@@ -50,6 +50,7 @@ export const getDepositPercentages = (
 	details: { currency: string; tx_count: number; sum_usd: string }[],
 	total: number
 ) => {
+	if (!details.length) return [];
 	if (!total) return details.map((item) => ({ ...item, percentage: 0 }));
 	const raw = details.map((item) => ({ ...item, raw: (item.tx_count / total) * 100 }));
 	const initial = raw.map((item) => {
@@ -60,7 +61,9 @@ export const getDepositPercentages = (
 	const sum = initial.reduce((acc, item) => acc + item.percentage, 0);
 	let difference = 100 - sum;
 	if (difference < 0) {
-		const sorted = [...initial].filter((item) => item.percentage > 1).sort((a, b) => a.remainder - b.remainder);
+		const sorted = [...initial]
+			.filter((item) => item.percentage > 1)
+			.sort((a, b) => a.remainder - b.remainder);
 		for (let i = 0; i < sorted.length && difference < 0; i++) {
 			sorted[i].percentage -= 1;
 			difference++;
@@ -72,9 +75,7 @@ export const getDepositPercentages = (
 			difference--;
 		}
 	}
-	// Create a dictionary for quick access
 	const percentageByCurrency = new Map(initial.map((i) => [i.currency, i.percentage]));
-	// Return array with percentages, sorted by decreasing percentage
 	return details
 		.map((item) => ({ ...item, percentage: percentageByCurrency.get(item.currency) ?? 0 }))
 		.sort((a, b) => b.percentage - a.percentage);
