@@ -15,6 +15,8 @@
 	import NotFoundMessage from "@dv-admin/components/ui/notFoundMessage/NotFoundMessage.vue";
 	import Breadcrumbs from "@dv-admin/components/ui/breadcrumbs/Breadcrumbs.vue";
 	import { ONLY_LETTERS_AND_NUMBERS_REGEX, WITHOUT_SLASH_REGEX } from "@shared/utils/constants/regex";
+	import BlockBalancesExchange
+		from "@dv-admin/views/exchanges/components/blockBalancesExchange/BlockBalancesExchange.vue";
 
 	const { exchangePairs, exchangeUserPairs, isLoading, isLoadingPutExchangePairs } =
 		storeToRefs(useAutoExchangeStore());
@@ -74,11 +76,13 @@
 			</ui-button>
 		</div>
 
+		<block-balances-exchange :slug="slug" />
+
 		<ui-radio-group class="page__blocks" v-model="currentBlock">
 			<block-section class="section w-full" :class="{ opacity: currentBlock !== '1' }">
 				<div class="section__top">
 					<ui-radio value="1" />
-					<h2 class="global-title-h3">{{ $t("Automatically convert all income into one selected currency") }}.</h2>
+					<h2 class="global-title-h3">{{ $t("Automatically convert all income into one selected currency") }}</h2>
 				</div>
 				<p class="section__text">
 					{{

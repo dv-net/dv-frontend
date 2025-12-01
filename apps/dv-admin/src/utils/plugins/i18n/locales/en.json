@@ -4,6 +4,8 @@
 		"h": "h",
 		"s": "s"
 	},
+    "Balances on the exchange": "Balances on the exchange",
+    "Here you can see the current balances on the selected crypto exchange for each currency": "Here you can see the current balances on the selected crypto exchange for each currency",
     "Count": "Count",
     "Top-Ups": "Top-Ups",
     "transaction not found": "Transaction not found",

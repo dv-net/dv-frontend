@@ -4,6 +4,8 @@
 		"h": "ч",
 		"s": "сек"
 	},
+	"Balances on the exchange": "Балансы на бирже",
+	"Here you can see the current balances on the selected crypto exchange for each currency": "Здесь вы можете увидеть текущие балансы на выбранной криптовалютной бирже для каждой валюты",
 	"Count": "Количество",
 	"Top-Ups": "Пополнения",
 	"transaction not found": "Транзакция не найдена",

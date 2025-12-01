@@ -13,6 +13,8 @@
 	import type { UiTableHeader } from "@dv.net/ui-kit/dist/components/UiTable/types";
 	import { useI18n } from "vue-i18n";
 	import type { BlockchainType } from "@shared/utils/types/blockchain";
+	import BlockBalancesExchange
+		from "@dv-admin/views/exchanges/components/blockBalancesExchange/BlockBalancesExchange.vue";
 
 	const {
 		getExchangeWithdrawalSetting,
@@ -49,15 +51,15 @@
 <template>
 	<div class="page">
 		<breadcrumbs :back-route-title="$t('Crypto exchanges')" back-name-route="exchanges" />
-
-		<h1 class="global-title-h2">
-			{{ $t("Withdrawal from the crypto exchange") }}
-		</h1>
-
-		<ui-button mode="neutral" @click="handleGoDocs" class="mb-16">
-			{{ t("Complete instructions for setting up the crypto exchange", { exchange: slug.toUpperCase() }) }}
-		</ui-button>
-
+		<div class="flex flex-y-center flex-x-between">
+			<h1 class="global-title-h2">
+				{{ $t("Withdrawal from the crypto exchange") }}
+			</h1>
+			<ui-button mode="neutral" @click="handleGoDocs">
+				{{ t("Complete instructions for setting up the crypto exchange", { exchange: slug.toUpperCase() }) }}
+			</ui-button>
+		</div>
+		<block-balances-exchange :slug="slug" />
 		<block-section
 			class="withdrawal"
 			:title="$t('Withdrawal from the crypto exchange')"
@@ -70,7 +72,6 @@
 		>
 			<rules :slug="slug" />
 		</block-section>
-
 		<block-section class="flex flex-column gap-16" :title="$t('Created rules')">
 			<ui-table
 				:headers="headers"
@@ -128,13 +129,11 @@
 	.page {
 		display: flex;
 		flex-direction: column;
-		gap: 24px;
-
+		gap: 32px;
 		.withdrawal {
 			display: flex;
 			flex-direction: column;
 			gap: 24px;
-
 			&__switcher-container {
 				min-width: 100%;
 				border-right: 1px solid $grey-light;

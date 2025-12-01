@@ -723,13 +723,15 @@ export interface ICurrenciesRateSource {
 	updated_at: string | null;
 }
 
+export interface IBalancesCurrentExchangeItem {
+	amount: string;
+	amount_usd: string;
+	currency: string;
+}
+
 export interface IBalancesCurrentExchange {
 	total_usd: string;
-	balances: {
-		amount: string;
-		amount_usd: string;
-		currency: string;
-	}[];
+	balances: IBalancesCurrentExchangeItem[];
 }
 
 export interface IMonitorsResponse {

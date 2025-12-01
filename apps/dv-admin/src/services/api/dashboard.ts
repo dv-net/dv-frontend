@@ -1,6 +1,5 @@
 import api from "@dv-admin/utils/plugins/api";
 import type {
-	IBalancesCurrentExchange,
 	IDepositSummaryRequest,
 	IDepositSummaryResponse,
 	IProcessingWalletsResponse,
@@ -25,11 +24,6 @@ export const getApiDepositSummary = async (
 export const getApiWalletBalancesHot = async (): Promise<string> => {
 	const resp = await api.get(`/dv-admin/wallet/balances/hot`);
 	return resp.data.data.total_usd;
-};
-
-export const getApiBalanceCurrentExchange = async (slug: string): Promise<IBalancesCurrentExchange> => {
-	const resp = await api.get(`/dv-admin/exchange/${slug}/balance`);
-	return resp.data.data;
 };
 
 export const getApiBalancesCold = async (): Promise<string> => {

@@ -1,5 +1,6 @@
 import api from "@dv-admin/utils/plugins/api";
 import type {
+	IBalancesCurrentExchange,
 	IExchangeDepositAddressesResponse,
 	IExchangeList,
 	IExchangeListResponse,
@@ -39,4 +40,9 @@ export const postApiExchangeToggleWithdrawals = async (slug: string, new_state: 
 
 export const postApiExchangeTest = async (body: IExchangeTestRequest) => {
 	await api.post(`/dv-admin/exchange/test`, body);
+};
+
+export const getApiBalanceCurrentExchange = async (slug: string): Promise<IBalancesCurrentExchange> => {
+	const resp = await api.get(`/dv-admin/exchange/${slug}/balance`);
+	return resp.data.data;
 };

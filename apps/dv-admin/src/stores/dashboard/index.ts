@@ -1,13 +1,13 @@
 import { defineStore, storeToRefs } from "pinia";
 import { ref } from "vue";
 import {
-	getApiBalanceCurrentExchange,
 	getApiBalancesCold,
 	getApiDepositSummary,
 	getApiProcessingWallets,
 	getApiTronResourceExpenses,
 	postApiWithdrawalFromProcessing
 } from "@dv-admin/services/api/dashboard";
+import { getApiBalanceCurrentExchange } from "@dv-admin/services/api/exchangeSettings.ts";
 import type {
 	IBalancesCurrentExchange,
 	IDepositSummaryRequest,
