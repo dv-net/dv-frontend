@@ -4,6 +4,10 @@
 		"h": "h",
 		"s": "s"
 	},
+    "Balances on the exchange": "Balances on the exchange",
+    "Here you can see the current balances on the selected crypto exchange for each currency": "Here you can see the current balances on the selected crypto exchange for each currency",
+    "Count": "Count",
+    "Top-Ups": "Top-Ups",
     "transaction not found": "Transaction not found",
     "wallets not found": "Wallets not found",
     "Change language": "Change language",
@@ -317,7 +321,6 @@
 	"Summary of deposits": "Summary of deposits",
 	"Date": "Date",
 	"Total": "Total",
-	"Details and number of top ups": "Details and number of top ups",
 	"Income for the current week": "Income for the current week",
 	"Yesterday": "Yesterday",
 	"Today": "Today",

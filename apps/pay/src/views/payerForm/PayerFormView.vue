@@ -12,10 +12,12 @@
 	import StepFour from "@pay/views/payerForm/components/steps/stepFour/StepFour.vue";
 	import StepFive from "@pay/views/payerForm/components/steps/stepFive/StepFive.vue";
 	import StepError from "@pay/views/payerForm/components/steps/stepError/StepError.vue";
-	import BlockAdvertising from "@pay/views/payerForm/components/payerFormSidebar/blockAdvertising/BlockAdvertising.vue";
+	import BlockAdvertising from "@pay/views/payerForm/components/blockAdvertising/BlockAdvertising.vue";
 	import { getApiWalletConfirm } from "@pay/services/api/payerForm.ts";
 	import { useI18n } from "vue-i18n";
 	import AudioPayment from "@pay/views/payerForm/components/audioPayment/AudioPayment.vue";
+	import BlockLatestTransactions
+		from "@pay/views/payerForm/components/blockLatestTransactions/BlockLatestTransactions.vue";
 
 	const {
 		currentStep,
@@ -31,6 +33,7 @@
 		stepMap,
 		filteredBlockchains,
 		filteredCurrencies,
+		isShowBlockLatestTransactions
 	} = storeToRefs(usePayerFormStore());
 	const { getWalletTxFind, checkValidationCurrencyAndChain, getStartInfo } = usePayerFormStore();
 
@@ -161,6 +164,7 @@
 			</div>
 			<payer-form-sidebar />
 			<block-advertising v-if="isShowAdvertising" class="form__advertising" />
+			<block-latest-transactions v-if="isShowBlockLatestTransactions" class="form__latest-transactions" />
 		</div>
 	</div>
 </template>
@@ -191,7 +195,7 @@
 				order: 2;
 			}
 		}
-		&__advertising {
+		&__advertising, &__latest-transactions {
 			display: none;
 			@include mediamax(1024) {
 				display: flex;
