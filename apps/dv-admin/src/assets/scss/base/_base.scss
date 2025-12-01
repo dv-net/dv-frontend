@@ -11,9 +11,7 @@ body,
 	@supports (min-height: 100dvh) {
 		min-height: 100dvh;
 	}
-    @media (hover: hover) {
-      overscroll-behavior-y: none;
-    }
+    overscroll-behavior: none;
 	&:not(html) {
 		::-webkit-scrollbar {
 			width: 6px;

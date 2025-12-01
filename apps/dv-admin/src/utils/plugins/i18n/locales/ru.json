@@ -4,6 +4,8 @@
 		"h": "ч",
 		"s": "сек"
 	},
+	"Count": "Количество",
+	"Top-Ups": "Пополнения",
 	"transaction not found": "Транзакция не найдена",
 	"wallets not found": "Кошельки не найдены",
     "Remember that DV.net is an open-source solution. The cloud version should be used only for getting acquainted with the system and for test integrations. We do not make any profit from the cloud version and are not responsible for your funds. For full independence and security, we recommend deploying it on your own server": "Помните, что DV.net — это Open Source решение. Облачную версию следует использовать только для ознакомления с системой и тестовых интеграций. Мы не зарабатываем в облачной версии и не несём ответственности за ваши средства. Для полной независимостии безопасности рекомендуем развернуть его на своем сервере",
@@ -317,7 +319,6 @@
 	"Summary of deposits": "Сводка по депозитам",
 	"Date": "Дата",
 	"Total": "Сумма",
-	"Details and number of top ups": "Детали и количество пополнений",
 	"Income for the current week": "Доход за текущую неделю",
 	"Yesterday": "Вчера",
 	"Today": "Сегодня",

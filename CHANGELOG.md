@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+- Added tokens from the exchange to the exchange and withdrawal page DV-3890
+- Change deposit DV-3894
 - In the mobile version of the payment form, the block has been moved down DV-3892
 
 ## [1.0.22] - 2025-11-28
