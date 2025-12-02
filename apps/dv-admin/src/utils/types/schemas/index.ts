@@ -28,12 +28,13 @@ export type IFilteredDepositSummaryDetailsCurrency = {
 	sum_usd: string;
 };
 export interface IDepositFilteredSummary {
+	id: number
 	details_by_currency: IFilteredDepositSummaryDetailsCurrency[];
+	allDetailsByCurrency: IFilteredDepositSummaryDetailsCurrency[];
 	date: string;
 	sum_usd: string;
 	transactions_count: number;
 	type: string;
-	isMoreDetails: boolean;
 }
 
 export interface ITronTransferTypeList {
