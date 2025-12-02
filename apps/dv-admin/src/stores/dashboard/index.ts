@@ -72,7 +72,7 @@ export const useDashboardStore = defineStore("dashboard", () => {
 			isLoadingDeposit.value = true;
 			const data = await getApiDepositSummary();
 			if (data) {
-				depositSummary.value = data.map((item) => {
+				depositSummary.value = data.map((item, index) => {
 					const total = item.transactions_count;
 					const groupedByCurrency = new Map<string, { tx_count: number; sum_usd: string }>();
 					Object.entries(item.details_by_currency).forEach(([currencyId, currencyData]) => {
@@ -88,8 +88,12 @@ export const useDashboardStore = defineStore("dashboard", () => {
 					const details = Array.from(groupedByCurrency.entries()).map(([currency, data]) => ({
 						currency, tx_count: data.tx_count, sum_usd: data.sum_usd
 					}));
+					const allDetails = Object.entries(item.details_by_currency).map(([currency, data]) => ({ currency, ...data }));
 					return {
-						...item, isMoreDetails: false, details_by_currency: getDepositPercentages(details, total)
+						...item,
+						id: index + 1,
+						details_by_currency: getDepositPercentages(details, total).slice(0, 4),
+						allDetailsByCurrency: getDepositPercentages(allDetails, total)
 					};
 				});
 			}

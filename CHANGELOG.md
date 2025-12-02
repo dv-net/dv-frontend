@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [1.0.24] - 2025-12-02
+
+- Blockchain details have been added to the dashboard DV-3913
+
 ## [1.0.23] - 2025-12-01
 
 - Added tokens from the exchange to the exchange and withdrawal page DV-3890
