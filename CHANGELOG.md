@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [1.0.25] - 2025-12-03
+
+- Fixed the missing value from env github in the final build DV-3929
+
 ## [1.0.24] - 2025-12-02
 
 - Blockchain details have been added to the dashboard DV-3913
