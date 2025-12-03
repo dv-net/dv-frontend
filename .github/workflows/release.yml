@@ -28,6 +28,20 @@ jobs:
           echo "VITE_APP_VERSION=${GITHUB_REF_NAME} (${GITHUB_SHA::7})" >> .env
           yarn build-only
 
+      - name: Verify .env file
+        run: |
+          if grep -q "VITE_PROJECT_ID_CONNECT_WALLET=" apps/pay/.env; then
+            echo "✅ VITE_PROJECT_ID_CONNECT_WALLET variable found in apps/pay/.env"
+            # Проверяем, что значение не пустое (без вывода самого значения)
+            if grep -q "VITE_PROJECT_ID_CONNECT_WALLET=$" apps/pay/.env; then
+              echo "❌ Warning: VITE_PROJECT_ID_CONNECT_WALLET appears to be empty"
+              exit 1
+            fi
+          else
+            echo "❌ Error: VITE_PROJECT_ID_CONNECT_WALLET variable not found in apps/pay/.env"
+            exit 1
+          fi
+
       - name: Pack build
         run: |
           mkdir -p artifacts
