@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+- Added saving of bar state in PU DV-3944
+
 ## [1.0.25] - 2025-12-03
 
 - Fixed the missing value from env github in the final build DV-3929

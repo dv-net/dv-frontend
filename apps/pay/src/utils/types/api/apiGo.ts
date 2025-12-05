@@ -51,6 +51,12 @@ export interface IWalletTransactionResponse {
 	hash: string;
 	type: string;
 	is_less_than_1_hour?: boolean;
+	currency_name: string;
+	currency_label: string;
+	blockchain: string;
+	contract_address: string;
+	is_native: boolean;
+	token_label: string | null;
 }
 
 export interface IWalletTxFindResponse {
