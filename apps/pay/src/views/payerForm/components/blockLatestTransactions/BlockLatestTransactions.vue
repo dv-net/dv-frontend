@@ -1,6 +1,11 @@
 <script setup lang="ts">
 	import type { BlockchainType } from "@shared/utils/types/blockchain";
-	import { formatDollars, getCurrentBlockchain, getCurrentCoin } from "@shared/utils/helpers/general.ts";
+	import {
+		changeChainBsc,
+		formatDollars,
+		getCurrentBlockchain,
+		getCurrentCoin
+	} from "@shared/utils/helpers/general.ts";
 	import { formatTimeAgo } from "@pay/utils/helpers/dateParse.ts";
 	import BlockchainIcon from "@shared/components/ui/blockchainIcon/BlockchainIcon.vue";
 	import WrapperBlock from "@pay/views/payerForm/components/wrapperBlock/WrapperBlock.vue";
@@ -74,8 +79,10 @@
 						<div class="content">
 							<blockchain-icon :type="item.currency_code as BlockchainType" width="32px" height="32px" />
 							<div class="content__inner">
-								<span class="content__title">{{ getCurrentCoin(item.currency_code) }}</span>
-								<span class="content__subtitle">{{ getCurrentBlockchain(item.currency_code) }}</span>
+								<span class="content__title">{{ getCurrentCoin(item.currency_code) }} {{ item.currency_label }}</span>
+								<span class="content__subtitle">
+									{{ changeChainBsc(getCurrentBlockchain(item.currency_code)) }} {{ item.token_label ? `(${item.token_label})` : null }}
+								</span>
 							</div>
 						</div>
 						<div class="header__amount">{{ formatDollars(item.amount_usd, "$", "—", 2) }}</div>
