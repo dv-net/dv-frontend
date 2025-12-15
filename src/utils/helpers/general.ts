@@ -1,4 +1,3 @@
-import { type Ref, isRef } from "vue";
 import { DEFAULT_CURRENCIES_INFO, DEFAULT_CURRENCY_PRECISION } from "@shared/utils/constants/blockchain";
 import type { BlockchainType } from "@shared/utils/types/blockchain";
 import { URL_REGEX } from "@shared/utils/constants/regex";
@@ -15,7 +14,7 @@ export const changeChainBsc = (chain: string): string => {
 };
 
 // Check if it's JSON
-export const checkIsJSON = (str: any): boolean => {
+export const checkIsJSON = (str: string): boolean => {
 	try {
 		if (!str) return false;
 		JSON.parse(str);
@@ -28,24 +27,26 @@ export const checkIsJSON = (str: any): boolean => {
 
 // 57346.87000000 / $57 346
 export const formatDollars = (
-	amount: any,
+	amount: string | number | null | undefined,
 	currencyValue: string = "$", // which currency to return
 	errorValue: string = "—", // value returned on error
 	countPartMoreOneDollar: number = 0, // number of decimal places when amount = from 1 to ~
 	countPartLessOneDollar: number = 2, // number of decimal places when amount = from 0 to 1
 	isFormattedIntegerPart: boolean = true // whether to format dollar output
 ): string => {
-	const num: number = parseFloat(amount);
-	if (isNaN(num) || !isFinite(num)) return errorValue;
+	if (amount === null || amount === undefined) return errorValue;
+	const num = typeof amount === "string" ? parseFloat(amount) : amount;
+	if (Number.isNaN(num) || !Number.isFinite(num)) return errorValue;
 	if (num > 0 && num < 1) {
 		const factor: number = 10 ** countPartLessOneDollar;
 		return currencyValue + (Math.floor(num * factor) / factor).toFixed(countPartLessOneDollar).replace(/\.?0+$/, "");
 	}
-	const [integerPart, fractionalPart] = String(num).split(".");
+	const [integerPart = "0", fractionalPart] = String(num).split(".");
 	const formattedIntegerPart = isFormattedIntegerPart
 		? parseFloat(integerPart).toLocaleString("ru-RU")
 		: parseFloat(integerPart);
-	const formattedFractionalPart = fractionalPart?.slice(0, countPartMoreOneDollar) || "";
+	const formattedFractionalPart =
+		fractionalPart !== undefined && fractionalPart !== null ? fractionalPart.slice(0, countPartMoreOneDollar) : "";
 	const hasMeaningfulFraction = Boolean(
 		countPartMoreOneDollar > 0 && formattedFractionalPart && parseInt(formattedFractionalPart, 10) > 0
 	);
@@ -55,41 +56,57 @@ export const formatDollars = (
 };
 
 // TRX * rate / 55$ or send prop "usdToCurrency" USD / rate
-export const convertCurrencyInUsd = (amount: any, rate: any, direction = "currencyToUsd"): number => {
-	const amountValue = parseFloat(amount);
-	const rateValue = parseFloat(rate);
-	if (isNaN(amountValue) || isNaN(rateValue)) return 0;
+export const convertCurrencyInUsd = (
+	amount: string | number | null | undefined,
+	rate: string | number | null | undefined,
+	direction: "currencyToUsd" | "usdToCurrency" = "currencyToUsd"
+): number => {
+	const amountValue = parseFloat(String(amount));
+	const rateValue = parseFloat(String(rate));
+	if (Number.isNaN(amountValue) || Number.isNaN(rateValue)) return 0;
 	return direction === "currencyToUsd" ? amountValue * rateValue : amountValue / rateValue;
 };
 
 // 57346.875465654654 / 57346.875465
 export const formatAmountBlockchain = (
-	amount: any,
+	amount: string | number | null | undefined,
 	currencyId?: string,
 	setCount?: number,
-	errorValue = "—",
+	errorValue: string = "—",
 	isFormattedIntegerPart: boolean = false
 ): string => {
+	if (amount === null || amount === undefined) return errorValue;
 	const precisionCurrency: number =
 		currencyId && currencyId in DEFAULT_CURRENCIES_INFO
 			? DEFAULT_CURRENCIES_INFO[currencyId as BlockchainType].precision
 			: DEFAULT_CURRENCY_PRECISION;
-	const count: number = setCount || precisionCurrency;
-	const num: number = parseFloat(amount);
-	if (isNaN(num) || !isFinite(num)) return errorValue;
-	const numStr = String(amount);
-	const [integerPart, fractionalPart = ''] = numStr.split(".");
+	const count: number = setCount ?? precisionCurrency;
+	const num: number = typeof amount === "string" ? parseFloat(amount) : amount;
+	if (Number.isNaN(num) || !Number.isFinite(num)) return errorValue;
+	let integerPartRaw: string;
+	let fractionalPartRaw: string;
+	if (typeof amount === "string") {
+		[integerPartRaw = "0", fractionalPartRaw = ""] = amount.split(".");
+	} else {
+		if (count === 0) {
+			const integerValue = Math.floor(num);
+			integerPartRaw = integerValue.toString();
+			fractionalPartRaw = "";
+		} else {
+			const factor = 10 ** count;
+			const truncated = Math.floor(num * factor) / factor;
+			const fixed = truncated.toFixed(count);
+			[integerPartRaw = "0", fractionalPartRaw = ""] = fixed.split(".");
+		}
+	}
 	if (count === 0) {
 		const integerValue = Math.floor(num);
-		return isFormattedIntegerPart 
-			? integerValue.toLocaleString("en-US")
-			: String(integerValue);
+		return isFormattedIntegerPart ? integerValue.toLocaleString("en-US") : String(integerValue);
 	}
-	let finalFractional = fractionalPart.slice(0, count);
-	finalFractional = finalFractional.replace(/0+$/, '');
+	const finalFractional = fractionalPartRaw.slice(0, count).replace(/0+$/, "");
 	const formattedInteger = isFormattedIntegerPart
-		? parseFloat(integerPart).toLocaleString("en-US")
-		: integerPart;
+		? parseFloat(integerPartRaw).toLocaleString("en-US")
+		: integerPartRaw;
 	return finalFractional ? `${formattedInteger}.${finalFractional}` : formattedInteger;
 };
 
@@ -147,50 +164,17 @@ export const generateUUID = (): string => {
 		.replace(/^(.{8})(.{4})(.{4})(.{4})(.{12})$/, "$1-$2-$3-$4-$5");
 };
 
-// 436f6e74726163742076616c6964617465206572 / contract validation error: account [TH8QmAkt1vCwk26dc9oLnipsLWCgCBa6mr9] does not exist
-export const hexToText = (hex: string) => {
-	if (!hex) return "";
-	const bytes = new Uint8Array(hex.match(/.{1,2}/g)?.map((byte) => parseInt(byte, 16)) || []);
-	const decoder = new TextDecoder("utf-8");
-	return decoder.decode(bytes);
-};
-
-// Clean object for backend from falsy values (except bool and 0)
-export const normalizeRequestObject = (body: any) => {
-	return Object.entries(body).reduce((result, [key, value]) => {
-		if (typeof value === "number" && value === 0) return result;
-		(result as any)[key] = !value && typeof value !== "boolean" ? null : value;
-		return result;
-	}, {});
-};
-
-// Clear object fields if all fields are string type
-export const clearObjectValues = (obj: Ref<Record<any, string>> | Record<any, string>) => {
-	if (isRef(obj)) {
-		Object.keys(obj.value).forEach((key) => {
-			if (Object.prototype.hasOwnProperty.call(obj.value, key) && typeof obj.value[key] === "string") {
-				obj.value[key] = "";
-			}
-		});
-	} else {
-		Object.keys(obj).forEach((key) => {
-			if (Object.prototype.hasOwnProperty.call(obj, key) && typeof obj[key] === "string") {
-				obj[key] = "";
-			}
-		});
-	}
-};
-
 export const copiedText = async (text: string) => {
 	await navigator.clipboard.writeText(text);
 };
 
 // URL validation
-export const isValidUrl = (string: any) => {
+export const isValidUrl = (value: string | null | undefined): boolean => {
+	if (!value) return false;
 	try {
-		new URL(string);
+		new URL(value);
 		const pattern = new RegExp(URL_REGEX, "i");
-		return pattern.test(string);
+		return pattern.test(value);
 	} catch (error: any) {
 		console.error(error);
 		return false;
