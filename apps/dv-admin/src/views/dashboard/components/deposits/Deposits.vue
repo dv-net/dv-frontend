@@ -2,7 +2,7 @@
 	import BlockSection from "@dv-admin/components/ui/BlockSection/BlockSection.vue";
 	import { useDashboardStore } from "@dv-admin/stores/dashboard";
 	import { storeToRefs } from "pinia";
-	import { formatDollars, getCurrentCoin } from "@shared/utils/helpers/general";
+	import { changeChainBsc, formatDollars, getCurrentBlockchain, getCurrentCoin } from "@shared/utils/helpers/general";
 	import { useI18n } from "vue-i18n";
 	import { computed, ref } from "vue";
 	import { UiTable } from "@dv.net/ui-kit";
@@ -10,6 +10,8 @@
 	import type { UiTableHeader } from "@dv.net/ui-kit/dist/components/UiTable/types";
 	import type { IDepositFilteredSummary } from "@dv-admin/utils/types/schemas";
 	import { useGeneralStore } from "@dv-admin/stores/general";
+	import BlockchainIcon from "@shared/components/ui/blockchainIcon/BlockchainIcon.vue";
+	import type { BlockchainType } from "@shared/utils/types/blockchain";
 
 	const { depositSummary, isLoadingDeposit } = storeToRefs(useDashboardStore());
 	const { dictionary } = storeToRefs(useGeneralStore());
@@ -36,6 +38,13 @@
 		const targetCoin = getCurrentCoin(currencyId);
 		const matchingCoins = currencies.map(({ id }) => getCurrentCoin(id)).filter((coin) => coin === targetCoin);
 		return matchingCoins.length === 1;
+	};
+
+	const getFormatingChain = (currency: string): string => {
+		const coin = getCurrentCoin(currency);
+		const chain = getCurrentBlockchain(currency);
+		const formatingChain = changeChainBsc(chain);
+		return `${coin} (${formatingChain})`;
 	};
 
 	const handleOpenRow = (row: IDepositFilteredSummary) => {
@@ -95,16 +104,12 @@
 						:style="{ '--percentage-width': item.percentage + '%' }"
 					>
 						<div class="expande__line">
-							<span class="expande__percent">
-								{{ item.percentage }}%
-							</span>
+							<span class="expande__percent"> {{ item.percentage }}% </span>
+							<blockchain-icon :type="item.currency as BlockchainType" />
 							<span class="expande__coin">
-								{{
-									isShowOnlyCoin(item.currency)
-										? getCurrentCoin(item.currency)
-										: item.currency.replace(".", " ")
-								}}
+								{{ isShowOnlyCoin(item.currency) ? getCurrentCoin(item.currency) : getFormatingChain(item.currency) }}
 							</span>
+							<span>{{ formatDollars(item.sum_usd) }}</span>
 						</div>
 					</div>
 				</div>
@@ -170,7 +175,7 @@
 			.expande {
 				padding: 16px 20px 20px;
 				display: grid;
-				grid-template-columns: repeat(auto-fit, minmax(160px, 186px));
+				grid-template-columns: repeat(4, 1fr);
 				gap: 8px 12px;
 				flex-grow: 1;
 				border-top: 1px solid #e1e8f1;
