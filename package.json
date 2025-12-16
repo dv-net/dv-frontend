@@ -3,10 +3,6 @@
 	"private": false,
 	"version": "1.0.25",
 	"type": "module",
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/dv-net/dv-frontend.git"
-	},
 	"engines": {
 		"node": "^20.19.0 || >=22.12.0"
 	},
@@ -24,7 +20,7 @@
 		"format": "prettier --write ."
 	},
 	"dependencies": {
-		"@dv.net/ui-kit": "^7.2.21",
+		"@dv.net/ui-kit": "^7.3.1",
 		"@reown/appkit": "1.8.14",
 		"@reown/appkit-adapter-wagmi": "1.8.14",
 		"@tanstack/vue-query": "5.91.2",

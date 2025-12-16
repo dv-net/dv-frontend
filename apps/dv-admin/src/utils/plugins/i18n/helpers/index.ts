@@ -35,7 +35,6 @@ export const updateTranslationsUiKit = (value: string, t: any) => {
 	config.uiDatePicker.translations.presetWeek = t("Week");
 	config.uiDatePicker.translations.presetYear = t("Year");
 	config.uiDatePicker.translations.clearButton = t("Clear");
-	config.uiDatePicker.translations.todayPlaceholder = t("Today");
 	config.uiDatePicker.translations.yesterdayPlaceholder = t("Yesterday");
 	config.uiNotification.translations.error = t("Error");
 	config.uiNotification.translations.success = t("Success");
