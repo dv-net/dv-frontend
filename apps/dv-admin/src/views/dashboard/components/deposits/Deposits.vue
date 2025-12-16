@@ -103,13 +103,15 @@
 						:class="{ 'expande__item--highlight': item.percentage > 50 }"
 						:style="{ '--percentage-width': item.percentage + '%' }"
 					>
-						<div class="expande__line">
-							<span class="expande__percent"> {{ item.percentage }}% </span>
-							<blockchain-icon :type="item.currency as BlockchainType" />
-							<span class="expande__coin">
-								{{ isShowOnlyCoin(item.currency) ? getCurrentCoin(item.currency) : getFormatingChain(item.currency) }}
-							</span>
-							<span>{{ formatDollars(item.sum_usd) }}</span>
+						<div class="top">
+							<span class="top__percent"> {{ item.percentage }}% </span>
+							<div class="top__inner">
+								<blockchain-icon width="16px" height="16px" :type="item.currency as BlockchainType" />
+								<span class="top__inner-text">
+									{{ isShowOnlyCoin(item.currency) ? getCurrentCoin(item.currency) : getFormatingChain(item.currency) }}
+								</span>
+							</div>
+							<span class="top__sum">{{ formatDollars(item.sum_usd) }}</span>
 						</div>
 					</div>
 				</div>
@@ -173,37 +175,55 @@
 				}
 			}
 			.expande {
-				padding: 16px 20px 20px;
+				padding: 16px;
 				display: grid;
 				grid-template-columns: repeat(4, 1fr);
-				gap: 8px 12px;
+				gap: 8px;
 				flex-grow: 1;
 				border-top: 1px solid #e1e8f1;
 				&__item {
+					height: 38px;
 					position: relative;
 					overflow: hidden;
 					border-radius: 8px;
-					padding: 8px 12px 12px;
-					background: #f7f9fb;
+					padding: 6px 8px;
 					transition: all 0.2s ease;
+					border: 1px solid #ecf0f5;
+					background-color: #f7f9fb;
 					&::before {
 						content: "";
 						position: absolute;
 						inset: auto 8px 6px;
 						height: 3px;
-						border-radius: 999px;
-						background: rgba(40, 81, 255, 0.08);
+						border-radius: 4px;
+						background: #ecf0f5;
 					}
 					&::after {
 						content: "";
 						position: absolute;
 						inset: auto 8px 6px;
 						height: 3px;
-						border-radius: 999px;
 						width: var(--percentage-width);
 						max-width: calc(100% - 16px);
-						background: linear-gradient(90deg, #2851ff 0%, #62b5ff 100%);
 						transition: background 0.2s ease;
+						border-radius: 4px;
+						background:
+							linear-gradient(
+								90deg,
+								rgba(255, 255, 255, 0) 0.46%,
+								rgba(0, 0, 0, 0.9) 100.55%,
+								rgba(255, 255, 255, 0) 163.59%
+							),
+							linear-gradient(270deg, #000aff 0%, #08e1ff 99.85%),
+							linear-gradient(90deg, #f4ffea 0.01%, #ffeadc 53.45%, #d2eaff 99.99%),
+							linear-gradient(
+								90deg,
+								rgba(255, 255, 255, 0) 0.46%,
+								rgba(0, 0, 0, 0.9) 100.55%,
+								rgba(255, 255, 255, 0) 163.59%
+							),
+							linear-gradient(90deg, rgba(210, 238, 210, 0.7) 0%, #d2eed2 100%);
+						background-blend-mode: overlay, normal, normal, overlay, normal;
 					}
 					&--highlight {
 						background: rgba(31, 150, 73, 0.04);
@@ -216,28 +236,43 @@
 						}
 					}
 				}
-				&__line {
+				.top {
 					position: relative;
-					display: flex;
-					align-items: center;
-					justify-content: space-between;
-					gap: 6px;
+					display: grid;
+					grid-template-columns: 32px 1fr 50px;
 					z-index: 1;
-				}
-				&__percent {
-					font-size: 12px;
-					font-weight: 600;
-					color: #2851ff;
-					white-space: nowrap;
-				}
-				&__coin {
-					font-size: 12px;
-					font-weight: 500;
-					color: #4a4f5c;
-					text-align: right;
-					white-space: nowrap;
-					overflow: hidden;
-					text-overflow: ellipsis;
+					&__percent {
+						text-align: left;
+						white-space: nowrap;
+						color: #1968e5;
+						border-right: 1px solid #e1e8f1;
+						padding-right: 12px;
+						font-size: 12px;
+						font-weight: 500;
+						line-height: 16px;
+					}
+					&__inner {
+						display: flex;
+						align-items: center;
+						gap: 3px;
+						padding: 0 8px;
+						white-space: nowrap;
+						overflow: hidden;
+						text-overflow: ellipsis;
+						&-text {
+							color: #6b6d80;
+							font-size: 12px;
+							font-weight: 500;
+							line-height: 16px;
+						}
+					}
+					&__sum {
+						text-align: right;
+						color: #303345;
+						font-size: 12px;
+						font-weight: 500;
+						line-height: 16px;
+					}
 				}
 			}
 		}
