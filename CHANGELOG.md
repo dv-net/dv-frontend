@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [1.0.26] - 2025-12-17
+
 - change: new view of deposit summary on the dashboard [DV-3991]
 - feat: added saving of bar state in PU [DV-3944]
 
