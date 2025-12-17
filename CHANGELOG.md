@@ -4,7 +4,7 @@
 
 ## [1.0.27] - 2025-12-17
 
-- fix: Removed date_to and date_from when requesting data from the exchange by slug on the withdrawals and exchanges page [DV-4006]
+- fix: removed date_to and date_from when requesting data from the exchange by slug on the withdrawals and exchanges page [DV-4006]
 
 ## [1.0.26] - 2025-12-17
 
