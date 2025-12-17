@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+- feat: updating to the new version of Ui Kit [DV-4002]
+
 ## [1.0.27] - 2025-12-17
 
 - fix: removed date_to and date_from when requesting data from the exchange by slug on the withdrawals and exchanges page [DV-4006]

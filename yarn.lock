@@ -70,10 +70,10 @@
     viem "^2.21.26"
     zod "^3.24.4"
 
-"@dv.net/ui-kit@^7.3.1":
-  version "7.3.1"
-  resolved "https://registry.yarnpkg.com/@dv.net/ui-kit/-/ui-kit-7.3.1.tgz#8447c5660b36975b14fcf7e5997084d02cbe6748"
-  integrity sha512-9UgJD5i/30/J8apAHgZYBIbtQV++sN5dEGEUKODwOpT7e7WO5OkPhm5T5y7QwvhBPgoI6JZz25i2sbpOdq8r9A==
+"@dv.net/ui-kit@^7.4.0":
+  version "7.4.0"
+  resolved "https://registry.yarnpkg.com/@dv.net/ui-kit/-/ui-kit-7.4.0.tgz#6a70aa9ef0c2583887d6ce278391cdcea490bc0a"
+  integrity sha512-vS52ZYlB1LdeKRR70tippjpg7xtnBv/xbXmxl61/7LQWa9Vlgi4je3LTia3WV7zCiS46mepRGd8rSdlYKWDHMw==
   dependencies:
     "@floating-ui/vue" "^1.1.7"
     "@vuepic/vue-datepicker" "^11.0.2"
