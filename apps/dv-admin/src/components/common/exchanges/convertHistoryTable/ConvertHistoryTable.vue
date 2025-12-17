@@ -17,7 +17,10 @@
 	const { t } = useI18n();
 	const { filterTransactions } = storeToRefs(useTransactionStore());
 
-	const props = defineProps<{ slug: string | undefined }>();
+	const { slug, isRequestWithDate = true } = defineProps<{
+		slug: string | undefined;
+		isRequestWithDate?: boolean;
+	}>();
 
 	const withdrawalOrderList = ref<IExchangeOrderItemResponse[]>([]);
 	const withdrawalOrderPagination = ref<UItableMeta | null>(null);
@@ -39,8 +42,8 @@
 				page: page || withdrawalOrderPagination.value?.page || 1,
 				page_size: 100,
 				slug,
-				date_from: filterTransactions.value?.date_from || null,
-				date_to: filterTransactions.value?.date_to || null
+				...(isRequestWithDate ? { date_to: filterTransactions.value?.date_to || null } : {}),
+				...(isRequestWithDate ? { date_from: filterTransactions.value?.date_from || null } : {})
 			};
 			const data = await getApiExchangeOrder(params);
 			if (data.items) withdrawalOrderList.value = data.items;
@@ -53,7 +56,7 @@
 	};
 
 	watch(
-		() => props.slug,
+		() => slug,
 		async (newValue: string | undefined) => {
 			await getExchangeOrder(newValue);
 		},
