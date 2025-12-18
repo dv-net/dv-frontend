@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+- fix: fixed "Delete selected" button not disappearing after deleting addresses and selected items were not cleared from selection [DV-4009]
 - feat: updating to the new version of Ui Kit [DV-4002]
 
 ## [1.0.27] - 2025-12-17
