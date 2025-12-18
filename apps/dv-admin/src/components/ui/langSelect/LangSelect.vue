@@ -1,7 +1,7 @@
 <script setup lang="ts">
 	import { UiLanguages } from "@dv.net/ui-kit/dist";
 	import { locales } from "@shared/utils/constants/locale";
-	import { computed, toRefs } from "vue";
+	import { computed } from "vue";
 	import { useI18n } from "vue-i18n";
 	import { setLocaleLS } from "@shared/utils/helpers/locale";
 	import { loadLocaleMessages, updateTranslationsUiKit } from "@dv-admin/utils/plugins/i18n/helpers";
@@ -11,24 +11,15 @@
 	import { useLayoutStore } from "@dv-admin/stores/layout";
 	import { useAuthStore } from "@dv-admin/stores/auth";
 
-	const { t } = useI18n();
+	const { t, locale } = useI18n();
 	const { user } = storeToRefs(useAuthStore());
 	const { putUser } = useAuthStore();
-
-	const props = withDefaults(defineProps<IProps>(), {
-		forHeader: false,
-		isHidden: false
-	});
-	const { forHeader } = toRefs(props);
-	const { locale } = useI18n();
 	const { isShowModalLanguage } = storeToRefs(useLayoutStore());
 
+	const { forHeader = false, isHidden = false } = defineProps<IProps>();
+
 	const currentLocale = computed<Locale>({
-		get: () => {
-			const findIndex = locales.findIndex((el) => el.isoCode === locale.value);
-			if (findIndex !== -1) return locales[findIndex];
-			return locales[0];
-		},
+		get: () => locales.find((el) => el.isoCode === locale.value) ?? locales[0],
 		set: (value: Locale) => {
 			setLocaleLS(value.isoCode);
 			locale.value = value.isoCode;
