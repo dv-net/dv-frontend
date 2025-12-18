@@ -45,7 +45,7 @@
 	const textarea = ref<HTMLTextAreaElement | null>(null);
 	const isShowBannerWarning = ref<boolean>(false);
 	const currencyId = route.params.currencyId as string;
-	const multipleSelectionAddresses = ref<IWithdrawalAddressItemResponse[]>([]);
+	const multipleSelectionAddresses = ref<string[]>([]);
 
 	const headers = computed<UiTableHeader[]>(() => [
 		{ selection: true },
@@ -57,29 +57,27 @@
 		{ name: "delete", width: "120" }
 	]);
 
-	const handleSelectionChange = (row: unknown[]) => {
-		multipleSelectionAddresses.value = row as IWithdrawalAddressItemResponse[];
-	};
-
 	const handleAddNewAddress = () => {
 		withdrawalCurrencyRules.value.addressees.push(getFreshAddressee());
 	};
 
 	const handleDeleteAddress = (row: IWithdrawalAddressItemResponse) => {
 		if (!withdrawalCurrencyRules.value?.addressees || !withdrawalCurrencyRules.value?.addressees?.length) return;
+		const deletedId = row.id;
 		withdrawalCurrencyRules.value.addressees = withdrawalCurrencyRules.value.addressees.filter(
-			(item) => item.id !== row.id
+			(item) => item.id !== deletedId
 		);
+		// Удаляем элемент из выбранных
+		multipleSelectionAddresses.value = multipleSelectionAddresses.value.filter((id) => id !== deletedId);
 	};
 
 	const handleDeleteSelectedAddresses = () => {
 		if (!withdrawalCurrencyRules.value?.addressees || !withdrawalCurrencyRules.value?.addressees?.length) return;
-		const deleteIds: string[] = multipleSelectionAddresses.value.length
-			? multipleSelectionAddresses.value.map((item) => item.id)
-			: [];
+		const deleteIds = new Set(multipleSelectionAddresses.value);
 		withdrawalCurrencyRules.value.addressees = withdrawalCurrencyRules.value.addressees.filter(
-			(item) => !deleteIds.includes(item.id)
+			(item) => !deleteIds.has(item.id)
 		);
+		multipleSelectionAddresses.value = [];
 	};
 
 	// Validation before sending to backend
@@ -228,7 +226,8 @@
 					:data="filteredAddressees"
 					table-layout="fixed"
 					:class="{ 'global-opacity': isShowAuthentication }"
-					@update:selected="handleSelectionChange"
+					v-model:selected="multipleSelectionAddresses"
+					selected-key="id"
 				>
 					<template #body-cell-address="{ row }">
 						<ui-input v-model="row.address" size="sm" :class="{ error: arrayErrorsAddresses.includes(row.id) }" />
