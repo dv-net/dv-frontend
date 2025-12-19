@@ -239,7 +239,7 @@
 				.top {
 					position: relative;
 					display: grid;
-					grid-template-columns: 32px 1fr 50px;
+					grid-template-columns: 32px 1fr 65px;
 					z-index: 1;
 					&__percent {
 						text-align: left;
