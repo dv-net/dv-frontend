@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+- change: the dashboard now shows percentages as a percentage of the total amount [DV-4035]
 - fix: fixed "Delete selected" button not disappearing after deleting addresses and selected items were not cleared from selection [DV-4009]
 - feat: updating to the new version of Ui Kit [DV-4002]
 
