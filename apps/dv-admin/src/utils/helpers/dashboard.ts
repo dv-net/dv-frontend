@@ -48,14 +48,14 @@ export const getColorBorderRow = (count: string): "orange" | "red" | "green" => 
 
 export const getDepositPercentages = (
 	details: { currency: string; tx_count: number; sum_usd: string }[],
-	total: number
+	totalSum: number
 ) => {
 	if (!details.length) return [];
-	if (!total) return details.map((item) => ({ ...item, percentage: 0 }));
-	const raw = details.map((item) => ({ ...item, raw: (item.tx_count / total) * 100 }));
+	if (!totalSum) return details.map((item) => ({ ...item, percentage: 0 }));
+	const raw = details.map((item) => ({ ...item, raw: (parseFloat(item.sum_usd) / totalSum) * 100 }));
 	const initial = raw.map((item) => {
 		const floored = Math.floor(item.raw);
-		const guaranteed = item.tx_count > 0 && floored === 0 ? 1 : floored;
+		const guaranteed = parseFloat(item.sum_usd) > 0 && floored === 0 ? 1 : floored;
 		return { ...item, percentage: guaranteed, remainder: item.raw - floored };
 	});
 	const sum = initial.reduce((acc, item) => acc + item.percentage, 0);
@@ -78,5 +78,5 @@ export const getDepositPercentages = (
 	const percentageByCurrency = new Map(initial.map((i) => [i.currency, i.percentage]));
 	return details
 		.map((item) => ({ ...item, percentage: percentageByCurrency.get(item.currency) ?? 0 }))
-		.sort((a, b) => b.percentage - a.percentage);
+		.sort((a, b) => parseFloat(b.sum_usd) - parseFloat(a.sum_usd));
 };
