@@ -17,7 +17,8 @@
 	import { evmArray } from "@pay/utils/constants/connectWallet/evm.ts";
 	import WalletEvmConnect from "@pay/views/payerForm/components/steps/stepThree/walletEvmConnect/WalletEvmConnect.vue";
 
-	const { currentAddress, currentCurrency, currentChain, currentStep, timeline, filteredBlockchains } = storeToRefs(usePayerFormStore());
+	const { currentAddress, currentCurrency, currentChain, currentStep, timeline, filteredBlockchains } =
+		storeToRefs(usePayerFormStore());
 	const { getAmountRate } = usePayerFormStore();
 
 	const isShowQrCode = ref<boolean>(false);
@@ -26,32 +27,40 @@
 	const isMediaMax480 = useMediaQuery("(max-width: 480px)");
 
 	const currentPrice = computed<string>(() => getAmountRate(currentCurrency.value as CurrencyType));
-	const inputTextSum = computed<string>(() => `${currentPrice.value} ${currentCurrency.value}`)
+	const inputTextSum = computed<string>(() => `${currentPrice.value} ${currentCurrency.value}`);
 	const isTronSupported = computed<boolean>(() => currentChain.value === "Tron");
 	const isEvmSupported = computed<boolean>(() => Boolean(currentChain.value) && evmArray.includes(currentChain.value!));
 
 	const blockEdit = (event: KeyboardEvent) => {
 		const allowed = [
-			'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown',
-			'Tab', 'Home', 'End', 'Shift', 'Control', 'Alt',
-			'Meta'
-		]
+			"ArrowLeft",
+			"ArrowRight",
+			"ArrowUp",
+			"ArrowDown",
+			"Tab",
+			"Home",
+			"End",
+			"Shift",
+			"Control",
+			"Alt",
+			"Meta"
+		];
 		if (!allowed.includes(event.key)) {
-			event.preventDefault()
+			event.preventDefault();
 		}
-	}
+	};
 
 	const infoCurrentChain = computed(() => {
-		const chains = filteredBlockchains.value || []
-		const isSingleChain = chains.length === 1
-		const isMultipleChains = chains.length > 1
+		const chains = filteredBlockchains.value || [];
+		const isSingleChain = chains.length === 1;
+		const isMultipleChains = chains.length > 1;
 		const shouldDisplayChainUI = isSingleChain ? !chains[0].currency.is_native : true;
-		return { shouldDisplayChainUI, isSingleNativeChain: isMultipleChains }
-	})
+		return { shouldDisplayChainUI, isSingleNativeChain: isMultipleChains };
+	});
 
 	onMounted(() => {
-		timeline.value[1].isActive = infoCurrentChain.value.isSingleNativeChain
-	})
+		timeline.value[1].isActive = infoCurrentChain.value.isSingleNativeChain;
+	});
 </script>
 
 <template>
@@ -81,11 +90,9 @@
 					<ui-input
 						type="text"
 						v-model="currentAddress"
-						@keydown="blockEdit"
-						@beforeinput.prevent
-						@paste.prevent
 						:size="isMediaMax480 ? 'sm' : isMediaMax768 ? 'md' : 'xl'"
 						class="address__input"
+						readonly-interactive
 					>
 						<template #append>
 							<ui-copy-text v-if="currentAddress" :copied-text="currentAddress" color-icon="#A4A5B1" />
@@ -99,9 +106,7 @@
 							type="text"
 							:size="isMediaMax768 ? 'md' : 'xl'"
 							v-model="inputTextSum"
-							@keydown="blockEdit"
-							@beforeinput.prevent
-							@paste.prevent
+							readonly-interactive
 							class="sum__input"
 						>
 							<template #prepend>
@@ -141,7 +146,12 @@
 						<span class="pending__text">{{ $t("We are waiting for the payment to arrive") }}</span>
 					</div>
 					<div v-if="currentAddress && isShowQrCode" class="qr">
-						<blockchain-icon class="qr__icon" width="24px" height="24px" :type="`${currentCurrency}.${currentChain}` as BlockchainType" />
+						<blockchain-icon
+							class="qr__icon"
+							width="24px"
+							height="24px"
+							:type="`${currentCurrency}.${currentChain}` as BlockchainType"
+						/>
 						<qrcode-vue :value="currentAddress" class="qr__code" level="M" render-as="svg" />
 					</div>
 				</div>

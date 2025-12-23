@@ -20,7 +20,7 @@
 		"format": "prettier --write ."
 	},
 	"dependencies": {
-		"@dv.net/ui-kit": "^7.4.0",
+		"@dv.net/ui-kit": "^7.4.2",
 		"@reown/appkit": "1.8.14",
 		"@reown/appkit-adapter-wagmi": "1.8.14",
 		"@tanstack/vue-query": "5.91.2",
