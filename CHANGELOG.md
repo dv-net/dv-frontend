@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [1.0.29] - 2026-01-12
+
+- fix: fixed VITE_APP_VERSION not being loaded from env in the final build [DV-4050]
+
 ## [1.0.28] - 2025-12-23
 
 - change: the dashboard now shows percentages as a percentage of the total amount [DV-4035]
