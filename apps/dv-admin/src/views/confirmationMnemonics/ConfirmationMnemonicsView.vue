@@ -85,7 +85,7 @@
 	<div class="page">
 		<div class="mnemonic">
 			<h1 class="global-title-h1 mb-40">{{ $t("Generate seed phrase") }}</h1>
-			<div v-if="true || isCloud" class="warning">
+			<div v-if="isCloud" class="warning">
 				<div class="flex flex-y-center gap-4">
 					<ui-icon name="error" type="filled" color="#ff9e00" />
 					<span>{{ $t("Important: You are using a trial cloud version") }}</span>
