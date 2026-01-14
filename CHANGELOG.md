@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+- change: improved registration section in admin panel [DV-4069]
+- feat: added new icons on dashboard cards [DV-4063]
+
 ## [1.0.29] - 2026-01-12
 
 - fix: fixed VITE_APP_VERSION not being loaded from env in the final build [DV-4050]
