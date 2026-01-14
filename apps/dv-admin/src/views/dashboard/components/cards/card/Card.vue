@@ -92,7 +92,7 @@
 			justify-content: center;
 			align-items: center;
 			flex-shrink: 0;
-			border-radius: 100px;
+			border-radius: 12px;
 			background-color: #fff3e0;
 
 			&--green {
