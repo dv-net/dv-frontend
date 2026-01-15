@@ -1,9 +1,18 @@
 <script setup lang="ts">
 	import { usePayerFormStore } from "@pay/stores/payerForm";
 	import { storeToRefs } from "pinia";
-	import { ref, watch, nextTick } from "vue";
+	import { ref, watch, nextTick, computed } from "vue";
 
-	const { timeline, currentStep, stepMap } = storeToRefs(usePayerFormStore());
+	const { timeline: timelineStore, currentStep, stepMap } = storeToRefs(usePayerFormStore());
+
+	const timeline = computed(() => {
+		return timelineStore.value.map((item) => {
+			if (currentStep.value === 4 && item.id === 3) {
+				return { ...item, label: "Waiting for enrollment" };
+			}
+			return item;
+		});
+	});
 
 	const timelineRef = ref<HTMLDivElement | null>(null);
 	const itemRefs = ref<(HTMLDivElement | null)[]>([]);
@@ -42,7 +51,10 @@
 				<div
 					:ref="(el) => (itemRefs[index] = el as HTMLDivElement | null)"
 					class="timeline__item"
-					:class="{ success: currentStep === 5 && timeline.length - 1 === index }"
+					:class="{ 
+						success: currentStep === 5 && timeline.length - 1 === index,
+						waiting: currentStep === 4 && item.id === 3
+					}"
 					@click="item.callback && item.callback()"
 				>
 					<span class="timeline__item-label">{{ item.id }}</span>
@@ -150,6 +162,13 @@
 				color: #1f9649;
 				.timeline__item-label {
 					background-color: #1f9649;
+					color: #fff;
+				}
+			}
+			&.waiting {
+				color: #1968E5;
+				.timeline__item-label {
+					background-color: #1968E5;
 					color: #fff;
 				}
 			}
