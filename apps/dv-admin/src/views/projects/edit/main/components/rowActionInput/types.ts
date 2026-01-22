@@ -1,5 +1,6 @@
 export interface IProps {
 	label: string;
+	isCopyValue?: boolean;
 	isEmptyValueNull?: boolean;
 	readonly?: boolean;
 	placeholder?: string;

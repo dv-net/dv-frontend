@@ -15,18 +15,19 @@
 	import { computed } from "vue";
 	import TransactionBlockInfo from "@pay/views/payerForm/components/steps/transactionBlockInfo/TransactionBlockInfo.vue";
 	import { useTimer } from "@pay/utils/composables/useTimer.ts";
+	import AdvertisingBlock from "@pay/views/payerForm/components/steps/stepFour/advertisingBlock/AdvertisingBlock.vue";
 
 	const { currentTransaction } = storeToRefs(usePayerFormStore());
 	const { formattedTime, counter } = useTimer(currentTransaction.value?.created_at);
 
-	// currentTransaction.value = {
-	// 	amount: "155",
-	// 	amount_usd: "750",
-	// 	created_at: "2025-09-17T12:34:56Z",
-	// 	currency_code: "USDT.Tron",
-	// 	hash: "0x9f2c3d8b7a6f1e5c4a2b3c9d8e7f6a1b0c9d8e7f6a1b2c3d4e5f6a7b8c9d0e1f",
-	// 	type: "deposit"
-	// };
+	currentTransaction.value = {
+		amount: "155",
+		amount_usd: "750",
+		created_at: "2025-09-17T12:34:56Z",
+		currency_code: "USDT.Tron",
+		hash: "0x9f2c3d8b7a6f1e5c4a2b3c9d8e7f6a1b0c9d8e7f6a1b2c3d4e5f6a7b8c9d0e1f",
+		type: "deposit"
+	};
 
 	const confirmations = computed<number>(() => {
 		if (!currentTransaction.value) return 0;
@@ -63,6 +64,7 @@
 							<span class="content__confirmation"> {{ confirmed }}/{{ confirmations }} {{ $t("confirmations") }} </span>
 						</div>
 					</div>
+					<advertising-block />
 				</div>
 				<transaction-block-info />
 			</div>
@@ -92,6 +94,7 @@
 			display: flex;
 			flex-direction: column;
 			&__top {
+				position: relative;
 				display: flex;
 				justify-content: center;
 				align-items: center;

@@ -27,6 +27,7 @@
 			:icon-title="$t('API keys for working with API')"
 			:icon-text="$t('Used to receive deposit addresses and generate a link to the payment form.')"
 			v-model="item.key"
+			:isCopyValue="true"
 			readonly
 		>
 			<ui-confirm
@@ -47,6 +48,7 @@
 			:icon-title="$t('Secret key for verification')"
 			:icon-text="$t('Used to verify the authenticity of webhooks.')"
 			readonly
+			:isCopyValue="true"
 			:type-input="isShowSecret ? 'text' : 'password'"
 		>
 			<ui-button type="outline" size="md" @click.stop="isShowSecret = !isShowSecret" class="align-self-center ml-8">

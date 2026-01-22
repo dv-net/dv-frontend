@@ -1,9 +1,10 @@
 <script setup lang="ts">
-	import { UiInput } from "@dv.net/ui-kit/dist";
+	import { UiCopyText, UiInput } from "@dv.net/ui-kit/dist";
 	import type { IProps } from "@dv-admin/views/projects/edit/main/components/rowActionInput/types";
 	import TooltipHelper from "@dv-admin/components/ui/tooltipHelper/TooltipHelper.vue";
 
 	withDefaults(defineProps<IProps>(), {
+		isCopyValue: false,
 		isEmptyValueNull: false,
 		readonly: false,
 		placeholder: "",
@@ -27,7 +28,14 @@
 				:readonly="readonly"
 				:type="typeInput"
 			>
-				<template #append> </template>
+				<template #append>
+					<ui-copy-text
+						v-if="modelValue && isCopyValue"
+						:copied-text="modelValue"
+						size-icon="sm"
+						color-icon="rgb(107, 109, 128)"
+					/>
+				</template>
 			</ui-input>
 			<span v-if="subtitle" class="row__subtitle">
 				{{ subtitle }}
