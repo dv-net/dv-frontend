@@ -4,6 +4,15 @@
 		"s": "s",
 		"h": "h"
 	},
+	"You have Trust Wallet installed, which may be intercepting TronLink requests. To connect via TronLink, temporarily disable Trust Wallet and refresh the page": "Sinulla on Trust Wallet asennettuna, mikä saattaa siepata TronLink-pyyntöjä. Yhdistä TronLinkin kautta tilapäisesti poista Trust Wallet käytöstä ja päivitä sivu.",
+	"Insufficient funds": "Riittämättömät varat",
+	"An unexpected error occurred": "Odottamaton virhe tapahtui",
+	"User rejected the request": "Käyttäjä hylkäsi pyynnön",
+	"This currency or blockchain is not supported": "Tämä valuutta tai lohkoketju ei ole tuettu",
+	"Contract address not found for token": "Sopimuksen osoite ei löytynyt tokenille",
+	"Transaction failed": "Tapahtuma epäonnistui",
+	"Disconnect": "Katkaise yhteys",
+	"Transaction sent": "Tapahtuma lähetetty",
 	"Latest payments": "Viimeisimmät maksut",
 	"from": "from",
 	"new": "uusi",
@@ -35,7 +44,7 @@
 	"Payment status": "Maksun tila",
 	"Your permanent wallet — funds are credited to it automatically upon receipt": "Pysyvä lompakkosi varat kirjataan siihen automaattisesti vastaanotettaessa",
 	"Sending a payment": "Maksun lähettäminen",
-	"Waiting for enrollment": "Odotetaan rekisteröintiä",
+	"Waiting for enrollment": "Odotetaan rekisteröitymistä",
 	"Payment received successfully": "Maksu vastaanotettu onnistuneesti",
 	"All cryptocurrencies": "Kaikki kryptovaluutat",
 	"No commissions": "Ei provisioita",
@@ -91,5 +100,9 @@
 	"Change": "Muuta",
 	"You pay via DV.net": "Maksat DV.netin kautta",
 	"Accept cryptocurrency on your website without paying intermediaries": "Hyväksy kryptovaluuttaa verkkosivustollasi maksamatta välittäjiä",
-	"the cheapest way to accept cryptocurrency on your site": "halvin tapa hyväksyä kryptovaluuttaa sivustollasi"
+	"the cheapest way to accept cryptocurrency on your site": "halvin tapa hyväksyä kryptovaluuttaa sivustollasi",
+	"While you wait for your payment, check out our amazing merchant for accepting cryptocurrency on your website for free": "Sillä aikaa kun odotat maksua, tutustu upeaan kauppiaaseemme, joka mahdollistaa kryptovaluutan hyväksymisen verkkosivustollasi ilmaiseksi",
+	"No our fees, everything stays on your server": "Ei meidän maksumme, kaikki pysyy palvelimellasi",
+	"All wallets are stored on your side": "Kaikki lompakot tallennetaan asiakkaan puolella",
+	"Open Source — all source code is public": "Avoin lähdekoodi — kaikki lähdekoodi on julkista"
 }

@@ -4,6 +4,15 @@
 		"s": "s",
 		"h": "h"
 	},
+	"You have Trust Wallet installed, which may be intercepting TronLink requests. To connect via TronLink, temporarily disable Trust Wallet and refresh the page": "Bạn đã cài đặt Trust Wallet, có thể đang chặn các yêu cầu của TronLink. Để kết nối qua TronLink, hãy tạm thời vô hiệu hóa Trust Wallet và làm mới trang",
+	"Insufficient funds": "Không đủ tiền",
+	"An unexpected error occurred": "Đã xảy ra lỗi bất ngờ",
+	"User rejected the request": "Người dùng đã từ chối yêu cầu",
+	"This currency or blockchain is not supported": "Tiền tệ này hoặc chuỗi khối này không được hỗ trợ",
+	"Contract address not found for token": "Địa chỉ hợp đồng không tìm thấy cho token",
+	"Transaction failed": "Giao dịch thất bại",
+	"Disconnect": "Ngắt kết nối",
+	"Transaction sent": "Giao dịch đã được gửi",
 	"Latest payments": "Các khoản thanh toán mới nhất",
 	"from": "từ",
 	"new": "mới",
@@ -35,7 +44,7 @@
 	"Payment status": "Trang thai thanh toan",
 	"Your permanent wallet — funds are credited to it automatically upon receipt": "Ví vĩnh viễn của bạn — số tiền được ghi có tự động khi nhận được",
 	"Sending a payment": "Đang gửi thanh toán",
-	"Waiting for enrollment": "Đang chờ đăng ký",
+	"Waiting for enrollment": "Đang chờ tuyển sinh",
 	"Payment received successfully": "Thanh toán đã được nhận thành công",
 	"All cryptocurrencies": "Tất cả tiền mã hóa",
 	"No commissions": "Không có hoa hồng",
@@ -91,5 +100,9 @@
 	"Change": "Thay đổi",
 	"You pay via DV.net": "Bạn thanh toán qua DV.net",
 	"Accept cryptocurrency on your website without paying intermediaries": "Chấp nhận tiền điện tử trên trang web của bạn mà không trả cho các trung gian",
-	"the cheapest way to accept cryptocurrency on your site": "cách rẻ nhất để chấp nhận tiền điện tử trên trang web của bạn"
+	"the cheapest way to accept cryptocurrency on your site": "cách rẻ nhất để chấp nhận tiền điện tử trên trang web của bạn",
+	"While you wait for your payment, check out our amazing merchant for accepting cryptocurrency on your website for free": "Trong khi bạn chờ thanh toán của mình, hãy xem qua người bán hàng tuyệt vời của chúng tôi để chấp nhận tiền điện tử trên trang web của bạn miễn phí",
+	"No our fees, everything stays on your server": "Không phí của chúng tôi, mọi thứ vẫn ở trên máy chủ của bạn",
+	"All wallets are stored on your side": "Tất cả ví được lưu trữ ở phía bạn",
+	"Open Source — all source code is public": "Mã nguồn mở — toàn bộ mã nguồn được công khai"
 }

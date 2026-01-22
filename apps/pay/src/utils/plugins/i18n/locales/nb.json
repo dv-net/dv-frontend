@@ -4,6 +4,15 @@
 		"s": "s",
 		"h": "h"
 	},
+	"You have Trust Wallet installed, which may be intercepting TronLink requests. To connect via TronLink, temporarily disable Trust Wallet and refresh the page": "Du har Trust Wallet installert, som kan fange opp TronLink forespørsler. For å koble til via TronLink, deaktiver Trust Wallet midlertidig og oppdater siden",
+	"Insufficient funds": "Utilstrekkelige midler",
+	"An unexpected error occurred": "En uventet feil oppstod",
+	"User rejected the request": "Brukeren avviste forespørselen",
+	"This currency or blockchain is not supported": "Denne valutaen eller blokkjeden er ikke støttet",
+	"Contract address not found for token": "Kontraktadresse ikke funnet for token",
+	"Transaction failed": "Transaksjonen feilet",
+	"Disconnect": "Koble fra",
+	"Transaction sent": "Transaksjon sendt",
 	"Latest payments": "Siste betalinger",
 	"from": "fra",
 	"new": "ny",
@@ -35,7 +44,7 @@
 	"Payment status": "Betalingsstatus",
 	"Your permanent wallet — funds are credited to it automatically upon receipt": "Din permanente lommebok — midlene krediteres automatisk ved mottak",
 	"Sending a payment": "Sender en betaling",
-	"Waiting for enrollment": "Venter på registrering",
+	"Waiting for enrollment": "Venter på innmelding",
 	"Payment received successfully": "Betaling mottatt vellykket",
 	"All cryptocurrencies": "Alle kryptovalutaer",
 	"No commissions": "Ingen provisjoner",
@@ -91,5 +100,9 @@
 	"Change": "Forandring",
 	"You pay via DV.net": "Du betaler via DV.net",
 	"Accept cryptocurrency on your website without paying intermediaries": "Godta kryptovaluta på nettstedet ditt uten å betale mellomledd",
-	"the cheapest way to accept cryptocurrency on your site": "den billigste måten å akseptere kryptovaluta på nettstedet ditt"
+	"the cheapest way to accept cryptocurrency on your site": "den billigste måten å akseptere kryptovaluta på nettstedet ditt",
+	"While you wait for your payment, check out our amazing merchant for accepting cryptocurrency on your website for free": "Mens du venter på betalingen din, sjekk ut vår fantastiske leverandør for å akseptere kryptovaluta på nettsiden din gratis",
+	"No our fees, everything stays on your server": "Nei våre gebyrer, alt blir på din server",
+	"All wallets are stored on your side": "Alle lommebøker er lagret på din side",
+	"Open Source — all source code is public": "Åpen kildekode — all kildekode er offentlig tilgjengelig"
 }

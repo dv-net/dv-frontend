@@ -4,6 +4,15 @@
 		"s": "s",
 		"h": "h"
 	},
+	"You have Trust Wallet installed, which may be intercepting TronLink requests. To connect via TronLink, temporarily disable Trust Wallet and refresh the page": "Teil on Trust Wallet installitud mis võib TronLinki päringuid pealt kuulata TronLinki kaudu ühenduse loomiseks ajutiselt keelake Trust Wallet ja värskendage lehte",
+	"Insufficient funds": "Pole piisavalt vahendeid",
+	"An unexpected error occurred": "Ootamatu viga tekkis",
+	"User rejected the request": "Kasutaja lükkas taotluse tagasi",
+	"This currency or blockchain is not supported": "See valuuta või plokiahel ei ole toetatud",
+	"Contract address not found for token": "Lepingu aadressi ei leitud tokeni jaoks",
+	"Transaction failed": "Tehing ebaõnnestus",
+	"Disconnect": "Katkesta ühendus",
+	"Transaction sent": "Tehing saadetud",
 	"Latest payments": "Viimased maksed",
 	"from": "kust",
 	"new": "uus",
@@ -91,5 +100,9 @@
 	"Change": "Muuda",
 	"You pay via DV.net": "Te maksate DV.net kaudu",
 	"Accept cryptocurrency on your website without paying intermediaries": "Võtke oma veebisaidil vastu krüptoraha ilma vahendajaid maksmata",
-	"the cheapest way to accept cryptocurrency on your site": "odavaim viis krüptoraha vastuvõtmiseks oma saidil"
+	"the cheapest way to accept cryptocurrency on your site": "odavaim viis krüptoraha vastuvõtmiseks oma saidil",
+	"While you wait for your payment, check out our amazing merchant for accepting cryptocurrency on your website for free": "Kui te ootate oma makset, vaadake meie imelise kaupmehe kes aktsepteerib krüptovaluutat teie veebisaidil tasuta",
+	"No our fees, everything stays on your server": "Ei meie tasud, kõik jääb sinu serveris",
+	"All wallets are stored on your side": "Kõik rahakotid on teie poolel",
+	"Open Source — all source code is public": "Avatud lähtekood — kõik lähtekoodid on avalikud"
 }

@@ -4,6 +4,15 @@
 		"s": "s",
 		"h": "h"
 	},
+	"You have Trust Wallet installed, which may be intercepting TronLink requests. To connect via TronLink, temporarily disable Trust Wallet and refresh the page": "Jums ir uzstādīta Trust Wallet, kas varētu traucēt TronLink pieprasījumus. Lai savienotos caur TronLink, uz laiku atslēdziet Trust Wallet un atjauniniet lapu.",
+	"Insufficient funds": "Nepietiek līdzekļu",
+	"An unexpected error occurred": "Notikusi neparedzēta kļūda",
+	"User rejected the request": "Lietotājs noraidīja pieprasījumu",
+	"This currency or blockchain is not supported": "Šī valūta vai blokķēde nav atbalstīta",
+	"Contract address not found for token": "Līguma adrese nav atrasta tokenim",
+	"Transaction failed": "Darījums neizdevās",
+	"Disconnect": "Atvienot",
+	"Transaction sent": "Darījums nosūtīts",
 	"Latest payments": "Jaunākie maksājumi",
 	"from": "no",
 	"new": "jauns",
@@ -35,7 +44,7 @@
 	"Payment status": "Maksājuma statuss",
 	"Your permanent wallet — funds are credited to it automatically upon receipt": "Jūsu pastāvīgais maks — līdzekļi tiek automātiski pieskaitīti tam pie saņemšanas",
 	"Sending a payment": "Maksājuma nosūtīšana",
-	"Waiting for enrollment": "Gaida reģistrāciju",
+	"Waiting for enrollment": "Gaidīšana uzņemšanai",
 	"Payment received successfully": "Maksājums saņemts veiksmīgi",
 	"All cryptocurrencies": "Visas kriptovalūtas",
 	"No commissions": "Bez komisiju",
@@ -91,5 +100,9 @@
 	"Change": "Mainīt",
 	"You pay via DV.net": "Jūs maksājat, izmantojot DV.net",
 	"Accept cryptocurrency on your website without paying intermediaries": "Pieņemt kriptovalūtu savā tīmekļa vietnē, nemaksājot starpniekiem",
-	"the cheapest way to accept cryptocurrency on your site": "lētākais veids, kā pieņemt kriptovalūtu savā vietnē"
+	"the cheapest way to accept cryptocurrency on your site": "lētākais veids, kā pieņemt kriptovalūtu savā vietnē",
+	"While you wait for your payment, check out our amazing merchant for accepting cryptocurrency on your website for free": "Kamēr gaidāt maksājumu, apskatiet mūsu brīnišķīgo tirgotāju par kriptovalūtu pieņemšanu jūsu tīmekļa vietnē bez maksas",
+	"No our fees, everything stays on your server": "Nav mūsu maksas, viss paliek uz jūsu servera",
+	"All wallets are stored on your side": "Visi portfeļi tiek glabāti jūsu pusē",
+	"Open Source — all source code is public": "Atvērtais Avots — visi avota kodi ir publiski"
 }

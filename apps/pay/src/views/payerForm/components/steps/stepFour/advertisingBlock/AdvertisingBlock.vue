@@ -1,21 +1,23 @@
 <script setup lang="ts">
-	import mainLoader from "@pay/assets/animations/mainLoader.json";
 	import { LottieAnimation } from "lottie-web-vue";
 	import { computed, onMounted, onUnmounted, ref, watch } from "vue";
 	import { useMediaQuery } from "@shared/utils/composables/useMediaQuery";
+	import mainLoader from "@pay/assets/animations/mainLoader.json";
+	import { useI18n } from "vue-i18n";
 
+	const { locale } = useI18n();
 	const isMediaMin1181 = useMediaQuery("(min-width: 1181px)");
 
+	const activeAdvertisingIndex = ref<number>(0);
+	const isFirstRender = ref<boolean>(true);
+	let advertisingIntervalId: ReturnType<typeof setInterval> | undefined;
 	const advertisingMessageKeys: string[] = [
 		"No our fees, everything stays on your server",
 		"All wallets are stored on your side",
 		"Open Source — all source code is public"
 	];
-	const activeAdvertisingIndex = ref<number>(0);
-	const activeAdvertisingText = computed<string>(() => advertisingMessageKeys[activeAdvertisingIndex.value]);
-	const isFirstRender = ref<boolean>(true);
 
-	let advertisingIntervalId: ReturnType<typeof setInterval> | undefined;
+	const activeAdvertisingText = computed<string>(() => advertisingMessageKeys[activeAdvertisingIndex.value]);
 
 	watch(activeAdvertisingIndex, () => {
 		if (isFirstRender.value) {
@@ -39,9 +41,9 @@
 
 <template>
 	<div v-if="isMediaMin1181" class="advertising">
-		<div class="advertising__logo">
+		<a class="advertising__logo" :href="`https://dv.net/${locale}`" target="_blank">
 			<lottie-animation :animation-data="mainLoader" :loop="true" />
-		</div>
+		</a>
 		<p class="advertising__text">
 			{{
 				$t(
@@ -70,6 +72,13 @@
 			@extend .center;
 			overflow: hidden;
 			animation: slideInFromLeft 0.6s ease-out;
+			transition: transform 0.1s ease-in-out;
+			@media (hover: hover) {
+				&:hover {
+					transform: scale(1.01);
+					cursor: pointer;
+				}
+			}
 			& > svg {
 				width: 110px;
 			}
@@ -124,7 +133,6 @@
 			transform: translateX(0);
 		}
 	}
-
 	@keyframes slideInFromBottom {
 		from {
 			opacity: 0;

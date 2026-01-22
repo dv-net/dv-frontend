@@ -4,6 +4,15 @@
 		"s": "s",
 		"h": "h"
 	},
+	"You have Trust Wallet installed, which may be intercepting TronLink requests. To connect via TronLink, temporarily disable Trust Wallet and refresh the page": "Trust Walletがインストールされています TronLinkのリクエストを傍受している可能性があります TronLinkを介して接続するには Trust Walletを一時的に無効にしてページを更新してください",
+	"Insufficient funds": "残高不足",
+	"An unexpected error occurred": "予期せぬエラーが発生しました",
+	"User rejected the request": "ユーザーはリクエストを拒否した",
+	"This currency or blockchain is not supported": "この通貨またはブロックチェーンはサポートされていません",
+	"Contract address not found for token": "トークンのコントラクトアドレスが見つかりません",
+	"Transaction failed": "取引に失敗しました",
+	"Disconnect": "切断",
+	"Transaction sent": "取引が送信されました",
 	"Latest payments": "最新の支払い",
 	"from": "から",
 	"new": "新しい",
@@ -91,5 +100,9 @@
 	"Change": "変更",
 	"You pay via DV.net": "DV.netでお支払い",
 	"Accept cryptocurrency on your website without paying intermediaries": "仲介業者に支払うことなく、ウェブサイトで暗号通貨を受け入れることができます。",
-	"the cheapest way to accept cryptocurrency on your site": "あなたのサイトで暗号通貨を受け入れる最も安い方法"
+	"the cheapest way to accept cryptocurrency on your site": "あなたのサイトで暗号通貨を受け入れる最も安い方法",
+	"While you wait for your payment, check out our amazing merchant for accepting cryptocurrency on your website for free": "お支払いを待つ間ウェブサイトで仮想通貨を無料で受け付ける私たちの素晴らしい加盟店をチェックしてください",
+	"No our fees, everything stays on your server": "いいえ、私たちの料金はすべてあなたのサーバーに残ります",
+	"All wallets are stored on your side": "すべてのウォレットはあなたの側に保存されています",
+	"Open Source — all source code is public": "オープンソース—すべてのソースコードは公開されています"
 }

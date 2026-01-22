@@ -4,6 +4,15 @@
 		"s": "s",
 		"h": "h"
 	},
+	"You have Trust Wallet installed, which may be intercepting TronLink requests. To connect via TronLink, temporarily disable Trust Wallet and refresh the page": "Imate Trust Wallet nameščen ki lahko prestreza zahteve TronLink Za povezavo prek TronLink začasno onemogočite Trust Wallet in osvežite stran",
+	"Insufficient funds": "Nezadostna sredstva",
+	"An unexpected error occurred": "Prišlo je do nepričakovane napake",
+	"User rejected the request": "Uporabnik je zavrnil zahtevo",
+	"This currency or blockchain is not supported": "Ta valuta ali blockchain ni podprta",
+	"Contract address not found for token": "Naslov pogodbe ni najden za žeton",
+	"Transaction failed": "Transakcija ni uspela",
+	"Disconnect": "Prekini povezavo",
+	"Transaction sent": "Transakcija poslana",
 	"Latest payments": "Najnovejše plačila",
 	"from": "od",
 	"new": "nov",
@@ -91,5 +100,9 @@
 	"Change": "Sprememba",
 	"You pay via DV.net": "Plačujete prek DV.net",
 	"Accept cryptocurrency on your website without paying intermediaries": "Sprejemanje kriptovalut na vaši spletni strani brez plačevanja posrednikov",
-	"the cheapest way to accept cryptocurrency on your site": "najcenejši način sprejemanja kriptovalut na vaši spletni strani"
+	"the cheapest way to accept cryptocurrency on your site": "najcenejši način sprejemanja kriptovalut na vaši spletni strani",
+	"While you wait for your payment, check out our amazing merchant for accepting cryptocurrency on your website for free": "Medtem ko čakate na vaše plačilo, oglejte si našega izjemnega trgovca za sprejemanje kriptovalut na vaši spletni strani brezplačno",
+	"No our fees, everything stays on your server": "Ne naše pristojbine, vse ostane na vašem strežniku",
+	"All wallets are stored on your side": "Vse denarnice so shranjene na vaši strani",
+	"Open Source — all source code is public": "Odprta koda — vsa izvorna koda je javna"
 }

@@ -4,6 +4,15 @@
 		"s": "s",
 		"h": "h"
 	},
+	"You have Trust Wallet installed, which may be intercepting TronLink requests. To connect via TronLink, temporarily disable Trust Wallet and refresh the page": "Cihazınızda Trust Wallet kurulu olabilir, bu da TronLink isteklerini engelliyor olabilir. TronLink üzerinden bağlanmak için geçici olarak Trust Wallet'ı devre dışı bırakın ve sayfayı yenileyin",
+	"Insufficient funds": "Yetersiz bakiye",
+	"An unexpected error occurred": "Beklenmedik bir hata oluştu",
+	"User rejected the request": "Kullanıcı isteği reddetti",
+	"This currency or blockchain is not supported": "Bu para birimi veya blok zinciri desteklenmiyor",
+	"Contract address not found for token": "Token için akıllı sözleşme adresi bulunamadı",
+	"Transaction failed": "İşlem başarısız oldu",
+	"Disconnect": "Bağlantıyı kes",
+	"Transaction sent": "İşlem gönderildi",
 	"Latest payments": "En son ödemeler",
 	"from": "den",
 	"new": "yeni",
@@ -35,7 +44,7 @@
 	"Payment status": "Ödeme durumu",
 	"Your permanent wallet — funds are credited to it automatically upon receipt": "Kalıcı cüzdanınız — fonlar alındığında otomatik olarak cüzdana yatırılır",
 	"Sending a payment": "Bir ödeme gönderiliyor",
-	"Waiting for enrollment": "Kayıt bekleniyor",
+	"Waiting for enrollment": "Kayıt için bekleniyor",
 	"Payment received successfully": "Ödeme başarıyla alındı",
 	"All cryptocurrencies": "Tüm kripto paralar",
 	"No commissions": "Hiçbir komisyon yok",
@@ -46,8 +55,8 @@
 	"Contacts": "Kişiler",
 	"More about": "Daha fazla hakkında",
 	"select-blockchain": {
-		"one": "Blok zinciri seçin",
-		"two": "Blok zinciri seçin"
+		"one": "Blok zincirini seçin",
+		"two": "Blok zincirini seçin"
 	},
 	"minutes": "dakika",
 	"Return to the store": "Mağazaya geri dönün",
@@ -91,5 +100,9 @@
 	"Change": "Değişim",
 	"You pay via DV.net": "DV.net üzerinden ödeme yaparsınız",
 	"Accept cryptocurrency on your website without paying intermediaries": "Aracılara ödeme yapmadan web sitenizde kripto para kabul edin",
-	"the cheapest way to accept cryptocurrency on your site": "sitenizde kripto para kabul etmenin en ucuz yolu"
+	"the cheapest way to accept cryptocurrency on your site": "sitenizde kripto para kabul etmenin en ucuz yolu",
+	"While you wait for your payment, check out our amazing merchant for accepting cryptocurrency on your website for free": "Ödemenizi beklerken web sitenizde kripto para birimini ücretsiz olarak kabul eden harika satıcımızı inceleyin",
+	"No our fees, everything stays on your server": "Ücretlerimiz yok, her şey sunucunuzda kalır",
+	"All wallets are stored on your side": "Tüm cüzdanlar sizin tarafınızda depolanır",
+	"Open Source — all source code is public": "Açık Kaynak — tüm kaynak kodu kamuya açıktır"
 }

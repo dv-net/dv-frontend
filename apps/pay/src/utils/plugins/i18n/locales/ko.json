@@ -4,6 +4,15 @@
 		"s": "s",
 		"h": "h"
 	},
+	"You have Trust Wallet installed, which may be intercepting TronLink requests. To connect via TronLink, temporarily disable Trust Wallet and refresh the page": "트러스트 월렛이 설치되어 있어 TronLink 요청을 가로채고 있을 수 있습니다 TronLink를 통해 연결하려면 일시적으로 트러스트 월렛을 비활성화하고 페이지를 새로고침하세요",
+	"Insufficient funds": "자금이 부족합니다",
+	"An unexpected error occurred": "예기치 못한 오류가 발생했습니다",
+	"User rejected the request": "사용자가 요청을 거부했습니다",
+	"This currency or blockchain is not supported": "이 통화 또는 블록체인은 지원되지 않습니다",
+	"Contract address not found for token": "토큰에 대한 컨트랙트 주소를 찾을 수 없습니다",
+	"Transaction failed": "거래 실패",
+	"Disconnect": "연결 끊기",
+	"Transaction sent": "거래가 전송되었습니다",
 	"Latest payments": "최근 결제 내역",
 	"from": "에서",
 	"new": "새로운",
@@ -91,5 +100,9 @@
 	"Change": "변경",
 	"You pay via DV.net": "DV.net을 통해 결제",
 	"Accept cryptocurrency on your website without paying intermediaries": "중개자에게 비용을 지불하지 않고 웹사이트에서 암호화폐를 수락하세요",
-	"the cheapest way to accept cryptocurrency on your site": "사이트에서 암호화폐를 수락하는 가장 저렴한 방법"
+	"the cheapest way to accept cryptocurrency on your site": "사이트에서 암호화폐를 수락하는 가장 저렴한 방법",
+	"While you wait for your payment, check out our amazing merchant for accepting cryptocurrency on your website for free": "결제를 기다리는 동안, 당신의 웹사이트에서 암호화폐를 무료로 수락하는 우리의 멋진 제휴사를 확인해 보세요",
+	"No our fees, everything stays on your server": "저희 수수료는 없고 모든 것은 당신의 서버에 남아 있습니다",
+	"All wallets are stored on your side": "모든 지갑은 당신 쪽에 저장되어 있습니다",
+	"Open Source — all source code is public": "오픈 소스 — 모든 소스 코드는 공개되어 있습니다"
 }

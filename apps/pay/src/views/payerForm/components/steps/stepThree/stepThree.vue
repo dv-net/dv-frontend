@@ -31,25 +31,6 @@
 	const isTronSupported = computed<boolean>(() => currentChain.value === "Tron");
 	const isEvmSupported = computed<boolean>(() => Boolean(currentChain.value) && evmArray.includes(currentChain.value!));
 
-	const blockEdit = (event: KeyboardEvent) => {
-		const allowed = [
-			"ArrowLeft",
-			"ArrowRight",
-			"ArrowUp",
-			"ArrowDown",
-			"Tab",
-			"Home",
-			"End",
-			"Shift",
-			"Control",
-			"Alt",
-			"Meta"
-		];
-		if (!allowed.includes(event.key)) {
-			event.preventDefault();
-		}
-	};
-
 	const infoCurrentChain = computed(() => {
 		const chains = filteredBlockchains.value || [];
 		const isSingleChain = chains.length === 1;
