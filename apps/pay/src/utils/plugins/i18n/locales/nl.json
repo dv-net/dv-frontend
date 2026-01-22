@@ -4,6 +4,15 @@
 		"s": "s",
 		"h": "h"
 	},
+	"You have Trust Wallet installed, which may be intercepting TronLink requests. To connect via TronLink, temporarily disable Trust Wallet and refresh the page": "Je hebt Trust Wallet geïnstalleerd wat mogelijk TronLinkverzoeken onderschept Om via TronLink verbinding te maken schakel Trust Wallet tijdelijk uit en verfris de pagina",
+	"Insufficient funds": "Onvoldoende saldo",
+	"An unexpected error occurred": "Er is een onverwachte fout opgetreden",
+	"User rejected the request": "Gebruiker heeft het verzoek afgewezen",
+	"This currency or blockchain is not supported": "Deze valuta of blockchain wordt niet ondersteund",
+	"Contract address not found for token": "Contractadres niet gevonden voor token",
+	"Transaction failed": "Transactie mislukt",
+	"Disconnect": "Verbinding verbreken",
+	"Transaction sent": "Transactie verzonden",
 	"Latest payments": "Laatste betalingen",
 	"from": "van",
 	"new": "nieuw",
@@ -91,5 +100,9 @@
 	"Change": "Verander",
 	"You pay via DV.net": "Je betaalt via DV.net",
 	"Accept cryptocurrency on your website without paying intermediaries": "Accepteer cryptocurrency op je website zonder tussenpersonen te betalen",
-	"the cheapest way to accept cryptocurrency on your site": "de goedkoopste manier om cryptocurrency op je site te accepteren"
+	"the cheapest way to accept cryptocurrency on your site": "de goedkoopste manier om cryptocurrency op je site te accepteren",
+	"While you wait for your payment, check out our amazing merchant for accepting cryptocurrency on your website for free": "Terwijl u op uw betaling wacht, bekijk onze geweldige handelaar die cryptocurrency op uw website gratis accepteert",
+	"No our fees, everything stays on your server": "Nee onze kosten, alles blijft op jouw server",
+	"All wallets are stored on your side": "Alle portemonnees worden aan jouw kant opgeslagen",
+	"Open Source — all source code is public": "Open Source — alle broncode is openbaar"
 }

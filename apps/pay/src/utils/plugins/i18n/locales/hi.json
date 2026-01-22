@@ -4,6 +4,15 @@
 		"s": "s",
 		"h": "h"
 	},
+	"You have Trust Wallet installed, which may be intercepting TronLink requests. To connect via TronLink, temporarily disable Trust Wallet and refresh the page": "आपके पास Trust Wallet स्थापित है, जो TronLink अनुरोधों को इंटरसेप्ट कर सकता है। TronLink के माध्यम से कनेक्ट करने के लिए, Trust Wallet को अस्थायी रूप से अक्षम करें और पृष्ठ को ताज़ा करें",
+	"Insufficient funds": "पर्याप्त धनराशि नहीं",
+	"An unexpected error occurred": "एक अनपेक्षित त्रुटि हुई",
+	"User rejected the request": "उपयोगकर्ता ने अनुरोध को अस्वीकार कर दिया",
+	"This currency or blockchain is not supported": "यह मुद्रा या ब्लॉकचेन समर्थित नहीं है",
+	"Contract address not found for token": "टोकन के लिए कॉन्ट्रैक्ट पता नहीं मिला",
+	"Transaction failed": "लेनदेन असफल",
+	"Disconnect": "डिस्कनेक्ट",
+	"Transaction sent": "लेनदेन भेजा गया",
 	"Latest payments": "हाल के भुगतान",
 	"from": "से",
 	"new": "नया",
@@ -35,7 +44,7 @@
 	"Payment status": "भुगतान स्थिति",
 	"Your permanent wallet — funds are credited to it automatically upon receipt": "आपका स्थायी वॉलेट — प्राप्त होने पर उसमें धन स्वचालित रूप से जमा हो जाता है",
 	"Sending a payment": "भुगतान भेजना",
-	"Waiting for enrollment": "नामांकन की प्रतीक्षा में",
+	"Waiting for enrollment": "पंजीकरण की प्रतीक्षा",
 	"Payment received successfully": "भुगतान सफलतापूर्वक प्राप्त हुआ",
 	"All cryptocurrencies": "सभी क्रिप्टोकरेंसीज़",
 	"No commissions": "कोई कमीशन नहीं",
@@ -91,5 +100,9 @@
 	"Change": "बदलना",
 	"You pay via DV.net": "आप DV.net के जरिए भुगतान करते हैं",
 	"Accept cryptocurrency on your website without paying intermediaries": "अपनी वेबसाइट पर क्रिप्टोकरेंसी स्वीकार करें बिना मध्यस्थों को भुगतान किए",
-	"the cheapest way to accept cryptocurrency on your site": "आपकी साइट पर क्रिप्टोकरेंसी स्वीकार करने का सबसे सस्ता तरीका"
+	"the cheapest way to accept cryptocurrency on your site": "आपकी साइट पर क्रिप्टोकरेंसी स्वीकार करने का सबसे सस्ता तरीका",
+	"While you wait for your payment, check out our amazing merchant for accepting cryptocurrency on your website for free": "जब आप अपने भुगतान का इंतज़ार कर रहे हों, हमारे शानदार व्यापारी को देखें जो आपकी वेबसाइट पर मुफ्त में क्रिप्टोकरेंसी स्वीकार करता है",
+	"No our fees, everything stays on your server": "नहीं हमारी फीस, सब कुछ आपके सर्वर पर रहता है",
+	"All wallets are stored on your side": "सभी वॉलेट आपके पक्ष में संग्रहित हैं",
+	"Open Source — all source code is public": "खुला स्रोत — सभी स्रोत कोड सार्वजनिक हैं"
 }

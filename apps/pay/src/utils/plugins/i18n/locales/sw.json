@@ -4,6 +4,15 @@
 		"s": "s",
 		"h": "h"
 	},
+	"You have Trust Wallet installed, which may be intercepting TronLink requests. To connect via TronLink, temporarily disable Trust Wallet and refresh the page": "Du har Trust Wallet installerad, vilket kan avlyssna TronLinkförfrågningar. För att ansluta via TronLink, inaktivera tillfälligt Trust Wallet och uppdatera sidan",
+	"Insufficient funds": "Otillräckliga medel",
+	"An unexpected error occurred": "Ett oväntat fel inträffade",
+	"User rejected the request": "Användaren avvisade begäran",
+	"This currency or blockchain is not supported": "Denna valuta eller blockkedja stöds inte",
+	"Contract address not found for token": "Kontraktsadress hittades inte för token",
+	"Transaction failed": "Transaktionen misslyckades",
+	"Disconnect": "Koppla bort",
+	"Transaction sent": "Transaktion skickad",
 	"Latest payments": "Senaste betalningarna",
 	"from": "från",
 	"new": "ny",
@@ -91,5 +100,9 @@
 	"Change": "Ändra",
 	"You pay via DV.net": "Du betalar via DV.net",
 	"Accept cryptocurrency on your website without paying intermediaries": "Acceptera kryptovaluta på din webbplats utan att betala mellanhänder",
-	"the cheapest way to accept cryptocurrency on your site": "det billigaste sättet att ta emot kryptovaluta på din webbplats"
+	"the cheapest way to accept cryptocurrency on your site": "det billigaste sättet att ta emot kryptovaluta på din webbplats",
+	"While you wait for your payment, check out our amazing merchant for accepting cryptocurrency on your website for free": "Medan du väntar på din betalning, kolla in vår fantastiska leverantör som accepterar kryptovaluta på din webbplats helt gratis",
+	"No our fees, everything stays on your server": "Nej våra avgifter, allt ligger kvar på din server",
+	"All wallets are stored on your side": "Alla plånböcker lagras på din sida",
+	"Open Source — all source code is public": "Öppen Källkod — all källkod är offentlig"
 }

@@ -4,6 +4,15 @@
 		"s": "s",
 		"h": "h"
 	},
+	"You have Trust Wallet installed, which may be intercepting TronLink requests. To connect via TronLink, temporarily disable Trust Wallet and refresh the page": "Ai Trust Wallet instalat care poate intercepta cererile TronLink pentru a te conecta prin TronLink dezactivează temporar Trust Wallet și reîncarcă pagina",
+	"Insufficient funds": "Fonduri insuficiente",
+	"An unexpected error occurred": "A apărut o eroare neașteptată",
+	"User rejected the request": "Utilizatorul a respins cererea",
+	"This currency or blockchain is not supported": "Această monedă sau blockchain nu este suportată",
+	"Contract address not found for token": "Adresa contractului nu a fost găsită pentru token",
+	"Transaction failed": "Tranzacția a eșuat",
+	"Disconnect": "Deconectează",
+	"Transaction sent": "Tranzacție trimisă",
 	"Latest payments": "Plăți recente",
 	"from": "din",
 	"new": "nou",
@@ -35,7 +44,7 @@
 	"Payment status": "Starea plății",
 	"Your permanent wallet — funds are credited to it automatically upon receipt": "Portofelul tău permanent fondurile sunt creditate automat la primire",
 	"Sending a payment": "Trimiterea unei plăți",
-	"Waiting for enrollment": "Așteptare înregistrare",
+	"Waiting for enrollment": "Aștept înscrierea",
 	"Payment received successfully": "Plata a fost primită cu succes",
 	"All cryptocurrencies": "Toate criptomonedele",
 	"No commissions": "Fără comisioane",
@@ -46,8 +55,8 @@
 	"Contacts": "Contacte",
 	"More about": "Mai multe despre",
 	"select-blockchain": {
-		"one": "Selectează blockchain",
-		"two": "Selectează blockchain"
+		"one": "Selectează lanțul de blocuri",
+		"two": "Selectează lanțul de blocuri"
 	},
 	"minutes": "minute",
 	"Return to the store": "Întoarcerea la magazin",
@@ -91,5 +100,9 @@
 	"Change": "Schimbare",
 	"You pay via DV.net": "Plătiți prin DV.net",
 	"Accept cryptocurrency on your website without paying intermediaries": "Acceptați criptomonede pe site-ul dvs. fără a plăti intermediari",
-	"the cheapest way to accept cryptocurrency on your site": "cel mai ieftin mod de a accepta criptomonede pe site-ul dvs"
+	"the cheapest way to accept cryptocurrency on your site": "cel mai ieftin mod de a accepta criptomonede pe site-ul dvs",
+	"While you wait for your payment, check out our amazing merchant for accepting cryptocurrency on your website for free": "În timp ce aștepți plata ta, verifică comerciantul nostru uimitor pentru acceptarea criptomonedei pe site-ul tău fără costuri",
+	"No our fees, everything stays on your server": "Fără taxele noastre, totul rămâne pe serverul tău",
+	"All wallets are stored on your side": "Toate portofelele sunt stocate pe partea ta",
+	"Open Source — all source code is public": "Sursă Deschisă — tot codul sursei este public"
 }

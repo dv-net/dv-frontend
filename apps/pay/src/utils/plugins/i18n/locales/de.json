@@ -4,6 +4,15 @@
 		"s": "s",
 		"h": "h"
 	},
+	"You have Trust Wallet installed, which may be intercepting TronLink requests. To connect via TronLink, temporarily disable Trust Wallet and refresh the page": "Sie haben Trust Wallet installiert, welches TronLink-Anfragen möglicherweise abfängt. Um sich über TronLink zu verbinden, deaktivieren Sie Trust Wallet vorübergehend und aktualisieren Sie die Seite",
+	"Insufficient funds": "Unzureichende Deckung",
+	"An unexpected error occurred": "Ein unerwarteter Fehler ist aufgetreten",
+	"User rejected the request": "Benutzer hat die Anfrage abgelehnt",
+	"This currency or blockchain is not supported": "Diese Währung oder Blockchain wird nicht unterstützt",
+	"Contract address not found for token": "Vertragsadresse für Token nicht gefunden",
+	"Transaction failed": "Transaktion fehlgeschlagen",
+	"Disconnect": "Trennen",
+	"Transaction sent": "Transaktion gesendet",
 	"Latest payments": "Neueste Zahlungen",
 	"from": "von",
 	"new": "neu",
@@ -35,7 +44,7 @@
 	"Payment status": "Zahlungsstatus",
 	"Your permanent wallet — funds are credited to it automatically upon receipt": "Ihr permanentes Wallet — Die Gelder werden automatisch auf Ihr Wallet gutgeschrieben, sobald sie eingehen",
 	"Sending a payment": "Eine Zahlung wird gesendet",
-	"Waiting for enrollment": "Warten auf Anmeldung",
+	"Waiting for enrollment": "Warten auf die Einschreibung",
 	"Payment received successfully": "Zahlung erfolgreich eingegangen",
 	"All cryptocurrencies": "Alle Kryptowährungen",
 	"No commissions": "Keine Provisionen",
@@ -91,5 +100,9 @@
 	"Change": "Ändern Sie",
 	"You pay via DV.net": "Sie zahlen über DV.net",
 	"Accept cryptocurrency on your website without paying intermediaries": "Akzeptieren Sie Kryptowährungen auf Ihrer Website, ohne Vermittler zu bezahlen",
-	"the cheapest way to accept cryptocurrency on your site": "der billigste Weg, Kryptowährungen auf Ihrer Website zu akzeptieren"
+	"the cheapest way to accept cryptocurrency on your site": "der billigste Weg, Kryptowährungen auf Ihrer Website zu akzeptieren",
+	"While you wait for your payment, check out our amazing merchant for accepting cryptocurrency on your website for free": "Während du auf deine Zahlung wartest, schau dir unseren erstaunlichen Händler an, der Kryptowährungen auf deiner Website kostenlos akzeptiert",
+	"No our fees, everything stays on your server": "Nein unsere gebühren, alles bleibt auf deinem server",
+	"All wallets are stored on your side": "Alle Wallets werden auf deiner Seite gespeichert",
+	"Open Source — all source code is public": "Open Source — alle Quellcodes sind öffentlich"
 }

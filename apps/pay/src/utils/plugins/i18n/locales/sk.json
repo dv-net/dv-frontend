@@ -4,6 +4,15 @@
 		"s": "s",
 		"h": "h"
 	},
+	"You have Trust Wallet installed, which may be intercepting TronLink requests. To connect via TronLink, temporarily disable Trust Wallet and refresh the page": "Máte nainštalovanú Trust Wallet, ktorá môže zachytávať požiadavky TronLink. Pre pripojenie cez TronLink dočasne vypnite Trust Wallet a obnovte stránku",
+	"Insufficient funds": "Nedostatočné prostriedky",
+	"An unexpected error occurred": "Došlo k neočakávanej chybe",
+	"User rejected the request": "Používateľ odmietol žiadosť",
+	"This currency or blockchain is not supported": "Táto mena alebo blockchain nie je podporovaná",
+	"Contract address not found for token": "Adresa zmluvy nebola pre token nájdená",
+	"Transaction failed": "Transakcia zlyhala",
+	"Disconnect": "Odpojiť",
+	"Transaction sent": "Transakcia odoslaná",
 	"Latest payments": "Najnovšie platby",
 	"from": "z",
 	"new": "nový",
@@ -35,7 +44,7 @@
 	"Payment status": "Stav platby",
 	"Your permanent wallet — funds are credited to it automatically upon receipt": "Vaša trvalá peňaženka — prostriedky sa na ňu pripisujú automaticky po prijatí prostriedkov",
 	"Sending a payment": "Odosielanie platby",
-	"Waiting for enrollment": "Čakanie na zápis",
+	"Waiting for enrollment": "Čakanie na registráciu",
 	"Payment received successfully": "Platba bola úspešne prijatá",
 	"All cryptocurrencies": "Všetky kryptomeny",
 	"No commissions": "Žiadne provízie",
@@ -91,5 +100,9 @@
 	"Change": "Zmena",
 	"You pay via DV.net": "Platíte prostredníctvom DV.net",
 	"Accept cryptocurrency on your website without paying intermediaries": "Prijímajte kryptomeny na svojich webových stránkach bez platenia sprostredkovateľom",
-	"the cheapest way to accept cryptocurrency on your site": "najlacnejší spôsob prijímania kryptomien na vašich stránkach"
+	"the cheapest way to accept cryptocurrency on your site": "najlacnejší spôsob prijímania kryptomien na vašich stránkach",
+	"While you wait for your payment, check out our amazing merchant for accepting cryptocurrency on your website for free": "Keď čakáte na platbu, pozrite si náš úžasný obchodník pre prijímanie kryptomien na vašej webovej stránke zadarmo",
+	"No our fees, everything stays on your server": "Nie naše poplatky všetko zostáva na vašom serveri",
+	"All wallets are stored on your side": "Všetky peňaženky sú uložené na vašej strane",
+	"Open Source — all source code is public": "Otvorený Zdroj — všetok zdrojový kód je verejný"
 }

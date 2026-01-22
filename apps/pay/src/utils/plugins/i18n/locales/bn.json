@@ -4,6 +4,15 @@
 		"s": "s",
 		"h": "h"
 	},
+	"You have Trust Wallet installed, which may be intercepting TronLink requests. To connect via TronLink, temporarily disable Trust Wallet and refresh the page": "আপনার কাছে ট্রাস্ট ওয়ালেট ইনস্টল রয়েছে যা TronLink অনুরোধগুলিতে হস্তক্ষেপ করতে পারে TronLink এর মাধ্যমে সংযোগ করতে গিয়ে সাময়িকভাবে ট্রাস্ট ওয়ালেট নিষ্ক্রিয় করুন এবং পৃষ্ঠাটি রিফ্রেশ করুন",
+	"Insufficient funds": "অপর্যাপ্ত তহবিল",
+	"An unexpected error occurred": "একটি অপ্রত্যাশিত ত্রুটি ঘটেছে",
+	"User rejected the request": "ব্যবহারকারী অনুরোধটি প্রত্যাখ্যান করেছে",
+	"This currency or blockchain is not supported": "এই মুদ্রা বা ব্লকচেইন সমর্থিত নয়",
+	"Contract address not found for token": "টোকনের জন্য চুক্তির ঠিকানা পাওয়া যায়নি",
+	"Transaction failed": "লেনদেন ব্যর্থ",
+	"Disconnect": "বিচ্ছিন্ন করুন",
+	"Transaction sent": "লেনদেন পাঠানো হয়েছে",
 	"Latest payments": "সর্বশেষ পেমেন্টসমূহ",
 	"from": "থেকে",
 	"new": "নতুন",
@@ -35,7 +44,7 @@
 	"Payment status": "পরিশোধের অবস্থা",
 	"Your permanent wallet — funds are credited to it automatically upon receipt": "আপনার স্থায়ী ওয়ালেট — এতে প্রাপ্তির সাথে স্বয়ংক্রিয়ভাবে তহবিল জমা হয়",
 	"Sending a payment": "একটি পেমেন্ট পাঠানো",
-	"Waiting for enrollment": "নামপঞ্জির প্রতীক্ষায়",
+	"Waiting for enrollment": "নিবন্ধনের জন্য অপেক্ষা",
 	"Payment received successfully": "পেমেন্ট সফলভাবে প্রাপ্ত হয়েছে",
 	"All cryptocurrencies": "সব ক্রিপ্টোকারেন্সি",
 	"No commissions": "কমিশন নেই",
@@ -91,5 +100,9 @@
 	"Change": "পরিবর্তন",
 	"You pay via DV.net": "আপনি DV.net এর মাধ্যমে অর্থ প্রদান করবেন",
 	"Accept cryptocurrency on your website without paying intermediaries": "আপনার ওয়েবসাইটে ক্রিপ্টোকারেন্সি গ্রহণ করুন মধ্যস্থতাকারীদের অর্থ পরিশোধ ছাড়া",
-	"the cheapest way to accept cryptocurrency on your site": "আপনার সাইটে ক্রিপ্টোকারেন্সি গ্রহণ করার সবচেয়ে সস্তা উপায়"
+	"the cheapest way to accept cryptocurrency on your site": "আপনার সাইটে ক্রিপ্টোকারেন্সি গ্রহণ করার সবচেয়ে সস্তা উপায়",
+	"While you wait for your payment, check out our amazing merchant for accepting cryptocurrency on your website for free": "আপনি আপনার পেমেন্টের জন্য অপেক্ষা করছেন, তখন আপনার ওয়েবসাইটে ক্রিপ্টোকারেন্সি গ্রহণ করার জন্য বিনামূল্যে আমাদের অসাধারণ বণিককে দেখুন",
+	"No our fees, everything stays on your server": "না আমাদের ফি সবকিছু আপনার সার্ভারে থাকে",
+	"All wallets are stored on your side": "সব ওয়ালেটগুলো আপনার পাশে সংরক্ষিত রয়েছে",
+	"Open Source — all source code is public": "খোলা সোর্স — সমস্ত সোর্স কোড প্রকাশিত"
 }

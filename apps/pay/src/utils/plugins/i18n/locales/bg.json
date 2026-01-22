@@ -4,6 +4,15 @@
 		"s": "s",
 		"h": "h"
 	},
+	"You have Trust Wallet installed, which may be intercepting TronLink requests. To connect via TronLink, temporarily disable Trust Wallet and refresh the page": "Имаш инсталиран Trust Wallet, който може да прихваща заявките на TronLink. За да се свържеш чрез TronLink, временно деактивирай Trust Wallet и презареди страницата.",
+	"Insufficient funds": "Недостатъчно средства",
+	"An unexpected error occurred": "Възникна неочаквана грешка",
+	"User rejected the request": "Потребителят отказа заявката",
+	"This currency or blockchain is not supported": "Тази валута или блокчейнът не се поддържа",
+	"Contract address not found for token": "Адресът на договора не е намерен за токен",
+	"Transaction failed": "Транзакцията не успя",
+	"Disconnect": "Изключи",
+	"Transaction sent": "Изпратена транзакция",
 	"Latest payments": "Последни плащания",
 	"from": "от",
 	"new": "нов",
@@ -35,7 +44,7 @@
 	"Payment status": "Статус на плащането",
 	"Your permanent wallet — funds are credited to it automatically upon receipt": "Вашият постоянен портфейл — средствата се кредитират в него автоматично при получаване",
 	"Sending a payment": "Изпращане на плащане",
-	"Waiting for enrollment": "Очакване на записване",
+	"Waiting for enrollment": "Очакване за записване",
 	"Payment received successfully": "Платежът е получен успешно",
 	"All cryptocurrencies": "Всички криптовалути",
 	"No commissions": "Без комисионни",
@@ -91,5 +100,9 @@
 	"Change": "Промяна",
 	"You pay via DV.net": "Плащате чрез DV.net",
 	"Accept cryptocurrency on your website without paying intermediaries": "Приемайте криптовалута на уебсайта си, без да плащате на посредници",
-	"the cheapest way to accept cryptocurrency on your site": "най-евтиният начин да приемате криптовалута на сайта си"
+	"the cheapest way to accept cryptocurrency on your site": "най-евтиният начин да приемате криптовалута на сайта си",
+	"While you wait for your payment, check out our amazing merchant for accepting cryptocurrency on your website for free": "Докато чакате вашето плащане, разгледайте нашия невероятен търговец за приемане на криптовалути на вашия уебсайт безплатно",
+	"No our fees, everything stays on your server": "Не нашите такси, всичко остава на вашия сървър",
+	"All wallets are stored on your side": "Всички портфейли се съхраняват на вашата страна",
+	"Open Source — all source code is public": "Отворен код — целият изходен код е публичен"
 }

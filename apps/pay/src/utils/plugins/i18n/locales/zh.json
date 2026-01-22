@@ -4,6 +4,15 @@
 		"s": "s",
 		"h": "h"
 	},
+	"You have Trust Wallet installed, which may be intercepting TronLink requests. To connect via TronLink, temporarily disable Trust Wallet and refresh the page": "你已安装 Trust Wallet 可能会拦截 TronLink 请求 要通过 TronLink 连接暂时禁用 Trust Wallet 并刷新页面",
+	"Insufficient funds": "资金不足",
+	"An unexpected error occurred": "发生了一个意外错误",
+	"User rejected the request": "用户拒绝了请求",
+	"This currency or blockchain is not supported": "此货币或区块链不受支持",
+	"Contract address not found for token": "未找到该代币的合约地址",
+	"Transaction failed": "交易失败",
+	"Disconnect": "断开连接",
+	"Transaction sent": "交易已发送",
 	"Latest payments": "最近的付款",
 	"from": "从",
 	"new": "新",
@@ -91,5 +100,9 @@
 	"Change": "改变",
 	"You pay via DV.net": "通过 DV.net 付款",
 	"Accept cryptocurrency on your website without paying intermediaries": "在您的网站上接受加密货币，无需支付中介费",
-	"the cheapest way to accept cryptocurrency on your site": "在您的网站上接受加密货币的最便宜方式"
+	"the cheapest way to accept cryptocurrency on your site": "在您的网站上接受加密货币的最便宜方式",
+	"While you wait for your payment, check out our amazing merchant for accepting cryptocurrency on your website for free": "在您等待付款时看看我们令人惊叹的商家在您的网站上免费接受加密货币",
+	"No our fees, everything stays on your server": "不，我们的费用，一切都留在你的服务器上",
+	"All wallets are stored on your side": "所有钱包都存储在你们这边",
+	"Open Source — all source code is public": "开源 — 所有源代码都是公开的"
 }

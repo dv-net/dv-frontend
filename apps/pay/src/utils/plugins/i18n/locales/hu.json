@@ -4,6 +4,15 @@
 		"s": "s",
 		"h": "h"
 	},
+	"You have Trust Wallet installed, which may be intercepting TronLink requests. To connect via TronLink, temporarily disable Trust Wallet and refresh the page": "Telepítve van a Trust Wallet, amely előfordulhat, hogy megzavarja a TronLink kéréseit. A TronLinken keresztül történő csatlakozáshoz ideiglenesen tiltsa le a Trust Walletet, majd frissítse az oldalt",
+	"Insufficient funds": "Nincs elég fedezet",
+	"An unexpected error occurred": "Egy váratlan hiba történt",
+	"User rejected the request": "A felhasználó elutasította a kérést",
+	"This currency or blockchain is not supported": "Ez a valuta vagy blokklánc nem támogatott",
+	"Contract address not found for token": "A szerződés címe nem található a tokenhez",
+	"Transaction failed": "Sikertelen tranzakció",
+	"Disconnect": "Kapcsolat bontása",
+	"Transaction sent": "Tranzakció elküldve",
 	"Latest payments": "Legutóbbi kifizetések",
 	"from": "ból",
 	"new": "új",
@@ -35,7 +44,7 @@
 	"Payment status": "Fizetési állapot",
 	"Your permanent wallet — funds are credited to it automatically upon receipt": "Állandó pénztárcád — az abba érkező összegek automatikusan jóváírásra kerülnek",
 	"Sending a payment": "Fizetés küldése",
-	"Waiting for enrollment": "Regisztrációra vár",
+	"Waiting for enrollment": "Várakozás a beiratkozásra",
 	"Payment received successfully": "Fizetés sikeresen beérkezett",
 	"All cryptocurrencies": "Összes kriptovaluta",
 	"No commissions": "Nincsenek jutalékok",
@@ -91,5 +100,9 @@
 	"Change": "Változás",
 	"You pay via DV.net": "Fizetés a DV.net-en keresztül",
 	"Accept cryptocurrency on your website without paying intermediaries": "Kriptopénz elfogadása a weboldalán közvetítők fizetése nélkül",
-	"the cheapest way to accept cryptocurrency on your site": "a legolcsóbb módja a kriptopénz elfogadásának az Ön weboldalán"
+	"the cheapest way to accept cryptocurrency on your site": "a legolcsóbb módja a kriptopénz elfogadásának az Ön weboldalán",
+	"While you wait for your payment, check out our amazing merchant for accepting cryptocurrency on your website for free": "Mialatt vársz a fizetésedre nézd meg a csodálatos kereskedőnket aki ingyen fogad kriptovalutát a weboldaladon",
+	"No our fees, everything stays on your server": "Nincs díjaink minden a te szervereden marad",
+	"All wallets are stored on your side": "Az összes pénztárca a te oldaladon van tárolva",
+	"Open Source — all source code is public": "Nyílt forráskód — az összes forráskód nyilvános"
 }

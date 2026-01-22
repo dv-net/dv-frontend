@@ -1,4 +1,13 @@
 {
+	"You have Trust Wallet installed, which may be intercepting TronLink requests. To connect via TronLink, temporarily disable Trust Wallet and refresh the page": "b0a036e5aee4edef67f13bd08afa8715",
+	"Insufficient funds": "55f90c9609690c844c09fb89beb63b23",
+	"An unexpected error occurred": "9789e322478c6f2d59e93d020808642a",
+	"User rejected the request": "77fe74d8c3ae7b5ad9c4e9b5f8e5e1d9",
+	"This currency or blockchain is not supported": "144e0760d0e68e0da6d7216032fc923d",
+	"Contract address not found for token": "4d335fe1f0841135901eb7e3df604987",
+	"Transaction failed": "3f864e377ad88afe0f99e0d1e16cec03",
+	"Disconnect": "42ae25231906c83927831e0ef7c317ac",
+	"Transaction sent": "6037a4aaaeaf4047f27ded69c8a781ce",
 	"Latest payments": "36c5f429143320701052ef048450b51e",
 	"from": "d98a07f84921b24ee30f86fd8cd85c3c",
 	"new": "22af645d1859cb5ca6da0c484f1f37ea",
@@ -30,6 +39,7 @@
 	"Payment status": "59758c8f7f9cbef6939ca9991aaa8939",
 	"Your permanent wallet — funds are credited to it automatically upon receipt": "a898357bbad5be43c9277528bf733ca0",
 	"Sending a payment": "ddbbf1446af710a86640fcf22c8f9f4f",
+	"Waiting for enrollment": "4c909ad82af6e63e1b152a438fcc5095",
 	"Payment received successfully": "3d8797a88970186a3d6c272ce0657c1f",
 	"All cryptocurrencies": "26e63da9ce51218c3433f95b5d3c07a2",
 	"No commissions": "ace7feab48696db886f4e4172976e61b",
@@ -81,5 +91,14 @@
 	"Change": "f4ec5f57bd4d31b803312d873be40da9",
 	"You pay via DV.net": "9d421afa33ca87661350b733ca940dab",
 	"Accept cryptocurrency on your website without paying intermediaries": "80bb90ef3bf2ee82bd05b1dadf687f3a",
-	"the cheapest way to accept cryptocurrency on your site": "48492639305995f734bdf3fceef33d62"
+	"the cheapest way to accept cryptocurrency on your site": "48492639305995f734bdf3fceef33d62",
+	"While you wait for your payment, check out our amazing merchant for accepting cryptocurrency on your website for free": "7124f2d60db1c27e32353188cb88b6d4",
+	"No our fees, everything stays on your server": "69ff1c83ddd6314c524b11cd659ce7c7",
+	"All wallets are stored on your side": "1ea0dcce07f45be9b62a15303fa4860f",
+	"Open Source — all source code is public": "3bfc20856a278038f447b049f8ecec0e",
+	"staticStrings.min": "d8bd79cc131920d5de426f914d17405a",
+	"staticStrings.s": "03c7c0ace395d80182db07ae2c30f034",
+	"staticStrings.h": "2510c39011c5be704182423e3a695e91",
+	"select-blockchain.one": "b27588d1b0ad2c0cd0e2c7f036926df9",
+	"select-blockchain.two": "b27588d1b0ad2c0cd0e2c7f036926df9"
 }

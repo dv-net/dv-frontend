@@ -146,9 +146,6 @@
 		document.title = store.value?.name ? `${t("Payment by cryptocurrency in")} ${store.value?.name}` : t("Payment by cryptocurrency")
 		getQueryParams();
 		void startPolling();
-
-
-		currentStep.value = 4
 	});
 
 	onUnmounted(() => {

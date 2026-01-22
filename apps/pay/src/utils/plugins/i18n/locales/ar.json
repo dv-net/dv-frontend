@@ -4,6 +4,15 @@
 		"s": "s",
 		"h": "h"
 	},
+	"You have Trust Wallet installed, which may be intercepting TronLink requests. To connect via TronLink, temporarily disable Trust Wallet and refresh the page": "تم تثبيت Trust Wallet لديك والتي قد تعترض طلبات TronLink لالاتصال عبر TronLink قم بتعطيل Trust Wallet مؤقتاً ثم قم بتحديث الصفحة",
+	"Insufficient funds": "أموال غير كافية",
+	"An unexpected error occurred": "حدث خطأ غير متوقع",
+	"User rejected the request": "المستخدم رفض الطلب",
+	"This currency or blockchain is not supported": "هذه العملة أو سلسلة الكتل غير مدعومة",
+	"Contract address not found for token": "عنوان العقد غير موجود للرمز",
+	"Transaction failed": "فشلت المعاملة",
+	"Disconnect": "افصل",
+	"Transaction sent": "تم إرسال المعاملة",
 	"Latest payments": "أحدث المدفوعات",
 	"from": "من",
 	"new": "جديد",
@@ -91,5 +100,9 @@
 	"Change": "التغيير",
 	"You pay via DV.net": "أنت تدفع عبر DV.net",
 	"Accept cryptocurrency on your website without paying intermediaries": "اقبل العملات المشفرة على موقعك الإلكتروني دون الدفع لوسطاء",
-	"the cheapest way to accept cryptocurrency on your site": "أرخص طريقة لقبول العملات الرقمية على موقعك الإلكتروني"
+	"the cheapest way to accept cryptocurrency on your site": "أرخص طريقة لقبول العملات الرقمية على موقعك الإلكتروني",
+	"While you wait for your payment, check out our amazing merchant for accepting cryptocurrency on your website for free": "بينما تنتظر دفعتك اطلع على تاجرنا المذهل لقبول العملة المشفرة على موقعك مجانا",
+	"No our fees, everything stays on your server": "لا رسومنا كل شيء يبقى على خادمك",
+	"All wallets are stored on your side": "جميع المحافظ مخزنة لديك",
+	"Open Source — all source code is public": "المصدر المفتوح — كل شفرة المصدر علنية"
 }

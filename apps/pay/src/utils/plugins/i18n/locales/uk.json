@@ -4,6 +4,15 @@
 		"s": "s",
 		"h": "h"
 	},
+	"You have Trust Wallet installed, which may be intercepting TronLink requests. To connect via TronLink, temporarily disable Trust Wallet and refresh the page": "У вас встановлено Trust Wallet, який може перехоплювати запити TronLink. Щоб підключитися через TronLink, тимчасово деактивуйте Trust Wallet і оновіть сторінку",
+	"Insufficient funds": "Недостатньо коштів",
+	"An unexpected error occurred": "Сталася несподівана помилка",
+	"User rejected the request": "Користувач відхилив запит",
+	"This currency or blockchain is not supported": "Ця валюта або блокчейн не підтримується",
+	"Contract address not found for token": "Адреса контракту не знайдена для токена",
+	"Transaction failed": "Транзакція не вдалася",
+	"Disconnect": "Відключити",
+	"Transaction sent": "Транзакція відправлена",
 	"Latest payments": "Останні платежі",
 	"from": "від",
 	"new": "новий",
@@ -91,5 +100,9 @@
 	"Change": "Зміна",
 	"You pay via DV.net": "Ви оплачуєте через DV.net",
 	"Accept cryptocurrency on your website without paying intermediaries": "Приймайте криптовалюту на своєму сайті, не сплачуючи посередникам",
-	"the cheapest way to accept cryptocurrency on your site": "найдешевший спосіб приймати криптовалюту на вашому сайті"
+	"the cheapest way to accept cryptocurrency on your site": "найдешевший спосіб приймати криптовалюту на вашому сайті",
+	"While you wait for your payment, check out our amazing merchant for accepting cryptocurrency on your website for free": "Поки ви чекаєте на оплату познайомтесь із нашим дивовижним продавцем який приймає криптовалюту на вашому вебсайті безкоштовно",
+	"No our fees, everything stays on your server": "Ні наші збори, все залишається на вашому сервері",
+	"All wallets are stored on your side": "Усі гаманці зберігаються на вашому боці",
+	"Open Source — all source code is public": "Відкрите програмне забезпечення — увесь вихідний код публічний"
 }

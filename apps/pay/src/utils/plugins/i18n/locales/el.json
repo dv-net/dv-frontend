@@ -4,6 +4,15 @@
 		"s": "s",
 		"h": "h"
 	},
+	"You have Trust Wallet installed, which may be intercepting TronLink requests. To connect via TronLink, temporarily disable Trust Wallet and refresh the page": "Έχετε εγκαταστήσει το Trust Wallet το οποίο ενδέχεται να παρεμβαίνει τα αιτήματα TronLink Για σύνδεση μέσω TronLink απενεργοποιήστε προσωρινά το Trust Wallet και ανανεώστε τη σελίδα",
+	"Insufficient funds": "Ανεπαρκή κεφάλαια",
+	"An unexpected error occurred": "Ένα απροσδόκητο σφάλμα προέκυψε",
+	"User rejected the request": "Ο χρήστης απέρριψε το αίτημα",
+	"This currency or blockchain is not supported": "Αυτό το νόμισμα ή blockchain δεν υποστηρίζεται",
+	"Contract address not found for token": "Η διεύθυνση συμβολαίου δεν βρέθηκε για διακριτικό",
+	"Transaction failed": "Η συναλλαγή απέτυχε",
+	"Disconnect": "Αποσύνδεση",
+	"Transaction sent": "Η συναλλαγή εστάλη",
 	"Latest payments": "Τελευταίες πληρωμές",
 	"from": "από",
 	"new": "νέος",
@@ -35,7 +44,7 @@
 	"Payment status": "Κατάσταση πληρωμής",
 	"Your permanent wallet — funds are credited to it automatically upon receipt": "Το μόνιμο πορτοφόλι σας — τα κεφάλαια πιστώνονται αυτόματα σε αυτό μόλις ληφθούν",
 	"Sending a payment": "Αποστολή πληρωμής",
-	"Waiting for enrollment": "Αναμονή εγγραφής",
+	"Waiting for enrollment": "Αναμονή για εγγραφή",
 	"Payment received successfully": "Η πληρωμή ελήφθη με επιτυχία",
 	"All cryptocurrencies": "Όλα τα κρυπτονομίσματα",
 	"No commissions": "Χωρίς προμήθειες",
@@ -46,8 +55,8 @@
 	"Contacts": "Επαφές",
 	"More about": "Περισσότερα για",
 	"select-blockchain": {
-		"one": "Επιλέξτε blockchain",
-		"two": "Επιλέξτε blockchain"
+		"one": "Επιλέξτε αλυσίδα μπλοκ",
+		"two": "Επιλέξτε αλυσίδα μπλοκ"
 	},
 	"minutes": "λεπτά",
 	"Return to the store": "Επιστροφή στο κατάστημα",
@@ -91,5 +100,9 @@
 	"Change": "Αλλαγή",
 	"You pay via DV.net": "Πληρώνετε μέσω DV.net",
 	"Accept cryptocurrency on your website without paying intermediaries": "Αποδεχτείτε κρυπτονομίσματα στον ιστότοπό σας χωρίς να πληρώνετε μεσάζοντες",
-	"the cheapest way to accept cryptocurrency on your site": "ο φθηνότερος τρόπος για να δέχεστε κρυπτονομίσματα στον ιστότοπό σας"
+	"the cheapest way to accept cryptocurrency on your site": "ο φθηνότερος τρόπος για να δέχεστε κρυπτονομίσματα στον ιστότοπό σας",
+	"While you wait for your payment, check out our amazing merchant for accepting cryptocurrency on your website for free": "Ενώ περιμένετε την πληρωμή σας δειτε τον καταπληκτικό μας έμπορο για την αποδοχή κρυπτονομισμάτων στην ιστοσελίδα σας εντελώς δωρεάν",
+	"No our fees, everything stays on your server": "Όχι τα τέλη μας, όλα παραμένουν στον διακομιστή σας",
+	"All wallets are stored on your side": "Όλα τα πορτοφόλια αποθηκεύονται στην πλευρά σου",
+	"Open Source — all source code is public": "Ανοικτός Κώδικας — όλος ο κώδικας πηγής είναι δημόσιος"
 }

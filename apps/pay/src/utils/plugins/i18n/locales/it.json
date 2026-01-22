@@ -4,6 +4,15 @@
 		"s": "s",
 		"h": "h"
 	},
+	"You have Trust Wallet installed, which may be intercepting TronLink requests. To connect via TronLink, temporarily disable Trust Wallet and refresh the page": "Hai installato Trust Wallet, che potrebbe intercettare le richieste di TronLink. Per connetterti tramite TronLink, disabilita temporaneamente Trust Wallet e aggiorna la pagina",
+	"Insufficient funds": "Fondi insufficienti",
+	"An unexpected error occurred": "Si è verificato un errore inaspettato",
+	"User rejected the request": "Utente ha rifiutato la richiesta",
+	"This currency or blockchain is not supported": "Questa valuta o blockchain non è supportata",
+	"Contract address not found for token": "Indirizzo del contratto non trovato per il token",
+	"Transaction failed": "Transazione fallita",
+	"Disconnect": "Disconnetti",
+	"Transaction sent": "Transazione inviata",
 	"Latest payments": "Ultimi pagamenti",
 	"from": "da",
 	"new": "nuovo",
@@ -91,5 +100,9 @@
 	"Change": "Cambiamento",
 	"You pay via DV.net": "Si paga tramite DV.net",
 	"Accept cryptocurrency on your website without paying intermediaries": "Accettare criptovalute sul proprio sito web senza pagare intermediari",
-	"the cheapest way to accept cryptocurrency on your site": "il modo più economico per accettare criptovalute sul vostro sito"
+	"the cheapest way to accept cryptocurrency on your site": "il modo più economico per accettare criptovalute sul vostro sito",
+	"While you wait for your payment, check out our amazing merchant for accepting cryptocurrency on your website for free": "Mentre aspetti il tuo pagamento, dai un'occhiata al nostro incredibile commerciante per accettare criptovalute sul tuo sito web gratuitamente",
+	"No our fees, everything stays on your server": "No alle nostre tariffe, tutto resta sul tuo server",
+	"All wallets are stored on your side": "Tutti i portafogli sono conservati sul tuo lato",
+	"Open Source — all source code is public": "Codice Sorgente Aperto — tutto il codice sorgente è pubblico"
 }

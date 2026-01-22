@@ -4,6 +4,15 @@
 		"s": "s",
 		"h": "h"
 	},
+	"You have Trust Wallet installed, which may be intercepting TronLink requests. To connect via TronLink, temporarily disable Trust Wallet and refresh the page": "Anda memiliki Trust Wallet terpasang, yang mungkin menyadap permintaan TronLink. Untuk terhubung melalui TronLink, nonaktifkan Trust Wallet sementara dan muat ulang halaman",
+	"Insufficient funds": "Saldo tidak mencukupi",
+	"An unexpected error occurred": "Terjadi kesalahan yang tidak terduga",
+	"User rejected the request": "Pengguna menolak permintaan",
+	"This currency or blockchain is not supported": "Mata uang ini atau blockchain ini tidak didukung",
+	"Contract address not found for token": "Alamat kontrak tidak ditemukan untuk token",
+	"Transaction failed": "Transaksi gagal",
+	"Disconnect": "Putuskan sambungan",
+	"Transaction sent": "Transaksi terkirim",
 	"Latest payments": "Pembayaran terbaru",
 	"from": "dari",
 	"new": "baru",
@@ -91,5 +100,9 @@
 	"Change": "Perubahan",
 	"You pay via DV.net": "Anda membayar melalui DV.net",
 	"Accept cryptocurrency on your website without paying intermediaries": "Menerima mata uang kripto di situs web Anda tanpa membayar perantara",
-	"the cheapest way to accept cryptocurrency on your site": "cara termurah untuk menerima mata uang kripto di situs Anda"
+	"the cheapest way to accept cryptocurrency on your site": "cara termurah untuk menerima mata uang kripto di situs Anda",
+	"While you wait for your payment, check out our amazing merchant for accepting cryptocurrency on your website for free": "Sambil menunggu pembayaran Anda lihat pedagang kami yang luar biasa yang menerima cryptocurrency di situs web Anda secara gratis",
+	"No our fees, everything stays on your server": "Tidak ada biaya kami, semua tetap di server Anda",
+	"All wallets are stored on your side": "Semua dompet disimpan di sisi anda",
+	"Open Source — all source code is public": "Sumber Terbuka — semua kode sumber bersifat publik"
 }

@@ -4,6 +4,15 @@
 		"s": "s",
 		"h": "h"
 	},
+	"You have Trust Wallet installed, which may be intercepting TronLink requests. To connect via TronLink, temporarily disable Trust Wallet and refresh the page": "Máte nainstalovanou Trust Wallet, která může zachytávat požadavky TronLink. Chcete-li se připojit prostřednictvím TronLink, dočasně vypněte Trust Wallet a obnovte stránku",
+	"Insufficient funds": "Nedostatek prostředků",
+	"An unexpected error occurred": "Došlo k neočekávané chybě",
+	"User rejected the request": "Uživatel odmítl žádost",
+	"This currency or blockchain is not supported": "Tato měna nebo blockchain není podporována",
+	"Contract address not found for token": "Adresa smlouvy nebyla nalezena pro token",
+	"Transaction failed": "Transakce selhala",
+	"Disconnect": "Odpojit",
+	"Transaction sent": "Transakce odeslána",
 	"Latest payments": "Nejnovější platby",
 	"from": "z",
 	"new": "nový",
@@ -46,8 +55,8 @@
 	"Contacts": "Kontakty",
 	"More about": "Více o",
 	"select-blockchain": {
-		"one": "Vyberte blockchain",
-		"two": "Vyberte blockchain"
+		"one": "Vyberte řetězec bloků",
+		"two": "Vyberte řetězec bloků"
 	},
 	"minutes": "minuty",
 	"Return to the store": "Návrat do obchodu",
@@ -91,5 +100,9 @@
 	"Change": "Změna",
 	"You pay via DV.net": "Platíte přes DV.net",
 	"Accept cryptocurrency on your website without paying intermediaries": "Přijímejte kryptoměny na svých webových stránkách bez placení zprostředkovatelům",
-	"the cheapest way to accept cryptocurrency on your site": "nejlevnější způsob, jak přijímat kryptoměny na vašich stránkách"
+	"the cheapest way to accept cryptocurrency on your site": "nejlevnější způsob, jak přijímat kryptoměny na vašich stránkách",
+	"While you wait for your payment, check out our amazing merchant for accepting cryptocurrency on your website for free": "Zatímco čekáte na platbu podívejte se na našeho úžasného obchodníka pro přijímání kryptoměn na vašem webu zdarma",
+	"No our fees, everything stays on your server": "Ne naše poplatky všechno zůstává na vašem serveru",
+	"All wallets are stored on your side": "Všechny peněženky jsou uloženy na vaší straně",
+	"Open Source — all source code is public": "Otevřený zdroj — veškerý zdrojový kód je veřejný"
 }

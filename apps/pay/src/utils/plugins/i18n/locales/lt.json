@@ -4,6 +4,15 @@
 		"s": "s",
 		"h": "h"
 	},
+	"You have Trust Wallet installed, which may be intercepting TronLink requests. To connect via TronLink, temporarily disable Trust Wallet and refresh the page": "Turite įdiegtą Trust Wallet, kuris gali perimti TronLink užklausas. Norėdami prisijungti per TronLink, laikinai išjunkite Trust Wallet ir atnaujinkite puslapį",
+	"Insufficient funds": "Nepakanka lėšų",
+	"An unexpected error occurred": "Įvyko netikėta klaida",
+	"User rejected the request": "Vartotojas atmetė prašymą",
+	"This currency or blockchain is not supported": "Ši valiuta arba blokų grandinė nėra palaikoma",
+	"Contract address not found for token": "Sutarties adresas nerastas žetonui",
+	"Transaction failed": "Sandoris nepavyko",
+	"Disconnect": "Atsijungti",
+	"Transaction sent": "Sandoris išsiųstas",
 	"Latest payments": "Naujausi mokėjimai",
 	"from": "iš",
 	"new": "naujas",
@@ -91,5 +100,9 @@
 	"Change": "Keisti",
 	"You pay via DV.net": "Mokate per DV.net",
 	"Accept cryptocurrency on your website without paying intermediaries": "Priimkite cryptocurrency savo svetainėje nemokėdami tarpininkams",
-	"the cheapest way to accept cryptocurrency on your site": "pigiausias būdas priimti cryptocurrency jūsų svetainėje"
+	"the cheapest way to accept cryptocurrency on your site": "pigiausias būdas priimti cryptocurrency jūsų svetainėje",
+	"While you wait for your payment, check out our amazing merchant for accepting cryptocurrency on your website for free": "Kol laukiate savo mokėjimo patikrinkite mūsų nuostabų prekybininką už priėmimą kriptovaliutą jūsų svetainėje nemokamai",
+	"No our fees, everything stays on your server": "Ne mūsų mokesčiai, viskas lieka jūsų serveryje",
+	"All wallets are stored on your side": "Visos piniginės saugomos jūsų pusėje",
+	"Open Source — all source code is public": "Atvirasis Šaltinis visas šaltinio kodas yra viešas"
 }

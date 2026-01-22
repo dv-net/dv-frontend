@@ -33,7 +33,7 @@
 						v-if="modelValue && isCopyValue"
 						:copied-text="modelValue"
 						size-icon="sm"
-						color-icon="rgb(107, 109, 128)"
+            color-icon="rgb(164, 165, 177)"
 					/>
 				</template>
 			</ui-input>
