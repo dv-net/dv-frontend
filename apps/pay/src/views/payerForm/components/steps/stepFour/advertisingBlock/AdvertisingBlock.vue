@@ -1,7 +1,10 @@
 <script setup lang="ts">
 	import mainLoader from "@pay/assets/animations/mainLoader.json";
 	import { LottieAnimation } from "lottie-web-vue";
-	import { computed, ref } from "vue";
+	import { computed, onMounted, onUnmounted, ref, watch } from "vue";
+	import { useMediaQuery } from "@shared/utils/composables/useMediaQuery";
+
+	const isMediaMin1181 = useMediaQuery("(min-width: 1181px)");
 
 	const advertisingMessageKeys: string[] = [
 		"No our fees, everything stays on your server",
@@ -10,10 +13,32 @@
 	];
 	const activeAdvertisingIndex = ref<number>(0);
 	const activeAdvertisingText = computed<string>(() => advertisingMessageKeys[activeAdvertisingIndex.value]);
+	const isFirstRender = ref<boolean>(true);
+
+	let advertisingIntervalId: ReturnType<typeof setInterval> | undefined;
+
+	watch(activeAdvertisingIndex, () => {
+		if (isFirstRender.value) {
+			isFirstRender.value = false;
+		}
+	});
+
+	onMounted(() => {
+		if (!isMediaMin1181.value) return;
+		advertisingIntervalId = setInterval(() => {
+			activeAdvertisingIndex.value = (activeAdvertisingIndex.value + 1) % advertisingMessageKeys.length;
+		}, 3000);
+	});
+
+	onUnmounted(() => {
+		if (advertisingIntervalId) {
+			clearInterval(advertisingIntervalId);
+		}
+	});
 </script>
 
 <template>
-	<div class="advertising">
+	<div v-if="isMediaMin1181" class="advertising">
 		<div class="advertising__logo">
 			<lottie-animation :animation-data="mainLoader" :loop="true" />
 		</div>
@@ -24,7 +49,9 @@
 				)
 			}}
 		</p>
-		<span class="advertising__tag">{{ $t(activeAdvertisingText) }}</span>
+		<span :key="activeAdvertisingIndex" :class="{ advertising__tag: true, 'advertising__tag--first': isFirstRender }">
+			{{ $t(activeAdvertisingText) }}
+		</span>
 	</div>
 </template>
 
@@ -78,10 +105,12 @@
 			gap: 10px;
 			border-radius: 12px;
 			background-color: rgba(31, 150, 73, 0.12);
-			animation: slideInFromBottom 0.3s ease-out 0.4s both;
+			animation: slideInFromBottom 0.3s ease-out both;
+			&--first {
+				animation: slideInFromBottom 0.3s ease-out 0.4s both;
+			}
 		}
 	}
-
 	@keyframes slideInFromLeft {
 		0% {
 			opacity: 0;
@@ -99,7 +128,7 @@
 	@keyframes slideInFromBottom {
 		from {
 			opacity: 0;
-			transform: translateY(30px);
+			transform: translateY(20px);
 		}
 		to {
 			opacity: 1;
