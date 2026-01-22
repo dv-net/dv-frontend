@@ -19,9 +19,19 @@
 		return layouts[route.meta.layout as keyof typeof layouts];
 	});
 
+	const outputFrontendVersion = () => {
+		const frontendVersion = import.meta.env.VITE_APP_VERSION || "unknown";
+		console.log(
+			`%cFrontend: %c${frontendVersion}`,
+			"color: #1f9649; font-size: 14px; font-weight: bold;",
+			"color: #6b6d80; font-size: 12px; font-family: monospace; background: #f0f1f9; padding: 2px 8px; border-radius: 4px;"
+		);
+	};
+
 	watch(locale, (value: string) => updateTranslationsUiKit(value, t), { immediate: true, deep: true });
 
 	onMounted(async () => {
+		outputFrontendVersion();
 		await loadLocaleMessages(locale.value);
 	});
 </script>
