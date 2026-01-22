@@ -26,8 +26,8 @@ jobs:
           echo "VITE_API_URL=/api/v1" > apps/dv-admin/.env
           echo "VITE_API_URL=/api/v1" > apps/pay/.env
           echo "VITE_PROJECT_ID_CONNECT_WALLET=${{ secrets.VITE_PROJECT_ID_CONNECT_WALLET }}" >> apps/pay/.env
-          echo "VITE_APP_VERSION=${GITHUB_REF_NAME} (${GITHUB_SHA::7})" >> apps/dv-admin/.env
-          echo "VITE_APP_VERSION=${GITHUB_REF_NAME} (${GITHUB_SHA::7})" >> apps/pay/.env
+          echo "VITE_APP_VERSION=${GITHUB_REF_NAME}" >> apps/dv-admin/.env
+          echo "VITE_APP_VERSION=${GITHUB_REF_NAME}" >> apps/pay/.env
           yarn build-only
 
       - name: Pack build
