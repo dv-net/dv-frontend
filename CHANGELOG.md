@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [1.0.30] - 2026-01-22
+
 - feat: advertising has been added to the payment form [DV-4085]
 - change: displaying the "Submit payment" step on the payment form [DV-4071]
 - change: improved registration section in admin panel [DV-4069]
