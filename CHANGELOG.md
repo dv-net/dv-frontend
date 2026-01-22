@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [1.0.31] - 2026-01-22
+
+- fix: the display of the advertising block in the payment form has been corrected [DV-4100]
+
 ## [1.0.30] - 2026-01-22
 
 - feat: advertising has been added to the payment form [DV-4085]

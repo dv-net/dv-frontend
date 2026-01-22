@@ -1,6 +1,6 @@
 <script setup lang="ts">
 	import { LottieAnimation } from "lottie-web-vue";
-	import { computed, onMounted, onUnmounted, ref, watch } from "vue";
+	import { computed, nextTick, onMounted, onUnmounted, ref, watch } from "vue";
 	import { useMediaQuery } from "@shared/utils/composables/useMediaQuery";
 	import mainLoader from "@pay/assets/animations/mainLoader.json";
 	import { useI18n } from "vue-i18n";
@@ -8,6 +8,8 @@
 	const { locale } = useI18n();
 	const isMediaMin1181 = useMediaQuery("(min-width: 1181px)");
 
+	const advertisingTextRef = ref<HTMLParagraphElement | null>(null);
+	const lineHeightAdvertisingText = ref<number>(34);
 	const activeAdvertisingIndex = ref<number>(0);
 	const isFirstRender = ref<boolean>(true);
 	let advertisingIntervalId: ReturnType<typeof setInterval> | undefined;
@@ -19,14 +21,28 @@
 
 	const activeAdvertisingText = computed<string>(() => advertisingMessageKeys[activeAdvertisingIndex.value]);
 
+	const getLineHeightAdvertisingText = async (): Promise<number> => {
+		await nextTick();
+		if (!advertisingTextRef.value) return 34;
+		const scrollHeight = advertisingTextRef.value.scrollHeight;
+		const clientHeight = advertisingTextRef.value.clientHeight;
+		if (scrollHeight > clientHeight) return 20;
+		return 34;
+	};
+
 	watch(activeAdvertisingIndex, () => {
-		if (isFirstRender.value) {
-			isFirstRender.value = false;
+		if (isFirstRender.value) isFirstRender.value = false;
+	});
+
+	watch(locale, async (newValue) => {
+		if (newValue) {
+			lineHeightAdvertisingText.value = await getLineHeightAdvertisingText();
 		}
 	});
 
-	onMounted(() => {
+	onMounted(async () => {
 		if (!isMediaMin1181.value) return;
+		lineHeightAdvertisingText.value = await getLineHeightAdvertisingText();
 		advertisingIntervalId = setInterval(() => {
 			activeAdvertisingIndex.value = (activeAdvertisingIndex.value + 1) % advertisingMessageKeys.length;
 		}, 3000);
@@ -44,7 +60,7 @@
 		<a class="advertising__logo" :href="`https://dv.net/${locale}`" target="_blank">
 			<lottie-animation :animation-data="mainLoader" :loop="true" />
 		</a>
-		<p class="advertising__text">
+		<p ref="advertisingTextRef" class="advertising__text" :style="`line-height: ${lineHeightAdvertisingText}px`">
 			{{
 				$t(
 					"While you wait for your payment, check out our amazing merchant for accepting cryptocurrency on your website for free"
@@ -67,8 +83,7 @@
 		flex-direction: column;
 		align-items: center;
 		&__logo {
-			width: 110px;
-			height: 32px;
+			width: 130px;
 			@extend .center;
 			overflow: hidden;
 			animation: slideInFromLeft 0.6s ease-out;
@@ -84,37 +99,47 @@
 			}
 		}
 		&__text {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+			overflow-y: auto;
 			height: 126px;
 			padding: 12px 27px;
 			color: #6b6d80;
-			text-align: center;
 			font-size: 16px;
 			font-weight: 400;
 			line-height: 34px;
 			border-radius: 12px;
 			background-color: #f0f1f9;
-			margin: 17px 0 12px;
-			overflow: hidden;
+			margin: 5px 0 12px;
 			word-break: break-word;
 			animation: slideInFromLeft 0.3s ease-out 0.2s both;
 		}
 		&__tag {
 			display: block;
 			white-space: nowrap;
-			overflow: hidden;
-			text-overflow: ellipsis;
+			overflow-x: auto;
 			width: 100%;
 			color: #1f9649;
 			text-align: center;
 			font-size: 16px;
 			font-weight: 400;
 			line-height: 34px;
-			@extend .center;
 			padding: 4px 12px;
 			gap: 10px;
 			border-radius: 12px;
 			background-color: rgba(31, 150, 73, 0.12);
 			animation: slideInFromBottom 0.3s ease-out both;
+			&::-webkit-scrollbar {
+				height: 4px !important;
+			}
+			&::-webkit-scrollbar-track {
+				margin: 0 15px !important;
+			}
+			&::-webkit-scrollbar-thumb {
+				background-color: #1f9649 !important;
+			}
 			&--first {
 				animation: slideInFromBottom 0.3s ease-out 0.4s both;
 			}
