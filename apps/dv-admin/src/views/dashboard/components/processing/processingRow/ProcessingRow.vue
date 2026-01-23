@@ -32,7 +32,7 @@
 		<top-evm v-else-if="data.currency.is_evm_like" :data="data" v-model="isShowWithdrawalFromProcessing" />
 		<div v-else class="center">{{ $t("Not found") }}</div>
 		<transition name="slide-fade">
-			<block-withdrawal-from-processing v-show="isShowWithdrawalFromProcessing[data.currency.id]" />
+			<block-withdrawal-from-processing v-show="isShowWithdrawalFromProcessing[data.currency.id]" :data="data" />
 		</transition>
 	</div>
 </template>

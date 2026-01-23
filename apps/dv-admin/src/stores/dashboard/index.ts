@@ -54,11 +54,20 @@ export const useDashboardStore = defineStore("dashboard", () => {
 			isLoadingProcessingWallets.value = true;
 			const data = await getApiProcessingWallets();
 			if (data) {
-				processingWallets.value = data.sort((a, b) => {
-					if (a.currency.id === ("TRX.Tron" as BlockchainType)) return -1;
-					if (b.currency.id === ("TRX.Tron" as BlockchainType)) return 1;
-					return 0;
-				});
+				processingWallets.value = data
+					.map((wallet) => ({
+						...wallet,
+						assets: wallet.assets.sort((a, b) => {
+							const amountA = parseFloat(a.amount_usd) || 0;
+							const amountB = parseFloat(b.amount_usd) || 0;
+							return amountB - amountA;
+						})
+					}))
+					.sort((a, b) => {
+						if (a.currency.id === ("TRX.Tron" as BlockchainType)) return -1;
+						if (b.currency.id === ("TRX.Tron" as BlockchainType)) return 1;
+						return 0;
+					});
 			}
 		} catch (error: any) {
 			throw error;
