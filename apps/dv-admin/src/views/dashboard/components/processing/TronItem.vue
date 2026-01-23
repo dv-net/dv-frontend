@@ -1,30 +1,30 @@
 <script setup lang="ts">
-	import { calculationEnergyAndBandwidth } from "@dv-admin/utils/helpers/calculationEnergyAndBandwidth";
+	import { calculationEnergyAndBandwidth } from "@dv-admin/utils/helpers/calculationEnergyAndBandwidth.ts";
 	import {
 		formatAmountBlockchain,
 		formatDollars,
 		getCurrentBlockchain,
 		getCurrentCoin
-	} from "@shared/utils/helpers/general";
+	} from "@shared/utils/helpers/general.ts";
 	import IconCorner from "@dv-admin/components/icons/dashboard/IconCorner.vue";
 	import BlockchainIcon from "@shared/components/ui/blockchainIcon/BlockchainIcon.vue";
 	import { UiAnimation, UiTooltip } from "@dv.net/ui-kit";
 	import IconWarning from "@dv-admin/components/icons/dashboard/IconWarning.vue";
 	import DisplayHash from "@shared/components/ui/displayHash/DisplayHash.vue";
 	import TooltipHelper from "@dv-admin/components/ui/tooltipHelper/TooltipHelper.vue";
-	import type { IProcessingWalletsResponse } from "@dv-admin/utils/types/api/apiGo";
+	import type { IProcessingWalletsResponse } from "@dv-admin/utils/types/api/apiGo.ts";
 	import { storeToRefs } from "pinia";
 	import { useDashboardStore } from "@dv-admin/stores/dashboard";
 	import { useUserSettingsStore } from "@dv-admin/stores/userSettings";
 	import { computed, ref } from "vue";
 	import { TRANSFER_TYPES } from "@dv-admin/utils/constants/settings";
 	import { settings2Animation } from "@dv.net/ui-kit/dist/helpers/animations-list";
-	import IconDollarETH from "@dv-admin/components/icons/dashboard/IconDollarETH.vue";
-	import { getDeclensionTransfers } from "@dv-admin/utils/helpers/declensions";
+	import IconDollarETH from "@dv-admin/components/icons/dashboard/IconDollarEth.vue";
+	import { getDeclensionTransfers } from "@dv-admin/utils/helpers/declensions.ts";
 	import IconDanger from "@dv-admin/components/icons/dashboard/IconDanger.vue";
 	import IconCloud from "@dv-admin/components/icons/dashboard/IconCloud.vue";
-	import { getColorBorderRow } from "@dv-admin/utils/helpers/dashboard";
-	import AnimatedSendIcon from "@dv-admin/views/dashboard/components/processing/components/AnimatedSendIcon.vue";
+	import { getColorBorderRow } from "@dv-admin/utils/helpers/dashboard.ts";
+	import AnimatedSendIcon from "@dv-admin/views/dashboard/components/processing/AnimatedSendIcon.vue";
 
 	const { processingWallets } = storeToRefs(useDashboardStore());
 	const { userSettings } = storeToRefs(useUserSettingsStore());

@@ -4,6 +4,9 @@
 		"h": "ч",
 		"s": "сек"
 	},
+	"Select a token": "Выберите токен",
+	"Transfer amount": "Сумма перевода",
+	"You can withdraw funds from the current processing ring": "Вы можете вывести средства с текущего процессингового колелька",
 	"Balances on the exchange": "Балансы на бирже",
 	"Here you can see the current balances on the selected crypto exchange for each currency": "Здесь вы можете увидеть текущие балансы на выбранной криптовалютной бирже для каждой валюты",
 	"Count": "Количество",
@@ -926,7 +929,6 @@
 	"Maximum 32 characters": "Максимум 32 символа",
 	"Pass captcha": "Пройдите каптчу",
 	"All rights reserved": "Все права защищены",
-	"In the Withdrawal from Processing Wallet section, you can withdraw funds from the processing wallet.": "В разделе Вывод с процессингового кошелька вы можете вывести средства с процессингового колелька {blockchain}.",
 	"In the Processing Settings section for TRON, you can change the processing mode as well as view detailed information and resource usage statistics.": "В разделе настроек процессинга \"TRON\" вы можете изменять режим работы процессинга, так же видеть детализацию и статистику расхода ресурсов.",
 	"Withdrawal was successful": "Вывод прошёл успешно",
 	"No matches found": "Не найдено совпадений",

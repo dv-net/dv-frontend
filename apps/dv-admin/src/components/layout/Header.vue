@@ -16,7 +16,7 @@
 		languageAnimation,
 		loginAnimation,
 		notificationsAnimation,
-		personAnimation,
+		personAnimation
 	} from "@dv.net/ui-kit/dist/helpers/animations-list";
 	import TooltipHelper from "@dv-admin/components/ui/tooltipHelper/TooltipHelper.vue";
 	import { useAuthEmailSectionStore } from "@dv-admin/stores/auth/authEmailSection";
@@ -162,7 +162,13 @@
 
 		&__logo {
 			margin-left: 16px;
-			cursor: pointer;
+			transition: all 0.25s ease;
+			@media (hover: hover) {
+				&:hover {
+					cursor: pointer;
+					transform: scale(1.03);
+				}
+			}
 		}
 
 		&__balance {

@@ -1,15 +1,15 @@
 <script setup lang="ts">
-	import { formatAmountBlockchain, getCurrentBlockchain, getCurrentCoin } from "@shared/utils/helpers/general";
+	import { formatAmountBlockchain, getCurrentBlockchain, getCurrentCoin } from "@shared/utils/helpers/general.ts";
 	import IconCorner from "@dv-admin/components/icons/dashboard/IconCorner.vue";
 	import BlockchainIcon from "@shared/components/ui/blockchainIcon/BlockchainIcon.vue";
 	import { UiTooltip } from "@dv.net/ui-kit";
 	import DisplayHash from "@shared/components/ui/displayHash/DisplayHash.vue";
-	import type { IProcessingWalletsResponse } from "@dv-admin/utils/types/api/apiGo";
-	import IconDollarETH from "@dv-admin/components/icons/dashboard/IconDollarETH.vue";
-	import { getDeclensionTransfers } from "@dv-admin/utils/helpers/declensions";
+	import type { IProcessingWalletsResponse } from "@dv-admin/utils/types/api/apiGo.ts";
+	import IconDollarETH from "@dv-admin/components/icons/dashboard/IconDollarEth.vue";
+	import { getDeclensionTransfers } from "@dv-admin/utils/helpers/declensions.ts";
 	import IconDanger from "@dv-admin/components/icons/dashboard/IconDanger.vue";
-	import { getColorBorderRow } from "@dv-admin/utils/helpers/dashboard";
-	import AnimatedSendIcon from "@dv-admin/views/dashboard/components/processing/components/AnimatedSendIcon.vue";
+	import { getColorBorderRow } from "@dv-admin/utils/helpers/dashboard.ts";
+	import AnimatedSendIcon from "@dv-admin/views/dashboard/components/processing/AnimatedSendIcon.vue";
 
 	const { data } = defineProps<{ data: IProcessingWalletsResponse }>();
 </script>
