@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+- feat: Improved display of advertisements on the payment form in the mobile version [DV-4104]
+
 ## [1.0.31] - 2026-01-22
 
 - fix: the display of the advertising block in the payment form has been corrected [DV-4100]

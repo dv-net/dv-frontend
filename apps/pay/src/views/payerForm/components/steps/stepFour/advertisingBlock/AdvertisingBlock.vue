@@ -1,12 +1,12 @@
 <script setup lang="ts">
 	import { LottieAnimation } from "lottie-web-vue";
 	import { computed, nextTick, onMounted, onUnmounted, ref, watch } from "vue";
-	import { useMediaQuery } from "@shared/utils/composables/useMediaQuery";
 	import mainLoader from "@pay/assets/animations/mainLoader.json";
 	import { useI18n } from "vue-i18n";
+	import { useMediaQuery } from "@shared/utils/composables/useMediaQuery.ts";
 
 	const { locale } = useI18n();
-	const isMediaMin1181 = useMediaQuery("(min-width: 1181px)");
+	const isMediaMax480 = useMediaQuery("(max-width: 480px)");
 
 	const advertisingTextRef = ref<HTMLParagraphElement | null>(null);
 	const lineHeightAdvertisingText = ref<number>(34);
@@ -23,6 +23,7 @@
 
 	const getLineHeightAdvertisingText = async (): Promise<number> => {
 		await nextTick();
+		if (isMediaMax480.value) return 16;
 		if (!advertisingTextRef.value) return 34;
 		const scrollHeight = advertisingTextRef.value.scrollHeight;
 		const clientHeight = advertisingTextRef.value.clientHeight;
@@ -41,7 +42,6 @@
 	});
 
 	onMounted(async () => {
-		if (!isMediaMin1181.value) return;
 		lineHeightAdvertisingText.value = await getLineHeightAdvertisingText();
 		advertisingIntervalId = setInterval(() => {
 			activeAdvertisingIndex.value = (activeAdvertisingIndex.value + 1) % advertisingMessageKeys.length;
@@ -56,7 +56,7 @@
 </script>
 
 <template>
-	<div v-if="isMediaMin1181" class="advertising">
+	<div class="advertising">
 		<a class="advertising__logo" :href="`https://dv.net/${locale}`" target="_blank">
 			<lottie-animation :animation-data="mainLoader" :loop="true" />
 		</a>
@@ -76,12 +76,12 @@
 <style scoped lang="scss">
 	.advertising {
 		width: 357px;
-		position: absolute;
-		top: 0;
-		right: 0;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		@include mediamax(480) {
+			width: 100%;
+		}
 		&__logo {
 			width: 130px;
 			@extend .center;
@@ -115,6 +115,13 @@
 			margin: 5px 0 12px;
 			word-break: break-word;
 			animation: slideInFromLeft 0.3s ease-out 0.2s both;
+			@include mediamax(480) {
+				font-size: 12px;
+				padding: 12px;
+				height: unset;
+				margin: 5px 0 8px;
+				line-height: 16px;
+			}
 		}
 		&__tag {
 			display: block;
@@ -131,6 +138,13 @@
 			border-radius: 12px;
 			background-color: rgba(31, 150, 73, 0.12);
 			animation: slideInFromBottom 0.3s ease-out both;
+			@include mediamax(480) {
+				font-size: 12px;
+				line-height: 16px;
+				white-space: unset;
+				overflow-x: unset;
+				word-break: break-word;
+			}
 			&::-webkit-scrollbar {
 				height: 4px !important;
 			}

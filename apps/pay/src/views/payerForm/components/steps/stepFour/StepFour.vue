@@ -67,7 +67,7 @@
 							<span class="content__confirmation"> {{ confirmed }}/{{ confirmations }} {{ $t("confirmations") }} </span>
 						</div>
 					</div>
-					<advertising-block />
+					<advertising-block class="info__advertising-block" />
 				</div>
 				<transaction-block-info />
 			</div>
@@ -102,11 +102,18 @@
 				justify-content: center;
 				align-items: center;
 				padding: 0 0 16px;
+				@include mediamax(1180) {
+					justify-content: unset;
+					flex-direction: column;
+				}
 				.content {
 					display: flex;
 					align-items: center;
 					flex-direction: column;
 					gap: 24px;
+					@include mediamax(1180) {
+						order: 2;
+					}
 					@include mediamax(768) {
 						gap: 16px;
 					}
@@ -156,6 +163,15 @@
 							font-size: 16px;
 						}
 					}
+				}
+			}
+			&__advertising-block {
+				position: absolute;
+				top: 0;
+				right: 0;
+				@include mediamax(1180) {
+					position: unset;
+					order: 1;
 				}
 			}
 		}
