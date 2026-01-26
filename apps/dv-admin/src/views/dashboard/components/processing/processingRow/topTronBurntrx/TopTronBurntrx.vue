@@ -1,12 +1,13 @@
 <script setup lang="ts">
 	import type { IProcessingWalletsResponse } from "@dv-admin/utils/types/api/apiGo.ts";
-	import ChainInfo from "@dv-admin/views/dashboard/components/processing/processingRow/chainInfo/ChainInfo.vue";
 	import Amount from "@dv-admin/views/dashboard/components/processing/processingRow/amount/Amount.vue";
+	import ChainInfo from "@dv-admin/views/dashboard/components/processing/processingRow/chainInfo/ChainInfo.vue";
+	import ButtonWithdrawalFromProcessing from "@dv-admin/views/dashboard/components/processing/processingRow/buttonWithdrawalFromProcessing/ButtonWithdrawalFromProcessing.vue";
+	import ButtonTronSetting from "@dv-admin/views/dashboard/components/processing/processingRow/buttonTronSetting/ButtonTronSetting.vue";
 	import PaymentsCount from "@dv-admin/views/dashboard/components/processing/processingRow/paymentsCount/PaymentsCount.vue";
 	import Warning from "@dv-admin/views/dashboard/components/processing/processingRow/warning/Warning.vue";
-	import ButtonWithdrawalFromProcessing from "@dv-admin/views/dashboard/components/processing/processingRow/buttonWithdrawalFromProcessing/ButtonWithdrawalFromProcessing.vue";
 
-	const { data, countMaxTransfers } = defineProps<{
+	const { data, countMaxTransfers, showWarningColumn } = defineProps<{
 		data: IProcessingWalletsResponse;
 		countMaxTransfers: string;
 		showWarningColumn: boolean;
@@ -17,35 +18,38 @@
 </script>
 
 <template>
-	<div class="evm" :class="{ 'recommend-topping': showWarningColumn }">
-		<div class="evm__column">
+	<div class="tron" :class="{ 'recommend-topping': showWarningColumn }">
+		<div class="tron__column">
 			<chain-info :data="data" />
 		</div>
-		<div class="evm__column">
+		<div class="tron__column">
 			<amount :data="data" />
 		</div>
-		<div class="evm__column">
+		<div class="tron__column">
 			<payments-count :count-max-transfers="countMaxTransfers" />
 		</div>
-		<div v-if="showWarningColumn" class="evm__column">
+		<div v-if="showWarningColumn" class="tron__column">
 			<warning :count-max-transfers="countMaxTransfers" />
 		</div>
-		<div class="evm__column">
-			<button-withdrawal-from-processing
-				v-model="isShowWithdrawalFromProcessing"
-				:currencyId="data.currency.id as string"
-				@close="emits('close')"
-			/>
+		<div class="tron__column">
+			<div class="flex flex-grow-1 flex-x-end gap-20">
+				<button-withdrawal-from-processing
+					v-model="isShowWithdrawalFromProcessing"
+					:currencyId="data.currency.id"
+					@close="emits('close')"
+				/>
+				<button-tron-setting />
+			</div>
 		</div>
 	</div>
 </template>
 
 <style scoped lang="scss">
-	.evm {
+	.tron {
 		display: grid;
-		grid-template-columns: 230px 180px 1fr 50px;
+		grid-template-columns: 230px 180px 1fr 100px;
 		&.recommend-topping {
-			grid-template-columns: 230px 180px 1fr 1fr 50px;
+			grid-template-columns: 230px 180px 1fr 1fr 100px;
 		}
 		&__column {
 			display: flex;

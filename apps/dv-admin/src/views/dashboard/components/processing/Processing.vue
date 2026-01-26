@@ -4,8 +4,6 @@
 	import { storeToRefs } from "pinia";
 	import { UiSkeleton } from "@dv.net/ui-kit";
 	import { computed } from "vue";
-	import TronItem from "@dv-admin/views/dashboard/components/processing/TronItem.vue";
-	import BlockchainItem from "@dv-admin/views/dashboard/components/processing/BlockchainItem.vue";
 	import ProcessingRow from "@dv-admin/views/dashboard/components/processing/processingRow/ProcessingRow.vue";
 
 	const { processingWallets, isLoadingProcessingWallets } = storeToRefs(useDashboardStore());
@@ -27,8 +25,6 @@
 		<ui-skeleton v-if="isLoadingProcessingWallets" :rows="4" :row-height="70" :rows-gap="16" :item-border-radius="16" />
 		<div v-else class="processing__list">
 			<div v-for="item in processingWallets" :key="item.currency.id">
-<!--								<tron-item v-if="item.currency.id === 'TRX.Tron'" :data="item" />-->
-<!--								<blockchain-item v-else :data="item" />-->
 				<processing-row :data="item" />
 			</div>
 		</div>
