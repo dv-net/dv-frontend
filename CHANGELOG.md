@@ -2,7 +2,8 @@
 
 ## [Unreleased]
 
-- feat: Improved display of advertisements on the payment form in the mobile version [DV-4104]
+- feat: implement a new design for withdrawals from a processing wallet [DV-4037]
+- feat: improved display of advertisements on the payment form in the mobile version [DV-4104]
 
 ## [1.0.31] - 2026-01-22
 

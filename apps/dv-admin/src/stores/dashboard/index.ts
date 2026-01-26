@@ -178,7 +178,10 @@ export const useDashboardStore = defineStore("dashboard", () => {
 			} else {
 				await postApiWithdrawalFromProcessing({ ...params, totp: otpGlobalCode.value });
 				clearForm();
-				notify(t("Withdrawal was successful"), "success");
+				notify(
+					t("Your request has been created. You can track the transaction's progress on the Transfers page"),
+					"success"
+				);
 				router.push({ name: "dashboard" });
 			}
 		} catch (error: any) {

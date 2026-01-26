@@ -17,8 +17,10 @@
 	import { useDashboardStore } from "@dv-admin/stores/dashboard";
 	import type { UiFormRules } from "@dv.net/ui-kit/dist/components/UiForm/types";
 	import { useI18n } from "vue-i18n";
+	import { useNotifications } from "@shared/utils/composables/useNotifications.ts";
 
 	const { t } = useI18n();
+	const { notify } = useNotifications();
 	const { postWithdrawalFromProcessing } = useDashboardStore();
 
 	const { data } = defineProps<{ data: IProcessingWalletsResponse }>();
@@ -52,10 +54,12 @@
 
 	const updateAmounts = (asset: IProcessingWalletsAssets) => {
 		form.value.amount = parseFloat(formatAmountBlockchain(asset.amount, asset.currency_id));
-		amountUsdWithdrawProcessing.value = parseFloat(formatDollars(asset.amount_usd, ""));
+		amountUsdWithdrawProcessing.value = parseFloat(asset.amount_usd);
 	};
 
 	const selectAsset = (asset: IProcessingWalletsAssets) => {
+		if (!asset) return;
+		form.value.currency_id = asset.currency_id;
 		selectedAsset.value = asset;
 		updateAmounts(asset);
 	};
@@ -81,6 +85,10 @@
 	const withdrawHandler = async () => {
 		try {
 			if (!formRef.value || !(await formRef.value.validate())) return;
+			if (!form.value?.currency_id) {
+				notify(t("Select a coin for withdrawal"));
+				return;
+			}
 			form.value.request_id = generateUUID();
 			await postWithdrawalFromProcessing(form.value, clearForm);
 		} catch (error: any) {
@@ -92,6 +100,7 @@
 		form.value = { ...defaultFormValues };
 		selectedAsset.value = null;
 		amountUsdWithdrawProcessing.value = null;
+		formRef.value?.resetValidate();
 	};
 
 	defineExpose({
@@ -107,7 +116,7 @@
 				<template v-for="item in data.assets" :key="item.currency_id">
 					<template v-if="!selectedAsset || selectedAsset.currency_id !== item.currency_id">
 						<ui-tooltip
-							:text="`${formatAmountBlockchain(item.amount, item.currency_id)} • ${formatDollars(item.amount_usd)}`"
+							:text="`${formatAmountBlockchain(item.amount, item.currency_id)} • ${formatDollars(item.amount_usd, undefined, undefined, 1)}`"
 						>
 							<button class="item" @click="selectAsset(item)">
 								<span class="item__content">
@@ -124,7 +133,7 @@
 						</span>
 						<span class="item__price">
 							{{ formatAmountBlockchain(selectedAsset.amount, selectedAsset.currency_id) }} •
-							{{ formatDollars(selectedAsset.amount_usd) }}
+							{{ formatDollars(selectedAsset.amount_usd, undefined, undefined, 1) }}
 						</span>
 					</button>
 				</template>
@@ -142,7 +151,7 @@
 					<template #append>
 						<div class="input-sum__inner">
 							<span v-if="amountUsdWithdrawProcessing" class="input-sum__amount">
-								≈ {{ formatDollars(amountUsdWithdrawProcessing) }}
+								≈ {{ formatDollars(amountUsdWithdrawProcessing, undefined, undefined, 1) }}
 							</span>
 							<ui-button type="secondary" size="lg" :disabled="isDisabledAllAmount" @click="selectAllAmount">
 								{{ $t("All") }}
@@ -154,7 +163,7 @@
 			<ui-form-item name="address_to" :label="$t('Where to withdraw')">
 				<ui-input v-model="form.address_to" :placeholder="$t('Enter address')" />
 			</ui-form-item>
-			<ui-button class="w-full mt-28" mode="neutral" size="xl" :disabled="isDisabledBtnWithdraw">
+			<ui-button class="w-full mt-28" native-type="submit" mode="neutral" size="xl" :disabled="isDisabledBtnWithdraw">
 				{{ $t("Withdraw") }}
 			</ui-button>
 		</ui-form>

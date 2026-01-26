@@ -4,6 +4,8 @@
 		"h": "h",
 		"s": "s"
 	},
+	"Your request has been created. You can track the transaction's progress on the Transfers page": "Your request has been created. You can track the transaction's progress on the Transfers page",
+	"Select a coin for withdrawal": "Select a coin for withdrawal",
 	"Where to withdraw": "Where to withdraw",
 	"Select a token": "Select a token",
 	"Transfer amount": "Transfer amount",
