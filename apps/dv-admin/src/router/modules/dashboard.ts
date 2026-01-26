@@ -15,12 +15,5 @@ export default [
 		component: () => import("@dv-admin/views/dashboard/tronSettings/TronSettings.vue"),
 		meta: { layout: APP_LAYOUT.DEFAULT },
 		beforeEnter: auth
-	},
-	{
-		path: "/withdraw-from-processing/:blockchain",
-		name: "withdraw-from-processing",
-		component: () => import("@dv-admin/views/dashboard/components/withdrawFromProcessing/WithdrawFromProcessing.vue"),
-		meta: { layout: APP_LAYOUT.DEFAULT },
-		beforeEnter: auth
 	}
 ];

@@ -1,3 +1,20 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	-webkit-tap-highlight-color: transparent;
+}
+
+*:focus:not(:focus-visible) {
+	box-shadow: none;
+	outline: none;
+}
+
+*:focus-visible {
+	outline: 2px solid #4a90e2;
+	outline-offset: 2px;
+}
+
 html,
 body,
 h1,
@@ -8,18 +25,14 @@ h5,
 h6,
 p,
 ul,
+ol,
+dl,
+dd,
+figure,
+blockquote,
 pre {
-	padding: 0;
 	margin: 0;
-}
-
-* {
-	box-sizing: border-box;
-}
-
-*:focus {
-	box-shadow: none;
-	outline: none;
+	padding: 0;
 }
 
 a,
@@ -38,9 +51,46 @@ h6,
 p {
 	font-size: inherit;
 	font-weight: inherit;
+	line-height: inherit;
 }
 
 ul,
+ol,
+ol li,
 ul li {
 	list-style: none;
+}
+
+button,
+input,
+textarea,
+select {
+	font-family: inherit;
+	font-size: inherit;
+	line-height: inherit;
+	margin: 0;
+	padding: 0;
+	box-shadow: none;
+	border: none;
+	background: none;
+	color: inherit;
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+
+button {
+	&::-moz-focus-inner {
+		padding: 0;
+		border: 0;
+	}
+	&:disabled {
+		cursor: not-allowed;
+		opacity: 0.6;
+	}
+	@media (hover: hover) {
+		&:hover:not(:disabled) {
+			cursor: pointer;
+		}
+	}
 }
