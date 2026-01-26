@@ -4,8 +4,13 @@
 	import DisplayHash from "@shared/components/ui/displayHash/DisplayHash.vue";
 	import IconCorner from "@dv-admin/components/icons/dashboard/IconCorner.vue";
 	import type { IProcessingWalletsResponse } from "@dv-admin/utils/types/api/apiGo.ts";
+	import { computed } from "vue";
 
 	const { data } = defineProps<{ data: IProcessingWalletsResponse }>();
+
+	const isCorrectAddress = computed<boolean>(() => {
+		return Boolean(data.address) && data.address !== "unknown";
+	});
 </script>
 
 <template>
@@ -19,6 +24,7 @@
 			<div class="blockchain__hash">
 				<icon-corner />
 				<display-hash
+					v-if="isCorrectAddress"
 					type="address"
 					:hash="data.address"
 					:count-prefix="5"
@@ -26,6 +32,7 @@
 					:currency-id="data.currency.id"
 					size-icon="sm"
 				/>
+				<span v-else>unknown</span>
 			</div>
 		</div>
 	</div>
