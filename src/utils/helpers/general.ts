@@ -8,7 +8,7 @@ export const capitalizeFirstLetter = (str: string, locale?: string): string => {
 	return str.charAt(0).toLocaleUpperCase(locale || "en") + str.slice(1);
 };
 
-export const changeChainBsc = (chain: string): string => {
+export const changeChainBsc = (chain?: string | null): string => {
 	if (!chain) return "";
 	return chain === "BNBSmartChain" ? "BSC" : chain;
 };
