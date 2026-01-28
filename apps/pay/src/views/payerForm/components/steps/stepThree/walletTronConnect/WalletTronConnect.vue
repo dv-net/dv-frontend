@@ -227,7 +227,7 @@
 		flex-direction: column;
 		gap: 12px;
 		&__btn {
-			@include mediamax(480) {
+			@include mediamax(680) {
 				width: 100%;
 			}
 		}

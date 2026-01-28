@@ -240,7 +240,7 @@
 
 <style scoped lang="scss">
 	.btn-connect {
-		@include mediamax(480) {
+		@include mediamax(680) {
 			width: 100%;
 		}
 	}

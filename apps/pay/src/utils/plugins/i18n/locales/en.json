@@ -5,6 +5,7 @@
 		"h": "h"
 	},
 	"Chain": "Chain",
+	"Show": "Show",
 	"Cryptocurrency": "Cryptocurrency",
 	"You have Trust Wallet installed, which may be intercepting TronLink requests. To connect via TronLink, temporarily disable Trust Wallet and refresh the page": "You have Trust Wallet installed, which may be intercepting TronLink requests. To connect via TronLink, temporarily disable Trust Wallet and refresh the page",
 	"Insufficient funds": "Insufficient funds",
