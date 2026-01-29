@@ -16,8 +16,7 @@
 	import { getApiWalletConfirm } from "@pay/services/api/payerForm.ts";
 	import { useI18n } from "vue-i18n";
 	import AudioPayment from "@pay/views/payerForm/components/audioPayment/AudioPayment.vue";
-	import BlockLatestTransactions
-		from "@pay/views/payerForm/components/blockLatestTransactions/BlockLatestTransactions.vue";
+	import BlockLatestTransactions from "@pay/views/payerForm/components/blockLatestTransactions/BlockLatestTransactions.vue";
 
 	const {
 		currentStep,
@@ -39,7 +38,7 @@
 
 	const route = useRoute();
 	const router = useRouter();
-	const { t } = useI18n()
+	const { t } = useI18n();
 
 	const isStoreForm: boolean = route.name === "payer-store";
 	const price = route.query.amount as string | undefined;
@@ -123,9 +122,9 @@
 
 	watch(currentStep, (newValue: number) => {
 		timeline.value.forEach((item) => {
-			item.isActive = item.id <= (stepMap.value[currentStep.value] || currentStep.value)
-			if ([4].includes(newValue) && [1,2].includes(item.id)) item.isActive = false;
-			if ([5].includes(newValue) && [1,2,3].includes(item.id)) item.isActive = false;
+			item.isActive = item.id <= (stepMap.value[currentStep.value] || currentStep.value);
+			if ([4].includes(newValue) && [1, 2].includes(item.id)) item.isActive = false;
+			if ([5].includes(newValue) && [1, 2, 3].includes(item.id)) item.isActive = false;
 		});
 		if (newValue === 3 && payerId.value) {
 			getApiWalletConfirm(payerId.value, `${currentCurrency.value}.${currentChain.value}`);
@@ -143,7 +142,9 @@
 
 	onMounted(async () => {
 		await getStartInfo(isStoreForm, slug, externalId, payerIdQuery, email);
-		document.title = store.value?.name ? `${t("Payment by cryptocurrency in")} ${store.value?.name}` : t("Payment by cryptocurrency")
+		document.title = store.value?.name
+			? `${t("Payment by cryptocurrency in")} ${store.value?.name}`
+			: t("Payment by cryptocurrency");
 		getQueryParams();
 		void startPolling();
 	});
@@ -195,7 +196,8 @@
 				order: 2;
 			}
 		}
-		&__advertising, &__latest-transactions {
+		&__advertising,
+		&__latest-transactions {
 			display: none;
 			@include mediamax(1024) {
 				display: flex;

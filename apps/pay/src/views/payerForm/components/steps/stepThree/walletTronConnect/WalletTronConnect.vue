@@ -20,11 +20,11 @@
 	const walletList = ref<any[]>([]);
 	const okxWallet = ref<any>(null);
 	const tronLinkWallet = ref<any>(null);
-	const isShowModalWallets = ref<boolean>(false)
+	const isShowModalWallets = ref<boolean>(false);
 
 	const isContractTron = computed<boolean>(() => Boolean(token) && Object.keys(TRON_CONTRACTS).includes(token!));
-	const isAllConnectedWallets = computed<boolean>(() => walletList.value.every(item => item.initialized));
-	const connectedWallets = computed(() => walletList.value.filter(item => item.initialized));
+	const isAllConnectedWallets = computed<boolean>(() => walletList.value.every((item) => item.initialized));
+	const connectedWallets = computed(() => walletList.value.filter((item) => item.initialized));
 
 	const handleSendTransaction = async (walletId: string) => {
 		try {
@@ -79,8 +79,12 @@
 		try {
 			if (tronLinkWallet.value && walletId === "tronlink") {
 				if (window.trustwallet) {
-					notify(t('You have Trust Wallet installed, which may be intercepting TronLink requests. To connect via TronLink, temporarily disable Trust Wallet and refresh the page'));
-					return
+					notify(
+						t(
+							"You have Trust Wallet installed, which may be intercepting TronLink requests. To connect via TronLink, temporarily disable Trust Wallet and refresh the page"
+						)
+					);
+					return;
 				}
 				await tronLinkWallet.value.request({ method: "tron_requestAccounts" });
 			} else if (okxWallet.value && walletId === "okx") {
@@ -94,19 +98,19 @@
 
 	const handleDisconnectWallet = (walletId: string) => {
 		if (walletId !== "okx") return;
-		const findIndex = walletList.value.findIndex(item => item.id === walletId)
+		const findIndex = walletList.value.findIndex((item) => item.id === walletId);
 		if (findIndex === -1) return;
 		walletList.value[findIndex].isLoading = true;
 		window.okxwallet
-			.request({ method: 'wallet_disconnect' })
+			.request({ method: "wallet_disconnect" })
 			.then(() => {
-				walletList.value[findIndex].initialized = false
-				okxWallet.value = null
+				walletList.value[findIndex].initialized = false;
+				okxWallet.value = null;
 			})
 			.catch(console.error)
 			.finally(() => {
-				walletList.value[findIndex].isLoading = false
-			})
+				walletList.value[findIndex].isLoading = false;
+			});
 	};
 
 	const handleClickWallet = async (wallet: any) => {
@@ -171,20 +175,16 @@
 	<div class="wallets">
 		<ui-button
 			v-if="!isAllConnectedWallets"
+			class="wallets__btn"
 			type="secondary"
-			class="w-full"
 			left-icon-name="account-balance-wallet"
-			left-icon-size="md"
+			size="sm"
 			@click="isShowModalWallets = true"
 		>
 			{{ $t("Connect wallet") }}
 		</ui-button>
 		<div v-if="connectedWallets.length" class="wallets__list">
-			<div
-				v-for="item in connectedWallets"
-				:key="item.id"
-				class="info"
-			>
+			<div v-for="item in connectedWallets" :key="item.id" class="info">
 				<div class="info__header">
 					<div class="info__wallet">
 						<div class="info__icon">
@@ -193,18 +193,13 @@
 						<span class="info__name">{{ item.name }}</span>
 					</div>
 					<span class="info__status">
-			<span class="info__dot" />
-			{{ $t("Connected") }}
-		</span>
+						<span class="info__dot" />
+						{{ $t("Connected") }}
+					</span>
 				</div>
 				<div class="info__address">
 					<span class="info__address-text">{{ item.address }}</span>
-					<ui-copy-text
-						v-if="item.address"
-						:copied-text="item.address"
-						size-icon="sm"
-						color-icon="#A4A5B1"
-					/>
+					<ui-copy-text v-if="item.address" :copied-text="item.address" size-icon="sm" color-icon="#A4A5B1" />
 				</div>
 				<div class="info__actions">
 					<ui-button
@@ -222,11 +217,7 @@
 				</div>
 			</div>
 		</div>
-		<wallet-tron-modal
-			v-model:is-show="isShowModalWallets"
-			:wallets="walletList"
-			@select="handleClickWallet"
-		/>
+		<wallet-tron-modal v-model:is-show="isShowModalWallets" :wallets="walletList" @select="handleClickWallet" />
 	</div>
 </template>
 
@@ -235,6 +226,11 @@
 		display: flex;
 		flex-direction: column;
 		gap: 12px;
+		&__btn {
+			@include mediamax(680) {
+				width: 100%;
+			}
+		}
 		&__list {
 			display: flex;
 			flex-direction: column;

@@ -7,7 +7,7 @@
 		useSendTransaction,
 		useWriteContract,
 		useSwitchChain,
-		useReadContract,
+		useReadContract
 	} from "@wagmi/vue";
 	import {
 		chainIdMap,
@@ -30,14 +30,24 @@
 	import { useI18n } from "vue-i18n";
 	import { getPublicClient } from "@wagmi/core";
 
-	const { notify } = useNotifications()
-	const { t } = useI18n()
+	const { notify } = useNotifications();
+	const { t } = useI18n();
 	const { addresses } = storeToRefs(usePayerFormStore());
 	const { address, isConnected, connector } = useAccount();
 	const { disconnect } = useDisconnect();
-	const { sendTransaction, isPending: isPendingSendTransaction, error: errorSendTransaction, data: transactionHash } = useSendTransaction();
+	const {
+		sendTransaction,
+		isPending: isPendingSendTransaction,
+		error: errorSendTransaction,
+		data: transactionHash
+	} = useSendTransaction();
 	const { switchChainAsync } = useSwitchChain();
-	const { writeContract, isPending: isPendingContract, error: errorWriteContract, data: contractHash } = useWriteContract();
+	const {
+		writeContract,
+		isPending: isPendingContract,
+		error: errorWriteContract,
+		data: contractHash
+	} = useWriteContract();
 
 	const { chain, recipientAddress, token, amount } = defineProps<IProps>();
 
@@ -48,7 +58,9 @@
 		projectId: import.meta.env.VITE_PROJECT_ID_CONNECT_WALLET,
 		metadata: metadataWalletConnect,
 		features: {
-			analytics: false, socials: false, email: false,
+			analytics: false,
+			socials: false,
+			email: false
 		}
 	});
 
@@ -62,9 +74,9 @@
 			metamask: iconMetaMask,
 			trustwallet: iconTrustWallet,
 			okxwallet: iconOkxWallet,
-			rabbywallet: iconRabbyWallet,
+			rabbywallet: iconRabbyWallet
 		};
-		const normalized = walletName.value.toLowerCase().replace(/\s+/g, '');
+		const normalized = walletName.value.toLowerCase().replace(/\s+/g, "");
 		if (normalized === "walletconnect") return { type: "walletconnect", src: "" };
 		if (iconByName[normalized]) return { type: "image", src: iconByName[normalized] };
 		return { type: "default", src: "" };
@@ -79,10 +91,10 @@
 	});
 
 	const { data: tokenDecimals } = useReadContract({
-		chainId: computed(() => chain && (chain in chainIdMap) ? chainIdMap[chain] : undefined),
+		chainId: computed(() => (chain && chain in chainIdMap ? chainIdMap[chain] : undefined)),
 		address: computed(() => tokenInfo.value?.contract_address as Address | undefined),
 		abi: erc20Abi,
-		functionName: 'decimals'
+		functionName: "decimals"
 	});
 
 	const handlePayment = async () => {
@@ -90,29 +102,29 @@
 			if (!recipientAddress || !amount || !token || !chain || !tokenInfo.value) return;
 			const targetChainId = chainIdMap[chain];
 			if (!targetChainId) {
-				notify(t('This currency or blockchain is not supported'));
+				notify(t("This currency or blockchain is not supported"));
 				return;
 			}
 			if (!address.value) {
-				notify(t('Connect wallet'));
+				notify(t("Connect wallet"));
 				return;
 			}
 			const userAddress = address.value as Address;
 			const publicClient = getPublicClient(wagmiAdapter.wagmiConfig, { chainId: targetChainId });
 			if (!publicClient) {
-				notify(t('Transaction failed'));
+				notify(t("Transaction failed"));
 				return;
 			}
 			if (tokenInfo.value.is_native) {
 				const nativeBalance = await getBalance(publicClient, { address: userAddress });
 				const needed = parseEther(amount);
 				if (nativeBalance < needed) {
-					notify(t('Insufficient funds'));
+					notify(t("Insufficient funds"));
 					return;
 				}
 			} else {
 				if (!tokenInfo.value.contract_address) {
-					notify(t('Contract address not found for token'));
+					notify(t("Contract address not found for token"));
 					return;
 				}
 				const decimals = (tokenDecimals.value as number) || 18;
@@ -120,11 +132,11 @@
 				const tokenBalance = (await publicClient.readContract({
 					address: tokenInfo.value.contract_address as Address,
 					abi: erc20Abi,
-					functionName: 'balanceOf',
+					functionName: "balanceOf",
 					args: [userAddress]
 				})) as bigint;
 				if (tokenBalance < tokenAmount) {
-					notify(t('Insufficient funds'));
+					notify(t("Insufficient funds"));
 					return;
 				}
 			}
@@ -142,46 +154,43 @@
 					chainId: targetChainId,
 					address: tokenInfo.value.contract_address as Address,
 					abi: erc20Abi,
-					functionName: 'transfer',
+					functionName: "transfer",
 					args: [recipientAddress as Address, tokenAmount]
 				});
 			}
 		} catch (error: any) {
 			console.error(error);
-			notify(error?.message || t('Transaction failed'));
+			notify(error?.message || t("Transaction failed"));
 		}
 	};
 
 	const getError = (message: string) => {
 		if (!message) {
-			notify(t("User rejected the request"))
+			notify(t("User rejected the request"));
 			return;
 		}
 		if (message.includes("User rejected the request")) {
-			notify(t("User rejected the request"))
-		} else if (
-			message.includes("The current chain of the wallet") ||
-			message.includes("An unknown RPC error")
-		) {
-			notify(t("An unexpected error occurred"))
+			notify(t("User rejected the request"));
+		} else if (message.includes("The current chain of the wallet") || message.includes("An unknown RPC error")) {
+			notify(t("An unexpected error occurred"));
 		} else {
-			notify(message)
+			notify(message);
 		}
-	}
+	};
 
 	watch(errorSendTransaction, (error) => {
 		if (!error) return;
-		getError(error.message)
+		getError(error.message);
 	});
 	watch(errorWriteContract, (error) => {
 		if (!error) return;
-		getError(error.message)
+		getError(error.message);
 	});
 	watch(transactionHash, (hash) => {
-		if (hash) notify(`${t('Transaction sent')}: ${hash}`, "success");
+		if (hash) notify(`${t("Transaction sent")}: ${hash}`, "success");
 	});
 	watch(contractHash, (hash) => {
-		if (hash) notify(`${t('Transaction sent')}: ${hash}`, "success");
+		if (hash) notify(`${t("Transaction sent")}: ${hash}`, "success");
 	});
 </script>
 
@@ -189,14 +198,14 @@
 	<div class="flex flex-column gap-12">
 		<ui-button
 			v-if="!isConnected"
+			class="btn-connect"
 			@click="modalConnectWallet.open()"
 			:loading="isLoadingBtn"
 			type="secondary"
-			class="w-full flex flex-center gap-4"
+			size="sm"
 			left-icon-name="account-balance-wallet"
-			left-icon-size="md"
 		>
-			{{ $t('Connect wallet') }}
+			{{ $t("Connect wallet") }}
 		</ui-button>
 		<div v-if="isConnected && address" class="info">
 			<div class="info__header">
@@ -230,6 +239,11 @@
 </template>
 
 <style scoped lang="scss">
+	.btn-connect {
+		@include mediamax(680) {
+			width: 100%;
+		}
+	}
 	.info {
 		display: flex;
 		flex-direction: column;
