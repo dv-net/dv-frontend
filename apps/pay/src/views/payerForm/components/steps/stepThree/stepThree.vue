@@ -16,6 +16,9 @@
 	import { changeChainBsc, formatDollars } from "@shared/utils/helpers/general.ts";
 	import { blockchainCurrencyId } from "@shared/utils/constants/blockchain";
 	import BannerInfo from "@pay/views/payerForm/components/steps/bannerInfo/BannerInfo.vue";
+	import IconLogoQrCode from "@pay/components/icons/IconLogoQrCode.vue";
+	import loaderTransactionPending from "@pay/assets/animations/loaderTransactionPending.json";
+	import { LottieAnimation } from "lottie-web-vue";
 
 	const {
 		currentAddress,
@@ -31,13 +34,17 @@
 	} = storeToRefs(usePayerFormStore());
 	const { getAmountRate } = usePayerFormStore();
 
-	const isShowQrCode = ref<boolean>(true);
+	const isShowQrCode = ref<boolean>(false);
+	const isShowModalTronWallets = ref<boolean>(false);
+	const isShowModalEvmWallets = ref<boolean>(false);
+	const walletEvmConnectRef = ref<InstanceType<typeof WalletEvmConnect> | null>(null);
+	const isEvmConnected = computed(() => walletEvmConnectRef.value?.isConnected || false);
+	const isLoadingEvmBtn = computed(() => walletEvmConnectRef.value?.isLoadingBtn || false);
 
 	const currentPrice = computed<string>(() => getAmountRate(currentCurrency.value as CurrencyType));
 	const inputTextSum = computed<string>(() => `${currentPrice.value} ${currentCurrency.value}`);
 	const isTronSupported = computed<boolean>(() => currentChain.value === "Tron");
 	const isEvmSupported = computed<boolean>(() => Boolean(currentChain.value) && evmArray.includes(currentChain.value!));
-
 	const infoCurrentChain = computed(() => {
 		const chains = filteredBlockchains.value || [];
 		const isSingleChain = chains.length === 1;
@@ -64,14 +71,17 @@
 	<div class="screen">
 		<wrapper-block class="screen__first-block">
 			<div class="payment">
-				<div class="payment__top">
-					<div v-if="currentAddress" class="qr">
-						<transition name="qr-fade">
-							<div v-if="isShowQrCode" class="qr__inner">
+				<div v-if="currentAddress" class="payment__top">
+					<div class="qr">
+						<div class="qr__container">
+							<div v-if="isShowQrCode" key="qr" class="qr__inner">
 								<qrcode-vue :value="currentAddress" class="qr__code" level="M" render-as="svg" />
-								<span v-if="false" class="qr__logo">DV</span>
+								<icon-logo-qr-code class="qr__logo" />
 							</div>
-						</transition>
+							<div v-else key="loader" class="qr__loader">
+								<lottie-animation :animation-data="loaderTransactionPending" :loop="true" />
+							</div>
+						</div>
 						<div class="actions">
 							<ui-button
 								class="actions__btn"
@@ -82,42 +92,50 @@
 							>
 								{{ isShowQrCode ? `${$t("Hide")} QR` : `${$t("Show")} QR` }}
 							</ui-button>
-							<wallet-tron-connect
+							<ui-button
 								v-if="isTronSupported"
-								:recipient-address="currentAddress"
-								:amount="currentPrice"
-								:token="currentCurrency"
-							/>
-							<wallet-evm-connect
-								v-if="isEvmSupported"
-								:recipient-address="currentAddress"
-								:amount="currentPrice"
-								:token="currentCurrency"
-								:chain="currentChain"
-							/>
+								class="actions__btn"
+								type="secondary"
+								left-icon-name="account-balance-wallet"
+								size="sm"
+								@click="isShowModalTronWallets = true"
+							>
+								{{ $t("Connect wallet") }}
+							</ui-button>
+							<ui-button
+								v-else-if="isEvmSupported && !isEvmConnected"
+								class="actions__btn"
+								type="secondary"
+								left-icon-name="account-balance-wallet"
+								size="sm"
+								:loading="isLoadingEvmBtn"
+								@click="walletEvmConnectRef?.openConnectModal()"
+							>
+								{{ $t("Connect wallet") }}
+							</ui-button>
 						</div>
+						<wallet-tron-connect
+							v-if="isTronSupported"
+							v-model:is-show-modal-tron-wallets="isShowModalTronWallets"
+							:recipient-address="currentAddress"
+							:amount="currentPrice"
+							:token="currentCurrency"
+						/>
+						<wallet-evm-connect
+							ref="walletEvmConnectRef"
+							v-else-if="isEvmSupported"
+							v-model:is-show-modal-evm-wallets="isShowModalEvmWallets"
+							:recipient-address="currentAddress"
+							:amount="currentPrice"
+							:token="currentCurrency"
+							:chain="currentChain"
+						/>
 					</div>
 				</div>
 				<div class="info">
 					<div class="info__inner">
 						<div class="info__card">
 							<div class="info__inputs">
-								<row-template :label="$t('Cryptocurrency')">
-									<div class="blockchain">
-										<div class="blockchain__inner">
-											<currency-icon
-												width="16px"
-												height="16px"
-												:type="(currentCurrency || 'IconDefault') as CurrencyType"
-											/>
-											<div class="blockchain__label">
-												<span>{{ currentCurrency }}</span>
-												<span v-if="currencyLabel">({{ currencyLabel }})</span>
-											</div>
-										</div>
-										<ui-link size="md" @click="currentStep = 1">{{ $t("Change") }}</ui-link>
-									</div>
-								</row-template>
 								<row-template :label="$t('Chain')">
 									<div class="blockchain">
 										<div class="blockchain__inner">
@@ -134,6 +152,22 @@
 										<ui-link v-if="infoCurrentChain.isSingleNativeChain" size="md" @click="currentStep = 2">
 											{{ $t("Change") }}
 										</ui-link>
+									</div>
+								</row-template>
+								<row-template :label="$t('Cryptocurrency')">
+									<div class="blockchain">
+										<div class="blockchain__inner">
+											<currency-icon
+												width="16px"
+												height="16px"
+												:type="(currentCurrency || 'IconDefault') as CurrencyType"
+											/>
+											<div class="blockchain__label">
+												<span>{{ currentCurrency }}</span>
+												<span v-if="currencyLabel">({{ currencyLabel }})</span>
+											</div>
+										</div>
+										<ui-link size="md" @click="currentStep = 1">{{ $t("Change") }}</ui-link>
 									</div>
 								</row-template>
 							</div>
@@ -239,6 +273,7 @@
 					flex-direction: column;
 					align-items: center;
 					gap: 32px;
+					flex-grow: 1;
 					@include mediamax(680) {
 						width: 100%;
 						padding: 40px 16px 20px;
@@ -246,16 +281,36 @@
 						border-radius: 16px;
 						border: 1px solid #e1e8f1;
 					}
-					&__inner {
+					&__container {
 						position: relative;
-						@extend .center;
-						width: 182px;
+						max-width: 380px;
+						width: 100%;
 						height: 182px;
 						flex-shrink: 0;
+						@include mediamax(680) {
+							max-width: 280px;
+						}
+					}
+					&__inner {
+						position: absolute;
+						left: 50%;
+						top: 50%;
+						transform: translate(-50%, -50%);
+						@extend .center;
+						width: 100%;
+						height: 100%;
 						background-image: url("/static/border-qr-code.png");
 						background-size: contain;
 						background-repeat: no-repeat;
 						background-position: center;
+					}
+					&__loader {
+						position: absolute;
+						left: 50%;
+						top: 50%;
+						transform: translate(-50%, -50%);
+						@extend .center;
+						width: 100%;
 					}
 					&__code {
 						width: 155px;
@@ -263,10 +318,9 @@
 						flex-shrink: 0;
 					}
 					&__logo {
-						display: none;
 						@extend .center;
-						width: 30px;
-						height: 30px;
+						width: 40px;
+						height: 40px;
 						position: absolute;
 						top: 50%;
 						left: 50%;
@@ -277,29 +331,16 @@
 						display: flex;
 						align-items: center;
 						gap: 4px;
+						max-width: 354px;
+						width: 100%;
 						@include mediamax(680) {
 							align-items: unset;
 							flex-direction: column;
 							gap: 8px;
-							width: 100%;
 						}
 						&__btn {
-							min-width: 175px;
-							@include mediamax(680) {
-								width: 100%;
-							}
+							width: 100%;
 						}
-					}
-					&-fade-enter-active,
-					&-fade-leave-active {
-						transition:
-							opacity 0.25s ease,
-							transform 0.25s ease;
-					}
-					&-fade-enter-from,
-					&-fade-leave-to {
-						opacity: 0;
-						transform: scale(0.96);
 					}
 				}
 			}

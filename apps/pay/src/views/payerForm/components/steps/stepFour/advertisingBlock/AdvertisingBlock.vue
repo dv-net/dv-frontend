@@ -56,10 +56,10 @@
 </script>
 
 <template>
-	<div class="advertising">
-		<a class="advertising__logo" :href="`https://dv.net/${locale}`" target="_blank">
+	<a class="advertising" :href="`https://dv.net/${locale}`" target="_blank">
+		<div class="advertising__logo">
 			<lottie-animation :animation-data="mainLoader" :loop="true" />
-		</a>
+		</div>
 		<p ref="advertisingTextRef" class="advertising__text" :style="`line-height: ${lineHeightAdvertisingText}px`">
 			{{
 				$t(
@@ -70,7 +70,7 @@
 		<span :key="activeAdvertisingIndex" :class="{ advertising__tag: true, 'advertising__tag--first': isFirstRender }">
 			{{ $t(activeAdvertisingText) }}
 		</span>
-	</div>
+	</a>
 </template>
 
 <style scoped lang="scss">
@@ -79,6 +79,7 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		@extend .pointer;
 		@include mediamax(480) {
 			width: 100%;
 		}
@@ -163,10 +164,6 @@
 		0% {
 			opacity: 0;
 			transform: translateX(-80px);
-		}
-		70% {
-			opacity: 1;
-			transform: translateX(8px);
 		}
 		100% {
 			transform: translateX(0);
