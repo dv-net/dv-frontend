@@ -15,7 +15,7 @@
 		networksWalletConnect,
 		wagmiAdapter
 	} from "@pay/utils/constants/connectWallet/evm.ts";
-	import { UiButton, UiCopyText, UiIcon } from "@dv.net/ui-kit";
+	import { UiButton, UiCopyText, UiIcon, UiInput } from "@dv.net/ui-kit";
 	import IconWalletConnect from "@pay/components/icons/IconWalletConnect.vue";
 	import iconMetaMask from "@pay/assets/images/wallets/metaMask.png";
 	import iconTrustWallet from "@pay/assets/images/wallets/trustWallet.png";
@@ -164,6 +164,8 @@
 		}
 	};
 
+	const openConnectModal = () => modalConnectWallet.open();
+
 	const getError = (message: string) => {
 		if (!message) {
 			notify(t("User rejected the request"));
@@ -192,145 +194,142 @@
 	watch(contractHash, (hash) => {
 		if (hash) notify(`${t("Transaction sent")}: ${hash}`, "success");
 	});
+
+	defineExpose({ openConnectModal, isConnected, isLoadingBtn });
 </script>
 
 <template>
-	<div class="flex flex-column gap-12">
-		<ui-button
-			v-if="!isConnected"
-			class="btn-connect"
-			@click="modalConnectWallet.open()"
-			:loading="isLoadingBtn"
-			type="secondary"
-			size="sm"
-			left-icon-name="account-balance-wallet"
-		>
-			{{ $t("Connect wallet") }}
-		</ui-button>
-		<div v-if="isConnected && address" class="info">
-			<div class="info__header">
-				<div class="info__wallet">
-					<div class="info__icon">
+	<div v-if="isConnected && address" class="wallets">
+		<div class="wallets__item">
+			<div class="header">
+				<div class="header__wallet">
+					<div class="header__icon">
 						<icon-wallet-connect v-if="walletIcon.type === 'walletconnect'" />
 						<img v-else-if="walletIcon.type === 'image'" :src="walletIcon.src" alt="wallet" />
 						<ui-icon v-else name="account-balance_wallet  2" type="100" />
 					</div>
-					<span class="info__name">{{ walletName }}</span>
+					<span class="header__name">{{ walletName }}</span>
 				</div>
-				<span class="info__status">
-					<span class="info__dot" />
+				<span class="header__status">
+					<span class="header__dot" />
 					{{ $t("Connected") }}
 				</span>
 			</div>
-			<div class="info__address">
-				<span class="info__address-text">{{ address }}</span>
-				<ui-copy-text :copied-text="address" size-icon="sm" color-icon="#A4A5B1" />
-			</div>
-			<div class="info__actions">
-				<ui-button @click="disconnect" type="secondary" size="sm">
-					{{ $t("Disconnect") }}
-				</ui-button>
-				<ui-button :loading="isLoadingBtn" @click="handlePayment" size="sm" mode="neutral">
-					{{ $t("Pay") }}
-				</ui-button>
+			<div class="info">
+				<ui-input v-model="address" size="sm" filled readonly-interactive>
+					<template #append>
+						<ui-copy-text v-if="address" :copied-text="address" size-icon="sm" color-icon="#A4A5B1" />
+					</template>
+				</ui-input>
+				<div class="info__inner">
+					<ui-button @click="disconnect" type="secondary" size="lg" class="info__btn">
+						{{ $t("Disconnect") }}
+					</ui-button>
+					<ui-button :loading="isLoadingBtn" @click="handlePayment" size="lg" mode="neutral" class="info__btn">
+						{{ $t("Pay") }}
+					</ui-button>
+				</div>
 			</div>
 		</div>
 	</div>
 </template>
 
 <style scoped lang="scss">
-	.btn-connect {
-		@include mediamax(680) {
-			width: 100%;
-		}
-	}
-	.info {
+	.wallets {
 		display: flex;
 		flex-direction: column;
-		gap: 8px;
-		padding: 12px 16px;
-		border: 1px solid $main-border-color;
-		border-radius: 8px;
-		background: rgba(#6b6d80, 0.02);
-		@include mediamax(480) {
-			padding: 12px;
+		gap: 4px;
+		border-radius: 14px;
+		border: 1px solid #e1e8f1;
+		background-color: #f7f9fb;
+		padding: 4px;
+		max-width: 640px;
+		width: 100%;
+		@include mediamax(680) {
+			padding: 0;
+			border-radius: unset;
+			max-width: unset;
+			gap: 24px;
+			border: unset;
+			background-color: transparent;
 		}
-		&__header {
+		&__item {
 			display: flex;
-			align-items: center;
-			justify-content: space-between;
-			gap: 8px;
-		}
-		&__wallet {
-			display: flex;
-			align-items: center;
-			gap: 8px;
-		}
-		&__icon {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			width: 28px;
-			height: 28px;
-			border-radius: 8px;
-			background: rgba(#6b6d80, 0.08);
-			img {
-				width: 20px;
-				height: 20px;
-				object-fit: contain;
-			}
-			:deep(svg) {
-				width: 20px;
-				height: 20px;
-			}
-		}
-		&__name {
-			font-weight: 500;
-			font-size: 14px;
-			color: $main-color;
-		}
-		&__status {
-			display: inline-flex;
-			align-items: center;
-			gap: 6px;
-			padding: 4px 8px;
-			border-radius: 24px;
-			font-size: 12px;
-			background: rgba(#16a34a, 0.12);
-			color: #16a34a;
-		}
-		&__dot {
-			display: inline-block;
-			width: 8px;
-			height: 8px;
-			border-radius: 100%;
-			background: #16a34a;
-		}
-		&__address {
-			display: flex;
-			align-items: center;
-			gap: 8px;
-			padding: 8px;
-			border-radius: 6px;
-			background: rgba(#6b6d80, 0.05);
-			word-break: break-word;
-		}
-		&__address-text {
-			font-family: monospace;
-			font-size: 13px;
-			color: $main-text-grey-color;
-			flex: 1;
-			@include mediamax(480) {
-				font-size: 12px;
-			}
-		}
-		&__actions {
+			flex-direction: column;
+			background-color: #fff;
+			border-radius: 12px;
+			border: 1px solid #e1e8f1;
+			padding: 16px;
+			gap: 16px;
+			max-width: 640px;
 			width: 100%;
-			display: flex;
-			align-items: center;
-			justify-content: flex-end;
-			gap: 8px;
-			margin-top: 4px;
+			.header {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 8px;
+				&__wallet {
+					display: flex;
+					align-items: center;
+					gap: 8px;
+				}
+				&__icon {
+					width: 24px;
+					height: 24px;
+					object-fit: contain;
+					border-radius: 4px;
+					img {
+						width: 24px;
+						height: 24px;
+						object-fit: contain;
+					}
+					:deep(svg) {
+						width: 24px;
+						height: 24px;
+					}
+				}
+				&__name {
+					color: #303345;
+					font-size: 14px;
+					font-weight: 500;
+					line-height: 20px;
+				}
+				&__status {
+					display: inline-flex;
+					align-items: center;
+					gap: 6px;
+					padding: 4px 8px;
+					border-radius: 24px;
+					font-size: 12px;
+					min-height: 24px;
+					background: rgba(#16a34a, 0.12);
+					color: #16a34a;
+				}
+				&__dot {
+					display: inline-block;
+					width: 8px;
+					height: 8px;
+					border-radius: 100%;
+					background: #16a34a;
+				}
+			}
+			.info {
+				display: flex;
+				align-items: center;
+				gap: 16px;
+				@include mediamax(680) {
+					flex-direction: column;
+					align-items: unset;
+				}
+				&__inner {
+					display: flex;
+					align-items: center;
+					gap: 8px;
+				}
+				&__btn {
+					flex-grow: 1;
+				}
+			}
 		}
 	}
 </style>

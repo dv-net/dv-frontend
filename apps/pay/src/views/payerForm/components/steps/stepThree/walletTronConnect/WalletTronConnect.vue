@@ -8,7 +8,7 @@
 	import { TRON_CONTRACTS } from "@pay/utils/constants/connectWallet/tron.ts";
 	import { useNotifications } from "@shared/utils/composables/useNotifications.ts";
 	import { useI18n } from "vue-i18n";
-	import { UiButton, UiCopyText } from "@dv.net/ui-kit";
+	import { UiButton, UiCopyText, UiInput } from "@dv.net/ui-kit";
 	import WalletTronModal from "@pay/views/payerForm/components/steps/stepThree/walletTronConnect/walletTronModal/WalletTronModal.vue";
 
 	const { startPolling } = usePolling();
@@ -17,13 +17,13 @@
 
 	const { recipientAddress, amount, token } = defineProps<IProps>();
 
+	const isShowModalTronWallets = defineModel<boolean>("isShowModalTronWallets", { required: true, default: false });
+
 	const walletList = ref<any[]>([]);
 	const okxWallet = ref<any>(null);
 	const tronLinkWallet = ref<any>(null);
-	const isShowModalWallets = ref<boolean>(false);
 
 	const isContractTron = computed<boolean>(() => Boolean(token) && Object.keys(TRON_CONTRACTS).includes(token!));
-	const isAllConnectedWallets = computed<boolean>(() => walletList.value.every((item) => item.initialized));
 	const connectedWallets = computed(() => walletList.value.filter((item) => item.initialized));
 
 	const handleSendTransaction = async (walletId: string) => {
@@ -131,7 +131,7 @@
 			name: "TronLink",
 			icon: tronLinkWalletImage,
 			detected: isTronLinkInstalled,
-			initialized: isTronLinkInitialized,
+			initialized: isTronLinkInitialized && isTronLinkInstalled,
 			isLoading: false,
 			address: window?.tronLink?.tronWeb?.defaultAddress?.base58
 		});
@@ -148,7 +148,7 @@
 			name: "OKX Wallet",
 			icon: okxWalletImage,
 			detected: isOkxInstalled,
-			initialized: isOkxInitialized,
+			initialized: isOkxInitialized && isOkxInstalled,
 			isLoading: false,
 			address: window?.okxwallet?.tronWeb?.defaultAddress?.base58
 		});
@@ -172,109 +172,93 @@
 </script>
 
 <template>
-	<div class="wallets">
-		<ui-button
-			v-if="!isAllConnectedWallets"
-			class="wallets__btn"
-			type="secondary"
-			left-icon-name="account-balance-wallet"
-			size="sm"
-			@click="isShowModalWallets = true"
-		>
-			{{ $t("Connect wallet") }}
-		</ui-button>
-		<div v-if="connectedWallets.length" class="wallets__list">
-			<div v-for="item in connectedWallets" :key="item.id" class="info">
-				<div class="info__header">
-					<div class="info__wallet">
-						<div class="info__icon">
-							<img v-if="item.icon" :src="item.icon" alt="wallet" />
-						</div>
-						<span class="info__name">{{ item.name }}</span>
-					</div>
-					<span class="info__status">
-						<span class="info__dot" />
-						{{ $t("Connected") }}
-					</span>
+	<div v-if="connectedWallets.length" class="wallets">
+		<div v-for="item in connectedWallets" :key="item.id" class="wallets__item">
+			<div class="header">
+				<div class="header__wallet">
+					<img v-if="item.icon" class="header__icon" :src="item.icon" alt="wallet" />
+					<span class="header__name">{{ item.name }}</span>
 				</div>
-				<div class="info__address">
-					<span class="info__address-text">{{ item.address }}</span>
-					<ui-copy-text v-if="item.address" :copied-text="item.address" size-icon="sm" color-icon="#A4A5B1" />
-				</div>
-				<div class="info__actions">
+				<span class="header__status">
+					<span class="header__dot" />
+					{{ $t("Connected") }}
+				</span>
+			</div>
+			<div class="info">
+				<ui-input v-model="item.address" size="sm" filled readonly-interactive>
+					<template #append>
+						<ui-copy-text v-if="item.address" :copied-text="item.address" size-icon="sm" color-icon="#A4A5B1" />
+					</template>
+				</ui-input>
+				<div class="info__inner">
 					<ui-button
 						v-if="item.id !== 'tronlink'"
 						@click="handleDisconnectWallet(item.id)"
 						type="secondary"
-						size="sm"
+						size="lg"
+						class="info__btn"
 						:loading="item.isLoading"
 					>
 						{{ $t("Disconnect") }}
 					</ui-button>
-					<ui-button @click="handleSendTransaction(item.id)" size="sm" mode="neutral">
+					<ui-button class="info__btn" @click="handleSendTransaction(item.id)" size="lg" mode="neutral">
 						{{ $t("Pay") }}
 					</ui-button>
 				</div>
 			</div>
 		</div>
-		<wallet-tron-modal v-model:is-show="isShowModalWallets" :wallets="walletList" @select="handleClickWallet" />
 	</div>
+	<wallet-tron-modal v-model:is-show="isShowModalTronWallets" :wallets="walletList" @select="handleClickWallet" />
 </template>
 
 <style scoped lang="scss">
 	.wallets {
 		display: flex;
 		flex-direction: column;
-		gap: 12px;
-		&__btn {
-			@include mediamax(680) {
-				width: 100%;
-			}
+		gap: 4px;
+		border-radius: 14px;
+		border: 1px solid #e1e8f1;
+		background-color: #f7f9fb;
+		padding: 4px;
+		max-width: 640px;
+		width: 100%;
+		@include mediamax(680) {
+			padding: 0;
+			border-radius: unset;
+			max-width: unset;
+			gap: 24px;
+			border: unset;
+			background-color: transparent;
 		}
-		&__list {
+		&__item {
 			display: flex;
 			flex-direction: column;
-			gap: 12px;
-			.info {
+			background-color: #fff;
+			border-radius: 12px;
+			border: 1px solid #e1e8f1;
+			padding: 16px;
+			gap: 16px;
+			.header {
 				display: flex;
-				flex-direction: column;
+				align-items: center;
+				justify-content: space-between;
 				gap: 8px;
-				padding: 12px 16px;
-				border: 1px solid $main-border-color;
-				border-radius: 8px;
-				background: rgba(#6b6d80, 0.02);
-				@include mediamax(480) {
-					font-size: 12px;
-				}
-				&__header {
-					display: flex;
-					align-items: center;
-					justify-content: space-between;
-					gap: 8px;
-				}
 				&__wallet {
 					display: flex;
 					align-items: center;
 					gap: 8px;
 				}
 				&__icon {
-					display: flex;
-					align-items: center;
-					justify-content: center;
-					width: 28px;
-					height: 28px;
-					border-radius: 8px;
-					background: rgba(#6b6d80, 0.08);
-					img {
-						width: 20px;
-						height: 20px;
-						object-fit: contain;
-					}
+					width: 24px;
+					height: 24px;
+					object-fit: contain;
+					border-radius: 4px;
 				}
 				&__name {
-					font-weight: 500;
+					color: #303345;
 					font-size: 14px;
-					color: $main-color;
+					font-weight: 500;
+					line-height: 20px;
 				}
 				&__status {
 					display: inline-flex;
@@ -283,6 +267,7 @@
 					padding: 4px 8px;
 					border-radius: 24px;
 					font-size: 12px;
+					min-height: 24px;
 					background: rgba(#16a34a, 0.12);
 					color: #16a34a;
 				}
@@ -293,31 +278,22 @@
 					border-radius: 100%;
 					background: #16a34a;
 				}
-				&__address {
+			}
+			.info {
+				display: flex;
+				align-items: center;
+				gap: 16px;
+				@include mediamax(680) {
+					flex-direction: column;
+					align-items: unset;
+				}
+				&__inner {
 					display: flex;
 					align-items: center;
 					gap: 8px;
-					padding: 8px;
-					border-radius: 6px;
-					background: rgba(#6b6d80, 0.05);
 				}
-				&__address-text {
-					font-family: monospace;
-					font-size: 13px;
-					color: $main-text-grey-color;
-					flex: 1;
-					word-break: break-word;
-					@include mediamax(480) {
-						font-size: 12px;
-					}
-				}
-				&__actions {
-					width: 100%;
-					display: flex;
-					align-items: center;
-					justify-content: flex-end;
-					gap: 8px;
-					margin-top: 4px;
+				&__btn {
+					flex-grow: 1;
 				}
 			}
 		}
