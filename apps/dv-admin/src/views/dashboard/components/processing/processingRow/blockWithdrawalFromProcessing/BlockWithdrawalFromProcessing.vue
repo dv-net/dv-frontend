@@ -71,11 +71,13 @@
 
 	const handleChangeAmount = () => {
 		if (!selectedAsset.value || form.value.amount === null) {
+			amountUsdWithdrawProcessing.value = null;
 			return;
 		}
 		const assetAmount = parseFloat(selectedAsset.value.amount);
 		const assetAmountUsd = parseFloat(selectedAsset.value.amount_usd);
 		if (assetAmount === 0 || isNaN(assetAmount) || isNaN(assetAmountUsd)) {
+			amountUsdWithdrawProcessing.value = null;
 			return;
 		}
 		const exchangeRate: number = assetAmountUsd / assetAmount;
@@ -226,13 +228,13 @@
 		.form {
 			flex-grow: 1;
 			display: grid;
-			grid-template-columns: 1fr 1fr 280px;
+			grid-template-columns: 300px 1fr 280px;
 			gap: 20px;
 			.input-sum {
 				&:deep(.ui-input) {
 					justify-content: space-between;
 					.ui-input__inner {
-						width: 130px;
+						width: 100px;
 					}
 				}
 				&__inner {
@@ -249,7 +251,7 @@
 					font-size: 14px;
 					font-weight: 500;
 					line-height: 16px;
-					max-width: 80px;
+					max-width: 100px;
 					white-space: nowrap;
 				}
 			}

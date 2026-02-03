@@ -136,8 +136,7 @@
 		() => route.query.step as string | undefined,
 		(newValue) => {
 			currentStep.value = parseStepFromQuery(newValue);
-		},
-		{ immediate: true }
+		}
 	);
 
 	onMounted(async () => {
