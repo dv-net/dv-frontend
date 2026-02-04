@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+- feat: a new display for connecting two wallets has been implemented on the payment form [DV-4144]
 - fix: added correct display of errors when withdrawing from a processing wallet [DV-4129]
 - feat: new 3-step payment form [DV-4111]
 - feat: implement a new design for withdrawals from a processing wallet [DV-4037]

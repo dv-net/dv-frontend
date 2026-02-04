@@ -4,6 +4,8 @@
 		"s": "s",
 		"h": "h"
 	},
+	"To connect TronLink, open the wallet extension and log in": "To connect TronLink, open the wallet extension and log in",
+	"To disconnect TronLink, open the wallet extension and remove this site from the connected list": "To disconnect TronLink, open the wallet extension and remove this site from the connected list",
 	"Chain": "Chain",
 	"Show": "Show",
 	"Cryptocurrency": "Cryptocurrency",

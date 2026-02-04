@@ -10,6 +10,7 @@
 	import { useI18n } from "vue-i18n";
 	import { UiButton, UiCopyText, UiInput } from "@dv.net/ui-kit";
 	import WalletTronModal from "@pay/views/payerForm/components/steps/stepThree/walletTronConnect/walletTronModal/WalletTronModal.vue";
+	import IconDisconnectWallet from "@pay/components/icons/IconDisconnectWallet.vue";
 
 	const { startPolling } = usePolling();
 	const { notify } = useNotifications();
@@ -25,6 +26,7 @@
 
 	const isContractTron = computed<boolean>(() => Boolean(token) && Object.keys(TRON_CONTRACTS).includes(token!));
 	const connectedWallets = computed(() => walletList.value.filter((item) => item.initialized));
+	const isSingleWallet = computed<boolean>(() => connectedWallets.value.length === 1);
 
 	const handleSendTransaction = async (walletId: string) => {
 		try {
@@ -86,6 +88,7 @@
 					);
 					return;
 				}
+				notify(t("To connect TronLink, open the wallet extension and log in"));
 				await tronLinkWallet.value.request({ method: "tron_requestAccounts" });
 			} else if (okxWallet.value && walletId === "okx") {
 				const resp = await okxWallet.value.request({ method: "tron_requestAccounts" });
@@ -97,7 +100,10 @@
 	};
 
 	const handleDisconnectWallet = (walletId: string) => {
-		if (walletId !== "okx") return;
+		if (walletId === "tronlink") {
+			notify(t("To disconnect TronLink, open the wallet extension and remove this site from the connected list"));
+			return;
+		}
 		const findIndex = walletList.value.findIndex((item) => item.id === walletId);
 		if (findIndex === -1) return;
 		walletList.value[findIndex].isLoading = true;
@@ -126,6 +132,7 @@
 		// TronLink info
 		const isTronLinkInstalled: boolean = Boolean(window?.tronLink) && Boolean(window?.tronLink?.tronlinkParams);
 		const isTronLinkInitialized: boolean = Boolean(window?.tronLink?.ready);
+
 		walletList.value.push({
 			id: "tronlink",
 			name: "TronLink",
@@ -172,7 +179,7 @@
 </script>
 
 <template>
-	<div v-if="connectedWallets.length" class="wallets">
+	<div v-if="connectedWallets.length" :class="['wallets', { 'wallets--single': isSingleWallet }]">
 		<div v-for="item in connectedWallets" :key="item.id" class="wallets__item">
 			<div class="header">
 				<div class="header__wallet">
@@ -192,14 +199,13 @@
 				</ui-input>
 				<div class="info__inner">
 					<ui-button
-						v-if="item.id !== 'tronlink'"
 						@click="handleDisconnectWallet(item.id)"
 						type="secondary"
 						size="lg"
 						class="info__btn"
 						:loading="item.isLoading"
 					>
-						{{ $t("Disconnect") }}
+						<icon-disconnect-wallet />
 					</ui-button>
 					<ui-button class="info__btn" @click="handleSendTransaction(item.id)" size="lg" mode="neutral">
 						{{ $t("Pay") }}
@@ -214,23 +220,33 @@
 <style scoped lang="scss">
 	.wallets {
 		display: flex;
-		flex-direction: column;
+		align-items: center;
 		gap: 4px;
 		border-radius: 14px;
 		border: 1px solid #e1e8f1;
 		background-color: #f7f9fb;
 		padding: 4px;
-		max-width: 640px;
 		width: 100%;
+		@include mediamax(890) {
+			align-items: unset;
+			flex-direction: column;
+		}
+		&--single {
+			align-self: center;
+			align-items: unset;
+			flex-direction: unset;
+			max-width: 648px;
+		}
 		@include mediamax(680) {
 			padding: 0;
 			border-radius: unset;
 			max-width: unset;
-			gap: 24px;
+			gap: 20px;
 			border: unset;
 			background-color: transparent;
 		}
 		&__item {
+			flex-grow: 1;
 			display: flex;
 			flex-direction: column;
 			background-color: #fff;

@@ -7,6 +7,7 @@
 		UiFormItem,
 		UiIcon,
 		UiInput,
+		UiLink,
 		UiModal,
 		UiSelect
 	} from "@dv.net/ui-kit";
@@ -166,7 +167,12 @@
 						<ui-icon name="language" type="400" size="md" color="#6b6d80" />
 					</template>
 					<template #append>
-						<ui-copy-text :copied-text="linkToPayment" color-icon="#6b6d80" size-icon="md" />
+						<div class="flex flex-y-center gap-4">
+							<ui-copy-text :copied-text="linkToPayment" color-icon="#6b6d80" size-icon="md" />
+							<ui-link class="icon-link" :href="linkToPayment" target="_blank">
+								<ui-icon name="new-windows" type="400" size="md" color="#6b6d80" />
+							</ui-link>
+						</div>
 					</template>
 				</ui-input>
 				<ui-button form="idForm" class="w-full" native-type="submit" mode="neutral" size="xl" :loading="isLoading">
@@ -203,6 +209,18 @@
 			background-color: $blue-opacity;
 			padding: 16px;
 			border-radius: 0 0 12px 12px;
+		}
+		&:deep(.ui-input) {
+			.icon-link {
+				display: flex;
+				align-items: center;
+				transition: transform 0.3s ease-in-out;
+				@media (hover: hover) {
+					&:hover {
+						transform: scale(1.1);
+					}
+				}
+			}
 		}
 	}
 </style>
