@@ -5,21 +5,21 @@
 	import HamburgerMenu from "@pay/components/layouts/hamburgerMenu/HamburgerMenu.vue";
 	import type { INavLinks } from "@pay/utils/types/schemas";
 
-	const { locale, t } = useI18n();
+	const { t } = useI18n();
 
 	const navLinks = computed<INavLinks[]>(() => {
 		return [
 			{
 				id: 1,
 				iconName: "account-balance",
-				link: `https://dv.net/${!locale.value || locale.value === "en" ? "" : locale.value}`,
+				link: `https://dv.net`,
 				text: `${t("More about")} Merchant`
 			},
-			{ id: 2, iconName: "description (1)", link: `https://docs.dv.net/${locale.value || "en"}/`, text: `FAQ` },
+			{ id: 2, iconName: "description (1)", link: `https://docs.dv.net`, text: `FAQ` },
 			{
 				id: 3,
 				iconName: "support-agent",
-				link: `https://dv.net/${!locale.value || locale.value === "en" ? "" : locale.value}#support`,
+				link: `https://dv.net/#support`,
 				text: t("Contacts")
 			}
 		];

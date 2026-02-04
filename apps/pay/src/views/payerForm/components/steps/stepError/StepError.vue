@@ -23,7 +23,7 @@
 						)
 					}}
 				</p>
-				<ui-link href="https://dv.net#support" target="_blank">
+				<ui-link href="https://dv.net/#support" target="_blank">
 					{{ $t("Helpdesk") }}
 				</ui-link>
 			</div>

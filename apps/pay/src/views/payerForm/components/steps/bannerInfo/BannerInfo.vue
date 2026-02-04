@@ -16,7 +16,7 @@
 	]);
 
 	const goToLanding = () => {
-		window.open("https://dv.net/", "_blank");
+		window.open("https://dv.net", "_blank");
 	};
 </script>
 

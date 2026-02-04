@@ -56,7 +56,7 @@
 </script>
 
 <template>
-	<a class="advertising" :href="`https://dv.net/${locale}`" target="_blank">
+	<a class="advertising" href="https://dv.net" target="_blank">
 		<div class="advertising__logo">
 			<lottie-animation :animation-data="mainLoader" :loop="true" />
 		</div>
