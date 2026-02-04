@@ -4,6 +4,8 @@
 		"s": "сек",
 		"h": "ч"
 	},
+	"To connect TronLink, open the wallet extension and log in": "Для подключения TronLink откройте расширение кошелька и авторизуйтесь в нем",
+	"To disconnect TronLink, open the wallet extension and remove this site from the connected list": "Чтобы отключить TronLink, откройте расширение кошелька и удалите этот сайт из списка подключенных сайтов",
 	"Chain": "Сеть",
 	"Cryptocurrency": "Криптовалюта",
 	"You have Trust Wallet installed, which may be intercepting TronLink requests. To connect via TronLink, temporarily disable Trust Wallet and refresh the page": "У вас установлен Trust Wallet, который может перехватывать запросы TronLink. Чтобы подключиться через TronLink, временно отключите Trust Wallet и обновите страницу",

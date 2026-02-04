@@ -29,6 +29,7 @@
 	import { useNotifications } from "@shared/utils/composables/useNotifications.ts";
 	import { useI18n } from "vue-i18n";
 	import { getPublicClient } from "@wagmi/core";
+	import IconDisconnectWallet from "@pay/components/icons/IconDisconnectWallet.vue";
 
 	const { notify } = useNotifications();
 	const { t } = useI18n();
@@ -223,7 +224,7 @@
 				</ui-input>
 				<div class="info__inner">
 					<ui-button @click="disconnect" type="secondary" size="lg" class="info__btn">
-						{{ $t("Disconnect") }}
+						<icon-disconnect-wallet />
 					</ui-button>
 					<ui-button :loading="isLoadingBtn" @click="handlePayment" size="lg" mode="neutral" class="info__btn">
 						{{ $t("Pay") }}
@@ -245,6 +246,7 @@
 		padding: 4px;
 		max-width: 640px;
 		width: 100%;
+		align-self: center;
 		@include mediamax(680) {
 			padding: 0;
 			border-radius: unset;

@@ -114,24 +114,24 @@
 								{{ $t("Connect wallet") }}
 							</ui-button>
 						</div>
-						<wallet-tron-connect
-							v-if="isTronSupported"
-							v-model:is-show-modal-tron-wallets="isShowModalTronWallets"
-							:recipient-address="currentAddress"
-							:amount="currentPrice"
-							:token="currentCurrency"
-						/>
-						<wallet-evm-connect
-							ref="walletEvmConnectRef"
-							v-else-if="isEvmSupported"
-							v-model:is-show-modal-evm-wallets="isShowModalEvmWallets"
-							:recipient-address="currentAddress"
-							:amount="currentPrice"
-							:token="currentCurrency"
-							:chain="currentChain"
-						/>
 					</div>
 				</div>
+				<wallet-tron-connect
+					v-if="isTronSupported"
+					v-model:is-show-modal-tron-wallets="isShowModalTronWallets"
+					:recipient-address="currentAddress"
+					:amount="currentPrice"
+					:token="currentCurrency"
+				/>
+				<wallet-evm-connect
+					ref="walletEvmConnectRef"
+					v-else-if="isEvmSupported"
+					v-model:is-show-modal-evm-wallets="isShowModalEvmWallets"
+					:recipient-address="currentAddress"
+					:amount="currentPrice"
+					:token="currentCurrency"
+					:chain="currentChain"
+				/>
 				<div class="info">
 					<div class="info__inner">
 						<div class="info__card">
