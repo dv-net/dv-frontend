@@ -4,6 +4,8 @@
 		"h": "h",
 		"s": "s"
 	},
+	"Go to settings": "Go to settings",
+	"This feature is disabled": "This feature is disabled",
 	"address_to must be at least 16 characters in length": "The address must contain at least 16 characters",
 	"validate 2FA token: invalid_argument: validate two factor auth: failed to validate totp": "You entered an incorrect 2FA code",
 	"The node is temporarily unavailable. Balance and payment information are currently unavailable": "The node is temporarily unavailable. Balance and payment information are currently unavailable",
