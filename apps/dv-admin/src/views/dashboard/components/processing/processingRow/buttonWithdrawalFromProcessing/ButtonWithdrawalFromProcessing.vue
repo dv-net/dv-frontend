@@ -1,11 +1,21 @@
 <script setup lang="ts">
-	import { UiIcon, UiTooltip } from "@dv.net/ui-kit";
+	import { UiIcon, UiLink, UiTooltip } from "@dv.net/ui-kit";
 	import IconWithdrawalFromProcessing from "@dv-admin/components/icons/dashboard/IconWithdrawalFromProcessing.vue";
+	import { useUserSettingsStore } from "@dv-admin/stores/userSettings";
+	import { computed } from "vue";
+	import { storeToRefs } from "pinia";
+
+	const { userSettings } = storeToRefs(useUserSettingsStore());
 
 	const { currencyId } = defineProps<{ currencyId: string }>();
-	const emits = defineEmits(['close']);
-
+	const emits = defineEmits(["close"]);
 	const isShowWithdrawalFromProcessing = defineModel<Record<string, boolean>>({ default: {}, required: true });
+
+	const settingWithdrawFromProcessing = computed<string | undefined>(() => {
+		return userSettings.value.find((item) => item.name === "withdraw_from_processing")?.value;
+	});
+
+	const isWithdrawEnabled = computed<boolean>(() => settingWithdrawFromProcessing.value === "enabled");
 
 	const handleClose = () => {
 		isShowWithdrawalFromProcessing.value[currencyId] = false;
@@ -30,12 +40,20 @@
 				v-else
 				key="withdrawal"
 				:title="`${$t('Withdrawal from processing')} ${$t('wallets.many3')}`"
-				:text="$t('You can withdraw funds from the current processing ring')"
+				:text="isWithdrawEnabled ? $t('You can withdraw funds from the current processing ring') : undefined"
 			>
 				<icon-withdrawal-from-processing
-					class="pointer flex-shrink-0"
-					@click="isShowWithdrawalFromProcessing[currencyId] = true"
+					:class="['flex-shrink-0', isWithdrawEnabled ? 'pointer' : 'disabled']"
+					@click="isWithdrawEnabled && (isShowWithdrawalFromProcessing[currencyId] = true)"
 				/>
+				<template v-if="!isWithdrawEnabled" #text>
+					<div class="fz-12">
+						{{ $t("This feature is disabled") }}.
+						<ui-link size="md" :to="{ name: 'settings-system-general' }">
+							{{ $t("Go to settings") }}
+						</ui-link>
+					</div>
+				</template>
 			</ui-tooltip>
 		</transition>
 	</div>
@@ -46,6 +64,11 @@
 		display: flex;
 		justify-content: flex-end;
 		flex-grow: 1;
+		.disabled {
+			opacity: 0.4;
+			cursor: not-allowed;
+			pointer-events: auto;
+		}
 		&__close {
 			transition: transform 0.3s ease-in-out;
 			@media (hover: hover) {

@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+- fix: add a ban on withdrawals from processing wallets if this is disabled in the settings [DV-4197]
+
 ## [1.0.32] - 2026-02-10
 
 - feat: a new display for connecting two wallets has been implemented on the payment form [DV-4144]

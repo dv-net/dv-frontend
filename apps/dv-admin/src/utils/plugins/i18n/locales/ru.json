@@ -4,6 +4,8 @@
 		"h": "ч",
 		"s": "сек"
 	},
+	"This feature is disabled": "Эта функция отключена",
+	"Go to settings": "Перейдите в настройки",
 	"address_to must be at least 16 characters in length": "Адрес должен содержать не менее 16 символов",
 	"validate 2FA token: invalid_argument: validate two factor auth: failed to validate totp": "Вы указали не верный 2FA код",
 	"The node is temporarily unavailable. Balance and payment information are currently unavailable": "Нода временно недоступна. Данные о балансе и возможных платежах сейчас не получены",
