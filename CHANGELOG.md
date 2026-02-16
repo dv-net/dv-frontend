@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [1.0.33] - 2026-02-16
+
 - fix: add a ban on withdrawals from processing wallets if this is disabled in the settings [DV-4197]
 
 ## [1.0.32] - 2026-02-10
