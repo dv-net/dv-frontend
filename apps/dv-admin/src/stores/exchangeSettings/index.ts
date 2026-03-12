@@ -80,8 +80,8 @@ export const useExchangeSettingsStore = defineStore("exchangeSettings", () => {
 			// Check keys before connection
 			await postApiExchangeTest(body);
 			await postApiExchangeKeyUpdates(exchangeList.value.exchanges[findIndex].slug, {
-				keys: exchangeList.value.exchanges[findIndex].keys.map(item => {
-					return { ...item, value: item.valueEnteredUser }
+				keys: exchangeList.value.exchanges[findIndex].keys.map((item) => {
+					return { ...item, value: item.valueEnteredUser };
 				})
 			});
 			await Promise.all([

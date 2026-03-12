@@ -1,28 +1,63 @@
 <script setup lang="ts">
-const uniqueId: string = "uniqueId-usd1"
+	const uniqueId: string = "uniqueId-usd1";
 </script>
 
 <template>
 	<svg :width="24" :height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 		<defs>
-			<linearGradient :id="`paint0_linear_${uniqueId}`" x1="18.0435" y1="3.88626" x2="5.17676" y2="21.0725" gradientUnits="userSpaceOnUse">
+			<linearGradient
+				:id="`paint0_linear_${uniqueId}`"
+				x1="18.0435"
+				y1="3.88626"
+				x2="5.17676"
+				y2="21.0725"
+				gradientUnits="userSpaceOnUse"
+			>
 				<stop stop-color="#856A28" />
 				<stop offset="0.47" stop-color="#EAAC08" />
 				<stop offset="0.99" stop-color="#F1D795" />
 			</linearGradient>
-			<linearGradient :id="`paint1_linear_${uniqueId}`" x1="11.993" y1="2.26891" x2="11.9873" y2="22.4856" gradientUnits="userSpaceOnUse">
+			<linearGradient
+				:id="`paint1_linear_${uniqueId}`"
+				x1="11.993"
+				y1="2.26891"
+				x2="11.9873"
+				y2="22.4856"
+				gradientUnits="userSpaceOnUse"
+			>
 				<stop stop-color="#CA8404" />
 				<stop offset="1" stop-color="#A25E07" />
 			</linearGradient>
-			<linearGradient :id="`paint2_linear_${uniqueId}`" x1="-14.339" y1="9.45052" x2="22.3941" y2="9.45052" gradientUnits="userSpaceOnUse">
+			<linearGradient
+				:id="`paint2_linear_${uniqueId}`"
+				x1="-14.339"
+				y1="9.45052"
+				x2="22.3941"
+				y2="9.45052"
+				gradientUnits="userSpaceOnUse"
+			>
 				<stop stop-color="#CA8404" />
 				<stop offset="1" stop-color="#CA8404" />
 			</linearGradient>
-			<linearGradient :id="`paint3_linear_${uniqueId}`" x1="-21.7009" y1="5.3242" x2="22.9902" y2="5.3242" gradientUnits="userSpaceOnUse">
+			<linearGradient
+				:id="`paint3_linear_${uniqueId}`"
+				x1="-21.7009"
+				y1="5.3242"
+				x2="22.9902"
+				y2="5.3242"
+				gradientUnits="userSpaceOnUse"
+			>
 				<stop stop-color="#CA8404" />
 				<stop offset="1" stop-color="#CA8404" />
 			</linearGradient>
-			<linearGradient :id="`paint4_linear_${uniqueId}`" x1="11.0191" y1="5.53057" x2="11.0548" y2="18.1214" gradientUnits="userSpaceOnUse">
+			<linearGradient
+				:id="`paint4_linear_${uniqueId}`"
+				x1="11.0191"
+				y1="5.53057"
+				x2="11.0548"
+				y2="18.1214"
+				gradientUnits="userSpaceOnUse"
+			>
 				<stop offset="0.19" stop-color="#FEF6C0" />
 				<stop offset="0.31" stop-color="#FBEDA9" />
 				<stop offset="0.57" stop-color="#F5D670" />

@@ -11,7 +11,7 @@
 		countMaxTransfers: string;
 		showWarningColumn: boolean;
 	}>();
-	const emits = defineEmits(['close']);
+	const emits = defineEmits(["close"]);
 
 	const isShowWithdrawalFromProcessing = defineModel<Record<string, boolean>>({ default: {}, required: true });
 </script>

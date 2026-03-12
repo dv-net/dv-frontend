@@ -18,7 +18,7 @@
 	const { getTransaction } = useTransactionStore();
 	const { getWalletSummary, getWalletBalancesHot } = useHotWalletsStore();
 	const { isShowMainLoader } = storeToRefs(useAuthStore());
-	const { getUserSettings } = useUserSettingsStore()
+	const { getUserSettings } = useUserSettingsStore();
 
 	const getAllDataPage = async () => {
 		try {

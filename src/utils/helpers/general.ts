@@ -104,9 +104,7 @@ export const formatAmountBlockchain = (
 		return isFormattedIntegerPart ? integerValue.toLocaleString("en-US") : String(integerValue);
 	}
 	const finalFractional = fractionalPartRaw.slice(0, count).replace(/0+$/, "");
-	const formattedInteger = isFormattedIntegerPart
-		? parseFloat(integerPartRaw).toLocaleString("en-US")
-		: integerPartRaw;
+	const formattedInteger = isFormattedIntegerPart ? parseFloat(integerPartRaw).toLocaleString("en-US") : integerPartRaw;
 	return finalFractional ? `${formattedInteger}.${finalFractional}` : formattedInteger;
 };
 

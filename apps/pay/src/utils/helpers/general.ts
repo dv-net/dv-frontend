@@ -5,4 +5,4 @@ export const loaderShutdown = () => {
 	if (loaderContainer) loaderContainer.style.display = "none";
 	if (body) body.style.removeProperty("overflow");
 	if (app) app.style.removeProperty("overflow");
-}
+};

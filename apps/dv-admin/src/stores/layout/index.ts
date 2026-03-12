@@ -18,12 +18,12 @@ export const useLayoutStore = defineStore("layout", () => {
 
 	const toggleMenu = () => {
 		isMenuCollapse.value = !isMenuCollapse.value;
-		localStorage.setItem(USER.IS_SHOW_MAIN_SIDEBAR, JSON.stringify(isMenuCollapse.value))
+		localStorage.setItem(USER.IS_SHOW_MAIN_SIDEBAR, JSON.stringify(isMenuCollapse.value));
 	};
 
 	return {
 		isMenuCollapse,
 		isShowModalLanguage,
-		toggleMenu,
+		toggleMenu
 	};
 });

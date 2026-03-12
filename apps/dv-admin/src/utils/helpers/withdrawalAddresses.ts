@@ -1,7 +1,6 @@
 import type { IWithdrawalAddressItemResponse } from "@dv-admin/utils/types/api/apiGo";
 import { generateUUID } from "@shared/utils/helpers/general.ts";
 
-
 export const getFreshAddressee = () => ({
 	id: generateUUID(),
 	address: "",

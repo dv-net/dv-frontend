@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+- fix: corrected captcha validation on sign-up and stopped sending cf-turnstile-response when captcha is disabled [DV-4246]
+
 ## [1.0.33] - 2026-02-16
 
 - fix: add a ban on withdrawals from processing wallets if this is disabled in the settings [DV-4197]

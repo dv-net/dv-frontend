@@ -25,7 +25,7 @@ export interface ISignUpRequest {
 	email: string;
 	password: string;
 	password_confirmation: string;
-	"cf-turnstile-response": string;
+	"cf-turnstile-response"?: string;
 	location?: string;
 	language?: string;
 }

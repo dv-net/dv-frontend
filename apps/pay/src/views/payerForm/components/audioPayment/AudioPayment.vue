@@ -12,25 +12,25 @@
 			if (moneyCameAudioRef.value && paymentFoundAudioRef.value) {
 				moneyCameAudioRef.value.currentTime = 0;
 				paymentFoundAudioRef.value.currentTime = 0;
-				window.removeEventListener('click', startAudio);
+				window.removeEventListener("click", startAudio);
 			}
-			clearEventAudio()
+			clearEventAudio();
 		} catch (error: any) {
-			console.error(error)
+			console.error(error);
 		}
-	}
+	};
 
 	const clearEventAudio = () => {
-		window.removeEventListener('click', startAudio);
-	}
+		window.removeEventListener("click", startAudio);
+	};
 
 	onMounted(() => {
-		startAudio()
-	})
+		startAudio();
+	});
 
 	onUnmounted(() => {
-		clearEventAudio()
-	})
+		clearEventAudio();
+	});
 </script>
 
 <template>

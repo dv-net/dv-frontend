@@ -63,7 +63,7 @@
 		} catch (error: any) {
 			console.error(error);
 			transactionsSearchAddress.value = [];
-			transactionsSearchAddressPagination.value = null
+			transactionsSearchAddressPagination.value = null;
 		} finally {
 			isLoadingTransactions.value = false;
 		}
@@ -86,7 +86,7 @@
 		} catch (error: any) {
 			console.error(error);
 			transferHistory.value = [];
-			transferHistoryPagination.value = null
+			transferHistoryPagination.value = null;
 		}
 	};
 
@@ -99,7 +99,7 @@
 
 	const handleChangeBlockchainTabs = async () => {
 		await Promise.all([getTransactionsCurrentBlockchain(), getTransferHistory()]);
-	}
+	};
 
 	onMounted(async () => {
 		if (hash && !wallets.value.length) await getSearchData(hash);
@@ -158,12 +158,7 @@
 			</div>
 		</block-section>
 		<block-section v-if="wallets[currentIndexWallet]?.blockchains?.length" class="assets" radius="md">
-			<ui-tabs
-				class="assets__tabs"
-				mode="light"
-				v-model="currentBlockchainTab"
-				@change="handleChangeBlockchainTabs"
-			>
+			<ui-tabs class="assets__tabs" mode="light" v-model="currentBlockchainTab" @change="handleChangeBlockchainTabs">
 				<ui-tabs-item
 					v-for="item in wallets[currentIndexWallet].blockchains"
 					:value="item.blockchain"

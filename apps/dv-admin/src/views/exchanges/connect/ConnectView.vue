@@ -32,8 +32,10 @@
 	const activatingExchange = ref<ExchangeSlugType | null>(null);
 
 	const serviceList = [
-		{ id: 1, icon: IconFixedFloat }, { id: 2, icon: IconChangeNow }, { id: 3, icon: IconUniswap }
-	]
+		{ id: 1, icon: IconFixedFloat },
+		{ id: 2, icon: IconChangeNow },
+		{ id: 3, icon: IconUniswap }
+	];
 
 	const goToShowConnectExchange = async (slug: string) => {
 		await router.push({ name: "exchanges-connect-one", params: { slug } });
@@ -155,22 +157,14 @@
 		</div>
 
 		<div class="services">
-			<h2 class="global-title-h2 mb-32">{{ $t('Other exchange services') }}</h2>
+			<h2 class="global-title-h2 mb-32">{{ $t("Other exchange services") }}</h2>
 			<div class="services__cards">
-				<div
-					class="card"
-					v-for="item in serviceList"
-					:key="item.id"
-				>
-					<div class="card__badge">{{ $t('Coming soon') }}</div>
+				<div class="card" v-for="item in serviceList" :key="item.id">
+					<div class="card__badge">{{ $t("Coming soon") }}</div>
 					<div class="card__top">
 						<component :is="item.icon" />
 					</div>
-					<ui-button
-						class="card__btn"
-						type="secondary"
-						disabled
-					>
+					<ui-button class="card__btn" type="secondary" disabled>
 						{{ $t("Connect an exchanger") }}
 					</ui-button>
 				</div>
@@ -247,8 +241,8 @@
 					align-items: center;
 					padding: 20px 15px;
 					border-radius: 12px;
-					border: 1px solid #E1E8F1;
-					background-color: #F7F9FB;
+					border: 1px solid #e1e8f1;
+					background-color: #f7f9fb;
 					position: relative;
 					&__badge {
 						position: absolute;

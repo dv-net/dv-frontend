@@ -12,10 +12,7 @@ export const isLessThan1Hour = (date1: string | Date, date2: string | Date): boo
 
 // Format time ago from UTC date
 // Returns empty string if more than 1 hour
-export const formatTimeAgo = (
-	dateUtc: string,
-	t: (key: string) => string
-): string => {
+export const formatTimeAgo = (dateUtc: string, t: (key: string) => string): string => {
 	if (!dateUtc || typeof dateUtc !== "string") return "";
 	const now = new Date();
 	const date = new Date(dateUtc);
@@ -24,5 +21,5 @@ export const formatTimeAgo = (
 	const diffInMs = now.getTime() - date.getTime();
 	const diffInMinutes = Math.floor(diffInMs / 60000);
 	if (diffInMinutes < 1) return t("just now");
-	return `${diffInMinutes} ${t("staticStrings.min")} ${t('ago')}`;
+	return `${diffInMinutes} ${t("staticStrings.min")} ${t("ago")}`;
 };

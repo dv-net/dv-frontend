@@ -7,8 +7,7 @@
 	import BlockAdvertising from "@pay/views/payerForm/components/blockAdvertising/BlockAdvertising.vue";
 	import WrapperBlock from "@pay/views/payerForm/components/wrapperBlock/WrapperBlock.vue";
 	import { useMediaQuery } from "@shared/utils/composables/useMediaQuery.ts";
-	import BlockLatestTransactions
-		from "@pay/views/payerForm/components/blockLatestTransactions/BlockLatestTransactions.vue";
+	import BlockLatestTransactions from "@pay/views/payerForm/components/blockLatestTransactions/BlockLatestTransactions.vue";
 
 	const { payerId, store, amount, errorStore, currentStep, isShowAdvertising, isShowBlockLatestTransactions } =
 		storeToRefs(usePayerFormStore());
@@ -139,7 +138,8 @@
 				}
 			}
 		}
-		&__advertising, &__latest-transactions {
+		&__advertising,
+		&__latest-transactions {
 			@include mediamax(1024) {
 				display: none;
 			}

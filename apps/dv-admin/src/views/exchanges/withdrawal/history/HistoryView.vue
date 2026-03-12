@@ -26,11 +26,7 @@
 				{{ $t("Refresh history") }}
 			</ui-button>
 		</div>
-		<withdrawal-history-table
-			ref="childComponentWithdrawalHistoryTable"
-			:slug="slug"
-			:is-request-with-date="false"
-		/>
+		<withdrawal-history-table ref="childComponentWithdrawalHistoryTable" :slug="slug" :is-request-with-date="false" />
 	</div>
 </template>
 

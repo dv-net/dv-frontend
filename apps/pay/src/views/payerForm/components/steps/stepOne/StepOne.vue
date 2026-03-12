@@ -41,30 +41,29 @@
 			const currencyIdLower = item.currency.id.toLowerCase();
 			const { contract_address } = item.currency;
 			const matches = [
-				(searchLower === "bsc" && currencyIdLower.includes("bnbsmartchain")),
+				searchLower === "bsc" && currencyIdLower.includes("bnbsmartchain"),
 				checkMatch(currencyIdLower, searchLower),
 				checkMatch(currencyIdLower, searchLowerAlt),
-				contract_address === searchValue,
+				contract_address === searchValue
 			];
 			if (matches.some(Boolean)) matchedCoins.add(coin);
 		}
-		const foundCurrencies = filteredCurrencies.value.filter(item =>
+		const foundCurrencies = filteredCurrencies.value.filter((item) =>
 			matchedCoins.has(getCurrentCoin(item.currency.id) as string)
 		);
-		return foundCurrencies.map(item => ({
+		return foundCurrencies.map((item) => ({
 			...item,
 			currency: {
 				...item.currency,
-				blockchains: item.currency.blockchains?.map(blockchain => ({
+				blockchains: item.currency.blockchains?.map((blockchain) => ({
 					...blockchain,
 					isActive:
 						checkMatch(blockchain.blockchain.toLowerCase(), searchLower) ||
-						checkMatch(blockchain.blockchain.toLowerCase(), searchLowerAlt),
-				})),
-			},
+						checkMatch(blockchain.blockchain.toLowerCase(), searchLowerAlt)
+				}))
+			}
 		})) as IPayerAddressResponse[];
 	});
-
 
 	const setCurrency = async (currencyId: string) => {
 		if (!currencyId) return;

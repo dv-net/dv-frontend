@@ -81,7 +81,8 @@
 							<div class="content__inner">
 								<span class="content__title">{{ getCurrentCoin(item.currency_code) }} {{ item.currency_label }}</span>
 								<span class="content__subtitle">
-									{{ changeChainBsc(getCurrentBlockchain(item.currency_code)) }} {{ item.token_label ? `(${item.token_label})` : null }}
+									{{ changeChainBsc(getCurrentBlockchain(item.currency_code)) }}
+									{{ item.token_label ? `(${item.token_label})` : null }}
 								</span>
 							</div>
 						</div>

@@ -28,7 +28,7 @@ export type IFilteredDepositSummaryDetailsCurrency = {
 	sum_usd: string;
 };
 export interface IDepositFilteredSummary {
-	id: number
+	id: number;
 	details_by_currency: IFilteredDepositSummaryDetailsCurrency[];
 	allDetailsByCurrency: IFilteredDepositSummaryDetailsCurrency[];
 	date: string;

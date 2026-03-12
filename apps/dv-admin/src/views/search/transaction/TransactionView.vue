@@ -90,7 +90,11 @@
 					:value="transaction.from_address"
 					is-copy-value
 				/>
-				<row-element class="info__item info__item--border-none" :label="$t('Status')" :value="transaction.is_confirmed ? $t('Confirmed') : $t('Unconfirmed')" />
+				<row-element
+					class="info__item info__item--border-none"
+					:label="$t('Status')"
+					:value="transaction.is_confirmed ? $t('Confirmed') : $t('Unconfirmed')"
+				/>
 			</div>
 		</block-section>
 		<block-section v-if="receipt" class="info" radius="md">

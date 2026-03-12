@@ -15,8 +15,7 @@
 	import NotFoundMessage from "@dv-admin/components/ui/notFoundMessage/NotFoundMessage.vue";
 	import Breadcrumbs from "@dv-admin/components/ui/breadcrumbs/Breadcrumbs.vue";
 	import { ONLY_LETTERS_AND_NUMBERS_REGEX, WITHOUT_SLASH_REGEX } from "@shared/utils/constants/regex";
-	import BlockBalancesExchange
-		from "@dv-admin/views/exchanges/components/blockBalancesExchange/BlockBalancesExchange.vue";
+	import BlockBalancesExchange from "@dv-admin/views/exchanges/components/blockBalancesExchange/BlockBalancesExchange.vue";
 
 	const { exchangePairs, exchangeUserPairs, isLoading, isLoadingPutExchangePairs } =
 		storeToRefs(useAutoExchangeStore());

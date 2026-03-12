@@ -34,9 +34,19 @@
 							<div class="content__title">{{ $t("Payment received successfully") }}!</div>
 							<div class="content__amount">
 								<currency-icon :type="getCurrentCoin(currentTransaction.currency_code) as CurrencyType" />
-								<span>{{ formatAmountBlockchain(currentTransaction.amount, currentTransaction.currency_code, undefined, "—", true) }}</span>
+								<span>{{
+									formatAmountBlockchain(
+										currentTransaction.amount,
+										currentTransaction.currency_code,
+										undefined,
+										"—",
+										true
+									)
+								}}</span>
 								<span>{{ getCurrentCoin(currentTransaction.currency_code) }}</span>
-								<span class="content__amount-usd">({{ formatDollars(currentTransaction.amount_usd, "$", "—", 2) }})</span>
+								<span class="content__amount-usd"
+									>({{ formatDollars(currentTransaction.amount_usd, "$", "—", 2) }})</span
+								>
 							</div>
 						</div>
 					</div>

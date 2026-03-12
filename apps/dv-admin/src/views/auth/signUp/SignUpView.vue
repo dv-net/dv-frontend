@@ -20,7 +20,7 @@
 
 	const formRef = ref<HTMLFormElement | null>(null);
 	const formError = ref<string>("");
-	const form = ref<ISignUpRequest>({
+	const form = ref<ISignUpRequest & { "cf-turnstile-response": string }>({
 		email: "",
 		password: "",
 		password_confirmation: "",
@@ -50,8 +50,7 @@
 			captcha: [
 				{
 					validator: () =>
-						Boolean(userRootSystemInfo.value?.is_captcha_enabled && !form.value["cf-turnstile-response"]),
-					required: true,
+						!userRootSystemInfo.value?.is_captcha_enabled || Boolean(form.value["cf-turnstile-response"]),
 					message: t("Pass captcha")
 				}
 			]
@@ -60,7 +59,9 @@
 
 	const handleSubmit = async () => {
 		if (!formRef.value || !(await formRef.value.validate())) return;
-		await registration(form.value);
+		const payload: ISignUpRequest = { ...form.value };
+		if (!userRootSystemInfo.value?.is_captcha_enabled) delete payload["cf-turnstile-response"];
+		await registration(payload);
 	};
 </script>
 

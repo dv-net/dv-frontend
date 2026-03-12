@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const uniqueId: string = "uniqueId-xaut"
+	const uniqueId: string = "uniqueId-xaut";
 </script>
 
 <template>

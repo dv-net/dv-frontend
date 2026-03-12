@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { generateUUID } from "@shared/utils/helpers/general.ts";
-const uniqueId: string = generateUUID()
+	import { generateUUID } from "@shared/utils/helpers/general.ts";
+	const uniqueId: string = generateUUID();
 </script>
 
 <template>
@@ -38,4 +38,3 @@ const uniqueId: string = generateUUID()
 		</g>
 	</svg>
 </template>
-

@@ -1,7 +1,7 @@
 import { createApp } from "vue";
 import { createPinia } from "pinia";
-import { VueQueryPlugin } from '@tanstack/vue-query'
-import { WagmiPlugin } from '@wagmi/vue'
+import { VueQueryPlugin } from "@tanstack/vue-query";
+import { WagmiPlugin } from "@wagmi/vue";
 import "@pay/assets/scss/index.scss";
 
 import App from "./App.vue";
@@ -15,9 +15,9 @@ const app = createApp(App);
 app.use(createPinia());
 app.use(i18n);
 app.use(router);
-app.use(VueQueryPlugin)
+app.use(VueQueryPlugin);
 if (wagmiAdapter.wagmiConfig) {
-	app.use(WagmiPlugin, { config: wagmiAdapter.wagmiConfig })
+	app.use(WagmiPlugin, { config: wagmiAdapter.wagmiConfig });
 }
 
 intiRequests().then(() => app.mount("#app"));

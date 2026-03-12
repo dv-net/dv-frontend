@@ -30,7 +30,7 @@ export const useInstallerStore = defineStore("installer", () => {
 			throw error;
 		}
 	};
-	const registrationInstaller = async (form: Omit<ISignUpRequest, "terms" | "cf-turnstile-response">) => {
+	const registrationInstaller = async (form: ISignUpRequest) => {
 		try {
 			isLoading.value = true;
 			isShowMainLoader.value = true;

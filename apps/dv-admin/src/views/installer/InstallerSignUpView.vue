@@ -18,7 +18,7 @@
 
 	const formRef = ref<HTMLFormElement | null>(null);
 	const formError = ref<string>("");
-	const form = ref<Omit<ISignUpRequest, "terms" | "cf-turnstile-response">>({
+	const form = ref<ISignUpRequest>({
 		email: "",
 		password: "",
 		password_confirmation: ""
@@ -107,7 +107,9 @@
 				<ui-form-item>
 					<p class="checkbox-text">
 						{{ $t("By continuing registration you agree to") }} <br />
-						<ui-link href="https://dv.net/files/End-User-Agreement.pdf" target="_blank">{{ $t("Terms of Use") }}</ui-link>
+						<ui-link href="https://dv.net/files/End-User-Agreement.pdf" target="_blank">{{
+							$t("Terms of Use")
+						}}</ui-link>
 						{{ $t("and") }}
 						<ui-link href="https://dv.net/files/Privacy-Policy.pdf" target="_blank">{{ $t("Privacy Policy") }}</ui-link>
 					</p>

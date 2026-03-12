@@ -75,7 +75,7 @@
 	};
 
 	const handleMouseLeave = () => {
-		cleanupTooltip()
+		cleanupTooltip();
 	};
 
 	const cleanupTooltip = () => {

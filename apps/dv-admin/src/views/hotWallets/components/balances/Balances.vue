@@ -87,7 +87,6 @@
 					<div class="row__column row__column--bitcoin">{{ formatDollars(item.balance_usd) }}</div>
 				</div>
 
-
 				<div v-if="walletSummary.length > 3" class="flex center py-10">
 					<ui-link @click="isMinimizedWallets = !isMinimizedWallets" size="lg" class="global-link-dashed">
 						{{ isMinimizedWallets ? `${$t("Show all")} (${walletSummary.length})` : $t("Hide") }}
@@ -96,12 +95,7 @@
 			</div>
 
 			<div class="table__footer">
-				<ui-skeleton
-					v-if="isLoadingWalletSummary"
-					:rows="1"
-					:row-height="32"
-					:item-border-radius="8"
-				/>
+				<ui-skeleton v-if="isLoadingWalletSummary" :rows="1" :row-height="32" :item-border-radius="8" />
 				<div v-else class="table__footer-inner" @click="handleClickRow('all')">
 					<div class="table__footer-column table__footer-column--actions">
 						<ui-radio value="all" />

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const uniqueId: string = "uniqueId-xaut-ethereum"
+	const uniqueId: string = "uniqueId-xaut-ethereum";
 </script>
 
 <template>

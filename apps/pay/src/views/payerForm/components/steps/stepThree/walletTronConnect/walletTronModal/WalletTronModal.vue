@@ -1,75 +1,60 @@
 <script setup lang="ts">
-import { UiIcon } from "@dv.net/ui-kit";
-import type { ITronExtensionWallet } from "@pay/views/payerForm/components/steps/stepThree/walletTronConnect/IProps.ts";
+	import { UiIcon } from "@dv.net/ui-kit";
+	import type { ITronExtensionWallet } from "@pay/views/payerForm/components/steps/stepThree/walletTronConnect/IProps.ts";
 
-const isShow = defineModel<boolean>("isShow", { required: true, default: false });
+	const isShow = defineModel<boolean>("isShow", { required: true, default: false });
 
-defineProps<{ wallets: ITronExtensionWallet[] }>();
+	defineProps<{ wallets: ITronExtensionWallet[] }>();
 
-const emit = defineEmits<{ select: [ITronExtensionWallet] }>();
+	const emit = defineEmits<{ select: [ITronExtensionWallet] }>();
 
-const handleClose = () => {
-	isShow.value = false
-};
-const handleSelect = (wallet: ITronExtensionWallet) => {
-	if (wallet.initialized || !wallet.detected) return;
-	handleClose()
-	emit("select", wallet)
-};
+	const handleClose = () => {
+		isShow.value = false;
+	};
+	const handleSelect = (wallet: ITronExtensionWallet) => {
+		if (wallet.initialized || !wallet.detected) return;
+		handleClose();
+		emit("select", wallet);
+	};
 </script>
 
 <template>
 	<div v-if="isShow" class="modal">
-			<div class="modal__overlay" @click="handleClose" />
-			<div class="modal__dialog" role="dialog" aria-modal="true">
-				<div class="header">
-					<h3 class="header__text">{{ $t("Connect wallet") }}</h3>
-					<ui-icon
-						class="header__icon"
-						name="close"
-						type="400"
-						size="sm"
-						@click="handleClose"
-					/>
-				</div>
-				<div class="modal__list">
-					<div
-						v-for="wallet in wallets"
-						:key="wallet.id"
-						class="row"
-						:class="[
-							{ 'row--disabled': !wallet.detected },
-							{ 'row--disabled-click': wallet.initialized },
-						]"
-						@click="handleSelect(wallet)"
-					>
-						<div class="row__info">
-							<img :src="wallet.icon" :alt="wallet.name" />
-							<span>{{ wallet.name }}</span>
-						</div>
-						<div class="row__status">
-							<span
-								class="status-chip"
-								:class="{
-									'status-chip--success': wallet.initialized,
-									'status-chip--warning': wallet.detected && !wallet.initialized,
-									'status-chip--muted': !wallet.detected
-								}"
-							>
-								{{
-									wallet.initialized
-										? $t("Connected")
-										: wallet.detected
-											? $t("Installed")
-											: $t("Not installed")
-								}}
-							</span>
-							<ui-icon name="chevron-right" type="400" size="sm" />
-						</div>
+		<div class="modal__overlay" @click="handleClose" />
+		<div class="modal__dialog" role="dialog" aria-modal="true">
+			<div class="header">
+				<h3 class="header__text">{{ $t("Connect wallet") }}</h3>
+				<ui-icon class="header__icon" name="close" type="400" size="sm" @click="handleClose" />
+			</div>
+			<div class="modal__list">
+				<div
+					v-for="wallet in wallets"
+					:key="wallet.id"
+					class="row"
+					:class="[{ 'row--disabled': !wallet.detected }, { 'row--disabled-click': wallet.initialized }]"
+					@click="handleSelect(wallet)"
+				>
+					<div class="row__info">
+						<img :src="wallet.icon" :alt="wallet.name" />
+						<span>{{ wallet.name }}</span>
+					</div>
+					<div class="row__status">
+						<span
+							class="status-chip"
+							:class="{
+								'status-chip--success': wallet.initialized,
+								'status-chip--warning': wallet.detected && !wallet.initialized,
+								'status-chip--muted': !wallet.detected
+							}"
+						>
+							{{ wallet.initialized ? $t("Connected") : wallet.detected ? $t("Installed") : $t("Not installed") }}
+						</span>
+						<ui-icon name="chevron-right" type="400" size="sm" />
 					</div>
 				</div>
 			</div>
 		</div>
+	</div>
 </template>
 
 <style scoped lang="scss">
@@ -196,4 +181,3 @@ const handleSelect = (wallet: ITronExtensionWallet) => {
 		}
 	}
 </style>
-

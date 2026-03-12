@@ -5,7 +5,7 @@ export interface ITronExtensionWallet {
 	detected: boolean;
 	initialized: boolean;
 	isLoading: boolean;
-	address?: string
+	address?: string;
 }
 
 export interface IProps {

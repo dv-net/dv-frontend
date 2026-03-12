@@ -1,8 +1,8 @@
 import type { BlockchainType } from "@shared/utils/types/blockchain";
 
 export interface IInfoBlockchains {
-	blockchain: string
-	isActive: false
+	blockchain: string;
+	isActive: false;
 }
 
 export interface IInfoCurrency {

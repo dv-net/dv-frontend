@@ -15,7 +15,7 @@
 	const { t } = useI18n();
 
 	defineProps<IProps>();
-	const emits = defineEmits(["changeTransactions", "changeTransfers"])
+	const emits = defineEmits(["changeTransactions", "changeTransfers"]);
 
 	const isReadMoreTransferHistory = ref<boolean>(false);
 	const hashPrefix = computed<number>(() => (isReadMoreTransferHistory.value ? 100 : 10));

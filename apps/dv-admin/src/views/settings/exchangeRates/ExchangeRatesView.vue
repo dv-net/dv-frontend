@@ -18,7 +18,7 @@
 	import { useNotifications } from "@shared/utils/composables/useNotifications.ts";
 
 	const { t } = useI18n();
-	const { notify } = useNotifications()
+	const { notify } = useNotifications();
 
 	const { user } = storeToRefs(useAuthStore());
 	const { dictionary } = storeToRefs(useGeneralStore());
@@ -56,7 +56,7 @@
 			if (data) currenciesRate.value = data;
 		} catch (error: any) {
 			currenciesRate.value = [];
-			console.error(error)
+			console.error(error);
 		} finally {
 			isLoading.value = false;
 		}
@@ -70,7 +70,7 @@
 			await getCurrenciesRate();
 			notify(t("Crypto exchange settings have been changed"), "success");
 		} catch (error: any) {
-			console.error(error)
+			console.error(error);
 		} finally {
 			isLoadingRate.value = false;
 		}
@@ -97,12 +97,7 @@
 		<div v-if="user" class="rates">
 			<h2 class="global-title-h3">{{ $t("Rates") }}</h2>
 			<div class="rates__inner">
-				<ui-select
-					v-model="user.rate_scale"
-					:options="rateScaleList"
-					size="lg"
-					type="default"
-				/>
+				<ui-select v-model="user.rate_scale" :options="rateScaleList" size="lg" type="default" />
 				<ui-button
 					mode="neutral"
 					size="xxl"
@@ -129,12 +124,12 @@
 						v-if="header.name === 'value' || header.name === 'value_scale'"
 						:title="title"
 						:text="
-						$t(
-							header.name === 'value'
-								? 'The cryptocurrency rate received in real time from the crypto exchange.'
-								: 'The cryptocurrency rate at which transactions are made for your clients.'
-						)
-					"
+							$t(
+								header.name === 'value'
+									? 'The cryptocurrency rate received in real time from the crypto exchange.'
+									: 'The cryptocurrency rate at which transactions are made for your clients.'
+							)
+						"
 					/>
 				</template>
 				<template #body-cell-from="{ row }"> {{ row.from }}/{{ row.to }}</template>

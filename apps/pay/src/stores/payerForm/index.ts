@@ -11,7 +11,7 @@ import {
 	changeChainBsc,
 	formatAmountBlockchain,
 	getCurrentBlockchain,
-	getCurrentCoin,
+	getCurrentCoin
 } from "@shared/utils/helpers/general.ts";
 import { isLessThan1Hour } from "@pay/utils/helpers/dateParse.ts";
 import type { BlockchainType } from "@shared/utils/types/blockchain";
@@ -37,20 +37,22 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 	const transactionsUnconfirmed = ref<IWalletTransactionResponse[]>([]);
 	const currentTransaction = ref<IWalletTransactionResponse | null>(null);
 	const errorStore = ref<"error" | "store-disabled" | null>(null);
-	const moneyCameAudioRef = ref<HTMLAudioElement | null>(null)
-	const paymentFoundAudioRef = ref<HTMLAudioElement | null>(null)
+	const moneyCameAudioRef = ref<HTMLAudioElement | null>(null);
+	const paymentFoundAudioRef = ref<HTMLAudioElement | null>(null);
 	const stepMap = ref<Record<number, number>>({ 1: 1, 2: 2, 3: 3, 4: 3, 5: 4 });
 	const timeline = ref([
 		{
 			id: 1,
 			label: "Select currency",
 			isActive: true,
-			callback: () => [4,5].includes(currentStep.value) ? false : currentStep.value = 1 },
+			callback: () => ([4, 5].includes(currentStep.value) ? false : (currentStep.value = 1))
+		},
 		{
 			id: 2,
 			label: "select-blockchain.one",
 			isActive: false,
-			callback: () => (filteredBlockchains.value.length > 1) && ![4,5].includes(currentStep.value) ? currentStep.value = 2 : false
+			callback: () =>
+				filteredBlockchains.value.length > 1 && ![4, 5].includes(currentStep.value) ? (currentStep.value = 2) : false
 		},
 		{ id: 3, label: "Sending a payment", isActive: false },
 		{ id: 4, label: "Ready", isActive: false }
@@ -58,7 +60,7 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 
 	const isShowAdvertising = computed<boolean>(() => ![3, 4, 5].includes(currentStep.value));
 	const isShowBlockLatestTransactions = computed<boolean>(() => {
-		return !errorStore.value && ![3, 4, 5].includes(currentStep.value) && Boolean(transactionsConfirmed.value.length)
+		return !errorStore.value && ![3, 4, 5].includes(currentStep.value) && Boolean(transactionsConfirmed.value.length);
 	});
 
 	const getPayerInfo = async (id: string) => {
@@ -111,7 +113,7 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 			throw error;
 		} finally {
 			isLoading.value = false;
-			loaderShutdown()
+			loaderShutdown();
 		}
 	};
 
@@ -119,9 +121,7 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		try {
 			const data = await getApiWalletTxFind(id);
 			if (data.confirmed) {
-				transactionsConfirmed.value = data.confirmed
-					.slice(0, 9)
-					.map((transaction) => ({
+				transactionsConfirmed.value = data.confirmed.slice(0, 9).map((transaction) => ({
 					...transaction,
 					is_less_than_1_hour: isLessThan1Hour(transaction.created_at, new Date().toISOString())
 				}));
@@ -136,8 +136,8 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 				const newTransactions = checkForNewTransactions(transactionsLs);
 				if (newTransactions.length) {
 					currentTransaction.value = newTransactions[0];
-					currentStep.value = 4
-					paymentFoundAudioRef.value?.play()
+					currentStep.value = 4;
+					paymentFoundAudioRef.value?.play();
 					return;
 				}
 			}
@@ -148,8 +148,8 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 					// Payment has passed, remove polling getWalletTxFind
 					isPoolingProgress.value = false;
 					localStorage.removeItem("transactions");
-					currentStep.value = 5
-					moneyCameAudioRef.value?.play()
+					currentStep.value = 5;
+					moneyCameAudioRef.value?.play();
 					return;
 				}
 			}
@@ -205,7 +205,7 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 					...item,
 					currency: {
 						...item.currency,
-						blockchains: sortedBlockchains.map(item => ({ blockchain: item, isActive: false }))
+						blockchains: sortedBlockchains.map((item) => ({ blockchain: item, isActive: false }))
 					}
 				});
 			}

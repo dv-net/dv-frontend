@@ -41,13 +41,19 @@
 				v-for="item in blockchains"
 				:key="item.blockchain"
 				class="card__blockchain"
-				:class="{ 'active': item.isActive }"
+				:class="{ active: item.isActive }"
 			>
-				<blockchain-icon :type="blockchainCurrencyId[item.blockchain.toLocaleLowerCase('en')] as BlockchainType" width="12px" height="12px" />
+				<blockchain-icon
+					:type="blockchainCurrencyId[item.blockchain.toLocaleLowerCase('en')] as BlockchainType"
+					width="12px"
+					height="12px"
+				/>
 				<span>{{ item.blockchain }}</span>
 			</div>
 		</div>
-		<span v-if="isShowPrice" class="card__price">≈ {{ formatAmountBlockchain(getAmountRate(currency), undefined, undefined, "—", true) }}</span>
+		<span v-if="isShowPrice" class="card__price"
+			>≈ {{ formatAmountBlockchain(getAmountRate(currency), undefined, undefined, "—", true) }}</span
+		>
 	</div>
 </template>
 
@@ -129,7 +135,7 @@
 			font-size: 10px;
 			font-weight: 500;
 			&.active {
-				background-color: #D9EFFF;
+				background-color: #d9efff;
 				color: #303345;
 			}
 		}

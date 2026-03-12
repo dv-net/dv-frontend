@@ -61,9 +61,7 @@ export const getDepositPercentages = (
 	const sum = initial.reduce((acc, item) => acc + item.percentage, 0);
 	let difference = 100 - sum;
 	if (difference < 0) {
-		const sorted = [...initial]
-			.filter((item) => item.percentage > 1)
-			.sort((a, b) => a.remainder - b.remainder);
+		const sorted = [...initial].filter((item) => item.percentage > 1).sort((a, b) => a.remainder - b.remainder);
 		for (let i = 0; i < sorted.length && difference < 0; i++) {
 			sorted[i].percentage -= 1;
 			difference++;

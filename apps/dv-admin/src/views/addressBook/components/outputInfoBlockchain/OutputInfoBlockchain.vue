@@ -47,11 +47,7 @@
 
 	<div v-else-if="row.type === ADDRESS_BOOK_TYPES.EVM" class="flex flex-y-center gap-4">
 		<span class="fz-16">{{ $t("All EVM blockchains") }}</span>
-		<tooltip-helper
-			v-if="row.blockchains"
-			:title="$t('All EVM blockchains')"
-			popper-class="address-book-evm"
-		>
+		<tooltip-helper v-if="row.blockchains" :title="$t('All EVM blockchains')" popper-class="address-book-evm">
 			<template #infoText>
 				<div class="flex flex-column gap-8 p-10">
 					<div v-for="item in row.blockchains" :key="item" class="flex flex-y-center gap-8">

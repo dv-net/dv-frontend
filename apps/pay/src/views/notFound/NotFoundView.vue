@@ -3,8 +3,8 @@
 	import { loaderShutdown } from "@pay/utils/helpers/general.ts";
 
 	onMounted(() => {
-		loaderShutdown()
-	})
+		loaderShutdown();
+	});
 </script>
 
 <template>

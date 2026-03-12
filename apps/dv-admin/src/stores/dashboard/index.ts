@@ -94,9 +94,14 @@ export const useDashboardStore = defineStore("dashboard", () => {
 						}
 					});
 					const details = Array.from(groupedByCurrency.entries()).map(([currency, data]) => ({
-						currency, tx_count: data.tx_count, sum_usd: data.sum_usd
+						currency,
+						tx_count: data.tx_count,
+						sum_usd: data.sum_usd
 					}));
-					const allDetails = Object.entries(item.details_by_currency).map(([currency, data]) => ({ currency, ...data }));
+					const allDetails = Object.entries(item.details_by_currency).map(([currency, data]) => ({
+						currency,
+						...data
+					}));
 					const totalSum = details.reduce((acc, item) => acc + parseFloat(item.sum_usd), 0);
 					const totalSumAll = allDetails.reduce((acc, item) => acc + parseFloat(item.sum_usd), 0);
 					return {

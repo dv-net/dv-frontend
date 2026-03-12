@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const uniqueId: string = "uniqueId-default"
+	const uniqueId: string = "uniqueId-default";
 </script>
 
 <template>

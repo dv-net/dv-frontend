@@ -14,7 +14,7 @@
 	const { processingWallets } = storeToRefs(useDashboardStore());
 
 	const { data } = defineProps<{ data: IProcessingWalletsResponse }>();
-	const emits = defineEmits(['close']);
+	const emits = defineEmits(["close"]);
 
 	const isShowWithdrawalFromProcessing = defineModel<Record<string, boolean>>({ default: {}, required: true });
 </script>

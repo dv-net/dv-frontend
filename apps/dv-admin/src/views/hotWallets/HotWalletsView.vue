@@ -90,10 +90,7 @@
 				</div>
 			</div>
 		</template>
-		<not-found-message
-			v-else
-			:text="$t(`You don’t have any hot wallets yet.`)"
-		/>
+		<not-found-message v-else :text="$t(`You don’t have any hot wallets yet.`)" />
 	</div>
 </template>
 

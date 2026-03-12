@@ -13,8 +13,7 @@
 	import type { UiTableHeader } from "@dv.net/ui-kit/dist/components/UiTable/types";
 	import { useI18n } from "vue-i18n";
 	import type { BlockchainType } from "@shared/utils/types/blockchain";
-	import BlockBalancesExchange
-		from "@dv-admin/views/exchanges/components/blockBalancesExchange/BlockBalancesExchange.vue";
+	import BlockBalancesExchange from "@dv-admin/views/exchanges/components/blockBalancesExchange/BlockBalancesExchange.vue";
 
 	const {
 		getExchangeWithdrawalSetting,

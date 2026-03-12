@@ -51,7 +51,7 @@
 				<div
 					:ref="(el) => (itemRefs[index] = el as HTMLDivElement | null)"
 					class="timeline__item"
-					:class="{ 
+					:class="{
 						success: currentStep === 5 && timeline.length - 1 === index,
 						waiting: currentStep === 4 && item.id === 3
 					}"
@@ -166,9 +166,9 @@
 				}
 			}
 			&.waiting {
-				color: #1968E5;
+				color: #1968e5;
 				.timeline__item-label {
-					background-color: #1968E5;
+					background-color: #1968e5;
 					color: #fff;
 				}
 			}

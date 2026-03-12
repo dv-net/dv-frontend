@@ -26,9 +26,7 @@
 			<div class="content">
 				<img class="content__img" src="/static/squareLogo.png" alt="logo" loading="lazy" />
 				<div class="content__inner">
-					<h3 class="content__title">
-						<ui-link href="">DV.net</ui-link> - {{ $t("Crypto Processing") }} DaVinci
-					</h3>
+					<h3 class="content__title"><ui-link href="">DV.net</ui-link> - {{ $t("Crypto Processing") }} DaVinci</h3>
 					<p class="content__text">
 						{{ $t("Accept cryptocurrency on your website without commission and intermediaries") }}
 					</p>
