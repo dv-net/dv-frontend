@@ -9,7 +9,7 @@
 	import { computed } from "vue";
 	import { useI18n } from "vue-i18n";
 	import { useRoute, useRouter } from "vue-router";
-	import { formatDollars } from "@shared/utils/helpers/general";
+	import { formatDollars } from "@shared/utils/helpers/general.ts";
 	import IconConfirmEmail from "@dv-admin/components/icons/IconConfirmEmail.vue";
 	import { useHotWalletsStore } from "@dv-admin/stores/hotWallets";
 	import {

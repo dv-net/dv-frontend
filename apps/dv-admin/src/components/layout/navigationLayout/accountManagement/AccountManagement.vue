@@ -3,7 +3,7 @@
 	import { useRouter } from "vue-router";
 	import { useAuthStore } from "@dv-admin/stores/auth";
 	import { storeToRefs } from "pinia";
-	import { formatDollars } from "@shared/utils/helpers/general";
+	import { formatDollars } from "@shared/utils/helpers/general.ts";
 	import { UiButton, UiTooltip, UiLoading } from "@dv.net/ui-kit";
 	import { useGeneralStore } from "@dv-admin/stores/general";
 

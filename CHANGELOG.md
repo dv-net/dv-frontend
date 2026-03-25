@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+## [1.0.34] - 2026-03-25
+
+- fix: corrected sidebar height/overflow in Safari on small viewport height so the `account-management` block remains visible [DV-4273]
 - fix: corrected captcha validation on sign-up and stopped sending cf-turnstile-response when captcha is disabled [DV-4246]
 
 ## [1.0.33] - 2026-02-16
