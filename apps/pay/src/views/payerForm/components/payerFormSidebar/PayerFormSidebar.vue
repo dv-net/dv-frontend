@@ -2,91 +2,20 @@
 	import { usePayerFormStore } from "@pay/stores/payerForm";
 	import { storeToRefs } from "pinia";
 	import { UiCopyText, UiIcon, UiLink } from "@dv.net/ui-kit";
-	import { formatDollars, truncateHash } from "@shared/utils/helpers/general.ts";
-	import { computed, nextTick, ref } from "vue";
+	import { truncateHash } from "@shared/utils/helpers/general.ts";
+	import { computed } from "vue";
 	import BlockAdvertising from "@pay/views/payerForm/components/blockAdvertising/BlockAdvertising.vue";
 	import WrapperBlock from "@pay/views/payerForm/components/wrapperBlock/WrapperBlock.vue";
 	import { useMediaQuery } from "@shared/utils/composables/useMediaQuery.ts";
 	import BlockLatestTransactions from "@pay/views/payerForm/components/blockLatestTransactions/BlockLatestTransactions.vue";
-	import { useRoute, useRouter } from "vue-router";
-	import { useI18n } from "vue-i18n";
+	import AmountEditor from "@pay/views/payerForm/components/amountEditor/AmountEditor.vue";
 
-	const { t } = useI18n();
-
-	const { payerId, store, amount, errorStore, currentStep, isShowAdvertising, isShowBlockLatestTransactions } =
+	const { payerId, store, errorStore, currentStep, isShowAdvertising, isShowBlockLatestTransactions } =
 		storeToRefs(usePayerFormStore());
 	const isMediaMax480 = useMediaQuery("(max-width: 480px)");
-	const route = useRoute();
-	const router = useRouter();
-
-	const isEditAmount = ref<boolean>(false);
-	const amountDraft = ref<string>("");
-	const amountInputRef = ref<HTMLInputElement | null>(null);
-	const amountError = ref<string>("");
 
 	const isShowSidebar = computed<boolean>(() => ![3, 4, 5].includes(currentStep.value));
 	const isShowDetails = computed<boolean>(() => !errorStore.value && isShowSidebar.value);
-	const isAmountChanged = computed<boolean>(() => {
-		const normalizedAmount = amountDraft.value.replace(",", ".").trim();
-		const parsedAmount = parseFloat(normalizedAmount);
-		if (!Number.isFinite(parsedAmount) || !Number.isFinite(Number(amount.value))) return false;
-		return parsedAmount !== Number(amount.value);
-	});
-
-	const updateAmountInQuery = async (newAmount: number) => {
-		await router.replace({
-			query: {
-				...route.query,
-				amount: newAmount.toString()
-			}
-		});
-	};
-
-	const startEditAmount = async () => {
-		amountError.value = "";
-		amountDraft.value = amount.value ? amount.value.toString() : store.value?.minimal_payment || "0";
-		isEditAmount.value = true;
-		await nextTick();
-		amountInputRef.value?.focus();
-		amountInputRef.value?.select();
-	};
-
-	const cancelEditAmount = () => {
-		amountError.value = "";
-		isEditAmount.value = false;
-	};
-
-	const saveEditAmount = async () => {
-		if (!isAmountChanged.value) {
-			cancelEditAmount();
-			return;
-		}
-		const normalizedAmount = amountDraft.value.replace(",", ".").trim();
-		const parsedAmount = parseFloat(normalizedAmount);
-		const minimalPayment = parseFloat(String(store.value?.minimal_payment || "0"));
-		if (!Number.isFinite(parsedAmount) || parsedAmount <= 0) {
-			amountError.value = t("Invalid amount");
-			return;
-		}
-		if (Number.isFinite(minimalPayment) && parsedAmount < minimalPayment) {
-			amountError.value = t("The minimum deposit amount is {amount}", { amount: `$${store.value?.minimal_payment}` || "$0" });
-			return;
-		}
-		amount.value = parsedAmount;
-		await updateAmountInQuery(parsedAmount);
-		amountError.value = "";
-		isEditAmount.value = false;
-	};
-
-	const sanitizeAmountDraft = () => {
-		let nextValue = amountDraft.value.replace(/,/g, ".");
-		nextValue = nextValue.replace(/[^0-9.]/g, "");
-		const dotIndex = nextValue.indexOf(".");
-		if (dotIndex !== -1) {
-			nextValue = `${nextValue.slice(0, dotIndex + 1)}${nextValue.slice(dotIndex + 1).replace(/\./g, "")}`;
-		}
-		amountDraft.value = nextValue;
-	};
 </script>
 
 <template>
@@ -122,40 +51,7 @@
 				</div>
 				<div class="details__bottom">
 					<span class="details__bottom-label">{{ $t("Sum") }}:</span>
-					<div class="price">
-						<template v-if="!isEditAmount">
-							<span class="price__number">{{ formatDollars(amount, "$", "—", 2) }}</span>
-							<button class="price__text" type="button" @click="startEditAmount">
-								{{ $t("Change") }}
-							</button>
-						</template>
-						<template v-else>
-							<input
-								ref="amountInputRef"
-								v-model="amountDraft"
-								type="tel"
-								inputmode="decimal"
-								class="price__input"
-								@input="sanitizeAmountDraft"
-								@keydown.enter.prevent="saveEditAmount"
-								@keydown.esc.prevent="cancelEditAmount"
-							/>
-							<div class="price__actions">
-								<button
-									v-if="isAmountChanged"
-									class="price__text price__text--active"
-									type="button"
-									@click="saveEditAmount"
-								>
-									{{ $t("Save") }}
-								</button>
-								<button class="price__text" type="button" @click="cancelEditAmount">
-									{{ $t("Back") }}
-								</button>
-							</div>
-							<span v-if="amountError" class="price__error">{{ amountError }}</span>
-						</template>
-					</div>
+					<amount-editor size="lg" />
 				</div>
 			</div>
 		</wrapper-block>
@@ -231,61 +127,6 @@
 					font-weight: 500;
 					@include mediamax(480) {
 						font-size: 16px;
-					}
-				}
-				.price {
-					display: flex;
-					flex-direction: column;
-					align-items: flex-end;
-					gap: 4px;
-					&__number {
-						color: $main-text-link-and-price-color;
-						font-size: 32px;
-						line-height: 40px;
-						@include mediamax(480) {
-							font-size: 24px;
-						}
-						font-weight: 700;
-					}
-					&__text {
-						padding: 0;
-						border: none;
-						background: transparent;
-						color: #a4a5b1;
-						font-size: 16px;
-						font-weight: 400;
-						line-height: 19px;
-						text-decoration: underline;
-						text-decoration-style: dotted;
-						text-underline-offset: 3px;
-						cursor: pointer;
-						&--active {
-							color: $main-text-link-and-price-color;
-						}
-					}
-					&__input {
-						width: 180px;
-						padding: 0;
-						border: none;
-						outline: none;
-						text-align: right;
-						color: $main-text-link-and-price-color;
-						font-size: 32px;
-						line-height: 40px;
-						font-weight: 700;
-						background: transparent;
-						@include mediamax(480) {
-							font-size: 24px;
-						}
-					}
-					&__actions {
-						display: flex;
-						gap: 8px;
-					}
-					&__error {
-						color: #dd4c1e;
-						font-size: 12px;
-						line-height: 16px;
 					}
 				}
 			}

@@ -13,12 +13,13 @@
 	import WalletEvmConnect from "@pay/views/payerForm/components/steps/stepThree/walletEvmConnect/WalletEvmConnect.vue";
 	import RowTemplate from "@pay/views/payerForm/components/steps/stepThree/rowTemplate/RowTemplate.vue";
 	import CurrencyIcon from "@pay/components/ui/currencyIcon/CurrencyIcon.vue";
-	import { changeChainBsc, formatDollars } from "@shared/utils/helpers/general.ts";
+	import { changeChainBsc } from "@shared/utils/helpers/general.ts";
 	import { blockchainCurrencyId } from "@shared/utils/constants/blockchain";
 	import BannerInfo from "@pay/views/payerForm/components/steps/bannerInfo/BannerInfo.vue";
 	import IconLogoQrCode from "@pay/components/icons/IconLogoQrCode.vue";
 	import loaderTransactionPending from "@pay/assets/animations/loaderTransactionPending.json";
 	import { LottieAnimation } from "lottie-web-vue";
+	import AmountEditor from "@pay/views/payerForm/components/amountEditor/AmountEditor.vue";
 
 	const {
 		currentAddress,
@@ -29,8 +30,7 @@
 		filteredBlockchains,
 		addresses,
 		payerId,
-		store,
-		amount
+		store
 	} = storeToRefs(usePayerFormStore());
 	const { getAmountRate } = usePayerFormStore();
 
@@ -227,7 +227,7 @@
 							</div>
 							<div class="details__bottom">
 								<span>{{ $t("Sum") }}:</span>
-								<span class="details__bottom-price">{{ formatDollars(amount, undefined, undefined, 2) }}</span>
+								<amount-editor size="md" />
 							</div>
 						</div>
 					</div>
@@ -443,8 +443,11 @@
 							border-right: 1px solid #ecf0f5;
 							flex-grow: 1;
 						}
+						@include mediamax(890) {
+							max-width: 250px;
+						}
 						@include mediamax(768) {
-							max-width: 280px;
+							max-width: 200px;
 						}
 						@include mediamax(680) {
 							gap: 4px;
