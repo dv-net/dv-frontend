@@ -2,14 +2,15 @@
 	import { usePayerFormStore } from "@pay/stores/payerForm";
 	import { storeToRefs } from "pinia";
 	import { UiCopyText, UiIcon, UiLink } from "@dv.net/ui-kit";
-	import { formatDollars, truncateHash } from "@shared/utils/helpers/general.ts";
+	import { truncateHash } from "@shared/utils/helpers/general.ts";
 	import { computed } from "vue";
 	import BlockAdvertising from "@pay/views/payerForm/components/blockAdvertising/BlockAdvertising.vue";
 	import WrapperBlock from "@pay/views/payerForm/components/wrapperBlock/WrapperBlock.vue";
 	import { useMediaQuery } from "@shared/utils/composables/useMediaQuery.ts";
 	import BlockLatestTransactions from "@pay/views/payerForm/components/blockLatestTransactions/BlockLatestTransactions.vue";
+	import AmountEditor from "@pay/views/payerForm/components/amountEditor/AmountEditor.vue";
 
-	const { payerId, store, amount, errorStore, currentStep, isShowAdvertising, isShowBlockLatestTransactions } =
+	const { payerId, store, errorStore, currentStep, isShowAdvertising, isShowBlockLatestTransactions } =
 		storeToRefs(usePayerFormStore());
 	const isMediaMax480 = useMediaQuery("(max-width: 480px)");
 
@@ -50,7 +51,7 @@
 				</div>
 				<div class="details__bottom">
 					<span class="details__bottom-label">{{ $t("Sum") }}:</span>
-					<span class="details__bottom-price">{{ formatDollars(amount, "$", "—", 2) }}</span>
+					<amount-editor size="lg" />
 				</div>
 			</div>
 		</wrapper-block>
@@ -116,7 +117,7 @@
 			&__bottom {
 				padding-top: 20px;
 				display: flex;
-				align-items: center;
+				align-items: flex-start;
 				justify-content: space-between;
 				@include mediamax(480) {
 					padding-top: 16px;
@@ -127,14 +128,6 @@
 					@include mediamax(480) {
 						font-size: 16px;
 					}
-				}
-				&-price {
-					color: $main-text-link-and-price-color;
-					font-size: 32px;
-					@include mediamax(480) {
-						font-size: 24px;
-					}
-					font-weight: 700;
 				}
 			}
 		}

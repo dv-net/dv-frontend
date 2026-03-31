@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [1.0.35] - 2026-03-31
+
+- feat: added inline amount editing in payment form [DV-4281]
+
 ## [1.0.34] - 2026-03-25
 
 - fix: corrected sidebar height/overflow in Safari on small viewport height so the `account-management` block remains visible [DV-4273]
