@@ -1,3 +1,5 @@
+@use "../additional/vars" as *;
+
 .ui-tooltip__content-wrapper {
 	&.address-book-evm {
 		.ui-tooltip__content {

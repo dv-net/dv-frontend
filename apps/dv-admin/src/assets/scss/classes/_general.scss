@@ -1,3 +1,5 @@
+@use "../additional/vars" as *;
+
 .global-opacity {
 	opacity: 0.5;
 	pointer-events: none;

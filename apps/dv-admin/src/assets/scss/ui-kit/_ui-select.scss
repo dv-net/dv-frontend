@@ -1,3 +1,5 @@
+@use "../additional/vars" as *;
+
 .date-profile-select.ui-select__popper {
 	.ui-select__option {
 		padding: 8px 16px;

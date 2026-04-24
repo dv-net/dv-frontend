@@ -1,3 +1,5 @@
+@use "../additional/vars" as *;
+
 .auth-form {
 	display: flex;
 	flex-direction: column;
