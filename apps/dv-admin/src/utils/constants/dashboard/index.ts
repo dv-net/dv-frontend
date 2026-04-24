@@ -7,7 +7,7 @@ export const tronTransferTypeList = ref<ITronTransferTypeList[]>([
 		title: "Burn TRX",
 		subtitle: "Simple option",
 		description:
-			"An easy way to start accepting USDT is to transfer them via TRX from hot wallets to cold ones. In this case, each transaction will cost about $1-2",
+			"A simple way to start accepting USDT is to transfer it via TRX from hot wallets to cold wallets. In this case, each transaction will cost around $2–5 (about 65,000–130,000 Energy)",
 		iconNameSubtitle: "handshake",
 		iconColor: "#1968e5"
 	},

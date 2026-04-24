@@ -8,6 +8,8 @@
 	"To disconnect TronLink, open the wallet extension and remove this site from the connected list": "To disconnect TronLink, open the wallet extension and remove this site from the connected list",
 	"Chain": "Chain",
 	"Show": "Show",
+	"Refresh the page or change network and try again": "Refresh the page or change network and try again",
+	"Awaiting transfer": "Awaiting transfer",
 	"Save": "Save",
 	"Cryptocurrency": "Cryptocurrency",
 	"You have Trust Wallet installed, which may be intercepting TronLink requests. To connect via TronLink, temporarily disable Trust Wallet and refresh the page": "You have Trust Wallet installed, which may be intercepting TronLink requests. To connect via TronLink, temporarily disable Trust Wallet and refresh the page",
