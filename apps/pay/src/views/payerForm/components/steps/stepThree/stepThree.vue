@@ -18,18 +18,21 @@
 	import BannerInfo from "@pay/views/payerForm/components/steps/bannerInfo/BannerInfo.vue";
 	import AmountEditor from "@pay/views/payerForm/components/amountEditor/AmountEditor.vue";
 
+	const payerFormStore = usePayerFormStore();
+
 	const {
 		currentAddress,
 		currentCurrency,
 		currentChain,
+		currentCurrencyChainId,
 		currentStep,
 		timeline,
 		filteredBlockchains,
 		addresses,
 		payerId,
 		store
-	} = storeToRefs(usePayerFormStore());
-	const { getAmountRate } = usePayerFormStore();
+	} = storeToRefs(payerFormStore);
+	const { getAmountRate } = payerFormStore;
 
 	const isShowModalTronWallets = ref<boolean>(false);
 	const isShowModalEvmWallets = ref<boolean>(false);
@@ -52,10 +55,8 @@
 		return addresses.value.find((item) => item.currency.code === currentCurrency.value)?.currency?.currency_label || "";
 	});
 	const tokenLabel = computed<string>(() => {
-		return (
-			addresses.value.find((item) => item.currency.id === `${currentCurrency.value}.${currentChain.value}`)?.currency
-				?.token_label || ""
-		);
+		if (!currentCurrencyChainId.value) return "";
+		return addresses.value.find((item) => item.currency.id === currentCurrencyChainId.value)?.currency?.token_label || "";
 	});
 
 	onMounted(() => {

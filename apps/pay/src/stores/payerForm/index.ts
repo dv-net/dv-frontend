@@ -159,10 +159,14 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		}
 	};
 
+	const currentCurrencyChainId = computed<string | null>(() => {
+		if (!currentCurrency.value || !currentChain.value) return null;
+		return `${currentCurrency.value}.${currentChain.value}`;
+	});
+
 	const currentAddress = computed<string | null>(() => {
-		if (!currentChain.value || !currentCurrency.value) return null;
-		const currencyId: string = `${currentCurrency.value}.${currentChain.value}`;
-		const findAddress = addresses.value.find((item) => item.currency.id === currencyId);
+		if (!currentCurrencyChainId.value) return null;
+		const findAddress = addresses.value.find((item) => item.currency.id === currentCurrencyChainId.value);
 		return findAddress ? findAddress.address : null;
 	});
 
@@ -236,10 +240,9 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 
 	const checkForNewTransactions = (transactionsLs: string): IWalletTransactionResponse[] => {
 		const { unconfirmed } = JSON.parse(transactionsLs);
+		if (!currentCurrencyChainId.value) return [];
 		return transactionsUnconfirmed.value.filter(
-			(newTx) =>
-				newTx.currency_code === `${currentCurrency.value}.${currentChain.value}` &&
-				!unconfirmed.some((oldTx: IWalletTransactionResponse) => oldTx.hash === newTx.hash)
+			(newTx) => newTx.currency_code === currentCurrencyChainId.value && !unconfirmed.some((oldTx: IWalletTransactionResponse) => oldTx.hash === newTx.hash)
 		);
 	};
 
@@ -265,6 +268,7 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		arrayCurrencyIds,
 		currentTransaction,
 		errorStore,
+		currentCurrencyChainId,
 		currentAddress,
 		filteredBlockchains,
 		isShowAdvertising,

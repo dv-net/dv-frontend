@@ -1,7 +1,7 @@
 <script setup lang="ts">
 	import { UiButton } from "@dv.net/ui-kit";
 	import QrcodeVue from "qrcode.vue";
-	import { ref } from "vue";
+	import { ref, shallowRef, watch } from "vue";
 	import { storeToRefs } from "pinia";
 	import type { CurrencyType } from "@pay/utils/types/blockchain";
 	import type { BlockchainType } from "@shared/utils/types/blockchain";
@@ -9,14 +9,17 @@
 	import BlockchainIcon from "@shared/components/ui/blockchainIcon/BlockchainIcon.vue";
 	import CurrencyIcon from "@pay/components/ui/currencyIcon/CurrencyIcon.vue";
 	import IconLogoQrCode from "@pay/components/icons/IconLogoQrCode.vue";
-	import loaderTransactionPending from "@pay/assets/animations/loaderTransactionPending.json";
 	import { LottieAnimation } from "lottie-web-vue";
 	import { blockchainCurrencyId } from "@shared/utils/constants/blockchain";
 	import { useI18n } from "vue-i18n";
+	import { changeChainBsc } from "@shared/utils/helpers/general.ts";
+
+	type LottieAnimationData = Record<string, unknown>;
+	type LottieAnimationModule = { default: LottieAnimationData };
 
 	const { locale } = useI18n();
 
-	const { currentAddress, currentCurrency, currentChain } = storeToRefs(usePayerFormStore());
+	const { currentAddress, currentCurrency, currentChain, currentCurrencyChainId } = storeToRefs(usePayerFormStore());
 
 	defineProps<{
 		isEvmConnected: boolean;
@@ -31,6 +34,33 @@
 	}>();
 
 	const isShowQrCode = ref<boolean>(false);
+	const getPathToAnimation = (name: string) => `/src/assets/animations/loaderTransactionPending/${name}.json`;
+	const loaderTransactionPendingAnimationModules = import.meta.glob<LottieAnimationModule>(
+		"/src/assets/animations/loaderTransactionPending/*.json"
+	);
+	const loaderTransactionPendingGeneralPath = getPathToAnimation("general");
+	const loaderTransactionPending = shallowRef<LottieAnimationData | null>(null);
+	let loaderTransactionPendingRequestId: number = 0;
+
+	const loadLoaderTransactionPending = async (currencyChainId: string | null) => {
+		const requestId = ++loaderTransactionPendingRequestId;
+		const animationPath = currencyChainId ? getPathToAnimation(currencyChainId) : loaderTransactionPendingGeneralPath;
+		const loadAnimation =
+			loaderTransactionPendingAnimationModules[animationPath] ??
+			loaderTransactionPendingAnimationModules[loaderTransactionPendingGeneralPath];
+		if (!loadAnimation) return;
+		const animationModule = await loadAnimation();
+		if (requestId !== loaderTransactionPendingRequestId) return;
+		loaderTransactionPending.value = animationModule.default;
+	};
+
+	watch(
+		currentCurrencyChainId,
+		(currencyChainId) => {
+			void loadLoaderTransactionPending(currencyChainId);
+		},
+		{ immediate: true }
+	);
 </script>
 
 <template>
@@ -42,7 +72,7 @@
 					<icon-logo-qr-code class="qr__logo" />
 				</div>
 				<div v-else key="loader" class="qr__loader">
-					<lottie-animation :animation-data="loaderTransactionPending" :loop="true" />
+					<lottie-animation v-if="loaderTransactionPending" :animation-data="loaderTransactionPending" :loop="true" />
 				</div>
 			</div>
 			<div class="bottom">
@@ -62,7 +92,7 @@
 								height="16px"
 								:type="blockchainCurrencyId[currentChain.toLocaleLowerCase('en')] as BlockchainType"
 							/>
-							<span class="description__item-label">{{ currentChain }}</span>
+							<span class="description__item-label">{{ changeChainBsc(currentChain) }}</span>
 						</div>
 						<span v-if="locale !== 'ru'" class="description__text"> chain </span>
 					</div>
