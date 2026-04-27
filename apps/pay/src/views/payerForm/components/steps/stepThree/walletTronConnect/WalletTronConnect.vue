@@ -26,7 +26,6 @@
 
 	const isContractTron = computed<boolean>(() => Boolean(token) && Object.keys(TRON_CONTRACTS).includes(token!));
 	const connectedWallets = computed(() => walletList.value.filter((item) => item.initialized));
-	const isSingleWallet = computed<boolean>(() => connectedWallets.value.length === 1);
 
 	const handleSendTransaction = async (walletId: string) => {
 		try {
@@ -179,7 +178,7 @@
 </script>
 
 <template>
-	<div v-if="connectedWallets.length" :class="['wallets', { 'wallets--single': isSingleWallet }]">
+	<div v-if="connectedWallets.length" class="wallets">
 		<div v-for="item in connectedWallets" :key="item.id" class="wallets__item">
 			<div class="header">
 				<div class="header__wallet">
@@ -230,12 +229,6 @@
 		@include mediamax(890) {
 			align-items: unset;
 			flex-direction: column;
-		}
-		&--single {
-			align-self: center;
-			align-items: unset;
-			flex-direction: unset;
-			max-width: 648px;
 		}
 		@include mediamax(680) {
 			padding: 0;

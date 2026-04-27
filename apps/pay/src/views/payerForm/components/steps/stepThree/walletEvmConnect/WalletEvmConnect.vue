@@ -244,7 +244,6 @@
 		border: 1px solid #e1e8f1;
 		background-color: #f7f9fb;
 		padding: 4px;
-		max-width: 640px;
 		width: 100%;
 		align-self: center;
 		@include mediamax(680) {
@@ -263,7 +262,6 @@
 			border: 1px solid #e1e8f1;
 			padding: 16px;
 			gap: 16px;
-			max-width: 640px;
 			width: 100%;
 			.header {
 				display: flex;

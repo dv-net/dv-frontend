@@ -1,7 +1,7 @@
-@import "collapse";
-@import "ui-dropdown";
-@import "ui-select";
-@import "ui-link";
-@import "ui-modal";
-@import "ui-table";
-@import "ui-tooltip";
+@forward "collapse";
+@forward "ui-dropdown";
+@forward "ui-select";
+@forward "ui-link";
+@forward "ui-modal";
+@forward "ui-table";
+@forward "ui-tooltip";

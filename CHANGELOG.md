@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [1.0.36] - 2026-04-24
+
+- feat: new animation on step 3 of the payment form [DV-4304]
+
 ## [1.0.35] - 2026-03-31
 
 - feat: added inline amount editing in payment form [DV-4281]

@@ -1,3 +1,6 @@
+@use "../additional/vars" as *;
+@use "@shared/assets/scss/additional/media" as *;
+
 // global titles
 .global-title-h2 {
 	color: $main-title-color;

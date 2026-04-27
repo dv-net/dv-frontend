@@ -1,3 +1,5 @@
+@use "../additional/vars" as *;
+
 .chartjs-tooltip {
 	position: absolute;
 	background-color: #222;

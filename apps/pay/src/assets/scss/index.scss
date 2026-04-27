@@ -1,11 +1,13 @@
+@use "sass:meta";
+
 // base
-@import "base/index";
+@use "base/index";
 
 // libs
-@import "@dv.net/ui-kit/dist/style.css";
+@include meta.load-css("@dv.net/ui-kit/dist/style.css");
 
 // ui
-@import "ui-kit/index";
+@include meta.load-css("ui-kit/index");
 
 // classes
-@import "classes/index";
+@include meta.load-css("classes/index");

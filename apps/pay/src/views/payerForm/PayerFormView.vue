@@ -27,6 +27,7 @@
 		timeline,
 		currentCurrency,
 		currentChain,
+		currentCurrencyChainId,
 		errorStore,
 		isShowAdvertising,
 		stepMap,
@@ -127,7 +128,9 @@
 			if ([5].includes(newValue) && [1, 2, 3].includes(item.id)) item.isActive = false;
 		});
 		if (newValue === 3 && payerId.value) {
-			getApiWalletConfirm(payerId.value, `${currentCurrency.value}.${currentChain.value}`);
+			if (currentCurrencyChainId.value) {
+				getApiWalletConfirm(payerId.value, currentCurrencyChainId.value);
+			}
 		}
 		router.push({ query: { ...route.query, step: newValue } });
 	});

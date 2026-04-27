@@ -10,6 +10,7 @@ node_modules
 .cursorrules
 .cursorignore
 .cursor
+package-lock.json
 dist
 dist-ssr
 dist-temp

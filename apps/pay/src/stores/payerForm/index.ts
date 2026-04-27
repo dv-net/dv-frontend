@@ -18,6 +18,7 @@ import type { BlockchainType } from "@shared/utils/types/blockchain";
 import type { CurrencyType } from "@pay/utils/types/blockchain";
 import { SORT_CHAIN } from "@pay/utils/constants/blockchain";
 import { loaderShutdown } from "@pay/utils/helpers/general.ts";
+import type { IPayerFormTimelineItem } from "@pay/utils/types/schemas";
 
 export const usePayerFormStore = defineStore("payerForm", () => {
 	const { locale } = useI18n();
@@ -40,7 +41,7 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 	const moneyCameAudioRef = ref<HTMLAudioElement | null>(null);
 	const paymentFoundAudioRef = ref<HTMLAudioElement | null>(null);
 	const stepMap = ref<Record<number, number>>({ 1: 1, 2: 2, 3: 3, 4: 3, 5: 4 });
-	const timeline = ref([
+	const timeline = ref<IPayerFormTimelineItem[]>([
 		{
 			id: 1,
 			label: "Select currency",
@@ -158,10 +159,14 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		}
 	};
 
+	const currentCurrencyChainId = computed<string | null>(() => {
+		if (!currentCurrency.value || !currentChain.value) return null;
+		return `${currentCurrency.value}.${currentChain.value}`;
+	});
+
 	const currentAddress = computed<string | null>(() => {
-		if (!currentChain.value || !currentCurrency.value) return null;
-		const currencyId: string = `${currentCurrency.value}.${currentChain.value}`;
-		const findAddress = addresses.value.find((item) => item.currency.id === currencyId);
+		if (!currentCurrencyChainId.value) return null;
+		const findAddress = addresses.value.find((item) => item.currency.id === currentCurrencyChainId.value);
 		return findAddress ? findAddress.address : null;
 	});
 
@@ -233,12 +238,11 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		return false;
 	};
 
-	const checkForNewTransactions = (transactionsLs: string) => {
+	const checkForNewTransactions = (transactionsLs: string): IWalletTransactionResponse[] => {
 		const { unconfirmed } = JSON.parse(transactionsLs);
+		if (!currentCurrencyChainId.value) return [];
 		return transactionsUnconfirmed.value.filter(
-			(newTx) =>
-				newTx.currency_code === `${currentCurrency.value}.${currentChain.value}` &&
-				!unconfirmed.some((oldTx: IWalletTransactionResponse) => oldTx.hash === newTx.hash)
+			(newTx) => newTx.currency_code === currentCurrencyChainId.value && !unconfirmed.some((oldTx: IWalletTransactionResponse) => oldTx.hash === newTx.hash)
 		);
 	};
 
@@ -264,6 +268,7 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		arrayCurrencyIds,
 		currentTransaction,
 		errorStore,
+		currentCurrencyChainId,
 		currentAddress,
 		filteredBlockchains,
 		isShowAdvertising,
