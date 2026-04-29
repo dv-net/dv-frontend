@@ -38,6 +38,7 @@ export interface IUserResponse {
 	language: string;
 	processing_owner_id: string;
 	rate_scale: string;
+	two_fa_reset_expires_at: string;
 	rate_source: string;
 	created_at: string | null;
 	updated_at: string | null;

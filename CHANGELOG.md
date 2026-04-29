@@ -5,6 +5,7 @@
 ## [1.0.36] - 2026-04-24
 
 - feat: new animation on step 3 of the payment form [DV-4304]
+- feat: added 2FA reset status banner on dashboard with days-left timer, cancel action, and reset tooltip in profile settings [DV-4311]
 
 ## [1.0.35] - 2026-03-31
 

@@ -1,18 +1,37 @@
 <script setup lang="ts">
 	import { UiButton, UiCopyText, UiInput } from "@dv.net/ui-kit/dist";
+	import { UiTooltip } from "@dv.net/ui-kit";
 	import IconGoogle from "@dv-admin/components/icons/profile/IconGoogle.vue";
 	import { storeToRefs } from "pinia";
 	import { useAuthStore } from "@dv-admin/stores/auth";
 	import { computed, ref } from "vue";
 	import QrcodeVue from "qrcode.vue";
 	import BlockSection from "@dv-admin/components/ui/BlockSection/BlockSection.vue";
+	import { postApiUser2FaResetInit } from "@dv-admin/services/api/auth.ts";
+	import { useNotifications } from "@shared/utils/composables/useNotifications.ts";
+	import { useI18n } from "vue-i18n";
+	import { formatDate } from "@dv-admin/utils/helpers/dateParse.ts";
 
-	const { user, userData2Fa, isCodeEntryMode, verificationCode2Fa, isLoading2fa } = storeToRefs(useAuthStore());
-	const { postUser2FaChange } = useAuthStore();
+	const { notify } = useNotifications();
+	const { t } = useI18n();
+
+	const authStore = useAuthStore();
+	const {
+		user,
+		userData2Fa,
+		isCodeEntryMode,
+		verificationCode2Fa,
+		isLoading2fa,
+		isTwoFaResetExpiresAt,
+		isLoadingDelete2Fa
+	} = storeToRefs(authStore);
+	const { postUser2FaChange, getUser, getInfoUser2Fa, deleteUser2FaReset } = authStore;
 
 	const isEnterCodeManually = ref<boolean>(false);
+	const isLoading2FaResetInit = ref<boolean>(false);
 
 	const isDisabledBtn = computed<boolean>(() => verificationCode2Fa.value.length < 6);
+
 	const linkQrCode = computed<string | null>(() => {
 		if (!user.value || !userData2Fa.value?.secret) return null;
 		return `otpauth://totp/DV.net:${user.value.email}?secret=${userData2Fa.value.secret}&issuer=DV.net`;
@@ -21,6 +40,26 @@
 	const handleCancelSend = () => {
 		isCodeEntryMode.value = false;
 		verificationCode2Fa.value = "";
+	};
+
+	const postUser2FaResetInit = async () => {
+		try {
+			isLoading2FaResetInit.value = true;
+			await postApiUser2FaResetInit();
+			await Promise.all([getInfoUser2Fa(), getUser()]);
+			if (user.value?.two_fa_reset_expires_at) {
+				notify(
+					t("You’ve started resetting your two-factor authentication. It will be completed on {date}", {
+						date: formatDate(user.value.two_fa_reset_expires_at)
+					}),
+					"success"
+				);
+			}
+		} catch (error: any) {
+			console.error(error);
+		} finally {
+			isLoading2FaResetInit.value = false;
+		}
 	};
 </script>
 
@@ -35,9 +74,32 @@
 				{{ $t("Convenient tool for 2FA codes") }}
 			</span>
 		</div>
-		<ui-button type="secondary" size="sm" @click="isCodeEntryMode = true">
-			{{ userData2Fa?.is_confirmed ? $t("Disable") : $t("Connect") }}
-		</ui-button>
+		<div class="flex flex-y-center gap-8">
+			<ui-button type="secondary" size="sm" @click="isCodeEntryMode = true">
+				{{ userData2Fa?.is_confirmed ? $t("Disable") : $t("Connect") }}
+			</ui-button>
+			<div v-if="userData2Fa?.is_confirmed">
+				<ui-button
+					v-if="isTwoFaResetExpiresAt"
+					type="primary"
+					:loading="isLoadingDelete2Fa"
+					size="sm"
+					@click="deleteUser2FaReset($t('You have cancelled the 2FA reset'))"
+				>
+					{{ $t("Cancel 2FA reset") }}
+				</ui-button>
+				<ui-tooltip
+					v-else
+					mode="dark"
+					:title="$t('Start a 2FA reset')"
+					:text="$t('After initiating the 2FA reset, a 15-day waiting period will begin')"
+				>
+					<ui-button type="negative" :loading="isLoading2FaResetInit" size="sm" @click="postUser2FaResetInit">
+						{{ $t("Reset") }}
+					</ui-button>
+				</ui-tooltip>
+			</div>
+		</div>
 	</block-section>
 	<!-- Form for code generation	-->
 	<block-section v-else class="connect">

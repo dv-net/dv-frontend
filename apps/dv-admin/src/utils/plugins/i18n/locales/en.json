@@ -4,6 +4,13 @@
 		"h": "h",
 		"s": "s"
 	},
+	"You’ve started resetting your two-factor authentication. It will be completed on {date}": "You’ve started resetting your two-factor authentication. It will be completed on {date}",
+	"Reset": "Reset",
+	"After initiating the 2FA reset, a 15-day waiting period will begin": "After initiating the 2FA reset, a 15-day waiting period will begin",
+	"Start a 2FA reset": "Start a 2FA reset",
+	"2FA reset was requested. 2FA will be reset in {days} days": "2FA reset was requested. 2FA will be reset in {days} days",
+	"You have cancelled the 2FA reset": "You have cancelled the 2FA reset",
+	"Cancel 2FA reset": "Cancel 2FA reset",
 	"Go to settings": "Go to settings",
 	"This feature is disabled": "This feature is disabled",
 	"address_to must be at least 16 characters in length": "The address must contain at least 16 characters",

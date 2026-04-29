@@ -62,6 +62,14 @@ export const postApiUser2FaDisable = async (body: IUser2FaRequest) => {
 	await api.post(`/dv-admin/2fa/disable`, body);
 };
 
+export const deleteApiUser2FaReset = async () => {
+	await api.delete(`/dv-admin/2fa/reset`);
+};
+
+export const postApiUser2FaResetInit = async () => {
+	await api.post(`/dv-admin/2fa/reset/init`);
+};
+
 export const getApiOwnerData = async (): Promise<IOwnerDataResponse> => {
 	const resp = await api.get(`/dv-admin/console/owner-data`);
 	return resp.data.data;

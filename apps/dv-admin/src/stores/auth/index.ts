@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import {
+	deleteApiUser2FaReset,
 	getApiMyDvAuthLink,
 	getApiInfoUser2Fa,
 	getApiOwnerData,
@@ -37,6 +38,7 @@ export const useAuthStore = defineStore("auth", () => {
 	const router = useRouter();
 	const isLoggedIn = ref<boolean>(!!Cookies.get(USER.TOKEN_KEY_LS));
 	const isLoading = ref<boolean>(false);
+	const isLoadingDelete2Fa = ref<boolean>(false);
 	const isLoadingOwnerData = ref<boolean>(false);
 	const isLoading2fa = ref<boolean>(false);
 	const user = ref<IUserResponse | null>(null);
@@ -57,6 +59,8 @@ export const useAuthStore = defineStore("auth", () => {
 		if (!user.value) return false;
 		return Boolean(user.value.processing_owner_id);
 	});
+
+	const isTwoFaResetExpiresAt = computed<boolean>(() => Boolean(user.value?.two_fa_reset_expires_at));
 
 	// Authorization
 	const login = async (body: ISignInRequest) => {
@@ -218,6 +222,18 @@ export const useAuthStore = defineStore("auth", () => {
 			isLoading2fa.value = false;
 		}
 	};
+	const deleteUser2FaReset = async (message?: string) => {
+		try {
+			isLoadingDelete2Fa.value = true;
+			await deleteApiUser2FaReset();
+			await Promise.all([getInfoUser2Fa(), getUser()]);
+			if (message) notify(message, "success");
+		} catch (error: any) {
+			throw error;
+		} finally {
+			isLoadingDelete2Fa.value = false;
+		}
+	};
 
 	const getMyDvAuthLink = async () => {
 		try {
@@ -252,9 +268,12 @@ export const useAuthStore = defineStore("auth", () => {
 		resetEmail,
 		isShowMainLoader,
 		isRootUser,
+		isTwoFaResetExpiresAt,
+		isLoadingDelete2Fa,
 		getToken,
 		postForgotPassword,
 		postUser2FaChange,
+		deleteUser2FaReset,
 		getInfoUser2Fa,
 		postUserChangeEmail,
 		putUser,

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 	import BlockSection from "@dv-admin/components/ui/BlockSection/BlockSection.vue";
 	import IconHotWallets from "@dv-admin/components/icons/dashboard/IconHotWallets.vue";
-	import { UiButton, UiIcon, UiSkeleton } from "@dv.net/ui-kit/dist";
+	import { UiButton, UiSkeleton } from "@dv.net/ui-kit/dist";
 	import IconExchange from "@dv-admin/components/icons/dashboard/IconExchange.vue";
 	import IconColdWallet from "@dv-admin/components/icons/dashboard/IconColdWallets.vue";
 	import { storeToRefs } from "pinia";
@@ -11,6 +11,7 @@
 	import { useExchangeSettingsStore } from "@dv-admin/stores/exchangeSettings";
 	import { useHotWalletsStore } from "@dv-admin/stores/hotWallets";
 	import Card from "@dv-admin/views/dashboard/components/cards/card/Card.vue";
+	import WarningBanner from "@dv-admin/views/dashboard/components/warningBanner/WarningBanner.vue";
 	import { useI18n } from "vue-i18n";
 
 	const { balancesExchanges, walletBalancesCold, isLoadingBalances } = storeToRefs(useDashboardStore());
@@ -144,16 +145,14 @@
 			</template>
 		</div>
 
-		<div v-if="currentTransfersStatus === 'system_suspended'" class="cards__warning">
-			<ui-icon name="error" type="400" color="#dd4c1e" />
-			<p class="warning__text">
-				{{
-					$t(
-						"We have suspended transfers because we were unable to perform automatic withdrawals from the crypto exchange - your account there may have been temporarily blocked. To enable transfers again, please disable the automatic withdrawal function from the crypto exchange"
-					)
-				}}
-			</p>
-		</div>
+		<warning-banner
+			v-if="currentTransfersStatus === 'system_suspended'"
+			:text="
+				$t(
+					'We have suspended transfers because we were unable to perform automatic withdrawals from the crypto exchange - your account there may have been temporarily blocked. To enable transfers again, please disable the automatic withdrawal function from the crypto exchange'
+				)
+			"
+		/>
 	</block-section>
 </template>
 
@@ -161,36 +160,18 @@
 	.cards {
 		display: flex;
 		gap: 18px;
-
 		&__bottom {
 			display: flex;
 			flex-direction: column;
 			gap: 12px;
 			margin-top: auto;
-
 			&.no-margin {
 				margin-top: 0;
 			}
 		}
-
 		&__btn {
 			margin-top: auto;
 			width: 100%;
-		}
-
-		&__warning {
-			display: flex;
-			gap: 8px;
-			border-radius: 8px;
-			border: 1px solid #dd4c1e;
-			background-color: #fcede8;
-			padding: 12px;
-			&__text {
-				color: $black;
-				font-size: 11px;
-				font-weight: 500;
-				line-height: 15px;
-			}
 		}
 	}
 </style>

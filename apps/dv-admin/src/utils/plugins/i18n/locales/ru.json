@@ -4,6 +4,13 @@
 		"h": "ч",
 		"s": "сек"
 	},
+	"You’ve started resetting your two-factor authentication. It will be completed on {date}": "Вы начали сброс двухфакторной аутентификации. Он завершится {date}",
+	"Reset": "Сбросить",
+	"Start a 2FA reset": "Начать сброс 2FA",
+	"After initiating the 2FA reset, a 15-day waiting period will begin": "После запуска сброса 2FA начнётся 15-дневный период ожидания",
+	"2FA reset was requested. 2FA will be reset in {days} days": "Был запрошен сброс двухфакторной аутентификации. Двухфакторная аутентификация будет сброшена через {days} дней",
+	"You have cancelled the 2FA reset": "Вы отменили сброс 2FA",
+	"Cancel 2FA reset": "Отмена сброса 2FA",
 	"This feature is disabled": "Эта функция отключена",
 	"Go to settings": "Перейдите в настройки",
 	"address_to must be at least 16 characters in length": "Адрес должен содержать не менее 16 символов",
