@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [1.0.37] - 2026-05-14
+
+- change: UI Kit version [DV-4328]
+
 ## [1.0.36] - 2026-04-24
 
 - feat: new animation on step 3 of the payment form [DV-4304]
