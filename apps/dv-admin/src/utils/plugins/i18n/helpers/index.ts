@@ -26,7 +26,6 @@ export const updateTranslationsUiKit = (value: string, t: any) => {
 	config.uiLanguages.translations.modalSearchNotFound = t("Not found");
 	config.uiLanguages.translations.searchInputPlaceholder = t("Search");
 	config.uiLanguages.translations.changeLanguage = t("Change language");
-	config.uiTable.translations.noData = t("Not found");
 	config.uiDatePicker.translations.emptyPlaceholder = t("Select date");
 	config.uiDatePicker.translations.applyButton = t("Apply", { context: "apply to" });
 	config.uiDatePicker.translations.inputLabelEnd = t("End");
@@ -46,4 +45,7 @@ export const updateTranslationsUiKit = (value: string, t: any) => {
 	config.uiConfirm.translations.cancelBtn = t("Cancel.verb");
 	config.uiPagination.translations.from = t("from");
 	config.uiPagination.translations.show = t("show");
+	config.uiTable.translations.noData = t("Not found");
+	config.uiTable.translations.noDataTitle = t("Not found");
+	config.uiTable.translations.noDataDescription = t("Data is unavailable or has not been loaded yet");
 };
