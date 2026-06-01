@@ -7,7 +7,7 @@
 		getCurrentBlockchain,
 		getCurrentCoin
 	} from "@shared/utils/helpers/general.ts";
-	import { UiCheckbox, UiIconButton } from "@dv.net/ui-kit";
+	import { UiCheckbox, UiIconButton, UiTooltip, UiIcon } from "@dv.net/ui-kit";
 	import type { IHotWalletsItem } from "@dv-admin/utils/types/api/apiGo.ts";
 	import BlockchainIcon from "@shared/components/ui/blockchainIcon/BlockchainIcon.vue";
 	import { getLinkSearch } from "@shared/utils/helpers/linkExplorer.ts";
@@ -18,7 +18,7 @@
 </script>
 
 <template>
-	<div class="card">
+	<div class="card" :class="{ 'card--dirty': item.dirty }">
 		<div class="card__top">
 			<div class="currency">
 				<div class="currency__icon">
@@ -38,7 +38,12 @@
 				</div>
 
 				<div class="content">
-					<span>{{ getCurrentCoin(item.currency_id) }}</span>
+					<span class="content__name">
+						{{ getCurrentCoin(item.currency_id) }}
+						<ui-tooltip v-if="item.dirty" :title="$t('Dirty address')" :text="$t('This address has been marked as dirty and permanently removed from automatic allocation.')">
+							<ui-icon name="warning" type="filled" color="#f04438" size="sm" class="pointer" />
+						</ui-tooltip>
+					</span>
 					<span class="content__label">{{ getCurrentBlockchain(item.currency_id) }}</span>
 				</div>
 			</div>
@@ -97,6 +102,12 @@
 				font-weight: 500;
 				line-height: 20px;
 
+				&__name {
+					display: flex;
+					align-items: center;
+					gap: 4px;
+				}
+
 				&__label {
 					color: $secondary;
 					font-size: 12px;
@@ -151,6 +162,11 @@
 				display: flex;
 				gap: 14px;
 			}
+		}
+
+		&--dirty {
+			border-color: #f04438;
+			background-color: #fff5f5;
 		}
 
 		&__line {

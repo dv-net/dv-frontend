@@ -3,6 +3,7 @@ import type {
 	IExternalWalletRequest,
 	IHotWalletsRequest,
 	IHotWalletsResponse,
+	IMarkIsDirtyRequest,
 	IWalletKeysHotRequest,
 	IWalletKeysResponse,
 	IWalletSeedsResponse,
@@ -55,4 +56,8 @@ export const postApiWithdrawMultipleManual = async (params: IWithdrawMultipleReq
 export const postApiWalletAddresses = async (body: IExternalWalletRequest): Promise<string> => {
 	const resp = await api.post(`/dv-admin/wallet/addresses`, body);
 	return resp.data.data.pay_url;
+};
+
+export const postApiWalletAddressesMarkIsDirty = async (body: IMarkIsDirtyRequest) => {
+	await api.post("/dv-admin/wallet/addresses/dirty", body);
 };

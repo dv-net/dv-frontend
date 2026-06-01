@@ -27,3 +27,7 @@ export const getApiWalletTxFind = async (payerId: string): Promise<IWalletTxFind
 	const resp = await api.get(`/public/wallet/${payerId}/tx-find`);
 	return resp.data.data;
 };
+
+export const postApiWalletRefreshAddress = async (payerId: string, address: string): Promise<void> => {
+	await api.post(`/public/wallet/${payerId}/refresh-address`, { Address: address });
+};

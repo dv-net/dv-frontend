@@ -1078,3 +1078,7 @@ export interface IDeleteAddressBookRequest {
 	is_evm?: boolean;
 	is_universal?: boolean;
 }
+
+export interface IMarkIsDirtyRequest {
+	address: string;
+}

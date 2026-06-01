@@ -5,7 +5,7 @@
 	import PriceOutput from "@dv-admin/components/ui/priceOutput/PriceOutput.vue";
 	import DisplayHash from "@shared/components/ui/displayHash/DisplayHash.vue";
 	import SendButton from "@dv-admin/views/hotWallets/components/sendButton/SendButton.vue";
-	import { UiCheckbox, UiTable } from "@dv.net/ui-kit";
+	import { UiCheckbox, UiTable, UiTooltip, UiIcon } from "@dv.net/ui-kit";
 	import { computed } from "vue";
 	import type { UiTableHeader } from "@dv.net/ui-kit/dist/components/UiTable/types";
 	import type { UiPaginationMeta } from "@dv.net/ui-kit/dist/components/UiPagination/types";
@@ -43,6 +43,7 @@
 			:headers="headers"
 			:data="wallets"
 			:meta="walletsPagination"
+			:row-class="(row) => row.dirty ? 'row--dirty' : ''"
 			@change-pagination="changePageHandler"
 			table-layout="fixed"
 			:isShowPerPageSelect="false"
@@ -52,7 +53,12 @@
 			</template>
 
 			<template #body-cell-currency_id="{ row }">
-				<blockchain-card :type="row.currency_id" />
+				<div class="currency-cell">
+					<blockchain-card :type="row.currency_id" />
+					<ui-tooltip v-if="row.dirty" :title="$t('Dirty address')" :text="$t('This address has been marked as dirty and permanently removed from automatic allocation.')">
+						<ui-icon name="warning" type="filled" color="#f04438" size="sm" class="pointer" />
+					</ui-tooltip>
+				</div>
 			</template>
 
 			<template #body-cell-amount="{ row }">
@@ -69,3 +75,15 @@
 		</ui-table>
 	</div>
 </template>
+
+<style scoped lang="scss">
+	.currency-cell {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+	}
+
+	:deep(.row--dirty) td {
+		background-color: #fff5f5;
+	}
+</style>

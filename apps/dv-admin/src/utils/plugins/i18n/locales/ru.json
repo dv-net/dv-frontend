@@ -963,5 +963,7 @@
 	"Telegram is connected": "Telegram подключен",
 	"Enter the code sent to your old email": "Введите код высланный на старый email",
 	"Telegram is disabled": "Telegram отключен",
-	"You don’t have any hot wallets yet.": "У вас пока нет горячих кошельков."
+	"You don’t have any hot wallets yet.": "У вас пока нет горячих кошельков.",
+	"Mark address as dirty": "Отметить адрес как грязный",
+	"This address has been marked as dirty and permanently removed from automatic allocation. Any funds received to this wallet require manual withdrawal processing.": "Это означает что адрес будет помечен как грязный и удален из автоматического выдачи. Любые средства, полученные на этот кошелек, требуют ручной обработки вывода."
 }

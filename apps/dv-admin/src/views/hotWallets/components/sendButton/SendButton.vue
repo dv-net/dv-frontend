@@ -6,7 +6,7 @@
 	import type { UiPlacementType } from "@dv.net/ui-kit/dist/components/UiTooltip/types";
 	import IconCursor from "@dv-admin/components/icons/IconCursor.vue";
 	import TooltipHelper from "@dv-admin/components/ui/tooltipHelper/TooltipHelper.vue";
-	import { postApiWithdrawManual, postApiWithdrawProcessing } from "@dv-admin/services/api/hotWallets";
+	import { postApiWithdrawManual, postApiWithdrawProcessing, postApiWalletAddressesMarkIsDirty } from "@dv-admin/services/api/hotWallets";
 	import { useNotifications } from "@shared/utils/composables/useNotifications";
 	import { useI18n } from "vue-i18n";
 	import { getApiWithdrawalCurrencyRules } from "@dv-admin/services/api/withdrawal.ts";
@@ -57,6 +57,16 @@
 		isShowDropdown.value[item.id] = false;
 		await postWithdrawManualOrProcessing(type, item.currency_id, item.id);
 	};
+
+	const handleMarkIsDirty = async (item: IHotWalletsItem) => {
+		isShowDropdown.value[item.id] = false;
+		try {
+			await postApiWalletAddressesMarkIsDirty({ address: item.address });
+			notify(t("Address marked as dirty"), "success");
+		} catch (error: any) {
+			console.error(error);
+		}
+	};
 </script>
 
 <template>
@@ -91,6 +101,12 @@
 					<ui-icon-button icon-name="send" container-small size="lg" />
 					<span>{{ $t("To the processing") }}</span>
 					<tooltip-helper :title="$t('To the processing')" :text="$t('Forced withdrawal to the processing wallet.')" />
+				</div>
+
+				<div class="global-dropdown__wallets-item" @click="handleMarkIsDirty(data)">
+					<ui-icon-button icon-name="cancel" container-small size="lg" />
+					<span>{{ $t("Mark address as dirty") }}</span>
+					<tooltip-helper :title="$t('Mark address as dirty')" :text="$t('This address has been marked as dirty and permanently removed from automatic allocation. Any funds received to this wallet require manual withdrawal processing.')" />
 				</div>
 			</div>
 		</template>
