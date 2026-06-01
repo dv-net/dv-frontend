@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [1.0.38] - 2026-06-01
+
+- feat: add mark is dirty address
+
 ## [1.0.37] - 2026-05-14
 
 - change: UI Kit version [DV-4328]

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import { UiCopyText, UiIcon, UiInput, UiLink } from "@dv.net/ui-kit";
+	import { UiButton, UiCopyText, UiIcon, UiInput, UiLink } from "@dv.net/ui-kit";
 	import { usePayerFormStore } from "@pay/stores/payerForm";
 	import { storeToRefs } from "pinia";
 	import { computed, onMounted, ref } from "vue";
@@ -17,6 +17,7 @@
 	import { blockchainCurrencyId } from "@shared/utils/constants/blockchain";
 	import BannerInfo from "@pay/views/payerForm/components/steps/bannerInfo/BannerInfo.vue";
 	import AmountEditor from "@pay/views/payerForm/components/amountEditor/AmountEditor.vue";
+	import { postApiWalletRefreshAddress } from "@pay/services/api/payerForm";
 
 	const payerFormStore = usePayerFormStore();
 
@@ -32,9 +33,21 @@
 		payerId,
 		store
 	} = storeToRefs(payerFormStore);
-	const { getAmountRate } = payerFormStore;
+	const { getAmountRate, getPayerInfo } = payerFormStore;
 
 	const isShowModalTronWallets = ref<boolean>(false);
+	const isRefreshingAddress = ref<boolean>(false);
+
+	const handleRefreshAddress = async () => {
+		if (!payerId.value || !currentAddress.value) return;
+		isRefreshingAddress.value = true;
+		try {
+			await postApiWalletRefreshAddress(payerId.value, currentAddress.value);
+			await getPayerInfo(payerId.value);
+		} finally {
+			isRefreshingAddress.value = false;
+		}
+	};
 	const isShowModalEvmWallets = ref<boolean>(false);
 	const walletEvmConnectRef = ref<InstanceType<typeof WalletEvmConnect> | null>(null);
 	const isEvmConnected = computed(() => walletEvmConnectRef.value?.isConnected || false);
@@ -144,6 +157,14 @@
 											<ui-copy-text v-if="currentAddress" :copied-text="currentAddress" color-icon="#242424" />
 										</template>
 									</ui-input>
+									<ui-button
+										type="secondary"
+										size="sm"
+										:loading="isRefreshingAddress"
+										@click="handleRefreshAddress"
+									>
+										{{ $t("Refresh address") }}
+									</ui-button>
 								</row-template>
 								<row-template :label="$t('Sum')">
 									<ui-input type="text" v-model="inputTextSum" readonly-interactive filled>
