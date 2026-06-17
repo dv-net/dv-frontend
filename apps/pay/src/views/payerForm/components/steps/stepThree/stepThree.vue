@@ -224,11 +224,11 @@
 		display: flex;
 		flex-direction: column;
 		gap: 20px;
-		@include mediamax(680) {
+		@media (max-width: 680px) {
 			gap: 16px;
 		}
 		&:deep(.block:first-child) {
-			@include mediamax(680) {
+			@media (max-width: 680px) {
 				padding: 0;
 				border: unset;
 				border-radius: unset;
@@ -248,10 +248,10 @@
 				padding: 4px;
 				gap: 4px;
 				min-height: 250px;
-				@include mediamax(1180) {
+				@media (max-width: 1180px) {
 					grid-template-columns: 1fr;
 				}
-				@include mediamax(680) {
+				@media (max-width: 680px) {
 					gap: 16px;
 					background-color: transparent;
 					border: unset;
@@ -262,7 +262,7 @@
 					display: grid;
 					grid-template-columns: 319px 1fr;
 					gap: 4px;
-					@include mediamax(680) {
+					@media (max-width: 680px) {
 						grid-template-columns: 1fr;
 						gap: 16px;
 					}
@@ -275,7 +275,7 @@
 					border-radius: 12px;
 					border: 1px solid #e1e8f1;
 					background-color: #fff;
-					@include mediamax(680) {
+					@media (max-width: 680px) {
 						padding: 16px;
 					}
 				}
@@ -318,11 +318,11 @@
 					font-size: 14px;
 					font-weight: 500;
 					line-height: 20px;
-					@include mediamax(1180) {
+					@media (max-width: 1180px) {
 						align-items: center;
 						flex-direction: unset;
 					}
-					@include mediamax(680) {
+					@media (max-width: 680px) {
 						align-items: unset;
 						flex-direction: column;
 					}
@@ -331,20 +331,20 @@
 						flex-direction: column;
 						gap: 4px;
 						margin: 0 0 16px 0;
-						@include mediamax(1180) {
+						@media (max-width: 1180px) {
 							gap: 14px;
 							margin: 0;
 							padding-right: 16px;
 							border-right: 1px solid #ecf0f5;
 							flex-grow: 1;
 						}
-						@include mediamax(890) {
+						@media (max-width: 890px) {
 							max-width: 250px;
 						}
-						@include mediamax(768) {
+						@media (max-width: 768px) {
 							max-width: 200px;
 						}
-						@include mediamax(680) {
+						@media (max-width: 680px) {
 							gap: 4px;
 							max-width: unset;
 							margin: 0 0 16px 0;
@@ -356,10 +356,10 @@
 							display: flex;
 							align-items: center;
 							gap: 10px;
-							@include mediamax(1180) {
+							@media (max-width: 1180px) {
 								gap: 8px;
 							}
-							@include mediamax(680) {
+							@media (max-width: 680px) {
 								gap: 10px;
 							}
 						}
@@ -375,14 +375,14 @@
 						gap: 4px;
 						padding: 0 0 16px 0;
 						border-bottom: 1px solid #ecf0f5;
-						@include mediamax(1180) {
+						@media (max-width: 1180px) {
 							padding: 0 16px;
 							border-right: 1px solid #ecf0f5;
 							border-bottom: unset;
 							gap: 14px;
 							flex-grow: 1;
 						}
-						@include mediamax(680) {
+						@media (max-width: 680px) {
 							padding: 0 0 16px 0;
 							border-right: unset;
 							border-bottom: 1px solid #ecf0f5;
@@ -396,13 +396,13 @@
 						justify-content: space-between;
 						flex-grow: 1;
 						padding: 16px 0 0;
-						@include mediamax(1180) {
+						@media (max-width: 1180px) {
 							padding: 0 0 0 16px;
 							justify-content: unset;
 							flex-direction: column;
 							gap: 4px;
 						}
-						@include mediamax(680) {
+						@media (max-width: 680px) {
 							padding: 16px 0 0;
 							justify-content: space-between;
 							flex-direction: unset;

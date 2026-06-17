@@ -73,10 +73,10 @@
 		padding: 20px 24px;
 		border-radius: 16px;
 		width: 100%;
-		@include mediamax(1024) {
+		@media (max-width: 1024px) {
 			padding: 16px 20px;
 		}
-		@include mediamax(768) {
+		@media (max-width: 768px) {
 			overflow-x: auto;
 			overflow-y: hidden;
 			scrollbar-width: none;
@@ -89,7 +89,7 @@
 				width: calc(100dvw - #{$padding-main * 2}px);
 			}
 		}
-		@include mediamax(480) {
+		@media (max-width: 480px) {
 			padding: 12px 16px;
 		}
 		&__inner {
@@ -97,7 +97,7 @@
 			align-items: center;
 			justify-content: space-between;
 			width: 100%;
-			@include mediamax(768) {
+			@media (max-width: 768px) {
 				width: 720px;
 				min-width: 720px;
 			}
@@ -121,10 +121,10 @@
 			width: 100%;
 			height: 1px;
 			background-color: $label-header-form-background;
-			@include mediamax(1024) {
+			@media (max-width: 1024px) {
 				margin: 0 12px;
 			}
-			@include mediamax(768) {
+			@media (max-width: 768px) {
 				margin: 0 8px;
 			}
 		}
@@ -133,7 +133,7 @@
 			align-items: center;
 			gap: 12px;
 			flex-shrink: 0;
-			@include mediamax(768) {
+			@media (max-width: 768px) {
 				gap: 8px;
 			}
 			&-label {
@@ -146,7 +146,7 @@
 				flex-shrink: 0;
 				font-size: 14px;
 				font-weight: 500;
-				@include mediamax(1024) {
+				@media (max-width: 1024px) {
 					font-size: 12px;
 					width: 20px;
 					height: 20px;
@@ -154,7 +154,7 @@
 			}
 			&-text {
 				font-size: 16px;
-				@include mediamax(1024) {
+				@media (max-width: 1024px) {
 					font-size: 14px;
 				}
 			}

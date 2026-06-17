@@ -74,14 +74,14 @@
 		display: flex;
 		flex-direction: column;
 		gap: 24px;
-		@include mediamax(768) {
+		@media (max-width: 768px) {
 			gap: 20px;
 		}
 		.blockchains {
 			display: flex;
 			flex-direction: column;
 			gap: 20px;
-			@include mediamax(1024) {
+			@media (max-width: 1024px) {
 				gap: 12px;
 			}
 			&__cards {
@@ -99,10 +99,10 @@
 				border: 1px solid $main-border-color;
 				background-color: $form-background;
 				transition: border 0.3s ease-in-out;
-				@include mediamax(768) {
+				@media (max-width: 768px) {
 					padding: 12px 16px;
 				}
-				@include mediamax(480) {
+				@media (max-width: 480px) {
 					gap: 8px;
 					padding: 8px 12px;
 				}
@@ -124,10 +124,10 @@
 					display: flex;
 					align-items: center;
 					gap: 4px;
-					@include mediamax(576) {
+					@media (max-width: 576px) {
 						font-size: 14px;
 					}
-					@include mediamax(480) {
+					@media (max-width: 480px) {
 						font-size: 12px;
 					}
 					&-label {
@@ -135,10 +135,10 @@
 						font-size: 16px;
 						font-weight: 400;
 						line-height: 20px;
-						@include mediamax(576) {
+						@media (max-width: 576px) {
 							font-size: 14px;
 						}
-						@include mediamax(480) {
+						@media (max-width: 480px) {
 							font-size: 12px;
 						}
 					}
@@ -147,7 +147,7 @@
 					color: $main-text-grey-color;
 					font-size: 14px;
 					font-weight: 400;
-					@include mediamax(480) {
+					@media (max-width: 480px) {
 						font-size: 12px;
 					}
 				}

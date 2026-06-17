@@ -246,7 +246,7 @@
 		padding: 4px;
 		width: 100%;
 		align-self: center;
-		@include mediamax(680) {
+		@media (max-width: 680px) {
 			padding: 0;
 			border-radius: unset;
 			max-width: unset;
@@ -317,7 +317,7 @@
 				display: flex;
 				align-items: center;
 				gap: 16px;
-				@include mediamax(680) {
+				@media (max-width: 680px) {
 					flex-direction: column;
 					align-items: unset;
 				}
