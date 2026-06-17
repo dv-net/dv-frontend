@@ -49,7 +49,8 @@
 		gap: 12px;
 		.burger {
 			display: none;
-			@extend .center;
+			align-items: center;
+			justify-content: center;
 			border-radius: 50%;
 			height: 40px;
 			width: 40px;

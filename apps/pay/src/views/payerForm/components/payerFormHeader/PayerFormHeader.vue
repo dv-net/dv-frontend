@@ -140,7 +140,9 @@
 				border-radius: 100%;
 				background-color: $label-header-form-background;
 				color: $text-header-form-background;
-				@extend .center;
+				display: flex;
+				align-items: center;
+				justify-content: center;
 				width: 24px;
 				height: 24px;
 				flex-shrink: 0;

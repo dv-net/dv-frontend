@@ -189,7 +189,11 @@
 					align-items: center;
 					justify-content: space-between;
 					gap: 12px;
-					@extend .pointer;
+					@media (hover: hover) {
+						&:hover {
+							cursor: pointer;
+						}
+					}
 					&__text {
 						flex-grow: 1;
 						text-wrap: nowrap;

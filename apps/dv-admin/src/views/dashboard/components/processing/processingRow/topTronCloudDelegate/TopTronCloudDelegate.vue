@@ -60,7 +60,9 @@
 				gap: 8px;
 				margin: 0 12px;
 				align-self: stretch;
-				@extend .center;
+				display: flex;
+				align-items: center;
+				justify-content: center;
 				flex-grow: 1;
 				border-radius: 8px;
 				border: 1px solid #e1e8f1;

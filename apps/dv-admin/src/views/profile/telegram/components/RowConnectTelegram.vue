@@ -31,7 +31,9 @@
 			position: absolute;
 			left: 24px;
 			top: -13px;
-			@extend .center;
+			display: flex;
+			align-items: center;
+			justify-content: center;
 			padding: 4px 12px;
 			border-radius: 40px;
 			border: 1px solid $grey;

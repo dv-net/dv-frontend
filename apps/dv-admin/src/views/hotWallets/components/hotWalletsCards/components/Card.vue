@@ -122,7 +122,9 @@
 				gap: 12px;
 
 				&__icon {
-					@extend .center;
+					display: flex;
+					align-items: center;
+					justify-content: center;
 					width: 36px;
 					height: 36px;
 
@@ -197,8 +199,10 @@
 			}
 
 			&-link {
+				display: flex;
+				align-items: center;
+				justify-content: center;
 				flex-shrink: 0;
-				@extend .center;
 				color: #6b6d80;
 				width: 36px;
 				height: 36px;

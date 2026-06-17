@@ -234,8 +234,10 @@
 			}
 		}
 		.not-found {
+			display: flex;
+			align-items: center;
+			justify-content: center;
 			font-size: 18px;
-			@extend .center;
 			width: max-content;
 			min-width: 500px;
 		}

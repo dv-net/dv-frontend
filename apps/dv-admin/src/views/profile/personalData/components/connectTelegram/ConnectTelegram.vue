@@ -138,9 +138,11 @@
 		}
 
 		&__icon {
+			display: flex;
+			align-items: center;
+			justify-content: center;
 			width: 40px;
 			height: 40px;
-			@extend .center;
 			border-radius: 5.714px;
 			border: 1px solid $grey-light;
 			background-color: $white;

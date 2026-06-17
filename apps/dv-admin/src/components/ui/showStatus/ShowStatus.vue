@@ -12,7 +12,9 @@
 
 <style scoped lang="scss">
 	.label {
-		@extend .center;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 		width: max-content;
 		padding: 4px 12px;
 		border-radius: 4px;
@@ -24,7 +26,7 @@
 		text-align: center;
 		word-break: break-word;
 		&.w-full {
-			@extend .w-full;
+			width: 100%;
 		}
 		&.accent {
 			color: $blue;

@@ -79,13 +79,20 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		@extend .pointer;
+		align-items: center;
+		@media (hover: hover) {
+			&:hover {
+				cursor: pointer;
+			}
+		}
 		@media (max-width: 480px) {
 			width: 100%;
 		}
 		&__logo {
+			display: flex;
+			align-items: center;
+			justify-content: center;
 			width: 130px;
-			@extend .center;
 			overflow: hidden;
 			animation: slideInFromLeft 0.6s ease-out;
 			transition: transform 0.1s ease-in-out;

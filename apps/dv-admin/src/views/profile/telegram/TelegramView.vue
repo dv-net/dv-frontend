@@ -185,7 +185,9 @@
 			}
 
 			.qr-code {
-				@extend .center;
+				display: flex;
+				align-items: center;
+				justify-content: center;
 				padding: 15px;
 				border-radius: 12px;
 				border: 2px solid $grey;
@@ -193,9 +195,11 @@
 			}
 
 			.id {
+				display: flex;
+				align-items: center;
+				justify-content: center;
 				min-width: 282px;
 				padding: 12px;
-				@extend .center;
 				border-radius: 8px;
 				border: 1px solid $grey-light;
 				background-color: $white;

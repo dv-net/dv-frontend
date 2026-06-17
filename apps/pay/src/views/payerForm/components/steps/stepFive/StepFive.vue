@@ -111,7 +111,9 @@
 						}
 					}
 					&__amount {
-						@extend .center;
+						display: flex;
+						align-items: center;
+						justify-content: center;
 						gap: 6px;
 						font-size: 28px;
 						font-weight: 600;
