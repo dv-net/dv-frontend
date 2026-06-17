@@ -294,7 +294,7 @@
 				}
 
 				&__toggle {
-					@extend .no-select;
+					user-select: none;
 					display: grid;
 					grid-template-columns: 1fr 1fr;
 					height: 32px;

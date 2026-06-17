@@ -43,7 +43,7 @@
 
 <style scoped lang="scss">
 	.breadcrumbs {
-		@extend .no-select;
+		user-select: none;
 		display: flex;
 		gap: 12px;
 		align-items: center;

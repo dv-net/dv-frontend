@@ -153,7 +153,7 @@
 			border-bottom: 1px solid $grey;
 
 			.row {
-				@extend .no-select;
+				user-select: none;
 				display: grid;
 				grid-template-columns: repeat(4, 1fr);
 				padding: 8px 10px;
@@ -190,7 +190,7 @@
 			padding: 12px 14px 0;
 
 			&-inner {
-				@extend .no-select;
+				user-select: none;
 				width: 100%;
 				padding: 8px 10px;
 				display: grid;

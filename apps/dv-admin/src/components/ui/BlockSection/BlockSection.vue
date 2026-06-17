@@ -19,7 +19,7 @@
 <template>
 	<div
 		class="block-section"
-		:class="[`radius-${radius}`, `mode-${mode}`, `padding-${padding}`, `${title || hasTitleSlot ? 'relative' : ''}`]"
+		:class="[`radius-${radius}`, `mode-${mode}`, `padding-${padding}`, `${title || hasTitleSlot ? 'with-title' : ''}`]"
 	>
 		<div v-if="!isLoading && title && !hasTitleSlot" class="block-section__title" :class="`mode-${mode}`">
 			<h2 class="global-title-h3">{{ title }}</h2>
@@ -60,7 +60,7 @@
 				background-color: $white;
 			}
 		}
-		&.relative {
+		&.with-title {
 			position: relative;
 		}
 		&.padding-none {
