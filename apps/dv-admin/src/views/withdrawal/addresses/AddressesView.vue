@@ -225,7 +225,7 @@
 					:headers="headers"
 					:data="filteredAddressees"
 					table-layout="fixed"
-					:class="{ 'global-opacity': isShowAuthentication }"
+					:class="{ 'page__table--dimmed': isShowAuthentication }"
 					v-model:selected="multipleSelectionAddresses"
 					selected-key="id"
 				>
@@ -306,6 +306,11 @@
 		display: flex;
 		flex-direction: column;
 		gap: 24px;
+
+		&__table--dimmed {
+			opacity: 0.5;
+			pointer-events: none;
+		}
 
 		&__title {
 			margin-bottom: 8px;

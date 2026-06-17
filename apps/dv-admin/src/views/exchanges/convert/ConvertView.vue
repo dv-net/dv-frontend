@@ -135,7 +135,7 @@
 											{{ $t("all") }} <b>{{ getOnlyPair(item.display_name).base }}</b> {{ $t("convert to") }}
 											<b>{{ getOnlyPair(item.display_name).quote }}</b>
 										</span>
-										<span class="select-pairs__item-button global-center">
+										<span class="select-pairs__item-button center">
 											<ui-icon type="400" color="#303345" size="md" name="add" />
 										</span>
 									</div>

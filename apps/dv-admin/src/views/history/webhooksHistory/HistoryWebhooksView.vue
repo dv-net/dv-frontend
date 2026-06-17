@@ -85,11 +85,11 @@
 			</template>
 
 			<template #body-cell-request="{ row }">
-				<div class="global-text-ellipsis max-width-170">{{ row.request }}</div>
+				<div class="page__cell-text">{{ row.request }}</div>
 			</template>
 
 			<template #body-cell-response="{ row }">
-				<div class="global-text-ellipsis max-width-170">{{ row.response }}</div>
+				<div class="page__cell-text">{{ row.response }}</div>
 			</template>
 
 			<template #body-cell-actions="{ row }">
@@ -126,8 +126,11 @@
 			margin-bottom: 24px;
 		}
 
-		.max-width-170 {
+		&__cell-text {
 			max-width: 170px;
+			text-wrap: nowrap;
+			text-overflow: ellipsis;
+			overflow: hidden;
 		}
 	}
 </style>

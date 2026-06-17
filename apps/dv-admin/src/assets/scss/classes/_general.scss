@@ -1,20 +1,5 @@
 @use "../additional/vars" as *;
 
-.global-opacity {
-	opacity: 0.5;
-	pointer-events: none;
-}
-.global-text-ellipsis {
-	text-wrap: nowrap;
-	text-overflow: ellipsis;
-	overflow: hidden;
-}
-.global-center {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
 // global titles
 .global-title-h1 {
 	color: $black;
