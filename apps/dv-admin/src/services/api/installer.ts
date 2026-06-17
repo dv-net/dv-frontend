@@ -3,7 +3,7 @@ import type {
 	IProcessingDataClientResponse,
 	ISignUpRequest
 } from "@dv-admin/utils/types/api/apiGo";
-import api from "@dv-admin/utils/plugins/api";
+import api from "@dv-admin/utils/libs/axios";
 
 export const postRegisterInstaller = async (body: ISignUpRequest): Promise<string> => {
 	const resp = await api.post("/dv-admin/auth/register-root", body);

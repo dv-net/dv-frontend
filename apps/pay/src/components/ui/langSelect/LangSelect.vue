@@ -4,7 +4,7 @@
 	import { computed, ref } from "vue";
 	import { useI18n } from "vue-i18n";
 	import { setLocaleLS } from "@shared/utils/helpers/locale";
-	import { loadLocaleMessages, updateTranslationsUiKit } from "@pay/utils/plugins/i18n/helpers";
+	import { loadLocaleMessages, updateTranslationsUiKit } from "../../../utils/libs/i18n/helpers";
 	import type { Locale } from "@dv.net/ui-kit/dist/components/UiLanguages/types";
 	import type { IProps } from "@pay/components/ui/langSelect/types";
 	import { usePayerFormStore } from "@pay/stores/payerForm";

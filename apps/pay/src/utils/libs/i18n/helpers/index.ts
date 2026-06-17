@@ -1,15 +1,15 @@
 import { config } from "@dv.net/ui-kit";
 import { nextTick } from "vue";
-import i18n from "@pay/utils/plugins/i18n";
+import i18n from "@pay/utils/libs/i18n";
 
 export async function loadLocaleMessages(locale: string) {
 	try {
 		if (!i18n.global.availableLocales.includes("en")) {
-			const fallbackMessages = await import(`@pay/utils/plugins/i18n/locales/en.json`);
+			const fallbackMessages = await import(`@pay/utils/libs/i18n/locales/en.json`);
 			i18n.global.setLocaleMessage("en", fallbackMessages.default);
 		}
 
-		const messages = await import(`@pay/utils/plugins/i18n/locales/${locale}.json`);
+		const messages = await import(`@pay/utils/libs/i18n/locales/${locale}.json`);
 		i18n.global.setLocaleMessage(locale, messages.default);
 		const elementHtml = document.querySelector("html");
 		if (elementHtml) elementHtml.setAttribute("lang", locale);

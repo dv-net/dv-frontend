@@ -3,7 +3,7 @@
 	import PaymentLayout from "@pay/layouts/PaymentLayout.vue";
 	import EmptyLayout from "@pay/layouts/EmptyLayout.vue";
 	import { useRoute } from "vue-router";
-	import { loadLocaleMessages, updateTranslationsUiKit } from "@pay/utils/plugins/i18n/helpers";
+	import { loadLocaleMessages, updateTranslationsUiKit } from "./utils/libs/i18n/helpers";
 	import { useI18n } from "vue-i18n";
 	import type { LayoutNames } from "@pay/layouts";
 

@@ -1,6 +1,6 @@
 import router from "@pay/router";
-import i18n from "@pay/utils/plugins/i18n";
-import { loadLocaleMessages } from "@pay/utils/plugins/i18n/helpers";
+import i18n from "@pay/utils/libs/i18n";
+import { loadLocaleMessages } from "@pay/utils/libs/i18n/helpers";
 
 export const getStartDataProject = async () => {
 	try {

@@ -82,7 +82,7 @@
 			</template>
 			<template #body-cell-name="{ row }">
 				<div v-if="row.name || row.tag" class="flex flex-column gap-8">
-					<span v-if="row.name" class="fz-16">{{ row.name }}</span>
+					<span v-if="row.name" class="table__name">{{ row.name }}</span>
 					<ui-tag v-if="row.tag" mode="neutral" :text="row.tag" />
 				</div>
 				<span v-else>—</span>
@@ -134,6 +134,11 @@
 				min-height: 52px;
 			}
 		}
+
+		.table__name {
+			font-size: 16px;
+		}
+
 		.delete-btn {
 			transition: transform 0.3s ease-in-out;
 			@media (hover: hover) {

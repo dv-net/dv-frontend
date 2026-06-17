@@ -1,0 +1,64 @@
+@use 'sass:list';
+
+// Generation (padding, margin, gap) 1 - 50
+$numbers: ();
+@for $i from 1 through 50 {
+	$numbers: list.append($numbers, #{$i}, $separator: comma);
+}
+
+@each $num in $numbers {
+	// Padding
+	.p-#{$num} {
+		padding: $num + px;
+	}
+	.pt-#{$num} {
+		padding-top: $num + px;
+	}
+	.pr-#{$num} {
+		padding-right: $num + px;
+	}
+	.pb-#{$num} {
+		padding-bottom: $num + px;
+	}
+	.pl-#{$num} {
+		padding-left: $num + px;
+	}
+	.px-#{$num} {
+		padding-left: $num + px;
+		padding-right: $num + px;
+	}
+	.py-#{$num} {
+		padding-top: $num + px;
+		padding-bottom: $num + px;
+	}
+
+	// Margin
+	.m-#{$num} {
+		margin: $num + px;
+	}
+	.mt-#{$num} {
+		margin-top: $num + px;
+	}
+	.mr-#{$num} {
+		margin-right: $num + px;
+	}
+	.mb-#{$num} {
+		margin-bottom: $num + px;
+	}
+	.ml-#{$num} {
+		margin-left: $num + px;
+	}
+	.mx-#{$num} {
+		margin-left: $num + px;
+		margin-right: $num + px;
+	}
+	.my-#{$num} {
+		margin-top: $num + px;
+		margin-bottom: $num + px;
+	}
+
+	// Gap
+	.gap-#{$num} {
+		gap: $num + px;
+	}
+}

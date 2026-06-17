@@ -56,19 +56,19 @@
 							<div class="tooltip">
 								<div class="tooltip__item">
 									<span>{{ $t("Total energy available") }}:</span>
-									<span class="fw-500">
+									<span>
 										{{ formatDollars(tron?.additional_data?.tron_data?.total_energy, "") }}
 									</span>
 								</div>
 								<div class="tooltip__item">
 									<span>{{ $t("On the wallet") }}:</span>
-									<span class="fw-500">
+									<span>
 										{{ formatDollars(tron?.additional_data?.tron_data?.stacked_energy, "") }}
 									</span>
 								</div>
 								<div class="tooltip__item">
 									<span>{{ $t("Delegated from outside") }}:</span>
-									<span class="fw-500">
+									<span>
 										{{
 											formatDollars(
 												tron?.additional_data?.tron_data?.total_energy -
@@ -212,6 +212,10 @@
 						font-size: 12px;
 						font-weight: 400;
 						line-height: 16px;
+
+						span:last-child {
+							font-weight: 500;
+						}
 					}
 				}
 			}

@@ -10,7 +10,7 @@
 	import { useI18n } from "vue-i18n";
 	import { useAuthStore } from "@dv-admin/stores/auth";
 	import { storeToRefs } from "pinia";
-	import { updateTranslationsUiKit } from "@dv-admin/utils/plugins/i18n/helpers";
+	import { updateTranslationsUiKit } from "./utils/libs/i18n/helpers";
 
 	const route = useRoute();
 	const { isShowMainLoader } = storeToRefs(useAuthStore());
