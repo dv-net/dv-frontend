@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+- feat: adding AML checks to the store
+- fix: style optimization
+
 ## [1.0.38] - 2026-06-01
 
 - feat: add mark is dirty address
