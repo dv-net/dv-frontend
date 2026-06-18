@@ -190,7 +190,7 @@
 							</div>
 						</div>
 						<div v-if="item.message" class="error">
-							<span class="fw-700">{{ $t("Error") }}:</span>
+							<span>{{ $t("Error") }}:</span>
 							<span class="error__message">{{ item.message }}</span>
 						</div>
 					</div>
@@ -354,6 +354,10 @@
 		font-weight: 400;
 		line-height: 16px;
 		padding-top: 12px;
+
+		> span:first-child {
+			font-weight: 700;
+		}
 
 		&__message {
 			max-height: 100px;

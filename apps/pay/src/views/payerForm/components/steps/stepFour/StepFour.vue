@@ -84,13 +84,13 @@
 		display: flex;
 		flex-direction: column;
 		gap: 20px;
-		@include mediamax(1024) {
+		@media (max-width: 1024px) {
 			gap: 16px;
 		}
-		@include mediamax(768) {
+		@media (max-width: 768px) {
 			gap: 12px;
 		}
-		@include mediamax(480) {
+		@media (max-width: 480px) {
 			gap: 16px;
 		}
 		.info {
@@ -102,7 +102,7 @@
 				justify-content: center;
 				align-items: center;
 				padding: 0 0 16px;
-				@include mediamax(1180) {
+				@media (max-width: 1180px) {
 					justify-content: unset;
 					flex-direction: column;
 				}
@@ -111,15 +111,15 @@
 					align-items: center;
 					flex-direction: column;
 					gap: 24px;
-					@include mediamax(1180) {
+					@media (max-width: 1180px) {
 						order: 2;
 					}
-					@include mediamax(768) {
+					@media (max-width: 768px) {
 						gap: 16px;
 					}
 					&__loader {
 						width: 100px;
-						@include mediamax(576) {
+						@media (max-width: 576px) {
 							width: 80px;
 						}
 					}
@@ -133,7 +133,7 @@
 						font-weight: 600;
 						line-height: 24px;
 						color: #6acd8d;
-						@include mediamax(768) {
+						@media (max-width: 768px) {
 							font-size: 18px;
 						}
 					}
@@ -147,7 +147,7 @@
 						font-size: 16px;
 						font-weight: 400;
 						line-height: 20px;
-						@include mediamax(480) {
+						@media (max-width: 480px) {
 							font-size: 14px;
 						}
 					}
@@ -156,10 +156,10 @@
 						color: #1968e5;
 						font-size: 20px;
 						font-weight: 500;
-						@include mediamax(768) {
+						@media (max-width: 768px) {
 							font-size: 18px;
 						}
-						@include mediamax(480) {
+						@media (max-width: 480px) {
 							font-size: 16px;
 						}
 					}
@@ -169,7 +169,7 @@
 				position: absolute;
 				top: 0;
 				right: 0;
-				@include mediamax(1180) {
+				@media (max-width: 1180px) {
 					position: unset;
 					order: 1;
 				}

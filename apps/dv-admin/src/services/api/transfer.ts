@@ -1,4 +1,4 @@
-import api from "@dv-admin/utils/plugins/api";
+import api from "@dv-admin/utils/libs/axios";
 import type { ITransferPrefetchResponse, ITransferRequest, ITransferResponse } from "@dv-admin/utils/types/api/apiGo";
 
 export const getApiTransferPrefetch = async (): Promise<ITransferPrefetchResponse[]> => {

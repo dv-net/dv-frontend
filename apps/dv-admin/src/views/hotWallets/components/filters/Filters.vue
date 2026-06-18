@@ -265,7 +265,9 @@
 				background-color: $white;
 				width: 32px;
 				height: 32px;
-				@extend .center;
+				display: flex;
+				align-items: center;
+				justify-content: center;
 
 				&.active {
 					border: 1px solid $blue;
@@ -294,7 +296,7 @@
 				}
 
 				&__toggle {
-					@extend .no-select;
+					user-select: none;
 					display: grid;
 					grid-template-columns: 1fr 1fr;
 					height: 32px;
@@ -305,7 +307,9 @@
 					cursor: pointer;
 
 					&-item {
-						@extend .center;
+						display: flex;
+				align-items: center;
+				justify-content: center;
 						transition: transform 0.3s ease-in-out;
 						@media (hover: hover) {
 							&:hover {

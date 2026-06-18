@@ -1,7 +1,7 @@
 import { formatDollars } from "@shared/utils/helpers/general";
 import type { ITransactionRequest } from "@dv-admin/utils/types/api/apiGo.ts";
 import { getLastDaysRange } from "@dv-admin/utils/helpers/dateParse.ts";
-import i18n from "@dv-admin/utils/plugins/i18n";
+import i18n from "@dv-admin/utils/libs/i18n";
 
 export const filterTransactionsStartData: ITransactionRequest = {
 	page: 1,

@@ -1,5 +1,5 @@
 import type { ISettingsRequest, ISettingsResponse, ISystemInfoResponse } from "@dv-admin/utils/types/api/apiGo";
-import api from "@dv-admin/utils/plugins/api";
+import api from "@dv-admin/utils/libs/axios";
 
 export const getApiSystemInfo = async (): Promise<ISystemInfoResponse> => {
 	const resp = await api.get(`/dv-admin/system/info`);

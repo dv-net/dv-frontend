@@ -5,7 +5,7 @@ import "@dv-admin/assets/scss/index.scss";
 import App from "./App.vue";
 import router from "./router";
 import { intiRequests } from "@dv-admin/utils/helpers/init";
-import i18n from "@dv-admin/utils/plugins/i18n";
+import i18n from "@dv-admin/utils/libs/i18n";
 
 const app = createApp(App);
 

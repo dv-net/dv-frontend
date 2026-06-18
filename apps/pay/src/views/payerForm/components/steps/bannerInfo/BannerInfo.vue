@@ -60,28 +60,28 @@
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		gap: 20px;
-		@include mediamax(1024) {
+		@media (max-width: 1024px) {
 			grid-template-columns: 1fr 300px;
 		}
-		@include mediamax(768) {
+		@media (max-width: 768px) {
 			grid-template-columns: 1fr;
 		}
 		.content {
 			display: flex;
 			align-items: center;
 			gap: 24px;
-			@include mediamax(1024) {
+			@media (max-width: 1024px) {
 				gap: 16px;
 			}
 			&__img {
 				width: 64px;
 				height: 64px;
 				flex-shrink: 0;
-				@include mediamax(1024) {
+				@media (max-width: 1024px) {
 					width: 54px;
 					height: 54px;
 				}
-				@include mediamax(480) {
+				@media (max-width: 480px) {
 					width: 40px;
 					height: 40px;
 				}
@@ -90,7 +90,7 @@
 				display: flex;
 				flex-direction: column;
 				gap: 8px;
-				@include mediamax(1024) {
+				@media (max-width: 1024px) {
 					gap: 6px;
 				}
 			}
@@ -99,19 +99,19 @@
 				font-weight: 600;
 				line-height: 24px;
 				color: $main-title-color;
-				@include mediamax(1024) {
+				@media (max-width: 1024px) {
 					font-size: 18px;
 				}
-				@include mediamax(480) {
+				@media (max-width: 480px) {
 					font-size: 16px;
 				}
 				&:deep(.ui-link) {
 					font-size: 20px;
 					font-weight: 600;
-					@include mediamax(1024) {
+					@media (max-width: 1024px) {
 						font-size: 18px;
 					}
-					@include mediamax(480) {
+					@media (max-width: 480px) {
 						font-size: 16px;
 					}
 				}
@@ -123,10 +123,10 @@
 				line-height: 20px;
 				max-width: 350px;
 				width: 100%;
-				@include mediamax(1024) {
+				@media (max-width: 1024px) {
 					font-size: 14px;
 				}
-				@include mediamax(480) {
+				@media (max-width: 480px) {
 					font-size: 14px;
 				}
 			}
@@ -137,10 +137,10 @@
 			align-items: center;
 			gap: 8px;
 			flex-wrap: wrap;
-			@include mediamax(1024) {
+			@media (max-width: 1024px) {
 				justify-content: flex-end;
 			}
-			@include mediamax(768) {
+			@media (max-width: 768px) {
 				justify-content: center;
 			}
 			&__item {
@@ -153,11 +153,11 @@
 				color: #1f9649;
 				font-size: 16px;
 				font-weight: 400;
-				@include mediamax(1024) {
+				@media (max-width: 1024px) {
 					padding: 4px 8px;
 					font-size: 14px;
 				}
-				@include mediamax(480) {
+				@media (max-width: 480px) {
 					font-size: 12px;
 				}
 			}

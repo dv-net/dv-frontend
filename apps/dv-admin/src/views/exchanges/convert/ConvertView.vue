@@ -78,7 +78,7 @@
 		<block-balances-exchange :slug="slug" />
 
 		<ui-radio-group class="page__blocks" v-model="currentBlock">
-			<block-section class="section w-full" :class="{ opacity: currentBlock !== '1' }">
+			<block-section class="section w-full" :class="{ 'section--inactive': currentBlock !== '1' }">
 				<div class="section__top">
 					<ui-radio value="1" />
 					<h2 class="global-title-h3">{{ $t("Automatically convert all income into one selected currency") }}</h2>
@@ -97,7 +97,7 @@
 				</block-section>
 			</block-section>
 
-			<block-section class="section w-full" :class="{ opacity: currentBlock !== '2' }">
+			<block-section class="section w-full" :class="{ 'section--inactive': currentBlock !== '2' }">
 				<div class="section__top">
 					<ui-radio value="2" />
 					<h2 class="global-title-h3">{{ $t("Select the pairs you want to change") }}</h2>
@@ -135,7 +135,7 @@
 											{{ $t("all") }} <b>{{ getOnlyPair(item.display_name).base }}</b> {{ $t("convert to") }}
 											<b>{{ getOnlyPair(item.display_name).quote }}</b>
 										</span>
-										<span class="select-pairs__item-button global-center">
+										<span class="select-pairs__item-button center">
 											<ui-icon type="400" color="#303345" size="md" name="add" />
 										</span>
 									</div>
@@ -201,8 +201,9 @@
 		display: flex;
 		flex-direction: column;
 
-		&.opacity {
+		&--inactive {
 			opacity: 0.6;
+			pointer-events: none;
 		}
 
 		&__top {

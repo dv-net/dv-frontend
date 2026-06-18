@@ -73,7 +73,7 @@
 									)
 								}}
 							</div>
-							<div class="header__item global-center">
+							<div class="header__item center">
 								<show-status-general :status="item.status" />
 							</div>
 						</div>

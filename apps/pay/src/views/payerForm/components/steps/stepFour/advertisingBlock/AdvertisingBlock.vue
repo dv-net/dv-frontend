@@ -79,13 +79,20 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		@extend .pointer;
-		@include mediamax(480) {
+		align-items: center;
+		@media (hover: hover) {
+			&:hover {
+				cursor: pointer;
+			}
+		}
+		@media (max-width: 480px) {
 			width: 100%;
 		}
 		&__logo {
+			display: flex;
+			align-items: center;
+			justify-content: center;
 			width: 130px;
-			@extend .center;
 			overflow: hidden;
 			animation: slideInFromLeft 0.6s ease-out;
 			transition: transform 0.1s ease-in-out;
@@ -116,7 +123,7 @@
 			margin: 5px 0 12px;
 			word-break: break-word;
 			animation: slideInFromLeft 0.3s ease-out 0.2s both;
-			@include mediamax(480) {
+			@media (max-width: 480px) {
 				font-size: 12px;
 				padding: 12px;
 				height: unset;
@@ -139,7 +146,7 @@
 			border-radius: 12px;
 			background-color: rgba(31, 150, 73, 0.12);
 			animation: slideInFromBottom 0.3s ease-out both;
-			@include mediamax(480) {
+			@media (max-width: 480px) {
 				font-size: 12px;
 				line-height: 16px;
 				white-space: unset;

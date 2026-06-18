@@ -100,7 +100,7 @@
 		flex-direction: column;
 		gap: 38px;
 		flex-grow: 1;
-		@include mediamax(480) {
+		@media (max-width: 480px) {
 			gap: 16px;
 		}
 		.content {
@@ -118,13 +118,13 @@
 				line-height: 140%;
 				max-width: 324px;
 				width: 100%;
-				@include mediamax(1180) {
+				@media (max-width: 1180px) {
 					max-width: 290px;
 				}
-				@include mediamax(1024) {
+				@media (max-width: 1024px) {
 					max-width: 324px;
 				}
-				@include mediamax(480) {
+				@media (max-width: 480px) {
 					font-size: 14px;
 					font-weight: 500;
 					line-height: 16px;
@@ -139,16 +139,16 @@
 				flex-shrink: 0;
 				align-self: baseline;
 				width: 120px;
-				@include mediamax(1180) {
+				@media (max-width: 1180px) {
 					width: 100px;
 					top: -18px;
 				}
-				@include mediamax(1024) {
+				@media (max-width: 1024px) {
 					width: 100px;
 					top: -18px;
 					right: -18px;
 				}
-				@include mediamax(480) {
+				@media (max-width: 480px) {
 					width: 80px;
 					top: -15px;
 					right: -15px;

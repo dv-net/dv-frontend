@@ -67,10 +67,10 @@
 		gap: 24px;
 		width: 492px;
 		flex-shrink: 0;
-		@include mediamax(1180) {
+		@media (max-width: 1180px) {
 			width: 400px;
 		}
-		@include mediamax(1024) {
+		@media (max-width: 1024px) {
 			width: 100%;
 		}
 		.details {
@@ -82,7 +82,7 @@
 				gap: 12px;
 				padding: 20px 0 44px;
 				border-bottom: 1px solid $main-border-color;
-				@include mediamax(480) {
+				@media (max-width: 480px) {
 					gap: 8px;
 					padding: 12px 0 20px;
 				}
@@ -95,7 +95,7 @@
 					font-size: 16px;
 					font-weight: 400;
 					line-height: 130%;
-					@include mediamax(480) {
+					@media (max-width: 480px) {
 						display: flex;
 						align-items: unset;
 						justify-content: unset;
@@ -104,7 +104,7 @@
 						font-size: 14px;
 					}
 					&__label {
-						@include mediamax(480) {
+						@media (max-width: 480px) {
 							font-size: 14px;
 							opacity: 0.6;
 						}
@@ -119,13 +119,13 @@
 				display: flex;
 				align-items: flex-start;
 				justify-content: space-between;
-				@include mediamax(480) {
+				@media (max-width: 480px) {
 					padding-top: 16px;
 				}
 				&-label {
 					font-size: 20px;
 					font-weight: 500;
-					@include mediamax(480) {
+					@media (max-width: 480px) {
 						font-size: 16px;
 					}
 				}
@@ -133,7 +133,7 @@
 		}
 		&__advertising,
 		&__latest-transactions {
-			@include mediamax(1024) {
+			@media (max-width: 1024px) {
 				display: none;
 			}
 		}

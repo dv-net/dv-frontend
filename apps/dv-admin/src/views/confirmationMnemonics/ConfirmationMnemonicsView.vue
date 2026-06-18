@@ -145,7 +145,9 @@
 
 <style scoped lang="scss">
 	.page {
-		@extend .center;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 		flex-grow: 1;
 		.warning {
 			display: flex;

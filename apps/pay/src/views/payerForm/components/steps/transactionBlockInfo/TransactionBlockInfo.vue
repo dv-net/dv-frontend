@@ -103,7 +103,7 @@
 		padding: 24px;
 		border-radius: 12px;
 		border: 1px solid $main-border-color;
-		@include mediamax(768) {
+		@media (max-width: 768px) {
 			padding: 16px;
 			gap: 14px;
 		}
@@ -115,27 +115,27 @@
 			font-weight: 400;
 			color: $main-text-grey-color;
 			font-size: 16px;
-			@include mediamax(768) {
+			@media (max-width: 768px) {
 				gap: 54px;
 			}
-			@include mediamax(480) {
+			@media (max-width: 480px) {
 				gap: 34px;
 			}
 			&__label {
 				flex-shrink: 0;
-				@include mediamax(768) {
+				@media (max-width: 768px) {
 					font-size: 14px;
 				}
-				@include mediamax(576) {
+				@media (max-width: 576px) {
 					font-size: 12px;
 				}
 			}
 			&__value {
 				word-break: break-word;
-				@include mediamax(768) {
+				@media (max-width: 768px) {
 					font-size: 14px;
 				}
-				@include mediamax(576) {
+				@media (max-width: 576px) {
 					font-size: 12px;
 				}
 				&--blockchain {
@@ -156,10 +156,10 @@
 				word-break: break-word;
 				display: flex;
 				text-align: right;
-				@include mediamax(768) {
+				@media (max-width: 768px) {
 					font-size: 14px;
 				}
-				@include mediamax(576) {
+				@media (max-width: 576px) {
 					font-size: 12px;
 				}
 			}

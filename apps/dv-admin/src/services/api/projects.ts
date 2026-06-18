@@ -8,7 +8,7 @@ import type {
 	IStoreWebhookTestRequest,
 	IStoreWebhookTestResponse
 } from "@dv-admin/utils/types/api/apiGo";
-import api from "@dv-admin/utils/plugins/api";
+import api from "@dv-admin/utils/libs/axios";
 import type { BlockchainType } from "@shared/utils/types/blockchain";
 
 export const postApiCreateStore = async (body = {} as IStoreRequest): Promise<IStoreResponse> => {

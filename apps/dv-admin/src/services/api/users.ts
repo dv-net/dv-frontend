@@ -1,4 +1,4 @@
-import api from "@dv-admin/utils/plugins/api";
+import api from "@dv-admin/utils/libs/axios";
 import type { IAdminUsersResponse } from "@dv-admin/utils/types/api/apiGo";
 
 export const getApiAdminUsers = async (): Promise<IAdminUsersResponse> => {

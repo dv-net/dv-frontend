@@ -177,16 +177,16 @@
 									class="flex flex-y-center gap-8"
 								>
 									<blockchain-icon :type="blockchainCurrencyId[form.blockchain] as BlockchainType" />
-									<span class="fz-16 fw-400">{{ getCurrentBlockchain(blockchainCurrencyId[form.blockchain]) }}</span>
+									<span class="form__select-text">{{ getCurrentBlockchain(blockchainCurrencyId[form.blockchain]) }}</span>
 								</div>
-								<span v-else class="fz-16 fw-400">{{ form.blockchain }}</span>
+								<span v-else class="form__select-text">{{ form.blockchain }}</span>
 							</template>
 							<template #default="{ option }">
 								<div v-if="option.value in blockchainCurrencyId" class="flex flex-y-center gap-8">
 									<blockchain-icon :type="blockchainCurrencyId[option.value] as BlockchainType" />
-									<span class="fz-16 fw-400">{{ option.label }}</span>
+									<span class="form__select-text">{{ option.label }}</span>
 								</div>
-								<span v-else class="fz-16 fw-400">{{ option.label }}</span>
+								<span v-else class="form__select-text">{{ option.label }}</span>
 							</template>
 						</ui-select>
 					</ui-form-item>
@@ -219,6 +219,12 @@
 			gap: 24px;
 			max-width: 720px;
 			width: 100%;
+
+			&__select-text {
+				font-size: 16px;
+				font-weight: 400;
+			}
+
 			&__body {
 				display: grid;
 				grid-template-columns: 1fr 1fr;

@@ -7,28 +7,10 @@
 .w-full {
 	width: 100%;
 }
-.relative {
-	position: relative;
-}
 .center {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-}
-.opacity {
-	opacity: 0.5;
-	pointer-events: none;
-}
-.uppercase {
-	text-transform: uppercase;
-}
-.ellipsis {
-	text-wrap: nowrap;
-	text-overflow: ellipsis;
-	overflow: hidden;
-}
-.no-select {
-	user-select: none;
 }
 .pointer {
 	@media (hover: hover) {
@@ -98,12 +80,15 @@
 	&-shrink-0 {
 		flex-shrink: 0;
 	}
+
+	&-wrap {
+		flex-wrap: wrap;
+	}
 }
 
-// Generation (padding, margin, gap, font-size, line-height)
-// Generation px from 1 - 100
+// Generation (padding, margin, gap) 1 - 50
 $numbers: ();
-@for $i from 1 through 100 {
+@for $i from 1 through 50 {
 	$numbers: list.append($numbers, #{$i}, $separator: comma);
 }
 
@@ -158,26 +143,8 @@ $numbers: ();
 		margin-bottom: $num + px;
 	}
 
-	// Font-size
-	.fz-#{$num} {
-		font-size: $num + px;
-	}
-
-	// Line-height
-	.lh-#{$num} {
-		line-height: $num + px;
-	}
-
 	// Gap
 	.gap-#{$num} {
 		gap: $num + px;
-	}
-}
-
-// Font-weight generation
-$numbers-font-weight: (100, 200, 300, 400, 500, 600, 700, 800, 900);
-@each $num in $numbers-font-weight {
-	.fw-#{$num} {
-		font-weight: $num;
 	}
 }

@@ -49,7 +49,8 @@
 		gap: 12px;
 		.burger {
 			display: none;
-			@extend .center;
+			align-items: center;
+			justify-content: center;
 			border-radius: 50%;
 			height: 40px;
 			width: 40px;
@@ -61,7 +62,7 @@
 					background-color: color(srgb 0.92 0.92 0.92);
 				}
 			}
-			@include mediamax(1024) {
+			@media (max-width: 1024px) {
 				display: flex;
 			}
 		}
@@ -77,7 +78,7 @@
 			bottom: 0;
 			background-color: #f3f4f6;
 			padding: 24px $padding-main + px;
-			@include mediamax(1024) {
+			@media (max-width: 1024px) {
 				display: flex;
 			}
 			&__nav {

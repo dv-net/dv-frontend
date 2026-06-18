@@ -9,10 +9,10 @@
 		padding: 24px;
 		border-radius: 16px;
 		background-color: $form-background;
-		@include mediamax(1024) {
+		@media (max-width: 1024px) {
 			padding: 20px;
 		}
-		@include mediamax(480) {
+		@media (max-width: 480px) {
 			padding: 16px;
 		}
 	}

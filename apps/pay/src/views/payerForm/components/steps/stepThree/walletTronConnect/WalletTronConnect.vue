@@ -226,11 +226,11 @@
 		background-color: #f7f9fb;
 		padding: 4px;
 		width: 100%;
-		@include mediamax(890) {
+		@media (max-width: 890px) {
 			align-items: unset;
 			flex-direction: column;
 		}
-		@include mediamax(680) {
+		@media (max-width: 680px) {
 			padding: 0;
 			border-radius: unset;
 			max-width: unset;
@@ -292,7 +292,7 @@
 				display: flex;
 				align-items: center;
 				gap: 16px;
-				@include mediamax(680) {
+				@media (max-width: 680px) {
 					flex-direction: column;
 					align-items: unset;
 				}

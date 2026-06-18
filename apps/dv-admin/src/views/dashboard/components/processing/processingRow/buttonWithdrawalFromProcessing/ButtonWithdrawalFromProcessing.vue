@@ -47,7 +47,7 @@
 					@click="isWithdrawEnabled && (isShowWithdrawalFromProcessing[currencyId] = true)"
 				/>
 				<template v-if="!isWithdrawEnabled" #text>
-					<div class="fz-12">
+					<div class="button-withdrawal-from-processing__hint">
 						{{ $t("This feature is disabled") }}.
 						<ui-link size="md" :to="{ name: 'settings-system-general' }">
 							{{ $t("Go to settings") }}
@@ -69,6 +69,10 @@
 			cursor: not-allowed;
 			pointer-events: auto;
 		}
+		&__hint {
+			font-size: 12px;
+		}
+
 		&__close {
 			transition: transform 0.3s ease-in-out;
 			@media (hover: hover) {

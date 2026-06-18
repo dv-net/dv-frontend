@@ -21,7 +21,7 @@
 <template>
 	<div v-if="row.type === ADDRESS_BOOK_TYPES.REGULAR" class="flex flex-y-center gap-8">
 		<template v-if="row.currency_id">
-			<div class="fz-16 flex flex-y-center gap-4">
+			<div class="output-info-blockchain__text flex flex-y-center gap-4">
 				<span>{{ getCurrentCoin(row.currency_id) }}</span>
 				<span class="grey-opacity">|</span>
 				<span>{{ changeChainBsc(getCurrentBlockchain(row.currency_id)) }}</span>
@@ -32,7 +32,7 @@
 	</div>
 
 	<div v-else-if="row.type === ADDRESS_BOOK_TYPES.UNIVERSAL" class="flex flex-y-center gap-8">
-		<span class="fz-16 flex-shrink-0">{{ row.blockchain ? capitalizeFirstLetter(row.blockchain) : "—" }}</span>
+		<span class="output-info-blockchain__text flex-shrink-0">{{ row.blockchain ? capitalizeFirstLetter(row.blockchain) : "—" }}</span>
 		<span class="grey-opacity">|</span>
 		<div v-if="row.currencies" class="flex flex-y-center gap-4" style="flex-wrap: wrap">
 			<blockchain-icon
@@ -46,12 +46,12 @@
 	</div>
 
 	<div v-else-if="row.type === ADDRESS_BOOK_TYPES.EVM" class="flex flex-y-center gap-4">
-		<span class="fz-16">{{ $t("All EVM blockchains") }}</span>
+		<span class="output-info-blockchain__text">{{ $t("All EVM blockchains") }}</span>
 		<tooltip-helper v-if="row.blockchains" :title="$t('All EVM blockchains')" popper-class="address-book-evm">
 			<template #infoText>
 				<div class="flex flex-column gap-8 p-10">
 					<div v-for="item in row.blockchains" :key="item" class="flex flex-y-center gap-8">
-						<span class="fz-16">{{ capitalizeFirstLetter(item) }}</span>
+						<span class="output-info-blockchain__text">{{ capitalizeFirstLetter(item) }}</span>
 						<span>|</span>
 						<div v-if="row.currencies" class="flex flex-y-center gap-4">
 							<span
@@ -73,6 +73,10 @@
 </template>
 
 <style scoped lang="scss">
+	.output-info-blockchain__text {
+		font-size: 16px;
+	}
+
 	.grey-opacity {
 		color: $grey-opacity;
 	}

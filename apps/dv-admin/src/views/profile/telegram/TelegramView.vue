@@ -86,9 +86,9 @@
 
 		<h1 class="global-title-h2 mt-24 mb-32">{{ $t("Connecting a Telegram Bot") }}</h1>
 
-		<div v-if="isAuthorizedLc" class="flex flex-column gap-96">
+		<div v-if="isAuthorizedLc" class="page__authorized flex flex-column">
 			<div class="flex flex-column gap-32">
-				<h2 class="fz-40 fw-700">{{ $t("3 ways to connect to a Telegram bot") }}</h2>
+				<h2 class="page__ways-title">{{ $t("3 ways to connect to a Telegram bot") }}</h2>
 				<div v-show="isLoading" class="page__rows">
 					<ui-skeleton :rows="3" :rowHeight="100" :rows-gap="32" :item-border-radius="24" first-color="#fff" />
 				</div>
@@ -155,6 +155,15 @@
 		display: flex;
 		flex-direction: column;
 
+		&__ways-title {
+			font-size: 40px;
+			font-weight: 700;
+		}
+
+		&__authorized {
+			gap: 96px;
+		}
+
 		&__rows {
 			display: flex;
 			flex-direction: column;
@@ -176,7 +185,9 @@
 			}
 
 			.qr-code {
-				@extend .center;
+				display: flex;
+				align-items: center;
+				justify-content: center;
 				padding: 15px;
 				border-radius: 12px;
 				border: 2px solid $grey;
@@ -184,9 +195,11 @@
 			}
 
 			.id {
+				display: flex;
+				align-items: center;
+				justify-content: center;
 				min-width: 282px;
 				padding: 12px;
-				@extend .center;
 				border-radius: 8px;
 				border: 1px solid $grey-light;
 				background-color: $white;

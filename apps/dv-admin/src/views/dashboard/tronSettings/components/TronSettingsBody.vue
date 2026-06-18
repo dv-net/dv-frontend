@@ -37,7 +37,7 @@
 <template>
 	<block-section class="tron-settings-body">
 		<ui-skeleton v-if="isLoading" :rows="1" :row-height="149" :item-border-radius="16" />
-		<block-section v-else class="tron-settings-body__current-payments opacity">
+		<block-section v-else class="tron-settings-body__current-payments">
 			<div class="tron-settings-body__current-payments__header">
 				<span class="flex"><icon-current-payments /></span>
 				<span>{{ $t("Current expenses") }}</span>
@@ -93,6 +93,9 @@
 		flex-direction: column;
 		gap: 24px;
 		&__current-payments {
+			opacity: 0.5;
+			pointer-events: none;
+
 			&__header {
 				display: flex;
 				align-items: center;

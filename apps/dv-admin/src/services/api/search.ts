@@ -1,4 +1,4 @@
-import api from "@dv-admin/utils/plugins/api";
+import api from "@dv-admin/utils/libs/axios";
 import type { ISearchDataResponse } from "@dv-admin/utils/types/api/apiGo";
 
 export const getApiSearchData = async (searchParam: string): Promise<ISearchDataResponse> => {

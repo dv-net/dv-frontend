@@ -1,10 +1,15 @@
-import axios, { type AxiosInstance } from "axios";
+import axios, { type AxiosInstance, HttpStatusCode } from "axios";
+import { useAuthStore } from "@dv-admin/stores/auth";
 import { useNotifications } from "@shared/utils/composables/useNotifications";
+import i18n from "@dv-admin/utils/libs/i18n";
 
 const { notify } = useNotifications();
 
+const REQUEST_TIMEOUT_MS: number = 30_000;
+
 const api: AxiosInstance = axios.create({
 	baseURL: import.meta.env.VITE_API_URL,
+	timeout: REQUEST_TIMEOUT_MS,
 	headers: {
 		"Content-Type": "application/json",
 		Accept: "application/json"
@@ -12,7 +17,7 @@ const api: AxiosInstance = axios.create({
 });
 
 api.interceptors.request.use((config) => {
-	const token: string = "";
+	const token = useAuthStore().getToken();
 	if (token) {
 		config.headers.Authorization = `Bearer ${token}`;
 	} else {
@@ -27,10 +32,13 @@ api.interceptors.response.use(
 		// Pass { suppressNotify: true } in request config if you don't want to show the error
 		if (!error?.config?.suppressNotify) {
 			if (error?.response?.data?.errors?.[0]?.message) {
-				notify(error.response.data.errors[0].message);
+				notify(i18n.global.t(error.response.data.errors[0].message));
 			} else {
 				notify(error.message || "Unknown error");
 			}
+		}
+		if (error.response.status === HttpStatusCode.Unauthorized) {
+			useAuthStore().removeToken();
 		}
 		return Promise.reject(error);
 	}

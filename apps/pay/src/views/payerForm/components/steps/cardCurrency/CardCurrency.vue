@@ -68,7 +68,7 @@
 		transition: border 0.3s ease-in-out;
 		word-break: break-word;
 		font-size: 16px;
-		@include mediamax(768) {
+		@media (max-width: 768px) {
 			font-size: 14px;
 			padding: 8px 12px;
 		}
@@ -119,7 +119,7 @@
 			flex-wrap: wrap;
 			gap: 4px;
 			padding: 0 38px 0 0;
-			@include mediamax(768) {
+			@media (max-width: 768px) {
 				display: none;
 			}
 		}
@@ -128,7 +128,7 @@
 			align-items: center;
 			gap: 4px;
 			padding: 4px 6px 4px 4px;
-			@extend .center;
+			justify-content: center;
 			border-radius: 100px;
 			background-color: #f7f9fb;
 			color: $main-text-grey-color;

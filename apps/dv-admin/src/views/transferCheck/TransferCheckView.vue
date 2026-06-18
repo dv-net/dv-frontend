@@ -267,7 +267,7 @@
 				</template>
 				<template #expande="{ row }">
 					<div class="json">
-						<block-section class="relative" mode="grey-border">
+						<block-section mode="grey-border">
 							<ui-copy-text
 								:copied-text="JSON.stringify(row.request_history)"
 								class="json__copy"
@@ -299,6 +299,11 @@
 		}
 		.json {
 			padding: 24px;
+
+			:deep(.block-section) {
+				position: relative;
+			}
+
 			&__copy {
 				position: absolute;
 				top: 5px;

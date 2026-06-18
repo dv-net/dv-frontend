@@ -36,7 +36,7 @@
 		<div class="hash__icons">
 			<ui-copy-text v-if="isShowIconCopy" :copied-text="hash" :color-icon="colorIcon" :size-icon="sizeIcon" />
 			<ui-link v-if="isLink && linkSearch" :to="linkSearch">
-				<ui-icon type="400" name="new-windows" :size="sizeIcon" :color="colorIcon" class="global-center" />
+				<ui-icon type="400" name="new-windows" :size="sizeIcon" :color="colorIcon" class="center" />
 			</ui-link>
 		</div>
 		<div class="hash__full">{{ hash }}</div>

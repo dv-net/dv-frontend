@@ -86,7 +86,11 @@
 				border-radius: 8px;
 				border: 1px solid $grey-light;
 				background-color: #ecf0f5;
-				@extend .pointer;
+				@media (hover: hover) {
+					&:hover {
+						cursor: pointer;
+					}
+				}
 			}
 			&__text {
 				color: $secondary;

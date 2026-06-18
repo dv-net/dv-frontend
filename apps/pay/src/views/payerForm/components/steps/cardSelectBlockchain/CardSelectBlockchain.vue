@@ -102,11 +102,11 @@
 		border-radius: 8px;
 		padding: 16px;
 		background-color: #f6f6f6;
-		@include mediamax(768) {
+		@media (max-width: 768px) {
 			font-size: 14px;
 			padding: 12px 16px;
 		}
-		@include mediamax(480) {
+		@media (max-width: 480px) {
 			display: flex;
 			align-items: unset;
 			justify-content: unset;
@@ -124,7 +124,7 @@
 				gap: 4px;
 				color: $main-subtitle-color;
 				font-weight: 500;
-				@include mediamax(480) {
+				@media (max-width: 480px) {
 					display: flex;
 					flex-direction: unset;
 					justify-content: space-between;
@@ -143,7 +143,7 @@
 				gap: 4px;
 				color: $main-subtitle-color;
 				font-weight: 500;
-				@include mediamax(480) {
+				@media (max-width: 480px) {
 					display: flex;
 					flex-direction: unset;
 					align-items: center;
