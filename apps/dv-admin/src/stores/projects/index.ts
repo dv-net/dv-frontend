@@ -21,6 +21,7 @@ import { webhooksFormStartData } from "@dv-admin/stores/projects/utils";
 import { useSystemSettingsStore } from "@dv-admin/stores/systemSettings";
 import { useAuthStore } from "@dv-admin/stores/auth";
 import { useWhiteListProjectStore } from "@dv-admin/stores/projects/whiteList";
+import { useAmlSettingsProjectStore } from "@dv-admin/stores/projects/amlSettings";
 
 const { notify } = useNotifications();
 
@@ -33,6 +34,7 @@ export const useProjectsStore = defineStore("projects", () => {
 	const { getWebhooksProject } = useProjectsWebhooksStore();
 	const { getKeyProject } = useApiKeysProjectStore();
 	const { getWhitelistsProject } = useWhiteListProjectStore();
+	const { getAmlSettingsProject } = useAmlSettingsProjectStore();
 
 	const isLoading = ref<boolean>(false);
 	const isLoadingEditProject = ref<boolean>(false);
@@ -103,7 +105,8 @@ export const useProjectsStore = defineStore("projects", () => {
 				getWebhooksProject(uuid),
 				getStoreSecret(uuid),
 				getStoreSettingList(uuid),
-				getWhitelistsProject(uuid)
+				getWhitelistsProject(uuid),
+				getAmlSettingsProject(uuid)
 			]);
 		} catch (error: any) {
 			throw error;

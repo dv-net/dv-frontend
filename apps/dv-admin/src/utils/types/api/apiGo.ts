@@ -968,6 +968,22 @@ export interface IAmlHistoryFilterRequest {
 	page: number;
 }
 
+export interface IAmlSettingsRequest {
+	enabled: boolean;
+	provider_slug: string;
+	risk_threshold: number;
+}
+
+export interface IAmlSettingsResponse {
+	id: string;
+	store_id: string;
+	enabled: boolean;
+	risk_threshold: number;
+	provider_slug: string;
+	created_at: string;
+	updated_at: string;
+}
+
 export interface INotificationsItemResponse {
 	id: string;
 	destination: string;

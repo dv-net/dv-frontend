@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [1.0.39] - 2026-06-18
+
 - feat: adding AML checks to the store
 - fix: style optimization
 
