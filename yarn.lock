@@ -1463,18 +1463,18 @@
   dependencies:
     remove-accents "0.5.0"
 
-"@tanstack/query-core@5.101.0":
-  version "5.101.0"
-  resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-5.101.0.tgz#45391ce143c270b7e7a55bd1a6696918f20782d1"
-  integrity sha512-cQetA74EB+seWySv1TTKr828TnP0u39m6LykwDXIo84SNortpDkp30TMEjkqtYCNP9c40uT/iwl6MLiufEt0Ow==
+"@tanstack/query-core@5.101.2":
+  version "5.101.2"
+  resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-5.101.2.tgz#c901fb76b68169ff5e1e44017404e7e2e90ce1af"
+  integrity sha512-hH5MLoJhF7KaIGd7q3xTXGXvslI+GYlM1Z/35aSHHWaCJWB7XvTSHYuV3eM7tw+aE0mT/xMro4M4Q9rCGHT0lw==
 
-"@tanstack/vue-query@5.101.0":
-  version "5.101.0"
-  resolved "https://registry.yarnpkg.com/@tanstack/vue-query/-/vue-query-5.101.0.tgz#e4c45dd259bc299e9705281651989fa6e7877a21"
-  integrity sha512-sZeW0RvfEZ9QRiaXirE/HQZsFT5saMlPZVfeYvjPX6lqSBS9lkD7wfnCfzOBns6HD2f34Gx9cazkuU3Xj6hl/A==
+"@tanstack/vue-query@5.101.2":
+  version "5.101.2"
+  resolved "https://registry.yarnpkg.com/@tanstack/vue-query/-/vue-query-5.101.2.tgz#1e9b8af7dec434f664634c239ec24e62d54ee777"
+  integrity sha512-nFXKNK4dI/PnKNejyIkQmmobBsJWWXTPcpjPvkgFLkpFPz9DcmqIiKIAF2Pa7MZCipH62/+bt2sxEIA0wNEeOg==
   dependencies:
     "@tanstack/match-sorter-utils" "^8.19.4"
-    "@tanstack/query-core" "5.101.0"
+    "@tanstack/query-core" "5.101.2"
     "@vue/devtools-api" "^6.6.3"
     vue-demi "^0.14.10"
 
@@ -1510,12 +1510,12 @@
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.15.tgz#596a1747233694d50f6ad8a7869fcb6f56cf5841"
   integrity sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==
 
-"@types/node@^25.6.0":
-  version "25.6.0"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-25.6.0.tgz#4e09bad9b469871f2d0f68140198cbd714f4edca"
-  integrity sha512-+qIYRKdNYJwY3vRCZMdJbPLJAtGjQBudzZzdzwQYkEPQd+PJGixUL5QfvCLDaULoLv+RhT3LDkwEfKaAkgSmNQ==
+"@types/node@^26.0.1":
+  version "26.0.1"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-26.0.1.tgz#4a60e2c7a6d68bd261e265f8983bfe1601263ce3"
+  integrity sha512-fc3KiUoBt6kie0N9bIW3E47vZsuaMf0PM2AaUpLCLT0s/LvX1nxAim6Fc049cNxODPpGm6qRAuUOB86SkRuPQw==
   dependencies:
-    undici-types "~7.19.0"
+    undici-types "~8.3.0"
 
 "@types/trusted-types@^2.0.2":
   version "2.0.7"
@@ -1962,32 +1962,32 @@
   resolved "https://registry.yarnpkg.com/@vueuse/shared/-/shared-14.2.1.tgz#829a271147937f6b105bb1422d3171e6142f47ba"
   integrity sha512-shTJncjV9JTI4oVNyF1FQonetYAiTBd+Qj7cY89SWbXSkx7gyhrgtEdF2ZAVWS1S3SHlaROO6F2IesJxQEkZBw==
 
-"@wagmi/connectors@8.0.16":
-  version "8.0.16"
-  resolved "https://registry.yarnpkg.com/@wagmi/connectors/-/connectors-8.0.16.tgz#d2afe3d2d4f7de434b9b7214b307207688cbf0ea"
-  integrity sha512-+dXBOJbo5UbsiDXsdiiUWd6HrZ5Nt/ekEDb/RCkzV1D8faN9gjcTRz1TmErKVo5ZFe+BsgWcbeimVWvRes76vQ==
+"@wagmi/connectors@8.0.20":
+  version "8.0.20"
+  resolved "https://registry.yarnpkg.com/@wagmi/connectors/-/connectors-8.0.20.tgz#c722f7971e088ffdc848c41c003d050e50c8e4b7"
+  integrity sha512-c6BRWBJ2bnYq/Spxpc7H/mdnlZ90CPSEZ4NKCin3gM8yRwqkI4J1BzSXF1jAoHO0QjME1rajGGQKrCli3tV3hw==
 
 "@wagmi/connectors@>=5.9.9":
   version "8.0.4"
   resolved "https://registry.yarnpkg.com/@wagmi/connectors/-/connectors-8.0.4.tgz#15b217cb4833ca376b094685f8bb745e46983a16"
   integrity sha512-zRxRmd4TnNv/LxYm/IcrUsXMFBECzEQAOAcUDRMUfRRKfneJFqmmv1kmUbWSIc/gBkBu6o3BAGPJjV5j3BUcLA==
 
-"@wagmi/core@3.5.1":
-  version "3.5.1"
-  resolved "https://registry.yarnpkg.com/@wagmi/core/-/core-3.5.1.tgz#1eee047276a0494ea5f2608de8657e76b6edae22"
-  integrity sha512-SZxOOMVtBqfB7QoJJySP+sZnXbZ+51lbhNG9bqjYzxpRmOiYNkdsQjqUzJ1703MyhIrJOkxLtVS0YR6SXJWDSg==
+"@wagmi/core@3.5.5":
+  version "3.5.5"
+  resolved "https://registry.yarnpkg.com/@wagmi/core/-/core-3.5.5.tgz#adb9b896d8de05875c09b84b7d2c023d0a0870e8"
+  integrity sha512-JEJAwo25p9c52JwQs1WunqANPs4PjJ+eepDLXvQJ390vEXsBexYdCDmsPPcYZaGpk0Umx0w85U1ruRodXusMzg==
   dependencies:
     eventemitter3 "5.0.1"
     mipd "0.0.7"
     zustand "5.0.0"
 
-"@wagmi/vue@0.5.18":
-  version "0.5.18"
-  resolved "https://registry.yarnpkg.com/@wagmi/vue/-/vue-0.5.18.tgz#68241ef384564ba2e3c35b6840a1db61ee916a6f"
-  integrity sha512-sO3h9KrCMtqrYvGkHNZK9Zx3JOfPGYW2b7YJkSNQ5kwzWD8Ufvb/O5h90E6QEy63/IIVsYh9/YlEf1IYqrHpGw==
+"@wagmi/vue@0.5.22":
+  version "0.5.22"
+  resolved "https://registry.yarnpkg.com/@wagmi/vue/-/vue-0.5.22.tgz#6d6c88ead5fe6c271e9300ffaf01a85183bfc681"
+  integrity sha512-uqVVE3+2MD0Ir7sm9Kiis2iayGTEwbCISoA0M+MowlOgOg1MsQzio57OY1rlLMPSBqRKME8QoIG+/IshfVMvXg==
   dependencies:
-    "@wagmi/connectors" "8.0.16"
-    "@wagmi/core" "3.5.1"
+    "@wagmi/connectors" "8.0.20"
+    "@wagmi/core" "3.5.5"
 
 "@wallet-standard/base@^1.1.0":
   version "1.1.0"
@@ -4403,10 +4403,10 @@ undici-types@^7.19.2:
   resolved "https://registry.yarnpkg.com/undici-types/-/undici-types-7.25.0.tgz#c5f8feb61c70d8954e05beb5f1c786c7ff95458a"
   integrity sha512-AXNgS1Byr27fTI+2bsPEkV9CxkT8H6xNyRI68b3TatlZo3RkzlqQBLL+w7SmGPVpokjHbcuNVQUWE7FRTg+LRA==
 
-undici-types@~7.19.0:
-  version "7.19.2"
-  resolved "https://registry.yarnpkg.com/undici-types/-/undici-types-7.19.2.tgz#1b67fc26d0f157a0cba3a58a5b5c1e2276b8ba2a"
-  integrity sha512-qYVnV5OEm2AW8cJMCpdV20CDyaN3g0AjDlOGf1OW4iaDEx8MwdtChUp4zu4H0VP3nDRF/8RKWH+IPp9uW0YGZg==
+undici-types@~8.3.0:
+  version "8.3.0"
+  resolved "https://registry.yarnpkg.com/undici-types/-/undici-types-8.3.0.tgz#44e9fc9f3244648cdea35e4f9bb2d681e9410809"
+  integrity sha512-j375ScV60dom+YkPFIfTLcOiPxkN/buHz5GobjLhixFuANaNs3C9l4GmrWqejgXWJ7BbJcFYpTEUkS1Ge8bpZQ==
 
 unplugin-utils@^0.3.0, unplugin-utils@^0.3.1:
   version "0.3.1"
@@ -4478,10 +4478,10 @@ valtio@2.1.7:
   dependencies:
     proxy-compare "^3.0.1"
 
-viem@2.52.2, viem@^2.27.2:
-  version "2.52.2"
-  resolved "https://registry.yarnpkg.com/viem/-/viem-2.52.2.tgz#b5f2899463ddc1cc2039bd804311a67c2c4806e6"
-  integrity sha512-HSU12p5aD/kAPZfrlbCUqdiP4P/c6hQ9AhfTS51VbLUQIjkWd1d5EjrCx/SCxZ0zhZVRn4Iv5X5WDqXPG8Ubew==
+viem@2.53.1:
+  version "2.53.1"
+  resolved "https://registry.yarnpkg.com/viem/-/viem-2.53.1.tgz#8f8dff96b0c85317ce7ce54d282bd7b27798a695"
+  integrity sha512-FhfJ/SW73CVosiyVLmIMVgKDRKYV1AGCLzZoHYvmNayyVff63Qi1ocPCk59LqC/cNw244RbBJjHnmxqXkE7NpA==
   dependencies:
     "@noble/curves" "1.9.1"
     "@noble/hashes" "1.8.0"
@@ -4505,6 +4505,20 @@ viem@>=2.45.0, viem@^2.1.1, viem@^2.31.7, viem@^2.47.0:
     isows "1.0.7"
     ox "0.14.20"
     ws "8.18.3"
+
+viem@^2.27.2:
+  version "2.52.2"
+  resolved "https://registry.yarnpkg.com/viem/-/viem-2.52.2.tgz#b5f2899463ddc1cc2039bd804311a67c2c4806e6"
+  integrity sha512-HSU12p5aD/kAPZfrlbCUqdiP4P/c6hQ9AhfTS51VbLUQIjkWd1d5EjrCx/SCxZ0zhZVRn4Iv5X5WDqXPG8Ubew==
+  dependencies:
+    "@noble/curves" "1.9.1"
+    "@noble/hashes" "1.8.0"
+    "@scure/bip32" "1.7.0"
+    "@scure/bip39" "1.6.0"
+    abitype "1.2.3"
+    isows "1.0.7"
+    ox "0.14.29"
+    ws "8.20.1"
 
 vite-dev-rpc@^2.0.0:
   version "2.0.0"

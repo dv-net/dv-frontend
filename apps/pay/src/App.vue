@@ -1,7 +1,5 @@
 <script setup lang="ts">
-	import { type Component, computed, onMounted, watch } from "vue";
-	import PaymentLayout from "@pay/layouts/PaymentLayout.vue";
-	import EmptyLayout from "@pay/layouts/EmptyLayout.vue";
+	import { type Component, computed, defineAsyncComponent, onMounted, watch } from "vue";
 	import { useRoute } from "vue-router";
 	import { loadLocaleMessages, updateTranslationsUiKit } from "./utils/libs/i18n/helpers";
 	import { useI18n } from "vue-i18n";
@@ -11,8 +9,8 @@
 	const route = useRoute();
 
 	const layouts: Record<LayoutNames, Component> = {
-		"payment-layout": PaymentLayout,
-		"empty-layout": EmptyLayout
+		"payment-layout": defineAsyncComponent(() => import("@pay/layouts/PaymentLayout.vue")),
+		"empty-layout": defineAsyncComponent(() => import("@pay/layouts/EmptyLayout.vue"))
 	};
 
 	const resolveLayout = computed(() => {
