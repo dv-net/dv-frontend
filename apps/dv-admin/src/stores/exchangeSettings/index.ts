@@ -8,7 +8,7 @@ import {
 	postApiExchangeToggleSwaps,
 	postApiExchangeToggleWithdrawals,
 	postApiExchangeTest
-} from "@dv-admin/services/api/exchangeSettings";
+} from "@dv-admin/utils/services/exchangeSettings";
 import { useNotifications } from "@shared/utils/composables/useNotifications";
 import type {
 	IExchangeDepositAddressesResponse,

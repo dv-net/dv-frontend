@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import { getApiMonitors, getApiMonitorsSlug } from "@dv-admin/services/api/monitors";
+import { getApiMonitors, getApiMonitorsSlug } from "@dv-admin/utils/services/monitors";
 import type { IMonitorsCurrentTypeListResponse, IMonitorsResponse } from "@dv-admin/utils/types/api/apiGo";
 
 export const useMonitorsStore = defineStore("monitors", () => {

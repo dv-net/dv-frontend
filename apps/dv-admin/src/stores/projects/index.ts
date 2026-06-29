@@ -9,7 +9,7 @@ import {
 	postApiStoreSecret,
 	postApiStoreUnarchive,
 	putApiOneProject
-} from "@dv-admin/services/api/projects";
+} from "@dv-admin/utils/services/projects";
 import type { ICurrencyStore, IStoreResponse, IStoreSettingsList } from "@dv-admin/utils/types/api/apiGo";
 import { useNotifications } from "@shared/utils/composables/useNotifications";
 import { defineStore, storeToRefs } from "pinia";

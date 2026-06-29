@@ -5,7 +5,7 @@
 	import { UiCopyText, UiIcon, UiLink, UiSkeleton } from "@dv.net/ui-kit/dist";
 	import QrcodeVue from "qrcode.vue";
 	import type { IUserTgLinkResponse } from "@dv-admin/utils/types/api/apiGo";
-	import { postApiUserTgLink } from "@dv-admin/services/api/auth";
+	import { postApiUserTgLink } from "@dv-admin/utils/services/auth";
 	import { storeToRefs } from "pinia";
 	import { useAuthStore } from "@dv-admin/stores/auth";
 	import { useRouter } from "vue-router";

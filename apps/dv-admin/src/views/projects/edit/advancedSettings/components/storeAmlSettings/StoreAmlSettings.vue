@@ -77,12 +77,7 @@
 			</span>
 		</div>
 
-		<ui-skeleton
-			v-if="isLoadingConnectedProviders"
-			:rowHeight="136"
-			:rows="1"
-			:item-border-radius="12"
-		/>
+		<ui-skeleton v-if="isLoadingConnectedProviders" :rowHeight="136" :rows="1" :item-border-radius="12" />
 
 		<div v-else class="body">
 			<ui-tabs

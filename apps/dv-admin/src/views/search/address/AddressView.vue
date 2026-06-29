@@ -15,7 +15,7 @@
 		ITransactionRequest,
 		IWalletInfoBlockchainAssetResponse
 	} from "@dv-admin/utils/types/api/apiGo";
-	import { getApiTransaction } from "@dv-admin/services/api/history";
+	import { getApiTransaction } from "@dv-admin/utils/services/history";
 	import { useRoute } from "vue-router";
 	import AddressInfo from "@dv-admin/views/search/address/components/addressInfo/AddressInfo.vue";
 	import { useSearchStore } from "@dv-admin/stores/search";

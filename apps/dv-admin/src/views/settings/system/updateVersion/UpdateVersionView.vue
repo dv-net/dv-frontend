@@ -6,7 +6,7 @@
 	import { UiButton, UiIcon, UiSkeleton, UiConfirm } from "@dv.net/ui-kit";
 	import Breadcrumbs from "@dv-admin/components/ui/breadcrumbs/Breadcrumbs.vue";
 	import BlockSection from "@dv-admin/components/ui/BlockSection/BlockSection.vue";
-	import { postApiSystemUpdateBackend, postApiSystemUpdateProcessing } from "@dv-admin/services/api/systemSettings";
+	import { postApiSystemUpdateBackend, postApiSystemUpdateProcessing } from "@dv-admin/utils/services/systemSettings";
 	import { usePolling } from "@shared/utils/composables/usePolling";
 
 	const router = useRouter();

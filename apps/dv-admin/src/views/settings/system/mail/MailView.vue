@@ -10,7 +10,7 @@
 	import { useSystemSettingsStore } from "@dv-admin/stores/systemSettings";
 	import { onMounted, ref } from "vue";
 	import { useAuthStore } from "@dv-admin/stores/auth";
-	import { postApiNotificationsTest } from "@dv-admin/services/api/general";
+	import { postApiNotificationsTest } from "@dv-admin/utils/services/general";
 
 	const { notify } = useNotifications();
 	const { t } = useI18n();

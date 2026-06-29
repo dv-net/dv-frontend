@@ -8,7 +8,7 @@
 	import { computed, ref, watch } from "vue";
 	import type { IExchangeWithdrawalItemResponse, IExchangeWithdrawalRequest } from "@dv-admin/utils/types/api/apiGo";
 	import type { UiTableHeader, UItableMeta } from "@dv.net/ui-kit/dist/components/UiTable/types";
-	import { getApiExchangeWithdrawal } from "@dv-admin/services/api/withdrawal";
+	import { getApiExchangeWithdrawal } from "@dv-admin/utils/services/withdrawal";
 	import { parsePagination } from "@dv-admin/utils/helpers/parsePagination";
 	import { useI18n } from "vue-i18n";
 	import { storeToRefs } from "pinia";

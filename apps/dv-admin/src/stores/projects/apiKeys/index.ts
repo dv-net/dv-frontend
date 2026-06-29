@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import { getApiKeyProject, postApiKeyProject } from "@dv-admin/services/api/projects";
+import { getApiKeyProject, postApiKeyProject } from "@dv-admin/utils/services/projects";
 import type { IStoreApiKeyResponse } from "@dv-admin/utils/types/api/apiGo";
 import { useNotifications } from "@shared/utils/composables/useNotifications";
 

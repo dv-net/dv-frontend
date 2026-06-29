@@ -9,7 +9,7 @@
 	import { computed, onMounted, ref } from "vue";
 	import { AML_PROVIDERS, AML_SETTING_LABELS } from "@dv-admin/utils/constants/transferCheck";
 	import type { IAmlKeysResponse } from "@dv-admin/utils/types/api/apiGo.ts";
-	import { deleteApiAmlKeys, postApiAmlKeys } from "@dv-admin/services/api/transferCheck.ts";
+	import { deleteApiAmlKeys, postApiAmlKeys } from "@dv-admin/utils/services/transferCheck.ts";
 	import { useNotifications } from "@shared/utils/composables/useNotifications.ts";
 	import { useI18n } from "vue-i18n";
 

@@ -6,10 +6,14 @@
 	import type { UiPlacementType } from "@dv.net/ui-kit/dist/components/UiTooltip/types";
 	import IconCursor from "@dv-admin/components/icons/IconCursor.vue";
 	import TooltipHelper from "@dv-admin/components/ui/tooltipHelper/TooltipHelper.vue";
-	import { postApiWithdrawManual, postApiWithdrawProcessing, postApiWalletAddressesMarkIsDirty } from "@dv-admin/services/api/hotWallets";
+	import {
+		postApiWithdrawManual,
+		postApiWithdrawProcessing,
+		postApiWalletAddressesMarkIsDirty
+	} from "@dv-admin/utils/services/hotWallets";
 	import { useNotifications } from "@shared/utils/composables/useNotifications";
 	import { useI18n } from "vue-i18n";
-	import { getApiWithdrawalCurrencyRules } from "@dv-admin/services/api/withdrawal.ts";
+	import { getApiWithdrawalCurrencyRules } from "@dv-admin/utils/services/withdrawal.ts";
 
 	const { notify } = useNotifications();
 	const { t } = useI18n();
@@ -106,7 +110,14 @@
 				<div class="global-dropdown__wallets-item" @click="handleMarkIsDirty(data)">
 					<ui-icon-button icon-name="cancel" container-small size="lg" />
 					<span>{{ $t("Mark address as dirty") }}</span>
-					<tooltip-helper :title="$t('Mark address as dirty')" :text="$t('This address has been marked as dirty and permanently removed from automatic allocation. Any funds received to this wallet require manual withdrawal processing.')" />
+					<tooltip-helper
+						:title="$t('Mark address as dirty')"
+						:text="
+							$t(
+								'This address has been marked as dirty and permanently removed from automatic allocation. Any funds received to this wallet require manual withdrawal processing.'
+							)
+						"
+					/>
 				</div>
 			</div>
 		</template>

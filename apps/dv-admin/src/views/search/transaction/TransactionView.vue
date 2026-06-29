@@ -14,7 +14,7 @@
 	import { storeToRefs } from "pinia";
 	import { useRoute } from "vue-router";
 	import { onMounted, ref } from "vue";
-	import { getApiReceiptOneTransaction, postApiTransactionSendWebhooks } from "@dv-admin/services/api/history";
+	import { getApiReceiptOneTransaction, postApiTransactionSendWebhooks } from "@dv-admin/utils/services/history";
 	import type { IReceiptOneTransactionResponse } from "@dv-admin/utils/types/api/apiGo";
 	import { useSearchStore } from "@dv-admin/stores/search";
 	import { useNotifications } from "@shared/utils/composables/useNotifications";

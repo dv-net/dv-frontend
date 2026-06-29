@@ -7,7 +7,7 @@
 	import { computed, ref, watch } from "vue";
 	import type { UiTableHeader, UItableMeta } from "@dv.net/ui-kit/dist/components/UiTable/types";
 	import type { IExchangeOrderItemResponse, IExchangeOrderRequest } from "@dv-admin/utils/types/api/apiGo";
-	import { getApiExchangeOrder } from "@dv-admin/services/api/withdrawal";
+	import { getApiExchangeOrder } from "@dv-admin/utils/services/withdrawal";
 	import { parsePagination } from "@dv-admin/utils/helpers/parsePagination";
 	import { useI18n } from "vue-i18n";
 	import TooltipHelper from "@dv-admin/components/ui/tooltipHelper/TooltipHelper.vue";

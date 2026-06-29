@@ -40,7 +40,11 @@
 				<div class="content">
 					<span class="content__name">
 						{{ getCurrentCoin(item.currency_id) }}
-						<ui-tooltip v-if="item.dirty" :title="$t('Dirty address')" :text="$t('This address has been marked as dirty and permanently removed from automatic allocation.')">
+						<ui-tooltip
+							v-if="item.dirty"
+							:title="$t('Dirty address')"
+							:text="$t('This address has been marked as dirty and permanently removed from automatic allocation.')"
+						>
 							<ui-icon name="warning" type="filled" color="#f04438" size="sm" class="pointer" />
 						</ui-tooltip>
 					</span>

@@ -43,7 +43,7 @@
 			:headers="headers"
 			:data="wallets"
 			:meta="walletsPagination"
-			:row-class="(row) => row.dirty ? 'row--dirty' : ''"
+			:row-class="(row) => (row.dirty ? 'row--dirty' : '')"
 			@change-pagination="changePageHandler"
 			table-layout="fixed"
 			:isShowPerPageSelect="false"
@@ -55,7 +55,11 @@
 			<template #body-cell-currency_id="{ row }">
 				<div class="currency-cell">
 					<blockchain-card :type="row.currency_id" />
-					<ui-tooltip v-if="row.dirty" :title="$t('Dirty address')" :text="$t('This address has been marked as dirty and permanently removed from automatic allocation.')">
+					<ui-tooltip
+						v-if="row.dirty"
+						:title="$t('Dirty address')"
+						:text="$t('This address has been marked as dirty and permanently removed from automatic allocation.')"
+					>
 						<ui-icon name="warning" type="filled" color="#f04438" size="sm" class="pointer" />
 					</ui-tooltip>
 				</div>

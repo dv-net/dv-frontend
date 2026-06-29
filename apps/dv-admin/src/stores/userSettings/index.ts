@@ -1,7 +1,7 @@
 import { defineStore, storeToRefs } from "pinia";
 import { computed, ref } from "vue";
 import { useNotifications } from "@shared/utils/composables/useNotifications";
-import { getApiUserSettings, postApiUserSettings } from "@dv-admin/services/api/systemSettings";
+import { getApiUserSettings, postApiUserSettings } from "@dv-admin/utils/services/systemSettings";
 import type { ISettingsResponse } from "@dv-admin/utils/types/api/apiGo";
 import { useGeneralStore } from "@dv-admin/stores/general";
 const { notify } = useNotifications();

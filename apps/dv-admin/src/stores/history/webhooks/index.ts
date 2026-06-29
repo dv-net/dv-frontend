@@ -1,8 +1,8 @@
 import { defineStore, storeToRefs } from "pinia";
 import { ref } from "vue";
-import { getApiWebhookHistory } from "@dv-admin/services/api/history";
+import { getApiWebhookHistory } from "@dv-admin/utils/services/history";
 import type { IStoreHistoryWebhooks, IStoreHistoryWebhooksRequest } from "@dv-admin/utils/types/api/apiGo";
-import { postApiTransactionSendWebhooks } from "@dv-admin/services/api/history";
+import { postApiTransactionSendWebhooks } from "@dv-admin/utils/services/history";
 import { useNotifications } from "@shared/utils/composables/useNotifications";
 import { useI18n } from "vue-i18n";
 import type { UItableMeta } from "@dv.net/ui-kit/dist/components/UiTable/types";

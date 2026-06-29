@@ -11,7 +11,7 @@
 		getCurrentBlockchain,
 		getCurrentCoin
 	} from "@shared/utils/helpers/general";
-	import { getApiBalanceCurrentExchange } from "@dv-admin/services/api/exchangeSettings.ts";
+	import { getApiBalanceCurrentExchange } from "@dv-admin/utils/services/exchangeSettings.ts";
 	import type { BlockchainType } from "@shared/utils/types/blockchain";
 
 	const { slug } = defineProps<{ slug?: string }>();

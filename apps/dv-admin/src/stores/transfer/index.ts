@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import { deleteApiTransfer, getApiTransfer, getApiTransferPrefetch } from "@dv-admin/services/api/transfer";
+import { deleteApiTransfer, getApiTransfer, getApiTransferPrefetch } from "@dv-admin/utils/services/transfer";
 import { useNotifications } from "@shared/utils/composables/useNotifications";
 import type {
 	IPagination,

@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import { getApiSearchData } from "@dv-admin/services/api/search";
+import { getApiSearchData } from "@dv-admin/utils/services/search";
 import type { IOneTransactionResponse, IWalletInfoResponse } from "@dv-admin/utils/types/api/apiGo";
 import { type ENUM_SEARCH_TYPES, SEARCH_TYPES } from "@dv-admin/utils/constants/search";
 import { useRouter } from "vue-router";

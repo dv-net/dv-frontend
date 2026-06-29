@@ -1,5 +1,5 @@
 import { defineStore, storeToRefs } from "pinia";
-import { deleteApiWithdrawalAddressBook, getApiWithdrawalAddressBook } from "@dv-admin/services/api/addressBook.ts";
+import { deleteApiWithdrawalAddressBook, getApiWithdrawalAddressBook } from "@dv-admin/utils/services/addressBook.ts";
 import { ref } from "vue";
 import { ADDRESS_BOOK_TYPES } from "@dv-admin/utils/constants/addressBook";
 import type { IAddressBookCurrencies, IAddressBookList, IMapAddressBookRow } from "@dv-admin/utils/types/schemas";

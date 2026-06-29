@@ -15,7 +15,7 @@
 	} from "@dv.net/ui-kit";
 	import { computed, ref, watch } from "vue";
 	import { useTransferCheckStore } from "@dv-admin/stores/transferCheck";
-	import { postApiAmlScoreTransaction } from "@dv-admin/services/api/transferCheck.ts";
+	import { postApiAmlScoreTransaction } from "@dv-admin/utils/services/transferCheck.ts";
 	import type { UiPaginationMeta } from "@dv.net/ui-kit/dist/components/UiPagination/types";
 	import type { UiTableHeader } from "@dv.net/ui-kit/dist/components/UiTable/types";
 	import { useI18n } from "vue-i18n";

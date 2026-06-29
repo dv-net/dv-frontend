@@ -3,7 +3,7 @@
 	import { computed, ref, watch } from "vue";
 	import { useHotWalletsStore } from "@dv-admin/stores/hotWallets";
 	import { useNotifications } from "@shared/utils/composables/useNotifications";
-	import { getApiWithdrawalCurrencyRules } from "@dv-admin/services/api/withdrawal";
+	import { getApiWithdrawalCurrencyRules } from "@dv-admin/utils/services/withdrawal";
 	import type { IWithdrawalAddressItemResponse } from "@dv-admin/utils/types/api/apiGo";
 	import { useI18n } from "vue-i18n";
 	import BlockSection from "@dv-admin/components/ui/BlockSection/BlockSection.vue";

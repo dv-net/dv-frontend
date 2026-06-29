@@ -6,7 +6,7 @@
 	import { storeToRefs } from "pinia";
 	import { useWithdrawalStore } from "@dv-admin/stores/withdrawal";
 	import type { IWithdrawalRules, IWithdrawalRulesRequest } from "@dv-admin/utils/types/api/apiGo";
-	import { patchApiWithdrawalCurrencyRules } from "@dv-admin/services/api/withdrawal";
+	import { patchApiWithdrawalCurrencyRules } from "@dv-admin/utils/services/withdrawal";
 	import { useNotifications } from "@shared/utils/composables/useNotifications";
 	import { useI18n } from "vue-i18n";
 	import type { IUiSelectOptions } from "@dv-admin/utils/types/general";

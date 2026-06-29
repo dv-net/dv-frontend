@@ -1,8 +1,8 @@
 import { defineStore, storeToRefs } from "pinia";
 import { ref } from "vue";
 import type { IProcessingDataClientRequest, ISignInRequest, ISignUpRequest } from "@dv-admin/utils/types/api/apiGo";
-import { postAuthUser } from "@dv-admin/services/api/auth";
-import { postApiProcessingInit, postRegisterInstaller } from "@dv-admin/services/api/installer";
+import { postAuthUser } from "@dv-admin/utils/services/auth";
+import { postApiProcessingInit, postRegisterInstaller } from "@dv-admin/utils/services/installer";
 import { getLocaleUser, getTimeZoneUser } from "@shared/utils/helpers/locale";
 import { useAuthStore } from "@dv-admin/stores/auth";
 import { useSystemSettingsStore } from "@dv-admin/stores/systemSettings";

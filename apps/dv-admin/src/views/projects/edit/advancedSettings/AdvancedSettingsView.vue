@@ -16,7 +16,7 @@
 	import TooltipHelper from "@dv-admin/components/ui/tooltipHelper/TooltipHelper.vue";
 	import { computed, ref } from "vue";
 	import { useI18n } from "vue-i18n";
-	import { postApiStoreSetting, putApiCurrenciesProject } from "@dv-admin/services/api/projects.ts";
+	import { postApiStoreSetting, putApiCurrenciesProject } from "@dv-admin/utils/services/projects.ts";
 	import { useGeneralStore } from "@dv-admin/stores/general";
 	import { UiForm, UiTable } from "@dv.net/ui-kit";
 	import type { UiFormRules } from "@dv.net/ui-kit/dist/components/UiForm/types";

@@ -242,7 +242,9 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		const { unconfirmed } = JSON.parse(transactionsLs);
 		if (!currentCurrencyChainId.value) return [];
 		return transactionsUnconfirmed.value.filter(
-			(newTx) => newTx.currency_code === currentCurrencyChainId.value && !unconfirmed.some((oldTx: IWalletTransactionResponse) => oldTx.hash === newTx.hash)
+			(newTx) =>
+				newTx.currency_code === currentCurrencyChainId.value &&
+				!unconfirmed.some((oldTx: IWalletTransactionResponse) => oldTx.hash === newTx.hash)
 		);
 	};
 

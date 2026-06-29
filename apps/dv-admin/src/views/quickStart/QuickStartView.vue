@@ -15,7 +15,7 @@
 	import { getCurrentBlockchain, isValidUrl } from "@shared/utils/helpers/general";
 	import DisplayHash from "@shared/components/ui/displayHash/DisplayHash.vue";
 	import BlockchainIcon from "@shared/components/ui/blockchainIcon/BlockchainIcon.vue";
-	import { getApiUserSettings } from "@dv-admin/services/api/systemSettings";
+	import { getApiUserSettings } from "@dv-admin/utils/services/systemSettings";
 	import { useAuthStore } from "@dv-admin/stores/auth";
 
 	const { processingWallets } = storeToRefs(useDashboardStore());

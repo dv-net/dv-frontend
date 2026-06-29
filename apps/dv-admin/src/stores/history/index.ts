@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import { getApiTransaction, getApiTransactionStats } from "@dv-admin/services/api/history";
+import { getApiTransaction, getApiTransactionStats } from "@dv-admin/utils/services/history";
 import type {
 	ITransactionDashboardItem,
 	ITransactionRequest,

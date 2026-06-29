@@ -8,7 +8,7 @@ import {
 	getApiSystemInfo,
 	postApiProcessingCallbackUrl,
 	postApiRootSetting
-} from "@dv-admin/services/api/systemSettings";
+} from "@dv-admin/utils/services/systemSettings";
 import { splitDomain } from "@shared/utils/helpers/general";
 import { useGeneralStore } from "@dv-admin/stores/general";
 

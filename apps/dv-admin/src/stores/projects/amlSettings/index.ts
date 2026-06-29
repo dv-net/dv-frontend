@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import { getApiAmlSettingsProject, putApiAmlSettingsProject } from "@dv-admin/services/api/projects";
-import { getApiAmlKeys } from "@dv-admin/services/api/transferCheck";
+import { getApiAmlSettingsProject, putApiAmlSettingsProject } from "@dv-admin/utils/services/projects";
+import { getApiAmlKeys } from "@dv-admin/utils/services/transferCheck";
 import type { IAmlKeysResponse, IAmlSettingsRequest, IAmlSettingsResponse } from "@dv-admin/utils/types/api/apiGo";
 import { useNotifications } from "@shared/utils/composables/useNotifications";
 

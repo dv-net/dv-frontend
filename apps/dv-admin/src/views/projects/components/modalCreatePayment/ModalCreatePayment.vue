@@ -22,7 +22,7 @@
 	import type { UiFormRules } from "@dv.net/ui-kit/dist/components/UiForm/types";
 	import BlockchainCard from "@dv-admin/components/ui/blockchainCard/BlockchainCard.vue";
 	import type { BlockchainType } from "@shared/utils/types/blockchain";
-	import { postApiWalletAddresses } from "@dv-admin/services/api/hotWallets.ts";
+	import { postApiWalletAddresses } from "@dv-admin/utils/services/hotWallets.ts";
 
 	const { currenciesProject } = storeToRefs(useProjectsStore());
 	const { getCurrenciesProject } = useProjectsStore();

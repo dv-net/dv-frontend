@@ -5,7 +5,7 @@ import {
 	postApiWebhookSendTest,
 	postApiWebhooksProject,
 	putApiWebhooksProject
-} from "@dv-admin/services/api/projects";
+} from "@dv-admin/utils/services/projects";
 import { setResultTestWebhook, webhooksFormStartData } from "@dv-admin/stores/projects/utils";
 import type { IStoreWebhooksResponse, IStoreWebhookTestRequest } from "@dv-admin/utils/types/api/apiGo";
 import { useNotifications } from "@shared/utils/composables/useNotifications";
