@@ -16,9 +16,9 @@
 		"preview": "APP_NAME=dv-admin vite preview",
 		"preview:pay": "APP_NAME=pay vite preview",
 		"type-check": "vue-tsc --build --force",
-		"lint": "eslint .",
-		"lint-fix": "eslint . --fix",
-		"format": "prettier --write ."
+		"lint": "eslint src apps",
+		"lint-fix": "eslint src apps --fix",
+		"format": "prettier --write src apps"
 	},
 	"dependencies": {
 		"@dv.net/ui-kit": "^7.7.10",

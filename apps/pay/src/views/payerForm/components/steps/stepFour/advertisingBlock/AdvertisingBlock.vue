@@ -80,11 +80,7 @@
 		flex-direction: column;
 		align-items: center;
 		align-items: center;
-		@media (hover: hover) {
-			&:hover {
-				cursor: pointer;
-			}
-		}
+		@extend .pointer;
 		@include mediamax(480) {
 			width: 100%;
 		}
