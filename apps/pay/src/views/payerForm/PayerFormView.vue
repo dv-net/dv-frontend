@@ -13,7 +13,7 @@
 	import StepFive from "@pay/views/payerForm/components/steps/stepFive/StepFive.vue";
 	import StepError from "@pay/views/payerForm/components/steps/stepError/StepError.vue";
 	import BlockAdvertising from "@pay/views/payerForm/components/blockAdvertising/BlockAdvertising.vue";
-	import { getApiWalletConfirm } from "@pay/services/api/payerForm.ts";
+	import { getApiWalletConfirm } from "@pay/utils/services/payerForm.ts";
 	import { useI18n } from "vue-i18n";
 	import AudioPayment from "@pay/views/payerForm/components/audioPayment/AudioPayment.vue";
 	import BlockLatestTransactions from "@pay/views/payerForm/components/blockLatestTransactions/BlockLatestTransactions.vue";

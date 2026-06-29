@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
-import { getApiPayerInfo, getApiStoreTopup, getApiWalletTxFind } from "@pay/services/api/payerForm";
+import { getApiPayerInfo, getApiStoreTopup, getApiWalletTxFind } from "@pay/utils/services/payerForm.ts";
 import type {
 	IPayerAddressResponse,
 	IWalletTransactionResponse,

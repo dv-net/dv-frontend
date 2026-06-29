@@ -17,7 +17,7 @@
 	import { blockchainCurrencyId } from "@shared/utils/constants/blockchain";
 	import BannerInfo from "@pay/views/payerForm/components/steps/bannerInfo/BannerInfo.vue";
 	import AmountEditor from "@pay/views/payerForm/components/amountEditor/AmountEditor.vue";
-	import { postApiWalletRefreshAddress } from "@pay/services/api/payerForm";
+	import { postApiWalletRefreshAddress } from "@pay/utils/services/payerForm";
 
 	const payerFormStore = usePayerFormStore();
 
@@ -69,7 +69,9 @@
 	});
 	const tokenLabel = computed<string>(() => {
 		if (!currentCurrencyChainId.value) return "";
-		return addresses.value.find((item) => item.currency.id === currentCurrencyChainId.value)?.currency?.token_label || "";
+		return (
+			addresses.value.find((item) => item.currency.id === currentCurrencyChainId.value)?.currency?.token_label || ""
+		);
 	});
 
 	onMounted(() => {
@@ -157,12 +159,7 @@
 											<ui-copy-text v-if="currentAddress" :copied-text="currentAddress" color-icon="#242424" />
 										</template>
 									</ui-input>
-									<ui-button
-										type="secondary"
-										size="sm"
-										:loading="isRefreshingAddress"
-										@click="handleRefreshAddress"
-									>
+									<ui-button type="secondary" size="sm" :loading="isRefreshingAddress" @click="handleRefreshAddress">
 										{{ $t("Refresh address") }}
 									</ui-button>
 								</row-template>
