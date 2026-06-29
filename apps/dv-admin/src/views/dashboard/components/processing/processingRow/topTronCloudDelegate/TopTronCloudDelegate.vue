@@ -54,7 +54,7 @@
 			align-items: center;
 			padding: 0 8px;
 			&:not(:last-child) {
-				border-right: 1px solid #e1e8f1;
+				border-right: 1px solid $grey;
 			}
 			.plate {
 				gap: 8px;
@@ -63,7 +63,7 @@
 				@extend .center;
 				flex-grow: 1;
 				border-radius: 8px;
-				border: 1px solid #e1e8f1;
+				border: 1px solid $grey;
 				background: #fdf1ed;
 				&__content {
 					display: flex;

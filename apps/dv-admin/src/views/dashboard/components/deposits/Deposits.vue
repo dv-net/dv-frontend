@@ -164,7 +164,7 @@
 					color: $blue;
 					font-size: 12px;
 					font-weight: 500;
-					background: #f7f9fb;
+					background: $blue-opacity;
 					word-break: break-word;
 					&--green {
 						color: #1f9649;
@@ -178,7 +178,7 @@
 				grid-template-columns: repeat(4, 1fr);
 				gap: 8px;
 				flex-grow: 1;
-				border-top: 1px solid #e1e8f1;
+				border-top: 1px solid $grey;
 				&__item {
 					height: 38px;
 					position: relative;
@@ -187,7 +187,7 @@
 					padding: 6px 8px;
 					transition: all 0.2s ease;
 					border: 1px solid #ecf0f5;
-					background-color: #f7f9fb;
+					background-color: $blue-opacity;
 					&::before {
 						content: "";
 						position: absolute;
@@ -242,8 +242,8 @@
 					&__percent {
 						text-align: left;
 						white-space: nowrap;
-						color: #1968e5;
-						border-right: 1px solid #e1e8f1;
+						color: $blue;
+						border-right: 1px solid $grey;
 						padding-right: 12px;
 						font-size: 12px;
 						font-weight: 500;
@@ -258,7 +258,7 @@
 						overflow: hidden;
 						text-overflow: ellipsis;
 						&-text {
-							color: #6b6d80;
+							color: $secondary;
 							font-size: 12px;
 							font-weight: 500;
 							line-height: 16px;
@@ -266,7 +266,7 @@
 					}
 					&__sum {
 						text-align: right;
-						color: #303345;
+						color: $black;
 						font-size: 12px;
 						font-weight: 500;
 						line-height: 16px;

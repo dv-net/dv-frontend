@@ -15,7 +15,7 @@
 		.dot {
 			width: 6px;
 			height: 6px;
-			background-color: #1968e5;
+			background-color: $blue;
 			border-radius: 100%;
 		}
 	}

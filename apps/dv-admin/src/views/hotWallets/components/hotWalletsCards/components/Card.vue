@@ -199,7 +199,7 @@
 			&-link {
 				@extend .center;
 				flex-shrink: 0;
-				color: #6b6d80;
+				color: $secondary;
 				width: 36px;
 				height: 36px;
 				border-radius: 6px;

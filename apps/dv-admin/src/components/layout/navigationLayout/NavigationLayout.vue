@@ -91,7 +91,7 @@
 			width: max-content;
 			padding-bottom: 8px;
 			margin-bottom: 8px;
-			border-bottom: 1px solid #e1e8f1;
+			border-bottom: 1px solid $grey;
 		}
 		&__plate {
 			flex-shrink: 0;

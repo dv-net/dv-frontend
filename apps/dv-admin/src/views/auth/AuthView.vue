@@ -44,7 +44,7 @@
 	.auth {
 		display: flex;
 		height: fit-content;
-		background-color: #fff;
+		background-color: $white;
 		max-width: 1400px;
 		border-radius: 32px;
 		margin: 24px;

@@ -63,7 +63,7 @@
 
 			&.disabled {
 				pointer-events: none;
-				color: #a4a5b1;
+				color: $grey-opacity;
 			}
 		}
 	}

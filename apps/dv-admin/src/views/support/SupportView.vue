@@ -76,11 +76,11 @@
 				justify-content: space-between;
 				align-items: center;
 				padding: 24px;
-				border-bottom: 1px solid #e1e8f1;
+				border-bottom: 1px solid $grey;
 			}
 
 			&__description {
-				color: #a4a5b1;
+				color: $grey-opacity;
 				font-weight: 400;
 				font-size: 16px;
 				line-height: 20px;

@@ -9,7 +9,7 @@
 <style scoped lang="scss">
 	.auth-layout {
 		@extend .center;
-		background-color: #f7f9fb;
+		background-color: $blue-opacity;
 		width: 100vw;
 		width: 100dvw;
 		height: 100vh;

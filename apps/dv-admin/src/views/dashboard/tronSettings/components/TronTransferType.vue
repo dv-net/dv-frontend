@@ -46,7 +46,7 @@
 		border-radius: 16px;
 		transition: border-color 0.3s ease;
 		&.selected {
-			border: 1px solid #1968e5;
+			border: 1px solid $blue;
 			.ui-button {
 				cursor: not-allowed;
 			}
@@ -81,7 +81,7 @@
 			text-align: left;
 			padding: 24px;
 			&-text {
-				color: #6b6d80;
+				color: $secondary;
 				font-size: 16px;
 				font-weight: 400;
 				line-height: 20px;

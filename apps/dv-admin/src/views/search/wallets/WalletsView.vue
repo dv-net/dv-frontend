@@ -98,7 +98,7 @@
 					line-height: 20px;
 				}
 				&__label {
-					color: #6b6d80;
+					color: $secondary;
 					font-weight: 400;
 				}
 				&__value {

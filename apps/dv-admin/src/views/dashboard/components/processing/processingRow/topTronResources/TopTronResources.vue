@@ -124,7 +124,7 @@
 			align-items: center;
 			padding: 0 8px;
 			&:not(:last-child) {
-				border-right: 1px solid #e1e8f1;
+				border-right: 1px solid $grey;
 			}
 		}
 		&__bars {
@@ -140,7 +140,7 @@
 				&__content {
 					display: flex;
 					justify-content: space-between;
-					color: #303345;
+					color: $black;
 					font-size: 12px;
 					font-weight: 500;
 					line-height: 16px;

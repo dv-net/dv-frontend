@@ -216,7 +216,7 @@
 					display: flex;
 					align-items: center;
 					position: absolute;
-					background-color: #fff;
+					background-color: $white;
 					color: #1f9649;
 					right: 40px;
 					top: -12px;
@@ -239,8 +239,8 @@
 					align-items: center;
 					padding: 20px 15px;
 					border-radius: 12px;
-					border: 1px solid #e1e8f1;
-					background-color: #f7f9fb;
+					border: 1px solid $grey;
+					background-color: $blue-opacity;
 					position: relative;
 					&__badge {
 						position: absolute;
@@ -249,7 +249,7 @@
 						padding: 2px 8px;
 						border-radius: 12px;
 						background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-						color: #fff;
+						color: $white;
 						font-size: 10px;
 						font-weight: 500;
 						letter-spacing: 0.3px;

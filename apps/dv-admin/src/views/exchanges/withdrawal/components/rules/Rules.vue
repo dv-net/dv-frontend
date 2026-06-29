@@ -269,7 +269,7 @@
 				display: flex;
 			}
 			.saved-params {
-				color: #1968e5;
+				color: $blue;
 			}
 		}
 	}

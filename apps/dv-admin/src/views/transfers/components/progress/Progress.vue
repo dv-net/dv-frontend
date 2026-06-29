@@ -198,7 +198,7 @@
 			}
 		}
 		&__inner-label {
-			color: #a4a5b1;
+			color: $grey-opacity;
 		}
 		&__inner-wallet {
 			display: flex;

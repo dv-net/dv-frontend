@@ -175,7 +175,7 @@
 
 			.date-block {
 				text-align: center;
-				color: #6b6d80;
+				color: $secondary;
 				font-size: 12px;
 				font-weight: 400;
 				line-height: 16px;

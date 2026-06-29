@@ -75,7 +75,7 @@
 			}
 
 			&-text {
-				color: #6b6d80;
+				color: $secondary;
 				font-size: 14px;
 				font-weight: 500;
 				line-height: 20px;
@@ -110,7 +110,7 @@
 			grid-template-columns: 64px auto;
 			gap: 20px;
 			padding: 8px 16px;
-			border-top: 1px solid #e1e8f1;
+			border-top: 1px solid $grey;
 			align-items: center;
 
 			&-container {
@@ -119,7 +119,7 @@
 				height: 64px;
 				border-radius: 6px;
 				padding: 3px;
-				border: 1px solid #e1e8f1;
+				border: 1px solid $grey;
 			}
 
 			&-svg {
@@ -129,7 +129,7 @@
 			}
 
 			&-text {
-				color: #a4a5b1;
+				color: $grey-opacity;
 				font-size: 14px;
 				line-height: 20px;
 				font-weight: 500;

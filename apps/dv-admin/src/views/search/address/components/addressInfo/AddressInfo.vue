@@ -247,7 +247,7 @@
 					@extend .center;
 				}
 				&-text {
-					color: #a4a5b1;
+					color: $grey-opacity;
 				}
 			}
 		}

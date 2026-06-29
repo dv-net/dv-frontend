@@ -182,7 +182,7 @@
 
 			&-text {
 				margin-bottom: 3px;
-				color: #6b6d80;
+				color: $secondary;
 			}
 
 			&-amount {
@@ -191,14 +191,14 @@
 			}
 
 			&-price {
-				color: #303345;
+				color: $black;
 				line-height: 28px;
 				font-size: 20px;
 				font-weight: 700;
 			}
 
 			&-price-fractional {
-				color: #a4a5b1;
+				color: $grey-opacity;
 			}
 		}
 

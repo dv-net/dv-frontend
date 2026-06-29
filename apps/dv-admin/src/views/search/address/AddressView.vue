@@ -265,7 +265,7 @@
 						justify-content: space-between;
 					}
 					&__label {
-						color: #a4a5b1;
+						color: $grey-opacity;
 					}
 				}
 			}

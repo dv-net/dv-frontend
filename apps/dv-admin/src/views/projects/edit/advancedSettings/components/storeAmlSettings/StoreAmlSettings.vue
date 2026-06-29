@@ -135,7 +135,7 @@
 				gap: 8px;
 				padding: 6px 12px;
 				border-radius: 40px;
-				background-color: #f7f9fb;
+				background-color: $blue-opacity;
 				color: #1f9649;
 				font-size: 14px;
 				font-weight: 500;
@@ -168,12 +168,12 @@
 				padding: 16px 20px;
 				min-height: 80px;
 				border-radius: 12px;
-				border: 1px solid #e1e8f1;
-				background-color: #f7f9fb;
+				border: 1px solid $grey;
+				background-color: $blue-opacity;
 
 				&-text {
 					margin: 0;
-					color: #6b6d80;
+					color: $secondary;
 					font-size: 16px;
 					font-weight: 400;
 					line-height: 20px;

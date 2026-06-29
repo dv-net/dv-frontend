@@ -101,7 +101,7 @@
 				align-items: center;
 				gap: 8px;
 				padding-bottom: 13px;
-				color: #6b6d80;
+				color: $secondary;
 			}
 
 			&__item {
@@ -113,7 +113,7 @@
 			}
 
 			&__item-title {
-				color: #a4a5b1;
+				color: $grey-opacity;
 				font-size: 12px;
 				font-weight: 500;
 				line-height: 12px;

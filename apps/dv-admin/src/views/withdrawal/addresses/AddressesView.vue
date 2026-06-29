@@ -389,7 +389,7 @@
 
 				&:disabled {
 					cursor: not-allowed;
-					color: #a4a5b1;
+					color: $grey-opacity;
 					background: $white;
 					border-color: $grey;
 				}
