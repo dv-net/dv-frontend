@@ -76,7 +76,7 @@
 			left: 0;
 			right: 0;
 			bottom: 0;
-			background-color: #f3f4f6;
+			background-color: $main-background;
 			padding: 24px $padding-main + px;
 			@include mediamax(1024) {
 				display: flex;

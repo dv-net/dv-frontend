@@ -257,7 +257,7 @@
 		&__item {
 			display: flex;
 			flex-direction: column;
-			background-color: #fff;
+			background-color: $form-background;
 			border-radius: 12px;
 			border: 1px solid #e1e8f1;
 			padding: 16px;

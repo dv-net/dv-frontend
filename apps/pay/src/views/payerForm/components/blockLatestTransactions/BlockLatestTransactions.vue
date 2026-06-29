@@ -234,7 +234,7 @@
 						padding: 4px 8px;
 						align-items: center;
 						gap: 4px;
-						color: #fff;
+						color: $text-header-form-background;
 						font-size: 12px;
 						font-weight: 400;
 					}

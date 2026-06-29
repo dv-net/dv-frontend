@@ -151,7 +151,7 @@
 					}
 					&__confirmation {
 						text-align: center;
-						color: #1968e5;
+						color: $main-text-link-and-price-color;
 						font-size: 20px;
 						font-weight: 500;
 						@include mediamax(768) {

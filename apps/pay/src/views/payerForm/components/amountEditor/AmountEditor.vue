@@ -139,7 +139,7 @@
 			padding: 0;
 			border: none;
 			background: transparent;
-			color: #a4a5b1;
+			color: $main-subtitle-color;
 			font-size: 16px;
 			font-weight: 400;
 			line-height: 19px;

@@ -45,7 +45,7 @@
 			&__img {
 				@extend .center;
 				border-radius: 12px;
-				background: #f3f4f6;
+				background: $main-background;
 			}
 			.content {
 				display: flex;

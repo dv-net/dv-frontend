@@ -162,14 +162,14 @@
 				color: #1f9649;
 				.timeline__item-label {
 					background-color: #1f9649;
-					color: #fff;
+					color: $text-header-form-background;
 				}
 			}
 			&.waiting {
-				color: #1968e5;
+				color: $main-text-link-and-price-color;
 				.timeline__item-label {
-					background-color: #1968e5;
-					color: #fff;
+					background-color: $main-text-link-and-price-color;
+					color: $text-header-form-background;
 				}
 			}
 		}

@@ -271,7 +271,7 @@
 					flex-shrink: 0;
 					border-radius: 12px;
 					border: 1px solid #e1e8f1;
-					background-color: #fff;
+					background-color: $form-background;
 					@include mediamax(680) {
 						padding: 16px;
 					}
@@ -301,7 +301,7 @@
 							display: flex;
 							align-items: center;
 							gap: 4px;
-							color: #6b6d80;
+							color: $main-text-grey-color;
 							font-size: 12px;
 							font-weight: 500;
 							line-height: 16px;
@@ -332,7 +332,7 @@
 							gap: 14px;
 							margin: 0;
 							padding-right: 16px;
-							border-right: 1px solid #ecf0f5;
+							border-right: 1px solid $main-border-color;
 							flex-grow: 1;
 						}
 						@include mediamax(890) {
@@ -371,10 +371,10 @@
 						flex-direction: column;
 						gap: 4px;
 						padding: 0 0 16px 0;
-						border-bottom: 1px solid #ecf0f5;
+						border-bottom: 1px solid $main-border-color;
 						@include mediamax(1180) {
 							padding: 0 16px;
-							border-right: 1px solid #ecf0f5;
+							border-right: 1px solid $main-border-color;
 							border-bottom: unset;
 							gap: 14px;
 							flex-grow: 1;
@@ -382,7 +382,7 @@
 						@include mediamax(680) {
 							padding: 0 0 16px 0;
 							border-right: unset;
-							border-bottom: 1px solid #ecf0f5;
+							border-bottom: 1px solid $main-border-color;
 							gap: 4px;
 							flex-grow: unset;
 						}
@@ -406,7 +406,7 @@
 							gap: 8px;
 						}
 						&-price {
-							color: #1968e5;
+							color: $main-text-link-and-price-color;
 							font-size: 24px;
 							font-weight: 600;
 							line-height: 32px;

@@ -107,12 +107,12 @@
 					padding: 8px 12px;
 				}
 				&.selected {
-					border: 1px solid #1968e5;
+					border: 1px solid $main-text-link-and-price-color;
 				}
 				@media (hover: hover) {
 					&:hover {
 						cursor: pointer;
-						border: 1px solid #1968e5;
+						border: 1px solid $main-text-link-and-price-color;
 					}
 				}
 				&__inner {

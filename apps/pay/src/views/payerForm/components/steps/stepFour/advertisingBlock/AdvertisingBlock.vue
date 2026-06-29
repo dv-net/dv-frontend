@@ -106,7 +106,7 @@
 			overflow-y: auto;
 			height: 126px;
 			padding: 12px 27px;
-			color: #6b6d80;
+			color: $main-text-grey-color;
 			font-size: 16px;
 			font-weight: 400;
 			line-height: 34px;

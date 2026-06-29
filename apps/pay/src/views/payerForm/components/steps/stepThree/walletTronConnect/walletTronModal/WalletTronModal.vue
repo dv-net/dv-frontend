@@ -98,7 +98,7 @@
 			justify-content: space-between;
 			text-align: center;
 			&__text {
-				color: rgb(30, 30, 30);
+				color: $main-color;
 				font-size: 16px;
 				font-weight: 400;
 			}

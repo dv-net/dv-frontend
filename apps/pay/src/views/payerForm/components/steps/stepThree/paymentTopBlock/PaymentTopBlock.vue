@@ -162,7 +162,7 @@
 			@include mediamax(680) {
 				width: 100%;
 				padding: 40px 16px 20px;
-				background-color: #fff;
+				background-color: $form-background;
 				border-radius: 16px;
 				border: 1px solid #e1e8f1;
 			}

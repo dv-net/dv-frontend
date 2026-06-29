@@ -73,7 +73,7 @@
 			padding: 8px 12px;
 		}
 		&.selected {
-			border: 1px solid #1968e5;
+			border: 1px solid $main-text-link-and-price-color;
 		}
 		&.mode-grey {
 			background-color: #f6f6f6;
@@ -85,7 +85,7 @@
 			&:hover {
 				&.hover-active {
 					cursor: pointer;
-					border: 1px solid #1968e5;
+					border: 1px solid $main-text-link-and-price-color;
 				}
 			}
 		}
