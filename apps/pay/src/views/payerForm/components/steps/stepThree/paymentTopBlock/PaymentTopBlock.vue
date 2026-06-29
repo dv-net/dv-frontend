@@ -146,7 +146,7 @@
 		padding: 48px 10px;
 		border-radius: 12px;
 		border: 1px solid #e1e8f1;
-		@media (max-width: 680px) {
+		@include mediamax(680) {
 			border: unset;
 			border-radius: unset;
 			padding: 0;
@@ -161,7 +161,7 @@
 			flex-direction: column;
 			align-items: center;
 			flex-grow: 1;
-			@media (max-width: 680px) {
+			@include mediamax(680) {
 				width: 100%;
 				padding: 40px 16px 20px;
 				background-color: #fff;
@@ -174,7 +174,7 @@
 				width: 100%;
 				height: 182px;
 				flex-shrink: 0;
-				@media (max-width: 680px) {
+				@include mediamax(680) {
 					max-width: 280px;
 				}
 				&__inner {
@@ -268,7 +268,7 @@
 					gap: 4px;
 					max-width: 354px;
 					width: 100%;
-					@media (max-width: 680px) {
+					@include mediamax(680) {
 						align-items: unset;
 						flex-direction: column;
 						gap: 8px;

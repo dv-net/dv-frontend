@@ -140,7 +140,7 @@
 				border-radius: 12px;
 				border: 1px solid $main-border-color;
 				background-color: $form-background;
-				@media (max-width: 480px) {
+				@include mediamax(480) {
 					padding: 12px;
 				}
 				&.selected {
@@ -176,10 +176,10 @@
 						color: $main-color;
 						font-size: 20px;
 						font-weight: 600;
-						@media (max-width: 576px) {
+						@include mediamax(576) {
 							font-size: 18px;
 						}
-						@media (max-width: 480px) {
+						@include mediamax(480) {
 							font-size: 16px;
 						}
 					}
@@ -202,13 +202,13 @@
 						color: $main-subtitle-color;
 						font-size: 14px;
 						font-weight: 400;
-						@media (max-width: 1024px) {
+						@include mediamax(1024) {
 							text-wrap: unset;
 							text-overflow: unset;
 							overflow: unset;
 							word-break: break-word;
 						}
-						@media (max-width: 480px) {
+						@include mediamax(480) {
 							font-size: 12px;
 						}
 					}

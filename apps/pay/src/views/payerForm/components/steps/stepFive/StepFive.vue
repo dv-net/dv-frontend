@@ -66,13 +66,13 @@
 		display: flex;
 		flex-direction: column;
 		gap: 20px;
-		@media (max-width: 1024px) {
+		@include mediamax(1024) {
 			gap: 16px;
 		}
-		@media (max-width: 768px) {
+		@include mediamax(768) {
 			gap: 12px;
 		}
-		@media (max-width: 480px) {
+		@include mediamax(480) {
 			gap: 16px;
 		}
 		.info {
@@ -83,7 +83,7 @@
 				justify-content: center;
 				align-items: center;
 				padding: 0 0 44px;
-				@media (max-width: 480px) {
+				@include mediamax(480) {
 					padding: 0 0 24px;
 				}
 				.content {
@@ -92,7 +92,7 @@
 					flex-direction: column;
 					&__loader {
 						width: 150px;
-						@media (max-width: 576px) {
+						@include mediamax(576) {
 							width: 100px;
 						}
 					}
@@ -106,7 +106,7 @@
 						font-size: 20px;
 						font-weight: 600;
 						line-height: 24px;
-						@media (max-width: 768px) {
+						@include mediamax(768) {
 							font-size: 18px;
 						}
 					}
@@ -118,14 +118,14 @@
 						font-size: 28px;
 						font-weight: 600;
 						line-height: 32px;
-						@media (max-width: 768px) {
+						@include mediamax(768) {
 							font-size: 24px;
 						}
 						&-usd {
 							color: $main-text-grey-color;
 							font-weight: 400;
 							font-size: 20px;
-							@media (max-width: 768px) {
+							@include mediamax(768) {
 								font-size: 16px;
 							}
 						}

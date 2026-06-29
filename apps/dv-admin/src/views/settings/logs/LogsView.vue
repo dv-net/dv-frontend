@@ -138,7 +138,7 @@
 				</div>
 				<not-found-message v-else />
 			</div>
-			<div class="flex flex-center flex-x-end mt-12">
+			<div class="center flex-x-end mt-12">
 				<ui-button mode="neutral" :disabled="isLoading" @click="getAllLogs">
 					{{ $t("Update.verb") }}
 				</ui-button>

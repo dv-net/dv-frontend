@@ -178,30 +178,30 @@
 		display: flex;
 		flex-direction: column;
 		gap: 24px;
-		@media (max-width: 480px) {
+		@include mediamax(480) {
 			gap: 12px;
 		}
 		&__inner {
 			display: flex;
 			gap: 24px;
-			@media (max-width: 1024px) {
+			@include mediamax(1024) {
 				width: 100%;
 				flex-direction: column;
 			}
-			@media (max-width: 480px) {
+			@include mediamax(480) {
 				gap: 12px;
 			}
 		}
 		&__body {
 			flex-grow: 1;
-			@media (max-width: 1024px) {
+			@include mediamax(1024) {
 				order: 2;
 			}
 		}
 		&__advertising,
 		&__latest-transactions {
 			display: none;
-			@media (max-width: 1024px) {
+			@include mediamax(1024) {
 				display: flex;
 				order: 3;
 			}

@@ -67,10 +67,10 @@
 		gap: 24px;
 		width: 492px;
 		flex-shrink: 0;
-		@media (max-width: 1180px) {
+		@include mediamax(1180) {
 			width: 400px;
 		}
-		@media (max-width: 1024px) {
+		@include mediamax(1024) {
 			width: 100%;
 		}
 		.details {
@@ -82,7 +82,7 @@
 				gap: 12px;
 				padding: 20px 0 44px;
 				border-bottom: 1px solid $main-border-color;
-				@media (max-width: 480px) {
+				@include mediamax(480) {
 					gap: 8px;
 					padding: 12px 0 20px;
 				}
@@ -95,7 +95,7 @@
 					font-size: 16px;
 					font-weight: 400;
 					line-height: 130%;
-					@media (max-width: 480px) {
+					@include mediamax(480) {
 						display: flex;
 						align-items: unset;
 						justify-content: unset;
@@ -104,7 +104,7 @@
 						font-size: 14px;
 					}
 					&__label {
-						@media (max-width: 480px) {
+						@include mediamax(480) {
 							font-size: 14px;
 							opacity: 0.6;
 						}
@@ -119,13 +119,13 @@
 				display: flex;
 				align-items: flex-start;
 				justify-content: space-between;
-				@media (max-width: 480px) {
+				@include mediamax(480) {
 					padding-top: 16px;
 				}
 				&-label {
 					font-size: 20px;
 					font-weight: 500;
-					@media (max-width: 480px) {
+					@include mediamax(480) {
 						font-size: 16px;
 					}
 				}
@@ -133,7 +133,7 @@
 		}
 		&__advertising,
 		&__latest-transactions {
-			@media (max-width: 1024px) {
+			@include mediamax(1024) {
 				display: none;
 			}
 		}

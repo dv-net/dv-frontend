@@ -66,7 +66,7 @@
 		align-items: center;
 		justify-content: center;
 		padding: 16px;
-		@media (max-width: 480px) {
+		@include mediamax(480) {
 			align-items: flex-end;
 			padding: 0;
 		}
@@ -89,7 +89,7 @@
 			gap: 20px;
 			color: #0f172a;
 			min-height: 300px;
-			@media (max-width: 480px) {
+			@include mediamax(480) {
 				width: 100%;
 				border-radius: 32px 32px 0 0;
 			}

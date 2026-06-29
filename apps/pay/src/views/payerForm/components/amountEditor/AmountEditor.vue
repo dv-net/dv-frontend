@@ -175,7 +175,7 @@
 			.amount-editor__input {
 				font-size: 32px;
 				line-height: 40px;
-				@media (max-width: 480px) {
+				@include mediamax(480) {
 					font-size: 24px;
 				}
 			}

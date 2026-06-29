@@ -68,7 +68,7 @@
 		transition: border 0.3s ease-in-out;
 		word-break: break-word;
 		font-size: 16px;
-		@media (max-width: 768px) {
+		@include mediamax(768) {
 			font-size: 14px;
 			padding: 8px 12px;
 		}
@@ -119,7 +119,7 @@
 			flex-wrap: wrap;
 			gap: 4px;
 			padding: 0 38px 0 0;
-			@media (max-width: 768px) {
+			@include mediamax(768) {
 				display: none;
 			}
 		}

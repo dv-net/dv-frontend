@@ -85,7 +85,7 @@
 				cursor: pointer;
 			}
 		}
-		@media (max-width: 480px) {
+		@include mediamax(480) {
 			width: 100%;
 		}
 		&__logo {
@@ -123,7 +123,7 @@
 			margin: 5px 0 12px;
 			word-break: break-word;
 			animation: slideInFromLeft 0.3s ease-out 0.2s both;
-			@media (max-width: 480px) {
+			@include mediamax(480) {
 				font-size: 12px;
 				padding: 12px;
 				height: unset;
@@ -146,7 +146,7 @@
 			border-radius: 12px;
 			background-color: rgba(31, 150, 73, 0.12);
 			animation: slideInFromBottom 0.3s ease-out both;
-			@media (max-width: 480px) {
+			@include mediamax(480) {
 				font-size: 12px;
 				line-height: 16px;
 				white-space: unset;

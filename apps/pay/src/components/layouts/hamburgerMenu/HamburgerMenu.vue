@@ -62,7 +62,7 @@
 					background-color: color(srgb 0.92 0.92 0.92);
 				}
 			}
-			@media (max-width: 1024px) {
+			@include mediamax(1024) {
 				display: flex;
 			}
 		}
@@ -78,7 +78,7 @@
 			bottom: 0;
 			background-color: #f3f4f6;
 			padding: 24px $padding-main + px;
-			@media (max-width: 1024px) {
+			@include mediamax(1024) {
 				display: flex;
 			}
 			&__nav {
