@@ -132,9 +132,7 @@
 			}
 		}
 		.labels {
-			display: flex;
-			justify-content: center;
-			align-items: center;
+			@extend .center;
 			gap: 8px;
 			flex-wrap: wrap;
 			@include mediamax(1024) {

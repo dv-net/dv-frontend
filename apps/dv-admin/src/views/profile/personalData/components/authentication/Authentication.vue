@@ -156,9 +156,7 @@
 		align-items: center;
 		gap: 16px;
 		&__logo {
-			display: flex;
-			justify-content: center;
-			align-items: center;
+			@extend .center;
 			width: 40px;
 			height: 40px;
 			border-radius: 5.714px;

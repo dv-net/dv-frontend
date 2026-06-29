@@ -196,9 +196,7 @@
 				flex-direction: column;
 				gap: 16px;
 				&__logo {
-					display: flex;
-					justify-content: center;
-					align-items: center;
+					@extend .center;
 					height: 56px;
 				}
 				&__btn {

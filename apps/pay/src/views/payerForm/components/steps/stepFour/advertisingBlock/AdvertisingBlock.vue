@@ -85,9 +85,7 @@
 			width: 100%;
 		}
 		&__logo {
-			display: flex;
-			align-items: center;
-			justify-content: center;
+			@extend .center;
 			width: 130px;
 			overflow: hidden;
 			animation: slideInFromLeft 0.6s ease-out;
@@ -103,9 +101,7 @@
 			}
 		}
 		&__text {
-			display: flex;
-			align-items: center;
-			justify-content: center;
+			@extend .center;
 			text-align: center;
 			overflow-y: auto;
 			height: 126px;

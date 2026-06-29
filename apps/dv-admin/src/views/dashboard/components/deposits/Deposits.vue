@@ -157,9 +157,7 @@
 				&__item {
 					flex-shrink: 0;
 					width: 104px;
-					display: flex;
-					align-items: center;
-					justify-content: center;
+					@extend .center;
 					gap: 4px;
 					border-radius: 6px;
 					padding: 4px 8px;

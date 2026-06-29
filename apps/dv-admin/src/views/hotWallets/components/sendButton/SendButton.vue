@@ -115,9 +115,7 @@
 
 <style scoped lang="scss">
 	.icon {
-		display: flex;
-		align-items: center;
-		justify-content: center;
+		@extend .center;
 		width: 24px;
 		height: 24px;
 		border-radius: 4px;

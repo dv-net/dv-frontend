@@ -234,9 +234,7 @@
 			}
 		}
 		.not-found {
-			display: flex;
-			align-items: center;
-			justify-content: center;
+			@extend .center;
 			font-size: 18px;
 			width: max-content;
 			min-width: 500px;

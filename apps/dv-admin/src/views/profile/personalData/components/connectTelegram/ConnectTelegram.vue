@@ -138,9 +138,7 @@
 		}
 
 		&__icon {
-			display: flex;
-			align-items: center;
-			justify-content: center;
+			@extend .center;
 			width: 40px;
 			height: 40px;
 			border-radius: 5.714px;

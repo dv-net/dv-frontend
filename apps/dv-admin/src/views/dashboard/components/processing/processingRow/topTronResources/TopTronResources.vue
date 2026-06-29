@@ -129,9 +129,7 @@
 		}
 		&__bars {
 			flex-grow: 1;
-			display: flex;
-			align-items: center;
-			justify-content: center;
+			@extend .center;
 			gap: 16px;
 			.bar {
 				display: flex;

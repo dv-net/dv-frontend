@@ -62,9 +62,7 @@
 		position: fixed;
 		inset: 0;
 		z-index: 2000;
-		display: flex;
-		align-items: center;
-		justify-content: center;
+		@extend .center;
 		padding: 16px;
 		@include mediamax(480) {
 			align-items: flex-end;

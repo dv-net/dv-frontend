@@ -265,9 +265,7 @@
 				background-color: $white;
 				width: 32px;
 				height: 32px;
-				display: flex;
-				align-items: center;
-				justify-content: center;
+				@extend .center;
 
 				&.active {
 					border: 1px solid $blue;
@@ -307,9 +305,7 @@
 					cursor: pointer;
 
 					&-item {
-						display: flex;
-				align-items: center;
-				justify-content: center;
+						@extend .center;
 						transition: transform 0.3s ease-in-out;
 						@media (hover: hover) {
 							&:hover {

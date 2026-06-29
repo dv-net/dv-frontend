@@ -89,11 +89,9 @@
 			border-right: 1px solid $grey-light;
 			&-icon {
 				flex-shrink: 0;
-				display: flex;
+				@extend .center;
 				width: 56px;
 				height: 56px;
-				align-items: center;
-				justify-content: center;
 				border-radius: 100%;
 				border: 1px solid $grey-light;
 				background-color: $white;

@@ -31,9 +31,7 @@
 <style scoped lang="scss">
 	.page {
 		flex-grow: 1;
-		display: flex;
-		justify-content: center;
-		align-items: center;
+		@extend .center;
 		&__inner {
 			display: flex;
 			flex-direction: column;
@@ -48,9 +46,7 @@
 			margin: 40px 0 20px;
 		}
 		&__actions {
-			display: flex;
-			align-items: center;
-			justify-content: center;
+			@extend .center;
 			gap: 8px;
 		}
 	}

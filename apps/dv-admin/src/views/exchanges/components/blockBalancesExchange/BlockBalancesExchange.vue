@@ -187,9 +187,7 @@
 					gap: 8px;
 				}
 				&__plus {
-					display: flex;
-					align-items: center;
-					justify-content: center;
+					@extend .center;
 					width: 32px;
 					height: 32px;
 					border-radius: 100px;

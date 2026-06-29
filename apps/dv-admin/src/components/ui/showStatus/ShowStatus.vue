@@ -12,9 +12,7 @@
 
 <style scoped lang="scss">
 	.label {
-		display: flex;
-		align-items: center;
-		justify-content: center;
+		@extend .center;
 		width: max-content;
 		padding: 4px 12px;
 		border-radius: 4px;

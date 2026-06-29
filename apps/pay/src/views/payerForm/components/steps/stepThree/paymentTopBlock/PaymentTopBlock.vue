@@ -140,9 +140,7 @@
 
 <style scoped lang="scss">
 	.block {
-		display: flex;
-		align-items: center;
-		justify-content: center;
+		@extend .center;
 		padding: 48px 10px;
 		border-radius: 12px;
 		border: 1px solid #e1e8f1;
@@ -182,9 +180,7 @@
 					left: 50%;
 					top: 50%;
 					transform: translate(-50%, -50%);
-					display: flex;
-					align-items: center;
-					justify-content: center;
+					@extend .center;
 					width: 100%;
 					height: 100%;
 					background-image: url("/border-qr-code.png");
@@ -197,9 +193,7 @@
 					left: 50%;
 					top: 50%;
 					transform: translate(-50%, -50%);
-					display: flex;
-					align-items: center;
-					justify-content: center;
+					@extend .center;
 					width: 100%;
 				}
 				&__code {
@@ -208,9 +202,7 @@
 					flex-shrink: 0;
 				}
 				&__logo {
-					display: flex;
-					align-items: center;
-					justify-content: center;
+					@extend .center;
 					width: 40px;
 					height: 40px;
 					position: absolute;
@@ -227,9 +219,7 @@
 				width: 100%;
 				margin-top: 32px;
 				.description {
-					display: flex;
-					align-items: center;
-					justify-content: center;
+					@extend .center;
 					flex-wrap: wrap;
 					gap: 12px;
 					padding-bottom: 8px;

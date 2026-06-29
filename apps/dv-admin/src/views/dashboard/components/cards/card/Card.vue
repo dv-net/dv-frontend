@@ -86,11 +86,9 @@
 		}
 
 		&__icon {
-			display: flex;
+			@extend .center;
 			width: 60px;
 			height: 60px;
-			justify-content: center;
-			align-items: center;
 			flex-shrink: 0;
 			border-radius: 12px;
 			background-color: #fff3e0;

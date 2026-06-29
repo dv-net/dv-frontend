@@ -98,9 +98,7 @@
 			flex-direction: column;
 			&__top {
 				position: relative;
-				display: flex;
-				justify-content: center;
-				align-items: center;
+				@extend .center;
 				padding: 0 0 16px;
 				@include mediamax(1180) {
 					justify-content: unset;

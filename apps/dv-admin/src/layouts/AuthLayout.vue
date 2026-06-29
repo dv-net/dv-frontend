@@ -8,9 +8,7 @@
 
 <style scoped lang="scss">
 	.auth-layout {
-		display: flex;
-		justify-content: center;
-		align-items: center;
+		@extend .center;
 		background-color: #f7f9fb;
 		width: 100vw;
 		width: 100dvw;

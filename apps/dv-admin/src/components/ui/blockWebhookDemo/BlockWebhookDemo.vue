@@ -94,9 +94,7 @@
 			line-height: 20px;
 		}
 		&__icon {
-			display: flex;
-			justify-content: center;
-			align-items: center;
+			@extend .center;
 		}
 		&__label {
 			color: $white;

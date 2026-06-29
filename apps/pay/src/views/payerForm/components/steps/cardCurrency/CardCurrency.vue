@@ -124,11 +124,9 @@
 			}
 		}
 		&__blockchain {
-			display: flex;
-			align-items: center;
+			@extend .center;
 			gap: 4px;
 			padding: 4px 6px 4px 4px;
-			justify-content: center;
 			border-radius: 100px;
 			background-color: #f7f9fb;
 			color: $main-text-grey-color;

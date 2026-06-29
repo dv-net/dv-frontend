@@ -273,11 +273,9 @@
 		gap: 8px;
 
 		&__icon {
-			display: flex;
+			@extend .center;
 			width: 20px;
 			height: 20px;
-			justify-content: center;
-			align-items: center;
 			flex-shrink: 0;
 			color: $blue;
 			border-radius: 4px;

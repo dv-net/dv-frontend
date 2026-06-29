@@ -79,9 +79,7 @@
 			display: flex;
 			flex-direction: column;
 			&__top {
-				display: flex;
-				justify-content: center;
-				align-items: center;
+				@extend .center;
 				padding: 0 0 44px;
 				@include mediamax(480) {
 					padding: 0 0 24px;
@@ -111,9 +109,7 @@
 						}
 					}
 					&__amount {
-						display: flex;
-						align-items: center;
-						justify-content: center;
+						@extend .center;
 						gap: 6px;
 						font-size: 28px;
 						font-weight: 600;

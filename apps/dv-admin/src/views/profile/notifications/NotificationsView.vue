@@ -179,9 +179,7 @@
 					font-weight: 400;
 				}
 				&__column {
-					display: flex;
-					justify-content: center;
-					align-items: center;
+					@extend .center;
 					font-weight: 700;
 				}
 			}

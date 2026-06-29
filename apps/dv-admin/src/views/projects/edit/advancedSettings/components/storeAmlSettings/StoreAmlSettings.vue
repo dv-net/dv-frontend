@@ -194,9 +194,7 @@
 				&:deep(.ui-input) {
 					padding: 0 0 0 12px;
 					.ui-input__append {
-						display: flex;
-						align-items: center;
-						justify-content: center;
+						@extend .center;
 						background-color: red;
 						height: 100%;
 						color: rgba(0, 0, 0, 1);

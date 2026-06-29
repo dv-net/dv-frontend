@@ -244,9 +244,7 @@
 					color: $blue;
 					width: 25px;
 					height: 25px;
-					display: flex;
-					justify-content: center;
-					align-items: center;
+					@extend .center;
 				}
 				&-text {
 					color: #a4a5b1;
