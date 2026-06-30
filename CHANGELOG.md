@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [1.0.40] - 2026-06-18
+
+- change: use AML provider labels from dictionaries API instead of local constants
+
 ## [1.0.39] - 2026-06-18
 
 - feat: adding AML checks to the store

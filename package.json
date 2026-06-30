@@ -1,7 +1,7 @@
 {
 	"name": "dv-frontend",
 	"private": false,
-	"version": "1.0.39",
+	"version": "1.0.40",
 	"type": "module",
 	"engines": {
 		"node": "^22.22.2 || ^24.15.0 || >=26.0.0"
