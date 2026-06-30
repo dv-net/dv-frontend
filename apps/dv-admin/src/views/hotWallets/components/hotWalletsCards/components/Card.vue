@@ -40,7 +40,11 @@
 				<div class="content">
 					<span class="content__name">
 						{{ getCurrentCoin(item.currency_id) }}
-						<ui-tooltip v-if="item.dirty" :title="$t('Dirty address')" :text="$t('This address has been marked as dirty and permanently removed from automatic allocation.')">
+						<ui-tooltip
+							v-if="item.dirty"
+							:title="$t('Dirty address')"
+							:text="$t('This address has been marked as dirty and permanently removed from automatic allocation.')"
+						>
 							<ui-icon name="warning" type="filled" color="#f04438" size="sm" class="pointer" />
 						</ui-tooltip>
 					</span>
@@ -122,9 +126,7 @@
 				gap: 12px;
 
 				&__icon {
-					display: flex;
-					align-items: center;
-					justify-content: center;
+					@extend .center;
 					width: 36px;
 					height: 36px;
 
@@ -199,11 +201,9 @@
 			}
 
 			&-link {
-				display: flex;
-				align-items: center;
-				justify-content: center;
+				@extend .center;
 				flex-shrink: 0;
-				color: #6b6d80;
+				color: $secondary;
 				width: 36px;
 				height: 36px;
 				border-radius: 6px;

@@ -139,7 +139,7 @@
 			padding: 0;
 			border: none;
 			background: transparent;
-			color: #a4a5b1;
+			color: $main-subtitle-color;
 			font-size: 16px;
 			font-weight: 400;
 			line-height: 19px;
@@ -175,7 +175,7 @@
 			.amount-editor__input {
 				font-size: 32px;
 				line-height: 40px;
-				@media (max-width: 480px) {
+				@include mediamax(480) {
 					font-size: 24px;
 				}
 			}

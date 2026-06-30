@@ -16,7 +16,7 @@
 	import TooltipHelper from "@dv-admin/components/ui/tooltipHelper/TooltipHelper.vue";
 	import { computed, ref } from "vue";
 	import { useI18n } from "vue-i18n";
-	import { postApiStoreSetting, putApiCurrenciesProject } from "@dv-admin/services/api/projects.ts";
+	import { postApiStoreSetting, putApiCurrenciesProject } from "@dv-admin/utils/services/projects.ts";
 	import { useGeneralStore } from "@dv-admin/stores/general";
 	import { UiForm, UiTable } from "@dv.net/ui-kit";
 	import type { UiFormRules } from "@dv.net/ui-kit/dist/components/UiForm/types";
@@ -350,7 +350,7 @@
 					@media (hover: hover) {
 						&:hover {
 							cursor: pointer;
-							border: 1px solid #1968e5;
+							border: 1px solid $blue;
 						}
 					}
 				}
@@ -399,7 +399,7 @@
 			display: flex;
 			flex-direction: column;
 			gap: 16px;
-			border-bottom: 1px solid #e1e8f1;
+			border-bottom: 1px solid $grey;
 			padding-bottom: 24px;
 			&__list {
 				display: flex;

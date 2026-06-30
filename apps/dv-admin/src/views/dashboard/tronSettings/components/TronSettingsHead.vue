@@ -234,7 +234,7 @@
 					&__content {
 						display: flex;
 						justify-content: space-between;
-						color: #303345;
+						color: $black;
 						font-size: 12px;
 						font-weight: 500;
 						line-height: 16px;

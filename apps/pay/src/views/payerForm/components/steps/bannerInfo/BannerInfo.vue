@@ -60,28 +60,28 @@
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		gap: 20px;
-		@media (max-width: 1024px) {
+		@include mediamax(1024) {
 			grid-template-columns: 1fr 300px;
 		}
-		@media (max-width: 768px) {
+		@include mediamax(768) {
 			grid-template-columns: 1fr;
 		}
 		.content {
 			display: flex;
 			align-items: center;
 			gap: 24px;
-			@media (max-width: 1024px) {
+			@include mediamax(1024) {
 				gap: 16px;
 			}
 			&__img {
 				width: 64px;
 				height: 64px;
 				flex-shrink: 0;
-				@media (max-width: 1024px) {
+				@include mediamax(1024) {
 					width: 54px;
 					height: 54px;
 				}
-				@media (max-width: 480px) {
+				@include mediamax(480) {
 					width: 40px;
 					height: 40px;
 				}
@@ -90,7 +90,7 @@
 				display: flex;
 				flex-direction: column;
 				gap: 8px;
-				@media (max-width: 1024px) {
+				@include mediamax(1024) {
 					gap: 6px;
 				}
 			}
@@ -99,19 +99,19 @@
 				font-weight: 600;
 				line-height: 24px;
 				color: $main-title-color;
-				@media (max-width: 1024px) {
+				@include mediamax(1024) {
 					font-size: 18px;
 				}
-				@media (max-width: 480px) {
+				@include mediamax(480) {
 					font-size: 16px;
 				}
 				&:deep(.ui-link) {
 					font-size: 20px;
 					font-weight: 600;
-					@media (max-width: 1024px) {
+					@include mediamax(1024) {
 						font-size: 18px;
 					}
-					@media (max-width: 480px) {
+					@include mediamax(480) {
 						font-size: 16px;
 					}
 				}
@@ -123,24 +123,22 @@
 				line-height: 20px;
 				max-width: 350px;
 				width: 100%;
-				@media (max-width: 1024px) {
+				@include mediamax(1024) {
 					font-size: 14px;
 				}
-				@media (max-width: 480px) {
+				@include mediamax(480) {
 					font-size: 14px;
 				}
 			}
 		}
 		.labels {
-			display: flex;
-			justify-content: center;
-			align-items: center;
+			@extend .center;
 			gap: 8px;
 			flex-wrap: wrap;
-			@media (max-width: 1024px) {
+			@include mediamax(1024) {
 				justify-content: flex-end;
 			}
-			@media (max-width: 768px) {
+			@include mediamax(768) {
 				justify-content: center;
 			}
 			&__item {
@@ -153,11 +151,11 @@
 				color: #1f9649;
 				font-size: 16px;
 				font-weight: 400;
-				@media (max-width: 1024px) {
+				@include mediamax(1024) {
 					padding: 4px 8px;
 					font-size: 14px;
 				}
-				@media (max-width: 480px) {
+				@include mediamax(480) {
 					font-size: 12px;
 				}
 			}

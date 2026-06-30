@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import { getApiAdminUsers, patchApiAdminUserBan, patchApiAdminUserUnBan } from "@dv-admin/services/api/users";
+import { getApiAdminUsers, patchApiAdminUserBan, patchApiAdminUserUnBan } from "@dv-admin/utils/services/users";
 import type { IAdminUsersItemResponse } from "@dv-admin/utils/types/api/apiGo";
 
 export const useUsersStore = defineStore("users", () => {

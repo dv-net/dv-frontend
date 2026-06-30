@@ -7,7 +7,7 @@
 	import { useRouter } from "vue-router";
 	import { useNotifications } from "@shared/utils/composables/useNotifications";
 	import { useI18n } from "vue-i18n";
-	import { postApiResetPassword } from "@dv-admin/services/api/auth";
+	import { postApiResetPassword } from "@dv-admin/utils/services/auth";
 	import type { UiFormRules } from "@dv.net/ui-kit/dist/components/UiForm/types";
 
 	const router = useRouter();

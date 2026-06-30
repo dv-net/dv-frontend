@@ -13,7 +13,7 @@ import {
 	postAuthUser,
 	postRegisterUser,
 	putApiUser
-} from "@dv-admin/services/api/auth";
+} from "@dv-admin/utils/services/auth";
 import { computed, ref } from "vue";
 import { useRouter } from "vue-router";
 import type {

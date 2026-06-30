@@ -8,7 +8,7 @@ import {
 	postApiWithdrawMultipleProcessing,
 	postApiWithdrawMultipleManual,
 	postApiWalletKeysHot
-} from "@dv-admin/services/api/hotWallets";
+} from "@dv-admin/utils/services/hotWallets";
 import { useAuthStore } from "@dv-admin/stores/auth";
 import type {
 	IHotWalletsItem,
@@ -21,7 +21,7 @@ import type {
 } from "@dv-admin/utils/types/api/apiGo";
 import { useProjectsStore } from "@dv-admin/stores/projects";
 import { walletsFilterStartData } from "@dv-admin/stores/hotWallets/utils";
-import { getApiWalletBalancesHot } from "@dv-admin/services/api/dashboard";
+import { getApiWalletBalancesHot } from "@dv-admin/utils/services/dashboard";
 import type { UItableMeta } from "@dv.net/ui-kit/dist/components/UiTable/types";
 import { parsePagination } from "@dv-admin/utils/helpers/parsePagination";
 import { downloadBlobFile } from "@dv-admin/utils/helpers/downloadBlobFile.ts";

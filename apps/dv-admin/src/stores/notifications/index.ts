@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import { getApiNotifications, getApiNotificationsTypes } from "@dv-admin/services/api/notifications";
+import { getApiNotifications, getApiNotificationsTypes } from "@dv-admin/utils/services/notifications";
 import type { UItableMeta } from "@dv.net/ui-kit/dist/components/UiTable/types";
 import type {
 	INotificationsItemResponse,

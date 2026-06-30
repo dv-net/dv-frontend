@@ -3,8 +3,8 @@
 	import { storeToRefs } from "pinia";
 	import { useGeneralStore } from "@dv-admin/stores/general";
 	import { useAmlSettingsProjectStore } from "@dv-admin/stores/projects/amlSettings";
-	import { AML_PROVIDERS } from "@dv-admin/utils/constants/transferCheck";
 	import BlockSection from "@dv-admin/components/ui/BlockSection/BlockSection.vue";
+	import type { IDictionaryAmlProvider } from "@dv-admin/utils/types/api/apiGo";
 	import { computed, ref, watch } from "vue";
 	import { useRouter } from "vue-router";
 
@@ -25,7 +25,9 @@
 
 	const activeProviderTab = ref<string>("");
 
-	const availableAmlProviders = computed<string[]>(() => dictionary.value?.available_aml_providers ?? []);
+	const availableAmlProviders = computed<IDictionaryAmlProvider[]>(
+		() => dictionary.value?.available_aml_providers ?? []
+	);
 
 	const isCurrentProviderGloballyConnected = computed<boolean>(() =>
 		isProviderGloballyConnected(activeProviderTab.value)
@@ -41,9 +43,8 @@
 		return amlSettingsProject.value.provider_slug;
 	});
 
-	const currentNameAmlProvider = (aml: string): string => {
-		return aml in AML_PROVIDERS ? AML_PROVIDERS[aml] : aml;
-	};
+	const currentNameAmlProvider = (slug: string): string =>
+		availableAmlProviders.value.find((provider) => provider.slug === slug)?.label ?? slug;
 
 	const goToConnectPage = (providerSlug: string) => {
 		router.push({ name: "transfer-check-connect-aml", params: { aml: providerSlug } });
@@ -56,7 +57,7 @@
 	};
 
 	const loadAmlProviders = async () => {
-		const providers = availableAmlProviders.value;
+		const providers = availableAmlProviders.value.map((provider) => provider.slug);
 		if (!providers.length) return;
 
 		await getConnectedAmlProviders(providers);
@@ -77,12 +78,7 @@
 			</span>
 		</div>
 
-		<ui-skeleton
-			v-if="isLoadingConnectedProviders"
-			:rowHeight="136"
-			:rows="1"
-			:item-border-radius="12"
-		/>
+		<ui-skeleton v-if="isLoadingConnectedProviders" :rowHeight="136" :rows="1" :item-border-radius="12" />
 
 		<div v-else class="body">
 			<ui-tabs
@@ -92,8 +88,8 @@
 				mode="light"
 				@change="handleProviderChange"
 			>
-				<ui-tabs-item v-for="item in availableAmlProviders" :key="item" :value="item">
-					{{ currentNameAmlProvider(item) }}
+				<ui-tabs-item v-for="item in availableAmlProviders" :key="item.slug" :value="item.slug">
+					{{ item.label }}
 				</ui-tabs-item>
 			</ui-tabs>
 
@@ -135,7 +131,7 @@
 				gap: 8px;
 				padding: 6px 12px;
 				border-radius: 40px;
-				background-color: #f7f9fb;
+				background-color: $blue-opacity;
 				color: #1f9649;
 				font-size: 14px;
 				font-weight: 500;
@@ -168,12 +164,12 @@
 				padding: 16px 20px;
 				min-height: 80px;
 				border-radius: 12px;
-				border: 1px solid #e1e8f1;
-				background-color: #f7f9fb;
+				border: 1px solid $grey;
+				background-color: $blue-opacity;
 
 				&-text {
 					margin: 0;
-					color: #6b6d80;
+					color: $secondary;
 					font-size: 16px;
 					font-weight: 400;
 					line-height: 20px;
@@ -194,9 +190,7 @@
 				&:deep(.ui-input) {
 					padding: 0 0 0 12px;
 					.ui-input__append {
-						display: flex;
-						align-items: center;
-						justify-content: center;
+						@extend .center;
 						background-color: red;
 						height: 100%;
 						color: rgba(0, 0, 0, 1);

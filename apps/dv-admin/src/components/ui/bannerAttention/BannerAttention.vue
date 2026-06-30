@@ -31,9 +31,7 @@
 			height: 24px;
 			border-radius: 50%;
 			border: 1px solid #ed0a34;
-			display: flex;
-			justify-content: center;
-			align-items: center;
+			@extend .center;
 		}
 	}
 </style>

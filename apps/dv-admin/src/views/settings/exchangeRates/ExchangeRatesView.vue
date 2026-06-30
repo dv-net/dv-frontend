@@ -14,7 +14,7 @@
 	import TooltipHelper from "@dv-admin/components/ui/tooltipHelper/TooltipHelper.vue";
 	import { useExchangeSettingsStore } from "@dv-admin/stores/exchangeSettings";
 	import type { ICurrenciesRateResponse } from "@dv-admin/utils/types/api/apiGo";
-	import { getApiCurrenciesRate, putApiCurrenciesRate } from "@dv-admin/services/api/exchangeAndCommissions.ts";
+	import { getApiCurrenciesRate, putApiCurrenciesRate } from "@dv-admin/utils/services/exchangeAndCommissions.ts";
 	import { useNotifications } from "@shared/utils/composables/useNotifications.ts";
 
 	const { t } = useI18n();

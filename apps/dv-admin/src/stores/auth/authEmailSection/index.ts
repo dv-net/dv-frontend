@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
 import { USER } from "@dv-admin/utils/constants/user";
-import { postApiInitEmailConfirmation, postApiUserInitEmailChange } from "@dv-admin/services/api/auth.ts";
+import { postApiInitEmailConfirmation, postApiUserInitEmailChange } from "@dv-admin/utils/services/auth.ts";
 import { useNotifications } from "@shared/utils/composables/useNotifications.ts";
 
 const { notify } = useNotifications();

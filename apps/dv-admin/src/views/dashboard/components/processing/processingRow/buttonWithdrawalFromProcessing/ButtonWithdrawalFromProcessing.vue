@@ -9,7 +9,7 @@
 
 	const { currencyId } = defineProps<{ currencyId: string }>();
 	const emits = defineEmits(["close"]);
-	const isShowWithdrawalFromProcessing = defineModel<Record<string, boolean>>({ default: {}, required: true });
+	const isShowWithdrawalFromProcessing = defineModel<Record<string, boolean>>({ required: true });
 
 	const settingWithdrawFromProcessing = computed<string | undefined>(() => {
 		return userSettings.value.find((item) => item.name === "withdraw_from_processing")?.value;

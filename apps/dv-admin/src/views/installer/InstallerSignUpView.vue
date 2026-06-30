@@ -125,9 +125,7 @@
 <style scoped lang="scss">
 	.page {
 		flex-grow: 1;
-		display: flex;
-		justify-content: center;
-		align-items: center;
+		@extend .center;
 		&__inner {
 			display: flex;
 			align-items: center;

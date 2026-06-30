@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
-import { getApiDictionary, getApiSystemVersions } from "@dv-admin/services/api/general";
+import { getApiDictionary, getApiSystemVersions } from "@dv-admin/utils/services/general";
 import type { IDictionary, IDictionaryItemTimezones, ISystemVersions } from "@dv-admin/utils/types/api/apiGo";
 
 export const useGeneralStore = defineStore("general", () => {
@@ -38,7 +38,7 @@ export const useGeneralStore = defineStore("general", () => {
 						{}
 					);
 				}
-				dictionary.value.available_aml_providers.sort();
+				dictionary.value.available_aml_providers.sort((a, b) => a.slug.localeCompare(b.slug));
 				dictionary.value.available_rate_sources = dictionary.value.available_rate_sources.sort((a) =>
 					a.includes("dv-") ? 1 : -1
 				);

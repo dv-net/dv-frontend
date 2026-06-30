@@ -7,7 +7,7 @@
 	import { computed, ref } from "vue";
 	import QrcodeVue from "qrcode.vue";
 	import BlockSection from "@dv-admin/components/ui/BlockSection/BlockSection.vue";
-	import { postApiUser2FaResetInit } from "@dv-admin/services/api/auth.ts";
+	import { postApiUser2FaResetInit } from "@dv-admin/utils/services/auth.ts";
 	import { useNotifications } from "@shared/utils/composables/useNotifications.ts";
 	import { useI18n } from "vue-i18n";
 	import { formatDate } from "@dv-admin/utils/helpers/dateParse.ts";
@@ -156,9 +156,7 @@
 		align-items: center;
 		gap: 16px;
 		&__logo {
-			display: flex;
-			justify-content: center;
-			align-items: center;
+			@extend .center;
 			width: 40px;
 			height: 40px;
 			border-radius: 5.714px;

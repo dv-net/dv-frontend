@@ -7,7 +7,7 @@
 	import { useI18n } from "vue-i18n";
 	import { useNotifications } from "@shared/utils/composables/useNotifications";
 	import type { INotificationsListResponse } from "@dv-admin/utils/types/api/apiGo";
-	import { getApiNotificationsList, patchApiNotifications } from "@dv-admin/services/api/auth";
+	import { getApiNotificationsList, patchApiNotifications } from "@dv-admin/utils/services/auth";
 	import { storeToRefs } from "pinia";
 	import { useAuthStore } from "@dv-admin/stores/auth";
 	import { useRouter } from "vue-router";
@@ -179,9 +179,7 @@
 					font-weight: 400;
 				}
 				&__column {
-					display: flex;
-					justify-content: center;
-					align-items: center;
+					@extend .center;
 					font-weight: 700;
 				}
 			}

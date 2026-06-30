@@ -17,7 +17,7 @@
 	import { blockchainCurrencyId } from "@shared/utils/constants/blockchain";
 	import BannerInfo from "@pay/views/payerForm/components/steps/bannerInfo/BannerInfo.vue";
 	import AmountEditor from "@pay/views/payerForm/components/amountEditor/AmountEditor.vue";
-	import { postApiWalletRefreshAddress } from "@pay/services/api/payerForm";
+	import { postApiWalletRefreshAddress } from "@pay/utils/services/payerForm";
 
 	const payerFormStore = usePayerFormStore();
 
@@ -69,7 +69,9 @@
 	});
 	const tokenLabel = computed<string>(() => {
 		if (!currentCurrencyChainId.value) return "";
-		return addresses.value.find((item) => item.currency.id === currentCurrencyChainId.value)?.currency?.token_label || "";
+		return (
+			addresses.value.find((item) => item.currency.id === currentCurrencyChainId.value)?.currency?.token_label || ""
+		);
 	});
 
 	onMounted(() => {
@@ -157,12 +159,7 @@
 											<ui-copy-text v-if="currentAddress" :copied-text="currentAddress" color-icon="#242424" />
 										</template>
 									</ui-input>
-									<ui-button
-										type="secondary"
-										size="sm"
-										:loading="isRefreshingAddress"
-										@click="handleRefreshAddress"
-									>
+									<ui-button type="secondary" size="sm" :loading="isRefreshingAddress" @click="handleRefreshAddress">
 										{{ $t("Refresh address") }}
 									</ui-button>
 								</row-template>
@@ -224,11 +221,11 @@
 		display: flex;
 		flex-direction: column;
 		gap: 20px;
-		@media (max-width: 680px) {
+		@include mediamax(680) {
 			gap: 16px;
 		}
 		&:deep(.block:first-child) {
-			@media (max-width: 680px) {
+			@include mediamax(680) {
 				padding: 0;
 				border: unset;
 				border-radius: unset;
@@ -248,10 +245,10 @@
 				padding: 4px;
 				gap: 4px;
 				min-height: 250px;
-				@media (max-width: 1180px) {
+				@include mediamax(1180) {
 					grid-template-columns: 1fr;
 				}
-				@media (max-width: 680px) {
+				@include mediamax(680) {
 					gap: 16px;
 					background-color: transparent;
 					border: unset;
@@ -262,7 +259,7 @@
 					display: grid;
 					grid-template-columns: 319px 1fr;
 					gap: 4px;
-					@media (max-width: 680px) {
+					@include mediamax(680) {
 						grid-template-columns: 1fr;
 						gap: 16px;
 					}
@@ -274,8 +271,8 @@
 					flex-shrink: 0;
 					border-radius: 12px;
 					border: 1px solid #e1e8f1;
-					background-color: #fff;
-					@media (max-width: 680px) {
+					background-color: $form-background;
+					@include mediamax(680) {
 						padding: 16px;
 					}
 				}
@@ -304,7 +301,7 @@
 							display: flex;
 							align-items: center;
 							gap: 4px;
-							color: #6b6d80;
+							color: $main-text-grey-color;
 							font-size: 12px;
 							font-weight: 500;
 							line-height: 16px;
@@ -318,11 +315,11 @@
 					font-size: 14px;
 					font-weight: 500;
 					line-height: 20px;
-					@media (max-width: 1180px) {
+					@include mediamax(1180) {
 						align-items: center;
 						flex-direction: unset;
 					}
-					@media (max-width: 680px) {
+					@include mediamax(680) {
 						align-items: unset;
 						flex-direction: column;
 					}
@@ -331,20 +328,20 @@
 						flex-direction: column;
 						gap: 4px;
 						margin: 0 0 16px 0;
-						@media (max-width: 1180px) {
+						@include mediamax(1180) {
 							gap: 14px;
 							margin: 0;
 							padding-right: 16px;
-							border-right: 1px solid #ecf0f5;
+							border-right: 1px solid $main-border-color;
 							flex-grow: 1;
 						}
-						@media (max-width: 890px) {
+						@include mediamax(890) {
 							max-width: 250px;
 						}
-						@media (max-width: 768px) {
+						@include mediamax(768) {
 							max-width: 200px;
 						}
-						@media (max-width: 680px) {
+						@include mediamax(680) {
 							gap: 4px;
 							max-width: unset;
 							margin: 0 0 16px 0;
@@ -356,10 +353,10 @@
 							display: flex;
 							align-items: center;
 							gap: 10px;
-							@media (max-width: 1180px) {
+							@include mediamax(1180) {
 								gap: 8px;
 							}
-							@media (max-width: 680px) {
+							@include mediamax(680) {
 								gap: 10px;
 							}
 						}
@@ -374,18 +371,18 @@
 						flex-direction: column;
 						gap: 4px;
 						padding: 0 0 16px 0;
-						border-bottom: 1px solid #ecf0f5;
-						@media (max-width: 1180px) {
+						border-bottom: 1px solid $main-border-color;
+						@include mediamax(1180) {
 							padding: 0 16px;
-							border-right: 1px solid #ecf0f5;
+							border-right: 1px solid $main-border-color;
 							border-bottom: unset;
 							gap: 14px;
 							flex-grow: 1;
 						}
-						@media (max-width: 680px) {
+						@include mediamax(680) {
 							padding: 0 0 16px 0;
 							border-right: unset;
-							border-bottom: 1px solid #ecf0f5;
+							border-bottom: 1px solid $main-border-color;
 							gap: 4px;
 							flex-grow: unset;
 						}
@@ -396,20 +393,20 @@
 						justify-content: space-between;
 						flex-grow: 1;
 						padding: 16px 0 0;
-						@media (max-width: 1180px) {
+						@include mediamax(1180) {
 							padding: 0 0 0 16px;
 							justify-content: unset;
 							flex-direction: column;
 							gap: 4px;
 						}
-						@media (max-width: 680px) {
+						@include mediamax(680) {
 							padding: 16px 0 0;
 							justify-content: space-between;
 							flex-direction: unset;
 							gap: 8px;
 						}
 						&-price {
-							color: #1968e5;
+							color: $main-text-link-and-price-color;
 							font-size: 24px;
 							font-weight: 600;
 							line-height: 32px;

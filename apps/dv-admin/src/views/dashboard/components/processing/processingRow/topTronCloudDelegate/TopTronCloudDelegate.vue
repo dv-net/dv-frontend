@@ -8,7 +8,7 @@
 	const { data } = defineProps<{ data: IProcessingWalletsResponse }>();
 	const emits = defineEmits(["close"]);
 
-	const isShowWithdrawalFromProcessing = defineModel<Record<string, boolean>>({ default: {}, required: true });
+	const isShowWithdrawalFromProcessing = defineModel<Record<string, boolean>>({ required: true });
 </script>
 
 <template>
@@ -54,18 +54,16 @@
 			align-items: center;
 			padding: 0 8px;
 			&:not(:last-child) {
-				border-right: 1px solid #e1e8f1;
+				border-right: 1px solid $grey;
 			}
 			.plate {
 				gap: 8px;
 				margin: 0 12px;
 				align-self: stretch;
-				display: flex;
-				align-items: center;
-				justify-content: center;
+				@extend .center;
 				flex-grow: 1;
 				border-radius: 8px;
-				border: 1px solid #e1e8f1;
+				border: 1px solid $grey;
 				background: #fdf1ed;
 				&__content {
 					display: flex;

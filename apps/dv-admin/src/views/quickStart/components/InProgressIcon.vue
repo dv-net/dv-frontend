@@ -6,9 +6,7 @@
 
 <style scoped lang="scss">
 	.in-progress-icon-container {
-		display: flex;
-		justify-content: center;
-		align-items: center;
+		@extend .center;
 		background-color: #ecf0f5;
 		border-radius: 100%;
 		width: 24px;
@@ -17,7 +15,7 @@
 		.dot {
 			width: 6px;
 			height: 6px;
-			background-color: #1968e5;
+			background-color: $blue;
 			border-radius: 100%;
 		}
 	}

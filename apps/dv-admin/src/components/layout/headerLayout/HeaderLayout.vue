@@ -116,7 +116,7 @@
 		<div class="header__balance">
 			<span class="header__balance-text">{{ $t("On hot wallets") }}</span>
 			<loader-spinner v-if="isLoadingWalletBalancesHot" width="24px" />
-			<div v-else class="flex flex-center gap-4">
+			<div v-else class="center gap-4">
 				<span class="header__balance-amount">
 					<span class="header__balance-price">{{ formattedBalance.main }}</span>
 					<span v-if="formattedBalance.fractional" class="header__balance-price-fractional">
@@ -182,7 +182,7 @@
 
 			&-text {
 				margin-bottom: 3px;
-				color: #6b6d80;
+				color: $secondary;
 			}
 
 			&-amount {
@@ -191,14 +191,14 @@
 			}
 
 			&-price {
-				color: #303345;
+				color: $black;
 				line-height: 28px;
 				font-size: 20px;
 				font-weight: 700;
 			}
 
 			&-price-fractional {
-				color: #a4a5b1;
+				color: $grey-opacity;
 			}
 		}
 

@@ -2,7 +2,7 @@
 	import { type ENUM_TRANSACTIONS_TYPES, TRANSACTIONS_TYPES } from "@dv-admin/utils/constants/history";
 	import { UiButton, UiDatepickerRange, UiSelect, UiTabs, UiTabsItem } from "@dv.net/ui-kit";
 	import BlockSection from "@dv-admin/components/ui/BlockSection/BlockSection.vue";
-	import { getApiExchangeOrderReport, getApiExchangeWithdrawalReport } from "@dv-admin/services/api/withdrawal.ts";
+	import { getApiExchangeOrderReport, getApiExchangeWithdrawalReport } from "@dv-admin/utils/services/withdrawal.ts";
 	import { downloadBlobFile } from "@dv-admin/utils/helpers/downloadBlobFile.ts";
 	import { getDayRangeIso, getLastDaysRange } from "@dv-admin/utils/helpers/dateParse.ts";
 	import { computed, ref } from "vue";

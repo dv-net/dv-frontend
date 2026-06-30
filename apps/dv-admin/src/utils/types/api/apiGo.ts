@@ -164,6 +164,11 @@ export interface IDictionaryCurrency {
 	is_evm_like: boolean;
 }
 
+export interface IDictionaryAmlProvider {
+	slug: string;
+	label: string;
+}
+
 export interface IDictionary {
 	available_currencies: IDictionaryCurrency[];
 	available_rate_sources: string[];
@@ -172,7 +177,7 @@ export interface IDictionary {
 	processing_version_hash: string;
 	processing_version_tag: string;
 	backend_address: string;
-	available_aml_providers: string[];
+	available_aml_providers: IDictionaryAmlProvider[];
 	general_settings: {
 		name: string;
 		value: string;

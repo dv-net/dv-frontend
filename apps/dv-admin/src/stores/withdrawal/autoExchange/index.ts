@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 import type { IExchangePairsResponse } from "@dv-admin/utils/types/api/apiGo";
-import { getApiExchangePairs, getApiExchangeUserPairs, putApiExchangePairs } from "@dv-admin/services/api/withdrawal";
+import { getApiExchangePairs, getApiExchangeUserPairs, putApiExchangePairs } from "@dv-admin/utils/services/withdrawal";
 import { useNotifications } from "@shared/utils/composables/useNotifications";
 import { useI18n } from "vue-i18n";
 

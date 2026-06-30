@@ -3,10 +3,10 @@
 	import type { IUiSelectOptions } from "@dv-admin/utils/types/general.ts";
 	import { computed, onMounted, ref } from "vue";
 	import { useI18n } from "vue-i18n";
-	import { getApiMnemonicGenerate } from "@dv-admin/services/api/general.ts";
+	import { getApiMnemonicGenerate } from "@dv-admin/utils/services/general.ts";
 	import { storeToRefs } from "pinia";
 	import { useAuthStore } from "@dv-admin/stores/auth";
-	import { postApiProcessingRegisterOwner } from "@dv-admin/services/api/auth.ts";
+	import { postApiProcessingRegisterOwner } from "@dv-admin/utils/services/auth.ts";
 	import { useNotifications } from "@shared/utils/composables/useNotifications.ts";
 	import { useRouter } from "vue-router";
 
@@ -145,9 +145,7 @@
 
 <style scoped lang="scss">
 	.page {
-		display: flex;
-		align-items: center;
-		justify-content: center;
+		@extend .center;
 		flex-grow: 1;
 		.warning {
 			display: flex;

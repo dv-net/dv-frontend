@@ -4,7 +4,7 @@
 	import { computed, ref } from "vue";
 	import BlockSection from "@dv-admin/components/ui/BlockSection/BlockSection.vue";
 	import type { IStoreRequest } from "@dv-admin/utils/types/api/apiGo";
-	import { postApiCreateStore } from "@dv-admin/services/api/projects";
+	import { postApiCreateStore } from "@dv-admin/utils/services/projects";
 	import { useRouter } from "vue-router";
 	import { useNotifications } from "@shared/utils/composables/useNotifications";
 	import { useI18n } from "vue-i18n";

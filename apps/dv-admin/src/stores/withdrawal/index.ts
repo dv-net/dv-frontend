@@ -6,7 +6,7 @@ import {
 	getApiWithdrawalRules,
 	patchApiWithdrawalWalletAddresses,
 	postApiSetExchange
-} from "@dv-admin/services/api/withdrawal";
+} from "@dv-admin/utils/services/withdrawal";
 import type {
 	IDepositAddressesResponse,
 	IExchangeList,
@@ -16,7 +16,7 @@ import type {
 	IWithdrawalRulesResponse
 } from "@dv-admin/utils/types/api/apiGo";
 import { useExchangeSettingsStore } from "@dv-admin/stores/exchangeSettings";
-import { getApiExchangeConnectionChecks, getApiExchangeDepositUpdate } from "@dv-admin/services/api/exchangeSettings";
+import { getApiExchangeConnectionChecks, getApiExchangeDepositUpdate } from "@dv-admin/utils/services/exchangeSettings";
 import { useNotifications } from "@shared/utils/composables/useNotifications";
 import { useI18n } from "vue-i18n";
 

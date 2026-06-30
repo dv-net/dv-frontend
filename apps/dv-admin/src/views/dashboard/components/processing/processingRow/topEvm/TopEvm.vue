@@ -13,7 +13,7 @@
 	}>();
 	const emits = defineEmits(["close"]);
 
-	const isShowWithdrawalFromProcessing = defineModel<Record<string, boolean>>({ default: {}, required: true });
+	const isShowWithdrawalFromProcessing = defineModel<Record<string, boolean>>({ required: true });
 </script>
 
 <template>
@@ -52,7 +52,7 @@
 			align-items: center;
 			padding: 0 8px;
 			&:not(:last-child) {
-				border-right: 1px solid #e1e8f1;
+				border-right: 1px solid $grey;
 			}
 		}
 	}

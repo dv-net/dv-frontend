@@ -15,7 +15,7 @@
 	import { getCurrentBlockchain, isValidUrl } from "@shared/utils/helpers/general";
 	import DisplayHash from "@shared/components/ui/displayHash/DisplayHash.vue";
 	import BlockchainIcon from "@shared/components/ui/blockchainIcon/BlockchainIcon.vue";
-	import { getApiUserSettings } from "@dv-admin/services/api/systemSettings";
+	import { getApiUserSettings } from "@dv-admin/utils/services/systemSettings";
 	import { useAuthStore } from "@dv-admin/stores/auth";
 
 	const { processingWallets } = storeToRefs(useDashboardStore());
@@ -364,7 +364,7 @@
 			gap: 8px;
 
 			&__text {
-				color: #1968e5;
+				color: $blue;
 				font-size: 16px;
 				font-weight: 600;
 				line-height: 20px;
@@ -380,7 +380,7 @@
 
 			&__fill {
 				height: 100%;
-				background-color: #1968e5;
+				background-color: $blue;
 				transition: width 0.3s ease;
 			}
 		}
@@ -438,7 +438,7 @@
 			}
 
 			&__description {
-				color: #303345;
+				color: $black;
 				font-size: 14px;
 				font-weight: 400;
 				line-height: 20px;
@@ -453,7 +453,7 @@
 			}
 
 			&__webhooks-description {
-				color: #6b6d80;
+				color: $secondary;
 				font-size: 16px;
 				font-weight: 400;
 				line-height: 20px;
@@ -496,7 +496,7 @@
 			}
 
 			&--active {
-				border-color: #1968e5;
+				border-color: $blue;
 			}
 
 			&--completed {
@@ -512,7 +512,7 @@
 			gap: 16px;
 
 			.gray-background {
-				background-color: #f7f9fb;
+				background-color: $blue-opacity;
 			}
 		}
 

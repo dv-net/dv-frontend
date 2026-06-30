@@ -8,7 +8,7 @@ import {
 	getApiExchangeWithdrawalSetting,
 	postApiExchangeWithdrawalSetting,
 	patchApiExchangeWithdrawalSetting
-} from "@dv-admin/services/api/withdrawal";
+} from "@dv-admin/utils/services/withdrawal";
 import type {
 	ICurrenciesRateSource,
 	IExchangeChainsResponse,

@@ -15,7 +15,7 @@
 	import { storeToRefs } from "pinia";
 	import { blockchainCurrencyId } from "@shared/utils/constants/blockchain";
 	import BlockchainIcon from "@shared/components/ui/blockchainIcon/BlockchainIcon.vue";
-	import { postApiWithdrawalAddressBook } from "@dv-admin/services/api/addressBook.ts";
+	import { postApiWithdrawalAddressBook } from "@dv-admin/utils/services/addressBook.ts";
 	import type { IFormAddressBook } from "@dv-admin/utils/types/schemas";
 	import {
 		ADDRESS_BOOK_TYPE_LABELS,
@@ -177,7 +177,9 @@
 									class="flex flex-y-center gap-8"
 								>
 									<blockchain-icon :type="blockchainCurrencyId[form.blockchain] as BlockchainType" />
-									<span class="form__select-text">{{ getCurrentBlockchain(blockchainCurrencyId[form.blockchain]) }}</span>
+									<span class="form__select-text">{{
+										getCurrentBlockchain(blockchainCurrencyId[form.blockchain])
+									}}</span>
 								</div>
 								<span v-else class="form__select-text">{{ form.blockchain }}</span>
 							</template>

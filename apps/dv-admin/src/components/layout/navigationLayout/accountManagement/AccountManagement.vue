@@ -121,9 +121,7 @@
 		}
 
 		.bottom {
-			display: flex;
-			align-items: center;
-			justify-content: center;
+			@extend .center;
 			background-color: $white;
 			padding: 8px 16px;
 

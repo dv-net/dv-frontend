@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
-import { getApiPayerInfo, getApiStoreTopup, getApiWalletTxFind } from "@pay/services/api/payerForm";
+import { getApiPayerInfo, getApiStoreTopup, getApiWalletTxFind } from "@pay/utils/services/payerForm.ts";
 import type {
 	IPayerAddressResponse,
 	IWalletTransactionResponse,
@@ -242,7 +242,9 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		const { unconfirmed } = JSON.parse(transactionsLs);
 		if (!currentCurrencyChainId.value) return [];
 		return transactionsUnconfirmed.value.filter(
-			(newTx) => newTx.currency_code === currentCurrencyChainId.value && !unconfirmed.some((oldTx: IWalletTransactionResponse) => oldTx.hash === newTx.hash)
+			(newTx) =>
+				newTx.currency_code === currentCurrencyChainId.value &&
+				!unconfirmed.some((oldTx: IWalletTransactionResponse) => oldTx.hash === newTx.hash)
 		);
 	};
 

@@ -136,13 +136,13 @@
 		display: flex;
 		flex-direction: column;
 		gap: 24px;
-		@media (max-width: 480px) {
+		@include mediamax(480) {
 			gap: 20px;
 		}
 		&__search {
 			&:deep(.ui-input__input) {
 				&::placeholder {
-					@media (max-width: 480px) {
+					@include mediamax(480) {
 						font-size: 12px;
 					}
 				}
@@ -154,7 +154,7 @@
 			gap: 12px;
 			&__label {
 				color: $main-subtitle-color;
-				@media (max-width: 768px) {
+				@include mediamax(768) {
 					font-size: 14px;
 				}
 			}
@@ -164,7 +164,7 @@
 				gap: 12px;
 				&-popular {
 					grid-template-columns: repeat(2, 1fr);
-					@media (max-width: 480px) {
+					@include mediamax(480) {
 						gap: 8px;
 						&:deep(.card) {
 							font-size: 12px;

@@ -5,7 +5,7 @@
 	import { UiCopyText, UiIcon, UiLink, UiSkeleton } from "@dv.net/ui-kit/dist";
 	import QrcodeVue from "qrcode.vue";
 	import type { IUserTgLinkResponse } from "@dv-admin/utils/types/api/apiGo";
-	import { postApiUserTgLink } from "@dv-admin/services/api/auth";
+	import { postApiUserTgLink } from "@dv-admin/utils/services/auth";
 	import { storeToRefs } from "pinia";
 	import { useAuthStore } from "@dv-admin/stores/auth";
 	import { useRouter } from "vue-router";
@@ -185,9 +185,7 @@
 			}
 
 			.qr-code {
-				display: flex;
-				align-items: center;
-				justify-content: center;
+				@extend .center;
 				padding: 15px;
 				border-radius: 12px;
 				border: 2px solid $grey;
@@ -195,9 +193,7 @@
 			}
 
 			.id {
-				display: flex;
-				align-items: center;
-				justify-content: center;
+				@extend .center;
 				min-width: 282px;
 				padding: 12px;
 				border-radius: 8px;

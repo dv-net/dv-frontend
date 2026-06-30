@@ -140,7 +140,7 @@
 				border-radius: 12px;
 				border: 1px solid $main-border-color;
 				background-color: $form-background;
-				@media (max-width: 480px) {
+				@include mediamax(480) {
 					padding: 12px;
 				}
 				&.selected {
@@ -176,10 +176,10 @@
 						color: $main-color;
 						font-size: 20px;
 						font-weight: 600;
-						@media (max-width: 576px) {
+						@include mediamax(576) {
 							font-size: 18px;
 						}
-						@media (max-width: 480px) {
+						@include mediamax(480) {
 							font-size: 16px;
 						}
 					}
@@ -189,11 +189,7 @@
 					align-items: center;
 					justify-content: space-between;
 					gap: 12px;
-					@media (hover: hover) {
-						&:hover {
-							cursor: pointer;
-						}
-					}
+					@extend .pointer;
 					&__text {
 						flex-grow: 1;
 						text-wrap: nowrap;
@@ -202,13 +198,13 @@
 						color: $main-subtitle-color;
 						font-size: 14px;
 						font-weight: 400;
-						@media (max-width: 1024px) {
+						@include mediamax(1024) {
 							text-wrap: unset;
 							text-overflow: unset;
 							overflow: unset;
 							word-break: break-word;
 						}
-						@media (max-width: 480px) {
+						@include mediamax(480) {
 							font-size: 12px;
 						}
 					}
@@ -238,7 +234,7 @@
 						padding: 4px 8px;
 						align-items: center;
 						gap: 4px;
-						color: #fff;
+						color: $text-header-form-background;
 						font-size: 12px;
 						font-weight: 400;
 					}

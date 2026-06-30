@@ -9,7 +9,7 @@
 	import { useRouter } from "vue-router";
 	import type { UiFormRules } from "@dv.net/ui-kit/dist/components/UiForm/types";
 	import { useI18n } from "vue-i18n";
-	import { postApiUnpinTgConfirm, postApiUnpinTgInit } from "@dv-admin/services/api/auth.ts";
+	import { postApiUnpinTgConfirm, postApiUnpinTgInit } from "@dv-admin/utils/services/auth.ts";
 	import { useNotifications } from "@shared/utils/composables/useNotifications.ts";
 
 	const { t } = useI18n();
@@ -138,9 +138,7 @@
 		}
 
 		&__icon {
-			display: flex;
-			align-items: center;
-			justify-content: center;
+			@extend .center;
 			width: 40px;
 			height: 40px;
 			border-radius: 5.714px;

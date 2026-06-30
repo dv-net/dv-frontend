@@ -16,10 +16,8 @@
 
 <style scoped lang="scss">
 	.text {
-		display: flex;
+		@extend .center;
 		flex-direction: column;
-		align-items: center;
-		justify-content: center;
 		&.size-sm {
 			min-height: 50px;
 		}

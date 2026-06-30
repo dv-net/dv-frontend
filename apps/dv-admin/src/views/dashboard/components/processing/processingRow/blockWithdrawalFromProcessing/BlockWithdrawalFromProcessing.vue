@@ -179,7 +179,7 @@
 		gap: 20px;
 		margin: 16px 8px 0;
 		padding: 16px 0 0;
-		border-top: 1px solid #e1e8f1;
+		border-top: 1px solid $grey;
 		&__label {
 			color: $secondary;
 			font-size: 14px;
@@ -202,11 +202,11 @@
 				gap: 8px;
 				padding: 4px 12px;
 				border-radius: 12px;
-				border: 1px solid #e1e8f1;
-				background-color: #fff;
+				border: 1px solid $grey;
+				background-color: $white;
 				min-height: 40px;
 				&.selected {
-					border: 1px solid #1968e5;
+					border: 1px solid $blue;
 				}
 				&__content {
 					display: flex;
@@ -218,7 +218,7 @@
 					line-height: 24px;
 				}
 				&__price {
-					color: #a4a5b1;
+					color: $grey-opacity;
 					font-size: 14px;
 					font-weight: 400;
 					line-height: 20px;

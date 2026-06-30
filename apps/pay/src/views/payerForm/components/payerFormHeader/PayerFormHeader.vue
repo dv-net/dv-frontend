@@ -73,10 +73,10 @@
 		padding: 20px 24px;
 		border-radius: 16px;
 		width: 100%;
-		@media (max-width: 1024px) {
+		@include mediamax(1024) {
 			padding: 16px 20px;
 		}
-		@media (max-width: 768px) {
+		@include mediamax(768) {
 			overflow-x: auto;
 			overflow-y: hidden;
 			scrollbar-width: none;
@@ -89,7 +89,7 @@
 				width: calc(100dvw - #{$padding-main * 2}px);
 			}
 		}
-		@media (max-width: 480px) {
+		@include mediamax(480) {
 			padding: 12px 16px;
 		}
 		&__inner {
@@ -97,7 +97,7 @@
 			align-items: center;
 			justify-content: space-between;
 			width: 100%;
-			@media (max-width: 768px) {
+			@include mediamax(768) {
 				width: 720px;
 				min-width: 720px;
 			}
@@ -121,10 +121,10 @@
 			width: 100%;
 			height: 1px;
 			background-color: $label-header-form-background;
-			@media (max-width: 1024px) {
+			@include mediamax(1024) {
 				margin: 0 12px;
 			}
-			@media (max-width: 768px) {
+			@include mediamax(768) {
 				margin: 0 8px;
 			}
 		}
@@ -133,22 +133,20 @@
 			align-items: center;
 			gap: 12px;
 			flex-shrink: 0;
-			@media (max-width: 768px) {
+			@include mediamax(768) {
 				gap: 8px;
 			}
 			&-label {
 				border-radius: 100%;
 				background-color: $label-header-form-background;
 				color: $text-header-form-background;
-				display: flex;
-				align-items: center;
-				justify-content: center;
+				@extend .center;
 				width: 24px;
 				height: 24px;
 				flex-shrink: 0;
 				font-size: 14px;
 				font-weight: 500;
-				@media (max-width: 1024px) {
+				@include mediamax(1024) {
 					font-size: 12px;
 					width: 20px;
 					height: 20px;
@@ -156,7 +154,7 @@
 			}
 			&-text {
 				font-size: 16px;
-				@media (max-width: 1024px) {
+				@include mediamax(1024) {
 					font-size: 14px;
 				}
 			}
@@ -164,14 +162,14 @@
 				color: #1f9649;
 				.timeline__item-label {
 					background-color: #1f9649;
-					color: #fff;
+					color: $text-header-form-background;
 				}
 			}
 			&.waiting {
-				color: #1968e5;
+				color: $main-text-link-and-price-color;
 				.timeline__item-label {
-					background-color: #1968e5;
-					color: #fff;
+					background-color: $main-text-link-and-price-color;
+					color: $text-header-form-background;
 				}
 			}
 		}

@@ -68,12 +68,12 @@
 		transition: border 0.3s ease-in-out;
 		word-break: break-word;
 		font-size: 16px;
-		@media (max-width: 768px) {
+		@include mediamax(768) {
 			font-size: 14px;
 			padding: 8px 12px;
 		}
 		&.selected {
-			border: 1px solid #1968e5;
+			border: 1px solid $main-text-link-and-price-color;
 		}
 		&.mode-grey {
 			background-color: #f6f6f6;
@@ -85,7 +85,7 @@
 			&:hover {
 				&.hover-active {
 					cursor: pointer;
-					border: 1px solid #1968e5;
+					border: 1px solid $main-text-link-and-price-color;
 				}
 			}
 		}
@@ -119,16 +119,14 @@
 			flex-wrap: wrap;
 			gap: 4px;
 			padding: 0 38px 0 0;
-			@media (max-width: 768px) {
+			@include mediamax(768) {
 				display: none;
 			}
 		}
 		&__blockchain {
-			display: flex;
-			align-items: center;
+			@extend .center;
 			gap: 4px;
 			padding: 4px 6px 4px 4px;
-			justify-content: center;
 			border-radius: 100px;
 			background-color: #f7f9fb;
 			color: $main-text-grey-color;

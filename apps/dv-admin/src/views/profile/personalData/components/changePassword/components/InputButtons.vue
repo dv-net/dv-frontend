@@ -2,7 +2,7 @@
 	import { UiButton } from "@dv.net/ui-kit";
 	import { computed, ref } from "vue";
 	import type { IChangePasswordRequest } from "@dv-admin/utils/types/api/apiGo";
-	import { postApiUserChangePassword } from "@dv-admin/services/api/auth";
+	import { postApiUserChangePassword } from "@dv-admin/utils/services/auth";
 	import { useNotifications } from "@shared/utils/composables/useNotifications";
 	import { useI18n } from "vue-i18n";
 
@@ -11,8 +11,14 @@
 
 	const props = defineProps<{ cancel: (save?: boolean) => void }>();
 
-	const currentStep = defineModel("currentStep", { default: 0 });
-	const passwords = defineModel<IChangePasswordRequest>("passwords", { default: {} });
+	const currentStep = defineModel<number>("currentStep", { default: 0 });
+	const passwords = defineModel<IChangePasswordRequest>("passwords", {
+		default: () => ({
+			password_old: "",
+			password_new: "",
+			password_confirmation: ""
+		})
+	});
 
 	const isLoading = ref<boolean>(false);
 

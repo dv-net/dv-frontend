@@ -6,8 +6,8 @@ import {
 	getApiProcessingWallets,
 	getApiTronResourceExpenses,
 	postApiWithdrawalFromProcessing
-} from "@dv-admin/services/api/dashboard";
-import { getApiBalanceCurrentExchange } from "@dv-admin/services/api/exchangeSettings.ts";
+} from "@dv-admin/utils/services/dashboard";
+import { getApiBalanceCurrentExchange } from "@dv-admin/utils/services/exchangeSettings.ts";
 import type {
 	IBalancesCurrentExchange,
 	IDepositSummaryRequest,

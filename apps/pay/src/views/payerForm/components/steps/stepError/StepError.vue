@@ -43,11 +43,9 @@
 			border-radius: 16px;
 			background-color: $form-background;
 			&__img {
-				display: flex;
-				align-items: center;
-				justify-content: center;
+				@extend .center;
 				border-radius: 12px;
-				background: #f3f4f6;
+				background: $main-background;
 			}
 			.content {
 				display: flex;

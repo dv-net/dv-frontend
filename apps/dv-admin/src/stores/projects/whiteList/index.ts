@@ -4,7 +4,7 @@ import {
 	deleteApiWhitelistsProject,
 	getApiWhitelistsProject,
 	patchApiWhitelistsProject
-} from "@dv-admin/services/api/projects";
+} from "@dv-admin/utils/services/projects";
 import type { IWhitelistsResponse } from "@dv-admin/utils/types/api/apiGo.ts";
 
 export const useWhiteListProjectStore = defineStore("whiteListProject", () => {

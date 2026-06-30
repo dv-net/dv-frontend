@@ -19,7 +19,7 @@
 	} from "@dv-admin/utils/helpers/withdrawalAddresses";
 	import BannerAttention from "@dv-admin/components/ui/bannerAttention/BannerAttention.vue";
 	import Rules from "@dv-admin/views/withdrawal/addresses/components/rules/Rules.vue";
-	import { postApiAddressesConverter } from "@dv-admin/services/api/withdrawal";
+	import { postApiAddressesConverter } from "@dv-admin/utils/services/withdrawal.ts";
 	import BannerInfo from "@dv-admin/components/ui/bannerInfo/BannerInfo.vue";
 	import type { UiTableHeader } from "@dv.net/ui-kit/dist/components/UiTable/types";
 	import { useI18n } from "vue-i18n";
@@ -389,7 +389,7 @@
 
 				&:disabled {
 					cursor: not-allowed;
-					color: #a4a5b1;
+					color: $grey-opacity;
 					background: $white;
 					border-color: $grey;
 				}

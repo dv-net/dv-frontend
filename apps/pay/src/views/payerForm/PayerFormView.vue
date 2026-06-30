@@ -13,7 +13,7 @@
 	import StepFive from "@pay/views/payerForm/components/steps/stepFive/StepFive.vue";
 	import StepError from "@pay/views/payerForm/components/steps/stepError/StepError.vue";
 	import BlockAdvertising from "@pay/views/payerForm/components/blockAdvertising/BlockAdvertising.vue";
-	import { getApiWalletConfirm } from "@pay/services/api/payerForm.ts";
+	import { getApiWalletConfirm } from "@pay/utils/services/payerForm.ts";
 	import { useI18n } from "vue-i18n";
 	import AudioPayment from "@pay/views/payerForm/components/audioPayment/AudioPayment.vue";
 	import BlockLatestTransactions from "@pay/views/payerForm/components/blockLatestTransactions/BlockLatestTransactions.vue";
@@ -178,30 +178,30 @@
 		display: flex;
 		flex-direction: column;
 		gap: 24px;
-		@media (max-width: 480px) {
+		@include mediamax(480) {
 			gap: 12px;
 		}
 		&__inner {
 			display: flex;
 			gap: 24px;
-			@media (max-width: 1024px) {
+			@include mediamax(1024) {
 				width: 100%;
 				flex-direction: column;
 			}
-			@media (max-width: 480px) {
+			@include mediamax(480) {
 				gap: 12px;
 			}
 		}
 		&__body {
 			flex-grow: 1;
-			@media (max-width: 1024px) {
+			@include mediamax(1024) {
 				order: 2;
 			}
 		}
 		&__advertising,
 		&__latest-transactions {
 			display: none;
-			@media (max-width: 1024px) {
+			@include mediamax(1024) {
 				display: flex;
 				order: 3;
 			}

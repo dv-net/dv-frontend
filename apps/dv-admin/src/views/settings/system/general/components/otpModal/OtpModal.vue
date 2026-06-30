@@ -7,7 +7,7 @@
 	import { useNotifications } from "@shared/utils/composables/useNotifications";
 	import { useI18n } from "vue-i18n";
 	import type { ISettingsResponse } from "@dv-admin/utils/types/api/apiGo";
-	import { postApiUserSettings } from "@dv-admin/services/api/systemSettings";
+	import { postApiUserSettings } from "@dv-admin/utils/services/systemSettings";
 
 	const router = useRouter();
 	const { t } = useI18n();

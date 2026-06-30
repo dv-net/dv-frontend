@@ -80,18 +80,12 @@
 		flex-direction: column;
 		align-items: center;
 		align-items: center;
-		@media (hover: hover) {
-			&:hover {
-				cursor: pointer;
-			}
-		}
-		@media (max-width: 480px) {
+		@extend .pointer;
+		@include mediamax(480) {
 			width: 100%;
 		}
 		&__logo {
-			display: flex;
-			align-items: center;
-			justify-content: center;
+			@extend .center;
 			width: 130px;
 			overflow: hidden;
 			animation: slideInFromLeft 0.6s ease-out;
@@ -107,14 +101,12 @@
 			}
 		}
 		&__text {
-			display: flex;
-			align-items: center;
-			justify-content: center;
+			@extend .center;
 			text-align: center;
 			overflow-y: auto;
 			height: 126px;
 			padding: 12px 27px;
-			color: #6b6d80;
+			color: $main-text-grey-color;
 			font-size: 16px;
 			font-weight: 400;
 			line-height: 34px;
@@ -123,7 +115,7 @@
 			margin: 5px 0 12px;
 			word-break: break-word;
 			animation: slideInFromLeft 0.3s ease-out 0.2s both;
-			@media (max-width: 480px) {
+			@include mediamax(480) {
 				font-size: 12px;
 				padding: 12px;
 				height: unset;
@@ -146,7 +138,7 @@
 			border-radius: 12px;
 			background-color: rgba(31, 150, 73, 0.12);
 			animation: slideInFromBottom 0.3s ease-out both;
-			@media (max-width: 480px) {
+			@include mediamax(480) {
 				font-size: 12px;
 				line-height: 16px;
 				white-space: unset;

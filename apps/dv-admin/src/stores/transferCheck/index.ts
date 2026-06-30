@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { getApiAmlCurrencies, getApiAmlHistory, getApiAmlKeys } from "@dv-admin/services/api/transferCheck.ts";
+import { getApiAmlCurrencies, getApiAmlHistory, getApiAmlKeys } from "@dv-admin/utils/services/transferCheck.ts";
 import { computed, ref } from "vue";
 import type {
 	IAmlHistoryFilterRequest,

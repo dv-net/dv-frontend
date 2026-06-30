@@ -96,10 +96,10 @@
 			align-items: center;
 			column-gap: 64px;
 			flex-wrap: wrap;
-			@media (max-width: 1024px) {
+			@include mediamax(1024) {
 				column-gap: 32px;
 			}
-			@media (max-width: 1024px) {
+			@include mediamax(1024) {
 				display: none !important;
 			}
 			&__link {
@@ -124,7 +124,7 @@
 		flex-grow: 1;
 		display: flex;
 		padding: 40px 0;
-		@media (max-width: 768px) {
+		@include mediamax(768) {
 			padding: 24px 0;
 		}
 	}

@@ -32,6 +32,8 @@ export default defineConfig(() => {
 				scss: {
 					additionalData: `
 						@use "@apps/${appName}/src/assets/scss/additional/vars" as *;
+						@use "@shared/assets/scss/additional/media" as *;
+						@use "@shared/assets/scss/additional/generate-classes" as *;
 					`,
 					api: "modern-compiler"
 				}

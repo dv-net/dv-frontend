@@ -144,11 +144,9 @@
 		align-items: center;
 		gap: 8px;
 		&__icon {
-			display: flex;
+			@extend .center;
 			width: 20px;
 			height: 20px;
-			justify-content: center;
-			align-items: center;
 			flex-shrink: 0;
 			color: $blue;
 			border-radius: 4px;
@@ -184,7 +182,7 @@
 			}
 		}
 		&__inner-label {
-			color: #a4a5b1;
+			color: $grey-opacity;
 		}
 		&__inner-wallet {
 			display: flex;
@@ -193,9 +191,7 @@
 		}
 	}
 	.notFound {
-		display: flex;
-		align-items: center;
-		justify-content: center;
+		@extend .center;
 		gap: 22px;
 		&__text {
 			color: $secondary;

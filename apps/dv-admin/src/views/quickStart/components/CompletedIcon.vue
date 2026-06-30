@@ -10,9 +10,7 @@
 
 <style scoped lang="scss">
 	.completed-icon-container {
-		display: flex;
-		justify-content: center;
-		align-items: center;
+		@extend .center;
 		background-color: #74be90;
 		border-radius: 100%;
 		width: 24px;
