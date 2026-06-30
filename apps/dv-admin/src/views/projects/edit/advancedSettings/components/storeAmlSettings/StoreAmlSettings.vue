@@ -3,8 +3,8 @@
 	import { storeToRefs } from "pinia";
 	import { useGeneralStore } from "@dv-admin/stores/general";
 	import { useAmlSettingsProjectStore } from "@dv-admin/stores/projects/amlSettings";
-	import { AML_PROVIDERS } from "@dv-admin/utils/constants/transferCheck";
 	import BlockSection from "@dv-admin/components/ui/BlockSection/BlockSection.vue";
+	import type { IDictionaryAmlProvider } from "@dv-admin/utils/types/api/apiGo";
 	import { computed, ref, watch } from "vue";
 	import { useRouter } from "vue-router";
 
@@ -25,7 +25,9 @@
 
 	const activeProviderTab = ref<string>("");
 
-	const availableAmlProviders = computed<string[]>(() => dictionary.value?.available_aml_providers ?? []);
+	const availableAmlProviders = computed<IDictionaryAmlProvider[]>(
+		() => dictionary.value?.available_aml_providers ?? []
+	);
 
 	const isCurrentProviderGloballyConnected = computed<boolean>(() =>
 		isProviderGloballyConnected(activeProviderTab.value)
@@ -41,9 +43,8 @@
 		return amlSettingsProject.value.provider_slug;
 	});
 
-	const currentNameAmlProvider = (aml: string): string => {
-		return aml in AML_PROVIDERS ? AML_PROVIDERS[aml] : aml;
-	};
+	const currentNameAmlProvider = (slug: string): string =>
+		availableAmlProviders.value.find((provider) => provider.slug === slug)?.label ?? slug;
 
 	const goToConnectPage = (providerSlug: string) => {
 		router.push({ name: "transfer-check-connect-aml", params: { aml: providerSlug } });
@@ -56,7 +57,7 @@
 	};
 
 	const loadAmlProviders = async () => {
-		const providers = availableAmlProviders.value;
+		const providers = availableAmlProviders.value.map((provider) => provider.slug);
 		if (!providers.length) return;
 
 		await getConnectedAmlProviders(providers);
@@ -87,8 +88,8 @@
 				mode="light"
 				@change="handleProviderChange"
 			>
-				<ui-tabs-item v-for="item in availableAmlProviders" :key="item" :value="item">
-					{{ currentNameAmlProvider(item) }}
+				<ui-tabs-item v-for="item in availableAmlProviders" :key="item.slug" :value="item.slug">
+					{{ item.label }}
 				</ui-tabs-item>
 			</ui-tabs>
 

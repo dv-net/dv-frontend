@@ -22,7 +22,7 @@
 	import type { UiFormRules } from "@dv.net/ui-kit/dist/components/UiForm/types";
 	import type { BlockchainType } from "@shared/utils/types/blockchain";
 	import BlockchainCard from "@dv-admin/components/ui/blockchainCard/BlockchainCard.vue";
-	import { AML_PROVIDERS, RISK_LEVEL_ENUM } from "@dv-admin/utils/constants/transferCheck";
+	import { RISK_LEVEL_ENUM } from "@dv-admin/utils/constants/transferCheck";
 	import NotFoundMessage from "@dv-admin/components/ui/notFoundMessage/NotFoundMessage.vue";
 	import { useRouter } from "vue-router";
 	import type { IUiSelectOptions } from "@dv-admin/utils/types/general.ts";
@@ -80,9 +80,8 @@
 		};
 	});
 
-	const currentNameAmlProvider = (aml: string): string => {
-		return aml in AML_PROVIDERS ? AML_PROVIDERS[aml] : aml;
-	};
+	const currentNameAmlProvider = (slug: string): string =>
+		dictionary.value?.available_aml_providers.find((provider) => provider.slug === slug)?.label ?? slug;
 
 	const changeAmlProvider = async (provider: string) => {
 		await Promise.all([getAmlKeys(provider), getAmlCurrencies(provider)]);
@@ -127,9 +126,11 @@
 		dictionary,
 		async (newValue) => {
 			if (newValue) {
-				const currentAmlProviders = newValue.available_aml_providers[0];
-				await Promise.all([getAmlHistory(), getAmlKeys(currentAmlProviders), getAmlCurrencies(currentAmlProviders)]);
-				formAmlScoreTransaction.value.provider_slug = currentAmlProviders;
+				const currentAmlProvider = newValue.available_aml_providers[0]?.slug;
+				if (!currentAmlProvider) return;
+
+				await Promise.all([getAmlHistory(), getAmlKeys(currentAmlProvider), getAmlCurrencies(currentAmlProvider)]);
+				formAmlScoreTransaction.value.provider_slug = currentAmlProvider;
 			}
 		},
 		{ immediate: true }
@@ -148,8 +149,12 @@
 					mode="light"
 					@change="changeAmlProvider"
 				>
-					<ui-tabs-item v-for="item in dictionary.available_aml_providers" :key="item" :value="item">
-						{{ currentNameAmlProvider(item) }}
+					<ui-tabs-item
+						v-for="item in dictionary.available_aml_providers"
+						:key="item.slug"
+						:value="item.slug"
+					>
+						{{ item.label }}
 					</ui-tabs-item>
 				</ui-tabs>
 				<ui-button

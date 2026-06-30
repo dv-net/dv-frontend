@@ -7,7 +7,8 @@
 	import { storeToRefs } from "pinia";
 	import { useTransferCheckStore } from "@dv-admin/stores/transferCheck";
 	import { computed, onMounted, ref } from "vue";
-	import { AML_PROVIDERS, AML_SETTING_LABELS } from "@dv-admin/utils/constants/transferCheck";
+	import { AML_SETTING_LABELS } from "@dv-admin/utils/constants/transferCheck";
+	import { useGeneralStore } from "@dv-admin/stores/general";
 	import type { IAmlKeysResponse } from "@dv-admin/utils/types/api/apiGo.ts";
 	import { deleteApiAmlKeys, postApiAmlKeys } from "@dv-admin/utils/services/transferCheck.ts";
 	import { useNotifications } from "@shared/utils/composables/useNotifications.ts";
@@ -19,6 +20,7 @@
 
 	const { amlKeys, isHaveKeysCurrentAml } = storeToRefs(useTransferCheckStore());
 	const { getAmlKeys } = useTransferCheckStore();
+	const { dictionary } = storeToRefs(useGeneralStore());
 
 	const aml = route.params.aml as string;
 	const isLoadingAmlKeys = ref<boolean>(true);
@@ -31,9 +33,9 @@
 		return !copyAmlKeys.value.every((item) => Boolean(item.value));
 	});
 
-	const currentNameAmlProvider = (aml: string): string => {
-		return aml in AML_PROVIDERS ? AML_PROVIDERS[aml] : aml;
-	};
+	const currentNameAmlProvider = computed<string>(
+		() => dictionary.value?.available_aml_providers.find((provider) => provider.slug === aml)?.label ?? aml
+	);
 
 	const getStartData = async () => {
 		try {
@@ -111,7 +113,7 @@
 					:loading="isLoadingPostAmlKeys"
 					:disabled="isDisabledBtn"
 				>
-					{{ $t(isHaveKeysCurrentAml ? "Change" : "Connect") }} {{ currentNameAmlProvider(aml) }}
+					{{ $t(isHaveKeysCurrentAml ? "Change" : "Connect") }} {{ currentNameAmlProvider }}
 				</ui-button>
 				<ui-button
 					type="secondary"
