@@ -11,8 +11,14 @@
 
 	const props = defineProps<{ cancel: (save?: boolean) => void }>();
 
-	const currentStep = defineModel("currentStep", { default: 0 });
-	const passwords = defineModel<IChangePasswordRequest>("passwords", { default: {} });
+	const currentStep = defineModel<number>("currentStep", { default: 0 });
+	const passwords = defineModel<IChangePasswordRequest>("passwords", {
+		default: () => ({
+			password_old: "",
+			password_new: "",
+			password_confirmation: ""
+		})
+	});
 
 	const isLoading = ref<boolean>(false);
 

@@ -14,7 +14,7 @@
 	}>();
 	const emits = defineEmits(["close"]);
 
-	const isShowWithdrawalFromProcessing = defineModel<Record<string, boolean>>({ default: {}, required: true });
+	const isShowWithdrawalFromProcessing = defineModel<Record<string, boolean>>({ required: true });
 </script>
 
 <template>
