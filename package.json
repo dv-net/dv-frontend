@@ -1,7 +1,7 @@
 {
 	"name": "dv-frontend",
 	"private": false,
-	"version": "1.0.40",
+	"version": "1.0.41",
 	"type": "module",
 	"engines": {
 		"node": "^22.22.2 || ^24.15.0 || >=26.0.0"
@@ -34,6 +34,7 @@
 		"lottie-web-vue": "^2.0.7",
 		"pinia": "^3.0.4",
 		"qrcode.vue": "^3.8.1",
+		"transliteration": "2.6.1",
 		"viem": "2.53.1",
 		"vue": "^3.5.33",
 		"vue-chartjs": "^5.3.3",

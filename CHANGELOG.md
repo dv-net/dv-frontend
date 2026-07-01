@@ -2,7 +2,11 @@
 
 ## [Unreleased]
 
-## [1.0.40] - 2026-06-18
+## [1.0.41] - 2026-07-01
+
+- change: replace CDN transliteration script with `transliteration` npm package in pay form search
+
+## [1.0.40] - 2026-06-30
 
 - change: use AML provider labels from dictionaries API instead of local constants
 

@@ -12,7 +12,7 @@
 	import WrapperBlock from "@pay/views/payerForm/components/wrapperBlock/WrapperBlock.vue";
 	import { convertToEnglishLayout } from "@pay/utils/helpers/keyboardLayout.ts";
 	import { useI18n } from "vue-i18n";
-	import { transliterate } from "https://cdn.jsdelivr.net/npm/transliteration@2.3.5/dist/browser/bundle.esm.min.js";
+	import { transliterate } from "transliteration";
 
 	const { currentCurrency, currentStep, currentChain, isLoading, filteredBlockchains, filteredCurrencies, addresses } =
 		storeToRefs(usePayerFormStore());
