@@ -28,7 +28,7 @@
 	]);
 
 	const isVisibleTable = computed<boolean>(() => {
-		if (isLoadingDeposit.value) return true;
+		if (isLoadingDeposit.value) return false;
 		return Boolean(depositSummary.value.length);
 	});
 

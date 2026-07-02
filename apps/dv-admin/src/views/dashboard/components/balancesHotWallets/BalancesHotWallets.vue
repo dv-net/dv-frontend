@@ -17,7 +17,7 @@
 	const isShowAll = ref<boolean>(false);
 
 	const isVisibleTable = computed<boolean>(() => {
-		if (isLoadingWalletSummary.value) return true;
+		if (isLoadingWalletSummary.value) return false;
 		return Boolean(walletSummary.value.length);
 	});
 

@@ -16,7 +16,7 @@
 	const { transactions, isLoading } = storeToRefs(useTransactionStore());
 
 	const isVisibleTable = computed<boolean>(() => {
-		if (isLoading.value) return true;
+		if (isLoading.value) return false;
 		return Boolean(transactions.value.length);
 	});
 
