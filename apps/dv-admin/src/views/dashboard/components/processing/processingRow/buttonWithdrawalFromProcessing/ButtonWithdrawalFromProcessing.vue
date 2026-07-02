@@ -62,8 +62,13 @@
 <style scoped lang="scss">
 	.button-withdrawal-from-processing {
 		display: flex;
-		justify-content: flex-end;
+		justify-content: center;
 		flex-grow: 1;
+
+		@include mediamin(768) {
+			justify-content: flex-end;
+		}
+
 		.disabled {
 			opacity: 0.4;
 			cursor: not-allowed;

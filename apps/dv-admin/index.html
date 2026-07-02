@@ -19,7 +19,7 @@
 			}
 
 			#globalLoader svg {
-				width: clamp(270px, 25dvw, 1000px) !important;
+				width: clamp(270px, 35dvw, 600px) !important;
 				height: auto !important;
 			}
 
@@ -49,15 +49,15 @@
 
 				if (!globalLoader) return;
 
-				const libSrc = `%BASE_URL%/static/js/lottie.min.js`;
-				const loaderSrc = `%BASE_URL%/static/mainLoader.json`;
-				let lottieAnimation;
-
 				const cache = await caches?.open("__CACHES_NAME__");
 
 				if (!cache) {
 					return globalLoader.remove();
 				}
+
+				const libSrc = `%BASE_URL%/static/js/lottie.min.js`;
+				const loaderSrc = `%BASE_URL%/static/mainLoader.json`;
+				let lottieAnimation;
 
 				globalLoader.addEventListener("transitionend", () => {
 					lottieAnimation?.stop();

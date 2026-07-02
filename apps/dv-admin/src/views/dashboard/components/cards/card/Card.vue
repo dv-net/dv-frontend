@@ -50,9 +50,15 @@
 		width: 100%;
 
 		&.one-card {
-			flex-direction: inherit;
-			justify-content: space-between;
-			align-items: center;
+			@include mediamin(768) {
+				flex-direction: inherit;
+				justify-content: space-between;
+				align-items: center;
+			}
+		}
+
+		@include mediamax(768) {
+			flex-direction: column;
 		}
 
 		&__top {
