@@ -28,8 +28,12 @@
 		color: $secondary;
 		font-size: 14px;
 		font-weight: 500;
-		padding-left: 12px;
 		line-height: 20px;
+
+		@include mediamin(768) {
+			padding-left: 12px;
+		}
+
 		&__text {
 			word-break: break-word;
 		}

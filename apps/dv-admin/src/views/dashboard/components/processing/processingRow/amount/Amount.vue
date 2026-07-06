@@ -17,6 +17,13 @@
 		color: $black;
 		font-size: 18px;
 		font-weight: 400;
-		padding-left: 12px;
+		text-align: center;
+		width: 100%;
+
+		@include mediamin(768) {
+			padding-left: 12px;
+			text-align: unset;
+			width: unset;
+		}
 	}
 </style>

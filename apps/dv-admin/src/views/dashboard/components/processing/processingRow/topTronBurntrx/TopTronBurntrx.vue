@@ -47,10 +47,17 @@
 <style scoped lang="scss">
 	.tron {
 		display: grid;
-		grid-template-columns: 230px 180px 1fr 100px;
-		&.recommend-topping {
-			grid-template-columns: 230px 180px 1fr 1fr 100px;
+		grid-template-columns: minmax(0, 1fr);
+		row-gap: 16px;
+
+		@include mediamin(768) {
+			grid-template-columns: 230px 180px 1fr 100px;
+
+			&.recommend-topping {
+				grid-template-columns: 230px 180px 1fr 1fr 100px;
+			}
 		}
+
 		&__column {
 			display: flex;
 			align-items: center;

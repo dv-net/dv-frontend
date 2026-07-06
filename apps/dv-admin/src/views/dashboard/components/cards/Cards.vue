@@ -51,9 +51,9 @@
 	<block-section mode="grey-border" class="flex flex-column gap-16">
 		<div class="cards">
 			<template v-if="isLoadingBalances">
-				<ui-skeleton :rows="1" :row-height="162" :item-border-radius="16" first-color="#fff" />
-				<ui-skeleton :rows="1" :row-height="162" :item-border-radius="16" first-color="#fff" />
-				<ui-skeleton :rows="1" :row-height="162" :item-border-radius="16" first-color="#fff" />
+				<ui-skeleton :rows="1" :row-height="109" :item-border-radius="16" first-color="#fff" />
+				<ui-skeleton :rows="1" :row-height="109" :item-border-radius="16" first-color="#fff" />
+				<ui-skeleton :rows="1" :row-height="109" :item-border-radius="16" first-color="#fff" />
 			</template>
 			<template v-else>
 				<card

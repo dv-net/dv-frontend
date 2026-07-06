@@ -59,7 +59,11 @@
 		&__inner {
 			flex-grow: 1;
 			display: grid;
-			grid-template-columns: 230px 1fr;
+			grid-template-columns: minmax(0, 1fr);
+
+			@include mediamin(768) {
+				grid-template-columns: 230px 1fr;
+			}
 		}
 		&__column {
 			display: flex;

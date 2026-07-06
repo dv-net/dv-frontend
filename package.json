@@ -7,8 +7,8 @@
 		"node": "^22.22.2 || ^24.15.0 || >=26.0.0"
 	},
 	"scripts": {
-		"dev": "APP_NAME=dv-admin vite",
-		"dev:pay": "APP_NAME=pay vite",
+		"dev": "cross-env APP_NAME=dv-admin vite",
+		"dev:pay": "cross-env APP_NAME=pay vite",
 		"build:dv-admin": "APP_NAME=dv-admin vite build",
 		"build:pay": "APP_NAME=pay vite build",
 		"build": "run-p type-check \"build-only {@}\" --",
@@ -52,6 +52,7 @@
 		"@vue/eslint-config-prettier": "^10.2.0",
 		"@vue/eslint-config-typescript": "^14.7.0",
 		"@vue/tsconfig": "^0.9.1",
+		"cross-env": "^10.1.0",
 		"eslint": "^10.2.1",
 		"eslint-plugin-vue": "^10.9.0",
 		"npm-run-all2": "^9.0.2",

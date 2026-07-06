@@ -5,14 +5,26 @@ import vueDevTools from "vite-plugin-vue-devtools";
 
 export default defineConfig(() => {
 	const appName = process.env.APP_NAME;
+	const __CACHES_NAME__ = "api";
+
 	if (!appName) {
 		console.error("Error: APP_NAME variable is not set");
 		process.exit(1);
 	}
+
 	const appRoot = `apps/${appName}`;
 
 	return {
-		plugins: [vueDevTools(), vue()],
+		plugins: [
+			vueDevTools(),
+			vue(),
+			{
+				name: "inject-env-html",
+				transformIndexHtml(html: string) {
+					return html.replace(/__CACHES_NAME__/g, "" + __CACHES_NAME__);
+				}
+			}
+		],
 		resolve: {
 			alias: {
 				"@shared": fileURLToPath(new URL("./src", import.meta.url)),
@@ -39,6 +51,7 @@ export default defineConfig(() => {
 				}
 			}
 		},
+		define: { __CACHES_NAME__: JSON.stringify(__CACHES_NAME__) },
 		build: {
 			outDir: `../../dist/${appName}`,
 			emptyOutDir: true,

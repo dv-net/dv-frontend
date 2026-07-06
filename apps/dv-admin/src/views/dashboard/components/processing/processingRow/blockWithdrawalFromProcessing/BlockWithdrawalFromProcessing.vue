@@ -228,8 +228,13 @@
 		.form {
 			flex-grow: 1;
 			display: grid;
-			grid-template-columns: 300px 1fr 280px;
 			gap: 20px;
+			grid-template-columns: minmax(0, 1fr);
+
+			@include mediamin(768) {
+				grid-template-columns: 300px 1fr 280px;
+			}
+
 			.input-sum {
 				&:deep(.ui-input) {
 					justify-content: space-between;
