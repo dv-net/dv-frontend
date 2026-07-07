@@ -1,7 +1,7 @@
 {
 	"name": "dv-frontend",
 	"private": false,
-	"version": "1.0.41",
+	"version": "1.0.42",
 	"type": "module",
 	"engines": {
 		"node": "^22.22.2 || ^24.15.0 || >=26.0.0"
@@ -21,7 +21,7 @@
 		"format": "prettier --write src apps"
 	},
 	"dependencies": {
-		"@dv.net/ui-kit": "^7.7.10",
+		"@dv.net/ui-kit": "^7.7.11",
 		"@reown/appkit": "1.8.21",
 		"@reown/appkit-adapter-wagmi": "1.8.21",
 		"@tanstack/vue-query": "5.101.2",

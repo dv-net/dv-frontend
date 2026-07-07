@@ -295,6 +295,7 @@ export interface IHotWalletsRequest {
 	balance_fiat_to: number | null;
 	is_sort_by_balance: boolean | null;
 	address: string | null;
+	is_dirty: boolean | null;
 }
 
 export interface IHotWalletsItem {

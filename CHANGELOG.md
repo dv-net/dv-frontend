@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+## [1.0.42] - 2026-07-07
+- feat: add `is_dirty` filter for hot wallets [DV-4392]
+
 ## [1.0.41] - 2026-07-01
 
 - change: replace CDN transliteration script with `transliteration` npm package in pay form search
