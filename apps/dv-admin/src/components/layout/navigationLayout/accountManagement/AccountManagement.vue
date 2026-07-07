@@ -29,7 +29,7 @@
 			<span class="line" />
 
 			<ui-button class="button" type="outline" size="md" :loading="isLoading" @click="getMyDvAuthLink" mode="neutral">
-				{{ $t(ownerData.is_authorized ? "Go to account" : "Sing up") }}
+				{{ $t(ownerData.is_authorized ? "Go to account" : "Sign up") }}
 			</ui-button>
 		</div>
 

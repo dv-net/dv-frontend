@@ -9,5 +9,6 @@ export const walletsFilterStartData: IHotWalletsRequest = {
 	amount: null,
 	store_ids: [],
 	is_sort_by_balance: true,
-	address: null
+	address: null,
+	is_dirty: null
 };

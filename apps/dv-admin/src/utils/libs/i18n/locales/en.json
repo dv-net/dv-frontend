@@ -244,7 +244,7 @@
 	"Login to your DV.net account or create a new one": "Login to your DV.net account or create a new one",
 	"Enter your details to register": "Enter your details to register",
 	"E-mail": "E-mail",
-	"Sing up": "Sing up",
+	"Sign up": "Sign up",
 	"Login to account": "Login to account",
 	"Enter Email": "Enter Email",
 	"Password": "Password",
@@ -972,5 +972,7 @@
 	"Telegram is disabled": "Telegram is disabled",
 	"You don’t have any hot wallets yet.": "You don’t have any hot wallets yet.",
 	"Mark address as dirty": "Mark address as dirty",
-	"This address has been marked as dirty and permanently removed from automatic allocation. Any funds received to this wallet require manual withdrawal processing.": "This address has been marked as dirty and permanently removed from automatic allocation. Any funds received to this wallet require manual withdrawal processing."
+	"This address has been marked as dirty and permanently removed from automatic allocation. Any funds received to this wallet require manual withdrawal processing.": "This address has been marked as dirty and permanently removed from automatic allocation. Any funds received to this wallet require manual withdrawal processing.",
+	"Dirty addresses": "Dirty addresses",
+	"Clean addresses": "Clean addresses"
 }

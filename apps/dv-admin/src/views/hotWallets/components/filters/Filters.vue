@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import { UiButton, UiDropdown, UiIcon, UiIconButton, UiInput, UiLink } from "@dv.net/ui-kit";
+	import { UiButton, UiDropdown, UiIcon, UiIconButton, UiInput, UiLink, UiSelect } from "@dv.net/ui-kit";
 	import { storeToRefs } from "pinia";
 	import { useHotWalletsStore } from "@dv-admin/stores/hotWallets";
 	import { debounce } from "@shared/utils/helpers/debounce";
@@ -37,6 +37,19 @@
 	const isShowBtnDownloadKeys = computed<boolean>(() => !!includedWallets.value.length);
 
 	const debouncedSearch = debounce(getWallets, 500);
+
+	const dirtyFilterOptions = computed(() => [
+		{ value: "all", label: t("All") },
+		{ value: "dirty", label: t("Dirty addresses") },
+		{ value: "clean", label: t("Clean addresses") }
+	]);
+
+	const dirtyFilter = computed({
+		get: () => (walletsFilter.value.is_dirty === true ? "dirty" : walletsFilter.value.is_dirty === false ? "clean" : "all"),
+		set: (value: string) => {
+			walletsFilter.value.is_dirty = value === "dirty" ? true : value === "clean" ? false : null;
+		}
+	});
 
 	const handleChangeView = (value: boolean) => {
 		toggleView.value = value;
@@ -142,6 +155,14 @@
 					v-model.number="walletsFilter.balance_fiat_to"
 					placeholder="Max $"
 					@input="debouncedSearch"
+				/>
+
+				<ui-select
+					class="inner__select"
+					size="sm"
+					v-model="dirtyFilter"
+					:options="dirtyFilterOptions"
+					@change="getWallets"
 				/>
 
 				<span class="button" @click="handleSortWallets">
@@ -291,6 +312,10 @@
 					&--address {
 						width: 196px;
 					}
+				}
+
+				&__select {
+					width: 180px;
 				}
 
 				&__toggle {

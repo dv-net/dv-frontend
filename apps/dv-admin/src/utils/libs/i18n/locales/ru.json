@@ -243,7 +243,7 @@
 	"Login to your DV.net account or create a new one": "Войдите в свою учетную запись DV.net или создайте новую",
 	"Enter your details to register": "Введите свои данные, чтобы зарегистрироваться",
 	"E-mail": "Почта",
-	"Sing up": "Зарегистрироваться",
+	"Sign up": "Зарегистрироваться",
 	"Login to account": "Войти в аккаунт",
 	"Enter Email": "Введите Email",
 	"Password": "Пароль",
@@ -972,5 +972,7 @@
 	"Telegram is disabled": "Telegram отключен",
 	"You don’t have any hot wallets yet.": "У вас пока нет горячих кошельков.",
 	"Mark address as dirty": "Отметить адрес как грязный",
-	"This address has been marked as dirty and permanently removed from automatic allocation. Any funds received to this wallet require manual withdrawal processing.": "Это означает что адрес будет помечен как грязный и удален из автоматического выдачи. Любые средства, полученные на этот кошелек, требуют ручной обработки вывода."
+	"This address has been marked as dirty and permanently removed from automatic allocation. Any funds received to this wallet require manual withdrawal processing.": "Это означает что адрес будет помечен как грязный и удален из автоматического выдачи. Любые средства, полученные на этот кошелек, требуют ручной обработки вывода.",
+	"Dirty addresses": "Грязные адреса",
+	"Clean addresses": "Чистые адреса"
 }
