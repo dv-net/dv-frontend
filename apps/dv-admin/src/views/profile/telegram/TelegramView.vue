@@ -131,7 +131,7 @@
 			</div>
 
 			<ui-button class="button" type="outline" size="md" :loading="isLoading" @click="getMyDvAuthLink" mode="neutral">
-				{{ $t("Sing up") }}
+				{{ $t("Sign up") }}
 			</ui-button>
 		</block-section>
 

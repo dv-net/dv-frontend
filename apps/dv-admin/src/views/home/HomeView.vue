@@ -11,7 +11,7 @@
 			{{ $t("Login to account") }}
 		</ui-button>
 		<ui-button type="tertiary" @click="router.push({ name: 'sign-up' })">
-			{{ $t("Sing up") }}
+			{{ $t("Sign up") }}
 		</ui-button>
 	</div>
 </template>

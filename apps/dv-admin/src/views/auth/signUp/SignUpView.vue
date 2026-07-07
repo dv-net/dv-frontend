@@ -116,7 +116,7 @@
 
 		<div class="auth-form__buttons row">
 			<ui-button mode="neutral" size="xxl" native-type="submit" :loading="isLoading">
-				{{ $t("Sing up") }}
+				{{ $t("Sign up") }}
 			</ui-button>
 			<ui-button type="outline" mode="neutral" size="xxl" @click="router.push({ name: 'sign-in' })">
 				{{ $t("Login to account") }}
