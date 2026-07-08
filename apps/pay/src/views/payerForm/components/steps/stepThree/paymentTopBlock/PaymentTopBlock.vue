@@ -15,7 +15,6 @@
 	import { changeChainBsc } from "@shared/utils/helpers/general.ts";
 
 	type LottieAnimationData = Record<string, unknown>;
-	type LottieAnimationModule = { default: LottieAnimationData };
 
 	const { locale } = useI18n();
 
@@ -34,24 +33,36 @@
 	}>();
 
 	const isShowQrCode = ref<boolean>(false);
-	const getPathToAnimation = (name: string) => `/src/assets/animations/loaderTransactionPending/${name}.json`;
-	const loaderTransactionPendingAnimationModules = import.meta.glob<LottieAnimationModule>(
-		"/src/assets/animations/loaderTransactionPending/*.json"
-	);
-	const loaderTransactionPendingGeneralPath = getPathToAnimation("general");
+	const loaderTransactionPendingAnimations = new Set([
+		"BTC.Bitcoin",
+		"ETH.Ethereum",
+		"USDT.BNBSmartChain",
+		"USDT.Ethereum",
+		"USDT.Tron"
+	]);
 	const loaderTransactionPending = shallowRef<LottieAnimationData | null>(null);
 	let loaderTransactionPendingRequestId: number = 0;
 
 	const loadLoaderTransactionPending = async (currencyChainId: string | null) => {
 		const requestId = ++loaderTransactionPendingRequestId;
-		const animationPath = currencyChainId ? getPathToAnimation(currencyChainId) : loaderTransactionPendingGeneralPath;
-		const loadAnimation =
-			loaderTransactionPendingAnimationModules[animationPath] ??
-			loaderTransactionPendingAnimationModules[loaderTransactionPendingGeneralPath];
-		if (!loadAnimation) return;
-		const animationModule = await loadAnimation();
-		if (requestId !== loaderTransactionPendingRequestId) return;
-		loaderTransactionPending.value = animationModule.default;
+		const animationName =
+			currencyChainId && loaderTransactionPendingAnimations.has(currencyChainId)
+				? currencyChainId
+				: "general";
+
+		try {
+			const response = await fetch(`/pay/static/loaderTransactionPending/${animationName}.json`);
+			if (!response.ok) {
+				throw new Error(`Failed to load loader animation: ${response.status}`);
+			}
+			const animation = await response.json();
+			if (requestId !== loaderTransactionPendingRequestId) return;
+			loaderTransactionPending.value = animation;
+		} catch (error) {
+			console.error(error);
+			if (requestId !== loaderTransactionPendingRequestId) return;
+			loaderTransactionPending.value = null;
+		}
 	};
 
 	watch(

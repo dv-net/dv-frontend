@@ -45,7 +45,8 @@
 	]);
 
 	const dirtyFilter = computed({
-		get: () => (walletsFilter.value.is_dirty === true ? "dirty" : walletsFilter.value.is_dirty === false ? "clean" : "all"),
+		get: () =>
+			walletsFilter.value.is_dirty === true ? "dirty" : walletsFilter.value.is_dirty === false ? "clean" : "all",
 		set: (value: string) => {
 			walletsFilter.value.is_dirty = value === "dirty" ? true : value === "clean" ? false : null;
 		}
@@ -316,6 +317,10 @@
 
 				&__select {
 					width: 180px;
+					height: 32px;
+					:deep(.ui-select) {
+						height: 32px;
+					}
 				}
 
 				&__toggle {

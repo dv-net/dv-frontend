@@ -1,22 +1,25 @@
 <script setup lang="ts">
 	import PayerFormHeader from "@pay/views/payerForm/components/payerFormHeader/PayerFormHeader.vue";
 	import PayerFormSidebar from "@pay/views/payerForm/components/payerFormSidebar/PayerFormSidebar.vue";
-	import StepOne from "@pay/views/payerForm/components/steps/stepOne/StepOne.vue";
 	import { useRoute, useRouter } from "vue-router";
-	import { type Component, computed, onMounted, onUnmounted, watch } from "vue";
+	import { type Component, computed, defineAsyncComponent, onMounted, onUnmounted, watch } from "vue";
 	import { usePayerFormStore } from "@pay/stores/payerForm";
 	import { storeToRefs } from "pinia";
 	import { getCurrentBlockchain, getCurrentCoin } from "@shared/utils/helpers/general.ts";
-	import StepTwo from "@pay/views/payerForm/components/steps/stepTwo/StepTwo.vue";
-	import StepThree from "@pay/views/payerForm/components/steps/stepThree/stepThree.vue";
-	import StepFour from "@pay/views/payerForm/components/steps/stepFour/StepFour.vue";
-	import StepFive from "@pay/views/payerForm/components/steps/stepFive/StepFive.vue";
-	import StepError from "@pay/views/payerForm/components/steps/stepError/StepError.vue";
 	import BlockAdvertising from "@pay/views/payerForm/components/blockAdvertising/BlockAdvertising.vue";
 	import { getApiWalletConfirm } from "@pay/utils/services/payerForm.ts";
 	import { useI18n } from "vue-i18n";
 	import AudioPayment from "@pay/views/payerForm/components/audioPayment/AudioPayment.vue";
 	import BlockLatestTransactions from "@pay/views/payerForm/components/blockLatestTransactions/BlockLatestTransactions.vue";
+
+	const StepOne = defineAsyncComponent(() => import("@pay/views/payerForm/components/steps/stepOne/StepOne.vue"));
+	const StepTwo = defineAsyncComponent(() => import("@pay/views/payerForm/components/steps/stepTwo/StepTwo.vue"));
+	const StepThree = defineAsyncComponent(
+		() => import("@pay/views/payerForm/components/steps/stepThree/stepThree.vue")
+	);
+	const StepFour = defineAsyncComponent(() => import("@pay/views/payerForm/components/steps/stepFour/StepFour.vue"));
+	const StepFive = defineAsyncComponent(() => import("@pay/views/payerForm/components/steps/stepFive/StepFive.vue"));
+	const StepError = defineAsyncComponent(() => import("@pay/views/payerForm/components/steps/stepError/StepError.vue"));
 
 	const {
 		currentStep,

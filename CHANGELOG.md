@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [1.0.43] - 2026-07-08
+
+- fix: reducing bundle size
+
 ## [1.0.42] - 2026-07-07
 
 - feat: add `is_dirty` filter for hot wallets [DV-4392]
