@@ -1,4 +1,4 @@
-import { config } from "@dv.net/ui-kit";
+import { config } from "@dv.net/ui-kit/dist/config/index";
 import { nextTick } from "vue";
 import i18n from "@dv-admin/utils/libs/i18n";
 

@@ -38,9 +38,14 @@
 	};
 
 	onMounted(async () => {
+		if (!isDesktopDevice()) return;
+
 		try {
-			const module = await import("@pay/assets/animations/shield.json");
-			shieldAnim.value = module.default;
+			const response = await fetch("/pay/static/shield.json");
+			if (!response.ok) {
+				throw new Error(`Failed to load shield animation: ${response.status}`);
+			}
+			shieldAnim.value = await response.json();
 		} catch (error) {
 			console.error(error);
 		}

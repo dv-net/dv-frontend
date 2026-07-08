@@ -347,10 +347,10 @@
   resolved "https://registry.yarnpkg.com/@date-fns/tz/-/tz-1.5.0.tgz#e9e79b7583f0b1322c53db884a0112551095e3f3"
   integrity sha512-lwYN/vDPeNRULcepoE/LO2Pgx+7/RV+S9ARfbc9lr2DtGkOD7pAiruHvbR1RX3Qyf6ja47EWJDMsNK5vK08DJg==
 
-"@dv.net/ui-kit@^7.7.11":
-  version "7.7.11"
-  resolved "https://registry.yarnpkg.com/@dv.net/ui-kit/-/ui-kit-7.7.11.tgz#20b6dc37f6e084708e5350b55b2bd469ba2360c8"
-  integrity sha512-M3YwvQUdibIFLD4xoguS0M7j3Tf6Wgea7Ey5WsFLXeg6ygSz1aOjRkZzxIgKum2zqyOKMfAAV3EZBLcCwkCYlQ==
+"@dv.net/ui-kit@^7.7.15":
+  version "7.7.15"
+  resolved "https://registry.yarnpkg.com/@dv.net/ui-kit/-/ui-kit-7.7.15.tgz#635ac70367376bb971e6b89987038131d16059f1"
+  integrity sha512-IoqJYmRcY9fUKrjiW3J3fYeno32qG409TWFfq17hcwW8wfURWXLgLx3XhAdgvt+l7ZeARR6JGq/3iKuGX3ZxfQ==
   dependencies:
     "@floating-ui/vue" "^1.1.11"
     "@vuepic/vue-datepicker" "^12.1.0"

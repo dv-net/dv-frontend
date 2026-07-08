@@ -17,11 +17,11 @@
 		"preview:pay": "APP_NAME=pay vite preview",
 		"type-check": "vue-tsc --build --force",
 		"lint": "eslint src apps",
-		"lint-fix": "eslint src apps --fix",
+		"lint:fix": "eslint src apps --fix",
 		"format": "prettier --write src apps"
 	},
 	"dependencies": {
-		"@dv.net/ui-kit": "^7.7.11",
+		"@dv.net/ui-kit": "^7.7.15",
 		"@reown/appkit": "1.8.21",
 		"@reown/appkit-adapter-wagmi": "1.8.21",
 		"@tanstack/vue-query": "5.101.2",
