@@ -39,11 +39,6 @@
 </script>
 
 <template>
-	<component
-		v-if="iconToShow"
-		class="flex-shrink-0"
-		:is="iconToShow"
-		:style="iconStyle"
-	/>
+	<component v-if="iconToShow" class="flex-shrink-0" :is="iconToShow" :style="iconStyle" />
 	<span v-else class="flex-shrink-0" :style="iconStyle" aria-hidden="true" />
 </template>

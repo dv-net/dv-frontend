@@ -149,11 +149,7 @@
 					mode="light"
 					@change="changeAmlProvider"
 				>
-					<ui-tabs-item
-						v-for="item in dictionary.available_aml_providers"
-						:key="item.slug"
-						:value="item.slug"
-					>
+					<ui-tabs-item v-for="item in dictionary.available_aml_providers" :key="item.slug" :value="item.slug">
 						{{ item.label }}
 					</ui-tabs-item>
 				</ui-tabs>

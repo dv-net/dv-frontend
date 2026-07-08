@@ -12,13 +12,12 @@
 	import AudioPayment from "@pay/views/payerForm/components/audioPayment/AudioPayment.vue";
 	import BlockLatestTransactions from "@pay/views/payerForm/components/blockLatestTransactions/BlockLatestTransactions.vue";
 
-	const StepOne = defineAsyncComponent(() => import("@pay/views/payerForm/components/steps/stepOne/StepOne.vue"));
-	const StepTwo = defineAsyncComponent(() => import("@pay/views/payerForm/components/steps/stepTwo/StepTwo.vue"));
-	const StepThree = defineAsyncComponent(
-		() => import("@pay/views/payerForm/components/steps/stepThree/stepThree.vue")
-	);
-	const StepFour = defineAsyncComponent(() => import("@pay/views/payerForm/components/steps/stepFour/StepFour.vue"));
-	const StepFive = defineAsyncComponent(() => import("@pay/views/payerForm/components/steps/stepFive/StepFive.vue"));
+	import StepOne from "@pay/views/payerForm/components/steps/stepOne/StepOne.vue";
+	import StepTwo from "@pay/views/payerForm/components/steps/stepTwo/StepTwo.vue";
+	import StepThree from "@pay/views/payerForm/components/steps/stepThree/stepThree.vue";
+	import StepFour from "@pay/views/payerForm/components/steps/stepFour/StepFour.vue";
+	import StepFive from "@pay/views/payerForm/components/steps/stepFive/StepFive.vue";
+
 	const StepError = defineAsyncComponent(() => import("@pay/views/payerForm/components/steps/stepError/StepError.vue"));
 
 	const {
