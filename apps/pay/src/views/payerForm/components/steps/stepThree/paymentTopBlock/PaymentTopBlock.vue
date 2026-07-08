@@ -46,9 +46,7 @@
 	const loadLoaderTransactionPending = async (currencyChainId: string | null) => {
 		const requestId = ++loaderTransactionPendingRequestId;
 		const animationName =
-			currencyChainId && loaderTransactionPendingAnimations.has(currencyChainId)
-				? currencyChainId
-				: "general";
+			currencyChainId && loaderTransactionPendingAnimations.has(currencyChainId) ? currencyChainId : "general";
 
 		try {
 			const response = await fetch(`/pay/static/loaderTransactionPending/${animationName}.json`);

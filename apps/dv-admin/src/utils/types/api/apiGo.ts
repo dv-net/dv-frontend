@@ -694,10 +694,7 @@ export interface IExchangeTestRequest {
 }
 
 export type IUsersSettings =
-	| "quick_start_guide_status"
-	| "transfer_type"
-	| "transfers_status"
-	| "withdraw_from_processing";
+	"quick_start_guide_status" | "transfer_type" | "transfers_status" | "withdraw_from_processing";
 
 export interface ISettingsResponse {
 	name: IUsersSettings | string;
