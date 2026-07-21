@@ -1,6 +1,7 @@
 import type { BlockchainType } from "@shared/utils/types/blockchain";
 import { USER_ROLES } from "@dv-admin/utils/constants/user";
 import type { ENUM_SEARCH_TYPES } from "@dv-admin/utils/constants/search";
+import type { STORE_VERIFICATION_STATUS } from "@dv-admin/utils/constants/root";
 
 export interface IPagination {
 	page: number;
@@ -99,6 +100,31 @@ export interface IStoreResponse {
 	created_at: string;
 	updated_at: string | null;
 	deleted_at: string | null;
+	verification_status?: STORE_VERIFICATION_STATUS;
+	verified_at?: string | null;
+	rejection_reason?: string | null;
+}
+
+export interface IGetStoresRequest {
+	status?: STORE_VERIFICATION_STATUS | null;
+	page?: number;
+	page_size?: number;
+}
+
+export interface IRejectStoreRequest {
+	reason: string;
+}
+
+export interface IStoreValidationItemResponse extends IStoreResponse {
+	owner_email?: string;
+	verification_status: STORE_VERIFICATION_STATUS;
+	verified_at: string | null;
+	rejection_reason: string | null;
+}
+
+export interface IStoreValidationResponse {
+	items: IStoreValidationItemResponse[];
+	pagination: IPagination;
 }
 
 export interface IStoreApiKeyResponse {

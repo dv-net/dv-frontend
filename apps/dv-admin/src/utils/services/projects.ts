@@ -132,3 +132,7 @@ export const putApiAmlSettingsProject = async (
 	const resp = await api.put(`/dv-admin/store/${uuid}/aml-settings`, body);
 	return resp.data.data;
 };
+
+export const resendVerifyStore = async (id: string): Promise<void> => {
+	await api.post(`/dv-admin/store/${id}/resend-verify`);
+};

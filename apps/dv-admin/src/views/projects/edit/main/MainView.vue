@@ -7,6 +7,7 @@
 	import { useApiKeysProjectStore } from "@dv-admin/stores/projects/apiKeys";
 	import Secrets from "@dv-admin/views/projects/edit/main/components/secrets/Secrets.vue";
 	import Webhooks from "@dv-admin/views/projects/edit/main/components/webhooks/Webhooks.vue";
+	import StoreVerificationAlert from "@dv-admin/views/projects/edit/main/components/StoreVerificationAlert.vue";
 	import { useProjectsStore } from "@dv-admin/stores/projects";
 	import { useI18n } from "vue-i18n";
 
@@ -27,6 +28,7 @@
 
 <template>
 	<div class="main">
+		<store-verification-alert :store-id="uuid" />
 		<block-section class="documentation" mode="grey-border" radius="md">
 			<div class="documentation__btn" @click="goToDocumentation">
 				<ui-link class="flex flex-y-center gap-8">

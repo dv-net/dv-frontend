@@ -8,7 +8,8 @@ import {
 	postApiStoreArchive,
 	postApiStoreSecret,
 	postApiStoreUnarchive,
-	putApiOneProject
+	putApiOneProject,
+	resendVerifyStore
 } from "@dv-admin/utils/services/projects";
 import type { ICurrencyStore, IStoreResponse, IStoreSettingsList } from "@dv-admin/utils/types/api/apiGo";
 import { useNotifications } from "@shared/utils/composables/useNotifications";
@@ -48,6 +49,7 @@ export const useProjectsStore = defineStore("projects", () => {
 	const selectedProject = ref<string | null>(null);
 	const archivedProjects = ref<IStoreResponse[]>([]);
 	const storeSettingList = ref<IStoreSettingsList[]>([]);
+	const isLoadingResendVerify = ref<Record<string, boolean>>({});
 
 	// CRUD for project information
 	const getProjects = async () => {
@@ -199,6 +201,24 @@ export const useProjectsStore = defineStore("projects", () => {
 		webhooksProject.value = structuredClone(webhooksFormStartData);
 	};
 
+	const postResendVerifyStore = async (uuid: string) => {
+		try {
+			isLoadingResendVerify.value[uuid] = true;
+			await resendVerifyStore(uuid);
+		} catch (error: any) {
+			throw error;
+		} finally {
+			isLoadingResendVerify.value[uuid] = false;
+		}
+	};
+
+	const refreshAfterResendVerify = async (uuid: string) => {
+		await Promise.all([
+			getProjects(),
+			currentProject.value?.id === uuid ? getOneProjects(uuid) : Promise.resolve()
+		]);
+	};
+
 	return {
 		projects,
 		isLoading,
@@ -212,10 +232,13 @@ export const useProjectsStore = defineStore("projects", () => {
 		checkedCurrenciesProject,
 		selectAllCurrenciesProject,
 		storeSettingList,
+		isLoadingResendVerify,
 
 		postStoreSecret,
 		postStoreArchive,
 		postStoreUnarchive,
+		postResendVerifyStore,
+		refreshAfterResendVerify,
 		getStoreArchivedList,
 		getProjects,
 		getAllInfoProjects,

@@ -20,6 +20,7 @@ import confirmationMnemonics from "@dv-admin/router/modules/confirmationMnemonic
 import transferCheck from "@dv-admin/router/modules/transferCheck.ts";
 import notifications from "@dv-admin/router/modules/notifications.ts";
 import addressBook from "@dv-admin/router/modules/addressBook.ts";
+import admin from "@dv-admin/router/modules/admin.ts";
 
 export const routes: Array<RouteRecordRaw> = [
 	...home,
@@ -42,5 +43,6 @@ export const routes: Array<RouteRecordRaw> = [
 	...confirmationMnemonics,
 	...transferCheck,
 	...notifications,
-	...addressBook
+	...addressBook,
+	...admin
 ];

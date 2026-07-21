@@ -37,7 +37,7 @@ api.interceptors.response.use(
 				notify(error.message || "Unknown error");
 			}
 		}
-		if (error.response.status === HttpStatusCode.Unauthorized) {
+		if (error.response?.status === HttpStatusCode.Unauthorized) {
 			useAuthStore().removeToken();
 		}
 		return Promise.reject(error);

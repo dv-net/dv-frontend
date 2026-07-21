@@ -7,10 +7,39 @@ import {
 	notificationsAnimation,
 	searchAnimation,
 	settings2Animation,
-	support2Animation
+	support2Animation,
+	securityAnimation
 } from "@dv.net/ui-kit/dist/helpers/animations-list";
 
 export const mainMenuList: RouteItem[] = [
+	{
+		path: "/admin",
+		meta: {
+			title: "Admin",
+			animationIcon: securityAnimation,
+			alwaysOpen: true
+		},
+		children: [
+			{
+				path: "/admin/users",
+				meta: {
+					title: "Users",
+					iconComponent: IconCorner,
+					iconComponentActive: IconCorner,
+					isChildren: true
+				}
+			},
+			{
+				path: "/admin/projects",
+				meta: {
+					title: "Projects",
+					iconComponent: IconCorner,
+					iconComponentActive: IconCorner,
+					isChildren: true
+				}
+			}
+		]
+	},
 	{
 		path: "/dashboard",
 		meta: {
@@ -100,15 +129,6 @@ export const mainMenuList: RouteItem[] = [
 			alwaysOpen: true
 		},
 		children: [
-			// {
-			// 	path: "/settings/users",
-			// 	meta: {
-			// 		title: "Users",
-			// 		iconComponent: IconCorner,
-			// 		iconComponentActive: IconCorner,
-			// 		isChildren: true
-			// 	}
-			// },
 			{
 				path: "/settings/logs",
 				meta: {

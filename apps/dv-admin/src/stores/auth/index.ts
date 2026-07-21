@@ -123,7 +123,7 @@ export const useAuthStore = defineStore("auth", () => {
 	const removeToken = () => {
 		Cookies.remove(USER.TOKEN_KEY_LS);
 		isLoggedIn.value = false;
-		window.location.href = "/";
+		window.location.href = router.resolve({ name: "sign-in" }).href;
 	};
 
 	// Endpoints related to email and password changes

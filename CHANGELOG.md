@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+## [1.0.44] - 2026-07-21
+
+- feat: store verification moderation for root admins and merchants (approve/reject, resend, status badges)
+- fix: logout redirects to the sign-in page with the correct app base prefix
+
 ## [1.0.43] - 2026-07-08
 
 - fix: reducing bundle size

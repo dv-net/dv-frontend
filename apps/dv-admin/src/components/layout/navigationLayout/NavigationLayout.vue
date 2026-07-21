@@ -7,20 +7,46 @@
 	import { useUserSettingsStore } from "@dv-admin/stores/userSettings";
 	import { useAuthStore } from "@dv-admin/stores/auth";
 	import { computed } from "vue";
+	import { useI18n } from "vue-i18n";
 
 	const { collapse = false, isSidebarMobile = false } = defineProps<{
 		collapse: boolean;
 		isSidebarMobile?: boolean;
 	}>();
 
+	const { t } = useI18n();
 	const { quickStartGuideSetting } = storeToRefs(useUserSettingsStore());
 	const { isRootUser } = storeToRefs(useAuthStore());
 
-	const pagesRequireAdminRights: string[] = ["/settings/logs"];
+	const pagesRequireAdminRights: string[] = ["/settings/logs", "/admin"];
 
 	const isShowQuickStartGuide = computed<boolean>(() => {
 		return quickStartGuideSetting.value?.value === "incompleted";
 	});
+
+	const menuItems = computed(() =>
+		mainMenuList
+			.filter((item) => !(pagesRequireAdminRights.includes(item.path) && !isRootUser.value))
+			.map((item) => ({
+				path: item.path,
+				meta: {
+					...item.meta,
+					class: pagesRequireAdminRights.includes(item.path) && !isRootUser.value ? "none" : "",
+					title: t(item.meta.title)
+				},
+				children:
+					item.children && item.children.length
+						? item.children.map((child) => ({
+								...child,
+								meta: {
+									...child.meta,
+									title: t(child.meta.title),
+									class: pagesRequireAdminRights.includes(child.path) && !isRootUser.value ? "none" : ""
+								}
+							}))
+						: []
+			}))
+	);
 </script>
 
 <template>
@@ -45,27 +71,7 @@
 			<UiLayoutMenu
 				:class="{ 'drawer-menu': isSidebarMobile }"
 				:collapsed="collapse"
-				:route-items="
-					mainMenuList.map((item) => ({
-						path: item.path,
-						meta: {
-							...item.meta,
-							class: pagesRequireAdminRights.includes(item.path) && !isRootUser ? 'none' : '',
-							title: $t(item.meta.title)
-						},
-						children:
-							item.children && item.children.length
-								? item.children.map((item) => ({
-										...item,
-										meta: {
-											...item.meta,
-											title: $t(item.meta.title),
-											class: pagesRequireAdminRights.includes(item.path) && !isRootUser ? 'none' : ''
-										}
-									}))
-								: []
-					}))
-				"
+				:route-items="menuItems"
 			/>
 		</div>
 		<account-management v-if="!collapse" class="navigation__plate" />
