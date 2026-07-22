@@ -29,28 +29,22 @@
 				background-color: unset;
 				&:last-child {
 					td:first-child {
-						.ui-table__body-cell-inner {
-							border-radius: 10px 0 0 20px;
-						}
+						border-radius: 10px 0 0 20px;
 					}
 					td:last-child {
-						.ui-table__body-cell-inner {
-							border-radius: 0 10px 20px 0;
-						}
+						border-radius: 0 10px 20px 0;
 					}
 				}
 				td {
-					height: 1px;
 					padding: 0;
-					vertical-align: top;
+					vertical-align: middle;
+					background-color: $white;
 					&:first-child {
-						.ui-table__body-cell-inner {
-							border-radius: 10px 0 0 10px;
-						}
+						border-radius: 10px 0 0 10px;
 					}
 					&:last-child {
+						border-radius: 0 10px 10px 0;
 						.ui-table__body-cell-inner {
-							border-radius: 0 10px 10px 0;
 							padding: 6px 6px 6px 16px;
 						}
 					}
@@ -59,9 +53,7 @@
 						display: flex;
 						align-items: center;
 						width: 100%;
-						height: 100%;
-						min-height: 100%;
-						background-color: $white;
+						box-sizing: border-box;
 						line-height: unset;
 						color: rgba(48, 51, 69, 1);
 						font-size: 14px;

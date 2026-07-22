@@ -304,17 +304,27 @@
 		}
 		.row-rest {
 			width: 100%;
+			min-width: 0;
 			min-height: 44px;
 			overflow: hidden;
 			&__content {
-				display: grid;
-				grid-template-columns: 250px 250px minmax(0, 1fr);
+				display: flex;
 				align-items: center;
 				width: 100%;
+				min-width: 0;
 			}
 			&__cell {
 				min-width: 0;
+				box-sizing: border-box;
+				&:nth-child(1),
+				&:nth-child(2) {
+					flex: 0 0 250px;
+					width: 250px;
+					max-width: 250px;
+				}
+				&:nth-child(3),
 				&--actions {
+					flex: 1 1 auto;
 					display: flex;
 					justify-content: flex-end;
 				}
