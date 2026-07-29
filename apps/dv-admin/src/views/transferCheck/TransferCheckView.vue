@@ -1,59 +1,39 @@
 <script setup lang="ts">
 	import { useGeneralStore } from "@dv-admin/stores/general";
 	import { storeToRefs } from "pinia";
-	import {
-		UiInput,
-		UiTabs,
-		UiTabsItem,
-		UiSelect,
-		UiButton,
-		UiTable,
-		UiSkeleton,
-		UiForm,
-		UiFormItem,
-		UiCopyText
-	} from "@dv.net/ui-kit";
+	import { UiTabs, UiTabsItem, UiButton, UiTable, UiSkeleton, UiCopyText } from "@dv.net/ui-kit";
 	import { computed, ref, watch } from "vue";
+	import { useRouter } from "vue-router";
 	import { useTransferCheckStore } from "@dv-admin/stores/transferCheck";
-	import { postApiAmlScoreTransaction } from "@dv-admin/utils/services/transferCheck.ts";
 	import type { UiPaginationMeta } from "@dv.net/ui-kit/dist/components/UiPagination/types";
 	import type { UiTableHeader } from "@dv.net/ui-kit/dist/components/UiTable/types";
 	import { useI18n } from "vue-i18n";
-	import type { UiFormRules } from "@dv.net/ui-kit/dist/components/UiForm/types";
-	import type { BlockchainType } from "@shared/utils/types/blockchain";
-	import BlockchainCard from "@dv-admin/components/ui/blockchainCard/BlockchainCard.vue";
 	import { RISK_LEVEL_ENUM } from "@dv-admin/utils/constants/transferCheck";
-	import NotFoundMessage from "@dv-admin/components/ui/notFoundMessage/NotFoundMessage.vue";
-	import { useRouter } from "vue-router";
-	import type { IUiSelectOptions } from "@dv-admin/utils/types/general.ts";
-	import { useNotifications } from "@shared/utils/composables/useNotifications.ts";
 	import BlockSection from "@dv-admin/components/ui/BlockSection/BlockSection.vue";
 	import { formatDate } from "@dv-admin/utils/helpers/dateParse.ts";
 	import ShowStatusGeneral from "@dv-admin/components/ui/showStatusGeneral/ShowStatusGeneral.vue";
 	import type { IAmlHistoryItemResponse } from "@dv-admin/utils/types/api/apiGo.ts";
-	import IconUpdateData from "@dv-admin/components/ui/iconUpdateData/IconUpdateData.vue";
+	import AmlStatusBar from "@dv-admin/views/transferCheck/components/amlStatusBar/AmlStatusBar.vue";
+	import AmlRiskRules from "@dv-admin/views/transferCheck/components/amlRiskRules/AmlRiskRules.vue";
 
 	const { t } = useI18n();
-	const { notify } = useNotifications();
 	const router = useRouter();
 
 	const {
-		amlCurrencies,
-		isLoadingAmlKeys,
-		isHaveKeysCurrentAml,
 		formAmlScoreTransaction,
 		isLoadingAmlHistory,
 		amlHistoryPagination,
 		amlHistory,
-		amlHistoryFilter
+		amlHistoryFilter,
+		amlSettings
 	} = storeToRefs(useTransferCheckStore());
-	const { getAmlKeys, getAmlCurrencies, getAmlHistory } = useTransferCheckStore();
+	const { getAmlKeys, getAmlHistory, getAmlSettings } = useTransferCheckStore();
 	const { dictionary, isLoadingDictionary } = storeToRefs(useGeneralStore());
 
-	const formRef = ref<HTMLFormElement | null>(null);
-	const isLoadingAmlScoreTransaction = ref<boolean>(false);
-	const formError = ref<string>("");
 	const expandListUuid = ref<string[]>([]);
+	const isLoadingAmlProvider = ref(false);
+
+	const isLoadingAmlPage = computed(() => isLoadingDictionary.value || isLoadingAmlProvider.value);
 
 	const headers = computed<UiTableHeader[]>(() => [
 		{ name: "created_at", label: t("Date") },
@@ -64,27 +44,36 @@
 		{ name: "actions" }
 	]);
 
-	const optionsDirection = computed<IUiSelectOptions[]>(() => {
-		return [
-			{ label: t("Receipt.two"), value: "in" },
-			{ label: t("Withdrawal"), value: "out" }
-		];
-	});
-
-	const rulesForm = computed<UiFormRules>(() => {
-		return {
-			tx_id: [{ required: true, message: t("Enter transaction hash") }],
-			currency_id: [{ required: true, message: t("Select currency") }],
-			output_address: [{ required: true, message: t("Enter address") }],
-			direction: [{ required: true, message: t("Select direction") }]
-		};
-	});
-
 	const currentNameAmlProvider = (slug: string): string =>
 		dictionary.value?.available_aml_providers.find((provider) => provider.slug === slug)?.label ?? slug;
 
-	const changeAmlProvider = async (provider: string) => {
-		await Promise.all([getAmlKeys(provider), getAmlCurrencies(provider)]);
+	const loadAmlProvider = async (slug: string) => {
+		isLoadingAmlProvider.value = true;
+		try {
+			formAmlScoreTransaction.value.provider_slug = slug;
+			amlHistoryFilter.value.provider_slug = slug;
+			amlHistoryFilter.value.page = 1;
+			expandListUuid.value = [];
+			await Promise.all([getAmlKeys(slug), getAmlHistory()]);
+		} finally {
+			isLoadingAmlProvider.value = false;
+		}
+	};
+
+	const initAmlPage = async () => {
+		if (!dictionary.value) return;
+		isLoadingAmlProvider.value = true;
+		try {
+			await getAmlSettings();
+			const currentAmlProvider = amlSettings.value?.provider_slug || dictionary.value.available_aml_providers[0]?.slug;
+			if (!currentAmlProvider) return;
+			formAmlScoreTransaction.value.provider_slug = currentAmlProvider;
+			amlHistoryFilter.value.provider_slug = currentAmlProvider;
+			amlHistoryFilter.value.page = 1;
+			await Promise.all([getAmlKeys(currentAmlProvider), getAmlHistory()]);
+		} finally {
+			isLoadingAmlProvider.value = false;
+		}
 	};
 
 	const handleOpenRow = (row: IAmlHistoryItemResponse) => {
@@ -95,43 +84,21 @@
 		}
 	};
 
-	const handleRowClick = async (row: IAmlHistoryItemResponse) => {
-		handleOpenRow(row);
-	};
-
 	const changePageHandler = async (pagination: UiPaginationMeta) => {
 		amlHistoryFilter.value.page = pagination.page;
 		await getAmlHistory();
 	};
 
-	const postAmlScoreTransaction = async () => {
-		try {
-			if (!formRef.value || !(await formRef.value.validate())) return;
-			isLoadingAmlScoreTransaction.value = true;
-			await postApiAmlScoreTransaction(formAmlScoreTransaction.value);
-			await getAmlHistory();
-			formAmlScoreTransaction.value.tx_id = null;
-			formAmlScoreTransaction.value.output_address = null;
-			formAmlScoreTransaction.value.direction = null;
-			formAmlScoreTransaction.value.currency_id = null;
-			notify(t("We have started checking your transaction"), "success");
-		} catch (error: any) {
-			console.error(error);
-		} finally {
-			isLoadingAmlScoreTransaction.value = false;
-		}
+	const goToManualCheck = () => {
+		const aml = formAmlScoreTransaction.value.provider_slug;
+		if (!aml) return;
+		router.push({ name: "transfer-check-manual-check", params: { aml } });
 	};
 
 	watch(
 		dictionary,
 		async (newValue) => {
-			if (newValue) {
-				const currentAmlProvider = newValue.available_aml_providers[0]?.slug;
-				if (!currentAmlProvider) return;
-
-				await Promise.all([getAmlHistory(), getAmlKeys(currentAmlProvider), getAmlCurrencies(currentAmlProvider)]);
-				formAmlScoreTransaction.value.provider_slug = currentAmlProvider;
-			}
+			if (newValue) await initAmlPage();
 		},
 		{ immediate: true }
 	);
@@ -140,102 +107,40 @@
 <template>
 	<div class="page">
 		<h1 class="global-title-h1">{{ $t("AML check of transfer") }}</h1>
-		<div class="page__inner">
-			<div class="flex flex-y-center flex-x-between">
-				<ui-skeleton v-if="isLoadingDictionary" :rowHeight="40" :rows="1" :item-border-radius="8" />
-				<ui-tabs
-					v-if="!isLoadingDictionary && dictionary"
-					v-model="formAmlScoreTransaction.provider_slug"
-					mode="light"
-					@change="changeAmlProvider"
-				>
-					<ui-tabs-item v-for="item in dictionary.available_aml_providers" :key="item.slug" :value="item.slug">
-						{{ item.label }}
-					</ui-tabs-item>
-				</ui-tabs>
-				<ui-button
-					mode="neutral"
-					size="lg"
-					@click="
-						router.push({ name: 'transfer-check-connect-aml', params: { aml: formAmlScoreTransaction.provider_slug } })
-					"
-				>
-					{{ $t(isHaveKeysCurrentAml ? "Change" : "Connect") }}
-					{{ currentNameAmlProvider(formAmlScoreTransaction.provider_slug) }}
-				</ui-button>
-			</div>
-			<div>
-				<block-section v-if="isLoadingDictionary || isLoadingAmlKeys">
-					<ui-skeleton :rowHeight="66" :rows="3" :rows-gap="23" :item-border-radius="16" />
-				</block-section>
-				<div v-else>
-					<not-found-message
-						v-if="!isHaveKeysCurrentAml"
-						:text="$t('aml is not connected', { aml: currentNameAmlProvider(formAmlScoreTransaction.provider_slug) })"
-					/>
-					<block-section v-else>
-						<ui-form
-							class="form"
-							ref="formRef"
-							:rules="rulesForm"
-							:model="formAmlScoreTransaction"
-							@submit.prevent="postAmlScoreTransaction"
-						>
-							<ui-form-item :error="formError" :label="$t('Transaction hash')" name="tx_id">
-								<ui-input
-									size="md"
-									v-model="formAmlScoreTransaction.tx_id"
-									is-empty-value-null
-									:placeholder="$t('Enter transaction hash')"
-								/>
-							</ui-form-item>
-							<ui-form-item :error="formError" :label="$t('Currency')" name="currency_id">
-								<ui-select
-									v-model="formAmlScoreTransaction.currency_id"
-									type="default"
-									:options="amlCurrencies"
-									:placeholder="$t('Select currency')"
-								>
-									<template #selected>
-										<blockchain-card
-											v-if="formAmlScoreTransaction.currency_id"
-											:type="formAmlScoreTransaction.currency_id as BlockchainType"
-										/>
-									</template>
-									<template #default="{ option }">
-										<blockchain-card :type="option.value as BlockchainType" />
-									</template>
-								</ui-select>
-							</ui-form-item>
-							<ui-form-item :error="formError" :label="$t('Wallet Address')" name="output_address">
-								<ui-input
-									size="md"
-									v-model="formAmlScoreTransaction.output_address"
-									is-empty-value-null
-									:placeholder="$t('Enter address')"
-								/>
-							</ui-form-item>
-							<ui-form-item :error="formError" :label="$t('Direction')" name="direction">
-								<ui-select
-									v-model="formAmlScoreTransaction.direction"
-									type="default"
-									:options="optionsDirection"
-									:placeholder="$t('Select direction')"
-								/>
-							</ui-form-item>
-							<ui-button class="mt-8" mode="neutral" size="xl" native-type="submit">
-								{{ $t("Check transaction") }}
-							</ui-button>
-						</ui-form>
-					</block-section>
+
+		<div class="page__providers">
+			<ui-skeleton v-if="isLoadingDictionary" :rowHeight="40" :rows="1" :item-border-radius="8" />
+			<template v-else-if="dictionary?.available_aml_providers?.length">
+				<div class="page__tabs">
+					<ui-tabs
+						v-model="formAmlScoreTransaction.provider_slug"
+						mode="light"
+						widthMode="equal"
+						@change="loadAmlProvider"
+					>
+						<ui-tabs-item v-for="item in dictionary.available_aml_providers" :key="item.slug" :value="item.slug">
+							{{ item.label }}
+						</ui-tabs-item>
+					</ui-tabs>
 				</div>
-			</div>
+				<ui-button
+					type="secondary"
+					size="lg"
+					left-icon-name="check-circle"
+					left-icon-size="md"
+					@click="goToManualCheck"
+				>
+					{{ $t("Check transaction") }}
+				</ui-button>
+			</template>
 		</div>
+
+		<aml-status-bar :is-loading="isLoadingAmlPage" />
+
+		<aml-risk-rules :is-loading="isLoadingAmlPage" />
+
 		<div class="flex flex-column gap-24">
-			<div class="flex flex-y-center gap-8">
-				<h2 class="global-title-h2">{{ $t("History of checks") }}</h2>
-				<icon-update-data :callback="getAmlHistory" />
-			</div>
+			<h2 class="global-title-h2">{{ $t("History of checks") }}</h2>
 			<ui-table
 				:loading="isLoadingAmlHistory"
 				:headers="headers"
@@ -246,7 +151,7 @@
 				table-layout="fixed"
 				expande-key="id"
 				@change-pagination="changePageHandler"
-				@row-click="handleRowClick"
+				@row-click="handleOpenRow"
 				:row-class="() => 'pointer'"
 			>
 				<template #body-cell-created_at="{ row }">
@@ -287,17 +192,20 @@
 	.page {
 		display: flex;
 		flex-direction: column;
-		gap: 32px;
-		&__inner {
+
+		&__providers {
 			display: flex;
-			flex-direction: column;
-			gap: 24px;
-			.form {
-				display: grid;
-				grid-template-columns: 1fr 300px;
-				column-gap: 24px;
-			}
+			align-items: center;
+			justify-content: space-between;
+			gap: 16px;
+			margin: 32px 0 20px;
 		}
+
+		&__tabs {
+			flex: 1;
+			min-width: 0;
+		}
+
 		.json {
 			padding: 24px;
 

@@ -3,10 +3,7 @@
 	import { storeToRefs } from "pinia";
 	import { UiButton } from "@dv.net/ui-kit";
 	import { useProjectsStore } from "@dv-admin/stores/projects";
-	import {
-		STORE_ACTION_FEEDBACK_MS,
-		STORE_VERIFICATION_STATUS
-	} from "@dv-admin/utils/constants/root";
+	import { STORE_ACTION_FEEDBACK_MS, STORE_VERIFICATION_STATUS } from "@dv-admin/utils/constants/root";
 
 	const props = defineProps<{
 		storeId: string;
@@ -17,9 +14,7 @@
 
 	const isResendSuccess = ref(false);
 
-	const isRejected = computed(
-		() => currentProject.value?.verification_status === STORE_VERIFICATION_STATUS.REJECTED
-	);
+	const isRejected = computed(() => currentProject.value?.verification_status === STORE_VERIFICATION_STATUS.REJECTED);
 
 	const rejectionReason = computed(() => currentProject.value?.rejection_reason || "");
 
@@ -35,11 +30,7 @@
 </script>
 
 <template>
-	<div
-		v-if="isVisible"
-		class="verification-alert"
-		:class="{ 'verification-alert--success': isResendSuccess }"
-	>
+	<div v-if="isVisible" class="verification-alert" :class="{ 'verification-alert--success': isResendSuccess }">
 		<template v-if="isResendSuccess">
 			<div class="verification-alert__content">
 				<p class="verification-alert__title">{{ $t("Verification request has been resent") }}</p>

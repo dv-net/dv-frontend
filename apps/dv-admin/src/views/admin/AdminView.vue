@@ -7,17 +7,17 @@
 	const stats: { title: string; value: string; icon: Component }[] = [
 		{
 			title: "Number of users",
-			value: "12 343",
+			value: "—",
 			icon: markRaw(IconUsers)
 		},
 		{
 			title: "Number of projects",
-			value: "2 242",
+			value: "—",
 			icon: markRaw(IconProjects)
 		},
 		{
 			title: "Turnover today",
-			value: "$100 000",
+			value: "—",
 			icon: markRaw(IconTurnover)
 		}
 	];

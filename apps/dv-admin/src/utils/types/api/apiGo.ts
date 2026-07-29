@@ -995,22 +995,36 @@ export interface IAmlHistoryResponse {
 
 export interface IAmlHistoryFilterRequest {
 	page: number;
+	provider_slug?: string;
+}
+
+export interface IAmlSettingsResponse {
+	enabled?: boolean;
+	provider_slug?: string | null;
 }
 
 export interface IAmlSettingsRequest {
 	enabled: boolean;
 	provider_slug: string;
-	risk_threshold: number;
 }
 
-export interface IAmlSettingsResponse {
-	id: string;
-	store_id: string;
+export interface IAmlRiskRuleResponse {
+	risk_type: string;
 	enabled: boolean;
-	risk_threshold: number;
-	provider_slug: string;
-	created_at: string;
-	updated_at: string;
+	threshold: number | string;
+	action: string;
+}
+
+export interface IAmlRiskRuleRequest {
+	risk_type: string;
+	enabled: boolean;
+	threshold: number;
+	action: string;
+}
+
+export interface IAmlSignalCategoryResponse {
+	category: string;
+	label: string;
 }
 
 export interface INotificationsItemResponse {
