@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [1.0.45] - 2026-07-30
+
+- feat: redesign AML transfer check — status bar, risk rules, and a separate manual check page; move AML settings out of store advanced settings [DNS-74]
+
 ## [1.0.44] - 2026-07-21
 
 - feat: store verification moderation for root admins and merchants (approve/reject, resend, status badges)
