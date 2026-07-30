@@ -15,5 +15,12 @@ export default [
 		component: () => import("@dv-admin/views/transferCheck/connect/ConnectView.vue"),
 		meta: { layout: APP_LAYOUT.DEFAULT },
 		beforeEnter: auth
+	},
+	{
+		path: "/transfer-check/manual-check/:aml",
+		name: "transfer-check-manual-check",
+		component: () => import("@dv-admin/views/transferCheck/manualCheck/ManualCheckView.vue"),
+		meta: { layout: APP_LAYOUT.DEFAULT },
+		beforeEnter: auth
 	}
 ];

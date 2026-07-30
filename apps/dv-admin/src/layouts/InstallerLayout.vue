@@ -46,6 +46,8 @@
 			justify-content: space-between;
 
 			&__logo {
+				width: 110px;
+				height: 32px;
 				transition: transform 0.3s ease-in-out;
 				@media (hover: hover) {
 					&:hover {

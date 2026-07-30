@@ -68,11 +68,7 @@
 					]"
 				/>
 			</div>
-			<UiLayoutMenu
-				:class="{ 'drawer-menu': isSidebarMobile }"
-				:collapsed="collapse"
-				:route-items="menuItems"
-			/>
+			<UiLayoutMenu :class="{ 'drawer-menu': isSidebarMobile }" :collapsed="collapse" :route-items="menuItems" />
 		</div>
 		<account-management v-if="!collapse" class="navigation__plate" />
 	</div>

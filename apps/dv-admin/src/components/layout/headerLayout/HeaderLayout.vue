@@ -161,6 +161,8 @@
 		}
 
 		&__logo {
+			width: 110px;
+			height: 32px;
 			margin-left: 16px;
 			transition: all 0.25s ease;
 			@media (hover: hover) {

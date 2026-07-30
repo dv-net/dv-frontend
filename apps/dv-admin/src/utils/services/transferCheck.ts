@@ -4,7 +4,12 @@ import type {
 	IAmlHistoryFilterRequest,
 	IAmlHistoryResponse,
 	IAmlKeysResponse,
-	IAmlScoreTransactionRequest
+	IAmlRiskRuleRequest,
+	IAmlRiskRuleResponse,
+	IAmlScoreTransactionRequest,
+	IAmlSettingsRequest,
+	IAmlSettingsResponse,
+	IAmlSignalCategoryResponse
 } from "@dv-admin/utils/types/api/apiGo.ts";
 
 export const getApiAmlKeys = async (slug: string): Promise<IAmlKeysResponse[]> => {
@@ -33,4 +38,32 @@ export const postApiAmlKeys = async (slug: string, keys: IAmlKeysResponse[]) => 
 
 export const deleteApiAmlKeys = async (slug: string) => {
 	await api.delete(`/dv-admin/aml/${slug}/keys`);
+};
+
+export const getApiAmlSettings = async (): Promise<IAmlSettingsResponse | Record<string, never>> => {
+	const resp = await api.get(`/dv-admin/aml/settings`);
+	return resp.data.data;
+};
+
+export const postApiAmlSettings = async (body: IAmlSettingsRequest): Promise<IAmlSettingsResponse> => {
+	const resp = await api.post(`/dv-admin/aml/settings`, body);
+	return resp.data.data;
+};
+
+export const getApiAmlRiskRules = async (slug: string): Promise<IAmlRiskRuleResponse[]> => {
+	const resp = await api.get(`/dv-admin/aml/${slug}/rules`);
+	return resp.data.data;
+};
+
+export const postApiAmlRiskRules = async (
+	slug: string,
+	rules: IAmlRiskRuleRequest[]
+): Promise<IAmlRiskRuleResponse[]> => {
+	const resp = await api.post(`/dv-admin/aml/${slug}/rules`, { rules });
+	return resp.data.data;
+};
+
+export const getApiAmlSignals = async (slug: string): Promise<IAmlSignalCategoryResponse[]> => {
+	const resp = await api.get(`/dv-admin/aml/${slug}/signals`);
+	return resp.data.data;
 };

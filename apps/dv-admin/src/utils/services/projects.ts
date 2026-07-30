@@ -1,6 +1,4 @@
 import type {
-	IAmlSettingsRequest,
-	IAmlSettingsResponse,
 	ICurrencyRequest,
 	IStoreApiKeyResponse,
 	IStoreRequest,
@@ -118,19 +116,6 @@ export const getApiWhitelistsProject = async (uuid: string): Promise<string[]> =
 
 export const patchApiWhitelistsProject = async (uuid: string, ip: string) => {
 	await api.patch(`/dv-admin/store/${uuid}/whitelists`, { ip });
-};
-
-export const getApiAmlSettingsProject = async (uuid: string): Promise<IAmlSettingsResponse> => {
-	const resp = await api.get(`/dv-admin/store/${uuid}/aml-settings`);
-	return resp.data.data;
-};
-
-export const putApiAmlSettingsProject = async (
-	uuid: string,
-	body: IAmlSettingsRequest
-): Promise<IAmlSettingsResponse> => {
-	const resp = await api.put(`/dv-admin/store/${uuid}/aml-settings`, body);
-	return resp.data.data;
 };
 
 export const resendVerifyStore = async (id: string): Promise<void> => {

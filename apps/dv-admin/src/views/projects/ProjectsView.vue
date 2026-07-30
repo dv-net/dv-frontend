@@ -11,10 +11,7 @@
 	import ModalCreatePayment from "@dv-admin/views/projects/components/modalCreatePayment/ModalCreatePayment.vue";
 	import type { IStoreResponse } from "@dv-admin/utils/types/api/apiGo.ts";
 	import StatusBadge from "@dv-admin/components/ui/statusBadge/StatusBadge.vue";
-	import {
-		STORE_VERIFICATION_STATUS_LABELS,
-		STORE_VERIFICATION_STATUS_MODES
-	} from "@dv-admin/utils/constants/root";
+	import { STORE_VERIFICATION_STATUS_LABELS, STORE_VERIFICATION_STATUS_MODES } from "@dv-admin/utils/constants/root";
 
 	const { projects, selectedProject, isLoading } = storeToRefs(useProjectsStore());
 	const { getProjects, postStoreArchive } = useProjectsStore();

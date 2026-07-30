@@ -23,11 +23,8 @@
 	import { isValidUrl } from "@shared/utils/helpers/general.ts";
 	import { STORE_SETTING_LABELS, STORE_SETTING_TOOLTIPS } from "@dv-admin/utils/constants/projects";
 	import DialogWhitelist from "@dv-admin/views/projects/edit/advancedSettings/components/dialogWhitelist/DialogWhitelist.vue";
-	import StoreAmlSettings from "@dv-admin/views/projects/edit/advancedSettings/components/storeAmlSettings/StoreAmlSettings.vue";
 	import { useWhiteListProjectStore } from "@dv-admin/stores/projects/whiteList";
-	import { useAmlSettingsProjectStore } from "@dv-admin/stores/projects/amlSettings";
 	import type { UiTableHeader } from "@dv.net/ui-kit/dist/components/UiTable/types";
-	import { useNotifications } from "@shared/utils/composables/useNotifications.ts";
 
 	const { currentProject, currenciesProject, checkedCurrenciesProject, selectAllCurrenciesProject, storeSettingList } =
 		storeToRefs(useProjectsStore());
@@ -35,10 +32,7 @@
 	const { putOneProject, getCurrenciesProject } = useProjectsStore();
 	const { whitelistsProject, isLoadingDeleteWhiteList } = storeToRefs(useWhiteListProjectStore());
 	const { deleteWhitelistsProject } = useWhiteListProjectStore();
-	const { connectedAmlProviders, formAmlSettings } = storeToRefs(useAmlSettingsProjectStore());
-	const { putAmlSettingsProject, isRiskThresholdValid } = useAmlSettingsProjectStore();
 	const { t } = useI18n();
-	const { notify } = useNotifications();
 
 	const route = useRoute();
 	const uuid = route.params.id as string;
@@ -95,11 +89,6 @@
 	const handlePutOneProject = async () => {
 		if (!currentProject.value) return;
 		if (!formRef.value || !(await formRef.value.validate())) return;
-		const isConnectedAmlProvider = connectedAmlProviders.value.includes(formAmlSettings.value.provider_slug);
-		if (isConnectedAmlProvider && !isRiskThresholdValid(formAmlSettings.value.risk_threshold)) {
-			notify(t("Fraud score must be between 0 and 100"), "error");
-			return;
-		}
 
 		try {
 			isSaving.value = true;
@@ -109,9 +98,6 @@
 					postApiStoreSetting(uuid, { name, value: value ? "enabled" : "disabled" })
 				)
 			);
-			if (isConnectedAmlProvider) {
-				await putAmlSettingsProject(uuid, formAmlSettings.value);
-			}
 			await putOneProject(t("The project has been saved"));
 			await getCurrenciesProject(uuid);
 		} catch (error) {
@@ -241,8 +227,6 @@
 				</ui-table>
 			</div>
 		</block-section>
-
-		<store-aml-settings />
 
 		<block-section class="form">
 			<h2 class="global-title-h3 mb-8">{{ $t("Payment form settings") }}</h2>
