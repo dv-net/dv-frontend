@@ -12,7 +12,7 @@ export default defineConfig(() => {
 	const appRoot = `apps/${appName}`;
 
 	return {
-		plugins: [vueDevTools(), vue()],
+		plugins: [vueDevTools({ launchEditor: "phpstorm" }), vue()],
 		resolve: {
 			alias: {
 				"@shared": fileURLToPath(new URL("./src", import.meta.url)),

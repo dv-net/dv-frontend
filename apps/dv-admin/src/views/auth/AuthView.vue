@@ -82,6 +82,11 @@
 				gap: 20px;
 			}
 
+			&__header-logo {
+				width: 110px;
+				height: 32px;
+			}
+
 			&__header-title {
 				display: flex;
 				flex-direction: column;

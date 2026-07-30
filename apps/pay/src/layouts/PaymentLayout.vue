@@ -32,7 +32,7 @@
 			<div class="container">
 				<div class="header__inner">
 					<a class="header__logo" href="https://dv.net" target="_blank">
-						<icon-logo />
+						<icon-logo class="header__logo-icon" />
 					</a>
 					<nav class="nav">
 						<a v-for="item in navLinks" :key="item.id" class="nav__link" target="_blank" :href="item.link">
@@ -90,6 +90,10 @@
 					cursor: pointer;
 				}
 			}
+		}
+		&__logo-icon {
+			width: 110px;
+			height: 32px;
 		}
 		.nav {
 			display: flex;
