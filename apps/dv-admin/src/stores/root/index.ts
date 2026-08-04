@@ -17,12 +17,13 @@ export const useRootStore = defineStore("root", () => {
 	const isLoadingReject = ref<Record<string, boolean>>({});
 	const pendingFilter = ref<IGetStoresRequest>({
 		page: 1,
-		page_size: 6,
+		page_size: 100,
 		status: STORE_VERIFICATION_STATUS.PENDING
 	});
 	const rejectedFilter = ref<IGetStoresRequest>({
 		page: 1,
-		page_size: 20
+		page_size: 20,
+		status: [STORE_VERIFICATION_STATUS.REJECTED, STORE_VERIFICATION_STATUS.SUCCESS]
 	});
 
 	const getPendingStoresList = async () => {
@@ -44,10 +45,7 @@ export const useRootStore = defineStore("root", () => {
 	const getRejectedStoresList = async () => {
 		try {
 			isLoadingRejected.value = true;
-			const data = await getStores({
-				page: rejectedFilter.value.page,
-				page_size: rejectedFilter.value.page_size
-			});
+			const data = await getStores(rejectedFilter.value);
 			if (data) {
 				rejectedStoresList.value = data.items;
 				rejectedPagination.value = parsePagination(data.pagination);

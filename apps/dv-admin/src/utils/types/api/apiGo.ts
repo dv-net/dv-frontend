@@ -82,6 +82,7 @@ export interface IUserTgLinkResponse {
 export interface IStoreRequest {
 	name: string;
 	site: string | null;
+	description: string | null;
 }
 
 export interface IStoreResponse {
@@ -89,6 +90,7 @@ export interface IStoreResponse {
 	user_id: string;
 	name: string;
 	site: string | null;
+	description?: string | null;
 	currency_id: string;
 	rate_source: string;
 	public_payment_form_enabled: boolean;
@@ -103,16 +105,21 @@ export interface IStoreResponse {
 	verification_status?: STORE_VERIFICATION_STATUS;
 	verified_at?: string | null;
 	rejection_reason?: string | null;
+	verification_comment?: string | null;
 }
 
 export interface IGetStoresRequest {
-	status?: STORE_VERIFICATION_STATUS | null;
+	status?: STORE_VERIFICATION_STATUS | STORE_VERIFICATION_STATUS[] | null;
 	page?: number;
 	page_size?: number;
 }
 
 export interface IRejectStoreRequest {
 	reason: string;
+}
+
+export interface IResendStoreVerificationRequest {
+	comment: string;
 }
 
 export interface IStoreValidationItemResponse extends IStoreResponse {

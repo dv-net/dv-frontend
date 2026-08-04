@@ -1,7 +1,7 @@
 <script setup lang="ts">
 	import { computed, ref } from "vue";
 	import { storeToRefs } from "pinia";
-	import { UiButton } from "@dv.net/ui-kit";
+	import { UiButton, UiTextarea } from "@dv.net/ui-kit";
 	import { useProjectsStore } from "@dv-admin/stores/projects";
 	import { STORE_ACTION_FEEDBACK_MS, STORE_VERIFICATION_STATUS } from "@dv-admin/utils/constants/root";
 
@@ -13,6 +13,8 @@
 	const { postResendVerifyStore, refreshAfterResendVerify } = useProjectsStore();
 
 	const isResendSuccess = ref(false);
+	const isResendFormOpen = ref(false);
+	const comment = ref("");
 
 	const isRejected = computed(() => currentProject.value?.verification_status === STORE_VERIFICATION_STATUS.REJECTED);
 
@@ -20,8 +22,22 @@
 
 	const isVisible = computed(() => isRejected.value || isResendSuccess.value);
 
+	const canResend = computed(() => Boolean(comment.value.trim()) && comment.value.trim().length <= 255);
+
+	const openResendForm = () => {
+		isResendFormOpen.value = true;
+	};
+
+	const cancelResend = () => {
+		isResendFormOpen.value = false;
+		comment.value = "";
+	};
+
 	const handleResend = async () => {
-		await postResendVerifyStore(props.storeId);
+		const trimmedComment = comment.value.trim();
+		if (!trimmedComment) return;
+		await postResendVerifyStore(props.storeId, trimmedComment);
+		cancelResend();
 		isResendSuccess.value = true;
 		await new Promise((resolve) => setTimeout(resolve, STORE_ACTION_FEEDBACK_MS));
 		await refreshAfterResendVerify(props.storeId);
@@ -42,15 +58,41 @@
 					<p class="verification-alert__title">{{ $t("Store verification was rejected") }}</p>
 				</div>
 				<p v-if="rejectionReason" class="verification-alert__reason">{{ rejectionReason }}</p>
-				<p class="verification-alert__hint">
-					{{ $t("Fix the issues and resend the store for verification") }}
-				</p>
+			</div>
+			<div v-if="isResendFormOpen" class="verification-alert__form">
+				<ui-textarea
+					v-model="comment"
+					size="auto"
+					max-length="255"
+					:rows="1"
+					:placeholder="$t('Enter a message for the reviewer...')"
+				/>
+				<div class="verification-alert__actions">
+					<ui-button
+						mode="neutral"
+						leftIconName="autorenew 1"
+						:loading="isLoadingResendVerify[storeId]"
+						:disabled="!canResend"
+						@click="handleResend"
+					>
+						{{ $t("Resend verification") }}
+					</ui-button>
+					<ui-button
+						type="secondary"
+						left-icon-name="cancel"
+						left-icon-type="filled"
+						:disabled="isLoadingResendVerify[storeId]"
+						@click="cancelResend"
+					>
+						{{ $t("Cancel.noun") }}
+					</ui-button>
+				</div>
 			</div>
 			<ui-button
+				v-else
 				mode="neutral"
 				leftIconName="autorenew 1"
-				:loading="isLoadingResendVerify[storeId]"
-				@click="handleResend"
+				@click="openResendForm"
 			>
 				{{ $t("Resend verification") }}
 			</ui-button>
@@ -82,6 +124,11 @@
 			}
 		}
 
+		&:has(.verification-alert__form) {
+			flex-direction: column;
+			align-items: stretch;
+		}
+
 		&__content {
 			display: flex;
 			flex-direction: column;
@@ -111,11 +158,17 @@
 			word-break: break-word;
 		}
 
-		&__hint {
-			color: rgba(107, 109, 128, 1);
-			font-size: 14px;
-			font-weight: 400;
-			line-height: 20px;
+		&__form {
+			display: flex;
+			flex-direction: column;
+			gap: 12px;
+		}
+
+		&__actions {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			flex-wrap: wrap;
 		}
 
 		@media (max-width: 768px) {

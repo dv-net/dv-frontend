@@ -128,6 +128,9 @@
 									<ui-link v-if="row.site" :href="row.site" target="_blank">
 										{{ row.site }}
 									</ui-link>
+									<p v-if="row.description" class="store-cell__description">
+										{{ row.description }}
+									</p>
 								</div>
 							</div>
 						</td>
@@ -168,8 +171,13 @@
 										</div>
 									</div>
 									<div v-else key="content" class="row-rest__content">
-										<div class="row-rest__cell">
-											{{ row.owner_email || "—" }}
+										<div class="row-rest__cell row-rest__cell--email">
+											<div class="user-cell">
+												<span class="user-cell__email">{{ row.owner_email || "—" }}</span>
+												<blockquote v-if="row.verification_comment" class="user-quote">
+													<p class="user-quote__text">{{ row.verification_comment }}</p>
+												</blockquote>
+											</div>
 										</div>
 										<div class="row-rest__cell">
 											<status-badge
@@ -222,7 +230,7 @@
 		</section>
 
 		<section class="page__section">
-			<h2 class="global-title-h3 mb-16">{{ $t("All") }}</h2>
+			<h2 class="global-title-h3 mb-16">{{ $t("Verified and rejected") }}</h2>
 			<table-variant-a>
 				<ui-table
 					row-key="id"
@@ -243,7 +251,7 @@
 						</div>
 					</template>
 					<template #body-cell-owner_email="{ row }">
-						{{ row.owner_email || "—" }}
+						<span class="email-cell">{{ row.owner_email || "—" }}</span>
 					</template>
 					<template #body-cell-verification_status="{ row }">
 						<status-badge
@@ -301,6 +309,46 @@
 				font-size: 14px;
 				line-height: 20px;
 			}
+			&__description {
+				margin: 0;
+				padding: 8px 10px;
+				border-radius: 8px;
+				background: rgba(247, 249, 251, 1);
+				color: rgba(107, 109, 128, 1);
+				font-size: 13px;
+				font-weight: 400;
+				line-height: 18px;
+				word-break: break-word;
+			}
+		}
+		.user-cell {
+			display: flex;
+			flex-direction: column;
+			gap: 6px;
+			min-width: 0;
+			&__email {
+				overflow-wrap: anywhere;
+				word-break: break-word;
+			}
+		}
+		.user-quote {
+			display: flex;
+			flex-direction: column;
+			margin: 0;
+			padding: 10px 12px;
+			border-radius: 8px;
+			border-left: 3px solid rgba(107, 109, 128, 0.35);
+			background: rgba(247, 249, 251, 1);
+			box-sizing: border-box;
+			&__text {
+				margin: 0;
+				color: rgba(107, 109, 128, 1);
+				font-size: 13px;
+				font-weight: 400;
+				font-style: italic;
+				line-height: 18px;
+				word-break: break-word;
+			}
 		}
 		.row-rest {
 			width: 100%;
@@ -310,6 +358,7 @@
 			&__content {
 				display: flex;
 				align-items: center;
+				gap: 16px;
 				width: 100%;
 				min-width: 0;
 			}
@@ -322,13 +371,20 @@
 					width: 250px;
 					max-width: 250px;
 				}
-				&:nth-child(3),
+				&--email {
+					overflow-wrap: anywhere;
+					word-break: break-word;
+				}
 				&--actions {
 					flex: 1 1 auto;
 					display: flex;
 					justify-content: flex-end;
 				}
 			}
+		}
+		.email-cell {
+			overflow-wrap: anywhere;
+			word-break: break-word;
 		}
 		.action-slot {
 			display: flex;

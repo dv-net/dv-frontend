@@ -3,6 +3,7 @@
 		UiButton,
 		UiCopyText,
 		UiInput,
+		UiTextarea,
 		UiSwitch,
 		UiCheckbox,
 		UiCheckboxGroup,
@@ -25,6 +26,7 @@
 	import DialogWhitelist from "@dv-admin/views/projects/edit/advancedSettings/components/dialogWhitelist/DialogWhitelist.vue";
 	import { useWhiteListProjectStore } from "@dv-admin/stores/projects/whiteList";
 	import type { UiTableHeader } from "@dv.net/ui-kit/dist/components/UiTable/types";
+	import DisplayMessage from "@dv-admin/components/ui/displayMessage/DisplayMessage.vue";
 
 	const { currentProject, currenciesProject, checkedCurrenciesProject, selectAllCurrenciesProject, storeSettingList } =
 		storeToRefs(useProjectsStore());
@@ -39,6 +41,7 @@
 	const isSaving = ref<boolean>(false);
 	const formRef = ref<HTMLFormElement | null>(null);
 	const isOpenDialogWhitelists = ref<boolean>(false);
+	const feedbackMessage = ref<string>("");
 
 	const linkPayForm = computed<string>(() => {
 		if (!dictionary.value || !currentProject.value) return "";
@@ -59,6 +62,13 @@
 				{
 					validator: () => (currentProject.value?.site !== null ? isValidUrl(currentProject.value?.site) : true),
 					message: t("Please enter a valid URL")
+				}
+			],
+			description: [
+				{
+					validator: () =>
+						!currentProject.value?.description || currentProject.value.description.length <= 255,
+					message: t("Maximum 255 characters")
 				}
 			],
 			return_url: [
@@ -98,8 +108,9 @@
 					postApiStoreSetting(uuid, { name, value: value ? "enabled" : "disabled" })
 				)
 			);
-			await putOneProject(t("The project has been saved"));
+			await putOneProject();
 			await getCurrenciesProject(uuid);
+			feedbackMessage.value = "The project has been saved";
 		} catch (error) {
 			console.error(error);
 		} finally {
@@ -146,6 +157,16 @@
 						</div>
 					</template>
 					<ui-input size="lg" v-model="currentProject.site" is-empty-value-null />
+				</ui-form-item>
+				<ui-form-item name="description" class="general__description" :label="$t('Description')">
+					<ui-textarea
+						size="md"
+						v-model="currentProject.description"
+						is-empty-value-null
+						max-length="255"
+						:rows="1"
+						:placeholder="$t('Enter store description')"
+					/>
 				</ui-form-item>
 			</div>
 		</block-section>
@@ -255,9 +276,19 @@
 				/>
 			</div>
 		</block-section>
-		<ui-button mode="neutral" size="xl" :loading="isSaving" @click="handlePutOneProject">
-			{{ $t("Save") }}
-		</ui-button>
+		<div class="advanced__footer">
+			<ui-button
+				mode="neutral"
+				size="xl"
+				left-icon-name="check-circle"
+				left-icon-type="filled"
+				:loading="isSaving"
+				@click="handlePutOneProject"
+			>
+				{{ $t("Save") }}
+			</ui-button>
+			<display-message v-model:text="feedbackMessage" />
+		</div>
 	</ui-form>
 </template>
 
@@ -266,6 +297,11 @@
 		display: flex;
 		flex-direction: column;
 		gap: 24px;
+		&__footer {
+			display: flex;
+			align-items: center;
+			gap: 16px;
+		}
 		.general {
 			display: flex;
 			flex-direction: column;
@@ -274,7 +310,10 @@
 			&__inputs {
 				display: grid;
 				grid-template-columns: repeat(2, 1fr);
-				gap: 16px;
+				gap: 0 16px;
+			}
+			&__description {
+				grid-column: 1 / -1;
 			}
 		}
 		.store {

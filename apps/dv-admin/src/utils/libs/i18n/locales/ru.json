@@ -306,6 +306,8 @@
 	},
 	"Store name (will be displayed on the payment form)": "Название магазина (будет отображено на платежной форме)",
 	"Project website": "Сайт проекта",
+	"Description": "Описание",
+	"Enter store description": "Введите описание магазина",
 	"Store status": "Статус магазина",
 	"When you turn off a store, you also stop accepting payments for all invoices for that store": "Когда вы выключаете магазин, вы также приостанавливаете прием платежей по всем инвойсам этого магазина",
 	"Store enabled": "Магазин включен",
@@ -967,6 +969,7 @@
 	"Email must be valid": "Email должен быть валидным",
 	"Minimum 8 characters": "Минимум 8 символов",
 	"Maximum 32 characters": "Максимум 32 символа",
+	"Maximum 255 characters": "Максимум 255 символов",
 	"Pass captcha": "Пройдите каптчу",
 	"All rights reserved": "Все права защищены",
 	"In the Processing Settings section for TRON, you can change the processing mode as well as view detailed information and resource usage statistics.": "В разделе настроек процессинга \"TRON\" вы можете изменять режим работы процессинга, так же видеть детализацию и статистику расхода ресурсов.",
@@ -1003,6 +1006,7 @@
 	"Action required": "Требуется действие",
 	"Verified": "Подтверждён",
 	"Rejected": "Отклонён",
+	"Verified and rejected": "Подтверждённые и отклонённые",
 	"Owner email": "Email владельца",
 	"Verified at": "Дата проверки",
 	"Rejection reason": "Причина отклонения",
@@ -1016,7 +1020,7 @@
 	"Resend verification": "Повторно отправить на проверку",
 	"Verification request has been resent": "Запрос на верификацию отправлен повторно",
 	"Store verification was rejected": "Верификация магазина отклонена",
-	"Fix the issues and resend the store for verification": "Исправьте замечания и отправьте магазин на проверку повторно",
+	"Enter a message for the reviewer...": "Введите сообщение для проверяющего...",
 	"Review and approve new stores before they can accept payments": "Проверяйте и одобряйте новые магазины перед тем, как они смогут принимать платежи",
 	"Site": "Сайт"
 }

@@ -154,14 +154,14 @@ export const useProjectsStore = defineStore("projects", () => {
 			throw error;
 		}
 	};
-	const putOneProject = async (message: string) => {
+	const putOneProject = async (message?: string) => {
 		try {
 			if (!currentProject.value) {
 				return notify("Unknown error");
 			}
 			isLoadingEditProject.value = true;
 			await putApiOneProject(currentProject.value);
-			notify(message, "success");
+			if (message) notify(message, "success");
 		} catch (error: any) {
 			throw error;
 		} finally {
@@ -198,10 +198,10 @@ export const useProjectsStore = defineStore("projects", () => {
 		webhooksProject.value = structuredClone(webhooksFormStartData);
 	};
 
-	const postResendVerifyStore = async (uuid: string) => {
+	const postResendVerifyStore = async (uuid: string, comment: string) => {
 		try {
 			isLoadingResendVerify.value[uuid] = true;
-			await resendVerifyStore(uuid);
+			await resendVerifyStore(uuid, { comment });
 		} catch (error: any) {
 			throw error;
 		} finally {
