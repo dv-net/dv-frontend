@@ -1,6 +1,6 @@
 <script setup lang="ts">
 	import Breadcrumbs from "@dv-admin/components/ui/breadcrumbs/Breadcrumbs.vue";
-	import { UiButton, UiForm, UiFormItem, UiInput } from "@dv.net/ui-kit/dist";
+	import { UiButton, UiForm, UiFormItem, UiInput, UiTextarea } from "@dv.net/ui-kit/dist";
 	import { computed, ref } from "vue";
 	import BlockSection from "@dv-admin/components/ui/BlockSection/BlockSection.vue";
 	import type { IStoreRequest } from "@dv-admin/utils/types/api/apiGo";
@@ -16,7 +16,7 @@
 	const { t } = useI18n();
 	const router = useRouter();
 	const isLoading = ref<boolean>(false);
-	const form = ref<IStoreRequest>({ name: "", site: null });
+	const form = ref<IStoreRequest>({ name: "", site: null, description: null });
 	const formRef = ref<HTMLFormElement | null>(null);
 
 	const rulesForm = computed<UiFormRules>(() => {
@@ -26,6 +26,12 @@
 				{
 					validator: () => (form.value?.site !== null ? isValidUrl(form.value?.site) : true),
 					message: t("Please enter a valid URL")
+				}
+			],
+			description: [
+				{
+					validator: () => form.value.description === null || form.value.description.length <= 255,
+					message: t("Maximum 255 characters")
 				}
 			]
 		};
@@ -64,7 +70,24 @@
 						:placeholder="`${$t('Example')}: https://dv.net`"
 					/>
 				</ui-form-item>
-				<ui-button mode="neutral" size="xl" native-type="submit" :loading="isLoading">
+				<ui-form-item name="description" :label="$t('Description')">
+					<ui-textarea
+						size="md"
+						v-model="form.description"
+						is-empty-value-null
+						max-length="255"
+						:rows="1"
+						:placeholder="$t('Enter store description')"
+					/>
+				</ui-form-item>
+				<ui-button
+					mode="neutral"
+					size="xl"
+					native-type="submit"
+					left-icon-name="add"
+					left-icon-size="lg"
+					:loading="isLoading"
+				>
 					{{ $t("Create a project") }}
 				</ui-button>
 			</block-section>

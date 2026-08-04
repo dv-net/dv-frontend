@@ -6,7 +6,8 @@
 	import IconMonitor from "@dv-admin/components/icons/IconMonitor.vue";
 	import { useUserSettingsStore } from "@dv-admin/stores/userSettings";
 	import { useAuthStore } from "@dv-admin/stores/auth";
-	import { computed } from "vue";
+	import { useRootStore } from "@dv-admin/stores/root";
+	import { computed, onMounted, watch } from "vue";
 	import { useI18n } from "vue-i18n";
 
 	const { collapse = false, isSidebarMobile = false } = defineProps<{
@@ -17,12 +18,24 @@
 	const { t } = useI18n();
 	const { quickStartGuideSetting } = storeToRefs(useUserSettingsStore());
 	const { isRootUser } = storeToRefs(useAuthStore());
+	const { pendingPagination } = storeToRefs(useRootStore());
+	const { getPendingStoresList } = useRootStore();
 
 	const pagesRequireAdminRights: string[] = ["/settings/logs", "/admin"];
 
 	const isShowQuickStartGuide = computed<boolean>(() => {
 		return quickStartGuideSetting.value?.value === "incompleted";
 	});
+
+	const pendingStoresTotal = computed(() => pendingPagination.value?.total ?? 0);
+
+	const loadPendingStoresIndicator = async () => {
+		if (!isRootUser.value) return;
+		await getPendingStoresList();
+	};
+
+	onMounted(loadPendingStoresIndicator);
+	watch(isRootUser, loadPendingStoresIndicator);
 
 	const menuItems = computed(() =>
 		mainMenuList
@@ -41,7 +54,10 @@
 								meta: {
 									...child.meta,
 									title: t(child.meta.title),
-									class: pagesRequireAdminRights.includes(child.path) && !isRootUser.value ? "none" : ""
+									class: pagesRequireAdminRights.includes(child.path) && !isRootUser.value ? "none" : "",
+									...(child.path === "/admin/projects" && pendingStoresTotal.value
+										? { indicator: pendingStoresTotal.value }
+										: {})
 								}
 							}))
 						: []
@@ -97,6 +113,10 @@
 		}
 		&__plate {
 			flex-shrink: 0;
+		}
+		:deep(.ui-layout-menu-item__indicator) {
+			background: rgb(255, 59, 48);
+			color: #fff;
 		}
 	}
 </style>

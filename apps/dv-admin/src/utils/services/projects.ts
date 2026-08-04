@@ -1,5 +1,6 @@
 import type {
 	ICurrencyRequest,
+	IResendStoreVerificationRequest,
 	IStoreApiKeyResponse,
 	IStoreRequest,
 	IStoreResponse,
@@ -118,6 +119,6 @@ export const patchApiWhitelistsProject = async (uuid: string, ip: string) => {
 	await api.patch(`/dv-admin/store/${uuid}/whitelists`, { ip });
 };
 
-export const resendVerifyStore = async (id: string): Promise<void> => {
-	await api.post(`/dv-admin/store/${id}/resend-verify`);
+export const resendVerifyStore = async (id: string, body: IResendStoreVerificationRequest): Promise<void> => {
+	await api.post(`/dv-admin/store/${id}/resend-verify`, body);
 };
