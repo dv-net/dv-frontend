@@ -23,6 +23,7 @@ export const ROOT_SETTING_LABELS: Record<string, string> = {
 	merchant_pay_form_domain: "Payment form domain",
 	merchant_domain: "Application domain",
 	registration_state: "Registration status",
+	store_verification_state: "Store verification",
 	processing_client_id: "ID",
 	processing_client_key: "Key",
 	processing_url: "Address",
@@ -51,6 +52,8 @@ export const ROOT_SETTING_GENERAL_DESCRIPTIONS: Record<string, string> = {
 	merchant_domain: "You can purchase a domain that will open the control panel and enter it in this field",
 	merchant_pay_form_domain: "You can purchase a domain that will be displayed to your clients on the payment form",
 	registration_state: "With this flag you can disable the ability for users to register in the seller control panel",
+	store_verification_state:
+		"When enabled, stores must pass verification. Rejected stores will not be able to accept payments",
 	callbackDomain: "Webhook for communication between processing and backends"
 };
 
