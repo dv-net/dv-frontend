@@ -3,17 +3,12 @@
 	import { useRoute } from "vue-router";
 	import LangSelect from "@dv-admin/components/ui/langSelect/LangSelect.vue";
 	import { DESCRIPTIONS_AUTH, TITLES_AUTH } from "@dv-admin/utils/constants/auth";
-	import successLoginLogoAnimation from "@dv-admin/assets/animations/success-login-logo.json";
-	import { LottieAnimation } from "lottie-web-vue";
 	import hiHand from "@dv-admin/assets/images/auth/hi-hand.png";
 
 	const route = useRoute();
 </script>
 
 <template>
-	<!--	placeholder for login animation curve to work-->
-	<lottie-animation style="position: absolute; z-index: -1" :animation-data="successLoginLogoAnimation" />
-
 	<div class="auth">
 		<div class="img-container">
 			<video src="/static/video/login-1360x1800.webm" autoplay muted loop playsinline />

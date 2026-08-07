@@ -30,9 +30,9 @@ export const mainMenuList: RouteItem[] = [
 				}
 			},
 			{
-				path: "/admin/projects",
+				path: "/admin/shops",
 				meta: {
-					title: "Projects",
+					title: "Shops",
 					iconComponent: IconCorner,
 					iconComponentActive: IconCorner,
 					isChildren: true

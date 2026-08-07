@@ -10,6 +10,9 @@
 	import VueTurnstile from "vue-turnstile";
 	import { useSystemSettingsStore } from "@dv-admin/stores/systemSettings";
 	import { useI18n } from "vue-i18n";
+	import { LottieAnimation } from "lottie-web-vue";
+	import registrationAnimation from "@dv-admin/assets/animations/register-white.json";
+	import { loginAnimation } from "@dv.net/ui-kit/dist/helpers/animations-list";
 
 	const { isLoading } = storeToRefs(useAuthStore());
 	const { userRootSystemInfo } = storeToRefs(useSystemSettingsStore());
@@ -20,6 +23,7 @@
 
 	const formRef = ref<HTMLFormElement | null>(null);
 	const formError = ref<string>("");
+	const loginAnimationRef = ref();
 	const form = ref<ISignUpRequest & { "cf-turnstile-response": string }>({
 		email: "",
 		password: "",
@@ -67,7 +71,7 @@
 
 <template>
 	<ui-form ref="formRef" class="auth-form" :rules="rulesForm" :model="form" @submit.prevent="handleSubmit">
-		<ui-form-item :error="formError" :label="$t('E-mail')" name="email">
+		<ui-form-item :error="formError" :label="$t('Email')" name="email">
 			<ui-input :placeholder="$t('Enter Email')" size="lg" filled v-model="form.email" />
 		</ui-form-item>
 
@@ -114,12 +118,33 @@
 			</div>
 		</ui-form-item>
 
-		<div class="auth-form__buttons row">
+		<div class="auth-form__buttons">
 			<ui-button mode="neutral" size="xxl" native-type="submit" :loading="isLoading">
-				{{ $t("Sign up") }}
+				<lottie-animation
+					v-show="registrationAnimation"
+					:animation-data="registrationAnimation"
+					class="reg-animation"
+					:auto-play="false"
+					:loop="false"
+				/>
+				<span class="text-animation">{{ $t("Sign up") }}</span>
 			</ui-button>
-			<ui-button type="outline" mode="neutral" size="xxl" @click="router.push({ name: 'sign-in' })">
-				{{ $t("Login to account") }}
+			<ui-button
+				type="outline"
+				mode="neutral"
+				size="xxl"
+				:disabled="isLoading"
+				@click="loginAnimationRef.play()"
+			>
+				<lottie-animation
+					:animation-data="loginAnimation"
+					class="reg-animation"
+					ref="loginAnimationRef"
+					@complete="router.push({ name: 'sign-in' })"
+					:auto-play="false"
+					:loop="false"
+				/>
+				<span class="text-animation">{{ $t("Login to account") }}</span>
 			</ui-button>
 		</div>
 	</ui-form>

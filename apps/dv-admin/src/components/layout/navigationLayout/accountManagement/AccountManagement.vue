@@ -96,13 +96,17 @@
 	.block {
 		display: flex;
 		flex-direction: column;
+		flex-shrink: 0;
 		gap: 4px;
 		overflow: hidden;
 		border-radius: 20px;
 		max-width: 216px;
 		width: 100%;
+		min-height: min-content;
+		height: auto;
 		background-color: rgba(247, 249, 251, 1);
 		padding: 4px;
+		box-sizing: border-box;
 		.header {
 			display: flex;
 			justify-content: space-between;
@@ -129,6 +133,7 @@
 			box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.06);
 			display: flex;
 			flex-direction: column;
+			flex-shrink: 0;
 			gap: 32px;
 			padding: 12px;
 			border-radius: 16px;

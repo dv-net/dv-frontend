@@ -31,7 +31,7 @@
 			name: "amount",
 			label: t("Transaction details")
 		},
-		{ name: "user_email", label: t("E-mail"), width: "250" },
+		{ name: "user_email", label: t("Email"), width: "250" },
 		{ name: "more", label: "", width: "110" }
 	]);
 </script>

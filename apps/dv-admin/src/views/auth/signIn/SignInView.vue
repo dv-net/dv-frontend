@@ -8,15 +8,12 @@
 	import { UiCheckbox, UiForm, UiFormItem } from "@dv.net/ui-kit";
 	import { LottieAnimation } from "lottie-web-vue";
 	import registrationAnimation from "@dv-admin/assets/animations/registration.json";
-	import successLoginLogoAnimation from "@dv-admin/assets/animations/success-login-logo.json";
-	import successLoginBorderAnimation from "@dv-admin/assets/animations/success-login-border.json";
-	import errorLoginLogoAnimation from "@dv-admin/assets/animations/error-login-logo.json";
-	import errorLoginBorderAnimation from "@dv-admin/assets/animations/error-login-border.json";
 	import { storeToRefs } from "pinia";
 	import { useSystemSettingsStore } from "@dv-admin/stores/systemSettings";
 	import { useUserSettingsStore } from "@dv-admin/stores/userSettings";
 	import type { UiFormRules } from "@dv.net/ui-kit/dist/components/UiForm/types";
 	import { useI18n } from "vue-i18n";
+	import RoundedLoginButton from "@dv-admin/views/auth/signIn/components/RoundedLoginButton.vue";
 
 	const { login } = useAuthStore();
 	const { isShowMainLoader, isLoading } = storeToRefs(useAuthStore());
@@ -29,12 +26,7 @@
 	const form = ref<ISignInRequest>({ email: "", password: "", remember_me: true });
 	const formError = ref<string>("");
 	const registrationAnimationRef = ref();
-	const loginBorderSuccessAnimationRef = ref();
-	const loginLogoSuccessAnimationRef = ref();
-	const loginBorderErrorAnimationRef = ref();
-	const loginLogoErrorAnimationRef = ref();
-	const isShowLoginSuccessAnimation = ref<boolean>(true);
-	const loginButtonTextState = ref<number>(0);
+	const loginButtonRef = ref<InstanceType<typeof RoundedLoginButton> | null>(null);
 
 	const rulesForm = computed<UiFormRules>(() => {
 		return {
@@ -48,36 +40,18 @@
 
 	const loginHandler = async () => {
 		try {
-			if (isLoading.value || loginButtonTextState.value !== 0) return;
+			if (isLoading.value || loginButtonRef.value?.isAnimating) return;
 			formError.value = "";
 
 			await login(form.value);
-			isShowLoginSuccessAnimation.value = true;
-			loginBorderSuccessAnimationRef.value.play();
-			loginLogoSuccessAnimationRef.value.play();
-			loginButtonTextState.value = 1;
+			await loginButtonRef.value?.playSuccess();
+			await router.push({ name: quickStartGuideSetting.value?.value === "completed" ? "dashboard" : "quick-start" });
 		} catch (error: any) {
 			console.error(error);
-			isShowLoginSuccessAnimation.value = false;
-			loginBorderErrorAnimationRef.value.play();
-			loginLogoErrorAnimationRef.value.play();
-			loginButtonTextState.value = 2;
+			await loginButtonRef.value?.playError();
 
 			if (error.response?.data?.errors[0]?.message === "no matches found") formError.value = t("No matches found");
 		}
-	};
-
-	const successLoginCompleteHandler = async () => {
-		await router.push({ name: quickStartGuideSetting.value?.value === "completed" ? "dashboard" : "quick-start" });
-	};
-
-	const errorLoginCompleteHandler = () => {
-		setTimeout(() => {
-			isShowLoginSuccessAnimation.value = true;
-			loginBorderErrorAnimationRef.value.goToAndStop(0);
-			loginLogoErrorAnimationRef.value.goToAndStop(0);
-			loginButtonTextState.value = 0;
-		}, 2000);
 	};
 
 	const demoDvNetLogin = async () => {
@@ -96,7 +70,7 @@
 	};
 
 	const handleSubmit = async () => {
-		if (!formRef.value || !(await formRef.value.validate())) return;
+		if (!formRef.value || !(await formRef.value.validate()) || loginButtonRef.value?.isAnimating) return;
 		await loginHandler();
 	};
 
@@ -105,7 +79,7 @@
 
 <template>
 	<ui-form ref="formRef" class="auth-form" :rules="rulesForm" :model="form" @submit.prevent="handleSubmit">
-		<ui-form-item :error="formError" :label="$t('E-mail')" name="email">
+		<ui-form-item :error="formError" :label="$t('Email')" name="email">
 			<ui-input :placeholder="$t('Enter Email')" size="lg" filled v-model="form.email" />
 		</ui-form-item>
 
@@ -132,51 +106,7 @@
 		</ui-checkbox>
 
 		<div class="auth-form__buttons">
-			<ui-button mode="neutral" size="xxl" nativeType="submit" class="auth-form__login-button">
-				<lottie-animation
-					v-show="successLoginLogoAnimation && isShowLoginSuccessAnimation"
-					:animation-data="successLoginLogoAnimation"
-					ref="loginLogoSuccessAnimationRef"
-					@complete="successLoginCompleteHandler"
-					:auto-play="false"
-					:loop="false"
-				/>
-
-				<lottie-animation
-					v-show="successLoginBorderAnimation && loginButtonTextState === 1 && isShowLoginSuccessAnimation"
-					:animation-data="successLoginBorderAnimation"
-					class="absolute login-animation-border"
-					ref="loginBorderSuccessAnimationRef"
-					@complete="successLoginCompleteHandler"
-					:auto-play="false"
-					:loop="false"
-				/>
-
-				<lottie-animation
-					v-show="errorLoginLogoAnimation && loginButtonTextState === 2"
-					:animation-data="errorLoginLogoAnimation"
-					ref="loginLogoErrorAnimationRef"
-					@complete="errorLoginCompleteHandler"
-					:auto-play="false"
-					:loop="false"
-				/>
-
-				<lottie-animation
-					v-show="errorLoginBorderAnimation && loginButtonTextState === 2"
-					class="login-animation-border"
-					:animation-data="errorLoginBorderAnimation"
-					ref="loginBorderErrorAnimationRef"
-					@complete="errorLoginCompleteHandler"
-					:auto-play="false"
-					:loop="false"
-				/>
-
-				<span class="text-animation">
-					<span class="text-animation" v-if="loginButtonTextState === 0">{{ $t("Login to account") }}</span>
-					<span class="text-animation" v-else-if="loginButtonTextState === 1">{{ $t("Success. Redirecting") }}...</span>
-					<span class="text-animation" v-else-if="loginButtonTextState === 2">{{ $t("Error") }}</span>
-				</span>
-			</ui-button>
+			<RoundedLoginButton ref="loginButtonRef" class="auth-form__login-button" :disabled="isLoading" />
 
 			<ui-button
 				v-if="userRootSystemInfo?.registration_state === 'enabled'"
@@ -184,7 +114,7 @@
 				@click="registrationAnimationRef.play()"
 				size="xxl"
 				mode="neutral"
-				:disabled="isLoading || loginButtonTextState !== 0"
+				:disabled="isLoading || Boolean(loginButtonRef?.isAnimating)"
 			>
 				<lottie-animation
 					v-show="registrationAnimation"
