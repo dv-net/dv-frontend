@@ -251,14 +251,23 @@
 						</div>
 					</template>
 					<template #body-cell-owner_email="{ row }">
-						<span class="email-cell">{{ row.owner_email || "—" }}</span>
+						<div class="user-cell">
+							<span class="user-cell__email">{{ row.owner_email || "—" }}</span>
+							<blockquote v-if="row.verification_comment" class="user-quote">
+								<p class="user-quote__text">{{ row.verification_comment }}</p>
+							</blockquote>
+						</div>
 					</template>
 					<template #body-cell-verification_status="{ row }">
-						<status-badge
-							v-if="row.verification_status"
-							:label="$t(STORE_VERIFICATION_STATUS_LABELS[row.verification_status])"
-							:mode="STORE_VERIFICATION_STATUS_MODES[row.verification_status]"
-						/>
+						<div v-if="row.verification_status" class="verification-cell">
+							<status-badge
+								:label="$t(STORE_VERIFICATION_STATUS_LABELS[row.verification_status])"
+								:mode="STORE_VERIFICATION_STATUS_MODES[row.verification_status]"
+							/>
+							<blockquote v-if="row.rejection_reason" class="verification-cell__reason">
+								{{ row.rejection_reason }}
+							</blockquote>
+						</div>
 					</template>
 				</ui-table>
 			</table-variant-a>
@@ -318,6 +327,27 @@
 				font-size: 13px;
 				font-weight: 400;
 				line-height: 18px;
+				word-break: break-word;
+			}
+		}
+		.verification-cell {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 4px;
+			min-width: 0;
+
+			&__reason {
+				margin: 0;
+				padding: 4px 8px;
+				border-radius: 6px;
+				border-left: 2px solid rgba(107, 109, 128, 0.35);
+				background: rgba(247, 249, 251, 1);
+				color: rgba(107, 109, 128, 1);
+				font-size: 12px;
+				font-weight: 400;
+				font-style: italic;
+				line-height: 16px;
 				word-break: break-word;
 			}
 		}

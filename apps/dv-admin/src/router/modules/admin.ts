@@ -19,7 +19,7 @@ export default [
 	{
 		path: "/admin/shops",
 		name: "admin-shops",
-		component: () => import("@dv-admin/views/admin/projects/ProjectsView.vue"),
+		component: () => import("@dv-admin/views/admin/shops/ShopsView.vue"),
 		meta: { layout: APP_LAYOUT.DEFAULT },
 		beforeEnter: admin
 	}
