@@ -24,7 +24,7 @@
 	const headers = computed<UiTableHeader[]>(() => [
 		{ name: "created_at", label: t("Created"), width: "160" },
 		{ name: "name", label: t("Name"), width: "180" },
-		{ name: "verification_status", label: t("Verification status"), width: "140" },
+		{ name: "verification_status", label: t("Verification status"), width: "220" },
 		{ name: "actions", width: "400", align: "right" }
 	]);
 
@@ -80,11 +80,15 @@
 				{{ formatDate(row.created_at) }}
 			</template>
 			<template #body-cell-verification_status="{ row }">
-				<status-badge
-					v-if="hasVerification(row)"
-					:label="$t(STORE_VERIFICATION_STATUS_LABELS[row.verification_status!])"
-					:mode="STORE_VERIFICATION_STATUS_MODES[row.verification_status!]"
-				/>
+				<div v-if="hasVerification(row)" class="verification-cell">
+					<status-badge
+						:label="$t(STORE_VERIFICATION_STATUS_LABELS[row.verification_status!])"
+						:mode="STORE_VERIFICATION_STATUS_MODES[row.verification_status!]"
+					/>
+					<blockquote v-if="row.rejection_reason" class="verification-cell__reason">
+						{{ row.rejection_reason }}
+					</blockquote>
+				</div>
 			</template>
 			<template #body-cell-actions="{ row }">
 				<div class="actions">
@@ -147,6 +151,28 @@
 			justify-content: space-between;
 			align-items: center;
 		}
+		.verification-cell {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 4px;
+			min-width: 0;
+
+			&__reason {
+				margin: 0;
+				padding: 4px 8px;
+				border-radius: 6px;
+				border-left: 2px solid rgba(107, 109, 128, 0.35);
+				background: rgba(247, 249, 251, 1);
+				color: rgba(107, 109, 128, 1);
+				font-size: 12px;
+				font-weight: 400;
+				font-style: italic;
+				line-height: 16px;
+				word-break: break-word;
+			}
+		}
+
 		.actions {
 			display: flex;
 			flex-wrap: nowrap;

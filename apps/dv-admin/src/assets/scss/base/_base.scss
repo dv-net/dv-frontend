@@ -17,6 +17,14 @@ body,
 		overscroll-behavior-y: none;
 	}
 	&:not(html) {
+		scrollbar-width: thin;
+		scrollbar-color: #cbd1db transparent;
+
+		* {
+			scrollbar-width: thin;
+			scrollbar-color: #cbd1db transparent;
+		}
+
 		::-webkit-scrollbar {
 			width: 6px;
 			height: 6px;
