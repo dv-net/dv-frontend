@@ -55,7 +55,7 @@
 									...child.meta,
 									title: t(child.meta.title),
 									class: pagesRequireAdminRights.includes(child.path) && !isRootUser.value ? "none" : "",
-									...(child.path === "/admin/projects" && pendingStoresTotal.value
+									...(child.path === "/admin/shops" && pendingStoresTotal.value
 										? { indicator: pendingStoresTotal.value }
 										: {})
 								}
@@ -97,22 +97,28 @@
 		gap: 24px;
 		flex-grow: 1;
 		position: relative;
+		min-width: 0;
 		min-height: 0;
+		width: 100%;
 		&__menu {
 			flex: 1 1 auto;
+			min-width: 0;
 			min-height: 0;
-			overflow: auto;
+			overflow-x: hidden;
+			overflow-y: auto;
 		}
 		&__quick-start {
 			display: flex;
 			flex-direction: column;
-			width: max-content;
+			width: 100%;
 			padding-bottom: 8px;
 			margin-bottom: 8px;
 			border-bottom: 1px solid $grey;
 		}
 		&__plate {
 			flex-shrink: 0;
+			min-width: 0;
+			min-height: min-content;
 		}
 		:deep(.ui-layout-menu-item__indicator) {
 			background: rgb(255, 59, 48);

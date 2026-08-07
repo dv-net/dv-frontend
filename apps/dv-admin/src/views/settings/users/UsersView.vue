@@ -13,7 +13,7 @@
 
 	const { t } = useI18n();
 	const headers = computed<UiTableHeader[]>(() => [
-		{ name: "email", label: "E-mail" },
+		{ name: "email", label: "Email" },
 		{ name: "created_at", label: `${t("Date of registration")}` },
 		{ name: "role", label: "Role", width: "170" },
 		{ name: "banned", label: `${t("Status")}`, width: "120" },

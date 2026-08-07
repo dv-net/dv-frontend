@@ -44,10 +44,12 @@
 		min-height: unset;
 		&__sidebar {
 			display: flex;
+			flex-direction: column;
 			background-color: white;
 			z-index: 1000;
 			padding: 24px 24px 16px 12px;
-			overflow: auto;
+			overflow-x: hidden;
+			overflow-y: hidden;
 			top: $header-height;
 			min-height: calc(100vh - $header-height);
 			@supports (min-height: 100dvh) {
@@ -55,6 +57,7 @@
 			}
 			&-mobile {
 				display: flex;
+				flex-direction: column;
 				margin-top: $header-height;
 				min-height: calc(100vh - $header-height);
 				@supports (min-height: 100dvh) {

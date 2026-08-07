@@ -30,7 +30,7 @@
 
 <template>
 	<ui-form ref="formRef" class="auth-form" :rules="rulesForm" :model="form" @submit.prevent="handleSubmit">
-		<ui-form-item :error="formError" :label="$t('E-mail')" name="email">
+		<ui-form-item :error="formError" :label="$t('Email')" name="email">
 			<ui-input :placeholder="$t('Enter Email')" size="lg" filled v-model="form.email" />
 		</ui-form-item>
 

@@ -17,8 +17,8 @@ export default [
 		beforeEnter: admin
 	},
 	{
-		path: "/admin/projects",
-		name: "admin-projects",
+		path: "/admin/shops",
+		name: "admin-shops",
 		component: () => import("@dv-admin/views/admin/projects/ProjectsView.vue"),
 		meta: { layout: APP_LAYOUT.DEFAULT },
 		beforeEnter: admin

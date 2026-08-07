@@ -70,7 +70,7 @@
 				{{ isAuthentication ? $t("Log in") : $t("Create a system administrator") }}
 			</h1>
 			<ui-form ref="formRef" :rules="rulesForm" :model="form" class="w-full" @submit.prevent="handleSubmitForm">
-				<ui-form-item :error="formError" :label="$t('E-mail')" name="email">
+				<ui-form-item :error="formError" :label="$t('Email')" name="email">
 					<ui-input :placeholder="$t('Enter Email')" size="lg" filled v-model="form.email" />
 				</ui-form-item>
 				<ui-form-item :error="formError" :label="$t('Password')" name="password">

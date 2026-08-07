@@ -102,7 +102,7 @@
 <template>
 	<div class="page">
 		<breadcrumbs :back-route-title="$t('Admin')" back-name-route="admin" />
-		<h1 class="global-title-h2 mt-24 mb-32">{{ $t("Projects") }}</h1>
+		<h1 class="global-title-h2 mt-24 mb-32">{{ $t("Shops") }}</h1>
 
 		<section class="page__section">
 			<div class="page__section-title mb-16">
