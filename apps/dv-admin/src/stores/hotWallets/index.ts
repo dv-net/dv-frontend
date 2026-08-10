@@ -195,12 +195,17 @@ export const useHotWalletsStore = defineStore("hotWallets", () => {
 		}
 	};
 
-	const postWalletKeysHot = async (typeFile: "json" | "csv", message = "Keys downloaded") => {
+	const postWalletKeysHot = async (
+		typeFile: "json" | "csv",
+		message = "Keys downloaded",
+		walletAddressIds?: string[]
+	) => {
 		try {
 			if (!otpGlobalCode.value) return;
 			const params: IWalletKeysHotRequest = { file_type: typeFile, totp: otpGlobalCode.value };
 
-			if (isSelectedAllWallets.value) params.exclude_wallet_address_ids = excludedWallets.value;
+			if (walletAddressIds?.length) params.wallet_address_ids = walletAddressIds;
+			else if (isSelectedAllWallets.value) params.exclude_wallet_address_ids = excludedWallets.value;
 			else params.wallet_address_ids = includedWallets.value;
 
 			const response = await postApiWalletKeysHot(params);
