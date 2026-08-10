@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [1.0.46] - 2026-08-11
+
+- feat: download private keys for a single hot wallet from its action menu without selecting it via checkbox [DNS-100]
+
 ## [1.0.45] - 2026-07-30
 
 - feat: redesign AML transfer check — status bar, risk rules, and a separate manual check page; move AML settings out of store advanced settings [DNS-74]
