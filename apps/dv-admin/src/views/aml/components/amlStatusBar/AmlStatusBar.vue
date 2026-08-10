@@ -3,13 +3,13 @@
 	import { storeToRefs } from "pinia";
 	import { useRouter } from "vue-router";
 	import { UiSkeleton } from "@dv.net/ui-kit";
-	import { useTransferCheckStore } from "@dv-admin/stores/transferCheck";
+	import { useAmlStore } from "@dv-admin/stores/aml";
 	import { useGeneralStore } from "@dv-admin/stores/general";
-	import { postApiAmlSettings } from "@dv-admin/utils/services/transferCheck.ts";
-	import IconWallet from "@dv-admin/components/icons/transferCheck/IconWallet.vue";
-	import IconAmlProvider from "@dv-admin/components/icons/transferCheck/IconAmlProvider.vue";
-	import IconEdit from "@dv-admin/components/icons/transferCheck/IconEdit.vue";
-	import IconPower from "@dv-admin/components/icons/transferCheck/IconPower.vue";
+	import { postApiAmlSettings } from "@dv-admin/utils/services/aml.ts";
+	import IconWallet from "@dv-admin/components/icons/aml/IconWallet.vue";
+	import IconAmlProvider from "@dv-admin/components/icons/aml/IconAmlProvider.vue";
+	import IconEdit from "@dv-admin/components/icons/aml/IconEdit.vue";
+	import IconPower from "@dv-admin/components/icons/aml/IconPower.vue";
 
 	const props = withDefaults(
 		defineProps<{
@@ -21,8 +21,8 @@
 	);
 
 	const router = useRouter();
-	const transferCheckStore = useTransferCheckStore();
-	const { formAmlScoreTransaction, isHaveKeysCurrentAml, isCurrentProviderEnabled } = storeToRefs(transferCheckStore);
+	const amlStore = useAmlStore();
+	const { formAmlScoreTransaction, isCurrentProviderEnabled } = storeToRefs(amlStore);
 	const { dictionary } = storeToRefs(useGeneralStore());
 
 	const isLoadingToggle = ref(false);
@@ -37,12 +37,16 @@
 		);
 	});
 
-	const checksBalance = computed(() => "—");
+	const checksBalance = "—";
 
 	const handleEditProvider = () => {
 		const slug = providerSlug.value || dictionary.value?.available_aml_providers[0]?.slug;
-		if (!slug) return;
-		router.push({ name: "transfer-check-connect-aml", params: { aml: slug } });
+		if (!slug) {
+			router.push({ name: "aml-keys" });
+			return;
+		}
+		formAmlScoreTransaction.value.provider_slug = slug;
+		router.push({ name: "aml-keys" });
 	};
 
 	const handleToggleEnabled = async () => {
@@ -53,7 +57,7 @@
 				enabled: !isCurrentProviderEnabled.value,
 				provider_slug: providerSlug.value
 			});
-			if (data) transferCheckStore.amlSettings = data;
+			if (data) amlStore.amlSettings = data;
 		} catch (error) {
 			console.error(error);
 		} finally {
@@ -99,11 +103,11 @@
 				</button>
 				<div
 					class="aml-status__badge"
-					:class="isHaveKeysCurrentAml ? 'aml-status__badge--positive' : 'aml-status__badge--neutral'"
+					:class="isCurrentProviderEnabled ? 'aml-status__badge--positive' : 'aml-status__badge--neutral'"
 				>
 					<span class="aml-status__dot" />
 					<p class="aml-status__badge-text">
-						{{ $t(isHaveKeysCurrentAml ? "Connected" : "Not connected") }}
+						{{ $t(isCurrentProviderEnabled ? "Enabled" : "Disabled") }}
 					</p>
 				</div>
 			</div>

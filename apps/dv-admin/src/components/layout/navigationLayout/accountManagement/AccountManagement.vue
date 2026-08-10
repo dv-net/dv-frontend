@@ -17,9 +17,9 @@
 </script>
 
 <template>
-	<ui-skeleton v-if="isLoading" :rows="1" :row-height="192" :item-border-radius="20" />
-	<template v-else>
-		<div v-if="ownerData" class="block">
+	<div class="account-management">
+		<ui-skeleton v-if="isLoading" :rows="1" :row-height="192" :item-border-radius="20" />
+		<div v-else-if="ownerData" class="block">
 			<div class="header" :class="{ 'header--center': ownerData?.is_authorized }">
 				<icon-logo class="header__logo" />
 				<span v-if="!ownerData?.is_authorized" class="header__label">{{ $t("Not connected") }}</span>
@@ -89,10 +89,15 @@
 				</ui-tooltip>
 			</div>
 		</div>
-	</template>
+	</div>
 </template>
 
 <style scoped lang="scss">
+	.account-management {
+		width: 100%;
+		max-width: 216px;
+	}
+
 	.block {
 		display: flex;
 		flex-direction: column;

@@ -2,8 +2,8 @@
 	import { computed, ref, watch } from "vue";
 	import { storeToRefs } from "pinia";
 	import { UiCheckbox, UiInput, UiSelect, UiSkeleton } from "@dv.net/ui-kit";
-	import { useTransferCheckStore } from "@dv-admin/stores/transferCheck";
-	import { AML_RISK_ACTION_REJECT, AML_RISK_TYPE_LABELS } from "@dv-admin/utils/constants/transferCheck";
+	import { useAmlStore } from "@dv-admin/stores/aml";
+	import { AML_RISK_ACTION_REJECT, AML_RISK_TYPE_LABELS } from "@dv-admin/utils/constants/aml";
 	import type { IAmlRiskRuleResponse } from "@dv-admin/utils/types/api/apiGo.ts";
 	import type { IUiSelectOptions } from "@dv-admin/utils/types/general.ts";
 	import { useI18n } from "vue-i18n";
@@ -18,10 +18,10 @@
 		}
 	);
 
-	const transferCheckStore = useTransferCheckStore();
+	const amlStore = useAmlStore();
 	const { formAmlScoreTransaction, amlRiskRules, amlSignalCategories, isLoadingAmlRiskRules } =
-		storeToRefs(transferCheckStore);
-	const { getAmlRiskRules, putAmlRiskRules } = transferCheckStore;
+		storeToRefs(amlStore);
+	const { getAmlRiskRules, putAmlRiskRules } = amlStore;
 
 	const localRules = ref<IAmlRiskRuleResponse[]>([]);
 	const actionValue = ref(AML_RISK_ACTION_REJECT);

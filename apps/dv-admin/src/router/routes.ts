@@ -17,7 +17,7 @@ import settings from "@dv-admin/router/modules/settings";
 import exchanges from "@dv-admin/router/modules/exchanges";
 import quickStart from "@dv-admin/router/modules/quickStart";
 import confirmationMnemonics from "@dv-admin/router/modules/confirmationMnemonics.ts";
-import transferCheck from "@dv-admin/router/modules/transferCheck.ts";
+import aml from "@dv-admin/router/modules/aml.ts";
 import notifications from "@dv-admin/router/modules/notifications.ts";
 import addressBook from "@dv-admin/router/modules/addressBook.ts";
 import admin from "@dv-admin/router/modules/admin.ts";
@@ -41,7 +41,7 @@ export const routes: Array<RouteRecordRaw> = [
 	...userSettings,
 	...quickStart,
 	...confirmationMnemonics,
-	...transferCheck,
+	...aml,
 	...notifications,
 	...addressBook,
 	...admin

@@ -166,7 +166,7 @@ export const mainMenuList: RouteItem[] = [
 		}
 	},
 	{
-		path: "/transfer-check",
+		path: "/aml",
 		meta: {
 			title: "AML check",
 			animationIcon: searchAnimation
