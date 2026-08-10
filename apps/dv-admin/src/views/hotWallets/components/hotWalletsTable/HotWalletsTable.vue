@@ -58,7 +58,7 @@
 					<ui-tooltip
 						v-if="row.dirty"
 						:title="$t('Dirty address')"
-						:text="$t('This address has been marked as dirty and permanently removed from automatic allocation.')"
+						:text="$t('This address has been marked as dirty and permanently removed from automatic allocation. Any funds received to this wallet require manual withdrawal processing.')"
 					>
 						<ui-icon name="warning" type="filled" color="#f04438" size="sm" class="pointer" />
 					</ui-tooltip>

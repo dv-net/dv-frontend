@@ -1,7 +1,7 @@
 <script setup lang="ts">
 	import { UiButton, UiDropdown, UiIconButton } from "@dv.net/ui-kit";
 	import type { IHotWalletsItem } from "@dv-admin/utils/types/api/apiGo";
-	import { ref } from "vue";
+	import { computed, ref } from "vue";
 	import type { UiButtonSize } from "@dv.net/ui-kit/dist/components/UiButton/types";
 	import type { UiPlacementType } from "@dv.net/ui-kit/dist/components/UiTooltip/types";
 	import IconCursor from "@dv-admin/components/icons/IconCursor.vue";
@@ -14,11 +14,17 @@
 	import { useNotifications } from "@shared/utils/composables/useNotifications";
 	import { useI18n } from "vue-i18n";
 	import { getApiWithdrawalCurrencyRules } from "@dv-admin/utils/services/withdrawal.ts";
+	import { storeToRefs } from "pinia";
+	import { useHotWalletsStore } from "@dv-admin/stores/hotWallets";
+	import { useGeneralStore } from "@dv-admin/stores/general";
 
 	const { notify } = useNotifications();
 	const { t } = useI18n();
+	const { includedWallets } = storeToRefs(useHotWalletsStore());
+	const { postWalletKeysHot } = useHotWalletsStore();
+	const { openOtpGlobalModal } = useGeneralStore();
 
-	withDefaults(
+	const props = withDefaults(
 		defineProps<{
 			data: IHotWalletsItem;
 			sizeButton?: UiButtonSize;
@@ -33,6 +39,8 @@
 	);
 
 	const isShowDropdown = ref<Record<string, boolean>>({});
+
+	const isShowDownloadKeys = computed<boolean>(() => !includedWallets.value.length);
 
 	const postWithdrawManualOrProcessing = async (
 		type: "rules" | "processing",
@@ -70,6 +78,11 @@
 		} catch (error: any) {
 			console.error(error);
 		}
+	};
+
+	const handleDownloadKeys = (typeFile: "json" | "csv") => {
+		isShowDropdown.value[props.data.id] = false;
+		openOtpGlobalModal(() => postWalletKeysHot(typeFile, undefined, [props.data.id]));
 	};
 </script>
 
@@ -119,6 +132,21 @@
 						"
 					/>
 				</div>
+
+				<div v-if="isShowDownloadKeys" class="download-keys">
+					<div class="download-keys__title">
+						<ui-icon-button icon-name="key" container-small size="lg" />
+						<span>{{ $t("Download keys in format") }}</span>
+						<tooltip-helper
+							:title="$t('Download keys')"
+							:text="$t('Download private keys for this wallet.')"
+						/>
+					</div>
+					<div class="download-keys__formats">
+						<ui-button type="secondary" size="sm" @click="handleDownloadKeys('json')">json</ui-button>
+						<ui-button type="secondary" size="sm" @click="handleDownloadKeys('csv')">csv</ui-button>
+					</div>
+				</div>
 			</div>
 		</template>
 	</ui-dropdown>
@@ -139,6 +167,43 @@
 				transition: transform 0.3s ease-in-out;
 				transform: scale(1.05);
 			}
+		}
+	}
+
+	.download-keys {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		padding: 10px 16px;
+		align-self: stretch;
+		width: 100%;
+		box-sizing: border-box;
+		color: #000;
+		font-weight: 400;
+		font-size: 14px;
+
+		&__title {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 16px;
+
+			span {
+				flex: 1;
+			}
+		}
+
+		&__formats {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			width: 100%;
+		}
+
+		:deep(.ui-button) {
+			flex: 1 1 0;
+			width: 100%;
+			min-width: 0;
 		}
 	}
 </style>

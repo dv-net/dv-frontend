@@ -3,10 +3,9 @@
 	import BlockSection from "@dv-admin/components/ui/BlockSection/BlockSection.vue";
 	import NotFoundMessage from "@dv-admin/components/ui/notFoundMessage/NotFoundMessage.vue";
 	import BlockchainCard from "@dv-admin/components/ui/blockchainCard/BlockchainCard.vue";
-	import DisplayMessage from "@dv-admin/components/ui/displayMessage/DisplayMessage.vue";
 	import { UiButton, UiForm, UiFormItem, UiInput, UiSelect, UiSkeleton } from "@dv.net/ui-kit";
 	import { computed, onMounted, ref } from "vue";
-	import { useRoute } from "vue-router";
+	import { useRoute, useRouter } from "vue-router";
 	import { storeToRefs } from "pinia";
 	import { useI18n } from "vue-i18n";
 	import type { UiFormRules } from "@dv.net/ui-kit/dist/components/UiForm/types";
@@ -14,23 +13,22 @@
 	import type { IUiSelectOptions } from "@dv-admin/utils/types/general.ts";
 	import type { IAmlScoreTransactionRequest } from "@dv-admin/utils/types/api/apiGo.ts";
 	import { useGeneralStore } from "@dv-admin/stores/general";
-	import { useTransferCheckStore } from "@dv-admin/stores/transferCheck";
-	import { getApiAmlCurrencies, postApiAmlScoreTransaction } from "@dv-admin/utils/services/transferCheck.ts";
+	import { useAmlStore } from "@dv-admin/stores/aml";
+	import { getApiAmlCurrencies, postApiAmlScoreTransaction } from "@dv-admin/utils/services/aml.ts";
 
 	const route = useRoute();
+	const router = useRouter();
 	const { t } = useI18n();
 
-	const transferCheckStore = useTransferCheckStore();
-	const { isHaveKeysCurrentAml } = storeToRefs(transferCheckStore);
-	const { getAmlKeys } = transferCheckStore;
+	const amlStore = useAmlStore();
+	const { isHaveKeysCurrentAml } = storeToRefs(amlStore);
+	const { getAmlKeys } = amlStore;
 	const { dictionary } = storeToRefs(useGeneralStore());
 
 	const aml = route.params.aml as string;
 	const formRef = ref<HTMLFormElement | null>(null);
 	const isLoading = ref(true);
 	const isLoadingAmlScoreTransaction = ref(false);
-	const formError = ref("");
-	const feedbackMessage = ref("");
 	const amlCurrencies = ref<IUiSelectOptions[]>([]);
 	const form = ref<IAmlScoreTransactionRequest>({
 		currency_id: null,
@@ -77,11 +75,7 @@
 			if (!formRef.value || !(await formRef.value.validate())) return;
 			isLoadingAmlScoreTransaction.value = true;
 			await postApiAmlScoreTransaction(form.value);
-			form.value.tx_id = null;
-			form.value.output_address = null;
-			form.value.direction = null;
-			form.value.currency_id = null;
-			feedbackMessage.value = "We have started checking your transaction";
+			await router.push({ name: "aml" });
 		} catch (error: any) {
 			console.error(error);
 		} finally {
@@ -94,7 +88,7 @@
 
 <template>
 	<div class="page">
-		<breadcrumbs :back-route-title="$t('AML check of transfer')" back-name-route="transfer-check" />
+		<breadcrumbs :back-route-title="$t('AML check of transfer')" back-name-route="aml" />
 		<h1 class="global-title-h1">{{ $t("Check transaction") }}</h1>
 
 		<div>
@@ -115,7 +109,7 @@
 							:model="form"
 							@submit.prevent="postAmlScoreTransaction"
 						>
-							<ui-form-item :error="formError" :label="$t('Transaction hash')" name="tx_id">
+							<ui-form-item :label="$t('Transaction hash')" name="tx_id">
 								<ui-input
 									size="md"
 									v-model="form.tx_id"
@@ -123,7 +117,7 @@
 									:placeholder="$t('Enter transaction hash')"
 								/>
 							</ui-form-item>
-							<ui-form-item :error="formError" :label="$t('Currency')" name="currency_id">
+							<ui-form-item :label="$t('Currency')" name="currency_id">
 								<ui-select
 									v-model="form.currency_id"
 									type="default"
@@ -138,7 +132,7 @@
 									</template>
 								</ui-select>
 							</ui-form-item>
-							<ui-form-item :error="formError" :label="$t('Wallet Address')" name="output_address">
+							<ui-form-item :label="$t('Wallet Address')" name="output_address">
 								<ui-input
 									size="md"
 									v-model="form.output_address"
@@ -146,7 +140,7 @@
 									:placeholder="$t('Enter address')"
 								/>
 							</ui-form-item>
-							<ui-form-item :error="formError" :label="$t('Direction')" name="direction">
+							<ui-form-item :label="$t('Direction')" name="direction">
 								<ui-select
 									v-model="form.direction"
 									type="default"
@@ -154,20 +148,20 @@
 									:placeholder="$t('Select direction')"
 								/>
 							</ui-form-item>
-							<ui-button
-								class="mt-8"
-								mode="neutral"
-								size="xl"
-								native-type="submit"
-								left-icon-name="check-circle"
-								left-icon-size="md"
-								:loading="isLoadingAmlScoreTransaction"
-							>
-								{{ $t("Check transaction") }}
-							</ui-button>
+							<div class="form__actions">
+								<ui-button
+									mode="neutral"
+									size="xl"
+									native-type="submit"
+									left-icon-name="check-circle"
+									left-icon-size="md"
+									:loading="isLoadingAmlScoreTransaction"
+								>
+									{{ $t("Check transaction") }}
+								</ui-button>
+							</div>
 						</ui-form>
 					</block-section>
-					<display-message v-model:text="feedbackMessage" class="mt-20" />
 				</template>
 			</div>
 		</div>
@@ -184,6 +178,14 @@
 			display: grid;
 			grid-template-columns: 1fr 300px;
 			column-gap: 24px;
+
+			&__actions {
+				grid-column: 1 / -1;
+				display: flex;
+				align-items: center;
+				justify-content: flex-end;
+				margin-top: 8px;
+			}
 		}
 	}
 </style>

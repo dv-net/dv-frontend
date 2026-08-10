@@ -1,4 +1,4 @@
-import { defineStore } from "pinia";
+import { defineStore, storeToRefs } from "pinia";
 import {
 	getApiAmlHistory,
 	getApiAmlKeys,
@@ -6,7 +6,7 @@ import {
 	getApiAmlSettings,
 	getApiAmlSignals,
 	postApiAmlRiskRules
-} from "@dv-admin/utils/services/transferCheck.ts";
+} from "@dv-admin/utils/services/aml.ts";
 import { computed, ref } from "vue";
 import type {
 	IAmlHistoryFilterRequest,
@@ -20,13 +20,15 @@ import type {
 } from "@dv-admin/utils/types/api/apiGo.ts";
 import type { UItableMeta } from "@dv.net/ui-kit/dist/components/UiTable/types";
 import { parsePagination } from "@dv-admin/utils/helpers/parsePagination.ts";
+import { useGeneralStore } from "@dv-admin/stores/general";
 
-export const useTransferCheckStore = defineStore("transferCheck", () => {
+export const useAmlStore = defineStore("aml", () => {
 	const isLoadingAmlKeys = ref<boolean>(false);
 	const isLoadingAmlSettings = ref<boolean>(false);
 	const isLoadingAmlRiskRules = ref<boolean>(false);
 	const isLoadingPutAmlRiskRules = ref<boolean>(false);
 	const amlKeys = ref<IAmlKeysResponse[]>([]);
+	const amlKeysByProvider = ref<Record<string, IAmlKeysResponse[]>>({});
 	const isLoadingAmlHistory = ref<boolean>(false);
 	const amlHistory = ref<IAmlHistoryItemResponse[]>([]);
 	const amlHistoryPagination = ref<UItableMeta | null>(null);
@@ -42,8 +44,19 @@ export const useTransferCheckStore = defineStore("transferCheck", () => {
 		tx_id: null
 	});
 
+	const hasFilledKeys = (keys: IAmlKeysResponse[] | undefined): boolean =>
+		Boolean(keys?.length && keys.every((item) => Boolean(item.value)));
+
+	const isProviderConnected = (slug: string): boolean => hasFilledKeys(amlKeysByProvider.value[slug]);
+
+	const connectedProviderSlugs = computed<string[]>(() =>
+		Object.keys(amlKeysByProvider.value).filter((slug) => isProviderConnected(slug))
+	);
+
 	const isHaveKeysCurrentAml = computed<boolean>(() => {
-		return amlKeys.value.length > 0 && amlKeys.value.every((item) => Boolean(item.value));
+		const slug = formAmlScoreTransaction.value.provider_slug;
+		if (slug && slug in amlKeysByProvider.value) return isProviderConnected(slug);
+		return hasFilledKeys(amlKeys.value);
 	});
 
 	const isCurrentProviderEnabled = computed<boolean>(() => {
@@ -51,11 +64,48 @@ export const useTransferCheckStore = defineStore("transferCheck", () => {
 		return Boolean(amlSettings.value?.enabled && amlSettings.value?.provider_slug === slug);
 	});
 
+	const syncCurrentAmlKeys = (slug?: string) => {
+		const currentSlug = slug || formAmlScoreTransaction.value.provider_slug;
+		if (currentSlug && amlKeysByProvider.value[currentSlug]) {
+			amlKeys.value = amlKeysByProvider.value[currentSlug];
+		}
+	};
+
 	const getAmlKeys = async (slug: string) => {
 		try {
 			isLoadingAmlKeys.value = true;
 			const data = await getApiAmlKeys(slug);
-			if (data) amlKeys.value = data;
+			const keys = data || [];
+			amlKeysByProvider.value = { ...amlKeysByProvider.value, [slug]: keys };
+			if (!formAmlScoreTransaction.value.provider_slug || formAmlScoreTransaction.value.provider_slug === slug) {
+				amlKeys.value = keys;
+			}
+		} catch (error: any) {
+			throw error;
+		} finally {
+			isLoadingAmlKeys.value = false;
+		}
+	};
+
+	const getAllAmlKeys = async () => {
+		const { dictionary } = storeToRefs(useGeneralStore());
+		const slugs = dictionary.value?.available_aml_providers.map((provider) => provider.slug) ?? [];
+		if (!slugs.length) return;
+
+		try {
+			isLoadingAmlKeys.value = true;
+			const results = await Promise.all(
+				slugs.map(async (slug) => {
+					try {
+						const data = await getApiAmlKeys(slug);
+						return [slug, data || []] as const;
+					} catch {
+						return [slug, []] as const;
+					}
+				})
+			);
+			amlKeysByProvider.value = Object.fromEntries(results);
+			syncCurrentAmlKeys();
 		} catch (error: any) {
 			throw error;
 		} finally {
@@ -71,6 +121,7 @@ export const useTransferCheckStore = defineStore("transferCheck", () => {
 				amlSettings.value = data;
 				if (data.provider_slug) {
 					formAmlScoreTransaction.value.provider_slug = data.provider_slug;
+					syncCurrentAmlKeys(data.provider_slug);
 				}
 			} else {
 				amlSettings.value = null;
@@ -129,10 +180,7 @@ export const useTransferCheckStore = defineStore("transferCheck", () => {
 	};
 
 	return {
-		isLoadingAmlKeys,
-		isLoadingAmlSettings,
 		isLoadingAmlRiskRules,
-		isLoadingPutAmlRiskRules,
 		isLoadingAmlHistory,
 		amlHistory,
 		amlSettings,
@@ -142,9 +190,12 @@ export const useTransferCheckStore = defineStore("transferCheck", () => {
 		amlHistoryPagination,
 		amlKeys,
 		amlHistoryFilter,
+		connectedProviderSlugs,
 		isHaveKeysCurrentAml,
 		isCurrentProviderEnabled,
+		syncCurrentAmlKeys,
 		getAmlKeys,
+		getAllAmlKeys,
 		getAmlHistory,
 		getAmlSettings,
 		getAmlRiskRules,

@@ -15,9 +15,8 @@ const router = createRouter({
 	}
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, from) => {
 	sessionStorage.setItem("fromRoute", from.fullPath);
 	sessionStorage.setItem("toRoute", to.fullPath);
-	next();
 });
 export default router;
