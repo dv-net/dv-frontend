@@ -37,9 +37,11 @@ body,
 		::-webkit-scrollbar-thumb {
 			background: #cbd1db;
 			border-radius: 16px;
-			&:hover {
-				background: #aaadb3;
-				background-clip: padding-box;
+			@media (hover: hover) {
+				&:hover {
+					background: #aaadb3;
+					background-clip: padding-box;
+				}
 			}
 		}
 	}

@@ -1,0 +1,157 @@
+<script setup lang="ts">
+	import { UiSkeleton } from "@dv.net/ui-kit";
+	import { usePayerFormStore } from "@pay-simple/stores/payerForm";
+	import { storeToRefs } from "pinia";
+	import { changeChainBsc, getCurrentBlockchain } from "@shared/utils/helpers/general.ts";
+	import BlockchainIcon from "@shared/components/ui/blockchainIcon/BlockchainIcon.vue";
+	import { useRouter, useRoute } from "vue-router";
+	import NotFound from "@pay-simple/views/payerForm/components/steps/notFound/NotFound.vue";
+	import { blockchainCurrencyId } from "@shared/utils/constants/blockchain";
+	import CardSelectBlockchain from "@pay-simple/views/payerForm/components/steps/cardSelectBlockchain/CardSelectBlockchain.vue";
+	import type { CurrencyType } from "@pay-simple/utils/types/blockchain";
+	import WrapperBlock from "@pay-simple/views/payerForm/components/wrapperBlock/WrapperBlock.vue";
+
+	const { filteredBlockchains, isLoading, currentStep, currentCurrency, currentChain } =
+		storeToRefs(usePayerFormStore());
+
+	const router = useRouter();
+	const route = useRoute();
+
+	const setBlockchain = async (currencyId: string) => {
+		if (!currencyId) return;
+		const chain = getCurrentBlockchain(currencyId);
+		currentChain.value = chain;
+		const query = { ...route.query, chain, step: 3 };
+		await router.push({ query });
+		currentStep.value = 3;
+	};
+</script>
+
+<template>
+	<wrapper-block>
+		<div class="screen">
+			<ui-skeleton v-if="isLoading" :rows="1" :row-height="76" :item-border-radius="8" />
+			<card-select-blockchain
+				v-else-if="!isLoading && currentCurrency"
+				type="currency"
+				:currency="currentCurrency as CurrencyType"
+			/>
+			<div class="blockchains">
+				<h2 class="global-title-h2">{{ $t("select-blockchain.two") }}</h2>
+				<div v-if="isLoading" class="blockchains__cards">
+					<ui-skeleton v-for="item in 3" :key="item" :rows="1" :row-height="56" :item-border-radius="8" />
+				</div>
+				<template v-else>
+					<div v-if="filteredBlockchains.length" class="blockchains__cards">
+						<div
+							v-for="item in filteredBlockchains"
+							:key="item.currency.id"
+							class="card"
+							:class="{ selected: currentChain === getCurrentBlockchain(item.currency.id) }"
+							@click="setBlockchain(item.currency.id)"
+						>
+							<div class="card__inner">
+								<blockchain-icon :type="blockchainCurrencyId[item.currency.blockchain]" />
+								<div class="card__blockchain">
+									<span>{{ changeChainBsc(getCurrentBlockchain(item.currency.id)) }}</span>
+									<span v-if="item.currency.token_label" class="card__blockchain-label">
+										({{ item.currency.token_label }})
+									</span>
+								</div>
+							</div>
+							<!--							<span class="card__commission">{{ $t("Commission") }} —</span>-->
+						</div>
+					</div>
+					<not-found v-else />
+				</template>
+			</div>
+		</div>
+	</wrapper-block>
+</template>
+
+<style scoped lang="scss">
+	.screen {
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+		@include mediamax(768) {
+			gap: 20px;
+		}
+		.blockchains {
+			display: flex;
+			flex-direction: column;
+			gap: 20px;
+			@include mediamax(1024) {
+				gap: 12px;
+			}
+			&__cards {
+				display: flex;
+				flex-direction: column;
+				gap: 12px;
+			}
+			.card {
+				display: flex;
+				align-items: center;
+				gap: 12px;
+				justify-content: space-between;
+				padding: 12px 24px;
+				border-radius: 8px;
+				border: 1px solid $main-border-color;
+				background-color: $form-background;
+				transition: border 0.3s ease-in-out;
+				@include mediamax(768) {
+					padding: 12px 16px;
+				}
+				@include mediamax(480) {
+					gap: 8px;
+					padding: 8px 12px;
+				}
+				&.selected {
+					border: 1px solid $main-text-link-and-price-color;
+				}
+				@media (hover: hover) {
+					&:hover {
+						cursor: pointer;
+						border: 1px solid $main-text-link-and-price-color;
+					}
+				}
+				&__inner {
+					display: flex;
+					align-items: center;
+					gap: 8px;
+				}
+				&__blockchain {
+					display: flex;
+					align-items: center;
+					gap: 4px;
+					@include mediamax(576) {
+						font-size: 14px;
+					}
+					@include mediamax(480) {
+						font-size: 12px;
+					}
+					&-label {
+						color: $main-text-grey-color;
+						font-size: 16px;
+						font-weight: 400;
+						line-height: 20px;
+						@include mediamax(576) {
+							font-size: 14px;
+						}
+						@include mediamax(480) {
+							font-size: 12px;
+						}
+					}
+				}
+				&__commission {
+					color: $main-text-grey-color;
+					font-size: 14px;
+					font-weight: 400;
+					@include mediamax(480) {
+						font-size: 12px;
+					}
+				}
+			}
+		}
+	}
+</style>
