@@ -6,7 +6,7 @@ const { notify } = useNotifications();
 const REQUEST_TIMEOUT_MS: number = 10_000;
 
 const api: AxiosInstance = axios.create({
-	baseURL: import.meta.env.VITE_API_URL,
+	baseURL: import.meta.env.VITE_SIMPLE_API_URL,
 	timeout: REQUEST_TIMEOUT_MS,
 	headers: {
 		"Content-Type": "application/json",
