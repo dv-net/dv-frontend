@@ -49,7 +49,6 @@ export const mapPaySimpleInvoiceToPayerResponse = (data: IPaySimpleInvoiceRespon
 				: Boolean(chain && NATIVE_BY_CHAIN[chain] === coin);
 
 		rates[currencyId] = wallet.rate;
-		rates[coin] = wallet.rate;
 
 		const precision =
 			currencyId in DEFAULT_CURRENCIES_INFO

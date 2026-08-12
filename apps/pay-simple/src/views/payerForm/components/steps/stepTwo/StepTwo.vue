@@ -35,6 +35,7 @@
 				v-else-if="!isLoading && currentCurrency"
 				type="currency"
 				:currency="currentCurrency as CurrencyType"
+				:currency-id="filteredBlockchains[0]?.currency.id"
 			/>
 			<div class="blockchains">
 				<h2 class="global-title-h2">{{ $t("select-blockchain.two") }}</h2>

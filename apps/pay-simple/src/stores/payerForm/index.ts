@@ -277,9 +277,11 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 
 	const getAmountRate = (currency: CurrencyType): string => {
 		if (!amount.value || !rates.value || !currency) return "0";
-		const find = Object.entries(rates.value).find(
-			(item) => item[0] === currency || item[0].startsWith(`${currency}.`) || item[0].includes(currency)
-		);
+		// Exact id first, then coin part only (BNB ≠ USDC.BNBSmartChain)
+		const entries = Object.entries(rates.value);
+		const find =
+			entries.find(([key]) => key === currency) ||
+			entries.find(([key]) => getCurrentCoin(key) === currency);
 		if (!find) return "0";
 		const result: number = amount.value / parseFloat(find[1]);
 		return formatAmountBlockchain(result, find[0], undefined, "0");

@@ -40,7 +40,9 @@
 	const isEvmConnected = computed(() => walletEvmConnectRef.value?.isConnected || false);
 	const isLoadingEvmBtn = computed(() => walletEvmConnectRef.value?.isLoadingBtn || false);
 
-	const currentPrice = computed<string>(() => getAmountRate(currentCurrency.value as CurrencyType));
+	const currentPrice = computed<string>(() =>
+		getAmountRate((currentCurrencyChainId.value || currentCurrency.value) as CurrencyType)
+	);
 	const inputTextSum = computed<string>(() => `${currentPrice.value} ${currentCurrency.value}`);
 	const isTronSupported = computed<boolean>(() => currentChain.value === "Tron");
 	const isEvmSupported = computed<boolean>(() => Boolean(currentChain.value) && evmArray.includes(currentChain.value!));

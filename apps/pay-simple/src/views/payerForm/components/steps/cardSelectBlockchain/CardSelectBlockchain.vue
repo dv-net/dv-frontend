@@ -8,6 +8,7 @@
 	import BlockchainIcon from "@shared/components/ui/blockchainIcon/BlockchainIcon.vue";
 	import CurrencyIcon from "@pay-simple/components/ui/currencyIcon/CurrencyIcon.vue";
 	import type { BlockchainType } from "@shared/utils/types/blockchain";
+	import type { CurrencyType } from "@pay-simple/utils/types/blockchain";
 	import { capitalizeFirstLetter, formatAmountBlockchain } from "@shared/utils/helpers/general.ts";
 	import { useMediaQuery } from "@shared/utils/composables/useMediaQuery.ts";
 
@@ -85,7 +86,16 @@
 					{{ currentBlockchain.code === "Bsc" ? "BSC" : currentBlockchain.code }} {{ currentBlockchain.label }}
 				</span>
 				<span v-if="isTypeCurrency">
-					≈ {{ formatAmountBlockchain(getAmountRate(currency!), currencyId, undefined, "—", true) }}
+					≈
+					{{
+						formatAmountBlockchain(
+							getAmountRate((currencyId || currency!) as CurrencyType),
+							currencyId,
+							undefined,
+							"—",
+							true
+						)
+					}}
 				</span>
 				<!--				<span v-if="isTypeBlockchain">{{ $t("Commission") }} —</span>-->
 			</div>
