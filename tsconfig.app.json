@@ -22,6 +22,7 @@
 		"paths": {
 			"@dv-admin/*": ["apps/dv-admin/src/*"],
 			"@pay/*": ["apps/pay/src/*"],
+			"@pay-simple/*": ["apps/pay-simple/src/*"],
 			"@shared/*": ["src/*"]
 		}
 	}

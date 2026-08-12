@@ -18,6 +18,7 @@ export default defineConfig(() => {
 				"@shared": fileURLToPath(new URL("./src", import.meta.url)),
 				"@dv-admin": fileURLToPath(new URL(`./apps/dv-admin/src`, import.meta.url)),
 				"@pay": fileURLToPath(new URL(`./apps/pay/src`, import.meta.url)),
+				"@pay-simple": fileURLToPath(new URL(`./apps/pay-simple/src`, import.meta.url)),
 				"@apps": fileURLToPath(new URL("./apps", import.meta.url))
 			}
 		},
