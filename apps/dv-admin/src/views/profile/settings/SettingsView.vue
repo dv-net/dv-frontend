@@ -1,9 +1,10 @@
 <script setup lang="ts">
-	import { DATE_FORMATS, formatDateList } from "@dv-admin/utils/constants/settings";
+	import { formatDateList } from "@dv-admin/utils/constants/settings";
 	import { UiSelect } from "@dv.net/ui-kit";
 	import BlockSection from "@dv-admin/components/ui/BlockSection/BlockSection.vue";
-	import { onMounted, ref, watch } from "vue";
-	import { getFormatDateFromStorage, getTimezones } from "@dv-admin/utils/helpers/dateParse";
+	import { computed, onMounted, ref, watch } from "vue";
+	import { getFormatDateFromStorage } from "@dv-admin/utils/helpers/dateParse";
+	import { getTimezones } from "@shared/utils/helpers/date";
 	import { storeToRefs } from "pinia";
 	import { useAuthStore } from "@dv-admin/stores/auth";
 	import { useGeneralStore } from "@dv-admin/stores/general";
@@ -16,6 +17,10 @@
 
 	const { t } = useI18n();
 	const formatDate = ref<string>(getFormatDateFromStorage());
+
+	const selectedDateFormat = computed(
+		() => formatDateList.find((item) => item.value === formatDate.value) ?? formatDateList[0]
+	);
 
 	watch(formatDate, (value: string) => {
 		if (value) localStorage.setItem(USER.DATE_FORMAT, value);
@@ -39,26 +44,17 @@
 			<div class="inner">
 				<div class="inner__item">
 					<h4 class="inner__item-title">{{ $t("Date and time format") }}</h4>
-					<ui-select v-model="formatDate" :options="formatDateList" size="sm" popperClass="date-profile-select">
-						<template #selected="{ option }: any">
-							<span>{{ $t(option.label) }}</span>
+					<ui-select v-model="formatDate" :options="formatDateList" size="sm" :teleport="false">
+						<template #selected>
+							<span>{{ $t(selectedDateFormat.label) }}: {{ selectedDateFormat.value }}</span>
 						</template>
 
 						<template #default="{ option }">
-							<template v-if="option.label === 'European'">
-								<div class="top">
-									<span>{{ $t(option.label) }}:</span>
-									<span class="date-opacity">{{ DATE_FORMATS.RU_DATETIME }}</span>
-								</div>
-								<span class="bottom">{{ $t("Example") }}: 31.12.2025, 23:59</span>
-							</template>
-							<template v-else>
-								<div class="top">
-									<span>{{ $t(option.label) }}:</span>
-									<span class="date-opacity">{{ DATE_FORMATS.US_DATETIME_AMPM }}</span>
-								</div>
-								<span class="bottom">{{ $t("Example") }}: 10-02-2025, 10:59 AM/PM</span>
-							</template>
+							<div class="date-option__top">
+								<span>{{ $t(option.label) }}:</span>
+								<span class="date-option__pattern">{{ option.value }}</span>
+							</div>
+							<span class="date-option__example">{{ $t("Example") }}: {{ option.example }}</span>
 						</template>
 					</ui-select>
 				</div>
@@ -100,6 +96,15 @@
 						min-width: 320px;
 						width: max-content;
 					}
+					&:deep(.ui-select__option) {
+						padding: 8px 16px;
+
+						> span {
+							display: flex;
+							flex-direction: column;
+							gap: 2px;
+						}
+					}
 					&-title {
 						color: $black;
 						font-size: 14px;
@@ -108,6 +113,28 @@
 					}
 				}
 			}
+		}
+	}
+
+	.date-option {
+		&__top {
+			display: flex;
+			gap: 3px;
+			color: $black;
+			font-size: 14px;
+			font-weight: 700;
+			line-height: 20px;
+		}
+
+		&__pattern {
+			font-weight: 400;
+		}
+
+		&__example {
+			color: $grey-opacity;
+			font-size: 12px;
+			font-weight: 400;
+			line-height: 16px;
 		}
 	}
 </style>

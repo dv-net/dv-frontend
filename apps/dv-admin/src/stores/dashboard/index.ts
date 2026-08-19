@@ -168,7 +168,7 @@ export const useDashboardStore = defineStore("dashboard", () => {
 			const data = await getApiDepositSummary(params);
 			if (data) {
 				depositTronSummary.value = data.map((item) => {
-					return { ...item, date: formatDate(item.date, "YYYY-MM-DD") };
+					return { ...item, date: formatDate(item.date, { format: "YYYY-MM-DD" }) };
 				});
 			}
 		} catch (error: any) {

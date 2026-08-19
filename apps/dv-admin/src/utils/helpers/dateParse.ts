@@ -9,19 +9,18 @@ import { USER } from "@dv-admin/utils/constants/user";
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
-export const formatDate = (date: any, format?: string, timeZone?: string, errorValue: string = "—"): string => {
+import type { IFormatDateOptions } from "@dv-admin/utils/types/general";
+
+export const formatDate = (date: unknown, options: IFormatDateOptions = {}): string => {
+	const { dateOnly = false, format, timeZone, errorValue = "—" } = options;
+
 	try {
 		if (!date || typeof date !== "string") return errorValue;
 
-		// Get date format
-		const resultDateFormat: string = format || getFormatDateFromStorage();
+		const storedFormat = format || getFormatDateFromStorage();
+		const resultDateFormat = dateOnly ? storedFormat.split(",")[0].trim() : storedFormat;
+		const resultTimeZone = timeZone ?? getTimeZoneUser() ?? "Europe/Moscow";
 
-		// Get timezone
-		const userTimeZone: string | undefined = useAuthStore().user?.location;
-		const browserTimeZone: string | null = getTimeZoneUser();
-		const resultTimeZone: string = timeZone || userTimeZone || browserTimeZone || "Europe/Moscow";
-
-		// Return formatted date
 		return dayjs.utc(date).tz(resultTimeZone).format(resultDateFormat);
 	} catch (error: any) {
 		console.error(error);
@@ -105,24 +104,4 @@ export const getFormatDateFromStorage = (): string => {
 	return formatFromStorage && Object.values(DATE_FORMATS).includes(formatFromStorage as DATE_FORMATS)
 		? formatFromStorage
 		: DATE_FORMATS.RU_DATETIME;
-};
-
-// Get list of timezones
-export const getTimezones = () => {
-	const timezones = (Intl as any).supportedValuesOf("timeZone") as string[];
-	return timezones.map((zone) => {
-		const offset = dayjs().tz(zone).format("Z");
-		return {
-			label: `${zone} (${offset})`,
-			value: zone
-		};
-	});
-};
-
-// Check for interval of a month or more
-export const isMonthOrMore = (startDate: string, endDate: string): boolean => {
-	const start = dayjs(startDate);
-	const end = dayjs(endDate);
-	const monthsDiff = end.diff(start, "month", true);
-	return monthsDiff >= 1;
 };

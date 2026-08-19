@@ -131,8 +131,8 @@
 			:data="{
 				labels: transactionsStats.map((item) =>
 					filterTransactions.resolution === 'day'
-						? formatDate(item.date, undefined, 'UTC').split(', ')[0]
-						: formatDate(item.date, undefined, 'UTC')
+						? formatDate(item.date, { dateOnly: true, timeZone: 'UTC' })
+						: formatDate(item.date, { timeZone: 'UTC' })
 				),
 				datasets: [
 					{

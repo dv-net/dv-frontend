@@ -98,7 +98,7 @@
 			</div>
 			<div class="project-card__meta">
 				<time class="project-card__date" :datetime="store.created_at">
-					{{ formatDate(store.created_at) }}
+					{{ formatDate(store.created_at, { dateOnly: true }) }}
 					<icon-calendar-mark class="project-card__date-icon" />
 				</time>
 			</div>

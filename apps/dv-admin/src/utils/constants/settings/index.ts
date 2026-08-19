@@ -7,9 +7,11 @@ export enum DATE_FORMATS {
 	US_DATETIME_AMPM = "MM-DD-YYYY, hh:mm A"
 }
 
-export const formatDateList: IUiSelectOptions[] = [
-	{ value: DATE_FORMATS.RU_DATETIME, label: "European" },
-	{ value: DATE_FORMATS.US_DATETIME_AMPM, label: "American" }
+export const formatDateList: (IUiSelectOptions & { example: string })[] = [
+	{ value: DATE_FORMATS.RU_DATETIME, label: "European", example: "31.12.2025, 23:59" },
+	{ value: DATE_FORMATS.US_DATETIME_AMPM, label: "American", example: "10-02-2025, 10:59 AM/PM" },
+	{ value: DATE_FORMATS.RU_DATE, label: "European", example: "31.12.2025" },
+	{ value: DATE_FORMATS.US_DATE, label: "American", example: "10-02-2025" }
 ];
 
 export const USER_SETTING_LABELS: Record<string, string> = {

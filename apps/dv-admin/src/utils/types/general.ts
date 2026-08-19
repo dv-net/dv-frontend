@@ -20,3 +20,10 @@ export interface ISettingsItem {
 	isShow: boolean;
 	isDisabled?: boolean;
 }
+
+export interface IFormatDateOptions {
+	dateOnly?: boolean;
+	format?: string;
+	timeZone?: string;
+	errorValue?: string;
+}

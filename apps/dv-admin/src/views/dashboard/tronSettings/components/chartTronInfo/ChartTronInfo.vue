@@ -32,7 +32,7 @@
 		const uniqueDates = [...new Set([...dateTronResourceExpenses, ...dateDepositSummary])].sort(
 			(a, b) => dayjs(a).unix() - dayjs(b).unix()
 		);
-		const labels: string[] = uniqueDates.map((item) => formatDate(item).split(" ")[0]);
+		const labels: string[] = uniqueDates.map((item) => formatDate(item, { dateOnly: true }));
 
 		const line1 = uniqueDates.map((item: string) => {
 			const match = depositTronSummary.value.find((entry) => entry.date.startsWith(item));

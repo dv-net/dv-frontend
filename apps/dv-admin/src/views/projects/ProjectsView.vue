@@ -1,7 +1,6 @@
 <script setup lang="ts">
 	import { computed, onMounted, ref } from "vue";
 	import { useRouter } from "vue-router";
-	import { useI18n } from "vue-i18n";
 	import { storeToRefs } from "pinia";
 	import { UiButton, UiSkeleton } from "@dv.net/ui-kit";
 	import { useProjectsStore } from "@dv-admin/stores/projects";
@@ -14,7 +13,6 @@
 	const { projects, selectedProject, isLoading } = storeToRefs(useProjectsStore());
 	const { getProjects, postStoreArchive } = useProjectsStore();
 	const router = useRouter();
-	const { t } = useI18n();
 
 	const isShowModalCreatePayment = ref<boolean>(false);
 	const currentStore = ref<IStoreResponse | null>(null);

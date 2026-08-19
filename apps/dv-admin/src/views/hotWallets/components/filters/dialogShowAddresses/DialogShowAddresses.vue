@@ -120,7 +120,7 @@
 
 								<div v-if="item.created_at" class="date-block">
 									<div>{{ $t("Added") }}</div>
-									<div>{{ formatDate(item.created_at, "DD.MM.YYYY") }}</div>
+									<div>{{ formatDate(item.created_at, { dateOnly: true }) }}</div>
 								</div>
 							</div>
 						</ui-radio>
