@@ -1,5 +1,6 @@
 import api from "@dv-admin/utils/libs/axios";
 import type {
+	IClarificationStoreRequest,
 	IGetStoresRequest,
 	IRejectStoreRequest,
 	IStoreValidationItemResponse,
@@ -18,5 +19,13 @@ export const verifyStore = async (id: string): Promise<IStoreValidationItemRespo
 
 export const rejectStore = async (id: string, body: IRejectStoreRequest): Promise<IStoreValidationItemResponse> => {
 	const resp = await api.patch(`/dv-admin/root/stores/${id}/reject`, body);
+	return resp.data.data;
+};
+
+export const clarificationStore = async (
+	id: string,
+	body: IClarificationStoreRequest
+): Promise<IStoreValidationItemResponse> => {
+	const resp = await api.patch(`/dv-admin/root/stores/${id}/clarification`, body);
 	return resp.data.data;
 };

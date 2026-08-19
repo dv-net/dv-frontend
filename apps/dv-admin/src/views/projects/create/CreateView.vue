@@ -6,12 +6,9 @@
 	import type { IStoreRequest } from "@dv-admin/utils/types/api/apiGo";
 	import { postApiCreateStore } from "@dv-admin/utils/services/projects";
 	import { useRouter } from "vue-router";
-	import { useNotifications } from "@shared/utils/composables/useNotifications";
 	import { useI18n } from "vue-i18n";
 	import type { UiFormRules } from "@dv.net/ui-kit/dist/components/UiForm/types";
 	import { isValidUrl } from "@shared/utils/helpers/general.ts";
-
-	const { notify } = useNotifications();
 
 	const { t } = useI18n();
 	const router = useRouter();
@@ -29,6 +26,7 @@
 				}
 			],
 			description: [
+				{ required: true, message: t("Enter store description") },
 				{
 					validator: () => form.value.description === null || form.value.description.length <= 255,
 					message: t("Maximum 255 characters")
@@ -41,9 +39,8 @@
 		try {
 			if (!formRef.value || !(await formRef.value.validate())) return;
 			isLoading.value = true;
-			await postApiCreateStore(form.value);
-			await router.push({ name: "projects" });
-			notify(t("Store created successfully"), "success");
+			const store = await postApiCreateStore(form.value);
+			await router.push({ name: "projects-edit", params: { id: store.id } });
 		} catch (error: any) {
 			console.error(error);
 		} finally {

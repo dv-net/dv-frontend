@@ -5,6 +5,7 @@ export const ONLY_LETTERS_AND_NUMBERS_REGEX = /[^1-9,a-z,A-Z]/g;
 export const WITHOUT_SLASH_REGEX = /\//g;
 export const IP_V4_REGEX =
 	/^(?:((25[0-5])|(2[0-4]\d)|(1\d{2})|([1-9]?\d))\.){3}((25[0-5])|(2[0-4]\d)|(1\d{2})|([1-9]?\d))$/;
+export const HTTP_PROTOCOL_REGEX = /^https?:\/\//i;
 export const URL_REGEX =
 	"^(https?:\\/\\/)?" +
 	"((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" +

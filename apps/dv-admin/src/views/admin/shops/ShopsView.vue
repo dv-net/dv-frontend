@@ -1,21 +1,15 @@
 <script setup lang="ts">
-	import { computed, onMounted, ref } from "vue";
+	import { computed, onMounted } from "vue";
 	import { storeToRefs } from "pinia";
 	import { useI18n } from "vue-i18n";
-	import { UiButton, UiInput, UiLink, UiTable } from "@dv.net/ui-kit";
+	import { UiTable } from "@dv.net/ui-kit";
 	import type { UiTableHeader } from "@dv.net/ui-kit/dist/components/UiTable/types";
 	import type { UiPaginationMeta } from "@dv.net/ui-kit/dist/components/UiPagination/types";
 	import Breadcrumbs from "@dv-admin/components/ui/breadcrumbs/Breadcrumbs.vue";
-	import StatusBadge from "@dv-admin/components/ui/statusBadge/StatusBadge.vue";
 	import { useRootStore } from "@dv-admin/stores/root";
-	import {
-		STORE_ACTION_FEEDBACK_MS,
-		STORE_VERIFICATION_STATUS,
-		STORE_VERIFICATION_STATUS_LABELS,
-		STORE_VERIFICATION_STATUS_MODES
-	} from "@dv-admin/utils/constants/root";
-	import type { IStoreValidationItemResponse } from "@dv-admin/utils/types/api/apiGo";
+	import { STORE_VERIFICATION_STATUS } from "@dv-admin/utils/constants/root";
 	import TableVariantA from "@dv-admin/components/ui/tableVariantA/TableVariantA.vue";
+	import StoreActionRow from "@dv-admin/views/admin/shops/components/StoreActionRow.vue";
 
 	const { t } = useI18n();
 	const {
@@ -28,18 +22,21 @@
 		rejectedPagination,
 		rejectedFilter,
 		isLoadingVerify,
-		isLoadingReject
+		isLoadingReject,
+		isLoadingClarification
 	} = storeToRefs(useRootStore());
-	const { getStoresLists, getPendingStoresList, getRejectedStoresList, verifyStoreById, rejectStoreById } =
-		useRootStore();
-
-	const rejectingStoreId = ref<string | null>(null);
-	const rejectReason = ref<string>("");
-	const actionFeedback = ref<{ id: string; status: STORE_VERIFICATION_STATUS } | null>(null);
+	const {
+		getStoresLists,
+		getPendingStoresList,
+		getRejectedStoresList,
+		verifyStoreById,
+		rejectStoreById,
+		clarificationStoreById
+	} = useRootStore();
 
 	const pendingHeaders = computed<UiTableHeader[]>(() => [
 		{ name: "name", label: t("Name"), width: "250" },
-		{ name: "owner_email", label: t("User"), width: "250" },
+		{ name: "owner_email", label: t("User"), width: "300" },
 		{ name: "verification_status", label: t("Verification status"), width: "250" },
 		{ name: "actions" }
 	]);
@@ -47,7 +44,8 @@
 	const rejectedHeaders = computed<UiTableHeader[]>(() => [
 		{ name: "name", label: t("Name") },
 		{ name: "owner_email", label: t("User") },
-		{ name: "verification_status", label: t("Verification status") }
+		{ name: "verification_status", label: t("Verification status") },
+		{ name: "actions", label: "", width: "140" }
 	]);
 
 	const pendingStoresTotal = computed(() => pendingPagination.value?.total ?? 0);
@@ -62,36 +60,24 @@
 		await getRejectedStoresList();
 	};
 
-	const startReject = (row: IStoreValidationItemResponse) => {
-		rejectingStoreId.value = row.id;
-		rejectReason.value = "";
-	};
-
-	const cancelReject = () => {
-		rejectingStoreId.value = null;
-		rejectReason.value = "";
-	};
-
-	const showActionFeedback = async (id: string, status: STORE_VERIFICATION_STATUS) => {
-		const store = pendingStoresList.value.find((item) => item.id === id);
-		if (store) store.verification_status = status;
-		actionFeedback.value = { id, status };
-		await new Promise((resolve) => setTimeout(resolve, STORE_ACTION_FEEDBACK_MS));
-		actionFeedback.value = null;
+	const handleVerify = async (id: string) => {
+		await verifyStoreById(id);
 		await getStoresLists();
 	};
 
-	const handleVerify = async (id: string) => {
-		await verifyStoreById(id);
-		await showActionFeedback(id, STORE_VERIFICATION_STATUS.SUCCESS);
+	const handleReject = async (id: string, reason: string) => {
+		await rejectStoreById(id, reason);
+		await getStoresLists();
 	};
 
-	const confirmReject = async () => {
-		if (!rejectingStoreId.value || !rejectReason.value.trim()) return;
-		const id = rejectingStoreId.value;
-		await rejectStoreById(id, rejectReason.value.trim());
-		cancelReject();
-		await showActionFeedback(id, STORE_VERIFICATION_STATUS.REJECTED);
+	const handleClarification = async (id: string, reason: string) => {
+		await clarificationStoreById(id, reason);
+		await getStoresLists();
+	};
+
+	const hiddenActionsForRow = (status?: STORE_VERIFICATION_STATUS) => {
+		if (!status) return [];
+		return [status];
 	};
 
 	onMounted(async () => {
@@ -121,109 +107,17 @@
 					@change-pagination="changePendingPageHandler"
 				>
 					<template #body="{ row, headers }">
-						<td class="ui-table__body-cell">
-							<div class="ui-table__body-cell-inner">
-								<div class="store-cell">
-									<span class="store-cell__name">{{ row.name }}</span>
-									<ui-link v-if="row.site" :href="row.site" target="_blank">
-										{{ row.site }}
-									</ui-link>
-									<p v-if="row.description" class="store-cell__description">
-										{{ row.description }}
-									</p>
-								</div>
-							</div>
-						</td>
-						<td class="ui-table__body-cell" :colspan="headers.length - 1">
-							<div class="ui-table__body-cell-inner row-rest">
-								<Transition name="reject-panel" mode="out-in">
-									<div v-if="rejectingStoreId === row.id" key="reject" class="reject-inline__form">
-										<ui-input
-											v-model="rejectReason"
-											class="reject-inline__input"
-											:placeholder="$t('Enter rejection reason...')"
-											@keyup.enter="confirmReject"
-										/>
-										<div class="reject-inline__actions">
-											<ui-button
-												type="secondary"
-												size="xl"
-												left-icon-name="check-circle"
-												left-icon-type="filled"
-												left-icon-color="rgba(48, 51, 69, 1)"
-												:loading="isLoadingReject[row.id]"
-												:disabled="!rejectReason.trim()"
-												@click="confirmReject"
-											>
-												{{ $t("Confirm") }}
-											</ui-button>
-											<ui-button
-												type="secondary"
-												size="xl"
-												left-icon-name="cancel"
-												left-icon-type="filled"
-												left-icon-color="rgba(48, 51, 69, 1)"
-												:disabled="isLoadingReject[row.id]"
-												@click="cancelReject"
-											>
-												{{ $t("Cancel.noun") }}
-											</ui-button>
-										</div>
-									</div>
-									<div v-else key="content" class="row-rest__content">
-										<div class="row-rest__cell row-rest__cell--email">
-											<div class="user-cell">
-												<span class="user-cell__email">{{ row.owner_email || "—" }}</span>
-												<blockquote v-if="row.verification_comment" class="user-quote">
-													<p class="user-quote__text">{{ row.verification_comment }}</p>
-												</blockquote>
-											</div>
-										</div>
-										<div class="row-rest__cell">
-											<status-badge
-												v-if="row.verification_status"
-												:label="$t(STORE_VERIFICATION_STATUS_LABELS[row.verification_status])"
-												:mode="STORE_VERIFICATION_STATUS_MODES[row.verification_status]"
-											/>
-										</div>
-										<div class="row-rest__cell row-rest__cell--actions">
-											<div class="action-slot">
-												<div v-if="actionFeedback?.id === row.id" class="action-feedback">
-													{{
-														actionFeedback.status === STORE_VERIFICATION_STATUS.SUCCESS
-															? $t("Store verified successfully")
-															: $t("Store rejected successfully")
-													}}
-												</div>
-												<div v-else class="action-slot__buttons">
-													<ui-button
-														type="secondary"
-														size="xl"
-														left-icon-name="check-circle"
-														left-icon-type="filled"
-														left-icon-color="#26A212"
-														:loading="isLoadingVerify[row.id]"
-														@click="handleVerify(row.id)"
-													>
-														{{ $t("Verify store") }}
-													</ui-button>
-													<ui-button
-														type="secondary"
-														left-icon-name="cancel"
-														left-icon-color="rgba(255, 59, 48, 1)"
-														left-icon-type="filled"
-														size="xl"
-														@click="startReject(row)"
-													>
-														{{ $t("Reject store") }}
-													</ui-button>
-												</div>
-											</div>
-										</div>
-									</div>
-								</Transition>
-							</div>
-						</td>
+						<store-action-row
+							:row="row"
+							:is-loading-verify="isLoadingVerify[row.id]"
+							:is-loading-reject="isLoadingReject[row.id]"
+							:is-loading-clarification="isLoadingClarification[row.id]"
+							:remaining-cols="headers.length - 1"
+							show-description
+							@verify="handleVerify"
+							@reject="handleReject"
+							@clarification="handleClarification"
+						/>
 					</template>
 				</ui-table>
 			</table-variant-a>
@@ -242,32 +136,19 @@
 					:isShowPerPageSelect="false"
 					@change-pagination="changeRejectedPageHandler"
 				>
-					<template #body-cell-name="{ row }">
-						<div class="store-cell">
-							<span class="store-cell__name">{{ row.name }}</span>
-							<ui-link v-if="row.site" :href="row.site" target="_blank">
-								{{ row.site }}
-							</ui-link>
-						</div>
-					</template>
-					<template #body-cell-owner_email="{ row }">
-						<div class="user-cell">
-							<span class="user-cell__email">{{ row.owner_email || "—" }}</span>
-							<blockquote v-if="row.verification_comment" class="user-quote">
-								<p class="user-quote__text">{{ row.verification_comment }}</p>
-							</blockquote>
-						</div>
-					</template>
-					<template #body-cell-verification_status="{ row }">
-						<div v-if="row.verification_status" class="verification-cell">
-							<status-badge
-								:label="$t(STORE_VERIFICATION_STATUS_LABELS[row.verification_status])"
-								:mode="STORE_VERIFICATION_STATUS_MODES[row.verification_status]"
-							/>
-							<blockquote v-if="row.rejection_reason" class="verification-cell__reason">
-								{{ row.rejection_reason }}
-							</blockquote>
-						</div>
+					<template #body="{ row, headers }">
+						<store-action-row
+							:row="row"
+							:is-loading-verify="isLoadingVerify[row.id]"
+							:is-loading-reject="isLoadingReject[row.id]"
+							:is-loading-clarification="isLoadingClarification[row.id]"
+							:remaining-cols="headers.length - 1"
+							:hide-actions="hiddenActionsForRow(row.verification_status)"
+							show-rejection-reason
+							@verify="handleVerify"
+							@reject="handleReject"
+							@clarification="handleClarification"
+						/>
 					</template>
 				</ui-table>
 			</table-variant-a>
@@ -307,181 +188,5 @@
 			font-weight: 500;
 			line-height: 14px;
 		}
-		.store-cell {
-			display: flex;
-			flex-direction: column;
-			gap: 4px;
-			&__name {
-				font-weight: 500;
-				word-break: break-word;
-				color: rgba(48, 51, 69, 1);
-				font-size: 14px;
-				line-height: 20px;
-			}
-			&__description {
-				margin: 0;
-				padding: 8px 10px;
-				border-radius: 8px;
-				background: rgba(247, 249, 251, 1);
-				color: rgba(107, 109, 128, 1);
-				font-size: 13px;
-				font-weight: 400;
-				line-height: 18px;
-				word-break: break-word;
-			}
-		}
-		.verification-cell {
-			display: flex;
-			flex-direction: column;
-			align-items: flex-start;
-			gap: 4px;
-			min-width: 0;
-
-			&__reason {
-				margin: 0;
-				padding: 4px 8px;
-				border-radius: 6px;
-				border-left: 2px solid rgba(107, 109, 128, 0.35);
-				background: rgba(247, 249, 251, 1);
-				color: rgba(107, 109, 128, 1);
-				font-size: 12px;
-				font-weight: 400;
-				font-style: italic;
-				line-height: 16px;
-				word-break: break-word;
-			}
-		}
-		.user-cell {
-			display: flex;
-			flex-direction: column;
-			gap: 6px;
-			min-width: 0;
-			&__email {
-				overflow-wrap: anywhere;
-				word-break: break-word;
-			}
-		}
-		.user-quote {
-			display: flex;
-			flex-direction: column;
-			margin: 0;
-			padding: 10px 12px;
-			border-radius: 8px;
-			border-left: 3px solid rgba(107, 109, 128, 0.35);
-			background: rgba(247, 249, 251, 1);
-			box-sizing: border-box;
-			&__text {
-				margin: 0;
-				color: rgba(107, 109, 128, 1);
-				font-size: 13px;
-				font-weight: 400;
-				font-style: italic;
-				line-height: 18px;
-				word-break: break-word;
-			}
-		}
-		.row-rest {
-			width: 100%;
-			min-width: 0;
-			min-height: 44px;
-			overflow: hidden;
-			&__content {
-				display: flex;
-				align-items: center;
-				gap: 16px;
-				width: 100%;
-				min-width: 0;
-			}
-			&__cell {
-				min-width: 0;
-				box-sizing: border-box;
-				&:nth-child(1),
-				&:nth-child(2) {
-					flex: 0 0 250px;
-					width: 250px;
-					max-width: 250px;
-				}
-				&--email {
-					overflow-wrap: anywhere;
-					word-break: break-word;
-				}
-				&--actions {
-					flex: 1 1 auto;
-					display: flex;
-					justify-content: flex-end;
-				}
-			}
-		}
-		.email-cell {
-			overflow-wrap: anywhere;
-			word-break: break-word;
-		}
-		.action-slot {
-			display: flex;
-			align-items: center;
-			justify-content: flex-end;
-			width: 100%;
-			min-height: 44px;
-			&__buttons {
-				display: flex;
-				align-items: center;
-				justify-content: flex-end;
-				gap: 8px;
-			}
-		}
-		.action-feedback {
-			display: inline-flex;
-			align-items: center;
-			height: 44px;
-			padding: 0 14px;
-			border-radius: 12px;
-			box-sizing: border-box;
-			font-size: 14px;
-			font-weight: 500;
-			line-height: 20px;
-			color: #1a7a3c;
-			background: linear-gradient(180deg, #f0fbf4 0%, #e6faed 100%);
-			box-shadow: inset 0 0 0 1px rgba(31, 150, 73, 0.16);
-			animation: action-feedback-in 0.2s ease;
-		}
-		@keyframes action-feedback-in {
-			from {
-				opacity: 0;
-			}
-			to {
-				opacity: 1;
-			}
-		}
-		.reject-inline {
-			&__form {
-				display: flex;
-				align-items: center;
-				width: 100%;
-				min-height: 44px;
-				gap: 8px;
-			}
-			&__input {
-				flex: 1;
-				min-width: 0;
-			}
-			&__actions {
-				display: flex;
-				align-items: center;
-				gap: 4px;
-				flex-shrink: 0;
-			}
-		}
-	}
-
-	.reject-panel-enter-active,
-	.reject-panel-leave-active {
-		transition:
-			opacity 0.22s ease,
-			transform 0.22s ease;
-	}
-	.reject-panel-enter-from,
-	.reject-panel-leave-to {
-		opacity: 0;
-		transform: translateY(4px) scale(0.98);
 	}
 </style>

@@ -1,17 +1,15 @@
 <script setup lang="ts">
 	import { computed, onMounted, ref } from "vue";
-	import { useProjectsStore } from "@dv-admin/stores/projects";
-	import { storeToRefs } from "pinia";
-	import { formatDate } from "@dv-admin/utils/helpers/dateParse";
 	import { useRouter } from "vue-router";
-	import { UiButton, UiIconButton, UiTable, UiTooltip } from "@dv.net/ui-kit";
-	import type { UiTableHeader } from "@dv.net/ui-kit/dist/components/UiTable/types";
 	import { useI18n } from "vue-i18n";
+	import { storeToRefs } from "pinia";
+	import { UiButton, UiSkeleton } from "@dv.net/ui-kit";
+	import { useProjectsStore } from "@dv-admin/stores/projects";
 	import TooltipHelper from "@dv-admin/components/ui/tooltipHelper/TooltipHelper.vue";
+	import BlockSection from "@dv-admin/components/ui/BlockSection/BlockSection.vue";
 	import ModalCreatePayment from "@dv-admin/views/projects/components/modalCreatePayment/ModalCreatePayment.vue";
+	import ProjectCard from "@dv-admin/views/projects/components/projectCard/ProjectCard.vue";
 	import type { IStoreResponse } from "@dv-admin/utils/types/api/apiGo.ts";
-	import StatusBadge from "@dv-admin/components/ui/statusBadge/StatusBadge.vue";
-	import { STORE_VERIFICATION_STATUS_LABELS, STORE_VERIFICATION_STATUS_MODES } from "@dv-admin/utils/constants/root";
 
 	const { projects, selectedProject, isLoading } = storeToRefs(useProjectsStore());
 	const { getProjects, postStoreArchive } = useProjectsStore();
@@ -21,14 +19,11 @@
 	const isShowModalCreatePayment = ref<boolean>(false);
 	const currentStore = ref<IStoreResponse | null>(null);
 
-	const headers = computed<UiTableHeader[]>(() => [
-		{ name: "created_at", label: t("Created"), width: "160" },
-		{ name: "name", label: t("Name"), width: "180" },
-		{ name: "verification_status", label: t("Verification status"), width: "220" },
-		{ name: "actions", width: "400", align: "right" }
-	]);
+	const isEmpty = computed(() => !isLoading.value && projects.value.length === 0);
 
-	const hasVerification = (store: IStoreResponse) => Boolean(store.verification_status);
+	const goToCreateStore = () => {
+		router.push({ name: "projects-create" });
+	};
 
 	const webhooksHistoryHandler = async (id: string) => {
 		selectedProject.value = id;
@@ -40,149 +35,115 @@
 		currentStore.value = store;
 	};
 
+	const archiveStore = async (store: IStoreResponse) => {
+		await postStoreArchive(store.id);
+	};
+
 	onMounted(async () => {
 		await getProjects();
 	});
 </script>
 
 <template>
-	<div class="page">
+	<section class="page">
 		<div class="page__header">
 			<h1 class="global-title-h1">{{ $t("Projects") }}</h1>
-			<ui-button
-				mode="neutral"
-				leftIconName="add"
-				leftIconSize="lg"
-				size="lg"
-				@click="router.push({ name: 'projects-create' })"
-			>
+			<ui-button mode="neutral" leftIconName="add" leftIconSize="lg" size="lg" @click="goToCreateStore">
 				{{ $t("Create a store") }}
 				<tooltip-helper :title="$t('Create a store')" :text="`${$t('Connect a new project')}.`" />
 			</ui-button>
 		</div>
-		<div class="mt-32 mb-16">
-			<ui-button
-				type="secondary"
-				size="xl"
-				left-icon-name="archive"
-				left-icon-type="filled"
-				left-icon-size="md"
-				right-icon-name="arrow-forward 1"
-				right-icon-type="400"
-				right-icon-size="md"
-				@click="router.push({ name: 'projects-archive' })"
-			>
-				{{ $t("Projects in the archive") }}
-			</ui-button>
+
+		<ui-button
+			type="secondary"
+			size="xl"
+			left-icon-name="archive"
+			left-icon-type="filled"
+			left-icon-size="md"
+			right-icon-name="arrow-forward 1"
+			right-icon-type="400"
+			right-icon-size="md"
+			@click="router.push({ name: 'projects-archive' })"
+		>
+			{{ $t("Projects in the archive") }}
+		</ui-button>
+
+		<block-section v-if="isEmpty" class="empty">
+			<div class="empty__content">
+				<div class="empty__title">{{ $t("No shops yet") }}</div>
+				<div class="empty__text">{{ $t("Create your first shop to start accepting crypto payments") }}</div>
+				<ui-button class="empty__button" mode="neutral" size="xxl" @click="goToCreateStore">
+					{{ $t("Create a store") }}
+				</ui-button>
+			</div>
+		</block-section>
+
+		<div v-else class="page__list">
+			<template v-if="isLoading && !projects.length">
+				<ui-skeleton v-for="index in 2" :key="index" :rows="1" :row-height="216" :item-border-radius="20" />
+			</template>
+			<project-card
+				v-for="store in projects"
+				:key="store.id"
+				:store="store"
+				:archive="archiveStore"
+				@edit="router.push({ name: 'projects-edit', params: { id: store.id } })"
+				@create-payment="handleCreatePayment(store)"
+				@webhooks="webhooksHistoryHandler(store.id)"
+			/>
 		</div>
-		<ui-table :loading="isLoading" :headers="headers" :data="projects" table-layout="fixed">
-			<template #body-cell-created_at="{ row }">
-				{{ formatDate(row.created_at) }}
-			</template>
-			<template #body-cell-verification_status="{ row }">
-				<div v-if="hasVerification(row)" class="verification-cell">
-					<status-badge
-						:label="$t(STORE_VERIFICATION_STATUS_LABELS[row.verification_status!])"
-						:mode="STORE_VERIFICATION_STATUS_MODES[row.verification_status!]"
-					/>
-					<blockquote v-if="row.rejection_reason" class="verification-cell__reason">
-						{{ row.rejection_reason }}
-					</blockquote>
-				</div>
-			</template>
-			<template #body-cell-actions="{ row }">
-				<div class="actions">
-					<ui-button
-						type="tertiary"
-						size="lg"
-						left-icon-name="add-circle"
-						left-icon-size="md"
-						@click="handleCreatePayment(row)"
-					>
-						{{ $t("Create payment") }}
-					</ui-button>
-					<ui-button
-						type="tertiary"
-						size="lg"
-						left-icon-name="edit-square"
-						left-icon-size="md"
-						@click="router.push({ name: 'projects-edit', params: { id: row.id } })"
-					>
-						{{ $t("Edit") }}
-					</ui-button>
-					<ui-tooltip mode="dark" :title="$t('Archive.verb')" :text="$t('Move the project to the archive')">
-						<ui-icon-button
-							icon-name="archive"
-							icon-type="filled"
-							icon-color="#1968e5"
-							size="lg"
-							@click="postStoreArchive(row.id, $t('Project is archived'))"
-						/>
-					</ui-tooltip>
-					<ui-tooltip
-						mode="dark"
-						:title="$t('History of webhooks')"
-						:text="
-							$t(
-								'A log of all sent notifications: which and when they were sent, what the server response was, the status of the execution and other service information.'
-							)
-						"
-					>
-						<ui-icon-button
-							icon-name="description (1)"
-							icon-color="#1968e5"
-							size="lg"
-							@click="webhooksHistoryHandler(row.id)"
-						/>
-					</ui-tooltip>
-				</div>
-			</template>
-		</ui-table>
+
 		<modal-create-payment v-model:is-show="isShowModalCreatePayment" :currentStore="currentStore" />
-	</div>
+	</section>
 </template>
 
 <style scoped lang="scss">
 	.page {
 		display: flex;
 		flex-direction: column;
+		gap: 24px;
+
 		&__header {
 			display: flex;
-			justify-content: space-between;
 			align-items: center;
+			justify-content: space-between;
+			gap: 16px;
+			flex-wrap: wrap;
 		}
-		.verification-cell {
+
+		&__list {
 			display: flex;
 			flex-direction: column;
-			align-items: flex-start;
-			gap: 4px;
-			min-width: 0;
+			gap: 16px;
+		}
+	}
 
-			&__reason {
-				margin: 0;
-				padding: 4px 8px;
-				border-radius: 6px;
-				border-left: 2px solid rgba(107, 109, 128, 0.35);
-				background: rgba(247, 249, 251, 1);
-				color: rgba(107, 109, 128, 1);
-				font-size: 12px;
-				font-weight: 400;
-				font-style: italic;
-				line-height: 16px;
-				word-break: break-word;
+	.empty {
+		&__content {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			text-align: center;
+			gap: 12px;
+			padding-block: 32px;
+
+			@include mediamax(480) {
+				padding-block: 24px;
 			}
 		}
 
-		.actions {
-			display: flex;
-			flex-wrap: nowrap;
-			align-items: center;
-			gap: 4px;
-			white-space: nowrap;
+		&__title {
+			font-size: 20px;
+			line-height: 125%;
+			font-weight: 700;
+			color: $black;
 		}
 
-		:deep(.ui-table__body-cell:has(.ui-button)) {
-			padding: 4px;
+		&__text {
+			max-width: 360px;
+			font-size: 14px;
+			line-height: 140%;
+			color: $secondary;
 		}
 	}
 </style>

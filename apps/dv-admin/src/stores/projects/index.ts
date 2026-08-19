@@ -70,13 +70,12 @@ export const useProjectsStore = defineStore("projects", () => {
 			isLoading.value = false;
 		}
 	};
-	const postStoreArchive = async (uuid: string, message: string) => {
+	const postStoreArchive = async (uuid: string) => {
 		try {
 			if (!otpGlobalCode.value) {
-				openOtpGlobalModal(() => postStoreArchive(uuid, message));
+				openOtpGlobalModal(() => postStoreArchive(uuid));
 			} else {
 				await postApiStoreArchive(uuid, otpGlobalCode.value);
-				notify(message, "success");
 				await getProjects();
 			}
 		} catch (error: any) {

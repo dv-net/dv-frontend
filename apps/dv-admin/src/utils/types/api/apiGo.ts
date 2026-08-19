@@ -118,6 +118,10 @@ export interface IRejectStoreRequest {
 	reason: string;
 }
 
+export interface IClarificationStoreRequest {
+	reason: string;
+}
+
 export interface IResendStoreVerificationRequest {
 	comment: string;
 }

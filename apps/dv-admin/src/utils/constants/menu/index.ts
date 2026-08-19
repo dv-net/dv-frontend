@@ -13,34 +13,6 @@ import {
 
 export const mainMenuList: RouteItem[] = [
 	{
-		path: "/admin",
-		meta: {
-			title: "Admin",
-			animationIcon: securityAnimation,
-			alwaysOpen: true
-		},
-		children: [
-			{
-				path: "/admin/users",
-				meta: {
-					title: "Users",
-					iconComponent: IconCorner,
-					iconComponentActive: IconCorner,
-					isChildren: true
-				}
-			},
-			{
-				path: "/admin/shops",
-				meta: {
-					title: "Shops",
-					iconComponent: IconCorner,
-					iconComponentActive: IconCorner,
-					isChildren: true
-				}
-			}
-		]
-	},
-	{
 		path: "/dashboard",
 		meta: {
 			title: "Dashboard",
@@ -151,6 +123,34 @@ export const mainMenuList: RouteItem[] = [
 				path: "/settings/exchange-rates",
 				meta: {
 					title: "Exchange rates",
+					iconComponent: IconCorner,
+					iconComponentActive: IconCorner,
+					isChildren: true
+				}
+			}
+		]
+	},
+	{
+		path: "/admin",
+		meta: {
+			title: "Admin",
+			animationIcon: securityAnimation,
+			alwaysOpen: true
+		},
+		children: [
+			{
+				path: "/admin/users",
+				meta: {
+					title: "Users",
+					iconComponent: IconCorner,
+					iconComponentActive: IconCorner,
+					isChildren: true
+				}
+			},
+			{
+				path: "/admin/shops",
+				meta: {
+					title: "Shops",
 					iconComponent: IconCorner,
 					iconComponentActive: IconCorner,
 					isChildren: true

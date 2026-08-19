@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 import { parsePagination } from "@dv-admin/utils/helpers/parsePagination";
-import { getStores, rejectStore, verifyStore } from "@dv-admin/utils/services/root";
+import { clarificationStore, getStores, rejectStore, verifyStore } from "@dv-admin/utils/services/root";
 import { STORE_VERIFICATION_STATUS } from "@dv-admin/utils/constants/root";
 import type { UItableMeta } from "@dv.net/ui-kit/dist/components/UiTable/types";
 import type { IGetStoresRequest, IStoreValidationItemResponse } from "@dv-admin/utils/types/api/apiGo";
@@ -15,6 +15,7 @@ export const useRootStore = defineStore("root", () => {
 	const rejectedPagination = ref<UItableMeta | null>(null);
 	const isLoadingVerify = ref<Record<string, boolean>>({});
 	const isLoadingReject = ref<Record<string, boolean>>({});
+	const isLoadingClarification = ref<Record<string, boolean>>({});
 	const pendingFilter = ref<IGetStoresRequest>({
 		page: 1,
 		page_size: 100,
@@ -23,7 +24,11 @@ export const useRootStore = defineStore("root", () => {
 	const rejectedFilter = ref<IGetStoresRequest>({
 		page: 1,
 		page_size: 20,
-		status: [STORE_VERIFICATION_STATUS.REJECTED, STORE_VERIFICATION_STATUS.SUCCESS]
+		status: [
+			STORE_VERIFICATION_STATUS.REJECTED,
+			STORE_VERIFICATION_STATUS.SUCCESS,
+			STORE_VERIFICATION_STATUS.NEEDS_CLARIFICATION
+		]
 	});
 
 	const getPendingStoresList = async () => {
@@ -84,6 +89,17 @@ export const useRootStore = defineStore("root", () => {
 		}
 	};
 
+	const clarificationStoreById = async (id: string, reason: string) => {
+		try {
+			isLoadingClarification.value[id] = true;
+			await clarificationStore(id, { reason });
+		} catch (error: any) {
+			throw error;
+		} finally {
+			isLoadingClarification.value[id] = false;
+		}
+	};
+
 	return {
 		isLoadingPending,
 		isLoadingRejected,
@@ -95,10 +111,12 @@ export const useRootStore = defineStore("root", () => {
 		rejectedFilter,
 		isLoadingVerify,
 		isLoadingReject,
+		isLoadingClarification,
 		getPendingStoresList,
 		getRejectedStoresList,
 		getStoresLists,
 		verifyStoreById,
-		rejectStoreById
+		rejectStoreById,
+		clarificationStoreById
 	};
 });

@@ -105,7 +105,7 @@
 					@keydown.backspace="onBackspace(index)"
 				/>
 			</div>
-			<ui-button mode="neutral" size="xl" :loading="isLoading" :disabled="isDisabledBtn" nativeType="submit">
+			<ui-button mode="neutral" size="xl" left-icon-name="verified-user" left-icon-type="filled" :loading="isLoading" :disabled="isDisabledBtn" nativeType="submit">
 				{{ $t("Confirm") }}
 			</ui-button>
 		</form>
