@@ -1,6 +1,5 @@
 <script setup lang="ts">
 	import { computed, onMounted, ref } from "vue";
-	import Breadcrumbs from "@dv-admin/components/ui/breadcrumbs/Breadcrumbs.vue";
 	import { UiButton, UiCopyText, UiInput, UiSelect, UiSkeleton, UiTabs, UiTabsItem } from "@dv.net/ui-kit";
 	import { getApiLogsLast, getApiLogsLastProcessing } from "@dv-admin/utils/services/monitors.ts";
 	import type { ILogsResponse } from "@dv-admin/utils/types/api/apiGo.ts";
@@ -80,9 +79,8 @@
 
 <template>
 	<div class="page">
-		<breadcrumbs :back-route-title="$t('Settings')" back-name-route="settings" />
 		<div class="page__top">
-			<h1 class="global-title-h2">{{ $t("Logs") }}</h1>
+			<h1 class="global-title-h1">{{ $t("Logs") }}</h1>
 			<ui-tabs mode="light" v-model="currentTab">
 				<ui-tabs-item v-for="item in optionsTab" :value="item.value" :key="item.value">
 					{{ $t(item.label) }}
@@ -174,7 +172,6 @@
 			align-items: center;
 			justify-content: space-between;
 			gap: 12px;
-			margin-top: 24px;
 			&:deep(.ui-tabs) {
 				min-width: 500px;
 			}

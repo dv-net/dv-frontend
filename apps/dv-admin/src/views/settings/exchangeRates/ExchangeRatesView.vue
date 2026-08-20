@@ -10,7 +10,6 @@
 	import { useAuthStore } from "@dv-admin/stores/auth";
 	import type { UiTableHeader } from "@dv.net/ui-kit/dist/components/UiTable/types";
 	import { useI18n } from "vue-i18n";
-	import Breadcrumbs from "@dv-admin/components/ui/breadcrumbs/Breadcrumbs.vue";
 	import TooltipHelper from "@dv-admin/components/ui/tooltipHelper/TooltipHelper.vue";
 	import { useExchangeSettingsStore } from "@dv-admin/stores/exchangeSettings";
 	import type { ICurrenciesRateResponse } from "@dv-admin/utils/types/api/apiGo";
@@ -83,8 +82,7 @@
 
 <template>
 	<div class="page">
-		<breadcrumbs :back-route-title="$t('Settings')" back-name-route="settings" />
-		<h1 class="global-title-h2 mt-24 mb-32">{{ $t("Exchange rates") }}</h1>
+		<h1 class="global-title-h1 mb-32">{{ $t("Exchange rates") }}</h1>
 		<block-section mode="grey-border" class="info" radius="md">
 			<p class="info__text">
 				{{

@@ -4,7 +4,6 @@
 	import { useI18n } from "vue-i18n";
 	import IconMail from "@dv-admin/components/icons/systemSettings/IconMail.vue";
 	import { useSystemSettingsStore } from "@dv-admin/stores/systemSettings";
-	import Breadcrumbs from "@dv-admin/components/ui/breadcrumbs/Breadcrumbs.vue";
 	import type { ISettingsItem } from "@dv-admin/utils/types/general";
 	import ListInfoItem from "@dv-admin/components/common/listInfoItem/ListInfoItem.vue";
 	// import IconProcessing from "@dv-admin/components/icons/systemSettings/IconProcessing.vue";
@@ -64,8 +63,7 @@
 
 <template>
 	<div class="page">
-		<breadcrumbs :back-route-title="$t('Settings')" back-name-route="settings" />
-		<h1 class="global-title-h2 mt-24 mb-32">
+		<h1 class="global-title-h1 mb-32">
 			{{ $t("System settings") }}
 		</h1>
 		<div class="flex flex-column gap-24">

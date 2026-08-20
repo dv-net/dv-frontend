@@ -89,7 +89,7 @@
 <template>
 	<div class="page">
 		<breadcrumbs :back-route-title="$t('AML check of transfer')" back-name-route="aml" />
-		<h1 class="global-title-h1">{{ $t("Check transaction") }}</h1>
+		<h1 class="global-title-h2 mb-32 mt-24">{{ $t("Check transaction") }}</h1>
 
 		<div>
 			<block-section v-if="isLoading">
@@ -172,7 +172,6 @@
 	.page {
 		display: flex;
 		flex-direction: column;
-		gap: 24px;
 
 		.form {
 			display: grid;

@@ -1,13 +1,11 @@
 <script setup lang="ts">
-	import Breadcrumbs from "@dv-admin/components/ui/breadcrumbs/Breadcrumbs.vue";
 	import BlockSection from "@dv-admin/components/ui/BlockSection/BlockSection.vue";
 	import IconUsers from "@dv-admin/components/icons/admin/IconUsers.vue";
 </script>
 
 <template>
 	<div class="page">
-		<breadcrumbs :back-route-title="$t('Admin')" back-name-route="admin" />
-		<h1 class="global-title-h2 mt-24 mb-32">{{ $t("Users") }}</h1>
+		<h1 class="global-title-h1 mb-32">{{ $t("Users") }}</h1>
 		<block-section mode="white" class="placeholder">
 			<div class="placeholder__icon">
 				<icon-users />

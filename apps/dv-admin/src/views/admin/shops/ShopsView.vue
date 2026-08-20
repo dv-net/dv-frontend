@@ -5,7 +5,6 @@
 	import { UiTable } from "@dv.net/ui-kit";
 	import type { UiTableHeader } from "@dv.net/ui-kit/dist/components/UiTable/types";
 	import type { UiPaginationMeta } from "@dv.net/ui-kit/dist/components/UiPagination/types";
-	import Breadcrumbs from "@dv-admin/components/ui/breadcrumbs/Breadcrumbs.vue";
 	import { useRootStore } from "@dv-admin/stores/root";
 	import { STORE_VERIFICATION_STATUS } from "@dv-admin/utils/constants/root";
 	import TableVariantA from "@dv-admin/components/ui/tableVariantA/TableVariantA.vue";
@@ -87,8 +86,7 @@
 
 <template>
 	<div class="page">
-		<breadcrumbs :back-route-title="$t('Admin')" back-name-route="admin" />
-		<h1 class="global-title-h2 mt-24 mb-32">{{ $t("Shops") }}</h1>
+		<h1 class="global-title-h1 mb-32">{{ $t("Shops") }}</h1>
 
 		<section class="page__section">
 			<div class="page__section-title mb-16">

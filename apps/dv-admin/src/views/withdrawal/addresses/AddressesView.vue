@@ -197,6 +197,7 @@
 	<div class="page">
 		<breadcrumbs
 			:back-route-title="$t('Withdrawal rules')"
+			back-name-route="withdrawal"
 			:current-route-title="`${capitalizeFirstLetter(withdrawalCurrencyRules?.currency?.blockchain)} ${$t('wallets.many')}`"
 		/>
 

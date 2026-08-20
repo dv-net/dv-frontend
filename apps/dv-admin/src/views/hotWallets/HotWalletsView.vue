@@ -7,7 +7,6 @@
 	import { useHotWalletsStore } from "@dv-admin/stores/hotWallets";
 	import { checkIsJSON } from "@shared/utils/helpers/general";
 	import Filters from "@dv-admin/views/hotWallets/components/filters/Filters.vue";
-	import Breadcrumbs from "@dv-admin/components/ui/breadcrumbs/Breadcrumbs.vue";
 	import HotWalletsCards from "@dv-admin/views/hotWallets/components/hotWalletsCards/HotWalletsCards.vue";
 	import TooltipHelper from "@dv-admin/components/ui/tooltipHelper/TooltipHelper.vue";
 	import { storeToRefs } from "pinia";
@@ -40,10 +39,8 @@
 
 <template>
 	<div class="page">
-		<breadcrumbs :back-route-title="$t('Transfers')" back-name-route="transfers" />
-
 		<div class="page__title">
-			<h1 class="global-title-h2">{{ $t("Hot wallets") }}</h1>
+			<h1 class="global-title-h1">{{ $t("Hot wallets") }}</h1>
 			<ui-button class="button-gap-4" type="secondary" @click="isOpenModalSeeds = true">
 				{{ $t("Download seed phrases") }}
 				<tooltip-helper
@@ -104,7 +101,7 @@
 			align-items: center;
 			justify-content: space-between;
 			gap: 20px;
-			margin: 24px 0 32px;
+			margin: 0 0 32px;
 
 			.button-gap-4 {
 				:deep(.ui-button__content) {

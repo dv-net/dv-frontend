@@ -83,7 +83,7 @@
 
 <template>
 	<div class="page">
-		<breadcrumbs :back-route-title="$t('System settings')" back-name-route="settings-system" />
+		<breadcrumbs :back-route-title="$t('System settings')" />
 		<h1 class="global-title-h2 mt-24 mb-32">{{ $t("Update.noun") }}</h1>
 
 		<block-section

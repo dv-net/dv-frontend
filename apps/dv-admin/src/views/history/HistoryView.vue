@@ -1,11 +1,14 @@
 <script setup lang="ts">
 	import { UiBlockTitle } from "@dv.net/ui-kit";
-	import { onMounted, onUnmounted, ref } from "vue";
+	import { computed, onMounted, onUnmounted, ref } from "vue";
+	import { useRoute } from "vue-router";
+	import { useI18n } from "vue-i18n";
 	import { useTransactionStore } from "@dv-admin/stores/history";
 	import type { IUBlockTitleLinks } from "@dv-admin/utils/types/general";
-	import Breadcrumbs from "@dv-admin/components/ui/breadcrumbs/Breadcrumbs.vue";
 	import { useProjectsStore } from "@dv-admin/stores/projects";
 
+	const { t } = useI18n();
+	const route = useRoute();
 	const { resetDataTransaction } = useTransactionStore();
 	const { getProjects } = useProjectsStore();
 
@@ -13,6 +16,13 @@
 		{ path: `/history/transactions`, title: "Transactions" },
 		{ path: `/history/webhooks`, title: "Webhooks" }
 	]);
+
+	const translatedLinks = computed(() => links.value.map((item) => ({ ...item, title: t(item.title) })));
+
+	const title = computed(() => {
+		const activeLink = links.value.find((item) => route.path.startsWith(item.path));
+		return t(activeLink?.title ?? "History");
+	});
 
 	onMounted(async () => {
 		await getProjects();
@@ -25,12 +35,7 @@
 
 <template>
 	<div class="page">
-		<breadcrumbs :back-route-title="$t('Search')" back-name-route="search" />
-		<ui-block-title
-			class="page__title"
-			:title="$t('History')"
-			:links="links.map((item) => ({ ...item, title: $t(item.title) }))"
-		/>
+		<ui-block-title :title="title" :links="translatedLinks" />
 		<router-view />
 	</div>
 </template>
@@ -39,13 +44,5 @@
 	.page {
 		display: flex;
 		flex-direction: column;
-		&__title {
-			:deep(.ui-block-title__title) {
-				font-size: 24px;
-				font-weight: 600;
-				line-height: 28px;
-				margin-top: 24px;
-			}
-		}
 	}
 </style>

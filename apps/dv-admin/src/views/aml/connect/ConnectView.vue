@@ -13,6 +13,7 @@
 	import { deleteApiAmlKeys, postApiAmlKeys, postApiAmlSettings } from "@dv-admin/utils/services/aml.ts";
 	import type { UiFormRules } from "@dv.net/ui-kit/dist/components/UiForm/types";
 	import { useI18n } from "vue-i18n";
+	import Breadcrumbs from "@dv-admin/components/ui/breadcrumbs/Breadcrumbs.vue";
 
 	const { t } = useI18n();
 	const router = useRouter();
@@ -137,14 +138,20 @@
 		}
 	};
 
-	watch(providers, (list) => {
-		if (list.length) initPage();
-	}, { immediate: true });
+	watch(
+		providers,
+		(list) => {
+			if (list.length) initPage();
+		},
+		{ immediate: true }
+	);
 </script>
 
 <template>
 	<div class="page">
-		<h1 class="global-title-h1">{{ $t("AML settings") }}</h1>
+		<breadcrumbs :back-route-title="$t('Provider settings')" />
+
+		<h1 class="global-title-h2 mb-32 mt-24">{{ $t("AML settings") }}</h1>
 
 		<div class="page__content">
 			<block-section mode="white" class="connect-card">
@@ -182,11 +189,7 @@
 						<ui-skeleton :rows="1" :row-height="96" :item-border-radius="8" />
 						<ui-skeleton :rows="1" :row-height="96" :item-border-radius="8" />
 					</div>
-					<div
-						v-else
-						class="connect-card__fields"
-						:class="{ 'connect-card__fields--single': formFields.length === 1 }"
-					>
+					<div v-else class="connect-card__fields" :class="{ 'connect-card__fields--single': formFields.length === 1 }">
 						<ui-form-item v-for="name in formFields" :key="name" :name="name" :label="getKeyLabel(name)">
 							<ui-input v-model="form[name]" show-password />
 						</ui-form-item>
@@ -230,7 +233,6 @@
 	.page {
 		display: flex;
 		flex-direction: column;
-		gap: 32px;
 
 		&__content {
 			width: 100%;
