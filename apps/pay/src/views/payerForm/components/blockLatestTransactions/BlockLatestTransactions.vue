@@ -18,7 +18,7 @@
 	import type { UItableMeta } from "@dv.net/ui-kit/dist/components/UiTable/types";
 	import { onMounted, ref, watch } from "vue";
 
-	const { t } = useI18n();
+	const { t, locale } = useI18n();
 
 	const { transactionsConfirmed } = storeToRefs(usePayerFormStore());
 
@@ -97,7 +97,7 @@
 					<div v-if="item.is_less_than_1_hour" class="footer">
 						<div class="footer__label">
 							<span>{{ $t("new") }}</span>
-							<span>{{ formatTimeAgo(item.created_at, t) }}</span>
+							<span>{{ formatTimeAgo(item.created_at, t, locale) }}</span>
 						</div>
 					</div>
 				</div>

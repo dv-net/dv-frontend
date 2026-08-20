@@ -3,7 +3,7 @@ import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 import { DATE_FORMATS } from "@dv-admin/utils/constants/settings";
 import { useAuthStore } from "@dv-admin/stores/auth";
-import { getTimeZoneUser } from "@shared/utils/helpers/locale";
+import { getTimeUnits, getTimeZoneUser } from "@shared/utils/helpers/locale";
 import { USER } from "@dv-admin/utils/constants/user";
 
 dayjs.extend(utc);
@@ -29,15 +29,10 @@ export const formatDate = (date: unknown, options: IFormatDateOptions = {}): str
 };
 
 // Page transfers (5 min. 33 sec.)
-export const timeDifference = (
-	date1: any,
-	date2: any,
-	hoursWord: string,
-	minutesWord: string,
-	secondsWord: string
-): string => {
+export const timeDifference = (date1: any, date2: any, locale: string): string => {
 	if (!date1 || !date2 || typeof date1 !== "string" || typeof date2 !== "string") return "—";
 
+	const { h: hoursWord, min: minutesWord, s: secondsWord } = getTimeUnits(locale);
 	const diffInMs = Math.abs(new Date(date1).getTime() - new Date(date2).getTime());
 	const totalSeconds = Math.floor(diffInMs / 1000);
 	const hours = Math.floor(totalSeconds / 3600);

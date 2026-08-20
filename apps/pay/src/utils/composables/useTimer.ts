@@ -1,18 +1,18 @@
 import { ref, computed, onMounted, onUnmounted } from "vue";
 import { useI18n } from "vue-i18n";
+import { getTimeUnits } from "@shared/utils/helpers/locale";
 
 export const useTimer = (startDateIso?: string) => {
-	const { t } = useI18n();
+	const { locale } = useI18n();
 	const counter = ref<number>(0);
 	let intervalId: ReturnType<typeof setInterval> | null = null;
 
 	const formattedTime = computed<string>(() => {
+		const { min, s } = getTimeUnits(locale.value);
 		const minutes = Math.floor(counter.value / 60);
 		const seconds = counter.value % 60;
 		const secondsStr = seconds < 10 ? `0${seconds}` : seconds;
-		return minutes > 0
-			? `${minutes} ${t("staticStrings.min")} ${secondsStr} ${t("staticStrings.s")}`
-			: `${secondsStr} ${t("staticStrings.s")}`;
+		return minutes > 0 ? `${minutes} ${min} ${secondsStr} ${s}` : `${secondsStr} ${s}`;
 	});
 
 	onMounted(() => {

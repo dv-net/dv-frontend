@@ -111,15 +111,7 @@
 								</span>
 							</div>
 							<div class="header__item time">
-								{{
-									timeDifference(
-										item.updated_at,
-										item.created_at,
-										$t("staticStrings.h"),
-										$t("staticStrings.min"),
-										$t("staticStrings.s")
-									)
-								}}
+								{{ timeDifference(item.updated_at, item.created_at, $i18n.locale) }}
 							</div>
 							<div class="header__item">
 								<show-status-general :status="item.status" />

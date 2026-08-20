@@ -61,7 +61,7 @@
 						<div class="content__inner">
 							<div class="content__title">{{ $t("Payment found") }}</div>
 							<div class="content__text">
-								<span> {{ $t("Approximate deposit time") }} {{ depositTime }} {{ $t("staticStrings.min") }} </span>
+								<span> {{ $t("Approximate deposit time") }} {{ depositTime }} {{ $i18n.locale === "ru" ? "мин" : "min" }} </span>
 								<span>{{ $t("Passed") }} {{ formattedTime }}</span>
 							</div>
 							<span class="content__confirmation"> {{ confirmed }}/{{ confirmations }} {{ $t("confirmations") }} </span>

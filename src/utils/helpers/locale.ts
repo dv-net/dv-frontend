@@ -20,3 +20,6 @@ export const setLocaleLS = (locale: string, isPaymentForm?: boolean) => {
 	if (!locale) return;
 	localStorage.setItem(isPaymentForm ? "locale_pf" : "locale", locale);
 };
+
+export const getTimeUnits = (locale: string) =>
+	locale === "ru" ? { min: "мин", h: "ч", s: "сек" } : { min: "min", h: "h", s: "s" };
