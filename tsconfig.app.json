@@ -1,6 +1,6 @@
 {
 	"extends": "@vue/tsconfig/tsconfig.dom.json",
-	"include": ["shims.d.ts", "src/**/*", "src/**/*.vue", "apps/**/*"],
+	"include": ["shims.d.ts", "shared/**/*", "shared/**/*.vue", "pay-shared/**/*", "apps/**/*"],
 	"exclude": ["node_modules", "dist"],
 	"compilerOptions": {
 		"composite": true,
@@ -23,7 +23,8 @@
 			"@dv-admin/*": ["apps/dv-admin/src/*"],
 			"@pay/*": ["apps/pay/src/*"],
 			"@pay-simple/*": ["apps/pay-simple/src/*"],
-			"@shared/*": ["src/*"]
+			"@shared/*": ["shared/*"],
+			"@pay-shared/*": ["pay-shared/*"]
 		}
 	}
 }

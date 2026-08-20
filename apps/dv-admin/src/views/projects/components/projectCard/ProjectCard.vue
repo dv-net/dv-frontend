@@ -138,7 +138,7 @@
 			</div>
 		</div>
 
-		<div v-if="showVerificationAlert" class="verification-block">
+		<div v-if="showVerificationAlert" class="verification-block" :class="{ 'verification-block--with-form': showResendForm }">
 			<div class="verification-block__alert">
 				<div class="verification-block__icon" :class="{ 'verification-block__icon--rejected': store.verification_status === STORE_VERIFICATION_STATUS.REJECTED }">
 					<icon-warning-triangle />
@@ -354,7 +354,10 @@
 		display: flex;
 		flex-direction: column;
 		gap: 12px;
-		margin: 8px 0;
+
+		&--with-form {
+			margin: 8px 0;
+		}
 
 		&__alert {
 			display: flex;

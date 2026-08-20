@@ -14,7 +14,7 @@
 	import { LottieAnimation } from "lottie-web-vue";
 	import { computed, defineAsyncComponent } from "vue";
 	import TransactionBlockInfo from "@pay/views/payerForm/components/steps/transactionBlockInfo/TransactionBlockInfo.vue";
-	import { useTimer } from "@pay/utils/composables/useTimer.ts";
+	import { useTimer } from "@pay-shared/utils/composables/useTimer.ts";
 
 	const { currentTransaction } = storeToRefs(usePayerFormStore());
 	const { formattedTime, counter } = useTimer(currentTransaction.value?.created_at);

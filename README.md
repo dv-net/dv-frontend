@@ -13,10 +13,15 @@ dv-frontend/
 │   ├── dv-admin/          # Admin panel application
 │   ├── pay/               # Payment form (pro dv.net)
 │   └── pay-simple/        # Payment form (simple dv.net)
-├── src/                   # Shared components (@shared)
-    ├── assets/    
-    ├── components/
-    └── utils/      
+├── shared/                # Shared across all apps (@shared)
+│   ├── assets/
+│   ├── components/
+│   └── utils/
+└── pay-shared/            # Shared between pay & pay-simple (@pay-shared)
+    ├── utils/helpers/
+    ├── utils/composables/
+    ├── utils/constants/
+    └── utils/libs/i18n/locales/
 ```
 
 ## 🚀 Quick Start

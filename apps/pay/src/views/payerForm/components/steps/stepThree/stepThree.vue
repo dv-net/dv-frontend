@@ -8,7 +8,7 @@
 	import WrapperBlock from "@pay/views/payerForm/components/wrapperBlock/WrapperBlock.vue";
 	import BlockchainIcon from "@shared/components/ui/blockchainIcon/BlockchainIcon.vue";
 	import WalletTronConnect from "@pay/views/payerForm/components/steps/stepThree/walletTronConnect/WalletTronConnect.vue";
-	import { evmArray } from "@pay/utils/constants/connectWallet/evm.ts";
+	import { evmArray } from "@pay-shared/utils/constants/connectWallet/evm.ts";
 	import WalletEvmConnect from "@pay/views/payerForm/components/steps/stepThree/walletEvmConnect/WalletEvmConnect.vue";
 	import RowTemplate from "@pay/views/payerForm/components/steps/stepThree/rowTemplate/RowTemplate.vue";
 	import CurrencyIcon from "@pay/components/ui/currencyIcon/CurrencyIcon.vue";

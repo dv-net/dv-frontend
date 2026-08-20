@@ -4,14 +4,13 @@
 	import { computed, ref } from "vue";
 	import { useI18n } from "vue-i18n";
 	import { setLocaleLS } from "@shared/utils/helpers/locale";
-	import { loadLocaleMessages, updateTranslationsUiKit } from "../../../utils/libs/i18n/helpers";
+	import { loadLocaleMessages, updateTranslationsUiKit } from "@pay-simple/utils/libs/i18n/helpers";
 	import type { Locale } from "@dv.net/ui-kit/dist/components/UiLanguages/types";
 	import type { IProps } from "@pay-simple/components/ui/langSelect/types";
 	import { usePayerFormStore } from "@pay-simple/stores/payerForm";
 	import { useRoute } from "vue-router";
 
-	const { locale } = useI18n();
-	const { t } = useI18n();
+	const { locale, t } = useI18n();
 	const { getStartInfo } = usePayerFormStore();
 	const route = useRoute();
 
@@ -27,7 +26,7 @@
 			return locales[0];
 		},
 		set: (value: Locale) => {
-			setLocaleLS(value.isoCode, true);
+			setLocaleLS(value.isoCode);
 			locale.value = value.isoCode;
 		}
 	});

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 	import { onMounted } from "vue";
-	import { loaderShutdown } from "@pay-simple/utils/helpers/general.ts";
+	import { loaderShutdown } from "@pay-shared/utils/helpers/general";
 
 	onMounted(() => {
 		loaderShutdown();

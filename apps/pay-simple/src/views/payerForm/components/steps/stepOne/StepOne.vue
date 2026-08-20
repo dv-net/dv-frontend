@@ -10,7 +10,7 @@
 	import CardCurrency from "@pay-simple/views/payerForm/components/steps/cardCurrency/CardCurrency.vue";
 	import NotFound from "@pay-simple/views/payerForm/components/steps/notFound/NotFound.vue";
 	import WrapperBlock from "@pay-simple/views/payerForm/components/wrapperBlock/WrapperBlock.vue";
-	import { convertToEnglishLayout } from "@pay-simple/utils/helpers/keyboardLayout.ts";
+	import { convertToEnglishLayout } from "@pay-shared/utils/helpers/keyboardLayout";
 	import { useI18n } from "vue-i18n";
 	import { transliterate } from "transliteration";
 

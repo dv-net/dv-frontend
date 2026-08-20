@@ -10,7 +10,7 @@ import type {
 	IWalletTransactionResponse
 } from "@pay-simple/utils/types/api/apiGo";
 import { getCurrentBlockchain, getCurrentCoin } from "@shared/utils/helpers/general";
-import { TRON_CONTRACTS } from "@pay-simple/utils/constants/connectWallet/tron";
+import { TRON_CONTRACTS } from "@pay-shared/utils/constants/connectWallet/tron";
 import { DEFAULT_CURRENCIES_INFO, DEFAULT_CURRENCY_PRECISION } from "@shared/utils/constants/blockchain";
 
 const EVM_CHAINS = new Set(["Ethereum", "BNBSmartChain", "Polygon", "Arbitrum", "Optimism", "Linea"]);

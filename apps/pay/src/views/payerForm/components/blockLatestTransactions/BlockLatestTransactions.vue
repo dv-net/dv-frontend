@@ -6,7 +6,7 @@
 		getCurrentBlockchain,
 		getCurrentCoin
 	} from "@shared/utils/helpers/general.ts";
-	import { formatTimeAgo } from "@pay/utils/helpers/dateParse.ts";
+	import { formatTimeAgo } from "@pay-shared/utils/helpers/dateParse";
 	import BlockchainIcon from "@shared/components/ui/blockchainIcon/BlockchainIcon.vue";
 	import WrapperBlock from "@pay/views/payerForm/components/wrapperBlock/WrapperBlock.vue";
 	import { UiIcon, UiPagination } from "@dv.net/ui-kit";

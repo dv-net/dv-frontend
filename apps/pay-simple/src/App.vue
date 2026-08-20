@@ -1,7 +1,7 @@
 <script setup lang="ts">
 	import { type Component, computed, defineAsyncComponent, onMounted, watch } from "vue";
 	import { useRoute } from "vue-router";
-	import { loadLocaleMessages, updateTranslationsUiKit } from "./utils/libs/i18n/helpers";
+	import { updateTranslationsUiKit } from "./utils/libs/i18n/helpers";
 	import { useI18n } from "vue-i18n";
 	import type { LayoutNames } from "@pay-simple/layouts";
 
@@ -28,9 +28,8 @@
 
 	watch(locale, (value: string) => updateTranslationsUiKit(value, t), { immediate: true, deep: true });
 
-	onMounted(async () => {
+	onMounted(() => {
 		outputFrontendVersion();
-		await loadLocaleMessages(locale.value);
 	});
 </script>
 

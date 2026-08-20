@@ -15,7 +15,8 @@ export default defineConfig(() => {
 		plugins: [vueDevTools({ launchEditor: "phpstorm" }), vue()],
 		resolve: {
 			alias: {
-				"@shared": fileURLToPath(new URL("./src", import.meta.url)),
+				"@shared": fileURLToPath(new URL("./shared", import.meta.url)),
+				"@pay-shared": fileURLToPath(new URL("./pay-shared", import.meta.url)),
 				"@dv-admin": fileURLToPath(new URL(`./apps/dv-admin/src`, import.meta.url)),
 				"@pay": fileURLToPath(new URL(`./apps/pay/src`, import.meta.url)),
 				"@pay-simple": fileURLToPath(new URL(`./apps/pay-simple/src`, import.meta.url)),

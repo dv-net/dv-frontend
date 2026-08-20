@@ -5,7 +5,7 @@
 	import okxWalletImage from "@pay-simple/assets/images/wallets/okx.png";
 	import tronLinkWalletImage from "@pay-simple/assets/images/wallets/tronLink.png";
 	import { usePolling } from "@shared/utils/composables/usePolling.ts";
-	import { TRON_CONTRACTS } from "@pay-simple/utils/constants/connectWallet/tron.ts";
+	import { TRON_CONTRACTS } from "@pay-shared/utils/constants/connectWallet/tron.ts";
 	import { useNotifications } from "@shared/utils/composables/useNotifications.ts";
 	import { useI18n } from "vue-i18n";
 	import { UiButton, UiCopyText, UiInput } from "@dv.net/ui-kit";

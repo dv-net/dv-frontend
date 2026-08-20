@@ -14,7 +14,7 @@
 		metadataWalletConnect,
 		networksWalletConnect,
 		wagmiAdapter
-	} from "@pay/utils/constants/connectWallet/evm.ts";
+	} from "@pay-shared/utils/constants/connectWallet/evm.ts";
 	import { UiButton, UiCopyText, UiIcon, UiInput } from "@dv.net/ui-kit";
 	import IconWalletConnect from "@pay/components/icons/IconWalletConnect.vue";
 	import iconMetaMask from "@pay/assets/images/wallets/metaMask.png";

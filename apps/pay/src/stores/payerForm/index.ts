@@ -13,11 +13,11 @@ import {
 	getCurrentBlockchain,
 	getCurrentCoin
 } from "@shared/utils/helpers/general.ts";
-import { isLessThan1Hour } from "@pay/utils/helpers/dateParse.ts";
+import { isLessThan1Hour } from "@pay-shared/utils/helpers/dateParse";
 import type { BlockchainType } from "@shared/utils/types/blockchain";
 import type { CurrencyType } from "@pay/utils/types/blockchain";
-import { SORT_CHAIN } from "@pay/utils/constants/blockchain";
-import { loaderShutdown } from "@pay/utils/helpers/general.ts";
+import { SORT_CHAIN } from "@pay-shared/utils/constants/blockchain";
+import { loaderShutdown } from "@pay-shared/utils/helpers/general";
 import type { IPayerFormTimelineItem } from "@pay/utils/types/schemas";
 
 export const usePayerFormStore = defineStore("payerForm", () => {

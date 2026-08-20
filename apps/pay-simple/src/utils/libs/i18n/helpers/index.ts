@@ -5,11 +5,11 @@ import i18n from "@pay-simple/utils/libs/i18n";
 export async function loadLocaleMessages(locale: string) {
 	try {
 		if (!i18n.global.availableLocales.includes("en")) {
-			const fallbackMessages = await import(`@pay-simple/utils/libs/i18n/locales/en.json`);
+			const fallbackMessages = await import(`@pay-shared/utils/libs/i18n/locales/en.json`);
 			i18n.global.setLocaleMessage("en", fallbackMessages.default);
 		}
 
-		const messages = await import(`@pay-simple/utils/libs/i18n/locales/${locale}.json`);
+		const messages = await import(`@pay-shared/utils/libs/i18n/locales/${locale}.json`);
 		i18n.global.setLocaleMessage(locale, messages.default);
 		const elementHtml = document.querySelector("html");
 		if (elementHtml) elementHtml.setAttribute("lang", locale);
