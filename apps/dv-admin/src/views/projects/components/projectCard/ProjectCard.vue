@@ -42,6 +42,10 @@
 		return s === STORE_VERIFICATION_STATUS.REJECTED || s === STORE_VERIFICATION_STATUS.NEEDS_CLARIFICATION;
 	});
 
+	const showResendForm = computed(
+		() => props.store.verification_status === STORE_VERIFICATION_STATUS.NEEDS_CLARIFICATION
+	);
+
 
 	const alertDescription = computed(() => {
 		if (props.store.rejection_reason) return props.store.rejection_reason;
@@ -144,31 +148,33 @@
 					<p class="verification-block__description">{{ alertDescription }}</p>
 				</div>
 			</div>
-			<div class="verification-block__form">
-				<ui-textarea
-					v-model="resendComment"
-					class="verification-block__textarea"
-					:placeholder="$t('Describe what changes you have made')"
-					:rows="3"
-					filled
-					max-length="255"
-				/>
-			</div>
-			<div class="verification-block__footer">
-				<ui-checkbox v-model="agreeChecked" size="sm">
-					{{ $t("My project complies with laws and regulations") }}
-				</ui-checkbox>
-				<ui-button
-					type="primary"
-					left-icon-name="verified-user"
-					left-icon-type="filled"
-					:loading="isResendLoading"
-					:disabled="!canResend"
-					@click="handleResend"
-				>
-					{{ $t("Submit for moderation") }}
-				</ui-button>
-			</div>
+			<template v-if="showResendForm">
+				<div class="verification-block__form">
+					<ui-textarea
+						v-model="resendComment"
+						class="verification-block__textarea"
+						:placeholder="$t('Describe what changes you have made')"
+						:rows="3"
+						filled
+						max-length="255"
+					/>
+				</div>
+				<div class="verification-block__footer">
+					<ui-checkbox v-model="agreeChecked" size="sm">
+						{{ $t("My project complies with laws and regulations") }}
+					</ui-checkbox>
+					<ui-button
+						type="primary"
+						left-icon-name="verified-user"
+						left-icon-type="filled"
+						:loading="isResendLoading"
+						:disabled="!canResend"
+						@click="handleResend"
+					>
+						{{ $t("Submit for moderation") }}
+					</ui-button>
+				</div>
+			</template>
 		</div>
 
 		<div class="project-card__actions">

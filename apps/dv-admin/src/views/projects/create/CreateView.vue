@@ -1,6 +1,6 @@
 <script setup lang="ts">
 	import Breadcrumbs from "@dv-admin/components/ui/breadcrumbs/Breadcrumbs.vue";
-	import { UiButton, UiForm, UiFormItem, UiInput, UiTextarea } from "@dv.net/ui-kit/dist";
+	import { UiButton, UiCheckbox, UiForm, UiFormItem, UiInput, UiTextarea } from "@dv.net/ui-kit/dist";
 	import { computed, ref } from "vue";
 	import BlockSection from "@dv-admin/components/ui/BlockSection/BlockSection.vue";
 	import type { IStoreRequest } from "@dv-admin/utils/types/api/apiGo";
@@ -13,7 +13,12 @@
 	const { t } = useI18n();
 	const router = useRouter();
 	const isLoading = ref<boolean>(false);
-	const form = ref<IStoreRequest>({ name: "", site: null, description: null });
+	const form = ref<IStoreRequest & { agreesToLaws: boolean }>({
+		name: "",
+		site: null,
+		description: null,
+		agreesToLaws: true
+	});
 	const formRef = ref<HTMLFormElement | null>(null);
 
 	const rulesForm = computed<UiFormRules>(() => {
@@ -31,6 +36,12 @@
 					validator: () => form.value.description === null || form.value.description.length <= 255,
 					message: t("Maximum 255 characters")
 				}
+			],
+			agreesToLaws: [
+				{
+					validator: () => form.value.agreesToLaws,
+					message: t("Please confirm compliance with laws and regulations")
+				}
 			]
 		};
 	});
@@ -39,7 +50,11 @@
 		try {
 			if (!formRef.value || !(await formRef.value.validate())) return;
 			isLoading.value = true;
-			const store = await postApiCreateStore(form.value);
+			const store = await postApiCreateStore({
+				name: form.value.name,
+				site: form.value.site,
+				description: form.value.description
+			});
 			await router.push({ name: "projects-edit", params: { id: store.id } });
 		} catch (error: any) {
 			console.error(error);
@@ -76,6 +91,11 @@
 						:rows="1"
 						:placeholder="$t('Enter store description')"
 					/>
+				</ui-form-item>
+				<ui-form-item name="agreesToLaws">
+					<ui-checkbox v-model="form.agreesToLaws" size="sm">
+						{{ $t("My project complies with laws and regulations") }}
+					</ui-checkbox>
 				</ui-form-item>
 				<ui-button
 					mode="neutral"
