@@ -1,0 +1,43 @@
+---
+description: SVG icons as Vue components with currentColor
+alwaysApply: true
+---
+
+# SVG icons
+
+Do **not** store reusable icons as static `.svg` assets imported via `<img>`.
+
+ui-kit icons (`UiIcon` / `left-icon-name` on `UiButton`) are fine. Custom SVGs are Vue SFC components.
+
+## Required pattern
+
+- App icons: `apps/<app>/src/components/icons/` (domain subfolders like `aml/`, `projects/` when needed).
+- Shared icons: `shared/components/` (e.g. blockchain).
+- Each icon is a Vue SFC wrapping inline SVG.
+- Prefer `fill="currentColor"` / `stroke="currentColor"` so color is set via CSS `color` at the call site.
+- Set size via `width` / `height` on the SVG (or CSS), not hardcoded hex fills — unless the icon is inherently multi-color.
+
+```vue
+<!-- ✅ GOOD -->
+<svg viewBox="0 0 16 16" width="16" height="16" fill="none">
+	<path d="..." fill="currentColor" />
+</svg>
+
+<!-- ❌ BAD: hardcoded color, not reusable -->
+<path fill="rgb(48,51,69)" />
+
+<!-- ❌ BAD: img asset -->
+<img :src="iconUrl" />
+```
+
+Usage:
+
+```vue
+<icon-arrow-back class="back-icon" />
+```
+
+```scss
+.back-icon {
+	color: $grey;
+}
+```

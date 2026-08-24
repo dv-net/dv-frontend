@@ -1,0 +1,28 @@
+---
+description: Vue — destructure defineProps (no const props = …)
+globs: "{apps,shared,pay-shared}/**/*.vue"
+alwaysApply: false
+---
+
+# Declaring props in `<script setup>`
+
+Prefer **destructuring `defineProps`** and access props by name directly.
+
+## ❌ Avoid
+
+```ts
+const props = defineProps<{ store: IStoreResponse }>();
+props.store
+```
+
+## ✅ Prefer
+
+```ts
+const { store, lag = 100 } = defineProps<{
+	store: IStoreResponse;
+	lag?: number;
+}>();
+// then: store, lag
+```
+
+Set default values for optional props **in the destructuring pattern**.

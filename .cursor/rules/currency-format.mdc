@@ -1,0 +1,35 @@
+---
+description: Format fiat and crypto amounts via shared helpers; parse currency ids with getCurrentCoin
+globs: "{apps,shared,pay-shared}/**/*.{ts,vue}"
+alwaysApply: false
+---
+
+# Currency display
+
+Do not format money with `toLocaleString`, string concat, or ad-hoc rounding. Use helpers from `@shared/utils/helpers/general`. Call them in the template; do not wrap a single call in an extra `computed`.
+
+## Fiat — `formatDollars`
+
+```vue
+{{ formatDollars(row.amount_usd) }}
+{{ formatDollars(item.amount, "$", "—", 2) }}
+```
+
+Signature: `formatDollars(amount, currencyValue = "$", errorValue = "—", countPartMoreOneDollar = 0, countPartLessOneDollar = 2, isFormattedIntegerPart = true)`.
+
+Pass `""` as `currencyValue` when the symbol should be omitted.
+
+## Crypto — `formatAmountBlockchain`
+
+```vue
+{{ formatAmountBlockchain(item.amount, item.currency_id) }} {{ getCurrentCoin(item.currency_id) }}
+```
+
+Always pass `currencyId` (`USDT.Tron`, `BTC.Bitcoin`) so precision comes from `DEFAULT_CURRENCIES_INFO`.
+
+## Currency id — `COIN.Blockchain`
+
+- Ticker: `getCurrentCoin("USDT.Tron")` → `USDT`
+- Network: `getCurrentBlockchain("USDT.Tron")` → `Tron`
+
+Do not `split(".")` inline.

@@ -1,0 +1,40 @@
+---
+description: How to use Pinia stores in Vue components
+globs: "{apps,shared,pay-shared}/**/*.{ts,vue}"
+alwaysApply: false
+---
+
+# Pinia store usage in components
+
+Do **not** keep calling the store as `amlStore.foo` throughout the component.
+
+1. Call the store once.
+2. Destructure **state / getters** with `storeToRefs` (keeps reactivity).
+3. Destructure **actions** directly from the store (actions are not refs).
+
+## ✅ Good
+
+```ts
+import { storeToRefs } from "pinia";
+import { useAmlStore } from "@dv-admin/stores/aml";
+
+const amlStore = useAmlStore();
+const { formAmlScoreTransaction, isHaveKeysCurrentAml } = storeToRefs(amlStore);
+const { getAmlKeys, getAmlSettings } = amlStore;
+```
+
+## ❌ Avoid
+
+```ts
+const amlStore = useAmlStore();
+
+// later everywhere:
+amlStore.formAmlScoreTransaction
+amlStore.getAmlKeys()
+```
+
+## Notes
+
+- Never destructure state without `storeToRefs` — you lose reactivity.
+- Do not wrap actions in `storeToRefs`.
+- In templates, refs from `storeToRefs` auto-unwrap (`isHaveKeysCurrentAml`, not `isHaveKeysCurrentAml.value`).

@@ -21,7 +21,13 @@
 		"type:check": "vue-tsc --build --force",
 		"lint": "eslint shared pay-shared apps",
 		"lint:fix": "eslint shared pay-shared apps --fix",
-		"format": "prettier --write shared pay-shared apps"
+		"format": "prettier --write shared pay-shared apps",
+		"i18n:dv-admin": "dv-translator translate --dir apps/dv-admin/src/utils/libs/i18n/locales -l ar,bn,bg,es,zh,de,pl,pt,sw,uk,fr,ja,cs,da,el,et,fi,hu,id,it,ko,lt,lv,nb,nl,ro,sk,sl,sv,tr,hi,vi -t 10 -m gpt-5.5 --context 'Crypto payments merchant admin UI'",
+		"i18n:pay": "dv-translator translate --dir pay-shared/utils/libs/i18n/locales -l ar,bn,bg,es,zh,de,pl,pt,sw,uk,fr,ja,cs,da,el,et,fi,hu,id,it,ko,lt,lv,nb,nl,ro,sk,sl,sv,tr,hi,vi -t 10 -m gpt-5.5 --context 'Crypto payments merchant UI'",
+		"i18n:status:dv-admin": "dv-translator status --dir apps/dv-admin/src/utils/libs/i18n/locales",
+		"i18n:status:pay": "dv-translator status --dir pay-shared/utils/libs/i18n/locales",
+		"i18n:prune:dv-admin": "dv-translator prune --dir apps/dv-admin/src/utils/libs/i18n/locales",
+		"i18n:prune:pay": "dv-translator prune --dir pay-shared/utils/libs/i18n/locales"
 	},
 	"dependencies": {
 		"@dv.net/ui-kit": "^7.7.15",
@@ -48,6 +54,7 @@
 		"vue-virtual-scroller": "3.0.4"
 	},
 	"devDependencies": {
+		"@dv.net/translator": "^2.0.0",
 		"@rushstack/eslint-patch": "^1.16.1",
 		"@tsconfig/node20": "^20.1.9",
 		"@types/js-cookie": "^3.0.6",

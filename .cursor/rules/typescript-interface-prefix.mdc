@@ -1,0 +1,27 @@
+---
+description: TypeScript interfaces use an I name prefix
+globs: "{apps,shared,pay-shared}/**/*.{ts,vue}"
+alwaysApply: false
+---
+
+# Interface naming convention
+
+All TypeScript interfaces must use an **`I` prefix**.
+
+## ✅ Good
+
+```ts
+interface IStoreResponse {
+	id: string;
+}
+```
+
+## ❌ Avoid
+
+```ts
+interface StoreResponse {
+	id: string;
+}
+```
+
+Applies to interfaces in standalone `.ts` files and in `<script setup lang="ts">` blocks in `.vue` files. API types live in `utils/types/api/` (e.g. `apiGo.ts`).

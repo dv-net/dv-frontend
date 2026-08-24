@@ -1,0 +1,17 @@
+---
+description: Manual i18n translations only for English and Russian; other locales are auto-generated
+alwaysApply: true
+---
+
+# i18n translations (en / ru only)
+
+When adding or updating user-facing copy (`$t` / `t` keys):
+
+- **dv-admin** — edit only `apps/dv-admin/src/utils/libs/i18n/locales/en.json` and `ru.json`.
+- **pay / pay-simple** — edit only `pay-shared/utils/libs/i18n/locales/en.json` and `ru.json` (shared locales).
+- Do **not** create, update, or translate other locale JSON files (`de.json`, `fr.json`, etc.).
+- Do **not** restore deleted locale files unless explicitly asked.
+
+Other languages are filled later by the project translator before production.
+
+English message keys stay as in `en.json` (same pattern as the rest of the app).

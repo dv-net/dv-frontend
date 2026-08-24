@@ -1,0 +1,32 @@
+---
+description: Vue SFC styles must be scoped; no global component styles
+globs: "{apps,shared,pay-shared}/**/*.vue"
+alwaysApply: false
+---
+
+# Scoped styles in Vue SFCs
+
+Component styles belong in a **single** `<style scoped lang="scss">` block.
+
+Do **not** add an unscoped `<style>` (even for select/modal/tooltip overlays).
+
+If a ui-kit overlay teleports to `body` and scoped CSS cannot reach it:
+
+1. Set **`:teleport="false"`** so the overlay stays in the component tree.
+2. Style kit internals with **`:deep(...)`**.
+
+```vue
+<!-- ❌ BAD: global styles from a Vue file -->
+<ui-select popper-class="date-profile-select" />
+<style lang="scss">
+.date-profile-select.ui-select__popper { ... }
+</style>
+
+<!-- ✅ GOOD -->
+<ui-select :teleport="false" />
+<style scoped lang="scss">
+.field:deep(.ui-select__option) { ... }
+</style>
+```
+
+App-wide tokens, resets, and ui-kit overrides stay in `apps/<app>/src/assets/scss/` (and `shared/assets/scss/`), not in SFCs.

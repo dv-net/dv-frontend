@@ -1,0 +1,49 @@
+---
+description: Vue 3 Composition API, modern frontend, and consistent UI/UX
+alwaysApply: true
+---
+
+# Modern Vue and UI/UX
+
+Think like a **senior Vue 3 + UI/UX** engineer: readable, maintainable code and a calm, cohesive interface without visual noise.
+
+This is a **Vite monorepo**: `apps/dv-admin`, `apps/pay`, `apps/pay-simple`, plus `shared/` (`@shared`) and `pay-shared/` (`@pay-shared`). Work in the app you were asked about; put cross-app code in `shared/` or `pay-shared/`, not by copying files between apps.
+
+## Vue and TypeScript
+
+- New screens and components use **`<script setup lang="ts">`** and the **Composition API**; do not add Options API.
+- Type props, emits, and public API contracts. Interfaces use an **`I` prefix** (e.g. `IStoreResponse`, `IAmlSettingsRequest`) — see `typescript-interface-prefix.mdc`.
+- Props: **destructure `defineProps`**; defaults in the destructuring pattern (see `vue-define-props.mdc`).
+- Extract repeated logic into **composables** (`utils/composables/`). App-wide state via **Pinia** (`apps/<app>/src/stores/`). In components use `storeToRefs` for state/getters and destructure actions from the store (see `pinia-store-usage.mdc`).
+- Prefer Vue **3.5+** APIs (reactive props destructure, generics on `defineProps` / `defineEmits` where useful).
+- Component CSS: only `<style scoped lang="scss">` (see `vue-scoped-styles.mdc`). For teleported overlays use `:teleport="false"` + `:deep`, never a global `<style>`.
+
+## Stack and dependencies
+
+- Follow versions in **`package.json`** / lockfile; do not propose breaking major upgrades without an explicit ask and verification.
+- UI first via **`@dv.net/ui-kit`** (`UiButton`, `UiInput`, `UiSkeleton`, …) and existing wrappers in `apps/<app>/src/components/ui/`.
+- Do not invent a one-off visual language; match the current app (dv-admin: white panels, ~20px radius, light shadow; pay forms: existing payment layout).
+
+## Structure
+
+- App code: `apps/<app>/src/` with aliases `@dv-admin`, `@pay`, `@pay-simple`.
+- Shared across all apps → `shared/` (`@shared`). Shared between pay and pay-simple → `pay-shared/` (`@pay-shared`).
+- Per-app utils: `constants/`, `composables/`, `helpers/`, `services/`, `types/`, `libs/` (axios, i18n). Services are thin backend wrappers only (see `services-api.mdc`).
+- Pages under `apps/<app>/src/views/<feature>/`; page-only pieces in colocated `components/` / `composables/`.
+- Shared/reusable UI → `apps/<app>/src/components/` (especially `ui/`). Do not put page-only widgets there.
+- Icons: Vue SFCs with **`currentColor`** in `apps/<app>/src/components/icons/` (see `svg-icons.mdc`). `UiIcon` from the kit is fine for kit icons.
+
+## i18n
+
+- User-facing copy via **`$t('…')` / `t('…')`** with English message keys. Add strings only to `en.json` and `ru.json` (see `i18n-locales.mdc`):
+  - dv-admin: `apps/dv-admin/src/utils/libs/i18n/locales/`
+  - pay / pay-simple: `pay-shared/utils/libs/i18n/locales/`
+
+## Design and UX
+
+- **Hierarchy**: title → supporting text → actions; no extra decorative layers.
+- **Spacing**: predictable `gap` / padding; align with existing cards and page grids in that app.
+- **States**: loading (`UiSkeleton` / button `loading`), empty, and error with clear copy — never a blank unexplained screen.
+- **Typography**: readable sizes/weights; fiat via `formatDollars`, crypto via `formatAmountBlockchain` (see `currency-format.mdc`).
+- **Accessibility**: meaningful labels for icon-only controls; keep text/background contrast reasonable.
+- **Scope**: prefer an elegant fix within the task; no large unsolicited refactors.

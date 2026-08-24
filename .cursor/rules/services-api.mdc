@@ -1,0 +1,31 @@
+---
+description: API services are thin backend endpoint wrappers only
+globs: "apps/**/utils/services/**/*.ts"
+alwaysApply: false
+---
+
+# API services
+
+`apps/<app>/src/utils/services/` wraps backend endpoints only: method, URL, typed request/response.
+
+Use the app axios instance (`api` from `@dv-admin/utils/libs/axios`, `@pay/utils/libs/axios`, or `@pay-simple/utils/libs/axios`). Name functions `getApi…` / `postApi…` / `putApi…` / `deleteApi…`. Return `resp.data.data` (or void for empty bodies).
+
+Do **not** put defaults, filter merging, pagination, mapping, or other call-site logic in a service. That belongs in the store, component, or composable that calls it.
+
+```ts
+// ❌ BAD — defaults and filter assembly in the service
+export const getApiAmlHistory = async (page?: number) => {
+	const resp = await api.get("/dv-admin/aml/history", {
+		params: { page: page ?? 1, per_page: 20 }
+	});
+	return resp.data.data;
+};
+
+// ✅ GOOD — pass through what the caller sends
+export const getApiAmlHistory = async (params: IAmlHistoryFilterRequest): Promise<IAmlHistoryResponse> => {
+	const resp = await api.get("/dv-admin/aml/history", { params });
+	return resp.data.data;
+};
+```
+
+Path params that are part of the URL (`/dv-admin/aml/${slug}/keys`) stay in the service signature. Query `page` / `filters` are passed in by the caller.
