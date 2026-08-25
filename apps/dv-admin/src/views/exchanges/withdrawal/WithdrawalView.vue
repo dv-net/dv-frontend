@@ -104,7 +104,7 @@
 				</template>
 
 				<template #body-cell-min_amount="{ row }">
-					{{ formatAmountBlockchain(row.min_amount, row.currency_id) }} {{ getCurrentCoin(row.currency_id) }}
+					{{ formatAmountBlockchain(row.min_amount, { currencyId: row.currency_id }) }} {{ getCurrentCoin(row.currency_id) }}
 				</template>
 
 				<template #body-cell-trash="{ row }">

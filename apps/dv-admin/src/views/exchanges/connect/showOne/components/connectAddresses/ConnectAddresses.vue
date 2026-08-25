@@ -34,7 +34,7 @@
 						/>
 					</div>
 					<div class="amount">
-						<span class="amount__text">{{ formatAmountBlockchain(item.min_deposit_amount, item.currency) }}</span>
+						<span class="amount__text">{{ formatAmountBlockchain(item.min_deposit_amount, { currencyId: item.currency }) }}</span>
 					</div>
 				</div>
 			</div>

@@ -85,7 +85,7 @@
 					{{ currentBlockchain.code === "Bsc" ? "BSC" : currentBlockchain.code }} {{ currentBlockchain.label }}
 				</span>
 				<span v-if="isTypeCurrency">
-					≈ {{ formatAmountBlockchain(getAmountRate(currency!), currencyId, undefined, "—", true) }}
+					≈ {{ formatAmountBlockchain(getAmountRate(currency!), { currencyId, thousandSeparator: "," }) }}
 				</span>
 				<!--				<span v-if="isTypeBlockchain">{{ $t("Commission") }} —</span>-->
 			</div>

@@ -88,7 +88,7 @@
 	<div class="amount-editor" :class="[`amount-editor--${size}`]">
 		<template v-if="!isEdit">
 			<span class="amount-editor__number">
-				{{ formatDollars(amount, "$", "—", 2) }}
+				{{ formatDollars(amount, { countPartMoreOneDollar: 2 }) }}
 			</span>
 			<button class="amount-editor__text" type="button" @click="startEditAmount">
 				{{ $t("Change") }}

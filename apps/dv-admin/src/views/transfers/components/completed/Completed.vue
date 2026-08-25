@@ -107,7 +107,7 @@
 								<blockchain-icon :type="item.currency_id" width="16px" height="16px" />
 								<span>{{ formatDollars(item.amount_usd) }}</span>
 								<span class="price__info">
-									({{ formatAmountBlockchain(item.amount, item?.currency_id) }} {{ getCurrentCoin(item?.currency_id) }})
+									({{ formatAmountBlockchain(item.amount, { currencyId: item?.currency_id }) }} {{ getCurrentCoin(item?.currency_id) }})
 								</span>
 							</div>
 							<div class="header__item time">

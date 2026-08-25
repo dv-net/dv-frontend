@@ -44,12 +44,12 @@
 				const balanceFormatted = Number(balance) / 1_000_000;
 				if (balanceFormatted < numericAmount) {
 					throw new Error(
-						`Insufficient ${token}. Available: ${formatAmountBlockchain(balanceFormatted, `${token}.Tron`)} ${token}, required: ${formatAmountBlockchain(numericAmount, `${token}.Tron`)} ${token}`
+						`Insufficient ${token}. Available: ${formatAmountBlockchain(balanceFormatted, { currencyId: `${token}.Tron` })} ${token}, required: ${formatAmountBlockchain(numericAmount, { currencyId: `${token}.Tron` })} ${token}`
 					);
 				}
 				if (balanceTRX < estimatedFee) {
 					throw new Error(
-						`Insufficient TRX for fees. Available: ${formatAmountBlockchain(balanceTRX, "TRX.Tron")} TRX, required: ${formatAmountBlockchain(estimatedFee, "TRX.Tron")} TRX`
+						`Insufficient TRX for fees. Available: ${formatAmountBlockchain(balanceTRX, { currencyId: "TRX.Tron" })} TRX, required: ${formatAmountBlockchain(estimatedFee, { currencyId: "TRX.Tron" })} TRX`
 					);
 				}
 				const amountInSmallestUnit = BigInt(Math.floor(numericAmount * 1_000_000));
@@ -58,7 +58,7 @@
 				const requiredTRX = numericAmount + estimatedFee;
 				if (balanceTRX < requiredTRX) {
 					throw new Error(
-						`Insufficient TRX. Available: ${formatAmountBlockchain(balanceTRX, "TRX.Tron")} TRX, required: ${formatAmountBlockchain(requiredTRX, "TRX.Tron")} TRX (incl. fee)`
+						`Insufficient TRX. Available: ${formatAmountBlockchain(balanceTRX, { currencyId: "TRX.Tron" })} TRX, required: ${formatAmountBlockchain(requiredTRX, { currencyId: "TRX.Tron" })} TRX (incl. fee)`
 					);
 				}
 				const amountInSun = tronWeb.toSun(numericAmount);

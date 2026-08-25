@@ -28,4 +28,5 @@ export const formatFiatAmount = (
 	amount: string | number | null | undefined,
 	currency: string,
 	errorValue: string = "—"
-): string => formatDollars(amount, getFiatPrefix(currency), errorValue, 2);
+): string =>
+	formatDollars(amount, { currency: getFiatPrefix(currency), errorValue, countPartMoreOneDollar: 2 });

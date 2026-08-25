@@ -73,7 +73,7 @@
 				<row-element
 					class="info__item"
 					:label="$t('Total')"
-					:value="formatAmountBlockchain(transaction.amount, transaction.currency_id)"
+					:value="formatAmountBlockchain(transaction.amount, { currencyId: transaction.currency_id })"
 				/>
 				<row-element class="info__item" :label="$t('Transaction type')" :value="transaction.type" />
 				<row-element class="info__item" :label="$t('Amount USD')" :value="formatDollars(transaction.amount_usd)" />
@@ -116,7 +116,7 @@
 				<row-element
 					class="info__item info__item--border-none"
 					:label="$t('Total')"
-					:value="formatAmountBlockchain(receipt.amount, receipt.currency_id)"
+					:value="formatAmountBlockchain(receipt.amount, { currencyId: receipt.currency_id })"
 				/>
 			</div>
 		</block-section>

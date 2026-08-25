@@ -82,7 +82,7 @@
 					</div>
 					<div class="row__column">{{ item.count_with_balance }}</div>
 					<div class="row__column">
-						{{ formatAmountBlockchain(item.balance, item.currency.id) }} {{ getCurrentCoin(item.currency.id) }}
+						{{ formatAmountBlockchain(item.balance, { currencyId: item.currency.id }) }} {{ getCurrentCoin(item.currency.id) }}
 					</div>
 					<div class="row__column row__column--bitcoin">{{ formatDollars(item.balance_usd) }}</div>
 				</div>

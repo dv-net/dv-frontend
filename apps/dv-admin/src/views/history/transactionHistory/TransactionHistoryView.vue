@@ -170,7 +170,7 @@
 				<span class="table__point">•</span>
 				<div class="table__blockchain">
 					<blockchain-icon :type="row.currency.id" width="16px" height="16px" />
-					<span>{{ formatAmountBlockchain(row.amount, row?.currency?.id) }}</span>
+					<span>{{ formatAmountBlockchain(row.amount, { currencyId: row?.currency?.id }) }}</span>
 					<span class="table__blockchain-currency">{{ getCurrentCoin(row?.currency?.id) }}</span>
 				</div>
 			</div>

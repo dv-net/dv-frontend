@@ -53,7 +53,7 @@
 	});
 
 	const updateAmounts = (asset: IProcessingWalletsAssets) => {
-		form.value.amount = parseFloat(formatAmountBlockchain(asset.amount, asset.currency_id));
+		form.value.amount = parseFloat(formatAmountBlockchain(asset.amount, { currencyId: asset.currency_id }));
 		amountUsdWithdrawProcessing.value = parseFloat(asset.amount_usd);
 	};
 
@@ -118,7 +118,7 @@
 				<template v-for="item in data.assets" :key="item.currency_id">
 					<template v-if="!selectedAsset || selectedAsset.currency_id !== item.currency_id">
 						<ui-tooltip
-							:text="`${formatAmountBlockchain(item.amount, item.currency_id)} • ${formatDollars(item.amount_usd, undefined, undefined, 1)}`"
+							:text="`${formatAmountBlockchain(item.amount, { currencyId: item.currency_id })} • ${formatDollars(item.amount_usd, { countPartMoreOneDollar: 1 })}`"
 						>
 							<button class="item" @click="selectAsset(item)">
 								<span class="item__content">
@@ -134,8 +134,8 @@
 							<span>{{ getCurrentCoin(item.currency_id) }}</span>
 						</span>
 						<span class="item__price">
-							{{ formatAmountBlockchain(selectedAsset.amount, selectedAsset.currency_id) }} •
-							{{ formatDollars(selectedAsset.amount_usd, undefined, undefined, 1) }}
+							{{ formatAmountBlockchain(selectedAsset.amount, { currencyId: selectedAsset.currency_id }) }} •
+							{{ formatDollars(selectedAsset.amount_usd, { countPartMoreOneDollar: 1 }) }}
 						</span>
 					</button>
 				</template>
@@ -153,7 +153,7 @@
 					<template #append>
 						<div class="input-sum__inner">
 							<span v-if="amountUsdWithdrawProcessing" class="input-sum__amount">
-								≈ {{ formatDollars(amountUsdWithdrawProcessing, undefined, undefined, 1) }}
+								≈ {{ formatDollars(amountUsdWithdrawProcessing, { countPartMoreOneDollar: 1 }) }}
 							</span>
 							<ui-button type="secondary" size="lg" :disabled="isDisabledAllAmount" @click="selectAllAmount">
 								{{ $t("All") }}

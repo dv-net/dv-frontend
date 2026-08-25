@@ -114,22 +114,17 @@
 	const handleChangeSelect = () => {
 		if (currentCurrency.value === "USDT") {
 			rules.value.amount = parseFloat(
-				formatDollars(
-					convertCurrencyInUsd(rules.value.amount, withdrawalCurrencyRules.value.rate),
-					"",
-					"0",
-					0,
-					2,
-					false
-				)
+				formatDollars(convertCurrencyInUsd(rules.value.amount, withdrawalCurrencyRules.value.rate), {
+					currency: "",
+					errorValue: "0",
+					thousandSeparator: ""
+				})
 			);
 		} else {
 			rules.value.amount = parseFloat(
 				formatAmountBlockchain(
 					convertCurrencyInUsd(rules.value.amount, withdrawalCurrencyRules.value.rate, "usdToCurrency"),
-					props.currencyId,
-					undefined,
-					"0"
+					{ currencyId: props.currencyId, errorValue: "0" }
 				)
 			);
 		}

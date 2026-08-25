@@ -9,7 +9,7 @@
 	<div class="price">
 		<span>{{ formatDollars(amountUsd) }}</span>
 		<span>•</span>
-		<span class="price__opacity">{{ formatAmountBlockchain(amount, currencyId) }}</span>
+		<span class="price__opacity">{{ formatAmountBlockchain(amount, { currencyId }) }}</span>
 		<span class="price__opacity">{{ getCurrentCoin(currencyId) }}</span>
 	</div>
 </template>

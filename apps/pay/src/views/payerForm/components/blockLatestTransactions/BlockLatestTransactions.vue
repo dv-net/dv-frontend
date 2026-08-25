@@ -86,7 +86,7 @@
 								</span>
 							</div>
 						</div>
-						<div class="header__amount">{{ formatDollars(item.amount_usd, "$", "—", 2) }}</div>
+						<div class="header__amount">{{ formatDollars(item.amount_usd, { countPartMoreOneDollar: 2 }) }}</div>
 					</div>
 					<div class="hash" @click="handleOpenExplorer(item)">
 						<span class="hash__text">{{ item.hash }}</span>

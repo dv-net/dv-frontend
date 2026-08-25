@@ -82,7 +82,7 @@
 				<div class="price">
 					<span class="price__title">{{ formatDollars(item.amount_usd) }}</span>
 					<span class="price__subtitle">
-						{{ formatAmountBlockchain(item.amount, item.currency) }} {{ getCurrentCoin(item.currency) }}
+						{{ formatAmountBlockchain(item.amount, { currencyId: item.currency }) }} {{ getCurrentCoin(item.currency) }}
 					</span>
 				</div>
 			</div>

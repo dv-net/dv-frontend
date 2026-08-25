@@ -104,7 +104,7 @@
 		<template #body-cell-amount_native="{ row }">
 			{{
 				row.amount_native
-					? `${formatAmountBlockchain(row.amount_native, row.currency_id)} ${getCurrentCoin(row.currency_id)}`
+					? `${formatAmountBlockchain(row.amount_native, { currencyId: row.currency_id })} ${getCurrentCoin(row.currency_id)}`
 					: "—"
 			}}
 		</template>

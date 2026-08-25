@@ -14,3 +14,6 @@ export const URL_REGEX =
 	"(\\/[-a-z\\d%@_.~+&:]*)*" +
 	"(\\?[;&a-z\\d%@_.,~+&:=-]*)?" +
 	"(\\#[-a-z\\d_]*)?$";
+
+/** 57346 → 57 346 */
+export const THOUSANDS_SEPARATOR_REGEX = /\B(?=(\d{3})+(?!\d))/g;

@@ -36,13 +36,10 @@
 							<div class="content__amount">
 								<currency-icon :type="getCurrentCoin(currentTransaction.currency_code) as CurrencyType" />
 								<span>{{
-									formatAmountBlockchain(
-										currentTransaction.amount,
-										currentTransaction.currency_code,
-										undefined,
-										"—",
-										true
-									)
+									formatAmountBlockchain(currentTransaction.amount, {
+										currencyId: currentTransaction.currency_code,
+										thousandSeparator: ","
+									})
 								}}</span>
 								<span>{{ getCurrentCoin(currentTransaction.currency_code) }}</span>
 								<span class="content__amount-usd"

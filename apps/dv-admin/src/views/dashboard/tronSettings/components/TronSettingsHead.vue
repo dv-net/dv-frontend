@@ -57,13 +57,13 @@
 								<div class="tooltip__item">
 									<span>{{ $t("Total energy available") }}:</span>
 									<span>
-										{{ formatDollars(tron?.additional_data?.tron_data?.total_energy, "") }}
+										{{ formatDollars(tron?.additional_data?.tron_data?.total_energy, { currency: "" }) }}
 									</span>
 								</div>
 								<div class="tooltip__item">
 									<span>{{ $t("On the wallet") }}:</span>
 									<span>
-										{{ formatDollars(tron?.additional_data?.tron_data?.stacked_energy, "") }}
+										{{ formatDollars(tron?.additional_data?.tron_data?.stacked_energy, { currency: "" }) }}
 									</span>
 								</div>
 								<div class="tooltip__item">
@@ -73,7 +73,7 @@
 											formatDollars(
 												tron?.additional_data?.tron_data?.total_energy -
 													tron?.additional_data?.tron_data?.stacked_energy,
-												""
+												{ currency: "" }
 											)
 										}}
 									</span>
@@ -91,9 +91,9 @@
 								<span>{{ $t("Energy") }}</span>
 							</span>
 							<span class="bar__content-amount">
-								{{ formatDollars(calculationEnergyAndBandwidth(processingWallets, "energy").meaningStripe, "") }}
+								{{ formatDollars(calculationEnergyAndBandwidth(processingWallets, "energy").meaningStripe, { currency: "" }) }}
 								{{ $t("out of") }}
-								{{ formatDollars(tron?.additional_data?.tron_data?.total_energy, "") }}
+								{{ formatDollars(tron?.additional_data?.tron_data?.total_energy, { currency: "" }) }}
 							</span>
 						</div>
 						<ui-tooltip
@@ -102,7 +102,7 @@
 							position="top-start"
 							title="Energy"
 							is-gold-title
-							:text="`${formatDollars(calculationEnergyAndBandwidth(processingWallets, 'energy').meaningStripe, '')} ${$t('Energy is reserved to replenish the costs incurred during previous transmissions')}`"
+							:text="`${formatDollars(calculationEnergyAndBandwidth(processingWallets, 'energy').meaningStripe, { currency: '' })} ${$t('Energy is reserved to replenish the costs incurred during previous transmissions')}`"
 						>
 							<div class="bar__inner">
 								<div
@@ -119,9 +119,9 @@
 								<span>{{ $t("Bandwidth") }}</span>
 							</span>
 							<span class="bar__content-amount">
-								{{ formatDollars(calculationEnergyAndBandwidth(processingWallets, "bandwidth").meaningStripe, "") }}
+								{{ formatDollars(calculationEnergyAndBandwidth(processingWallets, "bandwidth").meaningStripe, { currency: "" }) }}
 								{{ $t("out of") }}
-								{{ formatDollars(tron?.additional_data?.tron_data?.total_bandwidth, "") }}
+								{{ formatDollars(tron?.additional_data?.tron_data?.total_bandwidth, { currency: "" }) }}
 							</span>
 						</div>
 						<ui-tooltip
@@ -130,7 +130,7 @@
 							position="top-start"
 							title="Bandwidth"
 							is-gold-title
-							:text="`${formatDollars(calculationEnergyAndBandwidth(processingWallets, 'bandwidth').meaningStripe, '')} ${$t('Bandwidth is reserved to cover costs incurred during previous transmissions')}`"
+							:text="`${formatDollars(calculationEnergyAndBandwidth(processingWallets, 'bandwidth').meaningStripe, { currency: '' })} ${$t('Bandwidth is reserved to cover costs incurred during previous transmissions')}`"
 						>
 							<div class="bar__inner">
 								<div

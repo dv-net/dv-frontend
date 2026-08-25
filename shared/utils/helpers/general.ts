@@ -1,6 +1,7 @@
 import { DEFAULT_CURRENCIES_INFO, DEFAULT_CURRENCY_PRECISION } from "@shared/utils/constants/blockchain";
+import { THOUSANDS_SEPARATOR_REGEX, URL_REGEX } from "@shared/utils/constants/regex";
 import type { BlockchainType } from "@shared/utils/types/blockchain";
-import { URL_REGEX } from "@shared/utils/constants/regex";
+import type { IFormatAmountBlockchainOptions, IFormatDollarsOptions } from "@shared/utils/types/currency";
 
 // text / Text
 export const capitalizeFirstLetter = (str: string, locale?: string): string => {
@@ -25,34 +26,41 @@ export const checkIsJSON = (str: string): boolean => {
 	}
 };
 
+const groupIntegerPart = (value: string | number, separator: string): string => {
+	const raw = String(value);
+	if (!separator) return raw;
+	return raw.replace(THOUSANDS_SEPARATOR_REGEX, separator);
+};
+
 // 57346.87000000 / $57 346
 export const formatDollars = (
 	amount: string | number | null | undefined,
-	currencyValue: string = "$", // which currency to return
-	errorValue: string = "—", // value returned on error
-	countPartMoreOneDollar: number = 0, // number of decimal places when amount = from 1 to ~
-	countPartLessOneDollar: number = 2, // number of decimal places when amount = from 0 to 1
-	isFormattedIntegerPart: boolean = true // whether to format dollar output
+	options: IFormatDollarsOptions = {}
 ): string => {
+	const {
+		currency = "$",
+		errorValue = "—",
+		countPartMoreOneDollar = 0,
+		countPartLessOneDollar = 2,
+		thousandSeparator = " "
+	} = options;
 	if (amount === null || amount === undefined) return errorValue;
 	const num = typeof amount === "string" ? parseFloat(amount) : amount;
 	if (Number.isNaN(num) || !Number.isFinite(num)) return errorValue;
 	if (num > 0 && num < 1) {
-		const factor: number = 10 ** countPartLessOneDollar;
-		return currencyValue + (Math.floor(num * factor) / factor).toFixed(countPartLessOneDollar).replace(/\.?0+$/, "");
+		const factor = 10 ** countPartLessOneDollar;
+		return currency + (Math.floor(num * factor) / factor).toFixed(countPartLessOneDollar).replace(/\.?0+$/, "");
 	}
 	const [integerPart = "0", fractionalPart] = String(num).split(".");
-	const formattedIntegerPart = isFormattedIntegerPart
-		? parseFloat(integerPart).toLocaleString("ru-RU")
-		: parseFloat(integerPart);
+	const formattedIntegerPart = groupIntegerPart(parseFloat(integerPart), thousandSeparator);
 	const formattedFractionalPart =
 		fractionalPart !== undefined && fractionalPart !== null ? fractionalPart.slice(0, countPartMoreOneDollar) : "";
 	const hasMeaningfulFraction = Boolean(
 		countPartMoreOneDollar > 0 && formattedFractionalPart && parseInt(formattedFractionalPart, 10) > 0
 	);
 	return hasMeaningfulFraction
-		? `${currencyValue}${formattedIntegerPart}.${formattedFractionalPart}`
-		: currencyValue + formattedIntegerPart;
+		? `${currency}${formattedIntegerPart}.${formattedFractionalPart}`
+		: currency + formattedIntegerPart;
 };
 
 // TRX * rate / 55$ or send prop "usdToCurrency" USD / rate
@@ -70,41 +78,34 @@ export const convertCurrencyInUsd = (
 // 57346.875465654654 / 57346.875465
 export const formatAmountBlockchain = (
 	amount: string | number | null | undefined,
-	currencyId?: string,
-	setCount?: number,
-	errorValue: string = "—",
-	isFormattedIntegerPart: boolean = false
+	options: IFormatAmountBlockchainOptions = {}
 ): string => {
+	const { currencyId, count, errorValue = "—", thousandSeparator = "" } = options;
 	if (amount === null || amount === undefined) return errorValue;
-	const precisionCurrency: number =
-		currencyId && currencyId in DEFAULT_CURRENCIES_INFO
+	const digits =
+		count ??
+		(currencyId && currencyId in DEFAULT_CURRENCIES_INFO
 			? DEFAULT_CURRENCIES_INFO[currencyId as BlockchainType].precision
-			: DEFAULT_CURRENCY_PRECISION;
-	const count: number = setCount ?? precisionCurrency;
-	const num: number = typeof amount === "string" ? parseFloat(amount) : amount;
+			: DEFAULT_CURRENCY_PRECISION);
+	const num = typeof amount === "string" ? parseFloat(amount) : amount;
 	if (Number.isNaN(num) || !Number.isFinite(num)) return errorValue;
 	let integerPartRaw: string;
 	let fractionalPartRaw: string;
 	if (typeof amount === "string") {
 		[integerPartRaw = "0", fractionalPartRaw = ""] = amount.split(".");
+	} else if (digits === 0) {
+		integerPartRaw = String(Math.floor(num));
+		fractionalPartRaw = "";
 	} else {
-		if (count === 0) {
-			const integerValue = Math.floor(num);
-			integerPartRaw = integerValue.toString();
-			fractionalPartRaw = "";
-		} else {
-			const factor = 10 ** count;
-			const truncated = Math.floor(num * factor) / factor;
-			const fixed = truncated.toFixed(count);
-			[integerPartRaw = "0", fractionalPartRaw = ""] = fixed.split(".");
-		}
+		const factor = 10 ** digits;
+		const truncated = Math.floor(num * factor) / factor;
+		[integerPartRaw = "0", fractionalPartRaw = ""] = truncated.toFixed(digits).split(".");
 	}
-	if (count === 0) {
-		const integerValue = Math.floor(num);
-		return isFormattedIntegerPart ? integerValue.toLocaleString("en-US") : String(integerValue);
+	if (digits === 0) {
+		return groupIntegerPart(Math.floor(num), thousandSeparator);
 	}
-	const finalFractional = fractionalPartRaw.slice(0, count).replace(/0+$/, "");
-	const formattedInteger = isFormattedIntegerPart ? parseFloat(integerPartRaw).toLocaleString("en-US") : integerPartRaw;
+	const finalFractional = fractionalPartRaw.slice(0, digits).replace(/0+$/, "");
+	const formattedInteger = groupIntegerPart(integerPartRaw, thousandSeparator);
 	return finalFractional ? `${formattedInteger}.${finalFractional}` : formattedInteger;
 };
 

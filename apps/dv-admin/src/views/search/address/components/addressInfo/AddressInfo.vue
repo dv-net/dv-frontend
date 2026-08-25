@@ -82,7 +82,7 @@
 					<div class="transactions__details">
 						<div class="blockchain">
 							<blockchain-icon :type="row.currency.id" width="16px" height="16px" />
-							<span class="blockchain__text">{{ formatAmountBlockchain(row.amount, row?.currency?.id) }}</span>
+							<span class="blockchain__text">{{ formatAmountBlockchain(row.amount, { currencyId: row?.currency?.id }) }}</span>
 							<span class="blockchain__currency">{{ getCurrentCoin(row?.currency?.id) }}</span>
 						</div>
 						<span class="blockchain__point">•</span>
@@ -134,7 +134,7 @@
 						<blockchain-icon :type="row.currency_id as BlockchainType" width="16px" height="16px" />
 
 						<span>
-							{{ formatAmountBlockchain(row.amount, row.currency_id) }} {{ getCurrentCoin(row.currency_id) }}
+							{{ formatAmountBlockchain(row.amount, { currencyId: row.currency_id }) }} {{ getCurrentCoin(row.currency_id) }}
 						</span>
 
 						<span class="history__price-info"> ({{ formatDollars(row.amount_usd) }}) </span>

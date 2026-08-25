@@ -79,7 +79,7 @@
 		:class="{ 'pb-16': !isEditingEmail }"
 	>
 		<global-input v-if="user" title="Email" is-no-translation>
-			<block-section v-if="!isEditingEmail" class="user-email-input" radius="sm">
+			<block-section v-if="!isEditingEmail" class="user-email-input mb-24" radius="sm">
 				<div class="flex flex-x-between">
 					<div>{{ user.email }}</div>
 

@@ -137,10 +137,10 @@
 									<ui-tag v-if="item.is_used" :text="$t('It is used')" mode="positive" />
 								</div>
 								<div class="table__column table__column--amount">
-									min: {{ formatAmountBlockchain(item.min_deposit_amount, item.currency) }}
+									min: {{ formatAmountBlockchain(item.min_deposit_amount, { currencyId: item.currency }) }}
 									{{ getCurrentCoin(item.currency) }}
 									<tooltip-helper
-										:title="`min: ${formatAmountBlockchain(item.min_deposit_amount, item.currency)} ${getCurrentCoin(item.currency)}`"
+										:title="`min: ${formatAmountBlockchain(item.min_deposit_amount, { currencyId: item.currency })} ${getCurrentCoin(item.currency)}`"
 										:text="
 											$t(
 												'Minimum deposit amount. Many crypto exchanges have different minimum thresholds for the deposited amount for each cryptocurrency.'

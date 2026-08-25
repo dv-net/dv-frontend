@@ -88,13 +88,10 @@
 				<span v-if="isTypeCurrency">
 					≈
 					{{
-						formatAmountBlockchain(
-							getAmountRate((currencyId || currency!) as CurrencyType),
+						formatAmountBlockchain(getAmountRate((currencyId || currency!) as CurrencyType), {
 							currencyId,
-							undefined,
-							"—",
-							true
-						)
+							thousandSeparator: ","
+						})
 					}}
 				</span>
 				<!--				<span v-if="isTypeBlockchain">{{ $t("Commission") }} —</span>-->

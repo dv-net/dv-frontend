@@ -7,7 +7,7 @@
 
 <template>
 	<div class="amount">
-		{{ formatAmountBlockchain(data.balance.native_token, data.currency.id) }}
+		{{ formatAmountBlockchain(data.balance.native_token, { currencyId: data.currency.id }) }}
 		{{ getCurrentCoin(data.currency.id) }}
 	</div>
 </template>

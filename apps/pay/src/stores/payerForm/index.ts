@@ -223,7 +223,7 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		const find = Object.entries(rates.value).find((item) => item[0].includes(currency));
 		if (!find) return "0";
 		const result: number = amount.value / parseFloat(find[1]);
-		return formatAmountBlockchain(result, find[0], undefined, "0");
+		return formatAmountBlockchain(result, { currencyId: find[0], errorValue: "0" });
 	};
 
 	const checkValidationCurrencyAndChain = (

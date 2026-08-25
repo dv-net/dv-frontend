@@ -56,7 +56,7 @@
 				<div class="content">
 					<span>{{ formatDollars(item.amount_usd) }}</span>
 					<span class="content__label">
-						{{ formatAmountBlockchain(item.amount, item.currency_id) }} {{ getCurrentCoin(item.currency_id) }}
+						{{ formatAmountBlockchain(item.amount, { currencyId: item.currency_id }) }} {{ getCurrentCoin(item.currency_id) }}
 					</span>
 				</div>
 				<send-button :data="item" is-card placement="bottom-end" />

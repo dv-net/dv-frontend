@@ -68,10 +68,20 @@
 			currency: findRule.currency,
 			min_amount: findRule.min_withdraw_amount,
 			min_amount_usd: parseFloat(
-				formatDollars(convertCurrencyInUsd(findRule.min_withdraw_amount, rate_usd), "", "0", 2)
+				formatDollars(convertCurrencyInUsd(findRule.min_withdraw_amount, rate_usd), {
+					currency: "",
+					errorValue: "0",
+					countPartMoreOneDollar: 2
+				})
 			),
 			fee: findRule.fee,
-			fee_usd: parseFloat(formatDollars(convertCurrencyInUsd(findRule.fee, rate_usd), "", "0", 2))
+			fee_usd: parseFloat(
+				formatDollars(convertCurrencyInUsd(findRule.fee, rate_usd), {
+					currency: "",
+					errorValue: "0",
+					countPartMoreOneDollar: 2
+				})
+			)
 		};
 	});
 

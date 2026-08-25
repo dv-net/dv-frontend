@@ -98,7 +98,7 @@ export const optionsChartTransactions: any = {
 					<div class="chartjs-tooltip__top">${point.label}</div>
 					<div class="chartjs-tooltip__content">
 						<span class="chartjs-tooltip__label">${i18n.global.t("Income")}</span>
-						<span class="chartjs-tooltip__price">${formatDollars(price, "$", "", 2)}</span>
+						<span class="chartjs-tooltip__price">${formatDollars(price, { errorValue: "", countPartMoreOneDollar: 2 })}</span>
 					</div>
     		`;
 
@@ -174,7 +174,17 @@ export const optionsChartTransactions: any = {
 			ticks: {
 				callback: (value: number) => {
 					if (value === 0) return "";
-					return parseFloat(formatDollars(value, "", "", 2, 2, false)) + "$";
+					return (
+						parseFloat(
+							formatDollars(value, {
+								currency: "",
+								errorValue: "",
+								countPartMoreOneDollar: 2,
+								countPartLessOneDollar: 2,
+								thousandSeparator: ""
+							})
+						) + "$"
+					);
 				},
 				color: "#C0C2C8",
 				font: {

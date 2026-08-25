@@ -51,9 +51,12 @@
 				<span>{{ item.blockchain }}</span>
 			</div>
 		</div>
-		<span v-if="isShowPrice" class="card__price"
-			>≈ {{ formatAmountBlockchain(getAmountRate(currency), undefined, undefined, "—", true) }}</span
+		<span
+			v-if="isShowPrice"
+			class="card__price"
 		>
+			≈ {{ formatAmountBlockchain(getAmountRate(currency), { thousandSeparator: "," }) }}
+		</span>
 	</div>
 </template>
 

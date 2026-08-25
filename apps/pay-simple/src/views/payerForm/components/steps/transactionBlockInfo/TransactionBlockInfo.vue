@@ -48,7 +48,7 @@
 		<div class="row">
 			<span class="row__label">{{ $t("Sum") }}:</span>
 			<span class="row__value">
-				{{ formatAmountBlockchain(currentTransaction.amount, currentTransaction.currency_code, undefined, "—", true) }}
+				{{ formatAmountBlockchain(currentTransaction.amount, { currencyId: currentTransaction.currency_code, thousandSeparator: "," }) }}
 				{{ getCurrentCoin(currentTransaction.currency_code) }} ({{
 					formatFiatAmount(
 						currentTransaction.amount_usd,

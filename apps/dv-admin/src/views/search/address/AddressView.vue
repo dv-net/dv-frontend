@@ -175,7 +175,7 @@
 					<div class="card__inner">
 						<div class="card__item">
 							<span class="card__label">{{ $t("Total") }}</span>
-							<span>{{ formatAmountBlockchain(item.amount, item.currency) }} {{ getCurrentCoin(item.currency) }}</span>
+							<span>{{ formatAmountBlockchain(item.amount, { currencyId: item.currency }) }} {{ getCurrentCoin(item.currency) }}</span>
 						</div>
 						<div class="card__item">
 							<span class="card__label">{{ $t("Total") + " USD" }}</span>
