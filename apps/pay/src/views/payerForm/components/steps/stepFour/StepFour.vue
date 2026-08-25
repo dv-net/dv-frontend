@@ -1,9 +1,9 @@
 <script setup lang="ts">
 	import { usePayerFormStore } from "@pay/stores/payerForm";
 	import { storeToRefs } from "pinia";
-	import WrapperBlock from "@pay/views/payerForm/components/wrapperBlock/WrapperBlock.vue";
-	import NotFound from "@pay/views/payerForm/components/steps/notFound/NotFound.vue";
-	import BannerInfo from "@pay/views/payerForm/components/steps/bannerInfo/BannerInfo.vue";
+	import WrapperBlock from "@pay-shared/components/payerForm/wrapperBlock/WrapperBlock.vue";
+	import NotFound from "@pay-shared/components/payerForm/notFound/NotFound.vue";
+	import BannerInfo from "@pay-shared/components/payerForm/bannerInfo/BannerInfo.vue";
 	import type { BlockchainType } from "@shared/utils/types/blockchain";
 	import {
 		DEFAULT_CURRENCIES_INFO,
@@ -29,7 +29,7 @@
 	// };
 
 	const AdvertisingBlock = defineAsyncComponent(
-		() => import("@pay/views/payerForm/components/steps/stepFour/advertisingBlock/AdvertisingBlock.vue")
+		() => import("@pay-shared/components/payerForm/advertisingBlock/AdvertisingBlock.vue")
 	);
 
 	const confirmations = computed<number>(() => {

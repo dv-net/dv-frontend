@@ -1,4 +1,4 @@
-import type { CurrencyType } from "@pay-simple/utils/types/blockchain";
+import type { CurrencyType } from "@shared/utils/types/blockchain";
 import type { IInfoBlockchains } from "@pay-simple/utils/types/api/apiGo.ts";
 
 export interface IProps {

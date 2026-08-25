@@ -14,7 +14,7 @@ import {
 } from "@shared/utils/helpers/general.ts";
 import { isLessThan1Hour } from "@pay-shared/utils/helpers/dateParse";
 import type { BlockchainType } from "@shared/utils/types/blockchain";
-import type { CurrencyType } from "@pay-simple/utils/types/blockchain";
+import type { CurrencyType } from "@shared/utils/types/blockchain";
 import { SORT_CHAIN } from "@pay-shared/utils/constants/blockchain";
 import { loaderShutdown } from "@pay-shared/utils/helpers/general";
 import type { IPayerFormTimelineItem } from "@pay-simple/utils/types/schemas";

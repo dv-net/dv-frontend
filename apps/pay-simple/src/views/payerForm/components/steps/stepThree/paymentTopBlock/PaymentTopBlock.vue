@@ -3,12 +3,12 @@
 	import QrcodeVue from "qrcode.vue";
 	import { ref, shallowRef, watch } from "vue";
 	import { storeToRefs } from "pinia";
-	import type { CurrencyType } from "@pay-simple/utils/types/blockchain";
+	import type { CurrencyType } from "@shared/utils/types/blockchain";
 	import type { BlockchainType } from "@shared/utils/types/blockchain";
 	import { usePayerFormStore } from "@pay-simple/stores/payerForm";
 	import BlockchainIcon from "@shared/components/ui/blockchainIcon/BlockchainIcon.vue";
-	import CurrencyIcon from "@pay-simple/components/ui/currencyIcon/CurrencyIcon.vue";
-	import IconLogoQrCode from "@pay-simple/components/icons/IconLogoQrCode.vue";
+	import CurrencyIcon from "@pay-shared/components/ui/currencyIcon/CurrencyIcon.vue";
+	import IconLogoQrCode from "@pay-shared/components/icons/IconLogoQrCode.vue";
 	import { LottieAnimation } from "lottie-web-vue";
 	import { blockchainCurrencyId } from "@shared/utils/constants/blockchain";
 	import { useI18n } from "vue-i18n";

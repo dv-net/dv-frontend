@@ -1,6 +1,6 @@
 <script setup lang="ts">
-	import type { CurrencyType } from "@pay-simple/utils/types/blockchain";
-	import CurrencyIcon from "@pay-simple/components/ui/currencyIcon/CurrencyIcon.vue";
+	import type { CurrencyType } from "@shared/utils/types/blockchain";
+	import CurrencyIcon from "@pay-shared/components/ui/currencyIcon/CurrencyIcon.vue";
 	import type { IProps } from "@pay-simple/views/payerForm/components/steps/cardCurrency/types.ts";
 	import { usePayerFormStore } from "@pay-simple/stores/payerForm";
 	import { formatAmountBlockchain } from "@shared/utils/helpers/general.ts";

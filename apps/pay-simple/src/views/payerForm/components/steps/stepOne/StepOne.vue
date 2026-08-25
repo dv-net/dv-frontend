@@ -5,11 +5,11 @@
 	import { computed, ref, onMounted, onUnmounted } from "vue";
 	import type { IPayerAddressResponse } from "@pay-simple/utils/types/api/apiGo.ts";
 	import { getCurrentBlockchain, getCurrentCoin } from "@shared/utils/helpers/general.ts";
-	import type { CurrencyType } from "@pay-simple/utils/types/blockchain";
+	import type { CurrencyType } from "@shared/utils/types/blockchain";
 	import { useRoute, useRouter } from "vue-router";
 	import CardCurrency from "@pay-simple/views/payerForm/components/steps/cardCurrency/CardCurrency.vue";
-	import NotFound from "@pay-simple/views/payerForm/components/steps/notFound/NotFound.vue";
-	import WrapperBlock from "@pay-simple/views/payerForm/components/wrapperBlock/WrapperBlock.vue";
+	import NotFound from "@pay-shared/components/payerForm/notFound/NotFound.vue";
+	import WrapperBlock from "@pay-shared/components/payerForm/wrapperBlock/WrapperBlock.vue";
 	import { convertToEnglishLayout } from "@pay-shared/utils/helpers/keyboardLayout";
 	import { useI18n } from "vue-i18n";
 	import { transliterate } from "transliteration";

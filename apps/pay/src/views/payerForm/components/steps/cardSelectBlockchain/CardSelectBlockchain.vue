@@ -6,7 +6,7 @@
 	import { usePayerFormStore } from "@pay/stores/payerForm";
 	import { blockchainCurrencyId } from "@shared/utils/constants/blockchain";
 	import BlockchainIcon from "@shared/components/ui/blockchainIcon/BlockchainIcon.vue";
-	import CurrencyIcon from "@pay/components/ui/currencyIcon/CurrencyIcon.vue";
+	import CurrencyIcon from "@pay-shared/components/ui/currencyIcon/CurrencyIcon.vue";
 	import type { BlockchainType } from "@shared/utils/types/blockchain";
 	import { capitalizeFirstLetter, formatAmountBlockchain } from "@shared/utils/helpers/general.ts";
 	import { useMediaQuery } from "@shared/utils/composables/useMediaQuery.ts";

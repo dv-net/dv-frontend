@@ -1,0 +1,24 @@
+---
+description: Code comments and in-repo docs must be English only
+alwaysApply: true
+---
+
+# English-only comments and docs
+
+All comments, JSDoc, and in-repo technical documentation must be **English**.
+
+Applies to: `//`, `/* */`, `/** */`, README/notes next to code, commit message bodies when writing docs in code.
+
+Does **not** apply to: user-facing i18n strings (`en.json` / `ru.json` and other locales).
+
+```ts
+// ❌ BAD
+/** tienda deshabilitada por el administrador */
+const errorStore = ref(null);
+
+// ✅ GOOD
+/** HTTP 410 — store disabled by admin; otherwise generic load failure */
+const errorStore = ref(null);
+```
+
+When editing a file, rewrite any non-English comments you touch to English. Do not leave non-English comments in new code.

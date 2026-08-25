@@ -1,4 +1,4 @@
-import type { CurrencyType } from "@pay/utils/types/blockchain";
+import type { CurrencyType } from "@shared/utils/types/blockchain";
 import type { BlockchainType } from "@shared/utils/types/blockchain";
 
 export interface IProps {

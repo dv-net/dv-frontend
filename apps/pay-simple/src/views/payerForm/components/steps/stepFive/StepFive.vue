@@ -1,13 +1,13 @@
 <script setup lang="ts">
 	import { formatAmountBlockchain, getCurrentCoin } from "@shared/utils/helpers/general.ts";
-	import { formatFiatAmount } from "@pay-simple/utils/helpers/fiat";
+	import { formatFiatAmount } from "@pay-shared/utils/helpers/fiat";
 	import { storeToRefs } from "pinia";
 	import { usePayerFormStore } from "@pay-simple/stores/payerForm";
-	import WrapperBlock from "@pay-simple/views/payerForm/components/wrapperBlock/WrapperBlock.vue";
-	import NotFound from "@pay-simple/views/payerForm/components/steps/notFound/NotFound.vue";
-	import CurrencyIcon from "@pay-simple/components/ui/currencyIcon/CurrencyIcon.vue";
-	import type { CurrencyType } from "@pay-simple/utils/types/blockchain";
-	import BannerInfo from "@pay-simple/views/payerForm/components/steps/bannerInfo/BannerInfo.vue";
+	import WrapperBlock from "@pay-shared/components/payerForm/wrapperBlock/WrapperBlock.vue";
+	import NotFound from "@pay-shared/components/payerForm/notFound/NotFound.vue";
+	import CurrencyIcon from "@pay-shared/components/ui/currencyIcon/CurrencyIcon.vue";
+	import type { CurrencyType } from "@shared/utils/types/blockchain";
+	import BannerInfo from "@pay-shared/components/payerForm/bannerInfo/BannerInfo.vue";
 	import TransactionBlockInfo from "@pay-simple/views/payerForm/components/steps/transactionBlockInfo/TransactionBlockInfo.vue";
 	import loaderSuccessfulPayment from "@pay-simple/assets/animations/loaderSuccessfulPayment.json";
 	import { LottieAnimation } from "lottie-web-vue";

@@ -1,10 +1,10 @@
-import { APP_LAYOUT } from "@pay-simple/layouts";
+import { APP_LAYOUT } from "@pay-shared/layouts";
 
 export default [
 	{
 		path: "/:pathMatch(.*)*",
 		name: "page-not-found",
-		component: () => import("@pay-simple/views/notFound/NotFoundView.vue"),
+		component: () => import("@pay-shared/views/notFound/NotFoundView.vue"),
 		meta: { layout: APP_LAYOUT.EMPTY }
 	}
 ];

@@ -16,7 +16,7 @@
 		wagmiAdapter
 	} from "@pay-shared/utils/constants/connectWallet/evm.ts";
 	import { UiButton, UiCopyText, UiIcon, UiInput } from "@dv.net/ui-kit";
-	import IconWalletConnect from "@pay/components/icons/IconWalletConnect.vue";
+	import IconWalletConnect from "@pay-shared/components/icons/IconWalletConnect.vue";
 	import iconMetaMask from "@pay/assets/images/wallets/metaMask.png";
 	import iconTrustWallet from "@pay/assets/images/wallets/trustWallet.png";
 	import iconOkxWallet from "@pay/assets/images/wallets/okx.png";
@@ -29,7 +29,7 @@
 	import { useNotifications } from "@shared/utils/composables/useNotifications.ts";
 	import { useI18n } from "vue-i18n";
 	import { getPublicClient } from "@wagmi/core";
-	import IconDisconnectWallet from "@pay/components/icons/IconDisconnectWallet.vue";
+	import IconDisconnectWallet from "@pay-shared/components/icons/IconDisconnectWallet.vue";
 
 	const { notify } = useNotifications();
 	const { t } = useI18n();

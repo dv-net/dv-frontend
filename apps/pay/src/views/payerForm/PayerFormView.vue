@@ -1,24 +1,24 @@
 <script setup lang="ts">
 	import PayerFormHeader from "@pay/views/payerForm/components/payerFormHeader/PayerFormHeader.vue";
-	import PayerFormSidebar from "@pay/views/payerForm/components/payerFormSidebar/PayerFormSidebar.vue";
+	import PayerFormSidebar from "@pay-shared/components/payerForm/payerFormSidebar/PayerFormSidebar.vue";
+	import AmountEditor from "@pay/views/payerForm/components/amountEditor/AmountEditor.vue";
 	import { useRoute, useRouter } from "vue-router";
 	import { type Component, computed, defineAsyncComponent, onMounted, onUnmounted, watch } from "vue";
 	import { usePayerFormStore } from "@pay/stores/payerForm";
 	import { storeToRefs } from "pinia";
 	import { getCurrentBlockchain, getCurrentCoin } from "@shared/utils/helpers/general.ts";
-	import BlockAdvertising from "@pay/views/payerForm/components/blockAdvertising/BlockAdvertising.vue";
+	import BlockAdvertising from "@pay-shared/components/payerForm/blockAdvertising/BlockAdvertising.vue";
 	import { getApiWalletConfirm } from "@pay/utils/services/payerForm.ts";
 	import { useI18n } from "vue-i18n";
 	import AudioPayment from "@pay/views/payerForm/components/audioPayment/AudioPayment.vue";
-	import BlockLatestTransactions from "@pay/views/payerForm/components/blockLatestTransactions/BlockLatestTransactions.vue";
-
+	import BlockLatestTransactions from "@pay-shared/components/payerForm/blockLatestTransactions/BlockLatestTransactions.vue";
 	import StepOne from "@pay/views/payerForm/components/steps/stepOne/StepOne.vue";
 	import StepTwo from "@pay/views/payerForm/components/steps/stepTwo/StepTwo.vue";
 	import StepThree from "@pay/views/payerForm/components/steps/stepThree/stepThree.vue";
 	import StepFour from "@pay/views/payerForm/components/steps/stepFour/StepFour.vue";
 	import StepFive from "@pay/views/payerForm/components/steps/stepFive/StepFive.vue";
 
-	const StepError = defineAsyncComponent(() => import("@pay/views/payerForm/components/steps/stepError/StepError.vue"));
+	const FormError = defineAsyncComponent(() => import("@pay-shared/components/payerForm/formError/FormError.vue"));
 
 	const {
 		currentStep,
@@ -35,7 +35,8 @@
 		stepMap,
 		filteredBlockchains,
 		filteredCurrencies,
-		isShowBlockLatestTransactions
+		isShowBlockLatestTransactions,
+		transactionsConfirmed
 	} = storeToRefs(usePayerFormStore());
 	const { getWalletTxFind, checkValidationCurrencyAndChain, getStartInfo } = usePayerFormStore();
 
@@ -164,12 +165,26 @@
 		<payer-form-header />
 		<div class="form__inner">
 			<div class="form__body">
-				<step-error v-if="errorStore" />
+				<form-error v-if="errorStore" :type="errorStore" />
 				<component v-else :is="currentStepComponent" />
 			</div>
-			<payer-form-sidebar />
+			<payer-form-sidebar
+				:payer-id="payerId"
+				:store="store"
+				:has-error="Boolean(errorStore)"
+				:current-step="currentStep"
+				:is-show-advertising="isShowAdvertising"
+				:is-show-block-latest-transactions="isShowBlockLatestTransactions"
+				:transactions="transactionsConfirmed"
+			>
+				<amount-editor size="lg" />
+			</payer-form-sidebar>
 			<block-advertising v-if="isShowAdvertising" class="form__advertising" />
-			<block-latest-transactions v-if="isShowBlockLatestTransactions" class="form__latest-transactions" />
+			<block-latest-transactions
+				v-if="isShowBlockLatestTransactions"
+				class="form__latest-transactions"
+				:transactions="transactionsConfirmed"
+			/>
 		</div>
 	</div>
 </template>

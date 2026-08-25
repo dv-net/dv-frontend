@@ -1,4 +1,4 @@
-import { APP_LAYOUT } from "@pay-simple/layouts";
+import { APP_LAYOUT } from "@pay-shared/layouts";
 
 export default [
 	{

@@ -3,19 +3,19 @@
 	import { usePayerFormStore } from "@pay/stores/payerForm";
 	import { storeToRefs } from "pinia";
 	import { computed, onMounted, ref } from "vue";
-	import type { CurrencyType } from "@pay/utils/types/blockchain";
+	import type { CurrencyType } from "@shared/utils/types/blockchain";
 	import type { BlockchainType } from "@shared/utils/types/blockchain";
-	import WrapperBlock from "@pay/views/payerForm/components/wrapperBlock/WrapperBlock.vue";
+	import WrapperBlock from "@pay-shared/components/payerForm/wrapperBlock/WrapperBlock.vue";
 	import BlockchainIcon from "@shared/components/ui/blockchainIcon/BlockchainIcon.vue";
 	import WalletTronConnect from "@pay/views/payerForm/components/steps/stepThree/walletTronConnect/WalletTronConnect.vue";
 	import { evmArray } from "@pay-shared/utils/constants/connectWallet/evm.ts";
 	import WalletEvmConnect from "@pay/views/payerForm/components/steps/stepThree/walletEvmConnect/WalletEvmConnect.vue";
-	import RowTemplate from "@pay/views/payerForm/components/steps/stepThree/rowTemplate/RowTemplate.vue";
-	import CurrencyIcon from "@pay/components/ui/currencyIcon/CurrencyIcon.vue";
+	import RowTemplate from "@pay-shared/components/payerForm/rowTemplate/RowTemplate.vue";
+	import CurrencyIcon from "@pay-shared/components/ui/currencyIcon/CurrencyIcon.vue";
 	import PaymentTopBlock from "@pay/views/payerForm/components/steps/stepThree/paymentTopBlock/PaymentTopBlock.vue";
 	import { changeChainBsc } from "@shared/utils/helpers/general.ts";
 	import { blockchainCurrencyId } from "@shared/utils/constants/blockchain";
-	import BannerInfo from "@pay/views/payerForm/components/steps/bannerInfo/BannerInfo.vue";
+	import BannerInfo from "@pay-shared/components/payerForm/bannerInfo/BannerInfo.vue";
 	import AmountEditor from "@pay/views/payerForm/components/amountEditor/AmountEditor.vue";
 	import { postApiWalletRefreshAddress } from "@pay/utils/services/payerForm";
 

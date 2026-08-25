@@ -10,7 +10,7 @@
 	import { useI18n } from "vue-i18n";
 	import { UiButton, UiCopyText, UiInput } from "@dv.net/ui-kit";
 	import WalletTronModal from "@pay-simple/views/payerForm/components/steps/stepThree/walletTronConnect/walletTronModal/WalletTronModal.vue";
-	import IconDisconnectWallet from "@pay-simple/components/icons/IconDisconnectWallet.vue";
+	import IconDisconnectWallet from "@pay-shared/components/icons/IconDisconnectWallet.vue";
 
 	const { startPolling } = usePolling();
 	const { notify } = useNotifications();

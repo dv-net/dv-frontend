@@ -1,12 +1,12 @@
 <script setup lang="ts">
 	import PayerFormHeader from "@pay-simple/views/payerForm/components/payerFormHeader/PayerFormHeader.vue";
-	import PayerFormSidebar from "@pay-simple/views/payerForm/components/payerFormSidebar/PayerFormSidebar.vue";
+	import PayerFormSidebar from "@pay-shared/components/payerForm/payerFormSidebar/PayerFormSidebar.vue";
 	import { useRoute, useRouter } from "vue-router";
 	import { type Component, computed, defineAsyncComponent, onMounted, onUnmounted, watch } from "vue";
 	import { usePayerFormStore } from "@pay-simple/stores/payerForm";
 	import { storeToRefs } from "pinia";
 	import { getCurrentBlockchain, getCurrentCoin } from "@shared/utils/helpers/general.ts";
-	import BlockAdvertising from "@pay-simple/views/payerForm/components/blockAdvertising/BlockAdvertising.vue";
+	import BlockAdvertising from "@pay-shared/components/payerForm/blockAdvertising/BlockAdvertising.vue";
 	import { useI18n } from "vue-i18n";
 	import AudioPayment from "@pay-simple/views/payerForm/components/audioPayment/AudioPayment.vue";
 
@@ -16,12 +16,14 @@
 	import StepFour from "@pay-simple/views/payerForm/components/steps/stepFour/StepFour.vue";
 	import StepFive from "@pay-simple/views/payerForm/components/steps/stepFive/StepFive.vue";
 
-	const StepError = defineAsyncComponent(
-		() => import("@pay-simple/views/payerForm/components/steps/stepError/StepError.vue")
+	const FormError = defineAsyncComponent(
+		() => import("@pay-shared/components/payerForm/formError/FormError.vue")
 	);
 
 	const {
 		currentStep,
+		payerId,
+		amount,
 		isPoolingProgress,
 		store,
 		timeline,
@@ -29,6 +31,9 @@
 		currentChain,
 		errorStore,
 		isShowAdvertising,
+		isShowBlockLatestTransactions,
+		transactionsConfirmed,
+		invoiceCurrency,
 		stepMap,
 		filteredBlockchains,
 		filteredCurrencies,
@@ -147,10 +152,20 @@
 		<payer-form-header />
 		<div class="form__inner">
 			<div class="form__body">
-				<step-error v-if="errorStore" />
+				<form-error v-if="errorStore" :type="errorStore" />
 				<component v-else :is="currentStepComponent" />
 			</div>
-			<payer-form-sidebar />
+			<payer-form-sidebar
+				:payer-id="payerId"
+				:store="store"
+				:has-error="Boolean(errorStore)"
+				:current-step="currentStep"
+				:is-show-advertising="isShowAdvertising"
+				:is-show-block-latest-transactions="isShowBlockLatestTransactions"
+				:transactions="transactionsConfirmed"
+				:amount="amount"
+				:fiat-currency="invoiceCurrency"
+			/>
 			<block-advertising v-if="isShowAdvertising" class="form__advertising" />
 		</div>
 	</div>

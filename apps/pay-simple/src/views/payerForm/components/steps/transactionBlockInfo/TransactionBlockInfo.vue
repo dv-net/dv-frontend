@@ -5,10 +5,10 @@
 		getCurrentCoin,
 		truncateHash
 	} from "@shared/utils/helpers/general.ts";
-	import { formatFiatAmount } from "@pay-simple/utils/helpers/fiat";
-	import type { CurrencyType } from "@pay-simple/utils/types/blockchain";
+	import { formatFiatAmount } from "@pay-shared/utils/helpers/fiat";
+	import type { CurrencyType } from "@shared/utils/types/blockchain";
 	import { blockchainCurrencyId } from "@shared/utils/constants/blockchain";
-	import CurrencyIcon from "@pay-simple/components/ui/currencyIcon/CurrencyIcon.vue";
+	import CurrencyIcon from "@pay-shared/components/ui/currencyIcon/CurrencyIcon.vue";
 	import BlockchainIcon from "@shared/components/ui/blockchainIcon/BlockchainIcon.vue";
 	import DisplayHash from "@shared/components/ui/displayHash/DisplayHash.vue";
 	import { useMediaQuery } from "@shared/utils/composables/useMediaQuery.ts";

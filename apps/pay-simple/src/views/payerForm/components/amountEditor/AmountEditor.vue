@@ -2,7 +2,7 @@
 	import { computed } from "vue";
 	import { storeToRefs } from "pinia";
 	import { usePayerFormStore } from "@pay-simple/stores/payerForm";
-	import { formatFiatAmount } from "@pay-simple/utils/helpers/fiat";
+	import { formatFiatAmount } from "@pay-shared/utils/helpers/fiat";
 
 	defineProps<{ size: "lg" | "md" }>();
 

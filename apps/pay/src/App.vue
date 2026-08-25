@@ -3,14 +3,15 @@
 	import { useRoute } from "vue-router";
 	import { updateTranslationsUiKit } from "./utils/libs/i18n/helpers";
 	import { useI18n } from "vue-i18n";
-	import type { LayoutNames } from "@pay/layouts";
+	import type { LayoutNames } from "@pay-shared/layouts";
+	import LangSelect from "@pay/components/ui/langSelect/LangSelect.vue";
 
 	const { t, locale } = useI18n();
 	const route = useRoute();
 
 	const layouts: Record<LayoutNames, Component> = {
-		"payment-layout": defineAsyncComponent(() => import("@pay/layouts/PaymentLayout.vue")),
-		"empty-layout": defineAsyncComponent(() => import("@pay/layouts/EmptyLayout.vue"))
+		"payment-layout": defineAsyncComponent(() => import("@pay-shared/layouts/PaymentLayout.vue")),
+		"empty-layout": defineAsyncComponent(() => import("@pay-shared/layouts/EmptyLayout.vue"))
 	};
 
 	const resolveLayout = computed(() => {
@@ -35,6 +36,9 @@
 
 <template>
 	<component :is="resolveLayout">
+		<template #lang-select>
+			<lang-select for-header />
+		</template>
 		<RouterView />
 	</component>
 </template>

@@ -5,11 +5,11 @@
 	import { changeChainBsc, getCurrentBlockchain } from "@shared/utils/helpers/general.ts";
 	import BlockchainIcon from "@shared/components/ui/blockchainIcon/BlockchainIcon.vue";
 	import { useRouter, useRoute } from "vue-router";
-	import NotFound from "@pay-simple/views/payerForm/components/steps/notFound/NotFound.vue";
+	import NotFound from "@pay-shared/components/payerForm/notFound/NotFound.vue";
 	import { blockchainCurrencyId } from "@shared/utils/constants/blockchain";
 	import CardSelectBlockchain from "@pay-simple/views/payerForm/components/steps/cardSelectBlockchain/CardSelectBlockchain.vue";
-	import type { CurrencyType } from "@pay-simple/utils/types/blockchain";
-	import WrapperBlock from "@pay-simple/views/payerForm/components/wrapperBlock/WrapperBlock.vue";
+	import type { CurrencyType } from "@shared/utils/types/blockchain";
+	import WrapperBlock from "@pay-shared/components/payerForm/wrapperBlock/WrapperBlock.vue";
 
 	const { filteredBlockchains, isLoading, currentStep, currentCurrency, currentChain } =
 		storeToRefs(usePayerFormStore());

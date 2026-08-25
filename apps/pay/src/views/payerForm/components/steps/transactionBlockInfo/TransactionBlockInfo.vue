@@ -6,9 +6,9 @@
 		getCurrentCoin,
 		truncateHash
 	} from "@shared/utils/helpers/general.ts";
-	import type { CurrencyType } from "@pay/utils/types/blockchain";
+	import type { CurrencyType } from "@shared/utils/types/blockchain";
 	import { blockchainCurrencyId } from "@shared/utils/constants/blockchain";
-	import CurrencyIcon from "@pay/components/ui/currencyIcon/CurrencyIcon.vue";
+	import CurrencyIcon from "@pay-shared/components/ui/currencyIcon/CurrencyIcon.vue";
 	import BlockchainIcon from "@shared/components/ui/blockchainIcon/BlockchainIcon.vue";
 	import DisplayHash from "@shared/components/ui/displayHash/DisplayHash.vue";
 	import { useMediaQuery } from "@shared/utils/composables/useMediaQuery.ts";

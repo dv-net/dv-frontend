@@ -2,11 +2,11 @@
 	import { formatDollars, getCurrentCoin, formatAmountBlockchain } from "@shared/utils/helpers/general.ts";
 	import { storeToRefs } from "pinia";
 	import { usePayerFormStore } from "@pay/stores/payerForm";
-	import WrapperBlock from "@pay/views/payerForm/components/wrapperBlock/WrapperBlock.vue";
-	import NotFound from "@pay/views/payerForm/components/steps/notFound/NotFound.vue";
-	import CurrencyIcon from "@pay/components/ui/currencyIcon/CurrencyIcon.vue";
-	import type { CurrencyType } from "@pay/utils/types/blockchain";
-	import BannerInfo from "@pay/views/payerForm/components/steps/bannerInfo/BannerInfo.vue";
+	import WrapperBlock from "@pay-shared/components/payerForm/wrapperBlock/WrapperBlock.vue";
+	import NotFound from "@pay-shared/components/payerForm/notFound/NotFound.vue";
+	import CurrencyIcon from "@pay-shared/components/ui/currencyIcon/CurrencyIcon.vue";
+	import type { CurrencyType } from "@shared/utils/types/blockchain";
+	import BannerInfo from "@pay-shared/components/payerForm/bannerInfo/BannerInfo.vue";
 	import TransactionBlockInfo from "@pay/views/payerForm/components/steps/transactionBlockInfo/TransactionBlockInfo.vue";
 	import loaderSuccessfulPayment from "@pay/assets/animations/loaderSuccessfulPayment.json";
 	import { LottieAnimation } from "lottie-web-vue";
