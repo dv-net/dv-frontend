@@ -3,9 +3,15 @@ import type {
 	IClarificationStoreRequest,
 	IGetStoresRequest,
 	IRejectStoreRequest,
+	IRootStatisticsResponse,
 	IStoreValidationItemResponse,
 	IStoreValidationResponse
 } from "@dv-admin/utils/types/api/apiGo";
+
+export const getApiRootStatistics = async (): Promise<IRootStatisticsResponse> => {
+	const resp = await api.get("/dv-admin/root/statistics");
+	return resp.data.data;
+};
 
 export const getStores = async (params?: IGetStoresRequest): Promise<IStoreValidationResponse> => {
 	const resp = await api.get("/dv-admin/root/stores", { params });

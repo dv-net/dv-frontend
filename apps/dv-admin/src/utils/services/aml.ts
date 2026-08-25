@@ -9,7 +9,8 @@ import type {
 	IAmlScoreTransactionRequest,
 	IAmlSettingsRequest,
 	IAmlSettingsResponse,
-	IAmlSignalCategoryResponse
+	IAmlSignalCategoryResponse,
+	IAmlStatisticsResponse
 } from "@dv-admin/utils/types/api/apiGo.ts";
 
 export const getApiAmlKeys = async (slug: string): Promise<IAmlKeysResponse[]> => {
@@ -25,6 +26,11 @@ export const getApiAmlCurrencies = async (slug: string): Promise<IAmlCurrenciesR
 export const getApiAmlHistory = async (params: IAmlHistoryFilterRequest): Promise<IAmlHistoryResponse> => {
 	const config = { params };
 	const resp = await api.get(`/dv-admin/aml/history`, config);
+	return resp.data.data;
+};
+
+export const getApiAmlStatistics = async (): Promise<IAmlStatisticsResponse> => {
+	const resp = await api.get(`/dv-admin/aml/statistics`);
 	return resp.data.data;
 };
 

@@ -6,9 +6,9 @@ import type {
 import type {
 	IPayerAddressResponse,
 	IPayerResponse,
-	IPayerStoreResponse,
-	IWalletTransactionResponse
-} from "@pay-simple/utils/types/api/apiGo";
+	IPayerStoreResponse
+} from "@pay-shared/utils/types/payer";
+import type { IWalletTransactionResponse } from "@pay-shared/utils/types/transaction";
 import { getCurrentBlockchain, getCurrentCoin } from "@shared/utils/helpers/general";
 import { TRON_CONTRACTS } from "@pay-shared/utils/constants/connectWallet/tron";
 import { DEFAULT_CURRENCIES_INFO, DEFAULT_CURRENCY_PRECISION } from "@shared/utils/constants/blockchain";

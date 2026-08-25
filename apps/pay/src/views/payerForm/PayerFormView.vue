@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import PayerFormHeader from "@pay/views/payerForm/components/payerFormHeader/PayerFormHeader.vue";
+	import PayerFormHeader from "@pay-shared/components/payerForm/payerFormHeader/PayerFormHeader.vue";
 	import PayerFormSidebar from "@pay-shared/components/payerForm/payerFormSidebar/PayerFormSidebar.vue";
 	import AmountEditor from "@pay/views/payerForm/components/amountEditor/AmountEditor.vue";
 	import { useRoute, useRouter } from "vue-router";
@@ -10,7 +10,7 @@
 	import BlockAdvertising from "@pay-shared/components/payerForm/blockAdvertising/BlockAdvertising.vue";
 	import { getApiWalletConfirm } from "@pay/utils/services/payerForm.ts";
 	import { useI18n } from "vue-i18n";
-	import AudioPayment from "@pay/views/payerForm/components/audioPayment/AudioPayment.vue";
+	import AudioPayment from "@pay-shared/components/payerForm/audioPayment/AudioPayment.vue";
 	import BlockLatestTransactions from "@pay-shared/components/payerForm/blockLatestTransactions/BlockLatestTransactions.vue";
 	import StepOne from "@pay/views/payerForm/components/steps/stepOne/StepOne.vue";
 	import StepTwo from "@pay/views/payerForm/components/steps/stepTwo/StepTwo.vue";
@@ -36,7 +36,9 @@
 		filteredBlockchains,
 		filteredCurrencies,
 		isShowBlockLatestTransactions,
-		transactionsConfirmed
+		transactionsConfirmed,
+		moneyCameAudioRef,
+		paymentFoundAudioRef
 	} = storeToRefs(usePayerFormStore());
 	const { getWalletTxFind, checkValidationCurrencyAndChain, getStartInfo } = usePayerFormStore();
 
@@ -160,9 +162,12 @@
 </script>
 
 <template>
-	<audio-payment />
+	<audio-payment
+		v-model:money-came-audio-ref="moneyCameAudioRef"
+		v-model:payment-found-audio-ref="paymentFoundAudioRef"
+	/>
 	<div class="form">
-		<payer-form-header />
+		<payer-form-header :timeline="timeline" :current-step="currentStep" :step-map="stepMap" />
 		<div class="form__inner">
 			<div class="form__body">
 				<form-error v-if="errorStore" :type="errorStore" />

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import PayerFormHeader from "@pay-simple/views/payerForm/components/payerFormHeader/PayerFormHeader.vue";
+	import PayerFormHeader from "@pay-shared/components/payerForm/payerFormHeader/PayerFormHeader.vue";
 	import PayerFormSidebar from "@pay-shared/components/payerForm/payerFormSidebar/PayerFormSidebar.vue";
 	import { useRoute, useRouter } from "vue-router";
 	import { type Component, computed, defineAsyncComponent, onMounted, onUnmounted, watch } from "vue";
@@ -8,7 +8,7 @@
 	import { getCurrentBlockchain, getCurrentCoin } from "@shared/utils/helpers/general.ts";
 	import BlockAdvertising from "@pay-shared/components/payerForm/blockAdvertising/BlockAdvertising.vue";
 	import { useI18n } from "vue-i18n";
-	import AudioPayment from "@pay-simple/views/payerForm/components/audioPayment/AudioPayment.vue";
+	import AudioPayment from "@pay-shared/components/payerForm/audioPayment/AudioPayment.vue";
 
 	import StepOne from "@pay-simple/views/payerForm/components/steps/stepOne/StepOne.vue";
 	import StepTwo from "@pay-simple/views/payerForm/components/steps/stepTwo/StepTwo.vue";
@@ -37,7 +37,9 @@
 		stepMap,
 		filteredBlockchains,
 		filteredCurrencies,
-		invoiceUuid
+		invoiceUuid,
+		moneyCameAudioRef,
+		paymentFoundAudioRef
 	} = storeToRefs(usePayerFormStore());
 	const { getInvoiceStatusPoll, checkValidationCurrencyAndChain, getStartInfo } = usePayerFormStore();
 
@@ -147,9 +149,12 @@
 </script>
 
 <template>
-	<audio-payment />
+	<audio-payment
+		v-model:money-came-audio-ref="moneyCameAudioRef"
+		v-model:payment-found-audio-ref="paymentFoundAudioRef"
+	/>
 	<div class="form">
-		<payer-form-header />
+		<payer-form-header :timeline="timeline" :current-step="currentStep" :step-map="stepMap" />
 		<div class="form__inner">
 			<div class="form__body">
 				<form-error v-if="errorStore" :type="errorStore" />

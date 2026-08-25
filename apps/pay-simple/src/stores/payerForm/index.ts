@@ -1,11 +1,8 @@
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
 import { getApiInvoice, getApiInvoiceStatus } from "@pay-simple/utils/services/payerForm.ts";
-import type {
-	IPayerAddressResponse,
-	IWalletTransactionResponse,
-	IPayerStoreResponse
-} from "@pay-simple/utils/types/api/apiGo.ts";
+import type { IPayerAddressResponse, IPayerStoreResponse } from "@pay-shared/utils/types/payer";
+import type { IWalletTransactionResponse } from "@pay-shared/utils/types/transaction";
 import {
 	changeChainBsc,
 	formatAmountBlockchain,
@@ -17,7 +14,7 @@ import type { BlockchainType } from "@shared/utils/types/blockchain";
 import type { CurrencyType } from "@shared/utils/types/blockchain";
 import { SORT_CHAIN } from "@pay-shared/utils/constants/blockchain";
 import { loaderShutdown } from "@pay-shared/utils/helpers/general";
-import type { IPayerFormTimelineItem } from "@pay-simple/utils/types/schemas";
+import type { IPayerFormTimelineItem } from "@pay-shared/utils/types/payerForm";
 import {
 	mapPaySimpleInvoiceToPayerResponse,
 	mapPaySimplePaymentToTransaction

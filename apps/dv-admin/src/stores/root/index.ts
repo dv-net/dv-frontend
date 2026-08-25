@@ -1,14 +1,26 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 import { parsePagination } from "@dv-admin/utils/helpers/parsePagination";
-import { clarificationStore, getStores, rejectStore, verifyStore } from "@dv-admin/utils/services/root";
+import {
+	clarificationStore,
+	getApiRootStatistics,
+	getStores,
+	rejectStore,
+	verifyStore
+} from "@dv-admin/utils/services/root";
 import { STORE_VERIFICATION_STATUS } from "@dv-admin/utils/constants/root";
 import type { UItableMeta } from "@dv.net/ui-kit/dist/components/UiTable/types";
-import type { IGetStoresRequest, IStoreValidationItemResponse } from "@dv-admin/utils/types/api/apiGo";
+import type {
+	IGetStoresRequest,
+	IRootStatisticsResponse,
+	IStoreValidationItemResponse
+} from "@dv-admin/utils/types/api/apiGo";
 
 export const useRootStore = defineStore("root", () => {
 	const isLoadingPending = ref<boolean>(false);
 	const isLoadingRejected = ref<boolean>(false);
+	const isLoadingStatistics = ref<boolean>(false);
+	const rootStatistics = ref<IRootStatisticsResponse | null>(null);
 	const pendingStoresList = ref<IStoreValidationItemResponse[]>([]);
 	const pendingPagination = ref<UItableMeta | null>(null);
 	const rejectedStoresList = ref<IStoreValidationItemResponse[]>([]);
@@ -30,6 +42,18 @@ export const useRootStore = defineStore("root", () => {
 			STORE_VERIFICATION_STATUS.NEEDS_CLARIFICATION
 		]
 	});
+
+	const getRootStatistics = async () => {
+		try {
+			isLoadingStatistics.value = true;
+			const data = await getApiRootStatistics();
+			if (data) rootStatistics.value = data;
+		} catch (error: any) {
+			throw error;
+		} finally {
+			isLoadingStatistics.value = false;
+		}
+	};
 
 	const getPendingStoresList = async () => {
 		try {
@@ -103,6 +127,8 @@ export const useRootStore = defineStore("root", () => {
 	return {
 		isLoadingPending,
 		isLoadingRejected,
+		isLoadingStatistics,
+		rootStatistics,
 		pendingStoresList,
 		pendingPagination,
 		pendingFilter,
@@ -112,6 +138,7 @@ export const useRootStore = defineStore("root", () => {
 		isLoadingVerify,
 		isLoadingReject,
 		isLoadingClarification,
+		getRootStatistics,
 		getPendingStoresList,
 		getRejectedStoresList,
 		getStoresLists,

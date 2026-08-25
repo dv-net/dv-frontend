@@ -138,6 +138,12 @@ export interface IStoreValidationResponse {
 	pagination: IPagination;
 }
 
+export interface IRootStatisticsResponse {
+	users_count: number;
+	projects_count: number;
+	turnover_today_usd: string;
+}
+
 export interface IStoreApiKeyResponse {
 	id: string;
 	enabled: boolean;
@@ -1007,6 +1013,12 @@ export interface IAmlHistoryResponse {
 export interface IAmlHistoryFilterRequest {
 	page: number;
 	provider_slug?: string;
+}
+
+export interface IAmlStatisticsResponse {
+	checked_today: number;
+	successful_today: number;
+	failed_today: number;
 }
 
 export interface IAmlSettingsResponse {

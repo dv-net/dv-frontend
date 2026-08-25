@@ -414,6 +414,8 @@
 	"Status": "Статус",
 	"Unban": "Разбанить",
 	"Ban": "Забанить",
+	"Banned": "Забанен",
+	"Role": "Роль",
 	"Store ID": "ID магазина",
 	"Wallet ID": "ID кошелька",
 	"Transaction type": "Тип транзакции",

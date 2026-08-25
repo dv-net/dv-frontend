@@ -24,14 +24,14 @@
 		amlHistory,
 		amlHistoryFilter,
 		amlSettings,
+		amlStatistics,
 		formAmlScoreTransaction,
 		connectedProviderSlugs
 	} = storeToRefs(useAmlStore());
-	const { getAmlHistory, getAmlSettings, getAllAmlKeys } = useAmlStore();
+	const { getAmlHistory, getAmlSettings, getAllAmlKeys, getAmlStatistics } = useAmlStore();
 	const { dictionary } = storeToRefs(useGeneralStore());
 
 	const isInitializing = ref(true);
-
 	const headers = computed<UiTableHeader[]>(() => [
 		{ name: "created_at", label: t("Date and time") },
 		{ name: "score", label: t("Fraud score") },
@@ -109,7 +109,7 @@
 		}
 
 		amlHistoryFilter.value = { page: 1 };
-		await getAmlHistory();
+		await Promise.all([getAmlHistory(), getAmlStatistics()]);
 		isInitializing.value = false;
 	};
 
@@ -144,7 +144,11 @@
 		</div>
 
 		<div class="flex flex-column gap-24">
-			<aml-history-stats />
+			<aml-history-stats
+				:checked-today="amlStatistics?.checked_today"
+				:successful="amlStatistics?.successful_today"
+				:failed="amlStatistics?.failed_today"
+			/>
 			<h2 class="global-title-h2">{{ $t("History of checks") }}</h2>
 			<ui-table
 				:loading="isLoadingAmlHistory"

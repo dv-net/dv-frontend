@@ -5,6 +5,7 @@ import {
 	getApiAmlRiskRules,
 	getApiAmlSettings,
 	getApiAmlSignals,
+	getApiAmlStatistics,
 	postApiAmlRiskRules
 } from "@dv-admin/utils/services/aml.ts";
 import { computed, ref } from "vue";
@@ -16,7 +17,8 @@ import type {
 	IAmlRiskRuleResponse,
 	IAmlScoreTransactionRequest,
 	IAmlSettingsResponse,
-	IAmlSignalCategoryResponse
+	IAmlSignalCategoryResponse,
+	IAmlStatisticsResponse
 } from "@dv-admin/utils/types/api/apiGo.ts";
 import type { UItableMeta } from "@dv.net/ui-kit/dist/components/UiTable/types";
 import { parsePagination } from "@dv-admin/utils/helpers/parsePagination.ts";
@@ -27,6 +29,7 @@ export const useAmlStore = defineStore("aml", () => {
 	const isLoadingAmlSettings = ref<boolean>(false);
 	const isLoadingAmlRiskRules = ref<boolean>(false);
 	const isLoadingPutAmlRiskRules = ref<boolean>(false);
+	const isLoadingAmlStatistics = ref<boolean>(false);
 	const amlKeys = ref<IAmlKeysResponse[]>([]);
 	const amlKeysByProvider = ref<Record<string, IAmlKeysResponse[]>>({});
 	const isLoadingAmlHistory = ref<boolean>(false);
@@ -34,6 +37,7 @@ export const useAmlStore = defineStore("aml", () => {
 	const amlHistoryPagination = ref<UItableMeta | null>(null);
 	const amlHistoryFilter = ref<IAmlHistoryFilterRequest>({ page: 1 });
 	const amlSettings = ref<IAmlSettingsResponse | null>(null);
+	const amlStatistics = ref<IAmlStatisticsResponse | null>(null);
 	const amlRiskRules = ref<IAmlRiskRuleResponse[]>([]);
 	const amlSignalCategories = ref<IAmlSignalCategoryResponse[]>([]);
 	const formAmlScoreTransaction = ref<IAmlScoreTransactionRequest>({
@@ -179,11 +183,25 @@ export const useAmlStore = defineStore("aml", () => {
 		}
 	};
 
+	const getAmlStatistics = async () => {
+		try {
+			isLoadingAmlStatistics.value = true;
+			const data = await getApiAmlStatistics();
+			if (data) amlStatistics.value = data;
+		} catch (error: any) {
+			throw error;
+		} finally {
+			isLoadingAmlStatistics.value = false;
+		}
+	};
+
 	return {
 		isLoadingAmlRiskRules,
 		isLoadingAmlHistory,
+		isLoadingAmlStatistics,
 		amlHistory,
 		amlSettings,
+		amlStatistics,
 		amlRiskRules,
 		amlSignalCategories,
 		formAmlScoreTransaction,
@@ -197,6 +215,7 @@ export const useAmlStore = defineStore("aml", () => {
 		getAmlKeys,
 		getAllAmlKeys,
 		getAmlHistory,
+		getAmlStatistics,
 		getAmlSettings,
 		getAmlRiskRules,
 		putAmlRiskRules

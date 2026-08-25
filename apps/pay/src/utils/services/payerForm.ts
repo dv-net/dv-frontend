@@ -1,5 +1,6 @@
 import api from "@pay/utils/libs/axios";
-import type { IPayerResponse, IWalletTxFindResponse } from "@pay/utils/types/api/apiGo.ts";
+import type { IPayerResponse } from "@pay-shared/utils/types/payer";
+import type { IWalletTxFindResponse } from "@pay-shared/utils/types/transaction";
 
 export const getApiPayerInfo = async (payerId: string, locale: string): Promise<IPayerResponse> => {
 	const config = { params: { locale } };

@@ -1,89 +1,51 @@
 <script setup lang="ts">
 	import { computed, type Component } from "vue";
 	import { useI18n } from "vue-i18n";
-	import IconChecksRemaining from "@dv-admin/components/icons/aml/IconChecksRemaining.vue";
-	import IconAmlBalance from "@dv-admin/components/icons/aml/IconAmlBalance.vue";
 	import IconCheckedToday from "@dv-admin/components/icons/aml/IconCheckedToday.vue";
 	import IconSuccessful from "@dv-admin/components/icons/aml/IconSuccessful.vue";
 	import IconFailed from "@dv-admin/components/icons/aml/IconFailed.vue";
-	import IconFundsRemaining from "@dv-admin/components/icons/aml/IconFundsRemaining.vue";
 
-	const props = withDefaults(
-		defineProps<{
-			checksRemaining?: string | number | null;
-			amlBalance?: string | number | null;
-			checkedToday?: string | number | null;
-			successful?: string | number | null;
-			failed?: string | number | null;
-			fundsRemaining?: string | number | null;
-		}>(),
-		{
-			checksRemaining: null,
-			amlBalance: null,
-			checkedToday: null,
-			successful: null,
-			failed: null,
-			fundsRemaining: null
-		}
-	);
+	const {
+		checkedToday = null,
+		successful = null,
+		failed = null
+	} = defineProps<{
+		checkedToday?: string | number | null;
+		successful?: string | number | null;
+		failed?: string | number | null;
+	}>();
 
 	const { t } = useI18n();
-
-	const formatValue = (value: string | number | null | undefined) => {
-		if (value === null || value === undefined || value === "") return "—";
-		return value;
-	};
 
 	const items = computed<
 		{
 			key: string;
-			value: string | number;
+			value: string | number | null;
 			label: string;
 			icon: Component;
 			tone: string;
 		}[]
 	>(() => [
 		{
-			key: "checksRemaining",
-			value: formatValue(props.checksRemaining),
-			label: t("Checks remaining"),
-			icon: IconChecksRemaining,
-			tone: "blue"
-		},
-		{
-			key: "amlBalance",
-			value: formatValue(props.amlBalance),
-			label: t("AML balance"),
-			icon: IconAmlBalance,
-			tone: "green"
-		},
-		{
 			key: "checkedToday",
-			value: formatValue(props.checkedToday),
+			value: checkedToday,
 			label: t("Checked today"),
 			icon: IconCheckedToday,
 			tone: "purple"
 		},
 		{
 			key: "successful",
-			value: formatValue(props.successful),
+			value: successful,
 			label: t("Successful"),
 			icon: IconSuccessful,
 			tone: "success"
 		},
 		{
 			key: "failed",
-			value: formatValue(props.failed),
+			value: failed,
 			label: t("Failed"),
 			icon: IconFailed,
 			tone: "danger"
-		},
-		{
-			key: "fundsRemaining",
-			value: formatValue(props.fundsRemaining),
-			label: t("Funds remaining"),
-			icon: IconFundsRemaining,
-			tone: "orange"
 		}
 	]);
 </script>
@@ -109,8 +71,7 @@
 	.aml-history-stats {
 		display: flex;
 		align-items: center;
-		justify-content: space-between;
-		gap: 16px;
+		gap: 24px;
 		width: 100%;
 		padding: 24px 20px;
 		border: 1px solid $grey;
@@ -122,6 +83,7 @@
 			display: flex;
 			align-items: center;
 			gap: 8px;
+			flex: 1;
 			min-width: 0;
 		}
 
@@ -131,14 +93,6 @@
 			width: 40px;
 			height: 40px;
 			border-radius: 10px;
-
-			&--blue {
-				background-color: #eef6fe;
-			}
-
-			&--green {
-				background-color: #e8fcf4;
-			}
 
 			&--purple {
 				background-color: #f5effc;
@@ -150,10 +104,6 @@
 
 			&--danger {
 				background-color: #fdeceb;
-			}
-
-			&--orange {
-				background-color: #fef2e6;
 			}
 		}
 

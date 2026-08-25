@@ -414,6 +414,8 @@
 	"Status": "Status",
 	"Unban": "Unban",
 	"Ban": "Ban",
+	"Banned": "Banned",
+	"Role": "Role",
 	"Store ID": "Store ID",
 	"Wallet ID": "Wallet ID",
 	"Transaction type": "Transaction type",

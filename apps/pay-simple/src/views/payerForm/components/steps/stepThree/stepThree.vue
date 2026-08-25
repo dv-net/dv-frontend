@@ -7,9 +7,9 @@
 	import type { BlockchainType } from "@shared/utils/types/blockchain";
 	import WrapperBlock from "@pay-shared/components/payerForm/wrapperBlock/WrapperBlock.vue";
 	import BlockchainIcon from "@shared/components/ui/blockchainIcon/BlockchainIcon.vue";
-	import WalletTronConnect from "@pay-simple/views/payerForm/components/steps/stepThree/walletTronConnect/WalletTronConnect.vue";
+	import WalletTronConnect from "@pay-shared/components/payerForm/walletTronConnect/WalletTronConnect.vue";
 	import { evmArray } from "@pay-shared/utils/constants/connectWallet/evm.ts";
-	import WalletEvmConnect from "@pay-simple/views/payerForm/components/steps/stepThree/walletEvmConnect/WalletEvmConnect.vue";
+	import WalletEvmConnect from "@pay-shared/components/payerForm/walletEvmConnect/WalletEvmConnect.vue";
 	import RowTemplate from "@pay-shared/components/payerForm/rowTemplate/RowTemplate.vue";
 	import CurrencyIcon from "@pay-shared/components/ui/currencyIcon/CurrencyIcon.vue";
 	import PaymentTopBlock from "@pay-simple/views/payerForm/components/steps/stepThree/paymentTopBlock/PaymentTopBlock.vue";
@@ -95,6 +95,7 @@
 					:amount="currentPrice"
 					:token="currentCurrency"
 					:chain="currentChain"
+					:addresses="addresses"
 				/>
 				<div class="info">
 					<div class="info__inner">
