@@ -51,16 +51,6 @@ export const blockchainIconLoaders: Record<BlockchainType, () => Promise<IconMod
 	"DAI.Arbitrum": () => import("@shared/components/icons/blockchains/IconDAIArbitrum.vue"),
 	"PYUSD.Arbitrum": () => import("@shared/components/icons/blockchains/IconPyusdArbitrum.vue"),
 	"CAKE.Arbitrum": () => import("@shared/components/icons/blockchains/IconCakeArbitrum.vue"),
-	"ETH.Optimism": () => import("@shared/components/icons/blockchains/IconETHOptimism.vue"),
-	"USDT.Optimism": () => import("@shared/components/icons/blockchains/IconUSDTOptimism.vue"),
-	"USDC.Optimism": () => import("@shared/components/icons/blockchains/IconUSDCOptimism.vue"),
-	"DAI.Optimism": () => import("@shared/components/icons/blockchains/IconDAIOptimism.vue"),
-	"ETH.Linea": () => import("@shared/components/icons/blockchains/IconETHLinea.vue"),
-	"USDT.Linea": () => import("@shared/components/icons/blockchains/IconUSDTLinea.vue"),
-	"USDC.Linea": () => import("@shared/components/icons/blockchains/IconUSDCLinea.vue"),
-	"DAI.Linea": () => import("@shared/components/icons/blockchains/IconDAILinea.vue"),
-	"SOL.Solana": () => import("@shared/components/icons/blockchains/IconSOLSolana.vue"),
-	"XMR.Monero": () => import("@shared/components/icons/blockchains/IconXMRMonero.vue"),
 	"DOGE.Dogecoin": () => import("@shared/components/icons/blockchains/IconDOGEDogecoin.vue")
 };
 

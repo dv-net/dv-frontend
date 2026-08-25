@@ -20,8 +20,6 @@ export type CurrencyType =
 	| "BNB"
 	| "CAKE"
 	| "POL"
-	| "SOL"
 	| "ARB"
-	| "XMR"
 	| "SHIB"
 	| "DOGE";

@@ -13,7 +13,7 @@ import { getCurrentBlockchain, getCurrentCoin } from "@shared/utils/helpers/gene
 import { TRON_CONTRACTS } from "@pay-shared/utils/constants/connectWallet/tron";
 import { DEFAULT_CURRENCIES_INFO, DEFAULT_CURRENCY_PRECISION } from "@shared/utils/constants/blockchain";
 
-const EVM_CHAINS = new Set(["Ethereum", "BNBSmartChain", "Polygon", "Arbitrum", "Optimism", "Linea"]);
+const EVM_CHAINS = new Set(["Ethereum", "BNBSmartChain", "Polygon", "Arbitrum"]);
 const BITCOIN_LIKE_CHAINS = new Set(["Bitcoin", "Litecoin", "Bitcoincash", "Dogecoin"]);
 
 const NATIVE_BY_CHAIN: Record<string, string> = {
@@ -25,11 +25,7 @@ const NATIVE_BY_CHAIN: Record<string, string> = {
 	BNBSmartChain: "BNB",
 	Polygon: "POL",
 	Arbitrum: "ETH",
-	Optimism: "ETH",
-	Linea: "ETH",
-	Dogecoin: "DOGE",
-	Solana: "SOL",
-	Monero: "XMR"
+	Dogecoin: "DOGE"
 };
 
 const toCurrencyId = (walletCurrency: string): string => {
