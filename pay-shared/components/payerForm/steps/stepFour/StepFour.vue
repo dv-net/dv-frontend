@@ -8,13 +8,14 @@
 		DEFAULT_CURRENCY_CONFIRMATION,
 		DEFAULT_CURRENCY_DEPOSIT_TIME
 	} from "@shared/utils/constants/blockchain";
-	import loaderWaitingConfirmation from "@pay-shared/assets/animations/loaderWaitingConfirmation.json";
 	import { LottieAnimation } from "lottie-web-vue";
-	import { computed, defineAsyncComponent } from "vue";
+	import { computed, defineAsyncComponent, shallowRef } from "vue";
 	import TransactionBlockInfo from "@pay-shared/components/payerForm/transactionBlockInfo/TransactionBlockInfo.vue";
 	import { useTimer } from "@pay-shared/utils/composables/useTimer.ts";
 	import type { IPayerAddressResponse } from "@pay-shared/utils/types/payer";
 	import type { IWalletTransactionResponse } from "@pay-shared/utils/types/transaction";
+
+	type LottieAnimationData = Record<string, unknown>;
 
 	const {
 		currentTransaction = null,
@@ -29,6 +30,11 @@
 	}>();
 
 	const { formattedTime, counter } = useTimer(currentTransaction?.created_at);
+
+	const loaderWaitingConfirmation = shallowRef<LottieAnimationData | null>(null);
+	void import("@pay-shared/assets/animations/loaderWaitingConfirmation.json").then((module) => {
+		loaderWaitingConfirmation.value = module.default;
+	});
 
 	const AdvertisingBlock = defineAsyncComponent(
 		() => import("@pay-shared/components/payerForm/advertisingBlock/AdvertisingBlock.vue")
@@ -59,7 +65,12 @@
 			<div class="info">
 				<div class="info__top">
 					<div class="content">
-						<lottie-animation class="content__loader" :animation-data="loaderWaitingConfirmation" :loop="true" />
+						<lottie-animation
+							v-if="loaderWaitingConfirmation"
+							class="content__loader"
+							:animation-data="loaderWaitingConfirmation"
+							:loop="true"
+						/>
 						<div class="content__inner">
 							<div class="content__title">{{ $t("Payment found") }}</div>
 							<div class="content__text">

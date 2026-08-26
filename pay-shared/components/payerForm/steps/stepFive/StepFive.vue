@@ -6,10 +6,12 @@
 	import type { CurrencyType } from "@shared/utils/types/blockchain";
 	import BannerInfo from "@pay-shared/components/payerForm/bannerInfo/BannerInfo.vue";
 	import TransactionBlockInfo from "@pay-shared/components/payerForm/transactionBlockInfo/TransactionBlockInfo.vue";
-	import loaderSuccessfulPayment from "@pay-shared/assets/animations/loaderSuccessfulPayment.json";
 	import { LottieAnimation } from "lottie-web-vue";
+	import { shallowRef } from "vue";
 	import type { IPayerAddressResponse } from "@pay-shared/utils/types/payer";
 	import type { IWalletTransactionResponse } from "@pay-shared/utils/types/transaction";
+
+	type LottieAnimationData = Record<string, unknown>;
 
 	const {
 		currentTransaction = null,
@@ -22,6 +24,11 @@
 		payerId?: string | null;
 		formattedFiatAmount: string;
 	}>();
+
+	const loaderSuccessfulPayment = shallowRef<LottieAnimationData | null>(null);
+	void import("@pay-shared/assets/animations/loaderSuccessfulPayment.json").then((module) => {
+		loaderSuccessfulPayment.value = module.default;
+	});
 </script>
 
 <template>
@@ -30,7 +37,11 @@
 			<div class="info">
 				<div class="info__top">
 					<div class="content">
-						<lottie-animation class="content__loader" :animation-data="loaderSuccessfulPayment" />
+						<lottie-animation
+							v-if="loaderSuccessfulPayment"
+							class="content__loader"
+							:animation-data="loaderSuccessfulPayment"
+						/>
 						<div class="content__inner">
 							<div class="content__title">{{ $t("Payment received successfully") }}!</div>
 							<div class="content__amount">

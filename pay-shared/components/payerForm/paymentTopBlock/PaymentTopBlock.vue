@@ -2,10 +2,8 @@
 	import { UiButton } from "@dv.net/ui-kit";
 	import QrcodeVue from "qrcode.vue";
 	import { ref, shallowRef, watch } from "vue";
-	import { storeToRefs } from "pinia";
 	import type { CurrencyType } from "@shared/utils/types/blockchain";
 	import type { BlockchainType } from "@shared/utils/types/blockchain";
-	import { usePayerFormStore } from "@pay-simple/stores/payerForm";
 	import BlockchainIcon from "@shared/components/ui/blockchainIcon/BlockchainIcon.vue";
 	import CurrencyIcon from "@pay-shared/components/ui/currencyIcon/CurrencyIcon.vue";
 	import IconLogoQrCode from "@pay-shared/components/icons/IconLogoQrCode.vue";
@@ -13,14 +11,34 @@
 	import { blockchainCurrencyId } from "@shared/utils/constants/blockchain";
 	import { useI18n } from "vue-i18n";
 	import { changeChainBsc } from "@shared/utils/helpers/general.ts";
+	import borderQrCodeImage from "@pay-shared/assets/images/border-qr-code.png";
 
 	type LottieAnimationData = Record<string, unknown>;
 
-	const { locale } = useI18n();
+	const loaderTransactionPendingLoaders: Record<string, () => Promise<{ default: LottieAnimationData }>> = {
+		general: () => import("@pay-shared/assets/animations/loaderTransactionPending/general.json"),
+		"BTC.Bitcoin": () => import("@pay-shared/assets/animations/loaderTransactionPending/BTC.Bitcoin.json"),
+		"ETH.Ethereum": () => import("@pay-shared/assets/animations/loaderTransactionPending/ETH.Ethereum.json"),
+		"USDT.BNBSmartChain": () =>
+			import("@pay-shared/assets/animations/loaderTransactionPending/USDT.BNBSmartChain.json"),
+		"USDT.Ethereum": () => import("@pay-shared/assets/animations/loaderTransactionPending/USDT.Ethereum.json"),
+		"USDT.Tron": () => import("@pay-shared/assets/animations/loaderTransactionPending/USDT.Tron.json")
+	};
 
-	const { currentAddress, currentCurrency, currentChain, currentCurrencyChainId } = storeToRefs(usePayerFormStore());
-
-	defineProps<{
+	const {
+		currentAddress = null,
+		currentCurrency = null,
+		currentChain = null,
+		currentCurrencyChainId = null,
+		isEvmConnected,
+		isTronSupported,
+		isEvmSupported,
+		isLoadingEvmBtn
+	} = defineProps<{
+		currentAddress?: string | null;
+		currentCurrency?: string | null;
+		currentChain?: string | null;
+		currentCurrencyChainId?: string | null;
 		isEvmConnected: boolean;
 		isTronSupported: boolean;
 		isEvmSupported: boolean;
@@ -32,30 +50,21 @@
 		(event: "open-evm-modal"): void;
 	}>();
 
+	const { locale } = useI18n();
+
 	const isShowQrCode = ref<boolean>(false);
-	const loaderTransactionPendingAnimations = new Set([
-		"BTC.Bitcoin",
-		"ETH.Ethereum",
-		"USDT.BNBSmartChain",
-		"USDT.Ethereum",
-		"USDT.Tron"
-	]);
 	const loaderTransactionPending = shallowRef<LottieAnimationData | null>(null);
-	let loaderTransactionPendingRequestId: number = 0;
+	let loaderTransactionPendingRequestId = 0;
 
 	const loadLoaderTransactionPending = async (currencyChainId: string | null) => {
 		const requestId = ++loaderTransactionPendingRequestId;
 		const animationName =
-			currencyChainId && loaderTransactionPendingAnimations.has(currencyChainId) ? currencyChainId : "general";
+			currencyChainId && loaderTransactionPendingLoaders[currencyChainId] ? currencyChainId : "general";
 
 		try {
-			const response = await fetch(`/pay-simple/static/loaderTransactionPending/${animationName}.json`);
-			if (!response.ok) {
-				throw new Error(`Failed to load loader animation: ${response.status}`);
-			}
-			const animation = await response.json();
+			const animationModule = await loaderTransactionPendingLoaders[animationName]();
 			if (requestId !== loaderTransactionPendingRequestId) return;
-			loaderTransactionPending.value = animation;
+			loaderTransactionPending.value = animationModule.default;
 		} catch (error) {
 			console.error(error);
 			if (requestId !== loaderTransactionPendingRequestId) return;
@@ -64,9 +73,9 @@
 	};
 
 	watch(
-		currentCurrencyChainId,
+		() => currentCurrencyChainId,
 		(currencyChainId) => {
-			void loadLoaderTransactionPending(currencyChainId);
+			void loadLoaderTransactionPending(currencyChainId ?? null);
 		},
 		{ immediate: true }
 	);
@@ -76,7 +85,12 @@
 	<div class="block">
 		<div v-if="currentAddress && currentCurrency && currentChain" class="block__inner">
 			<div class="qr">
-				<div v-if="isShowQrCode" key="qr" class="qr__inner">
+				<div
+					v-if="isShowQrCode"
+					key="qr"
+					class="qr__inner"
+					:style="{ backgroundImage: `url(${borderQrCodeImage})` }"
+				>
 					<qrcode-vue :value="currentAddress" class="qr__code" level="M" render-as="svg" />
 					<icon-logo-qr-code class="qr__logo" />
 				</div>
@@ -192,7 +206,6 @@
 					@extend .center;
 					width: 100%;
 					height: 100%;
-					background-image: url("/border-qr-code.png");
 					background-size: contain;
 					background-repeat: no-repeat;
 					background-position: center;

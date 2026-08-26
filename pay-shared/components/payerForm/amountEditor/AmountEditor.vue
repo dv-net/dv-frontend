@@ -1,17 +1,23 @@
 <script setup lang="ts">
 	import { computed, nextTick, ref } from "vue";
 	import { useI18n } from "vue-i18n";
-	import { formatDollars } from "@shared/utils/helpers/general.ts";
-	import { usePayerFormStore } from "@pay/stores/payerForm";
-	import { storeToRefs } from "pinia";
 	import { useRoute, useRouter } from "vue-router";
+	import { formatFiatAmount } from "@pay-shared/utils/helpers/fiat";
 
 	const { t } = useI18n();
 	const route = useRoute();
 	const router = useRouter();
-	const { amount, store } = storeToRefs(usePayerFormStore());
 
-	defineProps<{ size: "lg" | "md" }>();
+	const { size, amount, fiatCurrency = "USD", minimalPayment = "0" } = defineProps<{
+		size: "lg" | "md";
+		amount: number | null;
+		fiatCurrency?: string;
+		minimalPayment?: string;
+	}>();
+
+	const emit = defineEmits<{
+		(event: "update:amount", value: number): void;
+	}>();
 
 	const isEdit = ref<boolean>(false);
 	const amountDraft = ref<string>("");
@@ -21,15 +27,13 @@
 	const isAmountChanged = computed<boolean>(() => {
 		const normalizedAmount = amountDraft.value.replace(",", ".").trim();
 		const parsedAmount = parseFloat(normalizedAmount);
-		if (!Number.isFinite(parsedAmount) || !Number.isFinite(Number(amount.value))) return false;
-		return parsedAmount !== Number(amount.value);
+		if (!Number.isFinite(parsedAmount) || !Number.isFinite(Number(amount))) return false;
+		return parsedAmount !== Number(amount);
 	});
-
-	const minimalPaymentValue = computed<string>(() => store.value?.minimal_payment || "0");
 
 	const startEditAmount = async () => {
 		amountError.value = "";
-		amountDraft.value = amount.value ? amount.value.toString() : minimalPaymentValue.value;
+		amountDraft.value = amount ? amount.toString() : minimalPayment;
 		isEdit.value = true;
 		await nextTick();
 		amountInputRef.value?.focus();
@@ -71,13 +75,14 @@
 			amountError.value = t("Invalid amount");
 			return;
 		}
-		if (Number.isFinite(minimalPaymentValue.value) && parsedAmount < parseFloat(minimalPaymentValue.value)) {
+		const minPayment = parseFloat(minimalPayment);
+		if (Number.isFinite(minPayment) && minPayment > 0 && parsedAmount < minPayment) {
 			amountError.value = t("The minimum deposit amount is {amount}", {
-				amount: `$${minimalPaymentValue.value}`
+				amount: formatFiatAmount(minPayment, fiatCurrency)
 			});
 			return;
 		}
-		amount.value = parsedAmount;
+		emit("update:amount", parsedAmount);
 		await updateAmountInQuery(parsedAmount);
 		amountError.value = "";
 		isEdit.value = false;
@@ -88,7 +93,7 @@
 	<div class="amount-editor" :class="[`amount-editor--${size}`]">
 		<template v-if="!isEdit">
 			<span class="amount-editor__number">
-				{{ formatDollars(amount, { countPartMoreOneDollar: 2 }) }}
+				{{ formatFiatAmount(amount, fiatCurrency) }}
 			</span>
 			<button class="amount-editor__text" type="button" @click="startEditAmount">
 				{{ $t("Change") }}

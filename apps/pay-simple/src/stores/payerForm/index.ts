@@ -20,11 +20,7 @@ import {
 	mapPaySimplePaymentToTransaction
 } from "@pay-simple/utils/helpers/mapPaySimpleInvoice";
 import type { IPaySimpleInvoice, InvoiceStatus } from "@pay-simple/utils/types/paySimple";
-import {
-	isInvoiceFinalStatus,
-	isInvoicePaymentFoundStatus,
-	isInvoiceSuccessStatus
-} from "@pay-simple/utils/types/paySimple";
+import { isInvoiceFinalStatus, isInvoiceSuccessStatus } from "@pay-simple/utils/types/paySimple";
 
 export const usePayerFormStore = defineStore("payerForm", () => {
 	const isLoading = ref<boolean>(false);
@@ -118,20 +114,23 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		}
 	};
 
-	const finishWithSuccess = (tx?: IWalletTransactionResponse | null) => {
+	const finishWithSuccess = (tx?: IWalletTransactionResponse | null, options?: { redirect?: boolean }) => {
 		if (currentStep.value === 5) return;
 		if (tx) currentTransaction.value = tx;
 		isPoolingProgress.value = false;
 		localStorage.removeItem("transactions");
 		currentStep.value = 5;
 		moneyCameAudioRef.value?.play();
-		if (invoice.value?.success_redirect_url) {
+		if (options?.redirect && invoice.value?.success_redirect_url) {
 			window.location.href = invoice.value.success_redirect_url;
 		}
 	};
 
 	/**
-	 * Analogue of pay's getWalletTxFind — polls `/public/invoices/{uuid}/status`.
+	 * Polls `/public/invoices/{uuid}/status`.
+	 * Step 3 → new unconfirmed → 4 → confirmed → 5.
+	 * If payment appears only in confirmed (skipped unconfirmed) → jump to 5 from step 3.
+	 * After refresh, step 5 is restored only for fully paid dynamic invoices (paid/overpaid).
 	 */
 	const getInvoiceStatusPoll = async (uuid: string) => {
 		try {
@@ -155,8 +154,9 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 				return;
 			}
 
+			// Fully paid dynamic invoice — keep user on success step even after refresh
 			if (isInvoiceSuccessStatus(data.invoice.status)) {
-				finishWithSuccess(transactionsConfirmed.value[0] || currentTransaction.value);
+				finishWithSuccess(transactionsConfirmed.value[0] || currentTransaction.value, { redirect: true });
 				return;
 			}
 
@@ -169,39 +169,30 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 						unconfirmed: transactionsUnconfirmed.value
 					})
 				);
-				// If payment already detected before first poll baseline — jump to waiting step
-				if (
-					currentStep.value === 3 &&
-					(transactionsUnconfirmed.value.length || isInvoicePaymentFoundStatus(data.invoice.status))
-				) {
-					currentTransaction.value =
-						transactionsUnconfirmed.value[0] || transactionsConfirmed.value[0] || currentTransaction.value;
-					currentStep.value = 4;
-					paymentFoundAudioRef.value?.play();
-				}
 				return;
 			}
 
+			// Step 3: new unconfirmed → step 4; new confirmed (skipped unconfirmed) → step 5
 			if (currentStep.value === 3) {
-				const newTransactions = checkForNewTransactions(transactionsLs);
-				if (newTransactions.length) {
-					currentTransaction.value = newTransactions[0];
+				const newUnconfirmed = checkForNewUnconfirmedTransactions(transactionsLs);
+				if (newUnconfirmed.length) {
+					currentTransaction.value = newUnconfirmed[0];
 					currentStep.value = 4;
 					paymentFoundAudioRef.value?.play();
 					return;
 				}
-				if (isInvoicePaymentFoundStatus(data.invoice.status) && transactionsUnconfirmed.value.length) {
-					currentTransaction.value = transactionsUnconfirmed.value[0];
-					currentStep.value = 4;
-					paymentFoundAudioRef.value?.play();
+				const newConfirmed = checkForNewConfirmedTransactions(transactionsLs);
+				if (newConfirmed.length) {
+					finishWithSuccess(newConfirmed[0], { redirect: isInvoiceSuccessStatus(data.invoice.status) });
 					return;
 				}
 			}
 
+			// Step 4: tracked tx moved to confirmed → success receipt
 			if (currentStep.value === 4) {
 				const find = transactionsConfirmed.value.find((item) => item.hash === currentTransaction.value?.hash);
 				if (find) {
-					finishWithSuccess(find);
+					finishWithSuccess(find, { redirect: isInvoiceSuccessStatus(data.invoice.status) });
 					return;
 				}
 				if (isInvoiceFinalStatus(data.invoice.status)) {
@@ -269,7 +260,11 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 				});
 			}
 		});
-		return Array.from(unique.values());
+		return Array.from(unique.values()).sort((a, b) => {
+			const aSort = a.currency.sort_order ?? Number.MAX_SAFE_INTEGER;
+			const bSort = b.currency.sort_order ?? Number.MAX_SAFE_INTEGER;
+			return aSort - bSort;
+		});
 	});
 
 	const getAmountRate = (currency: CurrencyType): string => {
@@ -296,13 +291,23 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		return false;
 	};
 
-	const checkForNewTransactions = (transactionsLs: string): IWalletTransactionResponse[] => {
+	const checkForNewUnconfirmedTransactions = (transactionsLs: string): IWalletTransactionResponse[] => {
 		const { unconfirmed } = JSON.parse(transactionsLs);
 		if (!currentCurrencyChainId.value) return [];
 		return transactionsUnconfirmed.value.filter(
 			(newTx) =>
 				newTx.currency_code === currentCurrencyChainId.value &&
 				!unconfirmed.some((oldTx: IWalletTransactionResponse) => oldTx.hash === newTx.hash)
+		);
+	};
+
+	const checkForNewConfirmedTransactions = (transactionsLs: string): IWalletTransactionResponse[] => {
+		const { confirmed } = JSON.parse(transactionsLs);
+		if (!currentCurrencyChainId.value) return [];
+		return transactionsConfirmed.value.filter(
+			(newTx) =>
+				newTx.currency_code === currentCurrencyChainId.value &&
+				!confirmed.some((oldTx: IWalletTransactionResponse) => oldTx.hash === newTx.hash)
 		);
 	};
 

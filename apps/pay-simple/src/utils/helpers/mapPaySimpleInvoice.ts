@@ -35,7 +35,13 @@ const toCurrencyId = (walletCurrency: string): string => {
 
 export const mapPaySimpleInvoiceToPayerResponse = (data: IPaySimpleInvoiceResponse): IPayerResponse => {
 	const rates: Record<string, string> = {};
-	const addresses: IPayerAddressResponse[] = data.wallets.map((wallet) => {
+	const addresses: IPayerAddressResponse[] = [...data.wallets]
+		.sort((a, b) => {
+			const aSort = a.sort_order ?? Number.MAX_SAFE_INTEGER;
+			const bSort = b.sort_order ?? Number.MAX_SAFE_INTEGER;
+			return aSort - bSort;
+		})
+		.map((wallet) => {
 		const currencyId = toCurrencyId(wallet.currency);
 		const coin = getCurrentCoin(currencyId) || currencyId;
 		const chain = getCurrentBlockchain(currencyId) || "";
@@ -66,7 +72,8 @@ export const mapPaySimpleInvoiceToPayerResponse = (data: IPaySimpleInvoiceRespon
 				token_label: wallet.token_label ?? null,
 				contract_address:
 					wallet.contract_address || (chain === "Tron" ? TRON_CONTRACTS[coin] || "" : ""),
-				is_native: isNative
+				is_native: isNative,
+				sort_order: wallet.sort_order ?? null
 			}
 		};
 	});
@@ -76,7 +83,7 @@ export const mapPaySimpleInvoiceToPayerResponse = (data: IPaySimpleInvoiceRespon
 		name: data.shop.name,
 		currency_id: data.invoice.currency,
 		status: true,
-		minimal_payment: String(data.invoice.amount ?? 0),
+		minimal_payment: "0",
 		site_url: data.shop.url ?? undefined,
 		success_url: data.invoice.success_redirect_url ?? undefined,
 		return_url: data.invoice.failure_redirect_url ?? undefined

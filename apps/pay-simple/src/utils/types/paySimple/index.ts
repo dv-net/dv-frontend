@@ -36,6 +36,7 @@ export interface IPaySimpleWallet {
 	token_label?: string | null;
 	is_native?: boolean;
 	contract_address?: string | null;
+	sort_order?: number | null;
 }
 
 export interface IPaySimpleInvoiceResponse {
@@ -65,6 +66,7 @@ export interface IPaySimplePaymentDetails {
 	token_label: string | null;
 	is_native: boolean;
 	contract_address: string | null;
+	sort_order?: number | null;
 }
 
 export interface IPaySimpleInvoiceStatusResponse {

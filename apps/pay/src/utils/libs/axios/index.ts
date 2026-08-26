@@ -3,7 +3,7 @@ import { useNotifications } from "@shared/utils/composables/useNotifications";
 
 const { notify } = useNotifications();
 
-const REQUEST_TIMEOUT_MS: number = 10_000;
+const REQUEST_TIMEOUT_MS: number = 30_000;
 
 const api: AxiosInstance = axios.create({
 	baseURL: import.meta.env.VITE_API_URL,

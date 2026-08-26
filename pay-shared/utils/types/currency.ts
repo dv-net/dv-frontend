@@ -18,4 +18,5 @@ export interface IInfoCurrency {
 	blockchains?: IInfoBlockchains[];
 	contract_address: string;
 	is_native: boolean;
+	sort_order?: number | null;
 }

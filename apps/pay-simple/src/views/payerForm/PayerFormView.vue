@@ -1,6 +1,7 @@
 <script setup lang="ts">
 	import PayerFormHeader from "@pay-shared/components/payerForm/payerFormHeader/PayerFormHeader.vue";
 	import PayerFormSidebar from "@pay-shared/components/payerForm/payerFormSidebar/PayerFormSidebar.vue";
+	import AmountEditor from "@pay-shared/components/payerForm/amountEditor/AmountEditor.vue";
 	import { useRoute, useRouter } from "vue-router";
 	import { type Component, computed, defineAsyncComponent, onMounted, onUnmounted, watch } from "vue";
 	import { usePayerFormStore } from "@pay-simple/stores/payerForm";
@@ -33,6 +34,7 @@
 		isShowAdvertising,
 		isShowBlockLatestTransactions,
 		transactionsConfirmed,
+		invoice,
 		invoiceCurrency,
 		stepMap,
 		filteredBlockchains,
@@ -47,6 +49,7 @@
 	const router = useRouter();
 	const { t } = useI18n();
 
+	const price = route.query.amount as string | undefined;
 	const currencyId = route.query.currency as string | undefined;
 	const token = route.query.token as string | undefined;
 	const chain = route.query.chain as string | undefined;
@@ -73,9 +76,16 @@
 		timeout = setTimeout(() => startPolling(), 3000);
 	};
 
+	const toPositiveNumber = (val: unknown, fallback = 0): number => {
+		if (!val) return fallback;
+		const num = parseFloat(String(val));
+		return num > 0 ? num : fallback;
+	};
+
 	const updateQuery = () => {
-		const query: Record<string, any> = {
+		const query = {
 			...route.query,
+			...(amount.value && { amount: amount.value }),
 			...(currentCurrency.value && { token: currentCurrency.value }),
 			...(currentChain.value && { chain: currentChain.value })
 		};
@@ -83,6 +93,10 @@
 	};
 
 	const getQueryParams = () => {
+		amount.value = toPositiveNumber(
+			price,
+			toPositiveNumber(invoice.value?.amount, toPositiveNumber(store.value?.minimal_payment, 1))
+		);
 		if (token && checkValidationCurrencyAndChain(token)) currentCurrency.value = token;
 		if (chain && checkValidationCurrencyAndChain(undefined, chain)) currentChain.value = chain;
 		if (currencyId && checkValidationCurrencyAndChain(undefined, undefined, currencyId)) {
@@ -170,7 +184,14 @@
 				:transactions="transactionsConfirmed"
 				:amount="amount"
 				:fiat-currency="invoiceCurrency"
-			/>
+			>
+				<amount-editor
+					v-model:amount="amount"
+					size="lg"
+					:fiat-currency="invoiceCurrency"
+					:minimal-payment="store?.minimal_payment"
+				/>
+			</payer-form-sidebar>
 			<block-advertising v-if="isShowAdvertising" class="form__advertising" />
 		</div>
 	</div>

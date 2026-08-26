@@ -1,7 +1,7 @@
 <script setup lang="ts">
 	import PayerFormHeader from "@pay-shared/components/payerForm/payerFormHeader/PayerFormHeader.vue";
 	import PayerFormSidebar from "@pay-shared/components/payerForm/payerFormSidebar/PayerFormSidebar.vue";
-	import AmountEditor from "@pay/views/payerForm/components/amountEditor/AmountEditor.vue";
+	import AmountEditor from "@pay-shared/components/payerForm/amountEditor/AmountEditor.vue";
 	import { useRoute, useRouter } from "vue-router";
 	import { type Component, computed, defineAsyncComponent, onMounted, onUnmounted, watch } from "vue";
 	import { usePayerFormStore } from "@pay/stores/payerForm";
@@ -182,7 +182,7 @@
 				:is-show-block-latest-transactions="isShowBlockLatestTransactions"
 				:transactions="transactionsConfirmed"
 			>
-				<amount-editor size="lg" />
+				<amount-editor v-model:amount="amount" size="lg" :minimal-payment="store?.minimal_payment" />
 			</payer-form-sidebar>
 			<block-advertising v-if="isShowAdvertising" class="form__advertising" />
 			<block-latest-transactions
