@@ -24,19 +24,19 @@ import type {
 	IUser2FaResponse,
 	IUserResponse
 } from "@dv-admin/utils/types/api/apiGo";
-import Cookies from "js-cookie";
 import { USER, USER_ROLES } from "@dv-admin/utils/constants/user";
 import { getStartDataProject } from "@dv-admin/utils/helpers/init";
 import { getLocaleUser, getTimeZoneUser } from "@shared/utils/helpers/locale";
 import { useNotifications } from "@shared/utils/composables/useNotifications";
 import { splitDomain } from "@shared/utils/helpers/general.ts";
 import type { IProfileUserChangeEmail } from "@dv-admin/utils/types/schemas";
+import { getCookie, removeCookie, setCookie } from "@shared/utils/helpers/cookie";
 
 const { notify } = useNotifications();
 
 export const useAuthStore = defineStore("auth", () => {
 	const router = useRouter();
-	const isLoggedIn = ref<boolean>(!!Cookies.get(USER.TOKEN_KEY_LS));
+	const isLoggedIn = ref<boolean>(!!getCookie(USER.TOKEN_KEY));
 	const isLoading = ref<boolean>(false);
 	const isLoadingDelete2Fa = ref<boolean>(false);
 	const isLoadingOwnerData = ref<boolean>(false);
@@ -111,17 +111,14 @@ export const useAuthStore = defineStore("auth", () => {
 		}
 	};
 	const getToken = (): string | null => {
-		const token: string | undefined = Cookies.get(USER.TOKEN_KEY_LS);
-		return token || null;
+		return getCookie(USER.TOKEN_KEY);
 	};
 	const setToken = (token: string, isRememberMe?: boolean): void => {
-		Cookies.set(USER.TOKEN_KEY_LS, token, {
-			expires: isRememberMe ? 365 * 20 : 1,
-			secure: false
-		});
+		removeCookie(USER.TOKEN_KEY);
+		setCookie(USER.TOKEN_KEY, token, isRememberMe ? "30d" : 0);
 	};
 	const removeToken = () => {
-		Cookies.remove(USER.TOKEN_KEY_LS);
+		removeCookie(USER.TOKEN_KEY);
 		isLoggedIn.value = false;
 		window.location.href = router.resolve({ name: "sign-in" }).href;
 	};

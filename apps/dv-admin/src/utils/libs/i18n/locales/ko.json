@@ -970,5 +970,18 @@
   "Submit for moderation": "검토를 위해 제출",
   "Archive shop confirm": "해당 상점이 목록에서 사라집니다. 이후에는 열 수 없습니다.",
   "store is not verified": "스토어가 인증되지 않았습니다",
-  "Provider settings": "제공업체 설정"
+  "Provider settings": "제공업체 설정",
+  "Banned": "차단됨",
+  "Role": "역할",
+  "Address marked as dirty": "주소가 오염된 것으로 표시됨",
+  "Refund requests": "환불 요청",
+  "Payers can request a refund for deposits blocked by AML. Review pending requests here": "결제자는 AML로 차단된 입금에 대해 환불을 요청할 수 있습니다. 여기에서 대기 중인 요청을 검토하세요",
+  "No pending refund requests": "보류 중인 환불 요청이 없습니다",
+  "Pending review": "검토 대기 중",
+  "Reject refund request": "환불 요청 거부",
+  "The payer will not be able to submit another refund request for this deposit": "결제자는 이 입금에 대해 추가 환불 요청을 제출할 수 없습니다",
+  "Reject": "거부",
+  "Refund request rejected": "환불 요청이 거부되었습니다",
+  "Destination address": "목적지 주소",
+  "Created at": "생성일"
 }

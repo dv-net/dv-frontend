@@ -970,5 +970,18 @@
   "Submit for moderation": "Send inn for moderering",
   "Archive shop confirm": "Butikken vil forsvinne fra listen din. Du vil ikke kunne åpne den etterpå.",
   "store is not verified": "Butikken er ikke verifisert",
-  "Provider settings": "Leverandørinnstillinger"
+  "Provider settings": "Leverandørinnstillinger",
+  "Banned": "Utestengt",
+  "Role": "Rolle",
+  "Address marked as dirty": "Adresse merket som skitten",
+  "Refund requests": "Refusjonsforespørsler",
+  "Payers can request a refund for deposits blocked by AML. Review pending requests here": "Betalere kan be om refusjon for innskudd blokkert av AML. Gå gjennom ventende forespørsler her",
+  "No pending refund requests": "Ingen ventende refusjonsforespørsler",
+  "Pending review": "Venter på gjennomgang",
+  "Reject refund request": "Avvis refusjonsforespørsel",
+  "The payer will not be able to submit another refund request for this deposit": "Betaleren vil ikke kunne sende inn en ny refusjonsforespørsel for dette innskuddet",
+  "Reject": "Avvis",
+  "Refund request rejected": "Refusjonsforespørsel avvist",
+  "Destination address": "Destinasjonsadresse",
+  "Created at": "Opprettet den"
 }

@@ -8,6 +8,7 @@
 	import { useProjectsStore } from "@dv-admin/stores/projects";
 	import { storeToRefs } from "pinia";
 	import { HTTP_PROTOCOL_REGEX } from "@shared/utils/constants/regex";
+	import { formatDollars } from "@shared/utils/helpers/general";
 	import IconWarningTriangle from "@dv-admin/components/icons/projects/IconWarningTriangle.vue";
 	import IconArchiveBox from "@dv-admin/components/icons/projects/IconArchiveBox.vue";
 	import IconCalendarMark from "@dv-admin/components/icons/projects/IconCalendarMark.vue";
@@ -124,7 +125,7 @@
 				</div>
 				<div class="metric__body">
 					<span class="metric__label">{{ $t("Total payments") }}</span>
-					<span class="metric__value">—</span>
+					<span class="metric__value">{{ store.payments_count ?? "—" }}</span>
 				</div>
 			</div>
 			<div class="metric">
@@ -133,7 +134,7 @@
 				</div>
 				<div class="metric__body">
 					<span class="metric__label">{{ $t("Top-up amount") }}</span>
-					<span class="metric__value">—</span>
+					<span class="metric__value">{{ formatDollars(store.top_up_amount_usd) }}</span>
 				</div>
 			</div>
 		</div>

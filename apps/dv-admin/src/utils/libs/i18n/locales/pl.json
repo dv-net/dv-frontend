@@ -970,5 +970,18 @@
   "Submit for moderation": "Prześlij do moderacji",
   "Archive shop confirm": "Sklep zniknie z Twojej listy. Nie będzie można go później otworzyć.",
   "store is not verified": "Sklep nie jest zweryfikowany",
-  "Provider settings": "Ustawienia dostawcy"
+  "Provider settings": "Ustawienia dostawcy",
+  "Banned": "Zablokowane",
+  "Role": "Rola",
+  "Address marked as dirty": "Adres oznaczony jako brudny",
+  "Refund requests": "Wnioski o zwrot",
+  "Payers can request a refund for deposits blocked by AML. Review pending requests here": "Płatnicy mogą złożyć wniosek o zwrot środków za wpłaty zablokowane przez AML. Przejrzyj oczekujące wnioski tutaj",
+  "No pending refund requests": "Brak oczekujących wniosków o zwrot",
+  "Pending review": "Oczekuje na weryfikację",
+  "Reject refund request": "Odrzuć wniosek o zwrot",
+  "The payer will not be able to submit another refund request for this deposit": "Płatnik nie będzie mógł złożyć kolejnego wniosku o zwrot dla tej wpłaty",
+  "Reject": "Odrzuć",
+  "Refund request rejected": "Żądanie zwrotu odrzucone",
+  "Destination address": "Adres docelowy",
+  "Created at": "Utworzono o"
 }

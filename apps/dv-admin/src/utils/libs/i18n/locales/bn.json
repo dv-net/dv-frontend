@@ -970,5 +970,18 @@
   "Submit for moderation": "মডারেশনের জন্য জমা দিন",
   "Archive shop confirm": "শপটি আপনার তালিকা থেকে অদৃশ্য হয়ে যাবে। এরপর আপনি এটি খুলতে পারবেন না।",
   "store is not verified": "স্টোর যাচাই করা হয়নি",
-  "Provider settings": "প্রোভাইডার সেটিংস"
+  "Provider settings": "প্রোভাইডার সেটিংস",
+  "Banned": "নিষিদ্ধ",
+  "Role": "ভূমিকা",
+  "Address marked as dirty": "ঠিকানাটি দূষিত হিসেবে চিহ্নিত করা হয়েছে",
+  "Refund requests": "রিফান্ড অনুরোধগুলি",
+  "Payers can request a refund for deposits blocked by AML. Review pending requests here": "পেমেন্টকারীরা AML দ্বারা ব্লক করা ডিপোজিটের রিফান্ডের অনুরোধ করতে পারেন। অপেক্ষমাণ অনুরোধগুলো এখানে পর্যালোচনা করুন",
+  "No pending refund requests": "কোনো মুলতুবি রিফান্ড অনুরোধ নেই",
+  "Pending review": "পর্যালোচনার অপেক্ষায়",
+  "Reject refund request": "রিফান্ডের অনুরোধ প্রত্যাখ্যান করুন",
+  "The payer will not be able to submit another refund request for this deposit": "পেমেন্টকারী এই ডিপোজিটের জন্য আরেকটি রিফান্ড অনুরোধ জমা দিতে পারবেন না",
+  "Reject": "প্রত্যাখ্যান করুন",
+  "Refund request rejected": "রিফান্ডের অনুরোধ প্রত্যাখ্যাত হয়েছে",
+  "Destination address": "গন্তব্য ঠিকানা",
+  "Created at": "তৈরির সময়"
 }

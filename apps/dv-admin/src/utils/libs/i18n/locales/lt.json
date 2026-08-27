@@ -970,5 +970,18 @@
   "Submit for moderation": "Pateikti moderavimui",
   "Archive shop confirm": "Parduotuvė dings iš jūsų sąrašo. Po to jos nebegalėsite atidaryti.",
   "store is not verified": "Parduotuvė nepatvirtinta",
-  "Provider settings": "Teikėjo nustatymai"
+  "Provider settings": "Teikėjo nustatymai",
+  "Banned": "Užblokuotas",
+  "Role": "Vaidmuo",
+  "Address marked as dirty": "Adresas pažymėtas kaip nešvarus",
+  "Refund requests": "Lėšų grąžinimo užklausos",
+  "Payers can request a refund for deposits blocked by AML. Review pending requests here": "Mokėtojai gali pateikti prašymą grąžinti lėšas už dėl AML užblokuotus depozitus. Peržiūrėkite laukiančius prašymus čia",
+  "No pending refund requests": "Nėra laukiančių lėšų grąžinimo užklausų",
+  "Pending review": "Laukiama peržiūros",
+  "Reject refund request": "Atmesti lėšų grąžinimo prašymą",
+  "The payer will not be able to submit another refund request for this deposit": "Mokėtojas negalės pateikti kitos lėšų grąžinimo užklausos dėl šio depozito",
+  "Reject": "Atmesti",
+  "Refund request rejected": "Prašymas grąžinti lėšas atmestas",
+  "Destination address": "Paskirties adresas",
+  "Created at": "Sukurta"
 }

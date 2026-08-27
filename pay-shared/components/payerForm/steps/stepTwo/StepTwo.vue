@@ -47,7 +47,7 @@
 				@change="emit('changeCurrency')"
 			/>
 			<div class="blockchains">
-				<h2 class="global-title-h2">{{ $t("select-blockchain.two") }}</h2>
+				<h2 class="blockchains__title">{{ $t("select-blockchain.two") }}</h2>
 				<div v-if="isLoading" class="blockchains__cards">
 					<ui-skeleton v-for="item in 3" :key="item" :rows="1" :row-height="56" :item-border-radius="8" />
 				</div>
@@ -92,6 +92,19 @@
 			gap: 20px;
 			@include mediamax(1024) {
 				gap: 12px;
+			}
+			&__title {
+				color: $main-title-color;
+				font-family: $font-family-main;
+				font-size: 20px;
+				font-weight: 600;
+				line-height: 120%;
+				@include mediamax(768) {
+					font-size: 18px;
+				}
+				@include mediamax(480) {
+					font-size: 16px;
+				}
 			}
 			&__cards {
 				display: flex;

@@ -970,5 +970,18 @@
   "Submit for moderation": "إرسال للمراجعة",
   "Archive shop confirm": "سيختفي المتجر من قائمتك. لن تتمكن من فتحه بعد ذلك.",
   "store is not verified": "لم يتم التحقق من المتجر",
-  "Provider settings": "إعدادات المزوّد"
+  "Provider settings": "إعدادات المزوّد",
+  "Banned": "محظور",
+  "Role": "الدور",
+  "Address marked as dirty": "تم وضع علامة على العنوان كمعدّل",
+  "Refund requests": "طلبات استرداد الأموال",
+  "Payers can request a refund for deposits blocked by AML. Review pending requests here": "يمكن للدافعين طلب استرداد للودائع المحظورة بسبب AML. راجع الطلبات المعلقة هنا",
+  "No pending refund requests": "لا توجد طلبات استرداد معلّقة",
+  "Pending review": "قيد المراجعة",
+  "Reject refund request": "رفض طلب استرداد الأموال",
+  "The payer will not be able to submit another refund request for this deposit": "لن يتمكن الدافع من تقديم طلب استرداد آخر لهذا الإيداع",
+  "Reject": "رفض",
+  "Refund request rejected": "تم رفض طلب استرداد الأموال",
+  "Destination address": "عنوان الوجهة",
+  "Created at": "تاريخ الإنشاء"
 }

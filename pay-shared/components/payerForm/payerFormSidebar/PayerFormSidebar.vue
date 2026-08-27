@@ -43,7 +43,7 @@
 	<div v-if="isShowSidebar" class="sidebar">
 		<wrapper-block v-if="isShowDetails">
 			<div class="details">
-				<h2 class="global-title-h2">{{ $t("Payment details") }}</h2>
+				<h2 class="details__title">{{ $t("Payment details") }}</h2>
 				<div class="details__content">
 					<div class="row">
 						<span class="row__label">{{ $t("Payment ID") }}</span>
@@ -104,6 +104,19 @@
 		.details {
 			display: flex;
 			flex-direction: column;
+			&__title {
+				color: $main-title-color;
+				font-family: $font-family-main;
+				font-size: 20px;
+				font-weight: 600;
+				line-height: 120%;
+				@include mediamax(768) {
+					font-size: 18px;
+				}
+				@include mediamax(480) {
+					font-size: 16px;
+				}
+			}
 			&__content {
 				display: flex;
 				flex-direction: column;

@@ -970,5 +970,18 @@
   "Submit for moderation": "Trimite pentru moderare",
   "Archive shop confirm": "Magazinul va dispărea din lista dvs. Nu îl veți putea deschide ulterior.",
   "store is not verified": "Magazinul nu este verificat",
-  "Provider settings": "Setările furnizorului"
+  "Provider settings": "Setările furnizorului",
+  "Banned": "Interzis",
+  "Role": "Rol",
+  "Address marked as dirty": "Adresă marcată ca murdară",
+  "Refund requests": "Solicitări de rambursare",
+  "Payers can request a refund for deposits blocked by AML. Review pending requests here": "Plătitorii pot solicita o rambursare pentru depunerile blocate de AML. Examinați cererile în așteptare aici",
+  "No pending refund requests": "Nu există cereri de rambursare în așteptare",
+  "Pending review": "În așteptarea examinării",
+  "Reject refund request": "Respinge cererea de rambursare",
+  "The payer will not be able to submit another refund request for this deposit": "Plătitorul nu va putea trimite o altă cerere de rambursare pentru această depunere",
+  "Reject": "Respinge",
+  "Refund request rejected": "Solicitarea de rambursare a fost respinsă",
+  "Destination address": "Adresa de destinație",
+  "Created at": "Creat la"
 }

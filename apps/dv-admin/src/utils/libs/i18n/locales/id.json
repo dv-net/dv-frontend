@@ -970,5 +970,18 @@
   "Submit for moderation": "Kirim untuk moderasi",
   "Archive shop confirm": "Toko akan hilang dari daftar Anda. Anda tidak akan dapat membukanya setelah itu.",
   "store is not verified": "Toko belum diverifikasi",
-  "Provider settings": "Pengaturan penyedia"
+  "Provider settings": "Pengaturan penyedia",
+  "Banned": "Diblokir",
+  "Role": "Peran",
+  "Address marked as dirty": "Alamat ditandai sebagai kotor",
+  "Refund requests": "Permintaan pengembalian dana",
+  "Payers can request a refund for deposits blocked by AML. Review pending requests here": "Pembayar dapat meminta pengembalian dana untuk deposit yang diblokir oleh AML. Tinjau permintaan yang tertunda di sini",
+  "No pending refund requests": "Tidak ada permintaan pengembalian dana yang tertunda",
+  "Pending review": "Menunggu peninjauan",
+  "Reject refund request": "Tolak permintaan pengembalian dana",
+  "The payer will not be able to submit another refund request for this deposit": "Pembayar tidak akan dapat mengajukan permintaan pengembalian dana lain untuk deposit ini",
+  "Reject": "Tolak",
+  "Refund request rejected": "Permintaan pengembalian dana ditolak",
+  "Destination address": "Alamat tujuan",
+  "Created at": "Dibuat pada"
 }

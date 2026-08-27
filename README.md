@@ -72,6 +72,9 @@ dv-frontend/
 - `yarn lint` - Run ESLint with auto-fix
 - `yarn format` - Format code with Prettier
 - `yarn type-check` - Run TypeScript type checking
+- `yarn i18n:dv-admin` / `yarn i18n:pay` - Generate translations for other locales (see below)
+- `yarn i18n:status:dv-admin` / `yarn i18n:status:pay` - Check translation coverage
+- `yarn i18n:prune:dv-admin` / `yarn i18n:prune:pay` - Remove unused locale keys
 
 ### Build Commands
 

@@ -970,5 +970,18 @@
   "Submit for moderation": "Υποβολή για έλεγχο",
   "Archive shop confirm": "Το κατάστημα θα εξαφανιστεί από τη λίστα σας. Δεν θα μπορείτε να το ανοίξετε μετά.",
   "store is not verified": "Το κατάστημα δεν είναι επαληθευμένο",
-  "Provider settings": "Ρυθμίσεις παρόχου"
+  "Provider settings": "Ρυθμίσεις παρόχου",
+  "Banned": "Αποκλεισμένος",
+  "Role": "Ρόλος",
+  "Address marked as dirty": "Η διεύθυνση επισημάνθηκε ως μολυσμένη",
+  "Refund requests": "Αιτήματα επιστροφής χρημάτων",
+  "Payers can request a refund for deposits blocked by AML. Review pending requests here": "Οι πληρωτές μπορούν να ζητήσουν επιστροφή χρημάτων για καταθέσεις που έχουν μπλοκαριστεί από το AML. Ελέγξτε τα εκκρεμή αιτήματα εδώ",
+  "No pending refund requests": "Δεν υπάρχουν εκκρεμή αιτήματα επιστροφής χρημάτων",
+  "Pending review": "Σε αναμονή ελέγχου",
+  "Reject refund request": "Απόρριψη αιτήματος επιστροφής χρημάτων",
+  "The payer will not be able to submit another refund request for this deposit": "Ο πληρωτής δεν θα μπορεί να υποβάλει άλλο αίτημα επιστροφής χρημάτων για αυτήν την κατάθεση",
+  "Reject": "Απόρριψη",
+  "Refund request rejected": "Το αίτημα επιστροφής χρημάτων απορρίφθηκε",
+  "Destination address": "Διεύθυνση προορισμού",
+  "Created at": "Δημιουργήθηκε στις"
 }

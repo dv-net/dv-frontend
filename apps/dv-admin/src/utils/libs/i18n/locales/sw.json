@@ -970,5 +970,18 @@
   "Submit for moderation": "Wasilisha kwa ukaguzi",
   "Archive shop confirm": "Duka litatoweka kwenye orodha yako. Hutaweza kulifungua baadaye.",
   "store is not verified": "Duka halijathibitishwa",
-  "Provider settings": "Mipangilio ya mtoa huduma"
+  "Provider settings": "Mipangilio ya mtoa huduma",
+  "Banned": "Imepigwa marufuku",
+  "Role": "Jukumu",
+  "Address marked as dirty": "Anwani imetiwa alama kuwa chafu",
+  "Refund requests": "Maombi ya kurejeshewa fedha",
+  "Payers can request a refund for deposits blocked by AML. Review pending requests here": "Walipaji wanaweza kuomba kurejeshewa fedha kwa amana zilizozuiwa na AML. Kagua maombi yanayosubiri hapa",
+  "No pending refund requests": "Hakuna maombi ya kurejeshewa pesa yanayosubiri",
+  "Pending review": "Inasubiri ukaguzi",
+  "Reject refund request": "Kataa ombi la kurejesha pesa",
+  "The payer will not be able to submit another refund request for this deposit": "Mlipaji hataweza kuwasilisha ombi lingine la kurejeshewa fedha kwa amana hii",
+  "Reject": "Kataa",
+  "Refund request rejected": "Ombi la kurejesha pesa limekataliwa",
+  "Destination address": "Anwani ya marudio",
+  "Created at": "Iliundwa tarehe"
 }

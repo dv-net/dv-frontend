@@ -970,5 +970,18 @@
   "Submit for moderation": "Iesniegt moderācijai",
   "Archive shop confirm": "Veikals pazudīs no jūsu saraksta. Pēc tam jūs vairs nevarēsiet to atvērt.",
   "store is not verified": "Veikals nav verificēts",
-  "Provider settings": "Pakalpojumu sniedzēja iestatījumi"
+  "Provider settings": "Pakalpojumu sniedzēja iestatījumi",
+  "Banned": "Bloķēts",
+  "Role": "Loma",
+  "Address marked as dirty": "Adrese atzīmēta kā netīra",
+  "Refund requests": "Atmaksas pieprasījumi",
+  "Payers can request a refund for deposits blocked by AML. Review pending requests here": "Maksātāji var pieprasīt atmaksu par AML bloķētiem depozītiem. Pārskatiet gaidošos pieprasījumus šeit",
+  "No pending refund requests": "Nav neizskatītu atmaksas pieprasījumu",
+  "Pending review": "Gaida pārskatīšanu",
+  "Reject refund request": "Noraidīt atmaksas pieprasījumu",
+  "The payer will not be able to submit another refund request for this deposit": "Maksātājs nevarēs iesniegt vēl vienu atmaksas pieprasījumu par šo depozītu",
+  "Reject": "Noraidīt",
+  "Refund request rejected": "Atmaksas pieprasījums noraidīts",
+  "Destination address": "Galamērķa adrese",
+  "Created at": "Izveidots"
 }

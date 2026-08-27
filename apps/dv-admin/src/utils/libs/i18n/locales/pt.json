@@ -970,5 +970,18 @@
   "Submit for moderation": "Enviar para moderação",
   "Archive shop confirm": "A loja desaparecerá da sua lista. Você não poderá abri-la depois.",
   "store is not verified": "A loja não está verificada",
-  "Provider settings": "Configurações do provedor"
+  "Provider settings": "Configurações do provedor",
+  "Banned": "Banido",
+  "Role": "Função",
+  "Address marked as dirty": "Endereço marcado como sujo",
+  "Refund requests": "Solicitações de reembolso",
+  "Payers can request a refund for deposits blocked by AML. Review pending requests here": "Os pagadores podem solicitar um reembolso para depósitos bloqueados por AML. Analise as solicitações pendentes aqui",
+  "No pending refund requests": "Nenhuma solicitação de reembolso pendente",
+  "Pending review": "Revisão pendente",
+  "Reject refund request": "Rejeitar solicitação de reembolso",
+  "The payer will not be able to submit another refund request for this deposit": "O pagador não poderá enviar outra solicitação de reembolso para este depósito",
+  "Reject": "Rejeitar",
+  "Refund request rejected": "Solicitação de reembolso rejeitada",
+  "Destination address": "Endereço de destino",
+  "Created at": "Criado em"
 }

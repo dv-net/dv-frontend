@@ -1,5 +1,5 @@
 export enum USER {
-	TOKEN_KEY_LS = "access_token",
+	TOKEN_KEY = "t",
 	EMAIL_CODE_LAST_SENT_AT = "email_code_last_sent_at",
 	DATE_FORMAT = "date_format",
 	HOT_WALLETS_VIEW = "hot_wallets_view",

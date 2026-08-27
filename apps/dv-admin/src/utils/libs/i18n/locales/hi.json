@@ -970,5 +970,18 @@
   "Submit for moderation": "मॉडरेशन के लिए भेजें",
   "Archive shop confirm": "दुकान आपकी सूची से गायब हो जाएगी। इसके बाद आप इसे खोल नहीं पाएँगे।",
   "store is not verified": "स्टोर सत्यापित नहीं है",
-  "Provider settings": "प्रदाता सेटिंग्स"
+  "Provider settings": "प्रदाता सेटिंग्स",
+  "Banned": "प्रतिबंधित",
+  "Role": "भूमिका",
+  "Address marked as dirty": "पते को dirty के रूप में चिह्नित किया गया",
+  "Refund requests": "रिफंड अनुरोध",
+  "Payers can request a refund for deposits blocked by AML. Review pending requests here": "भुगतानकर्ता AML द्वारा अवरुद्ध डिपॉज़िट के लिए रिफंड का अनुरोध कर सकते हैं। लंबित अनुरोधों की समीक्षा यहाँ करें",
+  "No pending refund requests": "कोई लंबित रिफंड अनुरोध नहीं",
+  "Pending review": "समीक्षा लंबित",
+  "Reject refund request": "रिफंड अनुरोध अस्वीकार करें",
+  "The payer will not be able to submit another refund request for this deposit": "भुगतानकर्ता इस जमा के लिए कोई दूसरा धनवापसी अनुरोध सबमिट नहीं कर पाएगा",
+  "Reject": "अस्वीकार करें",
+  "Refund request rejected": "रिफंड अनुरोध अस्वीकार किया गया",
+  "Destination address": "गंतव्य पता",
+  "Created at": "बनाया गया"
 }

@@ -970,5 +970,18 @@
   "Submit for moderation": "Esita modereerimiseks",
   "Archive shop confirm": "Pood kaob teie loendist. Te ei saa seda pärast enam avada.",
   "store is not verified": "Pood pole kinnitatud",
-  "Provider settings": "Teenusepakkuja seaded"
+  "Provider settings": "Teenusepakkuja seaded",
+  "Banned": "Blokeeritud",
+  "Role": "Roll",
+  "Address marked as dirty": "Aadress on märgitud kahtlaseks",
+  "Refund requests": "Tagasimaksetaotlused",
+  "Payers can request a refund for deposits blocked by AML. Review pending requests here": "Maksjad saavad taotleda tagasimakset AML-i tõttu blokeeritud sissemaksete eest. Vaadake ootel taotlused siin üle",
+  "No pending refund requests": "Ootel tagasimaksetaotlusi pole",
+  "Pending review": "Läbivaatuse ootel",
+  "Reject refund request": "Lükka tagasimakse taotlus tagasi",
+  "The payer will not be able to submit another refund request for this deposit": "Maksja ei saa selle deposiidi kohta esitada uut tagasimakse taotlust",
+  "Reject": "Lükka tagasi",
+  "Refund request rejected": "Tagasimaksetaotlus tagasi lükatud",
+  "Destination address": "Sihtaadress",
+  "Created at": "Loomise aeg"
 }

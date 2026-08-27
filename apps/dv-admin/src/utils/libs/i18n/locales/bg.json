@@ -970,5 +970,18 @@
   "Submit for moderation": "Изпрати за модерация",
   "Archive shop confirm": "Магазинът ще изчезне от списъка ви. Няма да можете да го отворите след това.",
   "store is not verified": "Магазинът не е верифициран",
-  "Provider settings": "Настройки на доставчика"
+  "Provider settings": "Настройки на доставчика",
+  "Banned": "Блокиран",
+  "Role": "Роля",
+  "Address marked as dirty": "Адресът е маркиран като замърсен",
+  "Refund requests": "Заявки за възстановяване на средства",
+  "Payers can request a refund for deposits blocked by AML. Review pending requests here": "Платците могат да поискат възстановяване на средства за депозити, блокирани от AML. Прегледайте чакащите заявки тук",
+  "No pending refund requests": "Няма чакащи заявки за възстановяване на средства",
+  "Pending review": "В очакване на преглед",
+  "Reject refund request": "Отхвърли заявката за възстановяване",
+  "The payer will not be able to submit another refund request for this deposit": "Платецът няма да може да подаде друга заявка за възстановяване на средства за този депозит",
+  "Reject": "Отхвърли",
+  "Refund request rejected": "Заявката за възстановяване на средства е отхвърлена",
+  "Destination address": "Адрес на получателя",
+  "Created at": "Създадено на"
 }

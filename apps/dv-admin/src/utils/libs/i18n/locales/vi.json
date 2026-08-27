@@ -970,5 +970,18 @@
   "Submit for moderation": "Gửi để kiểm duyệt",
   "Archive shop confirm": "Cửa hàng sẽ biến mất khỏi danh sách của bạn. Bạn sẽ không thể mở cửa hàng này sau đó.",
   "store is not verified": "Cửa hàng chưa được xác minh",
-  "Provider settings": "Cài đặt nhà cung cấp"
+  "Provider settings": "Cài đặt nhà cung cấp",
+  "Banned": "Bị cấm",
+  "Role": "Vai trò",
+  "Address marked as dirty": "Địa chỉ đã bị đánh dấu là bẩn",
+  "Refund requests": "Yêu cầu hoàn tiền",
+  "Payers can request a refund for deposits blocked by AML. Review pending requests here": "Người thanh toán có thể yêu cầu hoàn tiền cho các khoản nạp bị AML chặn. Xem xét các yêu cầu đang chờ xử lý tại đây",
+  "No pending refund requests": "Không có yêu cầu hoàn tiền nào đang chờ xử lý",
+  "Pending review": "Đang chờ xem xét",
+  "Reject refund request": "Từ chối yêu cầu hoàn tiền",
+  "The payer will not be able to submit another refund request for this deposit": "Người thanh toán sẽ không thể gửi yêu cầu hoàn tiền khác cho khoản nạp này",
+  "Reject": "Từ chối",
+  "Refund request rejected": "Yêu cầu hoàn tiền đã bị từ chối",
+  "Destination address": "Địa chỉ đích",
+  "Created at": "Được tạo lúc"
 }

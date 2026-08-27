@@ -82,7 +82,7 @@
 <template>
 	<wrapper-block>
 		<div class="screen">
-			<h2 class="global-title-h2">{{ $t("Select cryptocurrency for payment") }}</h2>
+			<h2 class="screen__title">{{ $t("Select cryptocurrency for payment") }}</h2>
 			<ui-input
 				class="screen__search"
 				v-model="searchCurrency"
@@ -125,6 +125,19 @@
 		gap: 24px;
 		@include mediamax(480) {
 			gap: 20px;
+		}
+		&__title {
+			color: $main-title-color;
+			font-family: $font-family-main;
+			font-size: 20px;
+			font-weight: 600;
+			line-height: 120%;
+			@include mediamax(768) {
+				font-size: 18px;
+			}
+			@include mediamax(480) {
+				font-size: 16px;
+			}
 		}
 		&__search {
 			&:deep(.ui-input__input) {

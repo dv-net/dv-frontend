@@ -970,5 +970,18 @@
   "Submit for moderation": "Надіслати на модерацію",
   "Archive shop confirm": "Магазин зникне з вашого списку. Після цього ви не зможете його відкрити.",
   "store is not verified": "Магазин не верифіковано",
-  "Provider settings": "Налаштування провайдера"
+  "Provider settings": "Налаштування провайдера",
+  "Banned": "Заблоковано",
+  "Role": "Роль",
+  "Address marked as dirty": "Адресу позначено як брудну",
+  "Refund requests": "Запити на повернення коштів",
+  "Payers can request a refund for deposits blocked by AML. Review pending requests here": "Платники можуть запросити повернення коштів за депозити, заблоковані AML. Перегляньте тут запити, що очікують розгляду",
+  "No pending refund requests": "Немає запитів на повернення, що очікують на розгляд",
+  "Pending review": "Очікує перевірки",
+  "Reject refund request": "Відхилити запит на повернення коштів",
+  "The payer will not be able to submit another refund request for this deposit": "Платник не зможе подати ще один запит на повернення коштів для цього депозиту",
+  "Reject": "Відхилити",
+  "Refund request rejected": "Запит на повернення коштів відхилено",
+  "Destination address": "Адреса призначення",
+  "Created at": "Створено"
 }

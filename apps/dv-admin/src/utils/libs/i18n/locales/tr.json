@@ -970,5 +970,18 @@
   "Submit for moderation": "Moderasyona gönder",
   "Archive shop confirm": "Mağaza listenizden kaybolacak. Sonrasında onu açamayacaksınız.",
   "store is not verified": "Mağaza doğrulanmadı",
-  "Provider settings": "Sağlayıcı ayarları"
+  "Provider settings": "Sağlayıcı ayarları",
+  "Banned": "Yasaklı",
+  "Role": "Rol",
+  "Address marked as dirty": "Adres kirli olarak işaretlendi",
+  "Refund requests": "İade talepleri",
+  "Payers can request a refund for deposits blocked by AML. Review pending requests here": "Ödeme yapanlar, AML tarafından engellenen yatırımlar için iade talep edebilir. Bekleyen talepleri burada inceleyin",
+  "No pending refund requests": "Bekleyen iade talebi yok",
+  "Pending review": "İnceleme bekliyor",
+  "Reject refund request": "Para iadesi talebini reddet",
+  "The payer will not be able to submit another refund request for this deposit": "Ödeyen bu para yatırma işlemi için başka bir iade talebi gönderemeyecek",
+  "Reject": "Reddet",
+  "Refund request rejected": "İade talebi reddedildi",
+  "Destination address": "Hedef adres",
+  "Created at": "Oluşturulma zamanı"
 }

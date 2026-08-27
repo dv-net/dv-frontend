@@ -970,5 +970,18 @@
   "Submit for moderation": "審査に提出",
   "Archive shop confirm": "ショップはリストから消えます。その後は開くことができなくなります。",
   "store is not verified": "ストアは認証されていません",
-  "Provider settings": "プロバイダー設定"
+  "Provider settings": "プロバイダー設定",
+  "Banned": "禁止済み",
+  "Role": "ロール",
+  "Address marked as dirty": "ダーティとしてマークされたアドレス",
+  "Refund requests": "返金リクエスト",
+  "Payers can request a refund for deposits blocked by AML. Review pending requests here": "支払者は、AMLによりブロックされた入金の返金をリクエストできます。保留中のリクエストはここで確認できます",
+  "No pending refund requests": "保留中の返金リクエストはありません",
+  "Pending review": "審査待ち",
+  "Reject refund request": "返金リクエストを拒否",
+  "The payer will not be able to submit another refund request for this deposit": "支払者は、この入金に対して別の返金リクエストを送信できなくなります",
+  "Reject": "拒否",
+  "Refund request rejected": "返金リクエストが拒否されました",
+  "Destination address": "送金先アドレス",
+  "Created at": "作成日時"
 }

@@ -970,5 +970,18 @@
   "Submit for moderation": "Pošlji v moderiranje",
   "Archive shop confirm": "Trgovina bo izginila z vašega seznama. Potem je ne boste mogli več odpreti.",
   "store is not verified": "Trgovina ni preverjena",
-  "Provider settings": "Nastavitve ponudnika"
+  "Provider settings": "Nastavitve ponudnika",
+  "Banned": "Prepovedan",
+  "Role": "Vloga",
+  "Address marked as dirty": "Naslov označen kot umazan",
+  "Refund requests": "Zahtevki za vračilo",
+  "Payers can request a refund for deposits blocked by AML. Review pending requests here": "Plačniki lahko zahtevajo vračilo za depozite, blokirane zaradi AML. Tukaj preglejte čakajoče zahtevke",
+  "No pending refund requests": "Ni čakajočih zahtevkov za vračilo",
+  "Pending review": "Čaka na pregled",
+  "Reject refund request": "Zavrni zahtevo za vračilo",
+  "The payer will not be able to submit another refund request for this deposit": "Plačnik za ta polog ne bo mogel oddati drugega zahtevka za vračilo",
+  "Reject": "Zavrni",
+  "Refund request rejected": "Zahtevek za vračilo zavrnjen",
+  "Destination address": "Ciljni naslov",
+  "Created at": "Ustvarjeno ob"
 }

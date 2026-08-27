@@ -938,6 +938,7 @@
 	"Telegram is disabled": "Telegram is disabled",
 	"You don’t have any hot wallets yet.": "You don’t have any hot wallets yet.",
 	"Mark address as dirty": "Mark address as dirty",
+	"Address marked as dirty": "Address marked as dirty",
 	"This address has been marked as dirty and permanently removed from automatic allocation. Any funds received to this wallet require manual withdrawal processing.": "This address has been marked as dirty and permanently removed from automatic allocation. Any funds received to this wallet require manual withdrawal processing.",
 	"Dirty addresses": "Dirty addresses",
 	"Dirty address": "Dirty address",
@@ -972,5 +973,15 @@
 	"Submit for moderation": "Submit for moderation",
 	"Archive shop confirm": "The shop will disappear from your list. You will not be able to open it afterwards.",
 	"store is not verified": "Store is not verified",
-	"Provider settings": "Provider settings"
+	"Provider settings": "Provider settings",
+	"Refund requests": "Refund requests",
+	"Payers can request a refund for deposits blocked by AML. Review pending requests here": "Payers can request a refund for deposits blocked by AML. Review pending requests here",
+	"No pending refund requests": "No pending refund requests",
+	"Pending review": "Pending review",
+	"Reject refund request": "Reject refund request",
+	"The payer will not be able to submit another refund request for this deposit": "The payer will not be able to submit another refund request for this deposit",
+	"Reject": "Reject",
+	"Refund request rejected": "Refund request rejected",
+	"Destination address": "Destination address",
+	"Created at": "Created at"
 }

@@ -970,5 +970,18 @@
   "Submit for moderation": "Beküldés moderálásra",
   "Archive shop confirm": "Az üzlet eltűnik a listádról. Ezt követően nem fogod tudni megnyitni.",
   "store is not verified": "Az üzlet nincs ellenőrizve",
-  "Provider settings": "Szolgáltató beállításai"
+  "Provider settings": "Szolgáltató beállításai",
+  "Banned": "Kitiltva",
+  "Role": "Szerepkör",
+  "Address marked as dirty": "A cím szennyezettként megjelölve",
+  "Refund requests": "Visszatérítési kérelmek",
+  "Payers can request a refund for deposits blocked by AML. Review pending requests here": "A fizetők visszatérítést kérhetnek az AML által blokkolt befizetésekre. Itt tekintheti át a függőben lévő kérelmeket",
+  "No pending refund requests": "Nincs függőben lévő visszatérítési kérelem",
+  "Pending review": "Felülvizsgálatra vár",
+  "Reject refund request": "Visszatérítési kérelem elutasítása",
+  "The payer will not be able to submit another refund request for this deposit": "A fizető nem fog tudni újabb visszatérítési kérelmet benyújtani ehhez a befizetéshez",
+  "Reject": "Elutasítás",
+  "Refund request rejected": "Visszatérítési kérelem elutasítva",
+  "Destination address": "Célcím",
+  "Created at": "Létrehozás ideje"
 }

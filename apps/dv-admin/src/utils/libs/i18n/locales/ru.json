@@ -938,6 +938,7 @@
 	"Telegram is disabled": "Telegram отключен",
 	"You don’t have any hot wallets yet.": "У вас пока нет горячих кошельков.",
 	"Mark address as dirty": "Отметить адрес как грязный",
+	"Address marked as dirty": "Адрес отмечен как грязный",
 	"This address has been marked as dirty and permanently removed from automatic allocation. Any funds received to this wallet require manual withdrawal processing.": "Это означает что адрес будет помечен как грязный и удален из автоматического выдачи. Любые средства, полученные на этот кошелек, требуют ручной обработки вывода.",
 	"Dirty addresses": "Грязные адреса",
 	"Dirty address": "Грязный адрес",
@@ -972,5 +973,15 @@
 	"Submit for moderation": "Отправить на модерацию",
 	"Archive shop confirm": "Магазин исчезнет из вашего списка. Открыть его после этого будет нельзя.",
 	"store is not verified": "Магазин не верифицирован",
-	"Provider settings": "Настройка провайдера"
+	"Provider settings": "Настройка провайдера",
+	"Refund requests": "Заявки на возврат",
+	"Payers can request a refund for deposits blocked by AML. Review pending requests here": "Плательщики могут запросить возврат по депозитам, заблокированным AML. Здесь — заявки на рассмотрении",
+	"No pending refund requests": "Нет заявок на возврат",
+	"Pending review": "На проверке",
+	"Reject refund request": "Отклонить заявку на возврат",
+	"The payer will not be able to submit another refund request for this deposit": "Плательщик не сможет повторно подать заявку по этому депозиту",
+	"Reject": "Отклонить",
+	"Refund request rejected": "Заявка на возврат отклонена",
+	"Destination address": "Адрес для возврата",
+	"Created at": "Создано"
 }

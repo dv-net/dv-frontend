@@ -1,7 +1,7 @@
 {
 	"name": "dv-frontend",
 	"private": false,
-	"version": "1.0.46",
+	"version": "1.1.0",
 	"type": "module",
 	"engines": {
 		"node": "^22.22.2 || ^24.15.0 || >=26.0.0"
@@ -51,7 +51,8 @@
 		"vue-i18n": "^11.4.6",
 		"vue-router": "^5.1.0",
 		"vue-turnstile": "^1.0.11",
-		"vue-virtual-scroller": "3.0.4"
+		"vue-virtual-scroller": "3.0.4",
+		"vue3-cookies": "^1.0.6"
 	},
 	"devDependencies": {
 		"@dv.net/translator": "^2.0.0",

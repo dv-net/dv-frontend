@@ -970,5 +970,18 @@
   "Submit for moderation": "提交审核",
   "Archive shop confirm": "该商店将从您的列表中消失。之后您将无法打开它。",
   "store is not verified": "商店未通过验证",
-  "Provider settings": "提供商设置"
+  "Provider settings": "提供商设置",
+  "Banned": "已禁止",
+  "Role": "角色",
+  "Address marked as dirty": "地址已标记为脏地址",
+  "Refund requests": "退款请求",
+  "Payers can request a refund for deposits blocked by AML. Review pending requests here": "付款人可以申请退还因 AML 被冻结的充值。在此查看待处理请求",
+  "No pending refund requests": "没有待处理的退款请求",
+  "Pending review": "待审核",
+  "Reject refund request": "拒绝退款请求",
+  "The payer will not be able to submit another refund request for this deposit": "付款人将无法为这笔入金再次提交退款申请",
+  "Reject": "拒绝",
+  "Refund request rejected": "退款请求已被拒绝",
+  "Destination address": "目标地址",
+  "Created at": "创建时间"
 }

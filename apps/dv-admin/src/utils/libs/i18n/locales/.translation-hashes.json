@@ -400,6 +400,8 @@
   "Status": "ec53a8c4f07baed5d8825072c89799be",
   "Unban": "6d1fa5ae1f06d3d5619af8f6dd6d9c1e",
   "Ban": "5c664f50adcaaf94d8c8d01b4eb754e9",
+  "Banned": "a6f2b2df29609876b609c318bdbdf9a1",
+  "Role": "bbbabdbe1b262f75d99d62880b953be1",
   "Store ID": "1feafb67c1da8183793afe1f61bce2f4",
   "Wallet ID": "6d5d00361877603f45d92fdd71795338",
   "Transaction type": "384036f8b0067ec3bb710a92f8734b3b",
@@ -916,6 +918,7 @@
   "Telegram is disabled": "7deafd033b55fa6110f5bdb5aaac3871",
   "You don’t have any hot wallets yet.": "6ed964383f1c87989572f4eb1409e12b",
   "Mark address as dirty": "9cc178310b9f8fb151d27be40037a5ad",
+  "Address marked as dirty": "d5776aa1aff165916d62864e74fb6d5b",
   "This address has been marked as dirty and permanently removed from automatic allocation. Any funds received to this wallet require manual withdrawal processing.": "5d137fcae9cbbe3ad0a8ffb73a5d1713",
   "Dirty addresses": "23b7f5743090091c989124d684deb4b7",
   "Dirty address": "cd90928995e32642893e0fb5d65d43b6",
@@ -950,5 +953,15 @@
   "Submit for moderation": "fa1f76f63b2daef3fca768707aac96a2",
   "Archive shop confirm": "a8d57ec0b9c4b88df0c3ab44ada85264",
   "store is not verified": "4d525d51fdbf6f544c7682ef21ccbb95",
-  "Provider settings": "6a3e2cbf1f29e4e8668686a0a2e65448"
+  "Provider settings": "6a3e2cbf1f29e4e8668686a0a2e65448",
+  "Refund requests": "1f8749d644feb4284d14835aaac82fc9",
+  "Payers can request a refund for deposits blocked by AML. Review pending requests here": "9ec2424e291de2799f9bc84e32131b3b",
+  "No pending refund requests": "ad27c34d98c74ea1ddfaa533f5fc50ee",
+  "Pending review": "d74ca2a5a972895d93d8695c73506bfc",
+  "Reject refund request": "8ce6726f1d513c1bfbf048203515fb92",
+  "The payer will not be able to submit another refund request for this deposit": "d63dbe2de635bfd68594b271f11b3c1d",
+  "Reject": "d98ac12774fca5c3cbaffe276840c55f",
+  "Refund request rejected": "8fc8580707639714dc834f71a8c6097f",
+  "Destination address": "803d5f673fff01880d9ae39f10a1860b",
+  "Created at": "5f2b9345f9bbd74079b99d6fcf461408"
 }

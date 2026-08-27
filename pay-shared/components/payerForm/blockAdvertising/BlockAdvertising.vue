@@ -21,7 +21,7 @@
 		<div class="advertising">
 			<div class="content">
 				<div class="content__inner">
-					<h2 class="global-title-h2">{{ $t("You pay via DV.net") }}</h2>
+					<h2 class="content__title">{{ $t("You pay via DV.net") }}</h2>
 					<p>{{ $t("Accept cryptocurrency on your website without paying intermediaries") }}</p>
 				</div>
 			</div>
@@ -93,6 +93,19 @@
 			display: flex;
 			gap: 12px;
 			justify-content: space-between;
+			&__title {
+				color: $main-title-color;
+				font-family: $font-family-main;
+				font-size: 20px;
+				font-weight: 600;
+				line-height: 120%;
+				@include mediamax(768) {
+					font-size: 18px;
+				}
+				@include mediamax(480) {
+					font-size: 16px;
+				}
+			}
 			&__inner {
 				display: flex;
 				flex-direction: column;

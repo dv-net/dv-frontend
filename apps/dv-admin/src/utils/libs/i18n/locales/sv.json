@@ -970,5 +970,18 @@
   "Submit for moderation": "Skicka in för granskning",
   "Archive shop confirm": "Butiken kommer att försvinna från din lista. Du kommer inte att kunna öppna den efteråt.",
   "store is not verified": "Butiken är inte verifierad",
-  "Provider settings": "Leverantörsinställningar"
+  "Provider settings": "Leverantörsinställningar",
+  "Banned": "Bannad",
+  "Role": "Roll",
+  "Address marked as dirty": "Adress markerad som smutsig",
+  "Refund requests": "Återbetalningsförfrågningar",
+  "Payers can request a refund for deposits blocked by AML. Review pending requests here": "Betalare kan begära återbetalning för insättningar som blockerats av AML. Granska väntande förfrågningar här",
+  "No pending refund requests": "Inga väntande återbetalningsbegäranden",
+  "Pending review": "Väntar på granskning",
+  "Reject refund request": "Avvisa återbetalningsbegäran",
+  "The payer will not be able to submit another refund request for this deposit": "Betalaren kommer inte att kunna skicka in ytterligare en återbetalningsbegäran för denna insättning",
+  "Reject": "Avvisa",
+  "Refund request rejected": "Återbetalningsbegäran avvisad",
+  "Destination address": "Destinationsadress",
+  "Created at": "Skapad den"
 }

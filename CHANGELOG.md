@@ -2,9 +2,12 @@
 
 ## [Unreleased]
 
-## [1.0.46] - 2026-08-11
+## [1.1.0] - 2026-08-27
 
 - feat: download private keys for a single hot wallet from its action menu without selecting it via checkbox [DNS-100]
+
+## [1.0.46] - 2026-08-11
+
 - feat: rebuild AML flow — history page, provider keys/settings, auto-enable on connect, manual check redirect, and TabsVariantA [DNS-106]
 
 ## [1.0.45] - 2026-07-30

@@ -2,10 +2,14 @@
 	import IconLogo from "@pay-shared/components/icons/IconLogo.vue";
 	import { useI18n } from "vue-i18n";
 	import { computed } from "vue";
+	import { useRoute } from "vue-router";
 	import HamburgerMenu from "@pay-shared/components/layouts/hamburgerMenu/HamburgerMenu.vue";
 	import type { INavLinks } from "@pay-shared/utils/types/layouts";
 
 	const { t } = useI18n();
+	const route = useRoute();
+
+	const isWhiteBackground = computed(() => Boolean(route.meta.whiteBackground));
 
 	const navLinks = computed<INavLinks[]>(() => {
 		return [
@@ -27,7 +31,7 @@
 </script>
 
 <template>
-	<div class="payment-layout">
+	<div class="payment-layout" :class="{ 'payment-layout--white': isWhiteBackground }">
 		<header class="header">
 			<div class="container">
 				<div class="header__inner">
@@ -58,6 +62,11 @@
 		flex-grow: 1;
 		display: flex;
 		flex-direction: column;
+		background-color: $main-background;
+
+		&--white {
+			background-color: $form-background;
+		}
 	}
 	.container {
 		max-width: $max-width-container + px;

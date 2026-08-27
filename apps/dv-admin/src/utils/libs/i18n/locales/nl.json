@@ -970,5 +970,18 @@
   "Submit for moderation": "Indienen voor moderatie",
   "Archive shop confirm": "De winkel verdwijnt uit je lijst. Je kunt deze daarna niet meer openen.",
   "store is not verified": "Winkel is niet geverifieerd",
-  "Provider settings": "Providerinstellingen"
+  "Provider settings": "Providerinstellingen",
+  "Banned": "Geblokkeerd",
+  "Role": "Rol",
+  "Address marked as dirty": "Adres gemarkeerd als verdacht",
+  "Refund requests": "Terugbetalingsverzoeken",
+  "Payers can request a refund for deposits blocked by AML. Review pending requests here": "Betalers kunnen een terugbetaling aanvragen voor stortingen die door AML zijn geblokkeerd. Bekijk openstaande aanvragen hier",
+  "No pending refund requests": "Geen openstaande terugbetalingsverzoeken",
+  "Pending review": "In afwachting van beoordeling",
+  "Reject refund request": "Terugbetalingsverzoek afwijzen",
+  "The payer will not be able to submit another refund request for this deposit": "De betaler kan geen ander terugbetalingsverzoek voor deze storting indienen",
+  "Reject": "Weigeren",
+  "Refund request rejected": "Terugbetalingsverzoek afgewezen",
+  "Destination address": "Bestemmingsadres",
+  "Created at": "Aangemaakt op"
 }

@@ -970,5 +970,18 @@
   "Submit for moderation": "Invia per la moderazione",
   "Archive shop confirm": "Il negozio scomparirà dal tuo elenco. Non potrai aprirlo in seguito.",
   "store is not verified": "Il negozio non è verificato",
-  "Provider settings": "Impostazioni del provider"
+  "Provider settings": "Impostazioni del provider",
+  "Banned": "Bannato",
+  "Role": "Ruolo",
+  "Address marked as dirty": "Indirizzo contrassegnato come sporco",
+  "Refund requests": "Richieste di rimborso",
+  "Payers can request a refund for deposits blocked by AML. Review pending requests here": "I pagatori possono richiedere un rimborso per i depositi bloccati dall'AML. Esamina qui le richieste in sospeso",
+  "No pending refund requests": "Nessuna richiesta di rimborso in sospeso",
+  "Pending review": "In attesa di revisione",
+  "Reject refund request": "Rifiuta richiesta di rimborso",
+  "The payer will not be able to submit another refund request for this deposit": "Il pagatore non potrà inviare un'altra richiesta di rimborso per questo deposito",
+  "Reject": "Rifiuta",
+  "Refund request rejected": "Richiesta di rimborso respinta",
+  "Destination address": "Indirizzo di destinazione",
+  "Created at": "Creato il"
 }

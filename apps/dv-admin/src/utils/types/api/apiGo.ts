@@ -106,6 +106,8 @@ export interface IStoreResponse {
 	verified_at?: string | null;
 	rejection_reason?: string | null;
 	verification_comment?: string | null;
+	payments_count?: number;
+	top_up_amount_usd?: string;
 }
 
 export interface IGetStoresRequest {
@@ -703,7 +705,16 @@ export interface IExchangeListKeysResponse {
 	valueEnteredUser: string | null;
 }
 
-export type ExchangeSlugType = "binance" | "okx" | "htx" | "bitget" | "kucoin" | "mexc" | "gate" | "bybit";
+export type ExchangeSlugType =
+	| "binance"
+	| "okx"
+	| "htx"
+	| "bitget"
+	| "kucoin"
+	| "mexc"
+	| "gate"
+	| "bybit"
+	| "bingx";
 
 export interface IExchangeList {
 	exchange: string;
@@ -1163,4 +1174,20 @@ export interface IDeleteAddressBookRequest {
 
 export interface IMarkIsDirtyRequest {
 	address: string;
+}
+
+export type RefundStatus = "pending_review" | "rejected" | "processing" | "completed" | "failed";
+
+export interface IRefundRequest {
+	id: string;
+	blocked_transaction_id: string;
+	wallet_id: string;
+	store_id: string;
+	transfer_id?: string | null;
+	destination_address: string;
+	status: RefundStatus;
+	email: string;
+	reviewed_at?: string | null;
+	created_at: string;
+	updated_at: string | null;
 }

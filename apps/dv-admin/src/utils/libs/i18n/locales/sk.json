@@ -970,5 +970,18 @@
   "Submit for moderation": "Odoslať na moderovanie",
   "Archive shop confirm": "Obchod zmizne z vášho zoznamu. Potom ho nebudete môcť otvoriť.",
   "store is not verified": "Obchod nie je overený",
-  "Provider settings": "Nastavenia poskytovateľa"
+  "Provider settings": "Nastavenia poskytovateľa",
+  "Banned": "Zablokovaný",
+  "Role": "Rola",
+  "Address marked as dirty": "Adresa označená ako špinavá",
+  "Refund requests": "Žiadosti o vrátenie peňazí",
+  "Payers can request a refund for deposits blocked by AML. Review pending requests here": "Platitelia môžu požiadať o vrátenie prostriedkov za vklady zablokované AML. Tu skontrolujte čakajúce žiadosti",
+  "No pending refund requests": "Žiadne čakajúce žiadosti o vrátenie peňazí",
+  "Pending review": "Čaká na kontrolu",
+  "Reject refund request": "Zamietnuť žiadosť o vrátenie peňazí",
+  "The payer will not be able to submit another refund request for this deposit": "Platiteľ nebude môcť podať ďalšiu žiadosť o vrátenie prostriedkov k tomuto vkladu",
+  "Reject": "Odmietnuť",
+  "Refund request rejected": "Žiadosť o vrátenie platby zamietnutá",
+  "Destination address": "Cieľová adresa",
+  "Created at": "Vytvorené"
 }

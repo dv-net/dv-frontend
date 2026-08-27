@@ -12,6 +12,49 @@ When adding or updating user-facing copy (`$t` / `t` keys):
 - Do **not** create, update, or translate other locale JSON files (`de.json`, `fr.json`, etc.).
 - Do **not** restore deleted locale files unless explicitly asked.
 
-Other languages are filled later by the project translator before production.
+Other languages are filled later by the project translator (`yarn i18n` / `@dv.net/translator`) before production.
 
-English message keys stay as in `en.json` (same pattern as the rest of the app).
+## Message keys
+
+Use the **English UI string as the key** only when **both** are true:
+
+1. The key itself has **no** line breaks (`\n`)
+2. The text is **at most 15 words**
+
+If **either** fails (needs `\n` in the key, **or** more than 15 words) → use a **short abstract key** by meaning (e.g. `API key tooltip`, `PRO tariff description`). Full English copy goes only in the value (the value may still contain `\n` for layout).
+
+```json
+// ✅ GOOD — short, no \n in key → key = English
+"Shop is accepting payments": "Shop is accepting payments"
+
+// ✅ GOOD — short English key; \n only in value for layout
+"Add your IP address to the whitelist": "Add your IP address\nto the whitelist"
+"Just set up the API and start accepting payments right away": "Just set up the API\nand start accepting payments right away"
+
+// ✅ GOOD — long text → short abstract key
+"API key tooltip": "Authenticates API requests for invoices, payments, and shop operations. Keep it private and regenerate it if it may have been exposed"
+"PRO tariff description": "This is a version of our Open Source\nMerchant on our servers"
+
+// ❌ BAD — long English used as key
+"Authenticates API requests for invoices, payments, and shop operations. Keep it private and regenerate it if it may have been exposed": "…"
+```
+
+## Trailing punctuation
+
+In **keys and values**, do **not** put trailing punctuation (`:`, `.`, `!`, `?`, …). Add punctuation in the template/code when needed. A trailing period is **never** needed.
+
+```json
+// ❌ BAD
+"Payments:": "Платежи:",
+"Webhook status.": "Статус вебхука.",
+"In progress!": "В процессе!"
+
+// ✅ GOOD
+"Payments": "Платежи",
+"Webhook status": "Статус вебхука",
+"In progress": "В процессе"
+```
+
+```vue
+{{ $t('Payments') }}:
+```

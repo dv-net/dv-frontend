@@ -40,6 +40,11 @@ export default [
 				path: "advanced-settings",
 				name: "projects-edit-advanced-settings",
 				component: () => import("@dv-admin/views/projects/edit/advancedSettings/AdvancedSettingsView.vue")
+			},
+			{
+				path: "refunds",
+				name: "projects-edit-refunds",
+				component: () => import("@dv-admin/views/projects/edit/refunds/RefundsView.vue")
 			}
 		]
 	}
