@@ -26,6 +26,7 @@
 		payerId,
 		amount,
 		isPoolingProgress,
+		isPreparingWallets,
 		store,
 		timeline,
 		currentCurrency,
@@ -43,7 +44,7 @@
 		moneyCameAudioRef,
 		paymentFoundAudioRef
 	} = storeToRefs(usePayerFormStore());
-	const { getInvoiceStatusPoll, checkValidationCurrencyAndChain, getStartInfo } = usePayerFormStore();
+	const { getInvoiceStatusPoll, checkValidationCurrencyAndChain, getStartInfo, pollWalletsInfo } = usePayerFormStore();
 
 	const route = useRoute();
 	const router = useRouter();
@@ -55,6 +56,7 @@
 	const chain = route.query.chain as string | undefined;
 	const invoiceId = route.params.uuid as string | undefined;
 	let timeout: ReturnType<typeof setTimeout> | null = null;
+	let walletsTimeout: ReturnType<typeof setTimeout> | null = null;
 	const stepComponents: Record<number, Component> = {
 		1: StepOne,
 		2: StepTwo,
@@ -74,6 +76,26 @@
 		}
 		if (invoiceUuid.value) await getInvoiceStatusPoll(invoiceUuid.value);
 		timeout = setTimeout(() => startPolling(), 3000);
+	};
+
+	const startWalletsPolling = () => {
+		if (!isPreparingWallets.value) {
+			if (walletsTimeout) clearTimeout(walletsTimeout);
+			return;
+		}
+		walletsTimeout = setTimeout(async () => {
+			try {
+				const ready = await pollWalletsInfo();
+				if (ready) {
+					getQueryParams();
+					void startPolling();
+					return;
+				}
+			} catch {
+				return;
+			}
+			startWalletsPolling();
+		}, 3000);
 	};
 
 	const toPositiveNumber = (val: unknown, fallback = 0): number => {
@@ -153,12 +175,17 @@
 		document.title = store.value?.name
 			? `${t("Payment by cryptocurrency in")} ${store.value?.name}`
 			: t("Payment by cryptocurrency");
+		if (isPreparingWallets.value) {
+			startWalletsPolling();
+			return;
+		}
 		getQueryParams();
 		void startPolling();
 	});
 
 	onUnmounted(() => {
 		if (timeout) clearTimeout(timeout);
+		if (walletsTimeout) clearTimeout(walletsTimeout);
 	});
 </script>
 

@@ -6,6 +6,7 @@
 	import type { CurrencyType } from "@shared/utils/types/blockchain";
 	import CardCurrency from "@pay-shared/components/payerForm/cardCurrency/CardCurrency.vue";
 	import NotFound from "@pay-shared/components/payerForm/notFound/NotFound.vue";
+	import PreparingWallets from "@pay-shared/components/payerForm/preparingWallets/PreparingWallets.vue";
 	import WrapperBlock from "@pay-shared/components/payerForm/wrapperBlock/WrapperBlock.vue";
 	import { convertToEnglishLayout } from "@pay-shared/utils/helpers/keyboardLayout";
 	import { useI18n } from "vue-i18n";
@@ -15,12 +16,14 @@
 		filteredCurrencies,
 		addresses,
 		isLoading = false,
+		isPreparingWallets = false,
 		currentCurrency = null,
 		getAmountRate
 	} = defineProps<{
 		filteredCurrencies: IPayerAddressResponse[];
 		addresses: IPayerAddressResponse[];
 		isLoading?: boolean;
+		isPreparingWallets?: boolean;
 		currentCurrency?: string | null;
 		getAmountRate: (currency: CurrencyType) => string;
 	}>();
@@ -99,7 +102,8 @@
 					<ui-skeleton v-for="item in 5" :key="item" :rows="1" :row-height="56" :item-border-radius="8" />
 				</div>
 				<template v-else>
-					<div v-if="currenciesList.length" class="block__cards">
+					<preparing-wallets v-if="isPreparingWallets" />
+					<div v-else-if="currenciesList.length" class="block__cards">
 						<card-currency
 							v-for="item in currenciesList"
 							:key="item.currency.id"

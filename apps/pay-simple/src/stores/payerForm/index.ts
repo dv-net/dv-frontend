@@ -24,6 +24,7 @@ import { isInvoiceFinalStatus, isInvoiceSuccessStatus } from "@pay-simple/utils/
 
 export const usePayerFormStore = defineStore("payerForm", () => {
 	const isLoading = ref<boolean>(false);
+	const isPreparingWallets = ref<boolean>(false);
 	const isPoolingProgress = ref<boolean>(true);
 	const currentStep = ref<number>(1);
 	const currentCurrency = ref<string | null>(null);
@@ -96,7 +97,23 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 			throw error;
 		} finally {
 			isLoading.value = false;
+			isPreparingWallets.value = !errorStore.value && addresses.value.length === 0;
 			loaderShutdown();
+		}
+	};
+
+	/** Re-fetches the invoice (and wallets) without the initial loading skeleton. */
+	const pollWalletsInfo = async (): Promise<boolean> => {
+		try {
+			if (invoiceUuid.value) await getInvoiceInfo(invoiceUuid.value);
+			if (addresses.value.length > 0) {
+				isPreparingWallets.value = false;
+				return true;
+			}
+			return false;
+		} catch (error: any) {
+			isPreparingWallets.value = false;
+			throw error;
 		}
 	};
 
@@ -318,6 +335,7 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 
 	return {
 		isLoading,
+		isPreparingWallets,
 		currentChain,
 		currentCurrency,
 		currentStep,
@@ -350,6 +368,7 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		getInvoiceInfo,
 		getInvoiceStatusPoll,
 		checkValidationCurrencyAndChain,
-		getStartInfo
+		getStartInfo,
+		pollWalletsInfo
 	};
 });

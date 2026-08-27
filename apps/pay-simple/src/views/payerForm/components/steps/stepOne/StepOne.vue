@@ -5,7 +5,7 @@
 	import { getCurrentBlockchain, getCurrentCoin } from "@shared/utils/helpers/general.ts";
 	import { useRoute, useRouter } from "vue-router";
 
-	const { currentCurrency, currentStep, currentChain, isLoading, filteredBlockchains, filteredCurrencies, addresses } =
+	const { currentCurrency, currentStep, currentChain, isLoading, isPreparingWallets, filteredBlockchains, filteredCurrencies, addresses } =
 		storeToRefs(usePayerFormStore());
 	const { getAmountRate } = usePayerFormStore();
 
@@ -38,6 +38,7 @@
 		:filtered-currencies="filteredCurrencies"
 		:addresses="addresses"
 		:is-loading="isLoading"
+		:is-preparing-wallets="isPreparingWallets"
 		:current-currency="currentCurrency"
 		:get-amount-rate="getAmountRate"
 		@select-currency="setCurrency"
