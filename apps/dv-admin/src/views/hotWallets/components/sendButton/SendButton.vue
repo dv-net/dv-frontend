@@ -20,8 +20,9 @@
 
 	const { notify } = useNotifications();
 	const { t } = useI18n();
-	const { includedWallets } = storeToRefs(useHotWalletsStore());
-	const { postWalletKeysHot } = useHotWalletsStore();
+	const hotWalletsStore = useHotWalletsStore();
+	const { includedWallets } = storeToRefs(hotWalletsStore);
+	const { postWalletKeysHot, getWallets } = hotWalletsStore;
 	const { openOtpGlobalModal } = useGeneralStore();
 
 	const props = withDefaults(
@@ -75,6 +76,7 @@
 		try {
 			await postApiWalletAddressesMarkIsDirty({ address: item.address });
 			notify(t("Address marked as dirty"), "success");
+			await getWallets("pagination");
 		} catch (error: any) {
 			console.error(error);
 		}
