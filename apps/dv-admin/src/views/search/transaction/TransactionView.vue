@@ -13,12 +13,18 @@
 	import RowElement from "@dv-admin/views/search/components/rowElement/RowElement.vue";
 	import { storeToRefs } from "pinia";
 	import { useRoute } from "vue-router";
-	import { onMounted, ref } from "vue";
+	import { computed, onMounted, ref } from "vue";
 	import { getApiReceiptOneTransaction, postApiTransactionSendWebhooks } from "@dv-admin/utils/services/history";
 	import type { IReceiptOneTransactionResponse } from "@dv-admin/utils/types/api/apiGo";
 	import { useSearchStore } from "@dv-admin/stores/search";
 	import { useNotifications } from "@shared/utils/composables/useNotifications";
 	import { useI18n } from "vue-i18n";
+	import {
+		AML_CHECK_STATUS,
+		AML_RISK_LEVEL_LABELS,
+		type TAmlCheckStatus
+	} from "@dv-admin/utils/constants/aml";
+	import { ALL_STATUSES } from "@dv-admin/utils/constants/general";
 
 	const { transaction } = storeToRefs(useSearchStore());
 	const { getSearchData } = useSearchStore();
@@ -32,7 +38,7 @@
 
 	const getReceiptData = async () => {
 		try {
-			if (!transaction.value || !transaction.value?.receipt_id) return;
+			if (!transaction.value?.receipt_id) return;
 			const receiptData = await getApiReceiptOneTransaction(transaction.value.receipt_id);
 			if (receiptData) receipt.value = receiptData;
 		} catch (error: any) {
@@ -42,7 +48,7 @@
 
 	const postTransactionSendWebhooks = async () => {
 		try {
-			if (!transaction.value || !transaction.value?.id) return;
+			if (!transaction.value?.id) return;
 			isLoadingSendWebhooks.value = true;
 			await postApiTransactionSendWebhooks(transaction.value.id);
 			notify(t("Webhook resent"), "success");
@@ -53,11 +59,34 @@
 		}
 	};
 
+	const formatFraudScore = (score: string): string => {
+		const value = Number(score);
+		if (!Number.isFinite(value)) return "—";
+		const percent = Math.ceil(value <= 1 ? value * 100 : value);
+		return `${percent}%`;
+	};
+
+	const isAmlCheckResultUnavailable = (status: TAmlCheckStatus): boolean =>
+		status === AML_CHECK_STATUS.failed || status === AML_CHECK_STATUS.pending;
+
+	const amlRiskLevelLabel = computed(() => {
+		const riskLevel = transaction.value?.aml_check?.risk_level;
+		if (!riskLevel || isAmlCheckResultUnavailable(transaction.value!.aml_check!.status)) return "—";
+		return riskLevel in AML_RISK_LEVEL_LABELS ? t(AML_RISK_LEVEL_LABELS[riskLevel]) : riskLevel;
+	});
+
+	const amlStatusLabel = computed(() => {
+		const status = transaction.value?.aml_check?.status;
+		if (!status) return "—";
+		return t(status in ALL_STATUSES ? ALL_STATUSES[status] : status);
+	});
+
 	onMounted(async () => {
-		if (hash && !transaction.value) {
+		if (!hash) return;
+		if (!transaction.value || transaction.value.tx_hash !== hash) {
 			await getSearchData(hash);
-			await getReceiptData();
 		}
+		await getReceiptData();
 	});
 </script>
 
@@ -117,6 +146,31 @@
 					class="info__item info__item--border-none"
 					:label="$t('Total')"
 					:value="formatAmountBlockchain(receipt.amount, { currencyId: receipt.currency_id })"
+				/>
+			</div>
+		</block-section>
+		<block-section v-if="transaction.aml_check" class="info" radius="md">
+			<div class="info__top">
+				<h3 class="global-title-h3">{{ $t("AML check") }}</h3>
+				<span class="info__top-date">{{ formatDate(transaction.aml_check.created_at) }}</span>
+			</div>
+			<div class="info__inner">
+				<row-element class="info__item" :label="$t('Status')" :value="amlStatusLabel" />
+				<row-element
+					class="info__item"
+					:label="$t('Fraud score')"
+					:value="
+						isAmlCheckResultUnavailable(transaction.aml_check.status)
+							? '—'
+							: formatFraudScore(transaction.aml_check.score)
+					"
+				/>
+				<row-element class="info__item info__item--border-none" :label="$t('Risk level')" :value="amlRiskLevelLabel" />
+				<row-element
+					class="info__item info__item--border-none"
+					:label="$t('ID')"
+					:value="transaction.aml_check.id"
+					is-copy-value
 				/>
 			</div>
 		</block-section>

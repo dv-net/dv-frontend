@@ -614,6 +614,16 @@ export interface IOneTransactionWalletResponse {
 	wallet_updated_at: string | null;
 }
 
+export interface IOneTransactionAmlCheckResponse {
+	id: string;
+	status: TAmlCheckStatus;
+	in_progress: boolean;
+	score: string;
+	risk_level: TAmlRiskLevel | null;
+	created_at: string;
+	updated_at: string | null;
+}
+
 export interface IOneTransactionWebhookHistoryResponse {
 	created_at: string;
 	request: string;
@@ -647,6 +657,7 @@ export interface IOneTransactionResponse {
 	user_id: string;
 	wallet: IOneTransactionWalletResponse | null;
 	webhook_history: IOneTransactionWebhookHistoryResponse[];
+	aml_check: IOneTransactionAmlCheckResponse | null;
 	withdrawal_is_manual: boolean;
 }
 
