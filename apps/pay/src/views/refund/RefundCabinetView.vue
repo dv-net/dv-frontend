@@ -4,7 +4,7 @@
 	import { storeToRefs } from "pinia";
 	import { UiButton, UiSkeleton } from "@dv.net/ui-kit";
 	import { useRefundStore } from "@pay/stores/refund";
-	import { REFUND_STATUS_LABELS } from "@pay/utils/constants/refund";
+	import { REFUND_CABINET_BUCKET_ORDER, REFUND_STATUS_LABELS } from "@pay/utils/constants/refund";
 	import type { IRefundCabinetItem } from "@pay/utils/types/refund";
 	import { buildRefundEntryPartialRoute, parseRefundEntryPartialQuery } from "@pay/utils/helpers/refundEntry";
 	import { useNotifications } from "@shared/utils/composables/useNotifications";
@@ -20,6 +20,8 @@
 	const router = useRouter();
 	const { notify } = useNotifications();
 	const { t } = useI18n();
+
+	const cabinetSkeletonSections = REFUND_CABINET_BUCKET_ORDER.slice(0, 2);
 
 	const handleClaim = async (item: IRefundCabinetItem, destinationAddress: string) => {
 		try {
@@ -100,41 +102,51 @@
 			</header>
 		</section>
 
-		<section v-if="isLoadingCabinet" class="panel">
-			<div class="panel__body">
-				<div class="panel-card panel-card--skeleton">
-					<ui-skeleton :rows="1" :row-height="160" :item-border-radius="20" />
+		<template v-if="isLoadingCabinet">
+			<section v-for="bucket in cabinetSkeletonSections" :key="bucket" class="panel">
+				<header class="panel__header">
+					<div class="panel__section-head">
+						<h2 class="panel__title">{{ $t(REFUND_STATUS_LABELS[bucket]) }}</h2>
+						<span class="panel__count panel__count--skeleton" />
+					</div>
+				</header>
+				<div class="panel__body">
+					<div class="panel-card panel-card--skeleton">
+						<ui-skeleton :rows="1" :row-height="160" :item-border-radius="20" />
+					</div>
+					<div class="panel-card panel-card--skeleton">
+						<ui-skeleton :rows="1" :row-height="160" :item-border-radius="20" />
+					</div>
 				</div>
-				<div class="panel-card panel-card--skeleton">
-					<ui-skeleton :rows="1" :row-height="160" :item-border-radius="20" />
-				</div>
-			</div>
-		</section>
+			</section>
+		</template>
 
-		<section v-else-if="!cabinetSections.length" class="panel">
-			<div class="panel-card panel-card--empty">
-				{{ $t("No blocked deposits found for this wallet") }}
-			</div>
-		</section>
-
-		<section v-for="section in cabinetSections" :key="section.bucket" class="panel">
-			<header class="panel__header">
-				<div class="panel__section-head">
-					<h2 class="panel__title">{{ $t(REFUND_STATUS_LABELS[section.bucket]) }}</h2>
-					<span class="panel__count">{{ section.items.length }}</span>
+		<template v-else>
+			<section v-if="!cabinetSections.length" class="panel">
+				<div class="panel-card panel-card--empty">
+					{{ $t("No blocked deposits found for this wallet") }}
 				</div>
-			</header>
-			<div class="panel__body">
-				<refund-tx-card
-					v-for="item in section.items"
-					:key="item.blocked_transaction_id"
-					:item="item"
-					:show-claim-action="section.bucket === 'available'"
-					:claim-loading="isLoadingClaim"
-					@claim="handleClaim(item, $event)"
-				/>
-			</div>
-		</section>
+			</section>
+
+			<section v-for="section in cabinetSections" :key="section.bucket" class="panel">
+				<header class="panel__header">
+					<div class="panel__section-head">
+						<h2 class="panel__title">{{ $t(REFUND_STATUS_LABELS[section.bucket]) }}</h2>
+						<span class="panel__count">{{ section.items.length }}</span>
+					</div>
+				</header>
+				<div class="panel__body">
+					<refund-tx-card
+						v-for="item in section.items"
+						:key="item.blocked_transaction_id"
+						:item="item"
+						:show-claim-action="section.bucket === 'available'"
+						:claim-loading="isLoadingClaim"
+						@claim="handleClaim(item, $event)"
+					/>
+				</div>
+			</section>
+		</template>
 	</div>
 </template>
 
@@ -231,6 +243,13 @@
 			font-size: 12px;
 			font-weight: 500;
 			line-height: 1;
+
+			&--skeleton {
+				width: 22px;
+				padding: 0;
+				background: rgba(48, 51, 69, 0.08);
+				animation: panel-count-pulse 1.2s ease-in-out infinite;
+			}
 		}
 
 		&__body {
@@ -255,6 +274,16 @@
 			font-size: 14px;
 			line-height: 20px;
 			text-align: center;
+		}
+	}
+
+	@keyframes panel-count-pulse {
+		0%,
+		100% {
+			opacity: 1;
+		}
+		50% {
+			opacity: 0.45;
 		}
 	}
 </style>
