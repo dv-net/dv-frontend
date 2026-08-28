@@ -66,7 +66,9 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 	const invoiceCurrency = computed<string>(() => invoice.value?.currency || store.value?.currency_id || "USD");
 
 	const isShowAdvertising = computed<boolean>(() => ![3, 4, 5].includes(currentStep.value));
-	const isShowBlockLatestTransactions = computed<boolean>(() => false);
+	const isShowBlockLatestTransactions = computed<boolean>(() => {
+		return !errorStore.value && ![3, 4, 5].includes(currentStep.value) && Boolean(transactionsConfirmed.value.length);
+	});
 
 	const applyPayerData = (mapped: ReturnType<typeof mapPaySimpleInvoiceToPayerResponse>, invoiceData: IPaySimpleInvoice) => {
 		store.value = mapped.store;
