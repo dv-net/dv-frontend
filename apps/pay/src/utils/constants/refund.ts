@@ -3,6 +3,8 @@ import type { RefundCabinetBucket, RefundStatus } from "@pay/utils/types/refund"
 export const REFUND_TOKEN_KEY = "p";
 export const REFUND_TOKEN_COOKIE_TTL = "3d";
 
+export const getRefundTokenCookieKey = (storeId: string): string => `${REFUND_TOKEN_KEY}:${storeId.trim()}`;
+
 export const REFUND_STATUS = {
 	PENDING_REVIEW: "pending_review",
 	REJECTED: "rejected",

@@ -9,6 +9,7 @@
 	import { getCurrentBlockchain, getCurrentCoin } from "@shared/utils/helpers/general.ts";
 	import BlockAdvertising from "@pay-shared/components/payerForm/blockAdvertising/BlockAdvertising.vue";
 	import { getApiWalletConfirm } from "@pay/utils/services/payerForm.ts";
+	import { buildRefundEntryPartialRoute } from "@pay/utils/helpers/refundEntry";
 	import { useI18n } from "vue-i18n";
 	import AudioPayment from "@pay-shared/components/payerForm/audioPayment/AudioPayment.vue";
 	import BlockLatestTransactions from "@pay-shared/components/payerForm/blockLatestTransactions/BlockLatestTransactions.vue";
@@ -36,11 +37,12 @@
 		filteredBlockchains,
 		filteredCurrencies,
 		isShowBlockLatestTransactions,
-		transactionsConfirmed,
+		sidebarTransactions,
 		moneyCameAudioRef,
 		paymentFoundAudioRef
 	} = storeToRefs(usePayerFormStore());
-	const { getWalletTxFind, checkValidationCurrencyAndChain, getStartInfo } = usePayerFormStore();
+	const { getWalletTxFind, checkValidationCurrencyAndChain, getStartInfo, clearAmlPolling, restorePendingPaymentSession } =
+		usePayerFormStore();
 
 	const route = useRoute();
 	const router = useRouter();
@@ -126,6 +128,16 @@
 		return step;
 	};
 
+	const handleRequestRefund = () => {
+		if (!payerId.value || !store.value?.id) return;
+		void router.push(
+			buildRefundEntryPartialRoute({
+				wallet_id: payerId.value,
+				store_id: store.value.id
+			})
+		);
+	};
+
 	watch(currentStep, (newValue: number) => {
 		timeline.value.forEach((item) => {
 			item.isActive = item.id <= (stepMap.value[currentStep.value] || currentStep.value);
@@ -152,12 +164,17 @@
 		document.title = store.value?.name
 			? `${t("Payment by cryptocurrency in")} ${store.value?.name}`
 			: t("Payment by cryptocurrency");
-		getQueryParams();
+
+		const hasPendingPayment = await restorePendingPaymentSession();
+		if (!hasPendingPayment) {
+			getQueryParams();
+		}
 		void startPolling();
 	});
 
 	onUnmounted(() => {
 		if (timeout) clearTimeout(timeout);
+		clearAmlPolling();
 	});
 </script>
 
@@ -180,7 +197,8 @@
 				:current-step="currentStep"
 				:is-show-advertising="isShowAdvertising"
 				:is-show-block-latest-transactions="isShowBlockLatestTransactions"
-				:transactions="transactionsConfirmed"
+				:transactions="sidebarTransactions"
+				@request-refund="handleRequestRefund"
 			>
 				<amount-editor v-model:amount="amount" size="lg" :minimal-payment="store?.minimal_payment" />
 			</payer-form-sidebar>
@@ -188,7 +206,8 @@
 			<block-latest-transactions
 				v-if="isShowBlockLatestTransactions"
 				class="form__latest-transactions"
-				:transactions="transactionsConfirmed"
+				:transactions="sidebarTransactions"
+				@request-refund="handleRequestRefund"
 			/>
 		</div>
 	</div>

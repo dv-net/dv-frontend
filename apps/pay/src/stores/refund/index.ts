@@ -1,17 +1,17 @@
 import { defineStore } from "pinia";
-import { computed, ref } from "vue";
+import { computed, ref, watch } from "vue";
 import {
 	getApiRefundCabinet,
 	postApiRefundClaim,
 	postApiRefundLookup,
 	postApiRefundVerify
 } from "@pay/utils/services/refund";
-import type { IRefundCabinetItem, IRefundCabinetResponse, IRefundLookupRequest } from "@pay/utils/types/refund";
+import type { IRefundCabinetItem, IRefundCabinetResponse, IRefundEntryPartialQuery, IRefundLookupRequest } from "@pay/utils/types/refund";
 import {
 	REFUND_CABINET_BUCKET_ORDER,
 	REFUND_RESEND_COOLDOWN_SEC,
 	REFUND_TOKEN_COOKIE_TTL,
-	REFUND_TOKEN_KEY
+	getRefundTokenCookieKey
 } from "@pay/utils/constants/refund";
 import { getCookie, removeCookie, setCookie } from "@shared/utils/helpers/cookie";
 
@@ -20,7 +20,7 @@ export const useRefundStore = defineStore("refund", () => {
 	const storeId = ref("");
 	const email = ref("");
 	const code = ref("");
-	const token = ref<string | null>(getCookie(REFUND_TOKEN_KEY));
+	const token = ref<string | null>(null);
 	const entryStep = ref<"lookup" | "verify">("lookup");
 	const cabinet = ref<IRefundCabinetResponse | null>(null);
 	const isLoadingLookup = ref(false);
@@ -56,13 +56,28 @@ export const useRefundStore = defineStore("refund", () => {
 		}, 1000);
 	};
 
+	const syncTokenFromStore = () => {
+		const storeIdValue = storeId.value.trim();
+		if (!storeIdValue) {
+			token.value = null;
+			return;
+		}
+		token.value = getCookie(getRefundTokenCookieKey(storeIdValue));
+	};
+
 	const persistToken = (value: string | null) => {
+		const storeIdValue = storeId.value.trim();
+		if (!storeIdValue) {
+			token.value = value;
+			return;
+		}
+
+		const cookieKey = getRefundTokenCookieKey(storeIdValue);
 		token.value = value;
 		if (value) {
-			removeCookie(REFUND_TOKEN_KEY);
-			setCookie(REFUND_TOKEN_KEY, value, REFUND_TOKEN_COOKIE_TTL);
+			setCookie(cookieKey, value, REFUND_TOKEN_COOKIE_TTL);
 		} else {
-			removeCookie(REFUND_TOKEN_KEY);
+			removeCookie(cookieKey);
 		}
 	};
 
@@ -140,6 +155,25 @@ export const useRefundStore = defineStore("refund", () => {
 		code.value = "";
 	};
 
+	const prefillFromQuery = (payload: IRefundLookupRequest) => {
+		walletId.value = payload.wallet_id;
+		storeId.value = payload.store_id;
+		email.value = payload.email;
+		syncTokenFromStore();
+	};
+
+	const prefillPartialFromQuery = (payload: IRefundEntryPartialQuery) => {
+		walletId.value = payload.wallet_id;
+		storeId.value = payload.store_id;
+		email.value = "";
+		entryStep.value = "lookup";
+		syncTokenFromStore();
+	};
+
+	watch(storeId, () => {
+		syncTokenFromStore();
+	});
+
 	return {
 		walletId,
 		storeId,
@@ -159,6 +193,9 @@ export const useRefundStore = defineStore("refund", () => {
 		verifyCode,
 		loadCabinet,
 		claimRefund,
-		logout
+		logout,
+		prefillFromQuery,
+		prefillPartialFromQuery,
+		syncTokenFromStore
 	};
 });

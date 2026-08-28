@@ -73,6 +73,7 @@
 	"Payment found": "Payment found",
 	"Permanent address": "Permanent address",
 	"Back": "Back",
+	"Back to payment": "Back to payment",
 	"Blockchains": "Blockchains",
 	"Currencies": "Currencies",
 	"Select currency": "Select currency",
@@ -132,5 +133,16 @@
 	"Enter email": "Enter email",
 	"Email must be valid": "Email must be valid",
 	"Enter verification code": "Enter verification code",
-	"Code must be 6 characters": "Code must be 6 characters"
+	"Code must be 6 characters": "Code must be 6 characters",
+	"AML verification in progress": "AML verification in progress",
+	"We are verifying your payment. This may take a few minutes": "We are verifying your payment. This may take a few minutes",
+	"Payment blocked by AML": "Payment blocked by AML",
+	"Your payment did not pass AML verification. You can request a refund to your address": "Your payment did not pass AML verification. You can request a refund to your address",
+	"Request a refund": "Request a refund",
+	"Process refund": "Process refund",
+	"Enter the email used for this payment. We will send a verification code": "Enter the email used for this payment. We will send a verification code",
+	"Your payment did not pass AML verification": "Your payment did not pass AML verification",
+	"AML failed contact support or refund": "Contact the store support or request a refund to your address on your own",
+	"We sent a verification code to your email. Enter it below to access the refund cabinet": "We sent a verification code to your email. Enter it below to access the refund cabinet",
+	"Sending verification code": "Sending verification code"
 }

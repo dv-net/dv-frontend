@@ -4,7 +4,7 @@
 	import { formatTimeAgo } from "@pay-shared/utils/helpers/dateParse";
 	import BlockchainIcon from "@shared/components/ui/blockchainIcon/BlockchainIcon.vue";
 	import WrapperBlock from "@pay-shared/components/payerForm/wrapperBlock/WrapperBlock.vue";
-	import { UiIcon, UiPagination } from "@dv.net/ui-kit";
+	import { UiButton, UiIcon, UiPagination } from "@dv.net/ui-kit";
 	import { getLinkExplorer } from "@shared/utils/helpers/linkExplorer.ts";
 	import { useI18n } from "vue-i18n";
 	import type { UItableMeta } from "@dv.net/ui-kit/dist/components/UiTable/types";
@@ -15,6 +15,10 @@
 	const { transactions, fiatCurrency = "USD" } = defineProps<{
 		transactions: ILatestTransaction[];
 		fiatCurrency?: string;
+	}>();
+
+	const emit = defineEmits<{
+		requestRefund: [blockedTransactionId: string];
 	}>();
 
 	const { t, locale } = useI18n();
@@ -96,11 +100,23 @@
 							<ui-icon type="400" name="new-windows" size="sm" color="#A4A5B1" />
 						</div>
 					</div>
-					<div v-if="item.is_less_than_1_hour" class="footer">
-						<div class="footer__label">
+					<div v-if="item.is_less_than_1_hour || item.blocked_transaction_id" class="footer">
+						<div v-if="item.is_less_than_1_hour" class="footer__label">
 							<span>{{ $t("new") }}</span>
 							<span>{{ formatTimeAgo(item.created_at, t, locale) }}</span>
 						</div>
+						<ui-button
+							v-if="item.blocked_transaction_id"
+							class="footer__refund"
+							size="sm"
+							type="outline"
+							mode="neutral"
+							left-icon-name="sync-alt"
+							left-icon-size="sm"
+							@click.stop="emit('requestRefund', item.blocked_transaction_id)"
+						>
+							{{ $t("Process refund") }}
+						</ui-button>
 					</div>
 				</div>
 			</div>
@@ -242,6 +258,7 @@
 					display: flex;
 					align-items: center;
 					justify-content: space-between;
+					gap: 8px;
 					&__label {
 						border-radius: 27px;
 						background-color: $main-text-link-and-price-color;
@@ -252,6 +269,10 @@
 						color: $text-header-form-background;
 						font-size: 12px;
 						font-weight: 400;
+					}
+					&__refund {
+						margin-left: auto;
+						flex-shrink: 0;
 					}
 				}
 			}

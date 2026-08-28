@@ -1,6 +1,12 @@
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
-import { getApiPayerInfo, getApiStoreTopup, getApiWalletTxFind } from "@pay/utils/services/payerForm.ts";
+import {
+	getApiPayerInfo,
+	getApiStoreTopup,
+	getApiWalletAmlCheck,
+	getApiWalletBlockedTransactions,
+	getApiWalletTxFind
+} from "@pay/utils/services/payerForm.ts";
 import type { IPayerAddressResponse, IPayerStoreResponse } from "@pay-shared/utils/types/payer";
 import type { IWalletTransactionResponse } from "@pay-shared/utils/types/transaction";
 import { useI18n } from "vue-i18n";
@@ -15,7 +21,22 @@ import type { BlockchainType } from "@shared/utils/types/blockchain";
 import type { CurrencyType } from "@shared/utils/types/blockchain";
 import { SORT_CHAIN } from "@pay-shared/utils/constants/blockchain";
 import { loaderShutdown } from "@pay-shared/utils/helpers/general";
+import type { ILatestTransaction } from "@pay-shared/components/payerForm/blockLatestTransactions/types";
 import type { IPayerFormTimelineItem } from "@pay-shared/utils/types/payerForm";
+import type { IBlockedTransactionItem } from "@pay/utils/types/aml";
+import { TRANSACTIONS_LS_KEY } from "@pay/utils/constants/payerForm";
+import {
+	clearPendingPaymentSession,
+	readPendingPaymentSession,
+	savePendingPaymentSession
+} from "@pay/utils/helpers/pendingPaymentSession";
+import {
+	AML_CHECK_STATUS,
+	AML_NULL_POLLS_BEFORE_SKIP,
+	AML_PAYMENT_PHASE,
+	AML_POLL_INTERVAL_MS,
+	type TAmlPaymentPhase
+} from "@pay/utils/constants/aml";
 
 export const usePayerFormStore = defineStore("payerForm", () => {
 	const { locale } = useI18n();
@@ -26,6 +47,8 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 	const currentCurrency = ref<string | null>(null);
 	const currentChain = ref<string | null>(null);
 	const payerId = ref<string | null>(null);
+	const payerEmail = ref<string | null>(null);
+	const amlPaymentPhase = ref<TAmlPaymentPhase | null>(null);
 	const amount = ref<number | null>(null);
 	const rates = ref<Record<string, string> | null>(null);
 	const store = ref<IPayerStoreResponse | null>(null);
@@ -33,6 +56,7 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 	const arrayCurrencyIds = ref<string[]>([]);
 	const transactionsConfirmed = ref<IWalletTransactionResponse[]>([]);
 	const transactionsUnconfirmed = ref<IWalletTransactionResponse[]>([]);
+	const blockedTransactions = ref<IBlockedTransactionItem[]>([]);
 	const currentTransaction = ref<IWalletTransactionResponse | null>(null);
 	const errorStore = ref<"error" | "store-disabled" | null>(null);
 	const moneyCameAudioRef = ref<HTMLAudioElement | null>(null);
@@ -60,6 +84,30 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 	const isShowBlockLatestTransactions = computed<boolean>(() => {
 		return !errorStore.value && ![3, 4, 5].includes(currentStep.value) && Boolean(transactionsConfirmed.value.length);
 	});
+
+	const sidebarTransactions = computed<ILatestTransaction[]>(() => {
+		const blockedByHash = new Map(
+			blockedTransactions.value.map((item) => [item.tx_hash, item.blocked_transaction_id])
+		);
+
+		return transactionsConfirmed.value.map((transaction) => ({
+			...transaction,
+			blocked_transaction_id: blockedByHash.get(transaction.hash)
+		}));
+	});
+
+	const loadBlockedTransactions = async () => {
+		if (!payerId.value) {
+			blockedTransactions.value = [];
+			return;
+		}
+
+		try {
+			blockedTransactions.value = await getApiWalletBlockedTransactions(payerId.value);
+		} catch {
+			blockedTransactions.value = [];
+		}
+	};
 
 	const getPayerInfo = async (id: string) => {
 		try {
@@ -101,18 +149,167 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 	) => {
 		try {
 			isLoading.value = true;
+			payerEmail.value = email?.trim() || null;
 			if (isStoreForm) {
 				if (slug && externalId) await getStoreTopup(slug, externalId, email);
 			} else {
 				payerId.value = payerIdQuery || null;
 				if (payerId.value) await getPayerInfo(payerId.value);
 			}
+			await loadBlockedTransactions();
 		} catch (error: any) {
 			throw error;
 		} finally {
 			isLoading.value = false;
 			loaderShutdown();
 		}
+	};
+
+	let amlPollTimeout: ReturnType<typeof setTimeout> | null = null;
+	let amlPollCancelled = false;
+
+	const clearAmlPolling = () => {
+		amlPollCancelled = true;
+		if (amlPollTimeout) {
+			clearTimeout(amlPollTimeout);
+			amlPollTimeout = null;
+		}
+	};
+
+	const sleep = (ms: number) =>
+		new Promise<void>((resolve) => {
+			amlPollTimeout = setTimeout(resolve, ms);
+		});
+
+	const isTransactionBlocked = async (walletId: string, txHash: string): Promise<boolean> => {
+		const blocked = await getApiWalletBlockedTransactions(walletId);
+		return blocked.some((item) => item.tx_hash === txHash);
+	};
+
+	const persistAmlPhase = (phase: TAmlPaymentPhase) => {
+		amlPaymentPhase.value = phase;
+		if (!payerId.value || !currentTransaction.value) return;
+
+		if (phase === AML_PAYMENT_PHASE.checking) {
+			savePendingPaymentSession(payerId.value, currentTransaction.value, phase);
+		} else {
+			clearPendingPaymentSession();
+		}
+	};
+
+	const startAmlPollingForCurrentTx = () => {
+		const walletId = payerId.value;
+		const txHash = currentTransaction.value?.hash;
+		if (!walletId || !txHash) {
+			persistAmlPhase(AML_PAYMENT_PHASE.passed);
+			moneyCameAudioRef.value?.play();
+			return;
+		}
+		clearAmlPolling();
+		amlPollCancelled = false;
+		persistAmlPhase(AML_PAYMENT_PHASE.checking);
+		void resolveAmlPaymentPhase(walletId, txHash);
+	};
+
+	const resolveAmlPaymentPhase = async (walletId: string, txHash: string) => {
+		persistAmlPhase(AML_PAYMENT_PHASE.checking);
+		let nullPollCount = 0;
+
+		while (!amlPollCancelled) {
+			try {
+				const check = await getApiWalletAmlCheck(walletId, txHash);
+
+				if (!check) {
+					nullPollCount += 1;
+					if (nullPollCount >= AML_NULL_POLLS_BEFORE_SKIP) {
+						persistAmlPhase(AML_PAYMENT_PHASE.passed);
+						moneyCameAudioRef.value?.play();
+						return;
+					}
+					await sleep(AML_POLL_INTERVAL_MS);
+					continue;
+				}
+
+				nullPollCount = 0;
+
+				if (check.in_progress || check.status === AML_CHECK_STATUS.pending) {
+					persistAmlPhase(AML_PAYMENT_PHASE.checking);
+					await sleep(AML_POLL_INTERVAL_MS);
+					continue;
+				}
+
+				if (check.status === AML_CHECK_STATUS.failed) {
+					persistAmlPhase(AML_PAYMENT_PHASE.failed);
+					return;
+				}
+
+				const blocked = await isTransactionBlocked(walletId, txHash);
+				if (blocked) await loadBlockedTransactions();
+				persistAmlPhase(blocked ? AML_PAYMENT_PHASE.blocked : AML_PAYMENT_PHASE.passed);
+				if (!blocked) moneyCameAudioRef.value?.play();
+				return;
+			} catch {
+				await sleep(AML_POLL_INTERVAL_MS);
+			}
+		}
+	};
+
+	const applyPendingTransaction = (transaction: IWalletTransactionResponse) => {
+		currentTransaction.value = transaction;
+		currentCurrency.value = getCurrentCoin(transaction.currency_code);
+		currentChain.value = getCurrentBlockchain(transaction.currency_code);
+	};
+
+	const restorePendingPaymentSession = async (): Promise<boolean> => {
+		const session = readPendingPaymentSession();
+		if (!session || !payerId.value) return false;
+		if (session.wallet_id !== payerId.value) {
+			clearPendingPaymentSession();
+			return false;
+		}
+
+		if (session.aml_phase !== AML_PAYMENT_PHASE.checking) {
+			clearPendingPaymentSession();
+			return false;
+		}
+
+		const walletId = payerId.value;
+		const txHash = session.transaction.hash;
+
+		try {
+			const check = await getApiWalletAmlCheck(walletId, txHash);
+
+			if (check && !check.in_progress && check.status !== AML_CHECK_STATUS.pending) {
+				clearPendingPaymentSession();
+				return false;
+			}
+		} catch {
+			clearPendingPaymentSession();
+			return false;
+		}
+
+		applyPendingTransaction(session.transaction);
+		isPoolingProgress.value = false;
+		currentStep.value = 5;
+		startAmlPollingForCurrentTx();
+		return true;
+	};
+
+	const finishWithSuccess = (tx?: IWalletTransactionResponse | null) => {
+		if (currentStep.value === 5) return;
+		if (tx) currentTransaction.value = tx;
+		isPoolingProgress.value = false;
+		localStorage.removeItem(TRANSACTIONS_LS_KEY);
+		currentStep.value = 5;
+
+		if (tx && payerId.value) {
+			savePendingPaymentSession(payerId.value, tx, AML_PAYMENT_PHASE.checking);
+			startAmlPollingForCurrentTx();
+			return;
+		}
+
+		amlPaymentPhase.value = AML_PAYMENT_PHASE.passed;
+		moneyCameAudioRef.value?.play();
 	};
 
 	const getWalletTxFind = async (id: string) => {
@@ -125,34 +322,44 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 				}));
 			}
 			if (data.unconfirmed) transactionsUnconfirmed.value = data.unconfirmed;
-			const transactionsLs = localStorage.getItem("transactions");
+			const transactionsLs = localStorage.getItem(TRANSACTIONS_LS_KEY);
 			if (!transactionsLs) {
-				return localStorage.setItem("transactions", JSON.stringify(data));
+				localStorage.setItem(
+					TRANSACTIONS_LS_KEY,
+					JSON.stringify({
+						confirmed: transactionsConfirmed.value,
+						unconfirmed: transactionsUnconfirmed.value
+					})
+				);
+				return;
 			}
-			// Wait for transaction to appear in Unconfirmed
+			// Step 3: new unconfirmed → step 4; new confirmed (skipped unconfirmed) → step 5
 			if (currentStep.value === 3) {
-				const newTransactions = checkForNewTransactions(transactionsLs);
-				if (newTransactions.length) {
-					currentTransaction.value = newTransactions[0];
+				const newUnconfirmed = checkForNewUnconfirmedTransactions(transactionsLs);
+				if (newUnconfirmed.length) {
+					currentTransaction.value = newUnconfirmed[0];
 					currentStep.value = 4;
 					paymentFoundAudioRef.value?.play();
 					return;
 				}
+				const newConfirmed = checkForNewConfirmedTransactions(transactionsLs);
+				if (newConfirmed.length) {
+					finishWithSuccess(newConfirmed[0]);
+					return;
+				}
 			}
-			// Wait for transaction to appear in Confirmed (this means payment has passed)
+			// Step 4: tracked tx moved to confirmed → success receipt
 			if (currentStep.value === 4) {
 				const find = transactionsConfirmed.value.find((item) => item.hash === currentTransaction.value?.hash);
 				if (find) {
-					// Payment has passed, remove polling getWalletTxFind
-					isPoolingProgress.value = false;
-					localStorage.removeItem("transactions");
-					currentStep.value = 5;
-					moneyCameAudioRef.value?.play();
+					finishWithSuccess(find);
 					return;
 				}
 			}
 		} catch (error: any) {
 			throw error;
+		} finally {
+			void loadBlockedTransactions();
 		}
 	};
 
@@ -235,13 +442,35 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		return false;
 	};
 
-	const checkForNewTransactions = (transactionsLs: string): IWalletTransactionResponse[] => {
-		const { unconfirmed } = JSON.parse(transactionsLs);
+	const parseTransactionsSnapshot = (
+		transactionsLs: string
+	): { confirmed: IWalletTransactionResponse[]; unconfirmed: IWalletTransactionResponse[] } => {
+		const { confirmed, unconfirmed } = JSON.parse(transactionsLs);
+		return {
+			confirmed: confirmed ?? [],
+			unconfirmed: unconfirmed ?? []
+		};
+	};
+
+	const checkForNewUnconfirmedTransactions = (transactionsLs: string): IWalletTransactionResponse[] => {
+		const { unconfirmed } = parseTransactionsSnapshot(transactionsLs);
 		if (!currentCurrencyChainId.value) return [];
 		return transactionsUnconfirmed.value.filter(
 			(newTx) =>
+				Boolean(newTx.hash) &&
 				newTx.currency_code === currentCurrencyChainId.value &&
-				!unconfirmed.some((oldTx: IWalletTransactionResponse) => oldTx.hash === newTx.hash)
+				!unconfirmed.some((oldTx) => oldTx.hash === newTx.hash)
+		);
+	};
+
+	const checkForNewConfirmedTransactions = (transactionsLs: string): IWalletTransactionResponse[] => {
+		const { confirmed } = parseTransactionsSnapshot(transactionsLs);
+		if (!currentCurrencyChainId.value) return [];
+		return transactionsConfirmed.value.filter(
+			(newTx) =>
+				Boolean(newTx.hash) &&
+				newTx.currency_code === currentCurrencyChainId.value &&
+				!confirmed.some((oldTx) => oldTx.hash === newTx.hash)
 		);
 	};
 
@@ -257,6 +486,8 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		currentStep,
 		amount,
 		payerId,
+		payerEmail,
+		amlPaymentPhase,
 		timeline,
 		isPoolingProgress,
 		rates,
@@ -264,6 +495,8 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		addresses,
 		transactionsConfirmed,
 		transactionsUnconfirmed,
+		blockedTransactions,
+		sidebarTransactions,
 		arrayCurrencyIds,
 		currentTransaction,
 		errorStore,
@@ -282,6 +515,9 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		getWalletTxFind,
 		getStoreTopup,
 		checkValidationCurrencyAndChain,
-		getStartInfo
+		getStartInfo,
+		clearAmlPolling,
+		restorePendingPaymentSession,
+		loadBlockedTransactions
 	};
 });

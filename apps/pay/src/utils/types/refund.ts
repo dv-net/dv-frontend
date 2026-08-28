@@ -2,6 +2,17 @@ export type RefundStatus = "pending_review" | "rejected" | "processing" | "compl
 
 export type RefundCabinetBucket = "available" | RefundStatus;
 
+export interface IRefundEntryQuery {
+	wallet_id: string;
+	store_id: string;
+	email: string;
+}
+
+export interface IRefundEntryPartialQuery {
+	wallet_id: string;
+	store_id: string;
+}
+
 export interface IRefundLookupRequest {
 	wallet_id: string;
 	store_id: string;

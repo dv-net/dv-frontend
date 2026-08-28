@@ -8,4 +8,5 @@ export interface ILatestTransaction {
 	is_less_than_1_hour?: boolean;
 	currency_label: string;
 	token_label: string | null;
+	blocked_transaction_id?: string;
 }

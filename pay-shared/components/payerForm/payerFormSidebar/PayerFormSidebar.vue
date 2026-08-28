@@ -37,6 +37,10 @@
 	const isShowSidebar = computed<boolean>(() => ![3, 4, 5].includes(currentStep));
 	const isShowDetails = computed<boolean>(() => !hasError && isShowSidebar.value);
 	const formattedAmount = computed<string>(() => formatFiatAmount(amount, fiatCurrency));
+
+	const emit = defineEmits<{
+		requestRefund: [blockedTransactionId: string];
+	}>();
 </script>
 
 <template>
@@ -83,6 +87,7 @@
 			class="sidebar__latest-transactions"
 			:transactions="transactions"
 			:fiat-currency="fiatCurrency"
+			@request-refund="emit('requestRefund', $event)"
 		/>
 		<block-advertising v-if="isShowAdvertising" class="sidebar__advertising" />
 	</div>

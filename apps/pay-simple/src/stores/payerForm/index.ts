@@ -21,6 +21,7 @@ import {
 } from "@pay-simple/utils/helpers/mapPaySimpleInvoice";
 import type { IPaySimpleInvoice, InvoiceStatus } from "@pay-simple/utils/types/paySimple";
 import { isInvoiceFinalStatus, isInvoiceSuccessStatus } from "@pay-simple/utils/types/paySimple";
+import { TRANSACTIONS_LS_KEY } from "@pay-simple/utils/constants/payerForm";
 
 export const usePayerFormStore = defineStore("payerForm", () => {
 	const isLoading = ref<boolean>(false);
@@ -135,7 +136,7 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		if (currentStep.value === 5) return;
 		if (tx) currentTransaction.value = tx;
 		isPoolingProgress.value = false;
-		localStorage.removeItem("transactions");
+		localStorage.removeItem(TRANSACTIONS_LS_KEY);
 		currentStep.value = 5;
 		moneyCameAudioRef.value?.play();
 		if (options?.redirect && invoice.value?.success_redirect_url) {
@@ -177,10 +178,10 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 				return;
 			}
 
-			const transactionsLs = localStorage.getItem("transactions");
+			const transactionsLs = localStorage.getItem(TRANSACTIONS_LS_KEY);
 			if (!transactionsLs) {
 				localStorage.setItem(
-					"transactions",
+					TRANSACTIONS_LS_KEY,
 					JSON.stringify({
 						confirmed: transactionsConfirmed.value,
 						unconfirmed: transactionsUnconfirmed.value

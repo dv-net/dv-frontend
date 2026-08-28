@@ -1,20 +1,22 @@
 <script setup lang="ts">
 	import { onMounted } from "vue";
-	import { useRouter } from "vue-router";
+	import { useRoute, useRouter } from "vue-router";
 	import { storeToRefs } from "pinia";
 	import { UiButton, UiSkeleton } from "@dv.net/ui-kit";
 	import { useRefundStore } from "@pay/stores/refund";
 	import { REFUND_STATUS_LABELS } from "@pay/utils/constants/refund";
 	import type { IRefundCabinetItem } from "@pay/utils/types/refund";
+	import { buildRefundEntryPartialRoute, parseRefundEntryPartialQuery } from "@pay/utils/helpers/refundEntry";
 	import { useNotifications } from "@shared/utils/composables/useNotifications";
 	import RefundTxCard from "@pay/views/refund/components/RefundTxCard.vue";
 	import { loaderShutdown } from "@pay-shared/utils/helpers/general";
 	import { useI18n } from "vue-i18n";
 
 	const refundStore = useRefundStore();
-	const { cabinetSections, isLoadingCabinet, isLoadingClaim } = storeToRefs(refundStore);
-	const { loadCabinet, claimRefund, logout } = refundStore;
+	const { cabinetSections, isLoadingCabinet, isLoadingClaim, walletId, storeId } = storeToRefs(refundStore);
+	const { loadCabinet, claimRefund, logout, prefillPartialFromQuery, syncTokenFromStore } = refundStore;
 
+	const route = useRoute();
 	const router = useRouter();
 	const { notify } = useNotifications();
 	const { t } = useI18n();
@@ -28,18 +30,39 @@
 		}
 	};
 
+	const getRefundContext = () => {
+		const fromQuery = parseRefundEntryPartialQuery(route.query);
+		if (fromQuery) return fromQuery;
+		if (walletId.value && storeId.value) {
+			return { wallet_id: walletId.value, store_id: storeId.value };
+		}
+		return null;
+	};
+
 	const handleLogout = async () => {
 		logout();
-		await router.replace({ name: "refund-entry" });
+		const context = getRefundContext();
+		await router.replace(context ? buildRefundEntryPartialRoute(context) : { name: "refund-entry" });
+	};
+
+	const handleBackToPayment = async () => {
+		if (!walletId.value) return;
+		await router.push({ name: "payer-wallet", params: { payerId: walletId.value } });
 	};
 
 	onMounted(async () => {
 		loaderShutdown();
+		const context = parseRefundEntryPartialQuery(route.query);
+		if (context) {
+			prefillPartialFromQuery(context);
+		} else {
+			syncTokenFromStore();
+		}
 		try {
 			await loadCabinet();
 		} catch (error) {
 			console.error(error);
-			await router.replace({ name: "refund-entry" });
+			await router.replace(context ? buildRefundEntryPartialRoute(context) : { name: "refund-entry" });
 		}
 	});
 </script>
@@ -54,9 +77,26 @@
 						{{ $t("Blocked deposits for this wallet. Request a refund where available") }}
 					</p>
 				</div>
-				<ui-button size="md" type="secondary" left-icon-name="logout" @click="handleLogout">
-					{{ $t("Sign out") }}
-				</ui-button>
+				<div class="panel__actions">
+					<ui-button
+						v-if="walletId"
+						size="md"
+						type="outline"
+						mode="neutral"
+						left-icon-name="arrow-back"
+						@click="handleBackToPayment"
+					>
+						{{ $t("Back to payment") }}
+					</ui-button>
+					<ui-button
+						size="md"
+						type="secondary"
+						left-icon-name="logout"
+						@click="handleLogout"
+					>
+						{{ $t("Sign out") }}
+					</ui-button>
+				</div>
 			</header>
 		</section>
 
@@ -125,7 +165,7 @@
 				align-items: flex-start;
 				justify-content: space-between;
 				gap: 16px;
-				@include mediamax(640) {
+				@include mediamax(768) {
 					flex-direction: column;
 					align-items: stretch;
 				}
@@ -137,6 +177,23 @@
 			flex-direction: column;
 			gap: 4px;
 			min-width: 0;
+		}
+
+		&__actions {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			flex-shrink: 0;
+
+			@include mediamax(768) {
+				flex-direction: column;
+				align-items: stretch;
+				width: 100%;
+
+				:deep(.ui-button) {
+					width: 100%;
+				}
+			}
 		}
 
 		&__title {

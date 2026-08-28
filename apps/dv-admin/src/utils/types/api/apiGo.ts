@@ -2,6 +2,7 @@ import type { BlockchainType } from "@shared/utils/types/blockchain";
 import { USER_ROLES } from "@dv-admin/utils/constants/user";
 import type { ENUM_SEARCH_TYPES } from "@dv-admin/utils/constants/search";
 import type { STORE_VERIFICATION_STATUS } from "@dv-admin/utils/constants/root";
+import type { TAmlCheckStatus, TAmlRiskLevel } from "@dv-admin/utils/constants/aml";
 
 export interface IPagination {
 	page: number;
@@ -998,12 +999,12 @@ export interface IAmlHistoryItemResponse {
 	user_id: string;
 	service_id: string;
 	external_id: string;
-	status: string;
+	status: TAmlCheckStatus;
 	service_slug: string;
 	score: string;
-	risk_level: string;
+	risk_level: TAmlRiskLevel | null;
 	created_at: string;
-	updated_at: string;
+	updated_at: string | null;
 	request_history: {
 		id: string;
 		aml_check_id: string;

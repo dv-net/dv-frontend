@@ -1,25 +1,39 @@
 <script setup lang="ts">
 	import { UiButton, UiForm, UiFormItem, UiInput } from "@dv.net/ui-kit";
 	import { computed, onMounted, reactive, ref } from "vue";
-	import { useRouter } from "vue-router";
+	import { useRoute, useRouter } from "vue-router";
 	import { storeToRefs } from "pinia";
 	import { useRefundStore } from "@pay/stores/refund";
 	import { REFUND_CODE_LENGTH } from "@pay/utils/constants/refund";
+	import { parseRefundEntryPartialQuery, parseRefundEntryQuery, buildRefundCabinetRoute } from "@pay/utils/helpers/refundEntry";
 	import { EMAIL_REGEX, UUID_REGEX } from "@shared/utils/constants/regex";
 	import { loaderShutdown } from "@pay-shared/utils/helpers/general";
 	import type { UiFormRules } from "@dv.net/ui-kit/dist/components/UiForm/types";
 	import { useI18n } from "vue-i18n";
 
 	const refundStore = useRefundStore();
-	const { walletId, storeId, email, code, entryStep, isLoadingLookup, isLoadingVerify, resendCooldownSec, isAuthenticated } =
-		storeToRefs(refundStore);
-	const { sendCode, verifyCode } = refundStore;
+	const {
+		walletId,
+		storeId,
+		email,
+		code,
+		entryStep,
+		isLoadingLookup,
+		isLoadingVerify,
+		resendCooldownSec,
+		isAuthenticated
+	} = storeToRefs(refundStore);
+	const { sendCode, verifyCode, prefillFromQuery, prefillPartialFromQuery, syncTokenFromStore } = refundStore;
 
+	const route = useRoute();
 	const router = useRouter();
 	const { t } = useI18n();
 
 	const lookupFormRef = ref<HTMLFormElement | null>(null);
 	const verifyFormRef = ref<HTMLFormElement | null>(null);
+	const isPrefilledEntry = ref(false);
+	const isPartialEntry = ref(false);
+	const isAutoSendingCode = ref(false);
 
 	const lookupForm = reactive({
 		wallet_id: walletId,
@@ -62,15 +76,54 @@
 		]
 	}));
 
+	const panelSubtitle = computed(() => {
+		if (isPrefilledEntry.value) {
+			return t("We sent a verification code to your email. Enter it below to access the refund cabinet");
+		}
+		if (isPartialEntry.value) {
+			return t("Enter the email used for this payment. We will send a verification code");
+		}
+		return t(
+			"Enter the wallet and store details used for the payment. We will send a verification code to the confirmed email"
+		);
+	});
+
 	const goToLookup = () => {
+		if (isPrefilledEntry.value || isPartialEntry.value) {
+			void router.back();
+			return;
+		}
 		entryStep.value = "lookup";
 		code.value = "";
+	};
+
+	const getRefundContext = () => {
+		const fromQuery = parseRefundEntryPartialQuery(route.query);
+		if (fromQuery) return fromQuery;
+		if (walletId.value && storeId.value) {
+			return { wallet_id: walletId.value, store_id: storeId.value };
+		}
+		return null;
+	};
+
+	const syncRefundContextToUrl = async () => {
+		const context = getRefundContext();
+		if (!context) return;
+		await router.replace({
+			name: "refund-entry",
+			query: { wallet_id: context.wallet_id, store_id: context.store_id }
+		});
+	};
+
+	const handleLookupBack = () => {
+		void router.back();
 	};
 
 	const handleSendCode = async () => {
 		if (!lookupFormRef.value || !(await lookupFormRef.value.validate())) return;
 		try {
 			await sendCode();
+			await syncRefundContextToUrl();
 		} catch (error) {
 			console.error(error);
 		}
@@ -79,8 +132,9 @@
 	const handleVerify = async () => {
 		if (!verifyFormRef.value || !(await verifyFormRef.value.validate())) return;
 		try {
+			const context = getRefundContext();
 			await verifyCode();
-			await router.push({ name: "refund-cabinet" });
+			await router.push(context ? buildRefundCabinetRoute(context) : { name: "refund-cabinet" });
 		} catch (error) {
 			console.error(error);
 		}
@@ -95,10 +149,41 @@
 		}
 	};
 
+	const initPrefilledEntry = async () => {
+		const fullPayload = parseRefundEntryQuery(route.query);
+		if (fullPayload) {
+			isPrefilledEntry.value = true;
+			prefillFromQuery(fullPayload);
+			if (isAuthenticated.value) return;
+			isAutoSendingCode.value = true;
+			try {
+				await sendCode();
+				await syncRefundContextToUrl();
+			} catch (error) {
+				console.error(error);
+				isPrefilledEntry.value = false;
+				entryStep.value = "lookup";
+			} finally {
+				isAutoSendingCode.value = false;
+			}
+			return;
+		}
+
+		const partialPayload = parseRefundEntryPartialQuery(route.query);
+		if (!partialPayload) return;
+
+		isPartialEntry.value = true;
+		prefillPartialFromQuery(partialPayload);
+	};
+
 	onMounted(async () => {
 		loaderShutdown();
+		await initPrefilledEntry();
+		syncTokenFromStore();
 		if (isAuthenticated.value) {
-			await router.replace({ name: "refund-cabinet" });
+			const context = getRefundContext();
+			await router.replace(context ? buildRefundCabinetRoute(context) : { name: "refund-cabinet" });
+			return;
 		}
 	});
 </script>
@@ -108,18 +193,16 @@
 		<section class="panel">
 			<header class="panel__header">
 				<h1 class="panel__title">{{ $t("Refund blocked deposits") }}</h1>
-				<p class="panel__subtitle">
-					{{
-						$t(
-							"Enter the wallet and store details used for the payment. We will send a verification code to the confirmed email"
-						)
-					}}
-				</p>
+				<p class="panel__subtitle">{{ panelSubtitle }}</p>
 			</header>
 
 			<div class="panel-card">
+				<div v-if="isAutoSendingCode" class="form form--loading">
+					<p class="form__hint">{{ $t("Sending verification code") }}</p>
+				</div>
+
 				<ui-form
-					v-if="entryStep === 'lookup'"
+					v-else-if="entryStep === 'lookup'"
 					ref="lookupFormRef"
 					class="form"
 					:rules="lookupRules"
@@ -156,17 +239,30 @@
 							autocomplete="email"
 						/>
 					</ui-form-item>
-					<ui-button
-						class="form__submit"
-						native-type="submit"
-						size="xl"
-						mode="neutral"
-						left-icon-name="mail"
-						left-icon-size="md"
-						:loading="isLoadingLookup"
-					>
-						{{ $t("Send verification code") }}
-					</ui-button>
+					<div class="form__actions">
+						<ui-button
+							class="form__action-back"
+							native-type="button"
+							size="xl"
+							type="outline"
+							mode="neutral"
+							left-icon-name="arrow-back"
+							@click="handleLookupBack"
+						>
+							{{ $t("Back") }}
+						</ui-button>
+						<ui-button
+							class="form__action-primary"
+							native-type="submit"
+							size="xl"
+							mode="neutral"
+							left-icon-name="mail"
+							left-icon-size="md"
+							:loading="isLoadingLookup"
+						>
+							{{ $t("Send verification code") }}
+						</ui-button>
+					</div>
 				</ui-form>
 
 				<ui-form
@@ -202,6 +298,7 @@
 					</ui-button>
 					<div class="form__actions">
 						<ui-button
+							class="form__action-back"
 							native-type="button"
 							size="xl"
 							type="outline"
@@ -212,6 +309,7 @@
 							{{ $t("Back") }}
 						</ui-button>
 						<ui-button
+							class="form__action-secondary"
 							native-type="button"
 							size="xl"
 							type="secondary"
@@ -294,6 +392,11 @@
 		display: flex;
 		flex-direction: column;
 
+		&--loading {
+			min-height: 120px;
+			justify-content: center;
+		}
+
 		&__row {
 			display: grid;
 			grid-template-columns: 1fr 1fr;
@@ -323,6 +426,15 @@
 
 			@include mediamax(480) {
 				grid-template-columns: 1fr;
+
+				.form__action-primary,
+				.form__action-secondary {
+					order: 1;
+				}
+
+				.form__action-back {
+					order: 2;
+				}
 			}
 		}
 

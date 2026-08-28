@@ -19,6 +19,7 @@
 	import IconWallet from "@pay/components/icons/refund/IconWallet.vue";
 	import IconCalendar from "@pay/components/icons/refund/IconCalendar.vue";
 	import { useMediaQuery } from "@shared/utils/composables/useMediaQuery";
+	import dayjs from "dayjs";
 
 	const {
 		item,
@@ -36,6 +37,11 @@
 
 	const isClaimOpen = ref(false);
 	const isCompact = useMediaQuery("(max-width: 1024px)");
+
+	const formatCreatedDate = (value: string) => {
+		const date = dayjs(value);
+		return date.isValid() ? date.format("DD.MM.YYYY") : value;
+	};
 
 	const coinLabel = computed(() => (item.currency_id ? getCurrentCoin(item.currency_id) : item.currency_id));
 	const networkLabel = computed(() => {
@@ -68,13 +74,6 @@
 		}
 	});
 
-	const formattedCreatedAt = computed(() => {
-		if (!item.created_at) return "";
-		const date = new Date(item.created_at);
-		if (Number.isNaN(date.getTime())) return item.created_at;
-		return date.toLocaleDateString();
-	});
-
 	const displayTxHash = computed(() => {
 		if (!item.tx_hash) return "";
 		return isCompact.value ? truncateHash(item.tx_hash, 10, 6) : item.tx_hash;
@@ -103,8 +102,8 @@
 					<span class="tx-card__network">{{ networkLabel }}</span>
 				</div>
 			</div>
-			<time v-if="formattedCreatedAt" class="tx-card__date" :datetime="item.created_at || undefined">
-				{{ formattedCreatedAt }}
+			<time v-if="item.created_at" class="tx-card__date" :datetime="item.created_at">
+				{{ formatCreatedDate(item.created_at) }}
 				<icon-calendar class="tx-card__date-icon" />
 			</time>
 		</header>

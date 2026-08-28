@@ -8,7 +8,12 @@
 	import type { UiPaginationMeta } from "@dv.net/ui-kit/dist/components/UiPagination/types";
 	import type { UiTableHeader } from "@dv.net/ui-kit/dist/components/UiTable/types";
 	import { useI18n } from "vue-i18n";
-	import { RISK_LEVEL_ENUM } from "@dv-admin/utils/constants/aml";
+	import {
+		AML_CHECK_STATUS,
+		AML_RISK_LEVEL,
+		AML_RISK_LEVEL_LABELS,
+		type TAmlCheckStatus
+	} from "@dv-admin/utils/constants/aml";
 	import { formatDate } from "@dv-admin/utils/helpers/dateParse.ts";
 	import ShowStatusGeneral from "@dv-admin/components/ui/showStatusGeneral/ShowStatusGeneral.vue";
 	import type { IAmlHistoryItemResponse } from "@dv-admin/utils/types/api/apiGo.ts";
@@ -54,9 +59,9 @@
 		return withError?.error_msg ?? null;
 	};
 
-	const getRiskLevelClass = (riskLevel: string): string => {
-		if (riskLevel === "high" || riskLevel === "critical") return "risk-level--danger";
-		if (riskLevel === "medium") return "risk-level--warning";
+	const getRiskLevelClass = (riskLevel: string | null): string => {
+		if (riskLevel === AML_RISK_LEVEL.high || riskLevel === AML_RISK_LEVEL.critical) return "risk-level--danger";
+		if (riskLevel === AML_RISK_LEVEL.medium) return "risk-level--warning";
 		return "";
 	};
 
@@ -67,7 +72,14 @@
 		return `${percent}%`;
 	};
 
+	const isAmlCheckResultUnavailable = (status: TAmlCheckStatus): boolean =>
+		status === AML_CHECK_STATUS.failed || status === AML_CHECK_STATUS.pending;
+
+	const canDownloadAmlReport = (row: IAmlHistoryItemResponse): boolean =>
+		row.status !== AML_CHECK_STATUS.pending && Boolean(getLatestRequestHistory(row)?.service_response);
+
 	const handleDownloadReport = (row: IAmlHistoryItemResponse) => {
+		if (!canDownloadAmlReport(row)) return;
 		const serviceResponse = getLatestRequestHistory(row)?.service_response;
 		if (!serviceResponse) return;
 		downloadAmlServiceResponsePdf(serviceResponse, `aml-report-${row.id}.pdf`);
@@ -163,11 +175,11 @@
 					{{ formatDate(row.created_at) }}
 				</template>
 				<template #body-cell-score="{ row }">
-					{{ row.status === "failed" ? "—" : formatFraudScore(row.score) }}
+					{{ isAmlCheckResultUnavailable(row.status) ? "—" : formatFraudScore(row.score) }}
 				</template>
 				<template #body-cell-status="{ row }">
 					<ui-tooltip
-						v-if="row.status === 'failed' && getErrorMsg(row)"
+						v-if="row.status === AML_CHECK_STATUS.failed && getErrorMsg(row)"
 						:title="$t('Error')"
 						:text="getErrorMsg(row) || ''"
 					>
@@ -176,10 +188,15 @@
 					<show-status-general v-else :status="row.status" :w-full="false" />
 				</template>
 				<template #body-cell-risk_level="{ row }">
-					<template v-if="row.status === 'failed'">—</template>
-					<span v-else class="risk-level" :class="getRiskLevelClass(row.risk_level)">
-						{{ row.risk_level in RISK_LEVEL_ENUM ? $t(RISK_LEVEL_ENUM[row.risk_level]) : row.risk_level }}
+					<template v-if="isAmlCheckResultUnavailable(row.status)">—</template>
+					<span v-else-if="row.risk_level" class="risk-level" :class="getRiskLevelClass(row.risk_level)">
+						{{
+							row.risk_level in AML_RISK_LEVEL_LABELS
+								? $t(AML_RISK_LEVEL_LABELS[row.risk_level])
+								: row.risk_level
+						}}
 					</span>
+					<template v-else>—</template>
 				</template>
 				<template #body-cell-actions="{ row }">
 					<ui-button
@@ -187,7 +204,7 @@
 						size="sm"
 						left-icon-name="download"
 						left-icon-size="md"
-						:disabled="!getLatestRequestHistory(row)?.service_response"
+						:disabled="!canDownloadAmlReport(row)"
 						@click="handleDownloadReport(row)"
 					>
 						{{ $t("Download") }}

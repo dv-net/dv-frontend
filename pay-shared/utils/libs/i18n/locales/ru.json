@@ -73,6 +73,7 @@
 	"Payment found": "Платеж найден",
 	"Permanent address": "Постоянный адрес",
 	"Back": "Назад",
+	"Back to payment": "К платёжной форме",
 	"Blockchains": "Сети",
 	"Currencies": "Валюты",
 	"Select currency": "Выбор валюты",
@@ -132,5 +133,16 @@
 	"Enter email": "Введите email",
 	"Email must be valid": "Email должен быть корректным",
 	"Enter verification code": "Введите код подтверждения",
-	"Code must be 6 characters": "Код должен содержать 6 символов"
+	"Code must be 6 characters": "Код должен содержать 6 символов",
+	"AML verification in progress": "Идёт AML-проверка",
+	"We are verifying your payment. This may take a few minutes": "Мы проверяем ваш платёж. Это может занять несколько минут",
+	"Payment blocked by AML": "Платёж заблокирован AML",
+	"Your payment did not pass AML verification. You can request a refund to your address": "Платёж не прошёл AML-проверку. Вы можете запросить возврат на свой адрес",
+	"Request a refund": "Запросить возврат",
+	"Process refund": "Оформить возврат",
+	"Enter the email used for this payment. We will send a verification code": "Введите email, указанный при оплате. Мы отправим код подтверждения",
+	"Your payment did not pass AML verification": "Платёж не прошёл AML-проверку",
+	"AML failed contact support or refund": "Обратитесь в поддержку магазина или оформите возврат на свой адрес самостоятельно",
+	"We sent a verification code to your email. Enter it below to access the refund cabinet": "Мы отправили код подтверждения на ваш email. Введите его ниже, чтобы открыть кабинет возврата",
+	"Sending verification code": "Отправляем код подтверждения"
 }
