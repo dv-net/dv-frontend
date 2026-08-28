@@ -40,7 +40,7 @@
 
 	const formatCreatedDate = (value: string) => {
 		const date = dayjs(value);
-		return date.isValid() ? date.format("DD.MM.YYYY") : value;
+		return date.isValid() ? date.format("DD.MM.YYYY, HH:mm") : value;
 	};
 
 	const coinLabel = computed(() => (item.currency_id ? getCurrentCoin(item.currency_id) : item.currency_id));

@@ -5,8 +5,8 @@
 	import { storeToRefs } from "pinia";
 	import { useRefundStore } from "@pay/stores/refund";
 	import { REFUND_CODE_LENGTH } from "@pay/utils/constants/refund";
-	import { parseRefundEntryPartialQuery, parseRefundEntryQuery, buildRefundCabinetRoute } from "@pay/utils/helpers/refundEntry";
-	import { EMAIL_REGEX, UUID_REGEX } from "@shared/utils/constants/regex";
+	import { parseRefundEntryPartialQuery, parseRefundEntryQuery, buildRefundCabinetRoute, buildRefundEntryPartialRoute } from "@pay/utils/helpers/refundEntry";
+	import { EMAIL_REGEX } from "@shared/utils/constants/regex";
 	import { loaderShutdown } from "@pay-shared/utils/helpers/general";
 	import type { UiFormRules } from "@dv.net/ui-kit/dist/components/UiForm/types";
 	import { useI18n } from "vue-i18n";
@@ -32,12 +32,9 @@
 	const lookupFormRef = ref<HTMLFormElement | null>(null);
 	const verifyFormRef = ref<HTMLFormElement | null>(null);
 	const isPrefilledEntry = ref(false);
-	const isPartialEntry = ref(false);
 	const isAutoSendingCode = ref(false);
 
 	const lookupForm = reactive({
-		wallet_id: walletId,
-		store_id: storeId,
 		email: email
 	});
 
@@ -46,20 +43,6 @@
 	});
 
 	const lookupRules = computed<UiFormRules>(() => ({
-		wallet_id: [
-			{ required: true, message: t("Enter wallet UUID") },
-			{
-				validator: () => UUID_REGEX.test(lookupForm.wallet_id.trim()),
-				message: t("Must be a valid UUID")
-			}
-		],
-		store_id: [
-			{ required: true, message: t("Enter store UUID") },
-			{
-				validator: () => UUID_REGEX.test(lookupForm.store_id.trim()),
-				message: t("Must be a valid UUID")
-			}
-		],
 		email: [
 			{ required: true, message: t("Enter email") },
 			{ validator: () => EMAIL_REGEX.test(lookupForm.email), message: t("Email must be valid") }
@@ -80,21 +63,15 @@
 		if (isPrefilledEntry.value) {
 			return t("We sent a verification code to your email. Enter it below to access the refund cabinet");
 		}
-		if (isPartialEntry.value) {
-			return t("Enter the email used for this payment. We will send a verification code");
-		}
-		return t(
-			"Enter the wallet and store details used for the payment. We will send a verification code to the confirmed email"
-		);
+		return t("Enter the email used for this payment. We will send a verification code");
 	});
 
-	const goToLookup = () => {
-		if (isPrefilledEntry.value || isPartialEntry.value) {
-			void router.back();
-			return;
-		}
+	const goToLookup = async () => {
+		const context = getRefundContext();
+		if (!context) return;
 		entryStep.value = "lookup";
 		code.value = "";
+		await router.push(buildRefundEntryPartialRoute(context));
 	};
 
 	const getRefundContext = () => {
@@ -115,8 +92,10 @@
 		});
 	};
 
-	const handleLookupBack = () => {
-		void router.back();
+	const handleLookupBack = async () => {
+		const context = getRefundContext();
+		if (!context?.wallet_id) return;
+		await router.push({ name: "payer-wallet", params: { payerId: context.wallet_id } });
 	};
 
 	const handleSendCode = async () => {
@@ -172,13 +151,16 @@
 		const partialPayload = parseRefundEntryPartialQuery(route.query);
 		if (!partialPayload) return;
 
-		isPartialEntry.value = true;
 		prefillPartialFromQuery(partialPayload);
 	};
 
 	onMounted(async () => {
 		loaderShutdown();
 		await initPrefilledEntry();
+		if (!getRefundContext()) {
+			void router.back();
+			return;
+		}
 		syncTokenFromStore();
 		if (isAuthenticated.value) {
 			const context = getRefundContext();
@@ -209,26 +191,6 @@
 					:model="lookupForm"
 					@submit.prevent="handleSendCode"
 				>
-					<div class="form__row">
-						<ui-form-item name="wallet_id" :label="$t('Wallet UUID')">
-							<ui-input
-								v-model="lookupForm.wallet_id"
-								:placeholder="$t('Enter wallet UUID')"
-								size="md"
-								name="wallet_id"
-								autocomplete="off"
-							/>
-						</ui-form-item>
-						<ui-form-item name="store_id" :label="$t('Store UUID')">
-							<ui-input
-								v-model="lookupForm.store_id"
-								:placeholder="$t('Enter store UUID')"
-								size="md"
-								name="store_id"
-								autocomplete="off"
-							/>
-						</ui-form-item>
-					</div>
 					<ui-form-item name="email" :label="$t('Email')">
 						<ui-input
 							v-model="lookupForm.email"
@@ -249,7 +211,7 @@
 							left-icon-name="arrow-back"
 							@click="handleLookupBack"
 						>
-							{{ $t("Back") }}
+							{{ $t("Back to payment") }}
 						</ui-button>
 						<ui-button
 							class="form__action-primary"
@@ -395,15 +357,6 @@
 		&--loading {
 			min-height: 120px;
 			justify-content: center;
-		}
-
-		&__row {
-			display: grid;
-			grid-template-columns: 1fr 1fr;
-			column-gap: 12px;
-			@include mediamax(480) {
-				grid-template-columns: 1fr;
-			}
 		}
 
 		&__hint {

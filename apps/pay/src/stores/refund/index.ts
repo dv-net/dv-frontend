@@ -32,11 +32,18 @@ export const useRefundStore = defineStore("refund", () => {
 
 	const isAuthenticated = computed(() => Boolean(token.value));
 
+	const sortCabinetItemsByDateDesc = (items: IRefundCabinetItem[]) =>
+		[...items].sort((a, b) => {
+			const aTime = a.created_at ? new Date(a.created_at).getTime() : 0;
+			const bTime = b.created_at ? new Date(b.created_at).getTime() : 0;
+			return bTime - aTime;
+		});
+
 	const cabinetSections = computed(() => {
 		if (!cabinet.value) return [];
 		return REFUND_CABINET_BUCKET_ORDER.map((bucket) => ({
 			bucket,
-			items: cabinet.value?.[bucket] ?? []
+			items: sortCabinetItemsByDateDesc(cabinet.value?.[bucket] ?? [])
 		})).filter((section) => section.items.length > 0);
 	});
 
