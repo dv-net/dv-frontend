@@ -19,3 +19,7 @@ export interface IWalletTxFindResponse {
 	confirmed: IWalletTransactionResponse[];
 	unconfirmed: IWalletTransactionResponse[];
 }
+
+export interface ITransactionsLsSnapshot extends IWalletTxFindResponse {
+	wallet_id: string;
+}

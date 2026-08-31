@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import { computed, ref } from "vue";
 import { getApiInvoice, getApiInvoiceStatus } from "@pay-simple/utils/services/payerForm.ts";
 import type { IPayerAddressResponse, IPayerStoreResponse } from "@pay-shared/utils/types/payer";
-import type { IWalletTransactionResponse } from "@pay-shared/utils/types/transaction";
+import type { ITransactionsLsSnapshot, IWalletTransactionResponse } from "@pay-shared/utils/types/transaction";
 import {
 	changeChainBsc,
 	formatAmountBlockchain,
@@ -21,7 +21,12 @@ import {
 } from "@pay-simple/utils/helpers/mapPaySimpleInvoice";
 import type { IPaySimpleInvoice, InvoiceStatus } from "@pay-simple/utils/types/paySimple";
 import { isInvoiceFinalStatus, isInvoiceSuccessStatus } from "@pay-simple/utils/types/paySimple";
-import { TRANSACTIONS_LS_KEY } from "@pay-simple/utils/constants/payerForm";
+import { TRANSACTIONS_LS_PREFIX } from "@pay-simple/utils/constants/payerForm";
+import {
+	clearTransactionsSnapshot,
+	readTransactionsSnapshot,
+	writeTransactionsSnapshot
+} from "@pay-shared/utils/helpers/transactionsLs";
 
 export const usePayerFormStore = defineStore("payerForm", () => {
 	const isLoading = ref<boolean>(false);
@@ -70,7 +75,10 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		return !errorStore.value && ![3, 4, 5].includes(currentStep.value) && Boolean(transactionsConfirmed.value.length);
 	});
 
-	const applyPayerData = (mapped: ReturnType<typeof mapPaySimpleInvoiceToPayerResponse>, invoiceData: IPaySimpleInvoice) => {
+	const applyPayerData = (
+		mapped: ReturnType<typeof mapPaySimpleInvoiceToPayerResponse>,
+		invoiceData: IPaySimpleInvoice
+	) => {
 		store.value = mapped.store;
 		rates.value = mapped.rates;
 		addresses.value = mapped.addresses;
@@ -138,7 +146,7 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		if (currentStep.value === 5) return;
 		if (tx) currentTransaction.value = tx;
 		isPoolingProgress.value = false;
-		localStorage.removeItem(TRANSACTIONS_LS_KEY);
+		if (invoiceUuid.value) clearTransactionsSnapshot(TRANSACTIONS_LS_PREFIX, invoiceUuid.value);
 		currentStep.value = 5;
 		moneyCameAudioRef.value?.play();
 		if (options?.redirect && invoice.value?.success_redirect_url) {
@@ -180,15 +188,12 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 				return;
 			}
 
-			const transactionsLs = localStorage.getItem(TRANSACTIONS_LS_KEY);
+			const transactionsLs = readTransactionsSnapshot(TRANSACTIONS_LS_PREFIX, uuid);
 			if (!transactionsLs) {
-				localStorage.setItem(
-					TRANSACTIONS_LS_KEY,
-					JSON.stringify({
-						confirmed: transactionsConfirmed.value,
-						unconfirmed: transactionsUnconfirmed.value
-					})
-				);
+				writeTransactionsSnapshot(TRANSACTIONS_LS_PREFIX, uuid, {
+					confirmed: transactionsConfirmed.value,
+					unconfirmed: transactionsUnconfirmed.value
+				});
 				return;
 			}
 
@@ -291,9 +296,7 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		if (!amount.value || !rates.value || !currency) return "0";
 		// Exact id first, then coin part only (BNB ≠ USDC.BNBSmartChain)
 		const entries = Object.entries(rates.value);
-		const find =
-			entries.find(([key]) => key === currency) ||
-			entries.find(([key]) => getCurrentCoin(key) === currency);
+		const find = entries.find(([key]) => key === currency) || entries.find(([key]) => getCurrentCoin(key) === currency);
 		if (!find) return "0";
 		const result: number = amount.value / parseFloat(find[1]);
 		return formatAmountBlockchain(result, { currencyId: find[0], errorValue: "0" });
@@ -311,23 +314,25 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		return false;
 	};
 
-	const checkForNewUnconfirmedTransactions = (transactionsLs: string): IWalletTransactionResponse[] => {
-		const { unconfirmed } = JSON.parse(transactionsLs);
+	const checkForNewUnconfirmedTransactions = (
+		transactionsLs: ITransactionsLsSnapshot
+	): IWalletTransactionResponse[] => {
 		if (!currentCurrencyChainId.value) return [];
 		return transactionsUnconfirmed.value.filter(
 			(newTx) =>
+				Boolean(newTx.hash) &&
 				newTx.currency_code === currentCurrencyChainId.value &&
-				!unconfirmed.some((oldTx: IWalletTransactionResponse) => oldTx.hash === newTx.hash)
+				!transactionsLs.unconfirmed.some((oldTx) => oldTx.hash === newTx.hash)
 		);
 	};
 
-	const checkForNewConfirmedTransactions = (transactionsLs: string): IWalletTransactionResponse[] => {
-		const { confirmed } = JSON.parse(transactionsLs);
+	const checkForNewConfirmedTransactions = (transactionsLs: ITransactionsLsSnapshot): IWalletTransactionResponse[] => {
 		if (!currentCurrencyChainId.value) return [];
 		return transactionsConfirmed.value.filter(
 			(newTx) =>
+				Boolean(newTx.hash) &&
 				newTx.currency_code === currentCurrencyChainId.value &&
-				!confirmed.some((oldTx: IWalletTransactionResponse) => oldTx.hash === newTx.hash)
+				!transactionsLs.confirmed.some((oldTx) => oldTx.hash === newTx.hash)
 		);
 	};
 

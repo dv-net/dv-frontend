@@ -8,7 +8,7 @@ import {
 	getApiWalletTxFind
 } from "@pay/utils/services/payerForm.ts";
 import type { IPayerAddressResponse, IPayerStoreResponse } from "@pay-shared/utils/types/payer";
-import type { IWalletTransactionResponse } from "@pay-shared/utils/types/transaction";
+import type { ITransactionsLsSnapshot, IWalletTransactionResponse } from "@pay-shared/utils/types/transaction";
 import { useI18n } from "vue-i18n";
 import {
 	changeChainBsc,
@@ -24,7 +24,12 @@ import { loaderShutdown } from "@pay-shared/utils/helpers/general";
 import type { ILatestTransaction } from "@pay-shared/components/payerForm/blockLatestTransactions/types";
 import type { IPayerFormTimelineItem } from "@pay-shared/utils/types/payerForm";
 import type { IBlockedTransactionItem } from "@pay/utils/types/aml";
-import { TRANSACTIONS_LS_KEY } from "@pay/utils/constants/payerForm";
+import { TRANSACTIONS_LS_PREFIX } from "@pay/utils/constants/payerForm";
+import {
+	clearTransactionsSnapshot,
+	readTransactionsSnapshot,
+	writeTransactionsSnapshot
+} from "@pay-shared/utils/helpers/transactionsLs";
 import {
 	clearPendingPaymentSession,
 	readPendingPaymentSession,
@@ -86,9 +91,7 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 	});
 
 	const sidebarTransactions = computed<ILatestTransaction[]>(() => {
-		const blockedByHash = new Map(
-			blockedTransactions.value.map((item) => [item.tx_hash, item.blocked_transaction_id])
-		);
+		const blockedByHash = new Map(blockedTransactions.value.map((item) => [item.tx_hash, item.blocked_transaction_id]));
 
 		return transactionsConfirmed.value.map((transaction) => ({
 			...transaction,
@@ -299,7 +302,7 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		if (currentStep.value === 5) return;
 		if (tx) currentTransaction.value = tx;
 		isPoolingProgress.value = false;
-		localStorage.removeItem(TRANSACTIONS_LS_KEY);
+		if (payerId.value) clearTransactionsSnapshot(TRANSACTIONS_LS_PREFIX, payerId.value);
 		currentStep.value = 5;
 
 		if (tx && payerId.value) {
@@ -322,15 +325,13 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 				}));
 			}
 			if (data.unconfirmed) transactionsUnconfirmed.value = data.unconfirmed;
-			const transactionsLs = localStorage.getItem(TRANSACTIONS_LS_KEY);
+
+			const transactionsLs = readTransactionsSnapshot(TRANSACTIONS_LS_PREFIX, id);
 			if (!transactionsLs) {
-				localStorage.setItem(
-					TRANSACTIONS_LS_KEY,
-					JSON.stringify({
-						confirmed: transactionsConfirmed.value,
-						unconfirmed: transactionsUnconfirmed.value
-					})
-				);
+				writeTransactionsSnapshot(TRANSACTIONS_LS_PREFIX, id, {
+					confirmed: transactionsConfirmed.value,
+					unconfirmed: transactionsUnconfirmed.value
+				});
 				return;
 			}
 			// Step 3: new unconfirmed → step 4; new confirmed (skipped unconfirmed) → step 5
@@ -442,35 +443,25 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		return false;
 	};
 
-	const parseTransactionsSnapshot = (
-		transactionsLs: string
-	): { confirmed: IWalletTransactionResponse[]; unconfirmed: IWalletTransactionResponse[] } => {
-		const { confirmed, unconfirmed } = JSON.parse(transactionsLs);
-		return {
-			confirmed: confirmed ?? [],
-			unconfirmed: unconfirmed ?? []
-		};
-	};
-
-	const checkForNewUnconfirmedTransactions = (transactionsLs: string): IWalletTransactionResponse[] => {
-		const { unconfirmed } = parseTransactionsSnapshot(transactionsLs);
+	const checkForNewUnconfirmedTransactions = (
+		transactionsLs: ITransactionsLsSnapshot
+	): IWalletTransactionResponse[] => {
 		if (!currentCurrencyChainId.value) return [];
 		return transactionsUnconfirmed.value.filter(
 			(newTx) =>
 				Boolean(newTx.hash) &&
 				newTx.currency_code === currentCurrencyChainId.value &&
-				!unconfirmed.some((oldTx) => oldTx.hash === newTx.hash)
+				!transactionsLs.unconfirmed.some((oldTx) => oldTx.hash === newTx.hash)
 		);
 	};
 
-	const checkForNewConfirmedTransactions = (transactionsLs: string): IWalletTransactionResponse[] => {
-		const { confirmed } = parseTransactionsSnapshot(transactionsLs);
+	const checkForNewConfirmedTransactions = (transactionsLs: ITransactionsLsSnapshot): IWalletTransactionResponse[] => {
 		if (!currentCurrencyChainId.value) return [];
 		return transactionsConfirmed.value.filter(
 			(newTx) =>
 				Boolean(newTx.hash) &&
 				newTx.currency_code === currentCurrencyChainId.value &&
-				!confirmed.some((oldTx) => oldTx.hash === newTx.hash)
+				!transactionsLs.confirmed.some((oldTx) => oldTx.hash === newTx.hash)
 		);
 	};
 
