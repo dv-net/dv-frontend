@@ -129,5 +129,20 @@
   "Enter email": "Syötä sähköpostiosoite",
   "Email must be valid": "Sähköpostiosoitteen on oltava kelvollinen",
   "Enter verification code": "Syötä vahvistuskoodi",
-  "Code must be 6 characters": "Koodin on oltava 6 merkkiä"
+  "Code must be 6 characters": "Koodin on oltava 6 merkkiä",
+  "Page not found": "Sivua ei löytynyt",
+  "This page does not exist or was moved": "Tätä sivua ei ole olemassa tai se on siirretty",
+  "Preparing wallets": "Valmistellaan lompakoita",
+  "Back to payment": "Takaisin maksuun",
+  "AML verification in progress": "AML-tarkistus käynnissä",
+  "We are verifying your payment. This may take a few minutes": "Vahvistamme maksuasi. Tämä voi kestää muutaman minuutin",
+  "Payment blocked by AML": "Maksu estetty AML:n vuoksi",
+  "Your payment did not pass AML verification. You can request a refund to your address": "Maksusi ei läpäissyt AML-tarkistusta. Voit pyytää palautusta osoitteeseesi",
+  "Request a refund": "Pyydä hyvitystä",
+  "Process refund": "Käsittele hyvitys",
+  "Enter the email used for this payment. We will send a verification code": "Syötä tätä maksua varten käytetty sähköpostiosoite. Lähetämme vahvistuskoodin",
+  "Your payment did not pass AML verification": "Maksusi ei läpäissyt AML-tarkistusta",
+  "AML failed contact support or refund": "Ota yhteyttä kaupan asiakastukeen tai pyydä palautusta osoitteeseesi itse",
+  "We sent a verification code to your email. Enter it below to access the refund cabinet": "Lähetimme vahvistuskoodin sähköpostiisi. Syötä se alle päästäksesi hyvitysten hallintapaneeliin",
+  "Sending verification code": "Lähetetään vahvistuskoodia"
 }

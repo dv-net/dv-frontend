@@ -129,5 +129,20 @@
   "Enter email": "输入电子邮箱",
   "Email must be valid": "电子邮件必须有效",
   "Enter verification code": "输入验证码",
-  "Code must be 6 characters": "代码必须为 6 个字符"
+  "Code must be 6 characters": "代码必须为 6 个字符",
+  "Page not found": "页面未找到",
+  "This page does not exist or was moved": "此页面不存在或已移动",
+  "Preparing wallets": "正在准备钱包",
+  "Back to payment": "返回支付",
+  "AML verification in progress": "AML 验证进行中",
+  "We are verifying your payment. This may take a few minutes": "我们正在验证您的付款。这可能需要几分钟",
+  "Payment blocked by AML": "付款已被 AML 阻止",
+  "Your payment did not pass AML verification. You can request a refund to your address": "您的付款未通过 AML 验证。您可以申请退款到您的地址",
+  "Request a refund": "申请退款",
+  "Process refund": "处理退款",
+  "Enter the email used for this payment. We will send a verification code": "输入用于此付款的电子邮件。我们将发送验证码",
+  "Your payment did not pass AML verification": "您的付款未通过 AML 验证",
+  "AML failed contact support or refund": "联系商店客服，或自行申请退款到您的地址",
+  "We sent a verification code to your email. Enter it below to access the refund cabinet": "我们已向您的邮箱发送验证码。请在下方输入以访问退款管理面板",
+  "Sending verification code": "正在发送验证码"
 }

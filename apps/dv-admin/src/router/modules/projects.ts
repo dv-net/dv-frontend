@@ -24,6 +24,13 @@ export default [
 		beforeEnter: auth
 	},
 	{
+		path: "/projects/refunds",
+		name: "projects-refunds",
+		component: () => import("@dv-admin/views/projects/refunds/RefundsView.vue"),
+		meta: { layout: APP_LAYOUT.DEFAULT },
+		beforeEnter: auth
+	},
+	{
 		path: "/projects/:id",
 		name: "projects-edit",
 		component: () => import("@dv-admin/views/projects/edit/EditView.vue"),
@@ -40,11 +47,6 @@ export default [
 				path: "advanced-settings",
 				name: "projects-edit-advanced-settings",
 				component: () => import("@dv-admin/views/projects/edit/advancedSettings/AdvancedSettingsView.vue")
-			},
-			{
-				path: "refunds",
-				name: "projects-edit-refunds",
-				component: () => import("@dv-admin/views/projects/edit/refunds/RefundsView.vue")
 			}
 		]
 	}

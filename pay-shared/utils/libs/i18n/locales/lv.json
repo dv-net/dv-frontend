@@ -129,5 +129,20 @@
   "Enter email": "Ievadiet e-pastu",
   "Email must be valid": "E-pasta adresei jābūt derīgai",
   "Enter verification code": "Ievadiet verifikācijas kodu",
-  "Code must be 6 characters": "Kodam jābūt 6 rakstzīmēm"
+  "Code must be 6 characters": "Kodam jābūt 6 rakstzīmēm",
+  "Page not found": "Lapa nav atrasta",
+  "This page does not exist or was moved": "Šī lapa neeksistē vai tika pārvietota",
+  "Preparing wallets": "Notiek maku sagatavošana",
+  "Back to payment": "Atpakaļ uz maksājumu",
+  "AML verification in progress": "Notiek AML verifikācija",
+  "We are verifying your payment. This may take a few minutes": "Mēs pārbaudām jūsu maksājumu. Tas var aizņemt dažas minūtes",
+  "Payment blocked by AML": "Maksājums bloķēts AML dēļ",
+  "Your payment did not pass AML verification. You can request a refund to your address": "Jūsu maksājums neizturēja AML pārbaudi. Varat pieprasīt atmaksu uz savu adresi",
+  "Request a refund": "Pieprasīt atmaksu",
+  "Process refund": "Apstrādāt atmaksu",
+  "Enter the email used for this payment. We will send a verification code": "Ievadiet šim maksājumam izmantoto e-pasta adresi. Mēs nosūtīsim verifikācijas kodu",
+  "Your payment did not pass AML verification": "Jūsu maksājums neizturēja AML pārbaudi",
+  "AML failed contact support or refund": "Sazinieties ar veikala atbalsta dienestu vai patstāvīgi pieprasiet atmaksu uz savu adresi",
+  "We sent a verification code to your email. Enter it below to access the refund cabinet": "Mēs nosūtījām verifikācijas kodu uz jūsu e-pastu. Ievadiet to tālāk, lai piekļūtu atmaksas kabinetam",
+  "Sending verification code": "Tiek sūtīts verifikācijas kods"
 }

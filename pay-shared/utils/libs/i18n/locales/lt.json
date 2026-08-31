@@ -129,5 +129,20 @@
   "Enter email": "Įveskite el. paštą",
   "Email must be valid": "El. pašto adresas turi būti galiojantis",
   "Enter verification code": "Įveskite patvirtinimo kodą",
-  "Code must be 6 characters": "Kodas turi būti 6 simbolių"
+  "Code must be 6 characters": "Kodas turi būti 6 simbolių",
+  "Page not found": "Puslapis nerastas",
+  "This page does not exist or was moved": "Šis puslapis neegzistuoja arba buvo perkeltas",
+  "Preparing wallets": "Ruošiamos piniginės",
+  "Back to payment": "Grįžti prie mokėjimo",
+  "AML verification in progress": "Vyksta AML patikra",
+  "We are verifying your payment. This may take a few minutes": "Tikriname jūsų mokėjimą. Tai gali užtrukti kelias minutes",
+  "Payment blocked by AML": "Mokėjimas užblokuotas dėl AML",
+  "Your payment did not pass AML verification. You can request a refund to your address": "Jūsų mokėjimas nepraėjo AML patikros. Galite pateikti prašymą grąžinti lėšas į savo adresą",
+  "Request a refund": "Prašyti grąžinti lėšas",
+  "Process refund": "Apdoroti pinigų grąžinimą",
+  "Enter the email used for this payment. We will send a verification code": "Įveskite šiam mokėjimui naudotą el. pašto adresą. Išsiųsime patvirtinimo kodą",
+  "Your payment did not pass AML verification": "Jūsų mokėjimas nepraėjo AML patikros",
+  "AML failed contact support or refund": "Susisiekite su parduotuvės palaikymo tarnyba arba patys paprašykite grąžinti lėšas į savo adresą",
+  "We sent a verification code to your email. Enter it below to access the refund cabinet": "Išsiuntėme patvirtinimo kodą į jūsų el. paštą. Įveskite jį žemiau, kad pasiektumėte grąžinimų kabinetą",
+  "Sending verification code": "Siunčiamas patvirtinimo kodas"
 }

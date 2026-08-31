@@ -129,5 +129,20 @@
   "Enter email": "Masukkan email",
   "Email must be valid": "Email harus valid",
   "Enter verification code": "Masukkan kode verifikasi",
-  "Code must be 6 characters": "Kode harus 6 karakter"
+  "Code must be 6 characters": "Kode harus 6 karakter",
+  "Page not found": "Halaman tidak ditemukan",
+  "This page does not exist or was moved": "Halaman ini tidak ada atau telah dipindahkan",
+  "Preparing wallets": "Menyiapkan dompet",
+  "Back to payment": "Kembali ke pembayaran",
+  "AML verification in progress": "Verifikasi AML sedang berlangsung",
+  "We are verifying your payment. This may take a few minutes": "Kami sedang memverifikasi pembayaran Anda. Ini mungkin memerlukan beberapa menit",
+  "Payment blocked by AML": "Pembayaran diblokir oleh AML",
+  "Your payment did not pass AML verification. You can request a refund to your address": "Pembayaran Anda tidak lolos verifikasi AML. Anda dapat meminta pengembalian dana ke alamat Anda",
+  "Request a refund": "Ajukan pengembalian dana",
+  "Process refund": "Proses pengembalian dana",
+  "Enter the email used for this payment. We will send a verification code": "Masukkan email yang digunakan untuk pembayaran ini. Kami akan mengirimkan kode verifikasi",
+  "Your payment did not pass AML verification": "Pembayaran Anda tidak lolos verifikasi AML",
+  "AML failed contact support or refund": "Hubungi dukungan toko atau ajukan pengembalian dana ke alamat Anda sendiri secara mandiri",
+  "We sent a verification code to your email. Enter it below to access the refund cabinet": "Kami mengirimkan kode verifikasi ke email Anda. Masukkan kode tersebut di bawah ini untuk mengakses kabinet pengembalian dana",
+  "Sending verification code": "Mengirim kode verifikasi"
 }

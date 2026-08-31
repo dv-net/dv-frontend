@@ -129,5 +129,20 @@
   "Enter email": "ईमेल दर्ज करें",
   "Email must be valid": "ईमेल मान्य होना चाहिए",
   "Enter verification code": "सत्यापन कोड दर्ज करें",
-  "Code must be 6 characters": "कोड 6 वर्णों का होना चाहिए"
+  "Code must be 6 characters": "कोड 6 वर्णों का होना चाहिए",
+  "Page not found": "पेज नहीं मिला",
+  "This page does not exist or was moved": "यह पेज मौजूद नहीं है या इसे स्थानांतरित कर दिया गया है",
+  "Preparing wallets": "वॉलेट तैयार किए जा रहे हैं",
+  "Back to payment": "भुगतान पर वापस जाएँ",
+  "AML verification in progress": "AML सत्यापन प्रगति पर है",
+  "We are verifying your payment. This may take a few minutes": "हम आपके भुगतान को सत्यापित कर रहे हैं। इसमें कुछ मिनट लग सकते हैं",
+  "Payment blocked by AML": "AML द्वारा भुगतान अवरुद्ध",
+  "Your payment did not pass AML verification. You can request a refund to your address": "आपका भुगतान AML सत्यापन पास नहीं कर सका। आप अपने पते पर रिफंड का अनुरोध कर सकते हैं",
+  "Request a refund": "रिफ़ंड का अनुरोध करें",
+  "Process refund": "रिफंड प्रोसेस करें",
+  "Enter the email used for this payment. We will send a verification code": "इस भुगतान के लिए उपयोग किया गया ईमेल दर्ज करें। हम एक सत्यापन कोड भेजेंगे",
+  "Your payment did not pass AML verification": "आपका भुगतान AML सत्यापन में पास नहीं हुआ",
+  "AML failed contact support or refund": "स्टोर सपोर्ट से संपर्क करें या स्वयं अपने पते पर रिफंड का अनुरोध करें",
+  "We sent a verification code to your email. Enter it below to access the refund cabinet": "हमने आपके ईमेल पर एक सत्यापन कोड भेजा है। रिफंड कैबिनेट तक पहुँचने के लिए इसे नीचे दर्ज करें",
+  "Sending verification code": "सत्यापन कोड भेजा जा रहा है"
 }

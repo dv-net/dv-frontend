@@ -129,5 +129,20 @@
   "Enter email": "ইমেইল লিখুন",
   "Email must be valid": "ইমেইলটি বৈধ হতে হবে",
   "Enter verification code": "যাচাইকরণ কোড লিখুন",
-  "Code must be 6 characters": "কোডটি অবশ্যই ৬টি অক্ষরের হতে হবে"
+  "Code must be 6 characters": "কোডটি অবশ্যই ৬টি অক্ষরের হতে হবে",
+  "Page not found": "পৃষ্ঠা পাওয়া যায়নি",
+  "This page does not exist or was moved": "এই পৃষ্ঠাটি বিদ্যমান নেই বা সরানো হয়েছে",
+  "Preparing wallets": "ওয়ালেটগুলো প্রস্তুত করা হচ্ছে",
+  "Back to payment": "পেমেন্টে ফিরে যান",
+  "AML verification in progress": "AML যাচাইকরণ চলছে",
+  "We are verifying your payment. This may take a few minutes": "আমরা আপনার পেমেন্ট যাচাই করছি। এতে কয়েক মিনিট সময় লাগতে পারে",
+  "Payment blocked by AML": "AML-এর কারণে পেমেন্ট ব্লক করা হয়েছে",
+  "Your payment did not pass AML verification. You can request a refund to your address": "আপনার পেমেন্ট AML যাচাইকরণে উত্তীর্ণ হয়নি। আপনি আপনার ঠিকানায় রিফান্ডের অনুরোধ করতে পারেন",
+  "Request a refund": "রিফান্ডের অনুরোধ করুন",
+  "Process refund": "রিফান্ড প্রক্রিয়া করুন",
+  "Enter the email used for this payment. We will send a verification code": "এই পেমেন্টের জন্য ব্যবহৃত ইমেলটি লিখুন। আমরা একটি যাচাইকরণ কোড পাঠাব",
+  "Your payment did not pass AML verification": "আপনার পেমেন্ট AML যাচাইকরণে উত্তীর্ণ হয়নি",
+  "AML failed contact support or refund": "স্টোর সাপোর্টের সাথে যোগাযোগ করুন অথবা নিজে আপনার ঠিকানায় রিফান্ডের অনুরোধ করুন",
+  "We sent a verification code to your email. Enter it below to access the refund cabinet": "আমরা আপনার ইমেলে একটি যাচাইকরণ কোড পাঠিয়েছি। রিফান্ড ক্যাবিনেটে প্রবেশ করতে নিচে এটি লিখুন",
+  "Sending verification code": "যাচাইকরণ কোড পাঠানো হচ্ছে"
 }

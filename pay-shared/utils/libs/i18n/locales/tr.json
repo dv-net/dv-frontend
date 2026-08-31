@@ -129,5 +129,20 @@
   "Enter email": "E-posta gir",
   "Email must be valid": "E-posta geçerli olmalıdır",
   "Enter verification code": "Doğrulama kodunu gir",
-  "Code must be 6 characters": "Kod 6 karakter olmalıdır"
+  "Code must be 6 characters": "Kod 6 karakter olmalıdır",
+  "Page not found": "Sayfa bulunamadı",
+  "This page does not exist or was moved": "Bu sayfa mevcut değil veya taşındı",
+  "Preparing wallets": "Cüzdanlar hazırlanıyor",
+  "Back to payment": "Ödemeye geri dön",
+  "AML verification in progress": "AML doğrulaması devam ediyor",
+  "We are verifying your payment. This may take a few minutes": "Ödemenizi doğruluyoruz. Bu birkaç dakika sürebilir",
+  "Payment blocked by AML": "Ödeme AML tarafından engellendi",
+  "Your payment did not pass AML verification. You can request a refund to your address": "Ödemeniz AML doğrulamasından geçmedi. Adresinize geri ödeme talep edebilirsiniz",
+  "Request a refund": "İade talep et",
+  "Process refund": "İadeyi işle",
+  "Enter the email used for this payment. We will send a verification code": "Bu ödeme için kullanılan e-posta adresini girin. Bir doğrulama kodu göndereceğiz",
+  "Your payment did not pass AML verification": "Ödemeniz AML doğrulamasından geçemedi",
+  "AML failed contact support or refund": "Mağaza desteğiyle iletişime geçin veya kendiniz adresinize geri ödeme talep edin",
+  "We sent a verification code to your email. Enter it below to access the refund cabinet": "E-postanıza bir doğrulama kodu gönderdik. İade paneline erişmek için kodu aşağıya girin",
+  "Sending verification code": "Doğrulama kodu gönderiliyor"
 }

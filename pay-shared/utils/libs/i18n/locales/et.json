@@ -129,5 +129,20 @@
   "Enter email": "Sisestage e-posti aadress",
   "Email must be valid": "E-posti aadress peab olema kehtiv",
   "Enter verification code": "Sisestage kinnituskood",
-  "Code must be 6 characters": "Kood peab olema 6 tähemärki pikk"
+  "Code must be 6 characters": "Kood peab olema 6 tähemärki pikk",
+  "Page not found": "Lehte ei leitud",
+  "This page does not exist or was moved": "Seda lehte ei ole olemas või see on teisaldatud",
+  "Preparing wallets": "Rahakottide ettevalmistamine",
+  "Back to payment": "Tagasi makse juurde",
+  "AML verification in progress": "AML-kontroll on pooleli",
+  "We are verifying your payment. This may take a few minutes": "Kontrollime teie makset. See võib võtta paar minutit",
+  "Payment blocked by AML": "Makse on AML-i tõttu blokeeritud",
+  "Your payment did not pass AML verification. You can request a refund to your address": "Teie makse ei läbinud AML-kontrolli. Saate taotleda tagasimakset oma aadressile",
+  "Request a refund": "Taotle tagasimakset",
+  "Process refund": "Töötle tagasimakset",
+  "Enter the email used for this payment. We will send a verification code": "Sisestage selle makse jaoks kasutatud e-posti aadress. Saadame kinnituskoodi",
+  "Your payment did not pass AML verification": "Teie makse ei läbinud AML-kontrolli",
+  "AML failed contact support or refund": "Võtke ühendust poe toega või taotlege ise tagasimakset oma aadressile",
+  "We sent a verification code to your email. Enter it below to access the refund cabinet": "Saatsime teie e-posti aadressile kinnituskoodi. Sisestage see allpool, et pääseda tagasimaksete kabinetti",
+  "Sending verification code": "Kinnituskoodi saatmine"
 }

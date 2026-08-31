@@ -1,6 +1,5 @@
 import type {
 	ICurrencyRequest,
-	IRefundRequest,
 	IResendStoreVerificationRequest,
 	IStoreApiKeyResponse,
 	IStoreRequest,
@@ -122,14 +121,4 @@ export const patchApiWhitelistsProject = async (uuid: string, ip: string) => {
 
 export const resendVerifyStore = async (id: string, body: IResendStoreVerificationRequest): Promise<void> => {
 	await api.post(`/dv-admin/store/${id}/resend-verify`, body);
-};
-
-export const getApiStoreRefundRequests = async (uuid: string): Promise<IRefundRequest[]> => {
-	const resp = await api.get(`/dv-admin/store/${uuid}/refund-requests`);
-	return resp.data.data;
-};
-
-export const postApiStoreRefundReject = async (uuid: string, refundId: string): Promise<IRefundRequest> => {
-	const resp = await api.post(`/dv-admin/store/${uuid}/refund-requests/${refundId}/reject`);
-	return resp.data.data;
 };

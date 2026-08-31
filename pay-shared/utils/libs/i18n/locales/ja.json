@@ -129,5 +129,20 @@
   "Enter email": "メールアドレスを入力",
   "Email must be valid": "有効なメールアドレスを入力してください",
   "Enter verification code": "確認コードを入力してください",
-  "Code must be 6 characters": "コードは6文字である必要があります"
+  "Code must be 6 characters": "コードは6文字である必要があります",
+  "Page not found": "ページが見つかりません",
+  "This page does not exist or was moved": "このページは存在しないか、移動されました",
+  "Preparing wallets": "ウォレットを準備中",
+  "Back to payment": "決済に戻る",
+  "AML verification in progress": "AML確認が進行中",
+  "We are verifying your payment. This may take a few minutes": "お支払いを確認しています。数分かかる場合があります",
+  "Payment blocked by AML": "AMLにより支払いがブロックされました",
+  "Your payment did not pass AML verification. You can request a refund to your address": "お支払いはAML検証を通過しませんでした。ご自身のアドレスへの返金をリクエストできます",
+  "Request a refund": "返金をリクエスト",
+  "Process refund": "返金を処理する",
+  "Enter the email used for this payment. We will send a verification code": "この支払いに使用したメールアドレスを入力してください。認証コードを送信します",
+  "Your payment did not pass AML verification": "お支払いはAML検証を通過しませんでした",
+  "AML failed contact support or refund": "ストアサポートに連絡するか、ご自身のアドレスへの返金を自分でリクエストしてください",
+  "We sent a verification code to your email. Enter it below to access the refund cabinet": "確認コードをメールに送信しました。返金キャビネットにアクセスするには、以下に入力してください",
+  "Sending verification code": "認証コードを送信中"
 }

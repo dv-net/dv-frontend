@@ -129,5 +129,20 @@
   "Enter email": "이메일 입력",
   "Email must be valid": "유효한 이메일이어야 합니다",
   "Enter verification code": "인증 코드를 입력하세요",
-  "Code must be 6 characters": "코드는 6자여야 합니다"
+  "Code must be 6 characters": "코드는 6자여야 합니다",
+  "Page not found": "페이지를 찾을 수 없습니다",
+  "This page does not exist or was moved": "이 페이지가 존재하지 않거나 이동되었습니다",
+  "Preparing wallets": "지갑 준비 중",
+  "Back to payment": "결제로 돌아가기",
+  "AML verification in progress": "AML 검증 진행 중",
+  "We are verifying your payment. This may take a few minutes": "결제를 확인 중입니다. 몇 분 정도 걸릴 수 있습니다",
+  "Payment blocked by AML": "결제가 AML에 의해 차단되었습니다",
+  "Your payment did not pass AML verification. You can request a refund to your address": "결제가 AML 검증을 통과하지 못했습니다. 귀하의 주소로 환불을 요청할 수 있습니다",
+  "Request a refund": "환불 요청",
+  "Process refund": "환불 처리",
+  "Enter the email used for this payment. We will send a verification code": "이 결제에 사용한 이메일을 입력하세요. 인증 코드를 보내드립니다",
+  "Your payment did not pass AML verification": "결제가 AML 검증을 통과하지 못했습니다",
+  "AML failed contact support or refund": "스토어 지원팀에 문의하거나 직접 본인 주소로 환불을 요청하세요",
+  "We sent a verification code to your email. Enter it below to access the refund cabinet": "이메일로 인증 코드를 보냈습니다. 환불 캐비닛에 액세스하려면 아래에 입력하세요",
+  "Sending verification code": "인증 코드 전송 중"
 }

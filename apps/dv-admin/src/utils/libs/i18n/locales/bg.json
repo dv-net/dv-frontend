@@ -983,5 +983,6 @@
   "Reject": "Отхвърли",
   "Refund request rejected": "Заявката за възстановяване на средства е отхвърлена",
   "Destination address": "Адрес на получателя",
-  "Created at": "Създадено на"
+  "Created at": "Създадено на",
+  "Project": "Проект"
 }

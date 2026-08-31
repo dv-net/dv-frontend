@@ -44,6 +44,15 @@ export const mainMenuList: RouteItem[] = [
 					iconComponentActive: IconCorner,
 					isChildren: true
 				}
+			},
+			{
+				path: "/projects/refunds",
+				meta: {
+					title: "Refund requests",
+					iconComponent: IconCorner,
+					iconComponentActive: IconCorner,
+					isChildren: true
+				}
 			}
 		]
 	},

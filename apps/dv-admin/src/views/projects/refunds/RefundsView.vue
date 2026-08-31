@@ -1,25 +1,30 @@
 <script setup lang="ts">
-	import { onMounted, ref } from "vue";
-	import { useRoute } from "vue-router";
+	import { computed, onMounted, ref } from "vue";
+	import { storeToRefs } from "pinia";
 	import { useI18n } from "vue-i18n";
 	import { UiSkeleton } from "@dv.net/ui-kit";
-	import { getApiStoreRefundRequests, postApiStoreRefundReject } from "@dv-admin/utils/services/projects";
+	import { getApiRefundRequests, postApiRefundReject } from "@dv-admin/utils/services/refunds";
 	import type { IRefundRequest } from "@dv-admin/utils/types/api/apiGo";
+	import { useProjectsStore } from "@dv-admin/stores/projects";
 	import { useNotifications } from "@shared/utils/composables/useNotifications";
-	import RefundRequestCard from "@dv-admin/views/projects/edit/refunds/components/RefundRequestCard.vue";
+	import RefundRequestCard from "@dv-admin/views/projects/refunds/components/RefundRequestCard.vue";
 
 	const { t } = useI18n();
 	const { notify } = useNotifications();
-	const route = useRoute();
-	const storeId = route.params.id as string;
+	const { projects } = storeToRefs(useProjectsStore());
+	const { getProjects } = useProjectsStore();
 
 	const refundRequests = ref<IRefundRequest[]>([]);
 	const isLoading = ref(false);
 
+	const projectNameById = computed(() => {
+		return new Map(projects.value.map((project) => [project.id, project.name]));
+	});
+
 	const loadRefundRequests = async () => {
 		try {
 			isLoading.value = true;
-			refundRequests.value = await getApiStoreRefundRequests(storeId);
+			refundRequests.value = (await getApiRefundRequests()) ?? [];
 		} catch (error) {
 			console.error(error);
 		} finally {
@@ -28,35 +33,35 @@
 	};
 
 	const handleReject = async (refundId: string) => {
-		await postApiStoreRefundReject(storeId, refundId);
+		await postApiRefundReject(refundId);
 		refundRequests.value = refundRequests.value.filter((item) => item.id !== refundId);
 		notify(t("Refund request rejected"), "success");
 	};
 
-	onMounted(loadRefundRequests);
+	onMounted(async () => {
+		await Promise.all([getProjects(), loadRefundRequests()]);
+	});
 </script>
 
 <template>
-	<div class="refunds">
-		<section class="panel">
-			<header class="panel__header">
-				<div class="panel__intro">
-					<div class="panel__section-head">
-						<h2 class="panel__title">{{ $t("Refund requests") }}</h2>
-						<span v-if="!isLoading && refundRequests.length" class="panel__count">
-							{{ refundRequests.length }}
-						</span>
-					</div>
-					<p class="panel__subtitle">
-						{{
-							$t(
-								"Payers can request a refund for deposits blocked by AML. Review pending requests here"
-							)
-						}}
-					</p>
+	<div class="page">
+		<div class="page__header">
+			<div class="page__intro">
+				<div class="page__title-row">
+					<h1 class="global-title-h1">{{ $t("Refund requests") }}</h1>
+					<span v-if="!isLoading && refundRequests.length" class="page__count">
+						{{ refundRequests.length }}
+					</span>
 				</div>
-			</header>
+				<p class="page__subtitle">
+					{{
+						$t("Payers can request a refund for deposits blocked by AML. Review pending requests here")
+					}}
+				</p>
+			</div>
+		</div>
 
+		<section class="panel">
 			<div v-if="isLoading" class="panel__body">
 				<div class="panel-card panel-card--skeleton">
 					<ui-skeleton :rows="1" :row-height="156" :item-border-radius="20" />
@@ -75,6 +80,7 @@
 					v-for="item in refundRequests"
 					:key="item.id"
 					:item="item"
+					:project-name="projectNameById.get(item.store_id)"
 					:reject-request="() => handleReject(item.id)"
 				/>
 			</div>
@@ -83,44 +89,28 @@
 </template>
 
 <style scoped lang="scss">
-	.refunds {
-		width: 100%;
-	}
-
-	.panel {
+	.page {
 		display: flex;
 		flex-direction: column;
-		gap: 4px;
-		padding: 4px;
-		border-radius: 24px;
-		background: $blue-opacity;
+		gap: 24px;
 
 		&__header {
 			display: flex;
 			flex-direction: column;
-			gap: 4px;
-			padding: 12px 16px 8px;
+			gap: 8px;
 		}
 
 		&__intro {
 			display: flex;
 			flex-direction: column;
-			gap: 4px;
+			gap: 8px;
 			min-width: 0;
 		}
 
-		&__section-head {
+		&__title-row {
 			display: flex;
 			align-items: center;
 			gap: 8px;
-		}
-
-		&__title {
-			margin: 0;
-			color: $black;
-			font-size: 20px;
-			font-weight: 700;
-			line-height: 24px;
 		}
 
 		&__subtitle {
@@ -145,6 +135,15 @@
 			font-weight: 500;
 			line-height: 1;
 		}
+	}
+
+	.panel {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+		padding: 4px;
+		border-radius: 24px;
+		background: $blue-opacity;
 
 		&__body {
 			display: flex;

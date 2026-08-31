@@ -983,5 +983,6 @@
   "Reject": "Avvisa",
   "Refund request rejected": "Återbetalningsbegäran avvisad",
   "Destination address": "Destinationsadress",
-  "Created at": "Skapad den"
+  "Created at": "Skapad den",
+  "Project": "Projekt"
 }

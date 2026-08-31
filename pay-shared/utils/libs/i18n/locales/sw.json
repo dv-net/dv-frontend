@@ -129,5 +129,20 @@
   "Enter email": "Ingiza barua pepe",
   "Email must be valid": "Barua pepe lazima iwe halali",
   "Enter verification code": "Weka msimbo wa uthibitishaji",
-  "Code must be 6 characters": "Msimbo lazima uwe na vibambo 6"
+  "Code must be 6 characters": "Msimbo lazima uwe na vibambo 6",
+  "Page not found": "Ukurasa haujapatikana",
+  "This page does not exist or was moved": "Ukurasa huu haupo au umehamishwa",
+  "Preparing wallets": "Inaandaa pochi",
+  "Back to payment": "Rudi kwenye malipo",
+  "AML verification in progress": "Uthibitishaji wa AML unaendelea",
+  "We are verifying your payment. This may take a few minutes": "Tunathibitisha malipo yako. Hii inaweza kuchukua dakika chache",
+  "Payment blocked by AML": "Malipo yamezuiwa na AML",
+  "Your payment did not pass AML verification. You can request a refund to your address": "Malipo yako hayakufaulu uthibitishaji wa AML. Unaweza kuomba kurejeshewa pesa kwenye anwani yako",
+  "Request a refund": "Omba kurejeshewa pesa",
+  "Process refund": "Chakata marejesho ya fedha",
+  "Enter the email used for this payment. We will send a verification code": "Weka barua pepe iliyotumika kwa malipo haya. Tutatuma msimbo wa uthibitishaji",
+  "Your payment did not pass AML verification": "Malipo yako hayakufaulu uthibitishaji wa AML",
+  "AML failed contact support or refund": "Wasiliana na usaidizi wa duka au uombe kurejeshewa fedha kwenye anwani yako mwenyewe",
+  "We sent a verification code to your email. Enter it below to access the refund cabinet": "Tumetuma msimbo wa uthibitishaji kwenye barua pepe yako. Uweke hapa chini ili kufikia sehemu ya marejesho ya fedha",
+  "Sending verification code": "Inatuma msimbo wa uthibitishaji"
 }

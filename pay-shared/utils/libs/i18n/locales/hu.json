@@ -129,5 +129,20 @@
   "Enter email": "Adja meg az e-mail-címet",
   "Email must be valid": "Az e-mail címnek érvényesnek kell lennie",
   "Enter verification code": "Add meg az ellenőrző kódot",
-  "Code must be 6 characters": "A kódnak 6 karakterből kell állnia"
+  "Code must be 6 characters": "A kódnak 6 karakterből kell állnia",
+  "Page not found": "Az oldal nem található",
+  "This page does not exist or was moved": "Ez az oldal nem létezik, vagy áthelyezték",
+  "Preparing wallets": "Tárcák előkészítése",
+  "Back to payment": "Vissza a fizetéshez",
+  "AML verification in progress": "AML-ellenőrzés folyamatban",
+  "We are verifying your payment. This may take a few minutes": "Ellenőrizzük a fizetését. Ez néhány percet vehet igénybe",
+  "Payment blocked by AML": "A fizetést az AML blokkolta",
+  "Your payment did not pass AML verification. You can request a refund to your address": "Az Ön fizetése nem ment át az AML-ellenőrzésen. Visszatérítést kérhet a címére",
+  "Request a refund": "Visszatérítés kérése",
+  "Process refund": "Visszatérítés feldolgozása",
+  "Enter the email used for this payment. We will send a verification code": "Adja meg a fizetéshez használt e-mail-címet. Küldünk egy ellenőrző kódot",
+  "Your payment did not pass AML verification": "A fizetése nem ment át az AML-ellenőrzésen",
+  "AML failed contact support or refund": "Lépj kapcsolatba az áruház ügyfélszolgálatával, vagy kérj visszatérítést a címedre saját magad",
+  "We sent a verification code to your email. Enter it below to access the refund cabinet": "Ellenőrző kódot küldtünk az e-mail-címére. Adja meg alább, hogy hozzáférjen a visszatérítési felülethez",
+  "Sending verification code": "Ellenőrző kód küldése"
 }

@@ -129,5 +129,20 @@
   "Enter email": "Insira o e-mail",
   "Email must be valid": "O email deve ser válido",
   "Enter verification code": "Insira o código de verificação",
-  "Code must be 6 characters": "O código deve ter 6 caracteres"
+  "Code must be 6 characters": "O código deve ter 6 caracteres",
+  "Page not found": "Página não encontrada",
+  "This page does not exist or was moved": "Esta página não existe ou foi movida",
+  "Preparing wallets": "Preparando carteiras",
+  "Back to payment": "Voltar ao pagamento",
+  "AML verification in progress": "Verificação AML em andamento",
+  "We are verifying your payment. This may take a few minutes": "Estamos verificando seu pagamento. Isso pode levar alguns minutos",
+  "Payment blocked by AML": "Pagamento bloqueado por AML",
+  "Your payment did not pass AML verification. You can request a refund to your address": "Seu pagamento não passou na verificação AML. Você pode solicitar um reembolso para seu endereço",
+  "Request a refund": "Solicitar um reembolso",
+  "Process refund": "Processar reembolso",
+  "Enter the email used for this payment. We will send a verification code": "Insira o e-mail usado para este pagamento. Enviaremos um código de verificação",
+  "Your payment did not pass AML verification": "Seu pagamento não passou na verificação AML",
+  "AML failed contact support or refund": "Entre em contato com o suporte da loja ou solicite um reembolso para o seu endereço por conta própria",
+  "We sent a verification code to your email. Enter it below to access the refund cabinet": "Enviamos um código de verificação para o seu e-mail. Insira-o abaixo para acessar o painel de reembolsos",
+  "Sending verification code": "Enviando código de verificação"
 }

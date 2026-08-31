@@ -8,6 +8,7 @@
 	import IconStatus from "@dv-admin/components/icons/refund/IconStatus.vue";
 	import IconWallet from "@dv-admin/components/icons/refund/IconWallet.vue";
 	import IconCalendar from "@dv-admin/components/icons/refund/IconCalendar.vue";
+	import IconDocument from "@dv-admin/components/icons/projects/IconDocument.vue";
 
 	const STATUS_LABELS: Record<RefundStatus, string> = {
 		pending_review: "Pending review",
@@ -17,8 +18,9 @@
 		failed: "Failed"
 	};
 
-	const { item, rejectRequest } = defineProps<{
+	const { item, projectName, rejectRequest } = defineProps<{
 		item: IRefundRequest;
+		projectName?: string;
 		rejectRequest: () => Promise<unknown>;
 	}>();
 
@@ -52,6 +54,8 @@
 		if (!item.destination_address) return "";
 		return isCompact.value ? truncateHash(item.destination_address, 10, 6) : item.destination_address;
 	});
+
+	const displayProjectName = computed(() => projectName || item.store_id);
 </script>
 
 <template>
@@ -74,6 +78,20 @@
 		</header>
 
 		<div class="tx-card__metrics">
+			<div v-if="item.store_id" class="metric">
+				<div class="metric__icon" aria-hidden="true">
+					<icon-document />
+				</div>
+				<div class="metric__body">
+					<span class="metric__label">{{ $t("Project") }}</span>
+					<router-link
+						class="metric__value metric__value--link"
+						:to="{ name: 'projects-edit', params: { id: item.store_id } }"
+					>
+						{{ displayProjectName }}
+					</router-link>
+				</div>
+			</div>
 			<div class="metric">
 				<div class="metric__icon" aria-hidden="true">
 					<icon-status />
@@ -269,6 +287,20 @@
 				color: $secondary;
 				font-weight: 400;
 				line-height: 18px;
+			}
+
+			&--link {
+				color: $blue;
+				text-decoration: none;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+
+				@media (hover: hover) {
+					&:hover {
+						text-decoration: underline;
+					}
+				}
 			}
 
 			&[data-tone="success"] {

@@ -129,5 +129,20 @@
   "Enter email": "Voer e-mailadres in",
   "Email must be valid": "E-mailadres moet geldig zijn",
   "Enter verification code": "Voer verificatiecode in",
-  "Code must be 6 characters": "Code moet uit 6 tekens bestaan"
+  "Code must be 6 characters": "Code moet uit 6 tekens bestaan",
+  "Page not found": "Pagina niet gevonden",
+  "This page does not exist or was moved": "Deze pagina bestaat niet of is verplaatst",
+  "Preparing wallets": "Wallets voorbereiden",
+  "Back to payment": "Terug naar betaling",
+  "AML verification in progress": "AML-verificatie wordt uitgevoerd",
+  "We are verifying your payment. This may take a few minutes": "We verifiëren uw betaling. Dit kan enkele minuten duren",
+  "Payment blocked by AML": "Betaling geblokkeerd door AML",
+  "Your payment did not pass AML verification. You can request a refund to your address": "Je betaling is niet door de AML-verificatie gekomen. Je kunt een terugbetaling naar je adres aanvragen",
+  "Request a refund": "Terugbetaling aanvragen",
+  "Process refund": "Terugbetaling verwerken",
+  "Enter the email used for this payment. We will send a verification code": "Voer het e-mailadres in dat voor deze betaling is gebruikt. We sturen een verificatiecode",
+  "Your payment did not pass AML verification": "Uw betaling heeft de AML-verificatie niet doorstaan",
+  "AML failed contact support or refund": "Neem contact op met de klantenservice van de winkel of vraag zelf een terugbetaling naar je adres aan",
+  "We sent a verification code to your email. Enter it below to access the refund cabinet": "We hebben een verificatiecode naar je e-mailadres gestuurd. Voer deze hieronder in om toegang te krijgen tot het terugbetalingspaneel",
+  "Sending verification code": "Verificatiecode wordt verzonden"
 }

@@ -983,5 +983,6 @@
   "Reject": "거부",
   "Refund request rejected": "환불 요청이 거부되었습니다",
   "Destination address": "목적지 주소",
-  "Created at": "생성일"
+  "Created at": "생성일",
+  "Project": "프로젝트"
 }

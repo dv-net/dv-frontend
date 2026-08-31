@@ -129,5 +129,20 @@
   "Enter email": "Introduceți e-mailul",
   "Email must be valid": "Emailul trebuie să fie valid",
   "Enter verification code": "Introduceți codul de verificare",
-  "Code must be 6 characters": "Codul trebuie să aibă 6 caractere"
+  "Code must be 6 characters": "Codul trebuie să aibă 6 caractere",
+  "Page not found": "Pagina nu a fost găsită",
+  "This page does not exist or was moved": "Această pagină nu există sau a fost mutată",
+  "Preparing wallets": "Se pregătesc portofelele",
+  "Back to payment": "Înapoi la plată",
+  "AML verification in progress": "Verificarea AML este în curs",
+  "We are verifying your payment. This may take a few minutes": "Vă verificăm plata. Acest lucru poate dura câteva minute",
+  "Payment blocked by AML": "Plată blocată de AML",
+  "Your payment did not pass AML verification. You can request a refund to your address": "Plata dvs. nu a trecut verificarea AML. Puteți solicita o rambursare către adresa dvs.",
+  "Request a refund": "Solicită o rambursare",
+  "Process refund": "Procesează rambursarea",
+  "Enter the email used for this payment. We will send a verification code": "Introduceți adresa de e-mail folosită pentru această plată. Vom trimite un cod de verificare",
+  "Your payment did not pass AML verification": "Plata dvs. nu a trecut verificarea AML",
+  "AML failed contact support or refund": "Contactați asistența magazinului sau solicitați pe cont propriu o rambursare către adresa dvs.",
+  "We sent a verification code to your email. Enter it below to access the refund cabinet": "Am trimis un cod de verificare pe e-mailul tău. Introdu-l mai jos pentru a accesa cabinetul de rambursări",
+  "Sending verification code": "Se trimite codul de verificare"
 }

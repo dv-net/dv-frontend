@@ -983,5 +983,6 @@
   "Reject": "拒否",
   "Refund request rejected": "返金リクエストが拒否されました",
   "Destination address": "送金先アドレス",
-  "Created at": "作成日時"
+  "Created at": "作成日時",
+  "Project": "プロジェクト"
 }

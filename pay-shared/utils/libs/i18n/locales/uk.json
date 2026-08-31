@@ -129,5 +129,20 @@
   "Enter email": "Введіть email",
   "Email must be valid": "Електронна пошта має бути дійсною",
   "Enter verification code": "Введіть код підтвердження",
-  "Code must be 6 characters": "Код має складатися з 6 символів"
+  "Code must be 6 characters": "Код має складатися з 6 символів",
+  "Page not found": "Сторінку не знайдено",
+  "This page does not exist or was moved": "Ця сторінка не існує або була переміщена",
+  "Preparing wallets": "Підготовка гаманців",
+  "Back to payment": "Назад до оплати",
+  "AML verification in progress": "Перевірка AML триває",
+  "We are verifying your payment. This may take a few minutes": "Ми перевіряємо ваш платіж. Це може зайняти кілька хвилин",
+  "Payment blocked by AML": "Платіж заблоковано через AML",
+  "Your payment did not pass AML verification. You can request a refund to your address": "Ваш платіж не пройшов AML-перевірку. Ви можете запросити повернення коштів на свою адресу",
+  "Request a refund": "Подати запит на повернення коштів",
+  "Process refund": "Обробити повернення коштів",
+  "Enter the email used for this payment. We will send a verification code": "Введіть електронну адресу, використану для цього платежу. Ми надішлемо код підтвердження",
+  "Your payment did not pass AML verification": "Ваш платіж не пройшов AML-перевірку",
+  "AML failed contact support or refund": "Зверніться до служби підтримки магазину або самостійно запросіть повернення коштів на свою адресу",
+  "We sent a verification code to your email. Enter it below to access the refund cabinet": "Ми надіслали код підтвердження на вашу електронну пошту. Введіть його нижче, щоб отримати доступ до кабінету повернень",
+  "Sending verification code": "Надсилання коду підтвердження"
 }

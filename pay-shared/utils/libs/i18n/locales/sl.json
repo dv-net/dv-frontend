@@ -129,5 +129,20 @@
   "Enter email": "Vnesite e-poštni naslov",
   "Email must be valid": "E-poštni naslov mora biti veljaven",
   "Enter verification code": "Vnesite kodo za preverjanje",
-  "Code must be 6 characters": "Koda mora imeti 6 znakov"
+  "Code must be 6 characters": "Koda mora imeti 6 znakov",
+  "Page not found": "Stran ni najdena",
+  "This page does not exist or was moved": "Ta stran ne obstaja ali je bila premaknjena",
+  "Preparing wallets": "Priprava denarnic",
+  "Back to payment": "Nazaj na plačilo",
+  "AML verification in progress": "Preverjanje AML v teku",
+  "We are verifying your payment. This may take a few minutes": "Preverjamo vaše plačilo. To lahko traja nekaj minut",
+  "Payment blocked by AML": "Plačilo blokirano zaradi AML",
+  "Your payment did not pass AML verification. You can request a refund to your address": "Vaše plačilo ni prestalo preverjanja AML. Zahtevate lahko vračilo na svoj naslov",
+  "Request a refund": "Zahtevajte vračilo",
+  "Process refund": "Obdelaj vračilo",
+  "Enter the email used for this payment. We will send a verification code": "Vnesite e-poštni naslov, uporabljen za to plačilo. Poslali vam bomo potrditveno kodo",
+  "Your payment did not pass AML verification": "Vaše plačilo ni prestalo preverjanja AML",
+  "AML failed contact support or refund": "Obrnite se na podporo trgovine ali sami zahtevajte vračilo na svoj naslov",
+  "We sent a verification code to your email. Enter it below to access the refund cabinet": "Na vaš e-poštni naslov smo poslali potrditveno kodo. Vnesite jo spodaj za dostop do kabineta za vračila",
+  "Sending verification code": "Pošiljanje kode za preverjanje"
 }

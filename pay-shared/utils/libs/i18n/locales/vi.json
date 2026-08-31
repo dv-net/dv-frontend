@@ -129,5 +129,20 @@
   "Enter email": "Nhập email",
   "Email must be valid": "Email phải hợp lệ",
   "Enter verification code": "Nhập mã xác minh",
-  "Code must be 6 characters": "Mã phải có 6 ký tự"
+  "Code must be 6 characters": "Mã phải có 6 ký tự",
+  "Page not found": "Không tìm thấy trang",
+  "This page does not exist or was moved": "Trang này không tồn tại hoặc đã được di chuyển",
+  "Preparing wallets": "Đang chuẩn bị ví",
+  "Back to payment": "Quay lại thanh toán",
+  "AML verification in progress": "Đang xác minh AML",
+  "We are verifying your payment. This may take a few minutes": "Chúng tôi đang xác minh khoản thanh toán của bạn. Việc này có thể mất vài phút",
+  "Payment blocked by AML": "Thanh toán bị chặn bởi AML",
+  "Your payment did not pass AML verification. You can request a refund to your address": "Khoản thanh toán của bạn không vượt qua xác minh AML. Bạn có thể yêu cầu hoàn tiền về địa chỉ của mình",
+  "Request a refund": "Yêu cầu hoàn tiền",
+  "Process refund": "Xử lý hoàn tiền",
+  "Enter the email used for this payment. We will send a verification code": "Nhập email đã dùng cho khoản thanh toán này. Chúng tôi sẽ gửi mã xác minh",
+  "Your payment did not pass AML verification": "Khoản thanh toán của bạn không vượt qua xác minh AML",
+  "AML failed contact support or refund": "Liên hệ bộ phận hỗ trợ của cửa hàng hoặc tự yêu cầu hoàn tiền về địa chỉ của bạn",
+  "We sent a verification code to your email. Enter it below to access the refund cabinet": "Chúng tôi đã gửi mã xác minh đến email của bạn. Nhập mã bên dưới để truy cập bảng điều khiển hoàn tiền",
+  "Sending verification code": "Đang gửi mã xác minh"
 }

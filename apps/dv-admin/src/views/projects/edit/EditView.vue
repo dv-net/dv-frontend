@@ -13,8 +13,7 @@
 
 	const links = ref<IUBlockTitleLinks[]>([
 		{ path: `/projects/${uuid}/main`, title: "Main.one" },
-		{ path: `/projects/${uuid}/advanced-settings`, title: "Advanced settings" },
-		{ path: `/projects/${uuid}/refunds`, title: "Refund requests" }
+		{ path: `/projects/${uuid}/advanced-settings`, title: "Advanced settings" }
 	]);
 
 	onMounted(async () => {

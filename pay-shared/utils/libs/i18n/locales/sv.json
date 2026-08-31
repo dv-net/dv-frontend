@@ -129,5 +129,20 @@
   "Enter email": "Ange e-postadress",
   "Email must be valid": "E-postadressen måste vara giltig",
   "Enter verification code": "Ange verifieringskod",
-  "Code must be 6 characters": "Koden måste vara 6 tecken"
+  "Code must be 6 characters": "Koden måste vara 6 tecken",
+  "Page not found": "Sidan hittades inte",
+  "This page does not exist or was moved": "Den här sidan finns inte eller har flyttats",
+  "Preparing wallets": "Förbereder plånböcker",
+  "Back to payment": "Tillbaka till betalning",
+  "AML verification in progress": "AML-verifiering pågår",
+  "We are verifying your payment. This may take a few minutes": "Vi verifierar din betalning. Detta kan ta några minuter",
+  "Payment blocked by AML": "Betalning blockerad av AML",
+  "Your payment did not pass AML verification. You can request a refund to your address": "Din betalning klarade inte AML-verifieringen. Du kan begära en återbetalning till din adress",
+  "Request a refund": "Begär återbetalning",
+  "Process refund": "Behandla återbetalning",
+  "Enter the email used for this payment. We will send a verification code": "Ange e-postadressen som användes för denna betalning. Vi skickar en verifieringskod",
+  "Your payment did not pass AML verification": "Din betalning klarade inte AML-verifieringen",
+  "AML failed contact support or refund": "Kontakta butikens support eller begär en återbetalning till din adress på egen hand",
+  "We sent a verification code to your email. Enter it below to access the refund cabinet": "Vi skickade en verifieringskod till din e-post. Ange den nedan för att komma åt återbetalningspanelen",
+  "Sending verification code": "Skickar verifieringskod"
 }

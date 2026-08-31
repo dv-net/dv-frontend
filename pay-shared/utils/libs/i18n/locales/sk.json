@@ -129,5 +129,20 @@
   "Enter email": "Zadajte e-mail",
   "Email must be valid": "E-mail musí byť platný",
   "Enter verification code": "Zadajte overovací kód",
-  "Code must be 6 characters": "Kód musí mať 6 znakov"
+  "Code must be 6 characters": "Kód musí mať 6 znakov",
+  "Page not found": "Stránka sa nenašla",
+  "This page does not exist or was moved": "Táto stránka neexistuje alebo bola presunutá",
+  "Preparing wallets": "Pripravujú sa peňaženky",
+  "Back to payment": "Späť k platbe",
+  "AML verification in progress": "Prebieha overenie AML",
+  "We are verifying your payment. This may take a few minutes": "Overujeme vašu platbu. Môže to trvať niekoľko minút",
+  "Payment blocked by AML": "Platba zablokovaná systémom AML",
+  "Your payment did not pass AML verification. You can request a refund to your address": "Vaša platba neprešla overením AML. Môžete požiadať o vrátenie prostriedkov na svoju adresu",
+  "Request a refund": "Požiadať o vrátenie peňazí",
+  "Process refund": "Spracovať vrátenie platby",
+  "Enter the email used for this payment. We will send a verification code": "Zadajte e-mail použitý pre túto platbu. Pošleme overovací kód",
+  "Your payment did not pass AML verification": "Vaša platba neprešla overením AML",
+  "AML failed contact support or refund": "Kontaktujte podporu obchodu alebo si sami vyžiadajte vrátenie peňazí na svoju adresu",
+  "We sent a verification code to your email. Enter it below to access the refund cabinet": "Odoslali sme overovací kód na váš e-mail. Zadajte ho nižšie, aby ste získali prístup do panelu refundácií",
+  "Sending verification code": "Odosiela sa overovací kód"
 }

@@ -129,5 +129,20 @@
   "Enter email": "Въведете имейл",
   "Email must be valid": "Имейлът трябва да е валиден",
   "Enter verification code": "Въведете код за потвърждение",
-  "Code must be 6 characters": "Кодът трябва да е 6 знака"
+  "Code must be 6 characters": "Кодът трябва да е 6 знака",
+  "Page not found": "Страницата не е намерена",
+  "This page does not exist or was moved": "Тази страница не съществува или е преместена",
+  "Preparing wallets": "Подготвяне на портфейли",
+  "Back to payment": "Назад към плащането",
+  "AML verification in progress": "AML проверката е в ход",
+  "We are verifying your payment. This may take a few minutes": "Проверяваме плащането ви. Това може да отнеме няколко минути",
+  "Payment blocked by AML": "Плащането е блокирано от AML",
+  "Your payment did not pass AML verification. You can request a refund to your address": "Вашето плащане не премина AML проверка. Можете да заявите възстановяване на сумата към вашия адрес",
+  "Request a refund": "Заявете възстановяване на средства",
+  "Process refund": "Обработи възстановяване на сума",
+  "Enter the email used for this payment. We will send a verification code": "Въведете имейла, използван за това плащане. Ще изпратим код за потвърждение",
+  "Your payment did not pass AML verification": "Вашето плащане не премина AML проверка",
+  "AML failed contact support or refund": "Свържете се с поддръжката на магазина или самостоятелно заявете възстановяване на средства към вашия адрес",
+  "We sent a verification code to your email. Enter it below to access the refund cabinet": "Изпратихме код за потвърждение на имейла ви. Въведете го по-долу, за да получите достъп до кабинета за възстановяване на средства",
+  "Sending verification code": "Изпращане на код за потвърждение"
 }

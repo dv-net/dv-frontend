@@ -129,5 +129,20 @@
   "Enter email": "Indtast e-mail",
   "Email must be valid": "E-mail skal være gyldig",
   "Enter verification code": "Indtast bekræftelseskode",
-  "Code must be 6 characters": "Koden skal være på 6 tegn"
+  "Code must be 6 characters": "Koden skal være på 6 tegn",
+  "Page not found": "Siden blev ikke fundet",
+  "This page does not exist or was moved": "Denne side findes ikke eller er blevet flyttet",
+  "Preparing wallets": "Forbereder tegnebøger",
+  "Back to payment": "Tilbage til betaling",
+  "AML verification in progress": "AML-verificering er i gang",
+  "We are verifying your payment. This may take a few minutes": "Vi bekræfter din betaling. Det kan tage et par minutter",
+  "Payment blocked by AML": "Betaling blokeret af AML",
+  "Your payment did not pass AML verification. You can request a refund to your address": "Din betaling bestod ikke AML-verificeringen. Du kan anmode om en refusion til din adresse",
+  "Request a refund": "Anmod om en refusion",
+  "Process refund": "Behandl tilbagebetaling",
+  "Enter the email used for this payment. We will send a verification code": "Indtast den e-mailadresse, der blev brugt til denne betaling. Vi sender en bekræftelseskode",
+  "Your payment did not pass AML verification": "Din betaling bestod ikke AML-verificeringen",
+  "AML failed contact support or refund": "Kontakt butikkens support, eller anmod selv om en tilbagebetaling til din adresse",
+  "We sent a verification code to your email. Enter it below to access the refund cabinet": "Vi har sendt en bekræftelseskode til din e-mail. Indtast den nedenfor for at få adgang til refusionspanelet",
+  "Sending verification code": "Sender bekræftelseskode"
 }

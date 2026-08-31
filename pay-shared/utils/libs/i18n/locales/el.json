@@ -129,5 +129,20 @@
   "Enter email": "Εισαγάγετε email",
   "Email must be valid": "Το email πρέπει να είναι έγκυρο",
   "Enter verification code": "Εισαγάγετε τον κωδικό επαλήθευσης",
-  "Code must be 6 characters": "Ο κωδικός πρέπει να αποτελείται από 6 χαρακτήρες"
+  "Code must be 6 characters": "Ο κωδικός πρέπει να αποτελείται από 6 χαρακτήρες",
+  "Page not found": "Η σελίδα δεν βρέθηκε",
+  "This page does not exist or was moved": "Αυτή η σελίδα δεν υπάρχει ή έχει μετακινηθεί",
+  "Preparing wallets": "Προετοιμασία πορτοφολιών",
+  "Back to payment": "Επιστροφή στην πληρωμή",
+  "AML verification in progress": "Επαλήθευση AML σε εξέλιξη",
+  "We are verifying your payment. This may take a few minutes": "Επαληθεύουμε την πληρωμή σας. Αυτό μπορεί να διαρκέσει λίγα λεπτά",
+  "Payment blocked by AML": "Η πληρωμή αποκλείστηκε από το AML",
+  "Your payment did not pass AML verification. You can request a refund to your address": "Η πληρωμή σας δεν πέρασε την επαλήθευση AML. Μπορείτε να ζητήσετε επιστροφή χρημάτων στη διεύθυνσή σας",
+  "Request a refund": "Ζητήστε επιστροφή χρημάτων",
+  "Process refund": "Επεξεργασία επιστροφής χρημάτων",
+  "Enter the email used for this payment. We will send a verification code": "Εισαγάγετε το email που χρησιμοποιήθηκε για αυτήν την πληρωμή. Θα στείλουμε έναν κωδικό επαλήθευσης",
+  "Your payment did not pass AML verification": "Η πληρωμή σας δεν πέρασε την επαλήθευση AML",
+  "AML failed contact support or refund": "Επικοινωνήστε με την υποστήριξη του καταστήματος ή ζητήστε μόνοι σας επιστροφή χρημάτων στη διεύθυνσή σας",
+  "We sent a verification code to your email. Enter it below to access the refund cabinet": "Στείλαμε έναν κωδικό επαλήθευσης στο email σας. Εισαγάγετέ τον παρακάτω για να αποκτήσετε πρόσβαση στον πίνακα επιστροφών χρημάτων",
+  "Sending verification code": "Αποστολή κωδικού επαλήθευσης"
 }

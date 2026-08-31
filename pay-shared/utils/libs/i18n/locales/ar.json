@@ -129,5 +129,20 @@
   "Enter email": "أدخل البريد الإلكتروني",
   "Email must be valid": "يجب أن يكون البريد الإلكتروني صالحًا",
   "Enter verification code": "أدخل رمز التحقق",
-  "Code must be 6 characters": "يجب أن يتكوّن الرمز من 6 أحرف"
+  "Code must be 6 characters": "يجب أن يتكوّن الرمز من 6 أحرف",
+  "Page not found": "الصفحة غير موجودة",
+  "This page does not exist or was moved": "هذه الصفحة غير موجودة أو تم نقلها",
+  "Preparing wallets": "جاري تجهيز المحافظ",
+  "Back to payment": "العودة إلى الدفع",
+  "AML verification in progress": "التحقق من AML قيد التقدم",
+  "We are verifying your payment. This may take a few minutes": "نحن نتحقق من عملية الدفع الخاصة بك. قد يستغرق ذلك بضع دقائق",
+  "Payment blocked by AML": "تم حظر الدفع بواسطة AML",
+  "Your payment did not pass AML verification. You can request a refund to your address": "لم تجتز دفعتك التحقق من AML. يمكنك طلب استرداد المبلغ إلى عنوانك",
+  "Request a refund": "طلب استرداد الأموال",
+  "Process refund": "معالجة رد الأموال",
+  "Enter the email used for this payment. We will send a verification code": "أدخل البريد الإلكتروني المستخدم لهذه الدفعة. سنرسل رمز تحقق",
+  "Your payment did not pass AML verification": "لم تجتز دفعتك عملية التحقق من AML",
+  "AML failed contact support or refund": "تواصل مع دعم المتجر أو اطلب استردادًا إلى عنوانك بنفسك",
+  "We sent a verification code to your email. Enter it below to access the refund cabinet": "لقد أرسلنا رمز تحقق إلى بريدك الإلكتروني. أدخله أدناه للوصول إلى لوحة استرداد الأموال",
+  "Sending verification code": "جارٍ إرسال رمز التحقق"
 }

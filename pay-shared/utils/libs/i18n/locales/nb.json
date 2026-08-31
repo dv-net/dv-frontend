@@ -129,5 +129,20 @@
   "Enter email": "Skriv inn e-post",
   "Email must be valid": "E-postadressen må være gyldig",
   "Enter verification code": "Skriv inn verifiseringskode",
-  "Code must be 6 characters": "Koden må være på 6 tegn"
+  "Code must be 6 characters": "Koden må være på 6 tegn",
+  "Page not found": "Siden ble ikke funnet",
+  "This page does not exist or was moved": "Denne siden finnes ikke eller har blitt flyttet",
+  "Preparing wallets": "Klargjør lommebøker",
+  "Back to payment": "Tilbake til betaling",
+  "AML verification in progress": "AML-verifisering pågår",
+  "We are verifying your payment. This may take a few minutes": "Vi verifiserer betalingen din. Dette kan ta noen minutter",
+  "Payment blocked by AML": "Betaling blokkert av AML",
+  "Your payment did not pass AML verification. You can request a refund to your address": "Betalingen din bestod ikke AML-verifiseringen. Du kan be om refusjon til adressen din",
+  "Request a refund": "Be om refusjon",
+  "Process refund": "Behandle refusjon",
+  "Enter the email used for this payment. We will send a verification code": "Skriv inn e-postadressen som ble brukt for denne betalingen. Vi sender en bekreftelseskode",
+  "Your payment did not pass AML verification": "Betalingen din besto ikke AML-verifiseringen",
+  "AML failed contact support or refund": "Kontakt butikkens kundestøtte eller be om refusjon til adressen din på egen hånd",
+  "We sent a verification code to your email. Enter it below to access the refund cabinet": "Vi har sendt en bekreftelseskode til e-posten din. Skriv den inn nedenfor for å få tilgang til refusjonspanelet",
+  "Sending verification code": "Sender bekreftelseskode"
 }

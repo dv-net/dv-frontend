@@ -983,5 +983,6 @@
   "Reject": "拒绝",
   "Refund request rejected": "退款请求已被拒绝",
   "Destination address": "目标地址",
-  "Created at": "创建时间"
+  "Created at": "创建时间",
+  "Project": "项目"
 }
