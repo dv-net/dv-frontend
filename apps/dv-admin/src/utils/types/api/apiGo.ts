@@ -439,6 +439,7 @@ export interface IWithdrawalAddressItemResponse {
 	name: string | null;
 	id: string;
 	withdrawal_wallet_id: string;
+	for_flagged: boolean;
 }
 
 export interface IWithdrawalRulesResponse {
@@ -477,6 +478,7 @@ export interface IWithdrawalRules {
 export interface IWithdrawalAddressItemRequest {
 	address: string;
 	name: string | null;
+	for_flagged: boolean;
 }
 
 export interface IWithdrawalAddressRequest {

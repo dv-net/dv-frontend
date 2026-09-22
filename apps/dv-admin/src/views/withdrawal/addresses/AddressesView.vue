@@ -1,6 +1,6 @@
 <script setup lang="ts">
 	import BlockSection from "@dv-admin/components/ui/BlockSection/BlockSection.vue";
-	import { UiTabs, UiTabsItem, UiInput, UiButton, UiTable } from "@dv.net/ui-kit";
+	import { UiTabs, UiTabsItem, UiInput, UiButton, UiTable, UiSwitch } from "@dv.net/ui-kit";
 	import { computed, onMounted, onUnmounted, ref, watch } from "vue";
 	import Breadcrumbs from "@dv-admin/components/ui/breadcrumbs/Breadcrumbs.vue";
 	import { useRoute } from "vue-router";
@@ -21,6 +21,7 @@
 	import Rules from "@dv-admin/views/withdrawal/addresses/components/rules/Rules.vue";
 	import { postApiAddressesConverter } from "@dv-admin/utils/services/withdrawal.ts";
 	import BannerInfo from "@dv-admin/components/ui/bannerInfo/BannerInfo.vue";
+	import TooltipHelper from "@dv-admin/components/ui/tooltipHelper/TooltipHelper.vue";
 	import type { UiTableHeader } from "@dv.net/ui-kit/dist/components/UiTable/types";
 	import { useI18n } from "vue-i18n";
 	import { useNotifications } from "@shared/utils/composables/useNotifications";
@@ -54,6 +55,7 @@
 			label: t("Wallet Address")
 		},
 		{ name: "name", label: t("Wallet name") },
+		{ name: "for_flagged", label: t("AML withdrawal"), width: "160" },
 		{ name: "delete", width: "120" }
 	]);
 
@@ -157,7 +159,13 @@
 		if (!textarea.value || !textarea.value.value) {
 			return (withdrawalCurrencyRules.value.addressees = []);
 		}
-		withdrawalCurrencyRules.value.addressees = formatingWithdrawalAddresses(textarea.value.value);
+		const previousForFlagged = new Map(
+			withdrawalCurrencyRules.value.addressees.map((item) => [item.address, Boolean(item.for_flagged)])
+		);
+		withdrawalCurrencyRules.value.addressees = formatingWithdrawalAddresses(textarea.value.value).map((item) => ({
+			...item,
+			for_flagged: previousForFlagged.get(item.address) ?? false
+		}));
 	};
 
 	// Check if user changed anything compared to initial data
@@ -173,7 +181,7 @@
 				.map((item) => (!item.address && !item.name ? undefined : { ...item, name: item.name || null }))
 				.filter(Boolean) as IWithdrawalAddressItemResponse[];
 			// Function to check matching by specified fields
-			const fields = ["name", "address"] as (keyof IWithdrawalAddressItemResponse)[];
+			const fields = ["name", "address", "for_flagged"] as (keyof IWithdrawalAddressItemResponse)[];
 			isShowBannerWarning.value = !areArraysEqualByFields<IWithdrawalAddressItemResponse>(
 				withdrawalCurrentCurrencyRulesAddressesHistory.value,
 				newArray,
@@ -230,12 +238,27 @@
 					v-model:selected="multipleSelectionAddresses"
 					selected-key="id"
 				>
+					<template #header-cell="{ header, title }">
+						<span class="flex gap-4 items-center">
+							{{ title }}
+							<tooltip-helper
+								v-if="header.name === 'for_flagged'"
+								:title="title"
+								:text="$t('Withdrawals from AML-flagged wallets go here')"
+							/>
+						</span>
+					</template>
+
 					<template #body-cell-address="{ row }">
 						<ui-input v-model="row.address" size="sm" :class="{ error: arrayErrorsAddresses.includes(row.id) }" />
 					</template>
 
 					<template #body-cell-name="{ row }">
 						<ui-input v-model="row.name" size="sm" />
+					</template>
+
+					<template #body-cell-for_flagged="{ row }">
+						<ui-switch v-model="row.for_flagged" />
 					</template>
 
 					<template #body-cell-delete="{ row }">
