@@ -984,5 +984,8 @@
   "Refund request rejected": "Tagasimaksetaotlus tagasi lükatud",
   "Destination address": "Sihtaadress",
   "Created at": "Loomise aeg",
-  "Project": "Projekt"
+  "Project": "Projekt",
+  "Accept and flag address": "Aktsepteeri ja märgista aadress",
+  "AML withdrawal": "AML-väljamakse",
+  "Withdrawals from AML-flagged wallets go here": "AML-märgistusega rahakottidest tehtud väljamaksed lähevad siia"
 }

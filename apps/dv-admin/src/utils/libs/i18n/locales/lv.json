@@ -984,5 +984,8 @@
   "Refund request rejected": "Atmaksas pieprasījums noraidīts",
   "Destination address": "Galamērķa adrese",
   "Created at": "Izveidots",
-  "Project": "Projekts"
+  "Project": "Projekts",
+  "Accept and flag address": "Pieņemt un atzīmēt adresi",
+  "AML withdrawal": "AML izmaksa",
+  "Withdrawals from AML-flagged wallets go here": "Izmaksas no AML atzīmētiem makiem nonāk šeit"
 }

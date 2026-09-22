@@ -984,5 +984,8 @@
   "Refund request rejected": "Solicitarea de rambursare a fost respinsă",
   "Destination address": "Adresa de destinație",
   "Created at": "Creat la",
-  "Project": "Proiect"
+  "Project": "Proiect",
+  "Accept and flag address": "Acceptă și semnalează adresa",
+  "AML withdrawal": "Retragere AML",
+  "Withdrawals from AML-flagged wallets go here": "Retragerile din portofelele marcate AML ajung aici"
 }

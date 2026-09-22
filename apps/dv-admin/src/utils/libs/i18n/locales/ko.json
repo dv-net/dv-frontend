@@ -984,5 +984,8 @@
   "Refund request rejected": "환불 요청이 거부되었습니다",
   "Destination address": "목적지 주소",
   "Created at": "생성일",
-  "Project": "프로젝트"
+  "Project": "프로젝트",
+  "Accept and flag address": "주소 수락 및 플래그 지정",
+  "AML withdrawal": "AML 출금",
+  "Withdrawals from AML-flagged wallets go here": "AML 플래그가 지정된 지갑에서 발생한 출금은 여기로 이동합니다"
 }

@@ -984,5 +984,8 @@
   "Refund request rejected": "Solicitação de reembolso rejeitada",
   "Destination address": "Endereço de destino",
   "Created at": "Criado em",
-  "Project": "Projeto"
+  "Project": "Projeto",
+  "Accept and flag address": "Aceitar e sinalizar endereço",
+  "AML withdrawal": "Saque AML",
+  "Withdrawals from AML-flagged wallets go here": "Os saques de carteiras sinalizadas por AML aparecem aqui"
 }

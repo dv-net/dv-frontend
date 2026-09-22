@@ -984,5 +984,8 @@
   "Refund request rejected": "Żądanie zwrotu odrzucone",
   "Destination address": "Adres docelowy",
   "Created at": "Utworzono o",
-  "Project": "Projekt"
+  "Project": "Projekt",
+  "Accept and flag address": "Zaakceptuj i oznacz adres",
+  "AML withdrawal": "Wypłata AML",
+  "Withdrawals from AML-flagged wallets go here": "Wypłaty z portfeli oznaczonych w ramach AML trafiają tutaj"
 }

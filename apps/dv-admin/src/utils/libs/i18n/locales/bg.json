@@ -984,5 +984,8 @@
   "Refund request rejected": "Заявката за възстановяване на средства е отхвърлена",
   "Destination address": "Адрес на получателя",
   "Created at": "Създадено на",
-  "Project": "Проект"
+  "Project": "Проект",
+  "Accept and flag address": "Приеми и маркирай адреса",
+  "AML withdrawal": "AML теглене",
+  "Withdrawals from AML-flagged wallets go here": "Тегленията от портфейли, маркирани по AML, отиват тук"
 }

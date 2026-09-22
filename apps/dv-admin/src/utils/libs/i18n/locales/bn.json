@@ -984,5 +984,8 @@
   "Refund request rejected": "রিফান্ডের অনুরোধ প্রত্যাখ্যাত হয়েছে",
   "Destination address": "গন্তব্য ঠিকানা",
   "Created at": "তৈরির সময়",
-  "Project": "প্রকল্প"
+  "Project": "প্রকল্প",
+  "Accept and flag address": "ঠিকানা গ্রহণ করুন এবং ফ্ল্যাগ করুন",
+  "AML withdrawal": "AML উত্তোলন",
+  "Withdrawals from AML-flagged wallets go here": "AML-ফ্ল্যাগ করা ওয়ালেট থেকে উত্তোলন এখানে আসে"
 }

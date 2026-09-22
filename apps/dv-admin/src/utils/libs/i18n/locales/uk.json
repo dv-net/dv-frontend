@@ -984,5 +984,8 @@
   "Refund request rejected": "Запит на повернення коштів відхилено",
   "Destination address": "Адреса призначення",
   "Created at": "Створено",
-  "Project": "Проєкт"
+  "Project": "Проєкт",
+  "Accept and flag address": "Прийняти та позначити адресу",
+  "AML withdrawal": "AML-виведення коштів",
+  "Withdrawals from AML-flagged wallets go here": "Операції виведення коштів із гаманців, позначених AML, потрапляють сюди"
 }

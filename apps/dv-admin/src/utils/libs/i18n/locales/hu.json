@@ -984,5 +984,8 @@
   "Refund request rejected": "Visszatérítési kérelem elutasítva",
   "Destination address": "Célcím",
   "Created at": "Létrehozás ideje",
-  "Project": "Projekt"
+  "Project": "Projekt",
+  "Accept and flag address": "Cím elfogadása és megjelölése",
+  "AML withdrawal": "AML-kiutalás",
+  "Withdrawals from AML-flagged wallets go here": "Az AML által megjelölt tárcákból indított kifizetések ide kerülnek"
 }

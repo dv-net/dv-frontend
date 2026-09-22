@@ -984,5 +984,8 @@
   "Refund request rejected": "Refusjonsforespørsel avvist",
   "Destination address": "Destinasjonsadresse",
   "Created at": "Opprettet den",
-  "Project": "Prosjekt"
+  "Project": "Prosjekt",
+  "Accept and flag address": "Godta og flagg adresse",
+  "AML withdrawal": "AML-uttak",
+  "Withdrawals from AML-flagged wallets go here": "Uttak fra AML-flaggede lommebøker havner her"
 }

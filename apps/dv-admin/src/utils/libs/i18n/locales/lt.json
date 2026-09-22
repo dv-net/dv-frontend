@@ -984,5 +984,8 @@
   "Refund request rejected": "Prašymas grąžinti lėšas atmestas",
   "Destination address": "Paskirties adresas",
   "Created at": "Sukurta",
-  "Project": "Projektas"
+  "Project": "Projektas",
+  "Accept and flag address": "Priimti ir pažymėti adresą",
+  "AML withdrawal": "AML išėmimas",
+  "Withdrawals from AML-flagged wallets go here": "Išėmimai iš AML pažymėtų piniginių patenka čia"
 }

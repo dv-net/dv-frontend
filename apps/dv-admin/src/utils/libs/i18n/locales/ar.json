@@ -984,5 +984,8 @@
   "Refund request rejected": "تم رفض طلب استرداد الأموال",
   "Destination address": "عنوان الوجهة",
   "Created at": "تاريخ الإنشاء",
-  "Project": "المشروع"
+  "Project": "المشروع",
+  "Accept and flag address": "قبول العنوان ووضع علامة عليه",
+  "AML withdrawal": "سحب AML",
+  "Withdrawals from AML-flagged wallets go here": "تذهب عمليات السحب من المحافظ المعلَّمة بعلامة AML إلى هنا"
 }
