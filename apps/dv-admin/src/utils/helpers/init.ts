@@ -8,11 +8,12 @@ import { loadLocaleMessages } from "@dv-admin/utils/libs/i18n/helpers";
 
 export const getStartDataProject = async () => {
 	try {
+		const authStore = useAuthStore();
 		await Promise.all([
 			useGeneralStore().getDictionary(),
-			useGeneralStore().getSystemVersions(),
-			useAuthStore().getInfoUser2Fa(),
-			useAuthStore().setOwnerDataPolling(),
+			authStore.isRootUser ? useGeneralStore().getSystemVersions() : Promise.resolve(),
+			authStore.getInfoUser2Fa(),
+			authStore.setOwnerDataPolling(),
 			useHotWalletsStore().setWalletHotBalancePolling(),
 			useUserSettingsStore().getUserSettings()
 		]);

@@ -984,5 +984,8 @@
   "Refund request rejected": "Anmodning om tilbagebetaling afvist",
   "Destination address": "Destinationsadresse",
   "Created at": "Oprettet den",
-  "Project": "Projekt"
+  "Project": "Projekt",
+  "Accept and flag address": "Accepter og markér adresse",
+  "AML withdrawal": "AML-udbetaling",
+  "Withdrawals from AML-flagged wallets go here": "Udbetalinger fra AML-markerede wallets kommer her"
 }

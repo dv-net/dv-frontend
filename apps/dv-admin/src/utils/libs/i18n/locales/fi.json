@@ -984,5 +984,8 @@
   "Refund request rejected": "Hyvityspyyntö hylätty",
   "Destination address": "Kohdeosoite",
   "Created at": "Luotu ulloq",
-  "Project": "Projekti"
+  "Project": "Projekti",
+  "Accept and flag address": "Hyväksy ja merkitse osoite",
+  "AML withdrawal": "AML-nosto",
+  "Withdrawals from AML-flagged wallets go here": "Nostot AML-liputetuista lompakoista tulevat tänne"
 }

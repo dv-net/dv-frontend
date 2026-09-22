@@ -68,8 +68,14 @@ export const useWithdrawalStore = defineStore("withdrawal", () => {
 			isDataReceivedAddresses.value = false;
 			isLoading.value = true;
 			const data = await getApiWithdrawalCurrencyRules(currencyId);
-			if (data) withdrawalCurrencyRules.value = data;
-			if (data) withdrawalCurrentCurrencyRulesAddressesHistory.value = structuredClone(data.addressees);
+			if (data) {
+				const addressees = data.addressees.map((item) => ({
+					...item,
+					for_flagged: Boolean(item.for_flagged)
+				}));
+				withdrawalCurrencyRules.value = { ...data, addressees };
+				withdrawalCurrentCurrencyRulesAddressesHistory.value = structuredClone(addressees);
+			}
 			isDataReceivedAddresses.value = true;
 		} catch (error: any) {
 			throw error;
@@ -84,7 +90,11 @@ export const useWithdrawalStore = defineStore("withdrawal", () => {
 			let arrayAddresses: IWithdrawalAddressItemRequest[] = [];
 			if (withdrawalCurrencyRules.value?.addressees?.length) {
 				arrayAddresses = withdrawalCurrencyRules.value.addressees
-					.map(({ address, name }) => ({ address, name: name || null }))
+					.map(({ address, name, for_flagged }) => ({
+						address,
+						name: name || null,
+						for_flagged: Boolean(for_flagged)
+					}))
 					.filter((item) => item.address);
 			}
 			const body: IWithdrawalAddressRequest = { addresses: arrayAddresses, totp: addressesTotp.value };

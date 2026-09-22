@@ -984,5 +984,8 @@
   "Refund request rejected": "Žádost o vrácení peněz zamítnuta",
   "Destination address": "Cílová adresa",
   "Created at": "Vytvořeno v",
-  "Project": "Projekt"
+  "Project": "Projekt",
+  "Accept and flag address": "Přijmout a označit adresu",
+  "AML withdrawal": "AML výběr",
+  "Withdrawals from AML-flagged wallets go here": "Výběry z peněženek označených v rámci AML směřují sem"
 }

@@ -984,5 +984,8 @@
   "Refund request rejected": "返金リクエストが拒否されました",
   "Destination address": "送金先アドレス",
   "Created at": "作成日時",
-  "Project": "プロジェクト"
+  "Project": "プロジェクト",
+  "Accept and flag address": "アドレスを受け入れてフラグを付ける",
+  "AML withdrawal": "AML出金",
+  "Withdrawals from AML-flagged wallets go here": "AMLフラグが付いたウォレットからの出金はここに表示されます"
 }

@@ -984,5 +984,8 @@
   "Refund request rejected": "Ombi la kurejesha pesa limekataliwa",
   "Destination address": "Anwani ya marudio",
   "Created at": "Iliundwa tarehe",
-  "Project": "Mradi"
+  "Project": "Mradi",
+  "Accept and flag address": "Kubali na uweke alama anwani",
+  "AML withdrawal": "Utoaji wa AML",
+  "Withdrawals from AML-flagged wallets go here": "Utoaji fedha kutoka kwenye pochi zilizowekewa alama na AML huenda hapa"
 }

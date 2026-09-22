@@ -984,5 +984,8 @@
   "Refund request rejected": "Permintaan pengembalian dana ditolak",
   "Destination address": "Alamat tujuan",
   "Created at": "Dibuat pada",
-  "Project": "Proyek"
+  "Project": "Proyek",
+  "Accept and flag address": "Terima dan tandai alamat",
+  "AML withdrawal": "Penarikan AML",
+  "Withdrawals from AML-flagged wallets go here": "Penarikan dari dompet yang ditandai AML masuk ke sini"
 }

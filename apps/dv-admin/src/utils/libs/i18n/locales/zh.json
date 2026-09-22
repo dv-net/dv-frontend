@@ -984,5 +984,8 @@
   "Refund request rejected": "退款请求已被拒绝",
   "Destination address": "目标地址",
   "Created at": "创建时间",
-  "Project": "项目"
+  "Project": "项目",
+  "Accept and flag address": "接受并标记地址",
+  "AML withdrawal": "AML 提现",
+  "Withdrawals from AML-flagged wallets go here": "来自 AML 标记钱包的提现会显示在这里"
 }

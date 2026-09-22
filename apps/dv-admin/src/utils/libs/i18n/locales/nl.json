@@ -984,5 +984,8 @@
   "Refund request rejected": "Terugbetalingsverzoek afgewezen",
   "Destination address": "Bestemmingsadres",
   "Created at": "Aangemaakt op",
-  "Project": "Project"
+  "Project": "Project",
+  "Accept and flag address": "Accepteer en markeer adres",
+  "AML withdrawal": "AML-opname",
+  "Withdrawals from AML-flagged wallets go here": "Opnames van door AML gemarkeerde wallets komen hier terecht"
 }

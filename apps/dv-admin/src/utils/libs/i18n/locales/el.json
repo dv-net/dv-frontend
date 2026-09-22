@@ -984,5 +984,8 @@
   "Refund request rejected": "Το αίτημα επιστροφής χρημάτων απορρίφθηκε",
   "Destination address": "Διεύθυνση προορισμού",
   "Created at": "Δημιουργήθηκε στις",
-  "Project": "Έργο"
+  "Project": "Έργο",
+  "Accept and flag address": "Αποδοχή και επισήμανση διεύθυνσης",
+  "AML withdrawal": "Ανάληψη AML",
+  "Withdrawals from AML-flagged wallets go here": "Οι αναλήψεις από πορτοφόλια με σήμανση AML εμφανίζονται εδώ"
 }

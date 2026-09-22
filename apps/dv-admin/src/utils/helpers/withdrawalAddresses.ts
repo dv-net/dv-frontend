@@ -1,14 +1,15 @@
 import type { IWithdrawalAddressItemResponse } from "@dv-admin/utils/types/api/apiGo";
 import { generateUUID } from "@shared/utils/helpers/general.ts";
 
-export const getFreshAddressee = () => ({
+export const getFreshAddressee = (): IWithdrawalAddressItemResponse => ({
 	id: generateUUID(),
 	address: "",
 	name: "",
 	updated_at: "",
 	created_at: "",
 	deleted_at: "",
-	withdrawal_wallet_id: ""
+	withdrawal_wallet_id: "",
+	for_flagged: false
 });
 
 // Comparison of arrays by specific fields in withdrawal rules

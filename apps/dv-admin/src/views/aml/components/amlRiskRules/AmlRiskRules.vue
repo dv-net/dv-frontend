@@ -3,7 +3,13 @@
 	import { storeToRefs } from "pinia";
 	import { UiCheckbox, UiInput, UiSelect, UiSkeleton } from "@dv.net/ui-kit";
 	import { useAmlStore } from "@dv-admin/stores/aml";
-	import { AML_RISK_ACTION_REJECT, AML_RISK_TYPE_LABELS } from "@dv-admin/utils/constants/aml";
+	import {
+		AML_RISK_ACTION_ACCEPT_AND_FLAG,
+		AML_RISK_ACTION_REJECT,
+		AML_RISK_TYPE_LABELS,
+		AML_RISK_TYPE_SUM_OF_SIGNALS,
+		AML_RISK_TYPE_TOTAL_SCORE
+	} from "@dv-admin/utils/constants/aml";
 	import type { IAmlRiskRuleResponse } from "@dv-admin/utils/types/api/apiGo.ts";
 	import type { IUiSelectOptions } from "@dv-admin/utils/types/general.ts";
 	import { useI18n } from "vue-i18n";
@@ -24,17 +30,34 @@
 	const { getAmlRiskRules, putAmlRiskRules } = amlStore;
 
 	const localRules = ref<IAmlRiskRuleResponse[]>([]);
-	const actionValue = ref(AML_RISK_ACTION_REJECT);
 
 	const showSkeleton = computed(() => props.isLoading || isLoadingAmlRiskRules.value);
-
-	const actionOptions = computed<IUiSelectOptions[]>(() => [
-		{ label: t("Do not accept payment"), value: AML_RISK_ACTION_REJECT }
-	]);
 
 	const signalLabelByCategory = computed(() => {
 		return Object.fromEntries(amlSignalCategories.value.map((item) => [item.category, item.label]));
 	});
+
+	const isRejectOnlyRiskType = (riskType: string): boolean =>
+		riskType === AML_RISK_TYPE_TOTAL_SCORE || riskType === AML_RISK_TYPE_SUM_OF_SIGNALS;
+
+	const normalizeAction = (riskType: string, action: string): string => {
+		if (isRejectOnlyRiskType(riskType)) return AML_RISK_ACTION_REJECT;
+		if (action === AML_RISK_ACTION_ACCEPT_AND_FLAG) return AML_RISK_ACTION_ACCEPT_AND_FLAG;
+		return AML_RISK_ACTION_REJECT;
+	};
+
+	const getActionOptions = (riskType: string): IUiSelectOptions[] => {
+		const options: IUiSelectOptions[] = [
+			{ label: t("Do not accept payment"), value: AML_RISK_ACTION_REJECT }
+		];
+		if (!isRejectOnlyRiskType(riskType)) {
+			options.push({
+				label: t("Accept and flag address"),
+				value: AML_RISK_ACTION_ACCEPT_AND_FLAG
+			});
+		}
+		return options;
+	};
 
 	const getRiskLabel = (riskType: string): string => {
 		if (riskType in AML_RISK_TYPE_LABELS) {
@@ -53,14 +76,15 @@
 			next.forEach((rule, index) => {
 				localRules.value[index].enabled = rule.enabled;
 				localRules.value[index].threshold = Number(rule.threshold);
-				localRules.value[index].action = rule.action;
+				localRules.value[index].action = normalizeAction(rule.risk_type, rule.action);
 			});
 			return;
 		}
 
 		localRules.value = next.map((rule) => ({
 			...rule,
-			threshold: Number(rule.threshold)
+			threshold: Number(rule.threshold),
+			action: normalizeAction(rule.risk_type, rule.action)
 		}));
 	};
 
@@ -73,7 +97,7 @@
 					risk_type: rule.risk_type,
 					enabled: rule.enabled,
 					threshold: Number(rule.threshold),
-					action: AML_RISK_ACTION_REJECT
+					action: normalizeAction(rule.risk_type, rule.action)
 				}
 			]);
 		} catch (error) {
@@ -94,6 +118,11 @@
 			return;
 		}
 		rule.threshold = threshold;
+		await saveRule(rule);
+	};
+
+	const handleActionChange = async (rule: IAmlRiskRuleResponse) => {
+		rule.action = normalizeAction(rule.risk_type, rule.action);
 		await saveRule(rule);
 	};
 
@@ -153,7 +182,12 @@
 						</div>
 
 						<div class="risk-rules__field">
-							<ui-select v-model="actionValue" :options="actionOptions" size="md" />
+							<ui-select
+								v-model="rule.action"
+								:options="getActionOptions(rule.risk_type)"
+								size="md"
+								@change="handleActionChange(rule)"
+							/>
 						</div>
 					</div>
 				</div>

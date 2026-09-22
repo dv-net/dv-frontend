@@ -9,7 +9,7 @@
 	import IconUser from "@dv-admin/components/icons/IconUser.vue";
 
 	const { isLoading, dictionary, hasNewVersion, systemVersions } = storeToRefs(useGeneralStore());
-	const { ownerData } = storeToRefs(useAuthStore());
+	const { ownerData, isRootUser } = storeToRefs(useAuthStore());
 	const { getMyDvAuthLink } = useAuthStore();
 
 	const router = useRouter();
@@ -50,44 +50,46 @@
 					</div>
 				</div>
 			</div>
-			<div v-if="hasNewVersion" class="update-block">
-				<div class="update-block__text">
-					<ui-icon type="filled" name="error" size="sm" />
-					<span>{{ $t("Update software") }}</span>
+			<template v-if="isRootUser">
+				<div v-if="hasNewVersion" class="update-block">
+					<div class="update-block__text">
+						<ui-icon type="filled" name="error" size="sm" />
+						<span>{{ $t("Update software") }}</span>
+					</div>
+					<ui-button class="w-full" mode="neutral" size="sm" @click="router.push({ name: 'settings-system-update' })">
+						{{ $t("Update all") }}
+					</ui-button>
 				</div>
-				<ui-button class="w-full" mode="neutral" size="sm" @click="router.push({ name: 'settings-system-update' })">
-					{{ $t("Update all") }}
-				</ui-button>
-			</div>
-			<div v-else class="update-content">
-				<ui-tooltip mode="dark" position="top-start" is-gold-title :title="$t('Latest versions')" :teleport="false">
-					<span class="update-content__label"></span>
-					<span class="update-content__text" @click="router.push({ name: 'settings-system-update' })">
-						{{ $t("No updates required") }}
-					</span>
-					<template #text>
-						<div class="versions">
-							<span class="versions__item">
-								<b style="color: #fff">Merchant:</b>
-								{{
-									systemVersions?.new_backend_version?.available_version || dictionary?.backend_version_tag || "unknown"
-								}}
-							</span>
+				<div v-else class="update-content">
+					<ui-tooltip mode="dark" position="top-start" is-gold-title :title="$t('Latest versions')" :teleport="false">
+						<span class="update-content__label"></span>
+						<span class="update-content__text" @click="router.push({ name: 'settings-system-update' })">
+							{{ $t("No updates required") }}
+						</span>
+						<template #text>
+							<div class="versions">
+								<span class="versions__item">
+									<b style="color: #fff">Merchant:</b>
+									{{
+										systemVersions?.new_backend_version?.available_version || dictionary?.backend_version_tag || "unknown"
+									}}
+								</span>
 
-							<span class="versions__item">
-								<b style="color: #fff">Processing:</b>
-								{{
-									systemVersions?.new_processing_version?.available_version ||
-									dictionary?.processing_version_tag ||
-									"unknown"
-								}}
-							</span>
+								<span class="versions__item">
+									<b style="color: #fff">Processing:</b>
+									{{
+										systemVersions?.new_processing_version?.available_version ||
+										dictionary?.processing_version_tag ||
+										"unknown"
+									}}
+								</span>
 
-							<span class="versions__item"> <b style="color: #fff">Frontend:</b> {{ frontendVersion }} </span>
-						</div>
-					</template>
-				</ui-tooltip>
-			</div>
+								<span class="versions__item"> <b style="color: #fff">Frontend:</b> {{ frontendVersion }} </span>
+							</div>
+						</template>
+					</ui-tooltip>
+				</div>
+			</template>
 		</div>
 	</div>
 </template>

@@ -984,5 +984,8 @@
   "Refund request rejected": "İade talebi reddedildi",
   "Destination address": "Hedef adres",
   "Created at": "Oluşturulma zamanı",
-  "Project": "Proje"
+  "Project": "Proje",
+  "Accept and flag address": "Adresi kabul et ve işaretle",
+  "AML withdrawal": "AML para çekme",
+  "Withdrawals from AML-flagged wallets go here": "AML ile işaretlenmiş cüzdanlardan yapılan çekimler buraya gelir"
 }

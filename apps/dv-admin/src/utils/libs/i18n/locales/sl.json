@@ -984,5 +984,8 @@
   "Refund request rejected": "Zahtevek za vračilo zavrnjen",
   "Destination address": "Ciljni naslov",
   "Created at": "Ustvarjeno ob",
-  "Project": "Projekt"
+  "Project": "Projekt",
+  "Accept and flag address": "Sprejmi in označi naslov",
+  "AML withdrawal": "AML dvig",
+  "Withdrawals from AML-flagged wallets go here": "Dvigi iz denarnic z oznako AML gredo sem"
 }

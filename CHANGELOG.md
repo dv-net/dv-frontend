@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+- feat: AML `accept_and_flag` risk action and withdrawal address `for_flagged` (AML withdrawal) switch with 2FA save [DNS-181]
+
 ## [1.1.0] - 2026-08-27
 
 - feat: download private keys for a single hot wallet from its action menu without selecting it via checkbox [DNS-100]
