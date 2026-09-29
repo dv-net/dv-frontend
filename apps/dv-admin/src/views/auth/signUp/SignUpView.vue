@@ -51,7 +51,7 @@
 					message: t("Passwords must match")
 				}
 			],
-			captcha: [
+			"cf-turnstile-response": [
 				{
 					validator: () =>
 						!userRootSystemInfo.value?.is_captcha_enabled || Boolean(form.value["cf-turnstile-response"]),
@@ -112,7 +112,7 @@
 			</p>
 		</ui-form-item>
 
-		<ui-form-item v-if="userRootSystemInfo?.is_captcha_enabled" :error="formError" name="captcha">
+		<ui-form-item v-if="userRootSystemInfo?.is_captcha_enabled" name="cf-turnstile-response">
 			<div class="center">
 				<vue-turnstile :site-key="userRootSystemInfo.site_key" v-model="form['cf-turnstile-response']" />
 			</div>
