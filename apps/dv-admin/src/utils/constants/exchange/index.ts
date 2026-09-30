@@ -44,18 +44,18 @@ export const exchangeLogoSmall: Record<ExchangeSlugType, Component> = {
 };
 
 export const EXCHANGE_SETTING_LABELS: Record<string, string> = {
-	api_key: "API-key",
+	api_key: "API key",
 	secret_key: "Secret key",
 	pass_phrase: "Passphrase",
 	access_key: "Access key"
 };
 
 export const EXCHANGE_HELP_TOOLTIPS: Record<string, { title: string; text: string }> = {
-	api_key: { title: "API-key", text: "This is the API key from your crypto exchange, check it is correct" },
+	api_key: { title: "API key", text: "This is the API key from your crypto exchange. Make sure it is correct" },
 	secret_key: {
 		title: "Secret key",
-		text: "This is your crypto exchange's private key. We use it to sign requests - this lets the crypto exchange know that requests are being sent on your behalf"
+		text: "This is your crypto exchange's private key. We use it to sign requests — this lets the crypto exchange know that requests are sent on your behalf"
 	},
-	pass_phrase: { title: "Passphrase", text: "This is a passphrase from your crypto exchange, check it is correct" },
-	access_key: { title: "Access key", text: "This is the access key from your crypto exchange, check it is correct" }
+	pass_phrase: { title: "Passphrase", text: "This is the passphrase from your crypto exchange. Make sure it is correct" },
+	access_key: { title: "Access key", text: "This is the access key from your crypto exchange. Make sure it is correct" }
 };

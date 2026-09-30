@@ -93,7 +93,7 @@
 				is-empty-value-null
 				clearable
 				size="md"
-				:placeholder="$t('Search by logs')"
+				:placeholder="$t('Search logs')"
 				@clear="searchQuery = null"
 			/>
 			<ui-select

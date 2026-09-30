@@ -121,7 +121,7 @@
 				</template>
 			</ui-select>
 			<ui-checkbox size="sm" v-model="isHideLowBalance" @change="getNewDataTransactions">
-				{{ $t("Hide low balance transactions") }}
+				{{ $t("Hide low-value transactions") }}
 			</ui-checkbox>
 		</div>
 		<Line

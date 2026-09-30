@@ -25,8 +25,8 @@
 	const isSuccess = ref(false);
 	const isError = ref(false);
 
-	const resolvedDefaultText = computed(() => props.defaultText || t("Login to account"));
-	const resolvedSuccessText = computed(() => props.successText || `${t("Success. Redirecting")}...`);
+	const resolvedDefaultText = computed(() => props.defaultText || t("Log in to account"));
+	const resolvedSuccessText = computed(() => props.successText || `${t("Success. Redirecting…")}...`);
 
 	const isDisabled = computed(() => props.disabled);
 

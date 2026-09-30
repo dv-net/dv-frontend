@@ -73,10 +73,10 @@
 			<ui-datepicker-range v-model="date" @update:model-value="changeDate" />
 			<div class="vertical-border" />
 			<ui-tabs mode="outline" v-model="tab" @change="changeTabs">
-				<ui-tabs-item :value="TRANSACTIONS_TYPES.USER_REPLENISHMENTS">{{ $t("Clients top ups") }}</ui-tabs-item>
-				<ui-tabs-item :value="TRANSACTIONS_TYPES.WITHDRAWALS_FROM_HOT">{{ $t("Withdrawals from hot") }}</ui-tabs-item>
+				<ui-tabs-item :value="TRANSACTIONS_TYPES.USER_REPLENISHMENTS">{{ $t("Client top-ups") }}</ui-tabs-item>
+				<ui-tabs-item :value="TRANSACTIONS_TYPES.WITHDRAWALS_FROM_HOT">{{ $t("Withdrawals from hot wallets") }}</ui-tabs-item>
 				<ui-tabs-item v-if="connectedExchanges" :value="TRANSACTIONS_TYPES.EXCHANGES_ON_THE_EXCHANGE">
-					{{ $t("Exchanges on the crypto exchange") }}
+					{{ $t("Exchanges") }}
 				</ui-tabs-item>
 				<ui-tabs-item v-if="connectedExchanges" :value="TRANSACTIONS_TYPES.WITHDRAWALS_FROM_THE_EXCHANGE">
 					{{ $t("Withdrawals from the crypto exchange") }}

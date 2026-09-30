@@ -36,7 +36,7 @@
 					{{ $t("To access via API keys, you must specify the following IP address on the crypto exchange") }}:
 				</p>
 				<ui-link :href="`https://docs.dv.net/${locale}/exchanges/${slug}.html`" target="_blank">
-					{{ $t("Instructions-exchange", { exchange: slug.toUpperCase() }) }}
+					{{ $t("Instructions for setting up {exchange} to work with us", { exchange: slug.toUpperCase() }) }}
 				</ui-link>
 			</div>
 			<div class="info__ip" v-if="dictionary?.backend_address">

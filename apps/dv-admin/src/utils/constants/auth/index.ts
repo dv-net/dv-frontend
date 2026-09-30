@@ -6,6 +6,6 @@ export const TITLES_AUTH: Record<string, string> = {
 };
 
 export const DESCRIPTIONS_AUTH: Record<string, string> = {
-	"sign-in": "Login to your DV.net account or create a new one",
+	"sign-in": "Log in to your DV.net account or create a new one",
 	"sign-up": "Enter your details to register"
 };

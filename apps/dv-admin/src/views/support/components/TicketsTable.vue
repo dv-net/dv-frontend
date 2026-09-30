@@ -8,7 +8,7 @@
 
 	const headers = computed<UiTableHeader[]>(() => [
 		{ name: "created", label: t("Created") },
-		{ name: "theme", label: t("Ticket theme") },
+		{ name: "theme", label: t("Ticket subject") },
 		{ name: "status", label: t("Status") }
 	]);
 </script>

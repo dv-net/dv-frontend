@@ -141,7 +141,7 @@
 							<ui-icon size="md" name="edit" type="400" />
 							<template v-if="exchangeList!.current_exchange === item.slug">{{ $t("Change") }}</template>
 						</template>
-						<template v-else>{{ $t("Connect the crypto exchange") }}</template>
+						<template v-else>{{ $t("Connect a crypto exchange") }}</template>
 					</ui-button>
 					<ui-button
 						v-if="connectedExchanges.some((el) => el.slug === item.slug)"

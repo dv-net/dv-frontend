@@ -73,7 +73,7 @@ export const useWithdrawalExchangeStore = defineStore("withdrawalExchange", () =
 			body.currency_id = currency_id;
 			const data = await postApiExchangeWithdrawalSetting(slug, body);
 			if (data) exchangeWithdrawalSettingList.value.push(data);
-			notify(t("Rule added"), "success");
+			notify(t("Rule created"), "success");
 		} catch (error: any) {
 			throw error;
 		} finally {

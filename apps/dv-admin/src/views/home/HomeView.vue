@@ -8,7 +8,7 @@
 <template>
 	<div class="page">
 		<ui-button mode="neutral" @click="router.push({ name: 'sign-in' })">
-			{{ $t("Login to account") }}
+			{{ $t("Log in to account") }}
 		</ui-button>
 		<ui-button type="tertiary" @click="router.push({ name: 'sign-up' })">
 			{{ $t("Sign up") }}

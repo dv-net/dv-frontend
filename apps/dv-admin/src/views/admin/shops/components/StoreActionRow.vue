@@ -49,7 +49,7 @@
 	const isReasonMode = computed(() => reasonAction.value !== null);
 
 	const reasonPlaceholder = computed(() =>
-		reasonAction.value === "clarification" ? t("Enter clarification reason...") : t("Enter rejection reason...")
+		reasonAction.value === "clarification" ? t("Describe what needs clarification…") : t("Enter rejection reason…")
 	);
 
 	const isSubmitting = computed(() => props.isLoadingReject || props.isLoadingClarification);

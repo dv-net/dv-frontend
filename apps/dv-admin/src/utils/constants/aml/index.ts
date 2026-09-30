@@ -25,16 +25,16 @@ export const AML_RISK_LEVEL_LABELS: Record<TAmlRiskLevel, string> = {
 	[AML_RISK_LEVEL.medium]: "Medium",
 	[AML_RISK_LEVEL.high]: "High",
 	[AML_RISK_LEVEL.critical]: "Critical",
-	[AML_RISK_LEVEL.undefined]: "Undefined"
+	[AML_RISK_LEVEL.undefined]: "Not determined"
 };
 
 /** Matches `internal/constants/aml.go` in dv-merchant */
 export const AML_SETTING_LABELS: Record<string, string> = {
 	access_key: "Access key",
-	access_id: "Access id",
+	access_id: "Access ID",
 	secret_key: "Secret key",
 	api_key: "API key",
-	access_key_id: "Access id"
+	access_key_id: "Access ID"
 };
 
 export const AML_RISK_TYPE_TOTAL_SCORE = "TOTAL_RISK_SCORE";
@@ -43,6 +43,6 @@ export const AML_RISK_ACTION_REJECT = "reject";
 export const AML_RISK_ACTION_ACCEPT_AND_FLAG = "accept_and_flag";
 
 export const AML_RISK_TYPE_LABELS: Record<string, string> = {
-	[AML_RISK_TYPE_TOTAL_SCORE]: "Total Risk Score",
+	[AML_RISK_TYPE_TOTAL_SCORE]: "Total risk score",
 	[AML_RISK_TYPE_SUM_OF_SIGNALS]: "Sum of signals"
 };

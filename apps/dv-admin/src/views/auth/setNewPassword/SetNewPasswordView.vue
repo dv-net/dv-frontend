@@ -59,7 +59,7 @@
 			}
 			await postApiResetPassword({ ...body, email: resetEmail.value });
 			await router.push({ name: "sign-in" });
-			notify(t("Password successfully changed, login to your account"), "success");
+			notify(t("Password changed successfully. Log in to your account"), "success");
 		} catch (error: any) {
 			console.error(error);
 		} finally {
@@ -117,7 +117,7 @@
 				{{ $t("Change password") }}
 			</ui-button>
 			<ui-button type="outline" mode="neutral" size="xxl" @click="router.push({ name: 'sign-in' })">
-				{{ $t("Login to account") }}
+				{{ $t("Log in to account") }}
 			</ui-button>
 		</div>
 	</ui-form>

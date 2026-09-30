@@ -28,9 +28,9 @@
 			id: 1,
 			isShow: true,
 			icon: markRaw(IconAdd),
-			title: t("Connecting the crypto exchange"),
+			title: t("Connecting a crypto exchange"),
 			text: t(
-				"By connecting the crypto exchange, you will be able to accept payments and store funds directly on your account. Automatic conversion to USDT and the ability to send funds from the crypto exchange to cold wallets will also be available"
+				"By connecting a crypto exchange, you will be able to accept payments and store funds directly in your account. Automatic conversion to USDT and the ability to send funds from the crypto exchange to cold wallets will also be available"
 			),
 			textBtn: t("Connect"),
 			path: "/exchanges/connect"
@@ -39,7 +39,7 @@
 			id: 2,
 			isShow: true,
 			icon: markRaw(IconConvert),
-			title: t("Auto exchanges on the crypto exchange"),
+			title: t("Auto-exchange on the crypto exchange"),
 			textBtn: t("Configure auto-exchange"),
 			text: t(
 				"This is an asset exchange mechanism: you select the desired pair, and we place an order for such an exchange on the crypto exchange on your behalf"
@@ -51,7 +51,7 @@
 			id: 3,
 			isShow: true,
 			icon: markRaw(IconWithdrawal),
-			title: t("Auto-withdrawal on the crypto exchange"),
+			title: t("Auto-withdrawal from the crypto exchange"),
 			textBtn: t("Configure withdrawals"),
 			text: t(
 				"You start the process of adding a wallet to the whitelist on the crypto exchange, after which we send a request to conduct transactions with this wallet"
@@ -86,7 +86,7 @@
 			</list-info-item>
 			<banner-info
 				:is-show="isShowBannerSuccessToggleExchange"
-				:text="$t('exchange-toggle', { exchange: exchangeList?.current_exchange })"
+				:text="$t('We have switched the active crypto exchange to “{exchange}”. Auto-exchange and auto-withdrawal will now work through it. To withdraw funds to this crypto exchange, add its wallets to the withdrawal rules or let us set this up automatically', { exchange: exchangeList?.current_exchange })"
 			/>
 			<list-info-item :setting="exchanges[1]">
 				<template #text>

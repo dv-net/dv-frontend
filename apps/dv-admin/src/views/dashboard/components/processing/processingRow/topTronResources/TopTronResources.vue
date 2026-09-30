@@ -37,16 +37,21 @@
 								title="Energy"
 								:text="
 									$t(
-										'A resource required to execute smart contracts without paying additional fees. To receive, use staking.'
+										'A resource required to execute smart contracts without paying additional fees. To obtain it, use staking'
 									)
 								"
 								icon-size="sm"
 							/>
 						</span>
 						<span>
-							{{ formatDollars(calculationEnergyAndBandwidth(processingWallets, "energy").meaningStripe, { currency: "" }) }}
-							{{ $t("out of") }}
-							{{ formatDollars(data?.additional_data?.tron_data?.total_energy, { currency: "" }) }}
+							{{
+								$t("{current} of {total}", {
+									current: formatDollars(calculationEnergyAndBandwidth(processingWallets, "energy").meaningStripe, {
+										currency: ""
+									}),
+									total: formatDollars(data?.additional_data?.tron_data?.total_energy, { currency: "" })
+								})
+							}}
 						</span>
 					</div>
 					<ui-tooltip
@@ -55,7 +60,7 @@
 						position="top-start"
 						title="Energy"
 						is-gold-title
-						:text="`${formatDollars(calculationEnergyAndBandwidth(processingWallets, 'energy').meaningStripe, { currency: '' })} ${$t('Energy is reserved to replenish the costs incurred during previous transmissions')}`"
+						:text="`${formatDollars(calculationEnergyAndBandwidth(processingWallets, 'energy').meaningStripe, { currency: '' })} ${$t('Energy reserved to cover the costs of previous transfers')}`"
 					>
 						<div class="bar__inner">
 							<div
@@ -73,15 +78,21 @@
 								title="Bandwidth"
 								:text="
 									$t(
-										'A resource that allows you to make regular transactions (for example, transfer TRX) without a fee. To receive, use staking.'
+										'A resource that allows you to make regular transactions (for example, transfer TRX) without a fee. To obtain it, use staking'
 									)
 								"
 								icon-size="sm"
 							/>
 						</span>
 						<span>
-							{{ formatDollars(calculationEnergyAndBandwidth(processingWallets, "bandwidth").meaningStripe, { currency: "" }) }}
-							{{ $t("out of") }} {{ formatDollars(data?.additional_data?.tron_data?.total_bandwidth, { currency: "" }) }}
+							{{
+								$t("{current} of {total}", {
+									current: formatDollars(calculationEnergyAndBandwidth(processingWallets, "bandwidth").meaningStripe, {
+										currency: ""
+									}),
+									total: formatDollars(data?.additional_data?.tron_data?.total_bandwidth, { currency: "" })
+								})
+							}}
 						</span>
 					</div>
 					<ui-tooltip
@@ -90,7 +101,7 @@
 						position="top-start"
 						title="Bandwidth"
 						is-gold-title
-						:text="`${formatDollars(calculationEnergyAndBandwidth(processingWallets, 'bandwidth').meaningStripe, { currency: '' })} ${$t('Bandwidth is reserved to cover costs incurred during previous transmissions')}`"
+						:text="`${formatDollars(calculationEnergyAndBandwidth(processingWallets, 'bandwidth').meaningStripe, { currency: '' })} ${$t('Bandwidth reserved to cover the costs of previous transfers')}`"
 					>
 						<div class="bar__inner">
 							<div

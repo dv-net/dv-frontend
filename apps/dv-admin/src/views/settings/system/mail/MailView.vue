@@ -57,15 +57,15 @@
 			const mailerAddress = rootGroupSettings.value.mailer.find((item) => item.name === "mailer_address");
 			const mailerSender = rootGroupSettings.value.mailer.find((item) => item.name === "mailer_sender");
 			const mailerState = rootGroupSettings.value.mailer.find((item) => item.name === "mailer_state");
-			if (!mailerAddress?.value) return notify(t("Please enter the correct address of your SMTP server"));
+			if (!mailerAddress?.value) return notify(t("Please enter a valid SMTP server address"));
 			if (!mailerSender?.value)
-				return notify(t("Please provide a valid email address from which the letter will be sent"));
+				return notify(t("Please provide a valid email address from which emails will be sent"));
 			if (!mailerState?.value || mailerState?.value !== "enabled") {
-				return notify(t("For the module to work, the status state must be enabled"));
+				return notify(t("Enable the module for it to work"));
 			}
 			isLoadingNotificationsTest.value = true;
 			await postApiNotificationsTest(recipient);
-			notify(t("Test letter was sent to email", { email: recipient }), "success");
+			notify(t("A test email has been sent to {email}", { email: recipient }), "success");
 		} catch (error: any) {
 			console.error(error);
 		} finally {

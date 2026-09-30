@@ -27,7 +27,7 @@
 	});
 
 	const timezoneChangeHandler = async () => {
-		if (user.value?.location) await putUser(t("Timezone is changed"));
+		if (user.value?.location) await putUser(t("Time zone changed"));
 	};
 
 	onMounted(async () => {

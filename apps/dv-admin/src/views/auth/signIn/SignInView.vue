@@ -30,7 +30,7 @@
 
 	const rulesForm = computed<UiFormRules>(() => {
 		return {
-			email: [{ validator: () => EMAIL_REGEX.test(form.value.email), message: t("Email must be valid") }],
+			email: [{ validator: () => EMAIL_REGEX.test(form.value.email), message: t("Enter a valid email") }],
 			password: [
 				{ validator: () => form.value.password.length >= 8, message: t("Minimum 8 characters") },
 				{ validator: () => form.value.password.length <= 32, message: t("Maximum 32 characters") }
@@ -80,7 +80,7 @@
 <template>
 	<ui-form ref="formRef" class="auth-form" :rules="rulesForm" :model="form" @submit.prevent="handleSubmit">
 		<ui-form-item :error="formError" :label="$t('Email')" name="email">
-			<ui-input :placeholder="$t('Enter Email')" size="lg" filled v-model="form.email" />
+			<ui-input :placeholder="$t('Enter email')" size="lg" filled v-model="form.email" />
 		</ui-form-item>
 
 		<ui-form-item :label="$t('Password')" name="password" class="with-link">
@@ -99,7 +99,7 @@
 			/>
 		</ui-form-item>
 
-		<ui-checkbox v-model="form.remember_me!" size="sm" class="mb-24">
+		<ui-checkbox v-model="form.remember_me!" size="md" class="mb-24">
 			<p class="checkbox-text">
 				{{ $t("Remember me") }}
 			</p>

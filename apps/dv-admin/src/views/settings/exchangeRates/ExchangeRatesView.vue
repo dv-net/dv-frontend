@@ -87,7 +87,7 @@
 			<p class="info__text">
 				{{
 					$t(
-						"In this section, you can view exchange rates and set a downward coefficient. We collect rates from all exchanges and select the most favorable one for you"
+						"In this section, you can view exchange rates and set a downward adjustment for them. We collect rates from all exchanges and choose the most favorable one for you"
 					)
 				}}
 			</p>
@@ -124,8 +124,8 @@
 						:text="
 							$t(
 								header.name === 'value'
-									? 'The cryptocurrency rate received in real time from the crypto exchange.'
-									: 'The cryptocurrency rate at which transactions are made for your clients.'
+									? 'The cryptocurrency rate received in real time from the crypto exchange'
+									: 'The cryptocurrency rate at which transactions are made for your clients'
 							)
 						"
 					/>

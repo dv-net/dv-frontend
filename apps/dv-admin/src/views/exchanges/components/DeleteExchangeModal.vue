@@ -26,10 +26,10 @@
 
 			<div class="global-confirm-modal__body">
 				{{
-					$t("Are you sure you want to delete your crypto exchange keys?", {
+					$t("Are you sure you want to delete your “{exchange}” crypto exchange keys", {
 						exchange: deletingExchange?.toUpperCase()
 					})
-				}}
+				}}?
 			</div>
 
 			<div class="global-confirm-modal__footer">

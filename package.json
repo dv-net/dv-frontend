@@ -55,7 +55,7 @@
 		"vue3-cookies": "^1.0.6"
 	},
 	"devDependencies": {
-		"@dv.net/translator": "^2.0.0",
+		"@dv.net/translator": "^2.0.1",
 		"@rushstack/eslint-patch": "^1.16.1",
 		"@tsconfig/node20": "^20.1.10",
 		"@types/js-cookie": "^3.0.6",

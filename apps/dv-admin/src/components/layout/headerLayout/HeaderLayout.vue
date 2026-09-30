@@ -61,7 +61,7 @@
 				name: "lock",
 				iconName: "admin-panel_settings",
 				iconType: "100",
-				label: t("Email, Password and 2FA"),
+				label: t("Email, password and 2FA"),
 				isActive: route.name === "profile-personal-data",
 				action: () => router.push({ name: "profile-personal-data" })
 			}
@@ -92,7 +92,7 @@
 			{
 				name: "login",
 				animationIcon: loginAnimation,
-				label: t("Log Out"),
+				label: t("Log out"),
 				action: logout
 			}
 		]
@@ -140,7 +140,7 @@
 				<template #menu-item-email="{ closeMenu }">
 					<div class="item item--email" @click="goToProfilePersonalData(closeMenu)">
 						<icon-confirm-email />
-						<span class="item__text">{{ $t("Confirm Email") }}</span>
+						<span class="item__text">{{ $t("Confirm email") }}</span>
 					</div>
 				</template>
 			</ui-profile-menu>

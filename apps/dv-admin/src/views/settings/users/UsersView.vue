@@ -31,7 +31,7 @@
 
 <template>
 	<div class="page">
-		<breadcrumbs :back-route-title="$t('Settings')" back-name-route="settings" />
+		<breadcrumbs :back-route-title="$t('Settings.plural')" back-name-route="settings" />
 		<h1 class="global-title-h2 mt-24 mb-32">{{ $t("Users") }}</h1>
 		<ui-table :loading="isLoading" :headers="headers" :data="adminUsers" highlight-row="even" table-layout="fixed">
 			<template #body-cell-created_at="{ row }">

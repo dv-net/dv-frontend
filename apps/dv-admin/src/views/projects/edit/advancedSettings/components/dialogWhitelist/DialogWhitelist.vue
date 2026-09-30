@@ -38,7 +38,7 @@
 			await patchWhitelistsProject(uuid, whitelist.value.ip!);
 			whitelist.value.ip = null;
 			isOpen.value = false;
-			notify(t("IP address added to whitelist"), "success");
+			notify(t("IP address added to the whitelist"), "success");
 		} catch (error: any) {
 			throw error;
 		} finally {

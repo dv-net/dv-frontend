@@ -138,7 +138,7 @@
 
 	<div v-else class="page">
 		<div class="page__header">
-			<h1 class="global-title-h1">{{ $t("AML check of transfer") }}</h1>
+			<h1 class="global-title-h1">{{ $t("Transfer AML check") }}</h1>
 			<div class="page__actions">
 				<ui-button
 					type="secondary"
@@ -161,7 +161,7 @@
 				:successful="amlStatistics?.successful_today"
 				:failed="amlStatistics?.failed_today"
 			/>
-			<h2 class="global-title-h2">{{ $t("History of checks") }}</h2>
+			<h2 class="global-title-h2">{{ $t("Check history") }}</h2>
 			<ui-table
 				:loading="isLoadingAmlHistory"
 				:headers="headers"

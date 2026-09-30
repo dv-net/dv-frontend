@@ -39,7 +39,7 @@
 
 <template>
 	<div class="wrapper">
-		<h2 class="global-title-h3">{{ $t("List of the wallets") }}</h2>
+		<h2 class="global-title-h3">{{ $t("Wallet list") }}</h2>
 		<div class="wallets">
 			<block-section
 				v-for="(item, index) in wallets"

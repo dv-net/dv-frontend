@@ -14,22 +14,22 @@ export const ALL_STATUSES: Record<string, string> = {
 	validate_request: "Confirm request",
 	sending: "Transfer",
 	waiting_in_mempool: "Pending in mempool",
-	waiting_for_the_first_confirmation: "Waiting for first confirmation",
+	waiting_for_the_first_confirmation: "Awaiting first confirmation",
 	waiting_confirmations: "Awaiting confirmation",
 	send_success_event: "Send a successful event",
 	check_activate_wallet: "Check wallet activation",
 	activate_wallet: "Activate wallet",
 	waiting_activate_confirmations: "Awaiting activation confirmation",
-	before_sending_check_transfer_kind: "Before sending check transfer kind",
+	before_sending_check_transfer_kind: "Pre-send transfer type check",
 	send_trx_for_burn: "Burn TRX",
 	waiting_send_trx_for_burn_confirmations: "Awaiting TRX burn confirmation",
 	delegate_resources: "Resource delegation",
-	waiting_delegate_confirmations: "Waiting for delegation confirmations",
-	after_sending_check_transfer_kind: "After sending check transfer kind",
+	waiting_delegate_confirmations: "Awaiting delegation confirmation",
+	after_sending_check_transfer_kind: "Post-send transfer type check",
 	reclaim_resources: "Reclaim resources",
-	waiting_reclaim_resources_confirmations: "Waiting for resource recovery confirmation",
+	waiting_reclaim_resources_confirmations: "Awaiting resource reclaim confirmation",
 	send_eth_for_burn: "Send ETH for burn",
-	waiting_send_eth_for_burn_confirmations: "Waiting for ETH burn confirmations"
+	waiting_send_eth_for_burn_confirmations: "Awaiting ETH burn confirmation"
 };
 
 export const ALL_MODE_TAG: Record<string, string> = {

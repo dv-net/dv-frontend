@@ -28,7 +28,7 @@
 
 	const rulesForm = computed<UiFormRules>(() => {
 		const baseRules = {
-			email: [{ validator: () => EMAIL_REGEX.test(form.value.email), message: t("Email must be valid") }],
+			email: [{ validator: () => EMAIL_REGEX.test(form.value.email), message: t("Enter a valid email") }],
 			password: [
 				{ validator: () => form.value.password.length >= 8, message: t("Minimum 8 characters") },
 				{ validator: () => form.value.password.length <= 32, message: t("Maximum 32 characters") }
@@ -71,7 +71,7 @@
 			</h1>
 			<ui-form ref="formRef" :rules="rulesForm" :model="form" class="w-full" @submit.prevent="handleSubmitForm">
 				<ui-form-item :error="formError" :label="$t('Email')" name="email">
-					<ui-input :placeholder="$t('Enter Email')" size="lg" filled v-model="form.email" />
+					<ui-input :placeholder="$t('Enter email')" size="lg" filled v-model="form.email" />
 				</ui-form-item>
 				<ui-form-item :error="formError" :label="$t('Password')" name="password">
 					<ui-input
@@ -106,7 +106,7 @@
 				</ui-form-item>
 				<ui-form-item>
 					<p class="checkbox-text">
-						{{ $t("By continuing registration you agree to") }} <br />
+						{{ $t("By continuing registration, you agree to") }} <br />
 						<ui-link href="https://dv.net/files/End-User-Agreement.pdf" target="_blank">{{
 							$t("Terms of Use")
 						}}</ui-link>

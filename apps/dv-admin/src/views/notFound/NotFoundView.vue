@@ -21,7 +21,7 @@
 					{{ $t("Back") }}
 				</ui-button>
 				<ui-button mode="neutral" @click="router.push({ name: 'home' })" size="xl">
-					{{ $t("To main") }}
+					{{ $t("To home page") }}
 				</ui-button>
 			</div>
 		</div>

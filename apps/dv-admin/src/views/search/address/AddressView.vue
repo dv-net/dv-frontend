@@ -129,7 +129,7 @@
 				<row-element class="info__item" label="Email" :value="wallets[currentIndexWallet].email" />
 				<row-element
 					class="info__item"
-					:label="$t('First issue of this wallet')"
+					:label="$t('Wallet first issued')"
 					:value="formatDate(wallets[currentIndexWallet].wallet_created_at)"
 				/>
 				<row-element

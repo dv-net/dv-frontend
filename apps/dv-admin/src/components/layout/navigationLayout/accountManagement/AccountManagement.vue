@@ -45,7 +45,7 @@
 						{{ $t("Activate account") }}
 					</ui-button>
 					<div class="body__info-link">
-						<span>{{ $t("What is this for?") }}</span>
+						<span>{{ $t("What is this for") }}?</span>
 						<ui-icon type="400" name="new-windows" size="sm" />
 					</div>
 				</div>

@@ -47,9 +47,9 @@
 
 <template>
 	<div class="page">
-		<breadcrumbs :back-route-title="$t('Crypto exchange connection selection')" />
+		<breadcrumbs :back-route-title="$t('Select a crypto exchange to connect')" />
 		<h1 class="global-title-h2 mb-8">
-			{{ $t("Connecting the crypto exchange") }}
+			{{ $t("Connecting a crypto exchange") }}
 		</h1>
 		<block-section class="page__inner">
 			<info-one-exchange-connect :slug="slug" />
@@ -118,12 +118,12 @@
 						"
 						:disabled="!exchangeKeys.every((item) => item.valueEnteredUser)"
 					>
-						{{ $t(isConnectCurrentExchange ? "Edit crypto exchange" : "Connect the crypto exchange") }}
+						{{ $t(isConnectCurrentExchange ? "Edit crypto exchange" : "Connect a crypto exchange") }}
 					</ui-button>
 				</div>
 			</form>
 		</block-section>
-		<banner-info :is-show="isShowBannerSuccess" :text="$t('exchange-connection', { exchange: slug })" />
+		<banner-info :is-show="isShowBannerSuccess" :text="$t('Success! Crypto exchange “{exchange}” verified, connection established', { exchange: slug })" />
 		<connect-addresses />
 	</div>
 </template>

@@ -107,7 +107,7 @@
 						<template #default>
 							<div class="global-dropdown__wallets-list">
 								<div class="global-dropdown__wallets-item" @click="deleteWithdrawalAddressBook(row, false)">
-									<span>{{ $t("Delete address from address book only") }}</span>
+									<span>{{ $t("Remove address from address book only") }}</span>
 								</div>
 								<div class="global-dropdown__wallets-item" @click="deleteWithdrawalAddressBook(row, true)">
 									<span>{{ $t("Remove address from address book and withdrawal rules") }}</span>

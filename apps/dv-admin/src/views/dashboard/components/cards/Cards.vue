@@ -84,7 +84,7 @@
 					:amount="balancesExchanges?.total_usd"
 					:title="$t('Balance on the crypto exchange')"
 					color="green"
-					:tooltip-text="`${$t('This is the balance of funds that are on your crypto')}.`"
+					:tooltip-text="`${$t('This is the balance of funds on your crypto exchange')}.`"
 				>
 					<ui-button
 						class="cards__btn"
@@ -149,7 +149,7 @@
 			v-if="currentTransfersStatus === 'system_suspended'"
 			:text="
 				$t(
-					'We have suspended transfers because we were unable to perform automatic withdrawals from the crypto exchange - your account there may have been temporarily blocked. To enable transfers again, please disable the automatic withdrawal function from the crypto exchange'
+					'We have suspended transfers because we were unable to perform auto-withdrawal from the crypto exchange — your account there may have been temporarily blocked. To enable transfers again, please disable auto-withdrawal from the crypto exchange'
 				)
 			"
 		/>

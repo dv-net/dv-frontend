@@ -105,7 +105,7 @@ export const mainMenuList: RouteItem[] = [
 	{
 		path: "/settings",
 		meta: {
-			title: "Settings",
+			title: "Settings.plural",
 			animationIcon: settings2Animation,
 			alwaysOpen: true
 		},

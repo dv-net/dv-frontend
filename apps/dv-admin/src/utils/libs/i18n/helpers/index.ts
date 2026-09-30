@@ -43,7 +43,7 @@ export const updateTranslationsUiKit = (value: string, t: any) => {
 	config.uiNotification.translations.success = t("Success");
 	config.uiConfirm.translations.confirmBtn = t("Confirm");
 	config.uiConfirm.translations.cancelBtn = t("Cancel.verb");
-	config.uiPagination.translations.from = t("from");
+	config.uiPagination.translations.from = t("of");
 	config.uiPagination.translations.show = t("show");
 	config.uiTable.translations.noData = t("Not found");
 	config.uiTable.translations.noDataTitle = t("Not found");

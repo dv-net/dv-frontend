@@ -46,18 +46,18 @@
 	const steps = ref<Step[]>([
 		{
 			id: 1,
-			title: "Software installation on server or Merchant registration",
+			title: "Install the software on a server or register in Merchant",
 			isActive: false,
 			isCompleted: true
 		},
 		{ id: 2, title: "Set your project URL", isActive: true, isCompleted: false },
 		{
 			id: 3,
-			title: "WebHook and API setup",
+			title: "Webhook and API setup",
 			isActive: false,
 			isCompleted: false
 		},
-		{ id: 4, title: "Top up of Processing wallets", isActive: false, isCompleted: false }
+		{ id: 4, title: "Top up processing wallets", isActive: false, isCompleted: false }
 	]);
 	const defaultSteps = JSON.stringify(steps.value);
 
@@ -105,7 +105,7 @@
 				available_values: null,
 				two_factor_verification_required: false
 			};
-			await postUserSettings(data, t("Quick start passed"));
+			await postUserSettings(data, t("Quick start completed"));
 			await getUserSettings();
 			await router.push({ name: "dashboard" });
 		} catch (error) {
@@ -220,7 +220,7 @@
 
 						<div v-if="currentStep === 3" class="form-group">
 							<div class="flex gap-4">
-								<span class="step__description">{{ t("Enter the URL for WebHook and review the") }}</span>
+								<span class="step__description">{{ t("Enter the webhook URL and review") }}</span>
 								<ui-link
 									class="step__description link"
 									:href="`https://docs.dv.net/${locale}/integration/webhooks.html`"
@@ -235,23 +235,20 @@
 
 								<div class="step__webhooks-description-container">
 									<span class="step__webhooks-description">
-										{{
-											t(
-												"To work via the API, add the following HTTP header to your requests. Full integration documentation can be found at"
-											)
-										}}
+										{{ t("To work via the API, add the following HTTP header to your requests") }}.
 									</span>
 									<ui-link
 										class="step__webhooks-description pl-2"
 										:href="`https://docs.dv.net/${locale}/operations/get-v1-external-exchange-balances.html`"
 										target="_blank"
 									>
-										{{ t("link") }}
+										{{ t("Open documentation") }}
 									</ui-link>
 									<span class="step__webhooks-description">
+										.
 										{{
 											t(
-												". In this section you can get your API key to work with the API, as well as generate a Secret Key to verify the signature of incoming payments"
+												"In this section, you can get your API key and generate a secret key to verify the signature of incoming payments"
 											)
 										}}.
 									</span>
@@ -267,11 +264,11 @@
 								<div class="step__description mb-12">
 									{{
 										t(
-											"Below are your processing wallets - they will be visible on your dashboard and will be used to pay for transfers from hot wallets to your cold ones"
+											"Below are your processing wallets — they will be displayed on your dashboard and used for payouts and to cover fees for transfers from hot wallets to your cold wallets"
 										)
 									}}.
 								</div>
-								<div class="step__description step__description__bold mb-4">{{ t("How does it work?") }}</div>
+								<div class="step__description step__description__bold mb-4">{{ t("How does it work") }}?</div>
 								<div class="step__description">
 									{{
 										t(

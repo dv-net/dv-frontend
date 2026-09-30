@@ -11,7 +11,7 @@
 		:title="$t('TRON Processing Settings')"
 		:text="
 			$t(
-				'In the Processing Settings section for TRON, you can change the processing mode as well as view detailed information and resource usage statistics.'
+				'In the TRON processing settings section, you can change the processing mode and view detailed information and resource usage statistics'
 			)
 		"
 	>

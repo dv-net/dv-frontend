@@ -52,7 +52,7 @@
 									<ui-icon type="400" name="sync-alt" size="xs" />
 								</div>
 								<p class="column-event__text">
-									{{ $t(item.kind === "from_address" ? "Withdrawal from hot" : "Withdrawal from processing") }}
+									{{ $t(item.kind === "from_address" ? "Withdrawal from hot wallet" : "Withdrawal from processing wallet") }}
 								</p>
 							</div>
 							<div class="header__item price">

@@ -40,7 +40,7 @@
 				<authentication-form is-check-code :type="type" />
 
 				<div v-if="Object.values(walletSeeds).length && type === 'seeds'" class="form__code">
-					<text-area-password-copy v-if="walletSeeds.mnemonic" label="Mnemonica" v-model="walletSeeds.mnemonic" />
+					<text-area-password-copy v-if="walletSeeds.mnemonic" label="Mnemonic phrase" v-model="walletSeeds.mnemonic" />
 					<text-area-password-copy
 						v-if="walletSeeds.pass_phrase"
 						label="Passphrase"

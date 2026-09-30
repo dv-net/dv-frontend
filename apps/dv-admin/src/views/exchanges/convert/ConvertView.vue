@@ -64,7 +64,7 @@
 		<breadcrumbs :back-route-title="$t('Crypto exchanges')" back-name-route="exchanges" />
 
 		<div class="flex flex-y-center flex-x-between mb-8">
-			<h1 class="global-title-h2">{{ $t("Auto exchange") }}</h1>
+			<h1 class="global-title-h2">{{ $t("Auto-exchange") }}</h1>
 			<ui-button
 				type="secondary"
 				right-icon-name="arrow-forward 1"
@@ -100,12 +100,12 @@
 			<block-section class="section w-full" :class="{ 'section--inactive': currentBlock !== '2' }">
 				<div class="section__top">
 					<ui-radio value="2" />
-					<h2 class="global-title-h3">{{ $t("Select the pairs you want to change") }}</h2>
+					<h2 class="global-title-h3">{{ $t("Select the pairs you want to convert") }}</h2>
 				</div>
 				<p class="section__text">
 					{{
 						$t(
-							"The exchange will be carried out only for the selected currency pairs and in the specified direction. If the pair is not selected, the currency will remain on the exchange unchanged"
+							"The exchange will be carried out only for the selected currency pairs and in the specified direction. If a pair is not selected, the currency will remain on the exchange unchanged"
 						)
 					}}.
 				</p>
@@ -132,8 +132,12 @@
 								>
 									<div class="select-pairs__item" @click="handleAddPairs(item.display_name)">
 										<span>
-											{{ $t("all") }} <b>{{ getOnlyPair(item.display_name).base }}</b> {{ $t("convert to") }}
-											<b>{{ getOnlyPair(item.display_name).quote }}</b>
+											{{
+												$t("Convert all {base} to {quote}", {
+													base: getOnlyPair(item.display_name).base,
+													quote: getOnlyPair(item.display_name).quote
+												})
+											}}
 										</span>
 										<span class="select-pairs__item-button center">
 											<ui-icon type="400" color="#303345" size="md" name="add" />
@@ -145,12 +149,16 @@
 						</div>
 					</block-section>
 					<block-section class="auto-pairs" mode="grey-border" padding="lg">
-						<h3 class="auto-pairs__title">{{ $t("Automatically exchanging pairs") }}</h3>
+						<h3 class="auto-pairs__title">{{ $t("Auto-exchange pairs") }}</h3>
 						<ul class="auto-pairs__list">
 							<li v-for="item in exchangeUserPairs" class="auto-pairs__item" :key="item">
 								<span>
-									{{ $t("all") }} <b>{{ getOnlyPair(item).base }}</b> {{ $t("convert to") }}
-									<b>{{ getOnlyPair(item).quote }}</b>
+									{{
+										$t("Convert all {base} to {quote}", {
+											base: getOnlyPair(item).base,
+											quote: getOnlyPair(item).quote
+										})
+									}}
 								</span>
 								<ui-icon
 									class="auto-pairs__item-close"
@@ -168,7 +176,7 @@
 		</ui-radio-group>
 
 		<banner-attention
-			:text="$t('Attention! Exchange cycle detected in given pairs. Eliminate duplicate or cyclical connections')"
+			:text="$t('Attention! An exchange cycle was detected in the selected pairs. Remove duplicate or circular links')"
 			:is-show-banner="isShowWarning"
 		/>
 

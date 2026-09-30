@@ -18,7 +18,7 @@
 		// 	id: 1,
 		// 	icon: markRaw(IconUsers),
 		// 	title: t("Users"),
-		//  text: t('Configure the level of rights for registered users'),
+		//  text: t('Configure access rights for registered users'),
 		// 	textBtn: t("Read more"),
 		// 	path: "/settings/users"
 		// },
@@ -37,7 +37,7 @@
 			icon: markRaw(IconSystem),
 			title: t("System"),
 			text: t(
-				"You can edit system settings - change the application domain and payment methods, enable or suspend withdrawals and manage other functions"
+				"You can edit system settings: change the application and payment form domains, enable or suspend withdrawals and manage other features"
 			),
 			textBtn: t("Read more"),
 			path: "/settings/system"
@@ -58,7 +58,7 @@
 
 <template>
 	<div class="page">
-		<h1 class="global-title-h1">{{ $t("Settings") }}</h1>
+		<h1 class="global-title-h1">{{ $t("Settings.plural") }}</h1>
 		<div class="flex flex-column gap-24">
 			<list-info-item v-for="item in settingsList" :key="item.id" :setting="item" />
 		</div>

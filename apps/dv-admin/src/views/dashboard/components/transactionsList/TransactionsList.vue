@@ -37,7 +37,7 @@
 </script>
 
 <template>
-	<block-section v-if="isVisibleTable" class="transactions" :title="$t('Top up transactions')" :isLoading="isLoading">
+	<block-section v-if="isVisibleTable" class="transactions" :title="$t('Top-up transactions')" :isLoading="isLoading">
 		<div class="transactions__table">
 			<ui-table :loading="isLoading" :headers="headers" :data="transactions" table-layout="fixed">
 				<template #body-cell-created_at="{ row }">

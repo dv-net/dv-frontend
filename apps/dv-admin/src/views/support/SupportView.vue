@@ -29,7 +29,7 @@
 			id: 3,
 			img: imgChat,
 			title: "Online chat",
-			buttonText: "Start "
+			buttonText: "Start chat"
 		}
 	]);
 </script>
@@ -49,7 +49,7 @@
 					</div>
 					<ui-button mode="neutral" disabled>
 						{{ $t("Create ticket") }}
-						<span class="support-block__button-ticket">{{ $t("Fast answer") }}</span>
+						<span class="support-block__button-ticket">{{ $t("Quick response") }}</span>
 					</ui-button>
 				</div>
 

@@ -157,7 +157,7 @@
 			<block-section mode="white" class="connect-card">
 				<div class="connect-card__head">
 					<div class="connect-card__title-row">
-						<h2 class="global-title-h3">{{ $t("1. Provider connection") }}</h2>
+						<h2 class="global-title-h3">1. {{ $t("Provider connection") }}</h2>
 						<div
 							class="connect-card__badge"
 							:class="isHaveKeysCurrentAml ? 'connect-card__badge--positive' : 'connect-card__badge--neutral'"

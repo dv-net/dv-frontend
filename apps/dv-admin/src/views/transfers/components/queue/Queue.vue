@@ -117,7 +117,7 @@
 				<p class="notFound__text">
 					{{
 						$t(
-							"There are no tasks in the queue. Congratulations! There are currently no funds available for withdrawal to hot wallets"
+							"There are no tasks in the queue. Congratulations! There are currently no funds to withdraw from hot wallets"
 						)
 					}}
 				</p>

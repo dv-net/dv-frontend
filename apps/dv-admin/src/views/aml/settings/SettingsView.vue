@@ -51,7 +51,7 @@
 				left-icon-size="md"
 				@click="goToHistory"
 			>
-				{{ $t("History of checks") }}
+				{{ $t("Check history") }}
 			</ui-button>
 		</div>
 

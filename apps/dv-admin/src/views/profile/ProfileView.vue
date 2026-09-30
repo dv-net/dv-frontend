@@ -4,7 +4,7 @@
 	import type { IUBlockTitleLinks } from "@dv-admin/utils/types/general";
 
 	const links = ref<IUBlockTitleLinks[]>([
-		{ path: `/profile/personal-data`, title: "Email, Password and 2FA" },
+		{ path: `/profile/personal-data`, title: "Email, password and 2FA" },
 		{ path: `/profile/settings`, title: "Profile" },
 		{ path: `/profile/notifications`, title: "Notifications" }
 	]);
@@ -12,7 +12,7 @@
 
 <template>
 	<div class="page">
-		<ui-block-title :title="$t('Settings')" :links="links.map((item) => ({ ...item, title: $t(item.title) }))" />
+		<ui-block-title :title="$t('Settings.plural')" :links="links.map((item) => ({ ...item, title: $t(item.title) }))" />
 		<router-view />
 	</div>
 </template>

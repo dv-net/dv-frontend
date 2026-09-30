@@ -20,8 +20,7 @@ export const checkIsJSON = (str: string): boolean => {
 		if (!str) return false;
 		JSON.parse(str);
 		return true;
-	} catch (error: any) {
-		console.error(error);
+	} catch {
 		return false;
 	}
 };

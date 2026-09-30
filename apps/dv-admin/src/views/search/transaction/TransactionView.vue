@@ -105,7 +105,7 @@
 					:value="formatAmountBlockchain(transaction.amount, { currencyId: transaction.currency_id })"
 				/>
 				<row-element class="info__item" :label="$t('Transaction type')" :value="transaction.type" />
-				<row-element class="info__item" :label="$t('Amount USD')" :value="formatDollars(transaction.amount_usd)" />
+				<row-element class="info__item" :label="$t('Amount, USD')" :value="formatDollars(transaction.amount_usd)" />
 				<row-element class="info__item" :label="$t('Currency')" :value="getCurrentCoin(transaction.currency_id)" />
 				<row-element class="info__item" :label="$t('Recipient')" :value="transaction.to_address" is-copy-value />
 				<row-element
@@ -181,7 +181,7 @@
 			:loading="isLoadingSendWebhooks"
 			@click="postTransactionSendWebhooks"
 		>
-			{{ $t("Repeat the hook about crediting to the store again") }}
+			{{ $t("Resend the store crediting webhook") }}
 		</ui-button>
 		<block-section
 			v-if="transaction?.webhook_history?.length"

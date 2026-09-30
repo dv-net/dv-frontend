@@ -36,8 +36,10 @@
 
 			<div class="global-confirm-modal__body">
 				{{
-					$t("Are you sure you want to activate the crypto exchange?", { exchange: activatingExchange?.toUpperCase() })
-				}}
+					$t("Are you sure you want to activate the “{exchange}” crypto exchange", {
+						exchange: activatingExchange?.toUpperCase()
+					})
+				}}?
 			</div>
 
 			<div class="global-confirm-modal__footer">

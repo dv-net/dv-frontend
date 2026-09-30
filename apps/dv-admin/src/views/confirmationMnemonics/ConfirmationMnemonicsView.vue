@@ -61,7 +61,7 @@
 		try {
 			const arrayValidValues = mnemonic.value.filter(Boolean);
 			if (arrayValidValues.length < Number(countWord.value)) {
-				notify(t("Incorrect mnemonics"));
+				notify(t("Incorrect mnemonic phrase"));
 				return;
 			}
 			isShowMainLoader.value = true;
@@ -130,7 +130,7 @@
 				<div class="flex flex-y-center flex-x-between">
 					<div class="flex flex-y-center gap-20">
 						<ui-button type="secondary" size="xl" @click="getMnemonicGenerate">
-							{{ t("Generate mnemonics") }}
+							{{ t("Generate mnemonic phrase") }}
 						</ui-button>
 						<ui-copy-text class="mt-4" size-icon="md" color-icon="#070707" :copied-text="mnemonic.join(' ')" />
 					</div>

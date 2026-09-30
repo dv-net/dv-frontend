@@ -66,7 +66,7 @@
 			isLoading.value = true;
 			const link = await postApiWalletAddresses(form.value);
 			if (link) linkToPayment.value = link;
-			notify(t("Payment is created"), "success");
+			notify(t("Payment created"), "success");
 		} catch (error: any) {
 			console.error(error);
 		} finally {
@@ -109,7 +109,7 @@
 			<div class="form__header">{{ $t("Create payment") }} «{{ currentStore?.name || "unknown" }}»</div>
 			<div class="form__body">
 				<ui-form id="idForm" ref="formRef" :model="form" :rules="rulesForm" @submit.prevent="handleSendForm">
-					<ui-form-item name="email" :label="$t(`Payer's mail`)" :error="formError">
+					<ui-form-item name="email" :label="$t(`Payer's email`)" :error="formError">
 						<ui-input
 							v-model="form.email"
 							is-empty-value-null

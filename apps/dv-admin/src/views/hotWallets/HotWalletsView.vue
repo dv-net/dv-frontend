@@ -45,7 +45,7 @@
 				{{ $t("Download seed phrases") }}
 				<tooltip-helper
 					:title="$t('Download seed phrases')"
-					:text="$t('Used to restore access to your wallets. We recommend storing them in a secure place.')"
+					:text="$t('Used to restore access to your wallets. We recommend storing them in a safe place')"
 				/>
 			</ui-button>
 			<save-phrases-dialog v-model="isOpenModalSeeds" type="seeds" />
@@ -68,7 +68,7 @@
 					:title="$t('Hide addresses with low balance')"
 					:text="
 						$t(
-							'If this option is enabled, we will hide and not take into account small balances, crypto-spam and dust on the wallets'
+							'If this option is enabled, we will hide and ignore small balances, crypto spam and dust in wallets'
 						)
 					"
 				/>
@@ -87,7 +87,7 @@
 				</div>
 			</div>
 		</template>
-		<not-found-message v-else :text="$t(`You don’t have any hot wallets yet.`)" />
+		<not-found-message v-else :text="`${$t('You don’t have any hot wallets yet')}.`" />
 	</div>
 </template>
 

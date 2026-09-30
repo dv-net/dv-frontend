@@ -39,8 +39,8 @@
 			<ui-tooltip
 				v-else
 				key="withdrawal"
-				:title="`${$t('Withdrawal from processing')} ${$t('wallets.many3')}`"
-				:text="isWithdrawEnabled ? $t('You can withdraw funds from the current processing ring') : undefined"
+				:title="`${$t('Withdrawal from processing wallet')} ${$t('wallets.many3')}`"
+				:text="isWithdrawEnabled ? $t('You can withdraw funds from the current processing wallet') : undefined"
 			>
 				<icon-withdrawal-from-processing
 					:class="['flex-shrink-0', isWithdrawEnabled ? 'pointer' : 'disabled']"

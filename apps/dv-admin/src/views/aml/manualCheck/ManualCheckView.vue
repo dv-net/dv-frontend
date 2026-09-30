@@ -88,7 +88,7 @@
 
 <template>
 	<div class="page">
-		<breadcrumbs :back-route-title="$t('AML check of transfer')" back-name-route="aml" />
+		<breadcrumbs :back-route-title="$t('Transfer AML check')" back-name-route="aml" />
 		<h1 class="global-title-h2 mb-32 mt-24">{{ $t("Check transaction") }}</h1>
 
 		<div>
@@ -98,7 +98,7 @@
 			<div v-else>
 				<not-found-message
 					v-if="!isHaveKeysCurrentAml"
-					:text="$t('aml is not connected', { aml: currentNameAmlProvider })"
+					:text="$t('{aml} is not connected', { aml: currentNameAmlProvider })"
 				/>
 				<template v-else>
 					<block-section>
@@ -132,7 +132,7 @@
 									</template>
 								</ui-select>
 							</ui-form-item>
-							<ui-form-item :label="$t('Wallet Address')" name="output_address">
+							<ui-form-item :label="$t('Wallet address')" name="output_address">
 								<ui-input
 									size="md"
 									v-model="form.output_address"

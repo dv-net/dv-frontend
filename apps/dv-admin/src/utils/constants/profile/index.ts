@@ -4,7 +4,7 @@ import IconTgLink from "@dv-admin/components/icons/profile/IconTgLink.vue";
 import IconQrCode from "@dv-admin/components/icons/profile/IconQrCode.vue";
 import IconSearch from "@dv-admin/components/icons/profile/IconSearch.vue";
 
-export const topicsNotifications: string[] = ["System (cannot be disabled)", "Events", "Reports"];
+export const topicsNotifications: string[] = ["System (cannot be disabled)", "Events", "Reports.plural"];
 
 export const titlesNotifications: Record<string, string> = {
 	user_forgot_password: "Change password",
@@ -45,14 +45,14 @@ export const advantagesCardsTelegram: IProfileRowAdvantagesCards[] = [
 	{
 		id: 1,
 		iconName: "contract",
-		title: "Reports ",
+		title: "Reports.collective",
 		text: "We send you regular reports on all movements of your funds"
 	},
 	{
 		id: 2,
 		iconName: "settings",
-		title: "Settings ",
-		text: "You can control what messages you want to receive"
+		title: "Settings.singular",
+		text: "You can choose which messages you want to receive"
 	},
 	{
 		id: 3,

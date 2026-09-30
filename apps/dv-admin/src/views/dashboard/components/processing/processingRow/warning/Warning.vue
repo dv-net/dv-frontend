@@ -11,12 +11,12 @@
 			mode="dark"
 			position="top-start"
 			is-gold-title
-			:title="$t('We recommend to top up')"
-			:text="$t('payments_dashboard', { count: countMaxTransfers })"
+			:title="$t('We recommend topping up')"
+			:text="$t('The current balance is only enough for {count} payments. We recommend topping it up in advance', { count: countMaxTransfers })"
 		>
 			<icon-danger />
 		</ui-tooltip>
-		<span class="warning__text">{{ $t("We recommend to top up") }}</span>
+		<span class="warning__text">{{ $t("We recommend topping up") }}</span>
 	</div>
 </template>
 

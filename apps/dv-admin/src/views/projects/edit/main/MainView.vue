@@ -45,7 +45,7 @@
 					<ui-link
 						v-if="isShowBtnAddKey"
 						:text="$t('Generate new')"
-						@click.stop="postKeyProject(uuid, 'uniqueKey', $t('A new API key has been created to work with the API'))"
+						@click.stop="postKeyProject(uuid, 'uniqueKey', $t('A new API key has been generated'))"
 					/>
 				</div>
 				<p class="block__description">

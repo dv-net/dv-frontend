@@ -43,7 +43,7 @@
 		},
 		{
 			hint: "Create a new password",
-			placeholder: "New Password",
+			placeholder: "New password",
 			model: "password_new",
 			ref: "newPasswordInputRef",
 			focusOut: false
@@ -56,17 +56,8 @@
 			focusOut: false
 		}
 	]);
-	const passwordChangeRef = ref<Element | null>(null);
-	const passwordChangeTopPosition = ref<string>("0");
-	const passwordChangeLeftPosition = ref<string>("0");
 
 	const handleEnableEditMode = () => {
-		const passwordChangePosition = passwordChangeRef.value?.getBoundingClientRect();
-		if (passwordChangePosition) {
-			passwordChangeTopPosition.value = `${passwordChangePosition.top}`;
-			passwordChangeLeftPosition.value = `${passwordChangePosition.left + 23}`;
-		}
-
 		isEditPassword.value = true;
 	};
 
@@ -105,13 +96,11 @@
 	);
 
 	onUnmounted(cancel);
-
-	onUnmounted(cancel);
 </script>
 
 <template>
 	<div class="password">
-		<div class="px-24 pb-24" ref="passwordChangeRef">
+		<div class="px-24 pb-24">
 			<global-input title="Password">
 				<ui-input type="password" v-model="demoPassword" readonly size="lg">
 					<template #append>
@@ -131,8 +120,6 @@
 			padding="12"
 			width="672"
 			popperClass="password-change-modal"
-			:position-top="passwordChangeTopPosition"
-			:position-left="passwordChangeLeftPosition"
 		>
 			<div>
 				<template v-for="(input, i) in steps" :key="input.placeholder">

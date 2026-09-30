@@ -44,7 +44,7 @@
 		class="wallets"
 		v-if="isVisibleTable"
 		:title="$t('Hot wallet balances')"
-		:info-title="$t('Hot wallets - what are they and what are they for?')"
+		:info-title="`${$t('Hot wallets — what are they and what are they for')}?`"
 		:isLoading="isLoadingWalletSummary"
 	>
 		<template #infoText>
@@ -52,14 +52,14 @@
 				<span>
 					{{
 						$t(
-							"Hot wallets allow us to understand which client sent the payment. In cryptocurrency, it is impossible to determine the purpose of the transfer, so each client has a separate wallet - this way we know exactly who sent the funds"
+							"Hot wallets allow us to identify which client sent the payment. In cryptocurrency, you cannot specify the purpose of a transfer, so each client gets a separate wallet — this way we know exactly who sent the funds"
 						)
 					}}.
 				</span>
 				<span>
 					{{
 						$t(
-							"After we have received the funds and understood who they are from, we need to send them to your crypto exchange or personal wallet and the commission for these transfers is taken from your processing wallet"
+							"Once we have received the funds and identified the sender, we need to forward them to your crypto exchange or personal wallet. The fee for these transfers is paid from your processing wallet"
 						)
 					}}
 				</span>

@@ -50,13 +50,13 @@ export const ROOT_SETTING_MAIL_DESCRIPTIONS: Record<string, string> = {
 };
 
 export const ROOT_SETTING_GENERAL_DESCRIPTIONS: Record<string, string> = {
-	anonymous_telemetry: "You agree to send data about the project version and demand for tokens for our analytics",
-	merchant_domain: "You can purchase a domain that will open the control panel and enter it in this field",
+	anonymous_telemetry: "You agree to share data on the project version and token demand for our analytics",
+	merchant_domain: "You can purchase a domain for the control panel and enter it in this field",
 	merchant_pay_form_domain: "You can purchase a domain that will be displayed to your clients on the payment form",
-	registration_state: "With this flag you can disable the ability for users to register in the seller control panel",
+	registration_state: "With this flag, you can disable user registration in the merchant control panel",
 	store_verification_state:
 		"When enabled, stores must pass verification. Rejected stores will not be able to accept payments",
-	callbackDomain: "Webhook for communication between processing and backends"
+	callbackDomain: "Webhook for communication between processing and backend"
 };
 
 export const TRANSFER_TYPES = {

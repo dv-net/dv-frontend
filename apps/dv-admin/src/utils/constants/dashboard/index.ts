@@ -7,23 +7,23 @@ export const tronTransferTypeList = ref<ITronTransferTypeList[]>([
 		title: "Burn TRX",
 		subtitle: "Simple option",
 		description:
-			"A simple way to start accepting USDT is to transfer it via TRX from hot wallets to cold wallets. In this case, each transaction will cost around $2–5 (about 65,000–130,000 Energy)",
+			"A simple way to start accepting USDT is to forward it from hot wallets to cold wallets, paying the fees in TRX. In this case, each transaction will cost around $2–5 (about 65,000–130,000 Energy)",
 		iconNameSubtitle: "handshake",
 		iconColor: "#1968e5"
 	},
 	{
 		id: "cloud_delegate",
 		title: "Delegate cloud from DV.net",
-		subtitle: "Simple and profitable",
+		subtitle: "Simple and cost-effective",
 		description:
-			"Transfers will be made using DaVinci Merchant resources, which is twice as profitable as simply burning TRX with each transaction",
+			"Transfers will be made using DaVinci Merchant resources, which is twice as cost-effective as burning TRX for each transaction",
 		iconNameSubtitle: "paid",
 		iconColor: "#e08b00"
 	},
 	{
 		id: "resources",
 		title: "Delegate",
-		subtitle: "Most profitable",
+		subtitle: "Most cost-effective",
 		description:
 			"There is not enough data to evaluate yet. Once you start using Merchant, we will be able to analyze payments and show statistics",
 		iconNameSubtitle: "delegate-icon",

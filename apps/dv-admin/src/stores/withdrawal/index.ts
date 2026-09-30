@@ -99,7 +99,7 @@ export const useWithdrawalStore = defineStore("withdrawal", () => {
 			}
 			const body: IWithdrawalAddressRequest = { addresses: arrayAddresses, totp: addressesTotp.value };
 			await patchApiWithdrawalWalletAddresses(withdrawalCurrencyRules.value.id, body);
-			notify(t("Wallets are saved"), "success");
+			notify(t("Wallets saved"), "success");
 			await getWithdrawalCurrencyRules(withdrawalCurrencyRules.value.currency.id);
 			resetAddressAuthentication();
 			isShowBannerInfo.value = false;

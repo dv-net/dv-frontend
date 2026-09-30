@@ -29,7 +29,7 @@
 	<div class="page">
 		<breadcrumbs :back-route-title="$t('Projects')" back-name-route="projects" class="mb-24" />
 		<ui-block-title
-			:title="$t('Project Settings')"
+			:title="$t('Project settings')"
 			:links="links.map((item) => ({ ...item, title: $t(item.title) }))"
 		/>
 		<router-view />

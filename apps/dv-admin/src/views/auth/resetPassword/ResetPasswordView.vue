@@ -19,7 +19,7 @@
 	const formError = ref<string>("");
 
 	const rulesForm = computed<UiFormRules>(() => {
-		return { email: [{ validator: () => EMAIL_REGEX.test(form.value.email), message: t("Email must be valid") }] };
+		return { email: [{ validator: () => EMAIL_REGEX.test(form.value.email), message: t("Enter a valid email") }] };
 	});
 
 	const handleSubmit = async () => {
@@ -31,15 +31,23 @@
 <template>
 	<ui-form ref="formRef" class="auth-form" :rules="rulesForm" :model="form" @submit.prevent="handleSubmit">
 		<ui-form-item :error="formError" :label="$t('Email')" name="email">
-			<ui-input :placeholder="$t('Enter Email')" size="lg" filled v-model="form.email" />
+			<ui-input :placeholder="$t('Enter email')" size="lg" filled v-model="form.email" />
 		</ui-form-item>
 
-		<div class="auth-form__buttons row">
-			<ui-button mode="neutral" size="xxl" native-type="submit" :loading="isLoading">
+		<div class="auth-form__buttons">
+			<ui-button mode="neutral" size="xxl" native-type="submit" left-icon-name="key" left-icon-size="lg" :loading="isLoading">
 				{{ $t("Recover password") }}
 			</ui-button>
-			<ui-button type="outline" mode="neutral" size="xxl" @click="router.push({ name: 'sign-in' })">
-				{{ $t("Login to account") }}
+			<ui-button
+				type="outline"
+				mode="neutral"
+				size="xxl"
+				left-icon-name="logout"
+				left-icon-size="lg"
+				:disabled="isLoading"
+				@click="router.push({ name: 'sign-in' })"
+			>
+				{{ $t("Log in to account") }}
 			</ui-button>
 		</div>
 	</ui-form>

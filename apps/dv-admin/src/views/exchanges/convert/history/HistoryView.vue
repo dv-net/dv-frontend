@@ -19,7 +19,7 @@
 
 <template>
 	<div class="page">
-		<breadcrumbs :back-route-title="$t('Auto exchange')" />
+		<breadcrumbs :back-route-title="$t('Auto-exchange')" />
 		<div class="page__top">
 			<h1 class="global-title-h2">{{ $t("Exchange history") }}</h1>
 			<ui-button type="secondary" size="md" @click="callGetExchangeOrder">

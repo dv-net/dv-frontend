@@ -23,18 +23,18 @@
 		<row-action-input
 			v-for="(item, index) in keysProject"
 			:key="index"
-			:label="$t('API keys for working with API')"
-			:icon-title="$t('API keys for working with API')"
-			:icon-text="$t('Used to receive deposit addresses and generate a link to the payment form.')"
+			:label="$t('API keys for API access')"
+			:icon-title="$t('API keys for API access')"
+			:icon-text="$t('Used to obtain deposit addresses and generate a payment form link')"
 			v-model="item.key"
 			:isCopyValue="true"
 			readonly
 		>
 			<ui-confirm
-				:method="() => postKeyProject(uuid, item.id, $t('A new API key has been created to work with the API'))"
+				:method="() => postKeyProject(uuid, item.id, $t('A new API key has been generated'))"
 				@click.stop
 				class="align-self-center"
-				:title="$t('Generate a new API key?')"
+				:title="`${$t('Generate a new API key')}?`"
 			>
 				<ui-button class="ml-8" type="outline" size="md" :loading="isLoadingCreateApiKey[item.id]">
 					{{ $t("Generate new") }}
@@ -46,7 +46,7 @@
 			:label="$t('Secret key for verification')"
 			v-model="webhooksSecret"
 			:icon-title="$t('Secret key for verification')"
-			:icon-text="$t('Used to verify the authenticity of webhooks.')"
+			:icon-text="$t('Used to verify the authenticity of webhooks')"
 			readonly
 			:isCopyValue="true"
 			:type-input="isShowSecret ? 'text' : 'password'"
@@ -55,10 +55,10 @@
 				{{ $t(isShowSecret ? "Hide" : "Show") }}
 			</ui-button>
 			<ui-confirm
-				:method="() => postStoreSecret(uuid, $t('New verification key has been generated'))"
+				:method="() => postStoreSecret(uuid, $t('A new verification key has been generated'))"
 				@click.stop
 				class="align-self-center"
-				:title="$t('Generate a new verification key?')"
+				:title="`${$t('Generate a new verification key')}?`"
 			>
 				<ui-button type="outline" size="md" :loading="isLoadingGenerateSecretKey">
 					{{ $t("Generate new") }}

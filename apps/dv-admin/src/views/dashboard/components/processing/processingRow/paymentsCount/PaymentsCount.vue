@@ -9,8 +9,12 @@
 	<div class="payments-count">
 		<icon-dollar-eth class="payments-count__icon" />
 		<span class="payments-count__text">
-			{{ $t("Enough for") }} {{ countMaxTransfers }}
-			{{ $t(getDeclensionTransfers(Number(countMaxTransfers))) }}
+			{{
+				$t("Enough for {count} {unit}", {
+					count: countMaxTransfers,
+					unit: $t(getDeclensionTransfers(Number(countMaxTransfers)))
+				})
+			}}
 		</span>
 	</div>
 </template>

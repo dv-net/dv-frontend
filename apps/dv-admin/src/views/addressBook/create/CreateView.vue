@@ -199,7 +199,7 @@
 						<ui-input size="lg" v-model="form.tag" is-empty-value-null :placeholder="$t('Enter wallet tag')" />
 					</ui-form-item>
 					<ui-checkbox v-model="form.create_withdrawal_rule">
-						{{ $t("Add this address to the output rules") }}
+						{{ $t("Add this address to the withdrawal rules") }}
 					</ui-checkbox>
 				</div>
 			</block-section>

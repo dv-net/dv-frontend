@@ -156,7 +156,7 @@
 				</div>
 			</block-section>
 			<block-section v-else mode="grey-border" class="not-found">
-				<span>{{ $t("Updater not installed") }}</span>
+				<span>{{ $t("Updater is not installed") }}</span>
 			</block-section>
 		</div>
 	</div>

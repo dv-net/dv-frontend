@@ -49,7 +49,7 @@
 				<div class="info__inner-text">
 					<span>{{ $t("Hot wallet forwarding") }}:</span>
 					<span class="info__status" :class="{ disabled: isDisabledHotWallets }">
-						{{ $t(isDisabledHotWallets ? "Disabled " : "Enabled") }}
+						{{ $t(isDisabledHotWallets ? "Disabled" : "Enabled") }}
 					</span>
 				</div>
 				<p class="info__text">

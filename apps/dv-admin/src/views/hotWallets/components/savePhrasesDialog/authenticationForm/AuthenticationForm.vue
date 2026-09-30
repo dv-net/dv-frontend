@@ -42,7 +42,7 @@
 				autocomplete="one-time-code"
 				type="tel"
 				v-model="verificationCode2Fa"
-				:placeholder="$t('6-digit 2FA-code')"
+				:placeholder="$t('6-digit 2FA code')"
 				size="lg"
 			/>
 			<div v-if="isCheckCode" class="code__actions">

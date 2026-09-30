@@ -25,9 +25,9 @@
 			case "search":
 				return t("Search");
 			case "search-address":
-				return `${t("By the address")} ${truncateHash(route.params.hash as string, 3, 3).toUpperCase()}`;
+				return `${t("By address")} ${truncateHash(route.params.hash as string, 3, 3).toUpperCase()}`;
 			case "search-transaction":
-				return `${t("By Hash transaction")} ${truncateHash(route.params.hash as string, 5, 3)}`;
+				return `${t("By transaction hash")} ${truncateHash(route.params.hash as string, 5, 3)}`;
 			case "search-wallets":
 				if (searchType.value === SEARCH_TYPES.EMAIL) {
 					return `${t("By email")} ${route.params.searchParams}`;
@@ -63,7 +63,7 @@
 				<p v-if="isMainSearchPage" class="search__text">
 					{{
 						$t(
-							"In the field below you can enter one of the following parameters: wallet issued to the client for top up, transaction hash, IP address or client Email - we will find all the information on the payment"
+							"In the field below, enter one of the following: the wallet issued to the client for top-up, transaction hash, IP address or client email — and we will find all the information about the payment"
 						)
 					}}.
 				</p>

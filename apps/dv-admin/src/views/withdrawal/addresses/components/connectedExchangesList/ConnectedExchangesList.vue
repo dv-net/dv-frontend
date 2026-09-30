@@ -87,12 +87,12 @@
 			<ui-collapse-item value="1">
 				<template #header>
 					<div class="flex gap-4">
-						{{ $t("Do you have connected crypto exchanges") }}
+						{{ $t("Do you have connected crypto exchanges") }}?
 						<tooltip-helper
-							:title="$t('Do you have connected crypto exchanges')"
+							:title="`${$t('Do you have connected crypto exchanges')}?`"
 							:text="
 								$t(
-									'Wallet addresses received by us via the API of the connected crypto exchange. Please note that not all crypto exchanges give out all the deposit addresses you create.'
+									'Wallet addresses we received via the API of the connected crypto exchange. Please note that not all crypto exchanges return every deposit address you create'
 								)
 							"
 						/>
@@ -116,7 +116,7 @@
 								:title="$t('Update addresses from the exchange')"
 								:text="
 									$t(
-										'We will automatically apply the settings to the selected crypto exchange from the system templates.'
+										'We will automatically apply settings from the system templates to the selected crypto exchange'
 									)
 								"
 							/>
@@ -134,7 +134,7 @@
 										:is-link="false"
 										:currency-id="item.currency"
 									/>
-									<ui-tag v-if="item.is_used" :text="$t('It is used')" mode="positive" />
+									<ui-tag v-if="item.is_used" :text="$t('In use')" mode="positive" />
 								</div>
 								<div class="table__column table__column--amount">
 									min: {{ formatAmountBlockchain(item.min_deposit_amount, { currencyId: item.currency }) }}
@@ -143,7 +143,7 @@
 										:title="`min: ${formatAmountBlockchain(item.min_deposit_amount, { currencyId: item.currency })} ${getCurrentCoin(item.currency)}`"
 										:text="
 											$t(
-												'Minimum deposit amount. Many crypto exchanges have different minimum thresholds for the deposited amount for each cryptocurrency.'
+												'Minimum deposit amount. Many crypto exchanges set a different minimum deposit threshold for each cryptocurrency'
 											)
 										"
 									/>
@@ -156,11 +156,11 @@
 										:disabled="item.is_used"
 										@click="addAddress(item.address)"
 									>
-										{{ $t(item.is_used ? "Added" : "Add to output addresses") }}
+										{{ $t(item.is_used ? "Added" : "Add to withdrawal addresses") }}
 										<tooltip-helper
 											v-if="!item.is_used"
-											:title="$t('Add to output addresses')"
-											:text="$t('Add the crypto exchange wallet to the addresses used by the withdrawal rules.')"
+											:title="$t('Add to withdrawal addresses')"
+											:text="$t('Add the crypto exchange wallet to the addresses used by the withdrawal rules')"
 										/>
 									</ui-button>
 								</div>

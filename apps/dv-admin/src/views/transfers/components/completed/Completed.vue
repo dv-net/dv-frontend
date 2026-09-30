@@ -68,7 +68,7 @@
 				<ui-tabs-item value="2">{{ $t("Success") }}</ui-tabs-item>
 				<ui-tabs-item value="3">
 					<div class="tasks__inner-tab">
-						<span>{{ $t("Ended with an error") }}</span>
+						<span>{{ $t("Completed with an error") }}</span>
 						<span v-if="transferFailedPagination?.total">({{ transferFailedPagination.total }})</span>
 					</div>
 				</ui-tabs-item>
@@ -100,7 +100,7 @@
 									<ui-icon type="400" name="sync-alt" size="xs" />
 								</div>
 								<p class="column-event__text">
-									{{ $t(item.kind === "from_address" ? "Withdrawal from hot" : "Withdrawal from processing") }}
+									{{ $t(item.kind === "from_address" ? "Withdrawal from hot wallet" : "Withdrawal from processing wallet") }}
 								</p>
 							</div>
 							<div class="header__item price">
@@ -115,7 +115,7 @@
 							</div>
 							<div class="header__item">
 								<show-status-general :status="item.status" />
-								<ui-confirm :method="() => deleteTransfer([item.id])" @click.stop :title="$t('Delete transfer?')">
+								<ui-confirm :method="() => deleteTransfer([item.id])" @click.stop :title="`${$t('Delete transfer')}?`">
 									<ui-icon
 										v-if="item.status === 'failed' && userRootSystemInfo?.app_profile === 'dev'"
 										class="header__item-delete"

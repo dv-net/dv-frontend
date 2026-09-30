@@ -76,7 +76,7 @@
 			<h1 class="global-title-h1">{{ $t("Dashboard") }}</h1>
 			<warning-banner
 				v-if="isTwoFaResetExpiresAt"
-				:text="$t('2FA reset was requested. 2FA will be reset in {days} days', { days: twoFaResetDaysLeft })"
+				:text="$t('A 2FA reset has been requested. 2FA will be reset in {days} days', { days: twoFaResetDaysLeft })"
 				:button-text="$t('Cancel 2FA reset')"
 				:button-loading="isLoadingDelete2Fa"
 				@button-click="deleteUser2FaReset($t('You have cancelled the 2FA reset'))"

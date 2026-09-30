@@ -23,7 +23,7 @@
 	const form = ref<{ code: string }>({ code: "" });
 
 	const rulesForm = computed<UiFormRules>(() => ({
-		code: [{ validator: () => form.value.code.length > 0, message: t("Enter valid code") }]
+		code: [{ validator: () => form.value.code.length > 0, message: t("Enter a valid code") }]
 	}));
 
 	const isConnectTelegram = computed<boolean>(() => Boolean(ownerData.value?.telegram));

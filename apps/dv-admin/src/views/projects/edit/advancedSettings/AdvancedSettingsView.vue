@@ -86,11 +86,11 @@
 				}
 			],
 			minimal_payment: [
-				{ required: true, message: t("minimum-deposit-store", { amount: "$0.1" }) },
+				{ required: true, message: t("The minimum deposit amount must be at least {amount}", { amount: "$0.1" }) },
 				{
 					validator: () =>
 						Boolean(currentProject.value?.minimal_payment && currentProject.value.minimal_payment >= 0.1),
-					message: t("minimum-deposit-store", { amount: "$0.1" })
+					message: t("The minimum deposit amount must be at least {amount}", { amount: "$0.1" })
 				}
 			]
 		};
@@ -142,7 +142,7 @@
 				{{ $t("General.many") }}
 				<tooltip-helper
 					:title="$t('General.many')"
-					:text="$t('Will be displayed to the client in the payment form.')"
+					:text="$t('Will be displayed to the client in the payment form')"
 				/>
 			</h3>
 			<div class="general__inputs">
@@ -153,7 +153,7 @@
 					<template #label>
 						<div class="flex flex-y-center gap-4">
 							<span>{{ $t("Project website") }}</span>
-							<tooltip-helper :title="$t('Project website')" :text="$t('Your store domain.')" icon-color="#6b6d80" />
+							<tooltip-helper :title="$t('Project website')" :text="$t('Your store domain')" icon-color="#6b6d80" />
 						</div>
 					</template>
 					<ui-input size="lg" v-model="currentProject.site" is-empty-value-null />
@@ -178,7 +178,7 @@
 						<ui-switch v-model="currentProject.status" :text="$t('Store status')" />
 						<tooltip-helper
 							:title="$t('Store status')"
-							:text="$t('When you turn off a store, you also stop accepting payments for all invoices for that store')"
+							:text="$t('When you disable a store, you also stop accepting payments for all of its invoices')"
 						/>
 					</div>
 					<div v-for="item in storeSettingList" :key="item.name" class="configuration__item">
@@ -196,7 +196,7 @@
 			<div class="row" v-if="currenciesProject?.length">
 				<h4 class="row__title">{{ $t("Accepted currencies") }}</h4>
 				<div class="row__actions">
-					<p class="row__actions-text">{{ $t("Select which crypto currencies you want to accept in your store") }}</p>
+					<p class="row__actions-text">{{ $t("Select which cryptocurrencies you want to accept in your store") }}</p>
 					<ui-checkbox-group class="row__currencies" v-model="checkedCurrenciesProject">
 						<div class="row__currency" @click="handleChangeSelectAll">
 							<ui-checkbox is-selected-all v-model="selectAllCurrenciesProject" style="pointer-events: none">
@@ -255,10 +255,10 @@
 				<ui-form-item name="return_url" :label="$t('Return URL')">
 					<ui-input size="lg" v-model="currentProject.return_url" is-empty-value-null />
 				</ui-form-item>
-				<ui-form-item name="success_url" :label="$t('Successful URL')">
+				<ui-form-item name="success_url" :label="$t('Success URL')">
 					<ui-input size="lg" v-model="currentProject.success_url" is-empty-value-null />
 				</ui-form-item>
-				<ui-form-item name="minimal_payment" :label="$t('Minimal payment')">
+				<ui-form-item name="minimal_payment" :label="$t('Minimum payment')">
 					<ui-input size="lg" v-model="currentProject.minimal_payment" type="number" is-empty-value-null>
 						<template #append>$</template>
 					</ui-input>

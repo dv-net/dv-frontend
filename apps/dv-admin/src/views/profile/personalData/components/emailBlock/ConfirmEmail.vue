@@ -27,7 +27,7 @@
 			await postUserEmailConfirmation(codeConfirmation.value);
 			await getUser();
 			handleCancelConfirmationEmail();
-			notify(t("Mail confirmed"), "success");
+			notify(t("Email confirmed"), "success");
 		} catch (error: any) {
 			console.error(error);
 		}

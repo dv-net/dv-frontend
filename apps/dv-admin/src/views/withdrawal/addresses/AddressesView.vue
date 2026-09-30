@@ -52,7 +52,7 @@
 		{ selection: true },
 		{
 			name: "address",
-			label: t("Wallet Address")
+			label: t("Wallet address")
 		},
 		{ name: "name", label: t("Wallet name") },
 		{ name: "for_flagged", label: t("AML withdrawal"), width: "160" },
@@ -92,7 +92,7 @@
 			withdrawalCurrencyRules.value?.low_balance_rules?.manual_address &&
 			!filteredAddresses.includes(withdrawalCurrencyRules.value.low_balance_rules.manual_address)
 		) {
-			return notify(t("You cannot delete an email address specified in the forwarding rules"));
+			return notify(t("You cannot delete an address specified in the forwarding rules"));
 		}
 		arrayErrorsAddresses.value = [];
 		if (!withdrawalCurrencyRules.value?.addressees?.length) {
@@ -217,15 +217,15 @@
 
 		<banner-attention
 			:is-show-banner="isShowBannerWarning"
-			:text="$t('Attention! Wallets have been changed, to apply the settings, click the «Save wallets» button')"
+			:text="$t('Attention! Wallets have been changed. To apply the settings, click the “Save wallets” button')"
 		/>
 
 		<rules :currencyId="currencyId" />
 
 		<block-section class="page__block" :is-loading="isLoading" :title="$t('Withdrawal addresses')">
 			<ui-tabs class="page__tabs" mode="light" v-model="currentAddressTab">
-				<ui-tabs-item value="1">{{ $t("Entering wallets individually") }}</ui-tabs-item>
-				<ui-tabs-item value="2">{{ $t("Enter all in Textarea") }}</ui-tabs-item>
+				<ui-tabs-item value="1">{{ $t("Enter wallets one by one") }}</ui-tabs-item>
+				<ui-tabs-item value="2">{{ $t("Enter all as a list") }}</ui-tabs-item>
 			</ui-tabs>
 
 			<form class="page__form">

@@ -38,7 +38,7 @@
 					<div class="plate">
 						<ui-icon type="filled" name="error" />
 						<span class="plate__text">
-							{{ $t("The node is temporarily unavailable. Balance and payment information are currently unavailable") }}
+							{{ $t("The node is temporarily unavailable. Balance and payment data cannot be retrieved right now") }}
 						</span>
 					</div>
 					<ui-button type="secondary" :to="{ name: 'support' }">{{ $t("Support") }}</ui-button>

@@ -40,13 +40,13 @@
 				{{ $t("Regular addresses") }}
 				<tooltip-helper
 					:title="$t('Regular addresses')"
-					:text="$t('Added by you manually (for example, a cold wallet).')"
+					:text="$t('Added by you manually (for example, a cold wallet)')"
 				/>
 				/
-				{{ $t("crypto exchange") }}
+				{{ $t("Exchange") }}
 				<tooltip-helper
 					:title="$t('Exchange')"
-					:text="$t('Withdrawal addresses added by you for specific crypto exchanges.')"
+					:text="$t('Withdrawal addresses added by you for specific crypto exchanges')"
 				/>
 			</div>
 			<div />
@@ -67,7 +67,7 @@
 							:title="$t('Add wallets')"
 							:text="
 								$t(
-									'All funds received on hot wallets will remain there. It is necessary to specify your wallets for transfer'
+									'All funds received by hot wallets will remain there. Specify your wallets for forwarding'
 								)
 							"
 						/>

@@ -20,7 +20,7 @@
 	const tooltipText = computed<string>(() => {
 		if (row.type === ADDRESS_BOOK_TYPES.REGULAR) {
 			return row.withdrawal_rule_exists
-				? t("address-book-tooltip-text", {
+				? t("The address is specified in the withdrawal rules for {blockchain}", {
 						blockchain: row.currency_id
 							? `${getCurrentCoin(row.currency_id)} (${getCurrentBlockchain(row.currency_id)})`
 							: ""
@@ -30,11 +30,11 @@
 		if (mappedRow.value) {
 			if (mappedRow.value.hasAllWithdrawalRules) {
 				return row.type === ADDRESS_BOOK_TYPES.UNIVERSAL
-					? t("The address is specified in the output rules in all tokens")
-					: t("The address is specified in the output rules in all blockchains");
+					? t("The address is specified in the withdrawal rules for all tokens")
+					: t("The address is specified in the withdrawal rules for all blockchains");
 			}
 			if (mappedRow.value.hasAnyWithdrawalRule) {
-				return t("address-book-tooltip-text", {
+				return t("The address is specified in the withdrawal rules for {blockchain}", {
 					blockchain: mappedRow.value.withdrawalCurrencies
 						.map((item) => `${getCurrentCoin(item.currency_id)} (${getCurrentBlockchain(item.currency_id)})`)
 						.join(", ")

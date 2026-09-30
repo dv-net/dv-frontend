@@ -33,7 +33,7 @@
 
 	const rulesForm = computed<UiFormRules>(() => {
 		return {
-			email: [{ validator: () => EMAIL_REGEX.test(form.value.email), message: t("Email must be valid") }],
+			email: [{ validator: () => EMAIL_REGEX.test(form.value.email), message: t("Enter a valid email") }],
 			password: [
 				{
 					validator: () => form.value.password.length >= 8,
@@ -55,7 +55,7 @@
 				{
 					validator: () =>
 						!userRootSystemInfo.value?.is_captcha_enabled || Boolean(form.value["cf-turnstile-response"]),
-					message: t("Pass captcha")
+					message: t("Complete the captcha")
 				}
 			]
 		};
@@ -72,7 +72,7 @@
 <template>
 	<ui-form ref="formRef" class="auth-form" :rules="rulesForm" :model="form" @submit.prevent="handleSubmit">
 		<ui-form-item :error="formError" :label="$t('Email')" name="email">
-			<ui-input :placeholder="$t('Enter Email')" size="lg" filled v-model="form.email" />
+			<ui-input :placeholder="$t('Enter email')" size="lg" filled v-model="form.email" />
 		</ui-form-item>
 
 		<ui-form-item :error="formError" :label="$t('Password')" name="password">
@@ -105,7 +105,7 @@
 
 		<ui-form-item>
 			<p class="checkbox-text">
-				{{ $t("By continuing registration you agree to") }} <br />
+				{{ $t("By continuing registration, you agree to") }} <br />
 				<ui-link href="https://dv.net/files/End-User-Agreement.pdf" target="_blank">{{ $t("Terms of Use") }}</ui-link>
 				{{ $t("and") }}
 				<ui-link href="https://dv.net/files/Privacy-Policy.pdf" target="_blank">{{ $t("Privacy Policy") }}</ui-link>
@@ -144,7 +144,7 @@
 					:auto-play="false"
 					:loop="false"
 				/>
-				<span class="text-animation">{{ $t("Login to account") }}</span>
+				<span class="text-animation">{{ $t("Log in to account") }}</span>
 			</ui-button>
 		</div>
 	</ui-form>

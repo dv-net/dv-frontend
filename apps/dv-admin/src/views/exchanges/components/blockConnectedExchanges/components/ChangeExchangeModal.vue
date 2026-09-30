@@ -50,14 +50,14 @@
 			<div class="global-confirm-modal__body">
 				{{
 					$t(
-						"When changing crypto exchanges, we recommend updating the settings - replacing wallets for transfers from hot to new wallets of the selected crypto exchange"
+						"When switching crypto exchanges, we recommend updating the settings: replace the forwarding wallets for hot wallets with the new wallets of the selected crypto exchange"
 					)
 				}}
 			</div>
 
 			<div class="global-confirm-modal__footer">
 				<ui-button @click.prevent="handleGoWithdrawal" mode="neutral" size="xxl">
-					{{ $t("Register crypto exchange wallets", { exchange: `${exchangeList?.current_exchange}`.toUpperCase() }) }}
+					{{ $t("Add {exchange} crypto exchange wallets", { exchange: `${exchangeList?.current_exchange}`.toUpperCase() }) }}
 				</ui-button>
 				<ui-button type="secondary" size="xxl" nativeType="submit">
 					{{ $t("Leave old withdrawal rules") }}

@@ -333,10 +333,10 @@
   resolved "https://registry.yarnpkg.com/@date-fns/tz/-/tz-1.5.0.tgz#e9e79b7583f0b1322c53db884a0112551095e3f3"
   integrity sha512-lwYN/vDPeNRULcepoE/LO2Pgx+7/RV+S9ARfbc9lr2DtGkOD7pAiruHvbR1RX3Qyf6ja47EWJDMsNK5vK08DJg==
 
-"@dv.net/translator@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@dv.net/translator/-/translator-2.0.0.tgz#207423b99b596ab61fc7459e4c84ccfc72fdbd43"
-  integrity sha512-mVrRWTEB5RIdHspFFuyaMrpNJiH7wWSgOn1ZPP20x6Qk3vjfpRWixyksZAcVGTHfKEzpjp5CcjypS9aXd3ZBvA==
+"@dv.net/translator@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@dv.net/translator/-/translator-2.0.1.tgz#dbd88817be48b5e32023bb5462b03a48ec40b616"
+  integrity sha512-vWvIr7iXmgEz4PYh+Ao5CrtIG03jBYruObiZPHhtZdXHUirN0M5JK2Lob/7Q4KAcz14knAXaAsssB5gi0hN/Sg==
   dependencies:
     commander "^11.1.0"
     dotenv "^17.4.2"

@@ -22,7 +22,7 @@
 		<div class="tron__column">
 			<div class="plate">
 				<div class="plate__content">
-					<span class="plate__label">{{ $t("Payment price") }}:</span>
+					<span class="plate__label">{{ $t("Cost per payment") }}:</span>
 					<span class="plate__value">$0</span>
 				</div>
 				<span>·</span>

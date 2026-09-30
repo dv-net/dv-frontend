@@ -83,7 +83,7 @@
 	<div class="page">
 		<breadcrumbs
 			:current-route-title="$t('System settings')"
-			:back-route-title="$t('Settings')"
+			:back-route-title="$t('Settings.plural')"
 			back-name-route="settings-system"
 		/>
 		<h1 class="global-title-h2 mb-8">

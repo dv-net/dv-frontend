@@ -50,7 +50,7 @@ export const useAutoExchangeStore = defineStore("autoExchange", () => {
 				.map((item) => exchangePairs.value.find((el) => el.display_name.toUpperCase() === item.toUpperCase()))
 				.filter(Boolean) as IExchangePairsResponse[];
 			await putApiExchangePairs(slug, result);
-			notify(t("Auto exchange saved"), "success");
+			notify(t("Auto-exchange saved"), "success");
 		} catch (error: any) {
 			throw error;
 		} finally {

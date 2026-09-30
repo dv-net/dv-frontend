@@ -130,7 +130,7 @@
 					class="inner__input inner__input--address"
 					v-model="walletsFilter.address"
 					size="sm"
-					:placeholder="$t('Wallet Address')"
+					:placeholder="$t('Wallet address')"
 					@input="debouncedSearch"
 				>
 					<template #prepend>
@@ -196,7 +196,7 @@
 					<div class="left__select">
 						<span>
 							{{
-								$t("selected-hot-wallets", {
+								$t("Selected: {numberSelected} of {numberAll}", {
 									numberSelected: isSelectedAllWallets ? allWallets - excludedWallets.length : includedWallets.length,
 									numberAll: allWallets
 								})

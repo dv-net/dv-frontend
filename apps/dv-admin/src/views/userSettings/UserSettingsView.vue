@@ -24,7 +24,7 @@
 	<div class="page">
 		<breadcrumbs :back-route-title="$t('Dashboard')" back-name-route="dashboard" />
 
-		<h1 class="global-title-h2 mt-24 mb-32">{{ $t("Settings") }}</h1>
+		<h1 class="global-title-h2 mt-24 mb-32">{{ $t("Settings.plural") }}</h1>
 
 		<block-section :is-loading="isLoading" class="page__settings">
 			<global-input

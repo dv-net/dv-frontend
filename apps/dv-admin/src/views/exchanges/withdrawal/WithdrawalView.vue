@@ -32,7 +32,7 @@
 	const headers = computed<UiTableHeader[]>(() => [
 		{ name: "switch", width: "100" },
 		{ name: "currency_id", label: t("Cryptocurrency"), width: "200" },
-		{ name: "address", label: t("Wallet Address"), width: "300" },
+		{ name: "address", label: t("Wallet address"), width: "300" },
 		{ name: "min_amount", label: t("Minimum amount") },
 		{ name: "chain", label: t("Chain") },
 		{ name: "trash", label: t("Actions"), width: "110" }
@@ -55,7 +55,7 @@
 				{{ $t("Withdrawal from the crypto exchange") }}
 			</h1>
 			<ui-button mode="neutral" @click="handleGoDocs">
-				{{ t("Complete instructions for setting up the crypto exchange", { exchange: slug.toUpperCase() }) }}
+				{{ t("Complete instructions for setting up the {exchange} crypto exchange", { exchange: slug.toUpperCase() }) }}
 			</ui-button>
 		</div>
 		<block-balances-exchange :slug="slug" />
@@ -65,7 +65,7 @@
 			:info-title="$t('Rules for withdrawal from the crypto exchange')"
 			:info-text="
 				$t(
-					'To withdraw funds from the crypto exchange, you need to create a rule in which you specify the wallet and coin for withdrawal'
+					'To withdraw funds from the crypto exchange, create a rule specifying the wallet and coin for withdrawal'
 				)
 			"
 		>

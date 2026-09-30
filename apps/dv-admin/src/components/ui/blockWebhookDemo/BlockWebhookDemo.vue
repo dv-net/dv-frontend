@@ -14,7 +14,8 @@
 	const isRequest = computed<boolean>(() => props.type === "request");
 	const currentTextMessage = computed<string | object>(() => {
 		const text = isRequest.value ? props.webhook.request : props.webhook.response;
-		return checkIsJSON(text) ? JSON.parse(text) : errorText;
+		if (!text) return errorText;
+		return checkIsJSON(text) ? JSON.parse(text) : text;
 	});
 </script>
 

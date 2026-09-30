@@ -28,7 +28,7 @@
 
 	const rulesForm = computed<UiFormRules>(() => {
 		return {
-			email: [{ validator: () => EMAIL_REGEX.test(changeEmail.value.email), message: t("Email must be valid") }],
+			email: [{ validator: () => EMAIL_REGEX.test(changeEmail.value.email), message: t("Enter a valid email") }],
 			code: [{ validator: () => Boolean(changeEmail.value.code), message: t("Enter the code") }]
 		};
 	});
@@ -48,7 +48,7 @@
 			await postUserChangeEmail(changeEmail.value);
 			handleCancelChangeEmail();
 			await getUser();
-			notify(t("Email has been changed, please confirm it now"), "success");
+			notify(t("Email has been changed. Please confirm it"), "success");
 		} catch (error: any) {
 			console.error(error);
 		}

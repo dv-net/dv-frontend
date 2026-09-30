@@ -112,14 +112,14 @@
 					<span>{{ $t("According to the withdrawal rules") }}</span>
 					<tooltip-helper
 						:title="$t('According to the withdrawal rules')"
-						:text="$t('Forced withdrawal from the wallet to the address you specified.')"
+						:text="$t('Forced withdrawal from the wallet to the address you specified')"
 					/>
 				</div>
 
 				<div class="global-dropdown__wallets-item" @click="handleSendWallet(data, 'processing')">
 					<ui-icon-button icon-name="send" container-small size="lg" />
 					<span>{{ $t("To the processing") }}</span>
-					<tooltip-helper :title="$t('To the processing')" :text="$t('Forced withdrawal to the processing wallet.')" />
+					<tooltip-helper :title="$t('To the processing')" :text="$t('Forced withdrawal to the processing wallet')" />
 				</div>
 
 				<div class="global-dropdown__wallets-item" @click="handleMarkIsDirty(data)">
@@ -129,7 +129,7 @@
 						:title="$t('Mark address as dirty')"
 						:text="
 							$t(
-								'This address has been marked as dirty and permanently removed from automatic allocation. Any funds received to this wallet require manual withdrawal processing.'
+								'This address has been marked as dirty and permanently removed from automatic allocation. Any funds received to this wallet require manual withdrawal processing'
 							)
 						"
 					/>
@@ -141,7 +141,7 @@
 						<span>{{ $t("Download keys in format") }}</span>
 						<tooltip-helper
 							:title="$t('Download keys')"
-							:text="$t('Download private keys for this wallet.')"
+							:text="$t('Download private keys for this wallet')"
 						/>
 					</div>
 					<div class="download-keys__formats">

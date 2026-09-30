@@ -22,9 +22,9 @@
 			icon: markRaw(IconGeneral),
 			title: t("General settings"),
 			text: t(
-				"In this section you can configure general settings for your merchant: enable or disable registration of new clients, specify the merchant domain and change other key settings"
+				"In this section, you can configure general merchant settings: enable or disable registration of new users, specify the merchant domain and change other key settings"
 			),
-			textBtn: t("Set"),
+			textBtn: t("Configure"),
 			path: "/settings/system/general"
 		},
 		// {
@@ -33,7 +33,7 @@
 		// 	icon: markRaw(IconProcessing),
 		// 	title: t("Processing settings"),
 		// 	text,
-		// 	textBtn: t("Set"),
+		// 	textBtn: t("Configure"),
 		// 	path: "/settings/system/processing"
 		// },
 		{
@@ -42,7 +42,7 @@
 			icon: markRaw(IconMail),
 			title: t("Email settings"),
 			text: t("Specify how you will send emails to your payers"),
-			textBtn: t("Set"),
+			textBtn: t("Configure"),
 			path: "/settings/system/mail"
 		},
 		{
@@ -51,7 +51,7 @@
 			icon: markRaw(IconSystem),
 			title: t("Update.noun"),
 			text: t("Ability to configure automatic project update to the latest version"),
-			textBtn: t("Set"),
+			textBtn: t("Configure"),
 			path: "/settings/system/update"
 		}
 	]);

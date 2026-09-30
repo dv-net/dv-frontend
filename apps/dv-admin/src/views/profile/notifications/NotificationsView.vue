@@ -60,7 +60,7 @@
 		try {
 			isLoadingPatchNotifications.value = true;
 			await patchApiNotifications(notificationsList.value.flat());
-			notify(t("Notifications are updated"), "success");
+			notify(t("Notifications updated"), "success");
 		} catch (error: any) {
 			console.error(error);
 		} finally {
@@ -76,7 +76,7 @@
 <template>
 	<div class="notifications">
 		<block-section class="notifications__section">
-			<h3 class="global-title-h3">{{ $t("Notifications settings") }}</h3>
+			<h3 class="global-title-h3">{{ $t("Notification settings") }}</h3>
 			<ui-skeleton v-if="isLoading" :row-height="44" :rows-gap="12" :item-border-radius="8" />
 			<div v-else class="notifications__inner">
 				<div class="notifications__block">
@@ -140,7 +140,13 @@
 						</span>
 					</div>
 				</div>
-				<ui-button mode="neutral" :loading="isLoadingPatchNotifications" @click="patchNotifications">
+				<ui-button
+					mode="neutral"
+					size="xl"
+					left-icon-name="done"
+					:loading="isLoadingPatchNotifications"
+					@click="patchNotifications"
+				>
 					{{ $t("Save") }}
 				</ui-button>
 			</div>

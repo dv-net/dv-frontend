@@ -51,10 +51,10 @@
 
 	const options = computed<IUiSelectOptions[]>(() => {
 		return [
-			{ label: t("Random from output addresses"), value: "random" },
-			{ label: t("Leave on hot"), value: "disabled" },
-			{ label: t("Processing and saving there"), value: "processing" },
-			{ label: t("Select from output addresses"), value: "manual" }
+			{ label: t("Random withdrawal address"), value: "random" },
+			{ label: t("Leave on hot wallets"), value: "disabled" },
+			{ label: t("Send to processing wallet and keep there"), value: "processing" },
+			{ label: t("Select from withdrawal addresses"), value: "manual" }
 		];
 	});
 
@@ -87,7 +87,7 @@
 	const handleSaveRules = async () => {
 		try {
 			if (!rules.value.amount) {
-				notify(t("Please enter the correct number of forwarding rules"));
+				notify(t("Please enter a valid amount for the forwarding rules"));
 				return;
 			}
 			isLoading.value = true;
@@ -102,7 +102,7 @@
 			};
 			await patchApiWithdrawalCurrencyRules(withdrawalCurrencyRules.value.currency.id, body);
 			await getWithdrawalCurrencyRules(props.currencyId);
-			notify(t("Transfers rules are changed"), "success");
+			notify(t("Forwarding rules changed"), "success");
 			copyRules.value = { ...rules.value };
 		} catch (error: any) {
 			console.error(error.message);
@@ -157,7 +157,7 @@
 	<block-section v-if="Object.keys(withdrawalCurrencyRules).length" class="rules" :title="$t('Forwarding rules')">
 		<div class="flex flex-column gap-16">
 			<div class="rules__inputs">
-				<global-input title="Send amounts higher">
+				<global-input title="Send amounts above">
 					<ui-input
 						v-model="rules.amount"
 						is-empty-value-null
@@ -190,7 +190,7 @@
 				/>
 			</div>
 			<p class="rules__banner" :class="{ full: bitcoinLikeNetworks.includes(props.currencyId) }">
-				{{ $t("minAmountWithdrawal", { price: priceMinOutput }) }}
+				{{ $t("Recommended when working with a crypto exchange, as exchanges do not credit small amounts (less than ${price})", { price: priceMinOutput }) }}
 			</p>
 		</div>
 		<ui-button class="mt-24" :disabled="isDisabledBtn" :loading="isLoading" @click="handleSaveRules">

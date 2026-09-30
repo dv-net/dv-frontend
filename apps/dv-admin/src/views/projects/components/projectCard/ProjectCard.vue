@@ -50,7 +50,7 @@
 
 	const alertDescription = computed(() => {
 		if (props.store.rejection_reason) return props.store.rejection_reason;
-		return t("Please pass moderation or switch to OpenSource version, otherwise your project may be stopped");
+		return t("Please pass moderation or switch to the open-source version, otherwise your project may be suspended");
 	});
 
 	const canResend = computed(() => agreeChecked.value && resendComment.value.trim().length > 0);
@@ -181,8 +181,8 @@
 		<div class="project-card__actions">
 			<ui-confirm
 				class="project-card__confirm"
-				:title="$t('Archive this shop?')"
-				:text="$t('Archive shop confirm')"
+				:title="`${$t('Archive this shop')}?`"
+				:text="$t('The shop will disappear from your list. You will not be able to open it afterwards')"
 				:method="() => archive(store)"
 				position="top-start"
 			>

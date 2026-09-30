@@ -88,7 +88,7 @@
 
 		<div v-if="isAuthorizedLc" class="page__authorized flex flex-column">
 			<div class="flex flex-column gap-32">
-				<h2 class="page__ways-title">{{ $t("3 ways to connect to a Telegram bot") }}</h2>
+				<h2 class="page__ways-title">{{ $t("3 ways to connect to the Telegram bot") }}</h2>
 				<div v-show="isLoading" class="page__rows">
 					<ui-skeleton :rows="3" :rowHeight="100" :rows-gap="32" :item-border-radius="24" first-color="#fff" />
 				</div>
@@ -137,7 +137,7 @@
 
 		<div class="advantages mt-32">
 			<h2 class="global-title-h1">
-				{{ $t("What is our Telegram bot for") }}
+				{{ $t("What is our Telegram bot for") }}?
 			</h2>
 			<div class="advantages__cards">
 				<div class="card" v-for="item in advantagesCardsTelegram" :key="item.id">

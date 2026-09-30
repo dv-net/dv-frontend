@@ -49,7 +49,7 @@
 						{{ $t("TRON network fee for sending funds") }}
 					</div>
 					<div class="tron-settings-body__current-payments__item-text">
-						{{ $t("Each $ for processing", { amount: "0" }) }}
+						{{ $t("Each ${amount} for processing", { amount: "0" }) }}
 					</div>
 				</block-section>
 
@@ -61,7 +61,7 @@
 				<block-section mode="grey-border" class="tron-settings-body__current-payments__item" padding="md">
 					<div class="tron-settings-body__current-payments__item-title">{{ $t("TRON per day") }}</div>
 					<div class="tron-settings-body__current-payments__item-text">
-						{{ $t("payment by", { count: "0", amount: formatAmountBlockchain(0) }) }} TRX
+						{{ $t("{count} payments of {amount}", { count: "0", amount: formatAmountBlockchain(0) }) }} TRX
 					</div>
 				</block-section>
 			</div>

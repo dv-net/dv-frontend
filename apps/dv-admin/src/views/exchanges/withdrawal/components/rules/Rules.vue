@@ -118,7 +118,7 @@
 			</global-input>
 		</div>
 		<div class="rules__row">
-			<global-input title="Wallet Address">
+			<global-input title="Wallet address">
 				<template #subtitle>
 					<tooltip-helper
 						:title="$t('Wallet address for withdrawal from the crypto exchange')"
@@ -132,10 +132,9 @@
 								<div>
 									{{
 										$t(
-											"You can specify a wallet from which to withdraw funds from the crypto exchange, for this you need to add it to the white list on the crypto exchange"
+											"You can specify a wallet to which funds will be withdrawn from the crypto exchange. To do this, add it to the whitelist on the crypto exchange"
 										)
-									}}
-									{{ $t("according to the") }}
+									}}.
 									<span class="rules__instruction-button" @click="handleGoDocs">
 										<span>{{ $t("Instructions") }}</span>
 										<ui-icon name="arrow-forward" type="filled" size="sm" style="vertical-align: middle" />
@@ -161,14 +160,13 @@
 			<span class="icon-container">
 				<ui-icon name="check-circle" type="filled" size="lg" color="#1f9649" />
 			</span>
-			<span style="color: #6b6d80">{{ $t("A rule will be added:") }}</span>
-			{{ $t("The crypto exchange will transfer all funds as soon as the amount on") }}
-			<span class="saved-params">
-				{{ showInfoMessages.ticker.toUpperCase() }} - {{ showInfoMessages.chain.toUpperCase() }}
-			</span>
-			{{ $t("is more than") }}
-			<span class="saved-params">{{ showInfoMessages.min_amount }}</span>
-			{{ $t("to the wallet") }}
+			<span style="color: #6b6d80">{{ $t("A rule will be added") }}:</span>
+			{{
+				$t("The crypto exchange will transfer all funds as soon as the balance of {asset} exceeds {amount} to the wallet", {
+					asset: `${showInfoMessages.ticker.toUpperCase()} - ${showInfoMessages.chain.toUpperCase()}`,
+					amount: showInfoMessages.min_amount
+				})
+			}}
 			<display-hash
 				type="address"
 				:isShowIconCopy="false"
@@ -207,7 +205,7 @@
 					<span>~ ${{ calculationCommissions.min_amount_usd }}</span>
 				</div>
 				<div class="commissions__row">
-					<span>{{ $t("Commission") }}:</span>
+					<span>{{ $t("Fee") }}:</span>
 					<span class="commissions__native">
 						{{ calculationCommissions.fee }} {{ calculationCommissions.currency.toUpperCase() }}
 					</span>

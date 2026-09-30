@@ -32,7 +32,7 @@
 	const debounceNotifications = debounce(getNotifications, 500);
 
 	const options = computed<IUiSelectOptions[]>(() => {
-		return notificationsTypes.value.map((item) => ({ value: item.value, label: t(item.label) }));
+		return notificationsTypes.value.map((item) => ({ value: item.value, label: item.label }));
 	});
 
 	const optionsChannel = computed<IUiSelectOptions[]>(() => {
@@ -45,7 +45,7 @@
 	const notificationTemplate = computed<Record<string, string>>(() => {
 		return notificationsTypes.value.reduce(
 			(acc, item) => {
-				acc[item.value] = t(item.label);
+				acc[item.value] = item.label;
 				return acc;
 			},
 			{} as Record<string, string>

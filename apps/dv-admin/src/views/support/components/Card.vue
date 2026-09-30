@@ -49,8 +49,8 @@
 				<qrcode-vue class="card__qr-svg" :value="item.path" level="M" render-as="svg" />
 			</div>
 			<div class="card__qr-text">
-				<div>{{ $t("Use QR") }}</div>
-				<div>{{ $t("for fast transition") }}</div>
+				<div>{{ $t("Scan the QR code") }}</div>
+				<div>{{ $t("for quick access") }}</div>
 			</div>
 		</div>
 	</block-section>

@@ -31,7 +31,7 @@
 		{ name: "address", label: t("Address") },
 		{ name: "tx_id", label: t("Transaction hash") },
 		{ name: "amount_native", label: t("Total"), width: "160" },
-		{ name: "amount_usd", label: t("Sum in") + " $", width: "120" },
+		{ name: "amount_usd", label: t("Amount in") + " $", width: "120" },
 		{ name: "status", label: t("Status"), width: "150" }
 	]);
 
@@ -123,7 +123,7 @@
 					:text="
 						row.fail_reason === 'withdrawal balance locked'
 							? $t(
-									'At the time of withdrawal, some funds were still awaiting confirmation - we will send them with the next transfer'
+									'At the time of withdrawal, some funds were still awaiting confirmation — we will send them with the next transfer'
 								)
 							: row.fail_reason
 					"
