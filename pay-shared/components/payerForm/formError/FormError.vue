@@ -27,8 +27,8 @@
 					{{
 						$t(
 							type === "store-disabled"
-								? "This store has been disabled by the administrator. Try to log in later or contact support"
-								: "An unexpected error occurred. Try logging in later or contact support"
+								? "This store has been disabled by the administrator. Try again later or contact support"
+								: "An unexpected error occurred. Try again later or contact support"
 						)
 					}}
 				</p>

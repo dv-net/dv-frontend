@@ -15,7 +15,7 @@
 	const timeline = computed(() => {
 		return timelineProp.map((item) => {
 			if (currentStep === 4 && item.id === 3) {
-				return { ...item, label: "Waiting for enrollment" };
+				return { ...item, label: "Waiting for deposit" };
 			}
 			return item;
 		});

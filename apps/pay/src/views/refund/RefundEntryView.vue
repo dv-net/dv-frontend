@@ -27,7 +27,9 @@
 
 	const route = useRoute();
 	const router = useRouter();
-	const { t } = useI18n();
+	const { t, locale } = useI18n();
+
+	const secondsUnit = computed(() => (locale.value === "ru" ? "с" : "s"));
 
 	const lookupFormRef = ref<HTMLFormElement | null>(null);
 	const verifyFormRef = ref<HTMLFormElement | null>(null);
@@ -191,7 +193,7 @@
 					:model="lookupForm"
 					@submit.prevent="handleSendCode"
 				>
-					<ui-form-item name="email" :label="$t('Email')">
+					<ui-form-item name="email" label="Email">
 						<ui-input
 							v-model="lookupForm.email"
 							:placeholder="$t('Enter email')"
@@ -281,7 +283,7 @@
 							@click="handleResend"
 						>
 							<template v-if="resendCooldownSec > 0">
-								{{ $t("Resend code in") }} {{ resendCooldownSec }}{{ $t("s") }}
+								{{ $t("Resend code in") }} {{ resendCooldownSec }}{{ secondsUnit }}
 							</template>
 							<template v-else>
 								{{ $t("Resend code") }}

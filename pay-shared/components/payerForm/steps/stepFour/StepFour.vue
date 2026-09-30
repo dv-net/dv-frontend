@@ -71,7 +71,7 @@
 									{{ $t("Approximate deposit time") }} {{ depositTime }}
 									{{ $i18n.locale === "ru" ? "мин" : "min" }}
 								</span>
-								<span>{{ $t("Passed") }} {{ formattedTime }}</span>
+								<span>{{ $t("Elapsed") }} {{ formattedTime }}</span>
 							</div>
 							<span class="content__confirmation">
 								{{ confirmed }}/{{ confirmations }} {{ $t("confirmations") }}

@@ -20,7 +20,7 @@
 	const isFirstRender = ref<boolean>(true);
 	let advertisingIntervalId: ReturnType<typeof setInterval> | undefined;
 	const advertisingMessageKeys: string[] = [
-		"No our fees, everything stays on your server",
+		"No fees from us, everything stays on your server",
 		"All wallets are stored on your side",
 		"Open Source — all source code is public"
 	];
@@ -69,7 +69,7 @@
 		<p ref="advertisingTextRef" class="advertising__text" :style="`line-height: ${lineHeightAdvertisingText}px`">
 			{{
 				$t(
-					"While you wait for your payment, check out our amazing merchant for accepting cryptocurrency on your website for free"
+					"While you wait for your payment, check out our merchant for accepting cryptocurrency on your website for free"
 				)
 			}}
 		</p>
