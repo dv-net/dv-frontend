@@ -39,10 +39,33 @@ export const AML_SETTING_LABELS: Record<string, string> = {
 
 export const AML_RISK_TYPE_TOTAL_SCORE = "TOTAL_RISK_SCORE";
 export const AML_RISK_TYPE_SUM_OF_SIGNALS = "SUM_OF_SIGNALS";
+export const AML_RISK_TYPE_RISK_LEVEL = "RISK_LEVEL";
 export const AML_RISK_ACTION_REJECT = "reject";
 export const AML_RISK_ACTION_ACCEPT_AND_FLAG = "accept_and_flag";
 
+/** Matches AMLBot provider slug in dictionary / settings */
+export const AML_PROVIDER_AML_BOT = "aml_bot";
+
+/** Threshold ranks for RISK_LEVEL rules (`models.AmlRiskLevel.Rank`) */
+export const AML_RISK_LEVEL_THRESHOLD = {
+	low: 1,
+	medium: 2,
+	high: 3,
+	critical: 4
+} as const;
+
+export type TAmlRiskLevelThreshold =
+	(typeof AML_RISK_LEVEL_THRESHOLD)[keyof typeof AML_RISK_LEVEL_THRESHOLD];
+
+export const AML_RISK_LEVEL_THRESHOLD_LABELS: Record<TAmlRiskLevelThreshold, string> = {
+	[AML_RISK_LEVEL_THRESHOLD.low]: AML_RISK_LEVEL_LABELS[AML_RISK_LEVEL.low],
+	[AML_RISK_LEVEL_THRESHOLD.medium]: AML_RISK_LEVEL_LABELS[AML_RISK_LEVEL.medium],
+	[AML_RISK_LEVEL_THRESHOLD.high]: AML_RISK_LEVEL_LABELS[AML_RISK_LEVEL.high],
+	[AML_RISK_LEVEL_THRESHOLD.critical]: AML_RISK_LEVEL_LABELS[AML_RISK_LEVEL.critical]
+};
+
 export const AML_RISK_TYPE_LABELS: Record<string, string> = {
 	[AML_RISK_TYPE_TOTAL_SCORE]: "Total risk score",
-	[AML_RISK_TYPE_SUM_OF_SIGNALS]: "Sum of signals"
+	[AML_RISK_TYPE_SUM_OF_SIGNALS]: "Sum of signals",
+	[AML_RISK_TYPE_RISK_LEVEL]: "Risk level"
 };

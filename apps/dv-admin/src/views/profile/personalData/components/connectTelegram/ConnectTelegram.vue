@@ -47,7 +47,7 @@
 			if (!formRef.value || !(await formRef.value.validate()) || form.value.code === null) return;
 			await postApiUnpinTgConfirm(String(form.value.code));
 			await getOwnerData();
-			notify("Telegram is disabled", "success");
+			notify(t("Telegram is disabled"), "success");
 			cancelUnpinHandler();
 		} catch (error: any) {
 			console.error(error);

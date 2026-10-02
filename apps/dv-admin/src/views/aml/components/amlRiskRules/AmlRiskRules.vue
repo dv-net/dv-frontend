@@ -1,28 +1,29 @@
 <script setup lang="ts">
 	import { computed, ref, watch } from "vue";
 	import { storeToRefs } from "pinia";
-	import { UiCheckbox, UiInput, UiSelect, UiSkeleton } from "@dv.net/ui-kit";
+	import { UiCheckbox, UiIcon, UiInput, UiSelect, UiSkeleton } from "@dv.net/ui-kit";
 	import { useAmlStore } from "@dv-admin/stores/aml";
+	import TooltipHelper from "@dv-admin/components/ui/tooltipHelper/TooltipHelper.vue";
 	import {
+		AML_PROVIDER_AML_BOT,
 		AML_RISK_ACTION_ACCEPT_AND_FLAG,
 		AML_RISK_ACTION_REJECT,
+		AML_RISK_LEVEL_THRESHOLD,
+		AML_RISK_LEVEL_THRESHOLD_LABELS,
 		AML_RISK_TYPE_LABELS,
+		AML_RISK_TYPE_RISK_LEVEL,
 		AML_RISK_TYPE_SUM_OF_SIGNALS,
-		AML_RISK_TYPE_TOTAL_SCORE
+		AML_RISK_TYPE_TOTAL_SCORE,
+		type TAmlRiskLevelThreshold
 	} from "@dv-admin/utils/constants/aml";
 	import type { IAmlRiskRuleResponse } from "@dv-admin/utils/types/api/apiGo.ts";
 	import type { IUiSelectOptions } from "@dv-admin/utils/types/general.ts";
 	import { useI18n } from "vue-i18n";
 
 	const { t } = useI18n();
-	const props = withDefaults(
-		defineProps<{
-			isLoading?: boolean;
-		}>(),
-		{
-			isLoading: false
-		}
-	);
+	const { isLoading = false } = defineProps<{
+		isLoading?: boolean;
+	}>();
 
 	const amlStore = useAmlStore();
 	const { formAmlScoreTransaction, amlRiskRules, amlSignalCategories, isLoadingAmlRiskRules } =
@@ -30,12 +31,41 @@
 	const { getAmlRiskRules, putAmlRiskRules } = amlStore;
 
 	const localRules = ref<IAmlRiskRuleResponse[]>([]);
+	const isSecondaryExpanded = ref(false);
 
-	const showSkeleton = computed(() => props.isLoading || isLoadingAmlRiskRules.value);
+	const PRIMARY_RISK_TYPES = [AML_RISK_TYPE_TOTAL_SCORE, AML_RISK_TYPE_RISK_LEVEL] as const;
+
+	const showSkeleton = computed(() => isLoading || isLoadingAmlRiskRules.value);
+
+	const riskLevelThresholdOptions = computed<IUiSelectOptions[]>(() =>
+		Object.values(AML_RISK_LEVEL_THRESHOLD).map((value) => ({
+			label: t(AML_RISK_LEVEL_THRESHOLD_LABELS[value]),
+			value: String(value)
+		}))
+	);
 
 	const signalLabelByCategory = computed(() => {
 		return Object.fromEntries(amlSignalCategories.value.map((item) => [item.category, item.label]));
 	});
+
+	const primaryRules = computed(() => {
+		const byType = new Map(localRules.value.map((rule) => [rule.risk_type, rule]));
+		return PRIMARY_RISK_TYPES.map((type) => byType.get(type)).filter(
+			(rule): rule is IAmlRiskRuleResponse => Boolean(rule)
+		);
+	});
+
+	const secondaryRules = computed(() =>
+		localRules.value.filter(
+			(rule) => !(PRIMARY_RISK_TYPES as readonly string[]).includes(rule.risk_type)
+		)
+	);
+
+	const isAmlBotProvider = computed(
+		() => formAmlScoreTransaction.value.provider_slug === AML_PROVIDER_AML_BOT
+	);
+
+	const isRiskLevelRule = (riskType: string): boolean => riskType === AML_RISK_TYPE_RISK_LEVEL;
 
 	const isRejectOnlyRiskType = (riskType: string): boolean =>
 		riskType === AML_RISK_TYPE_TOTAL_SCORE || riskType === AML_RISK_TYPE_SUM_OF_SIGNALS;
@@ -44,6 +74,18 @@
 		if (isRejectOnlyRiskType(riskType)) return AML_RISK_ACTION_REJECT;
 		if (action === AML_RISK_ACTION_ACCEPT_AND_FLAG) return AML_RISK_ACTION_ACCEPT_AND_FLAG;
 		return AML_RISK_ACTION_REJECT;
+	};
+
+	const isValidRiskLevelThreshold = (threshold: number): threshold is TAmlRiskLevelThreshold =>
+		Object.values(AML_RISK_LEVEL_THRESHOLD).includes(threshold as TAmlRiskLevelThreshold);
+
+	const normalizeThreshold = (riskType: string, threshold: number | string): number => {
+		const value = Number(threshold);
+		if (isRiskLevelRule(riskType)) {
+			if (isValidRiskLevelThreshold(value)) return value;
+			return AML_RISK_LEVEL_THRESHOLD.medium;
+		}
+		return value;
 	};
 
 	const getActionOptions = (riskType: string): IUiSelectOptions[] => {
@@ -75,7 +117,7 @@
 		if (canUpdateInPlace) {
 			next.forEach((rule, index) => {
 				localRules.value[index].enabled = rule.enabled;
-				localRules.value[index].threshold = Number(rule.threshold);
+				localRules.value[index].threshold = normalizeThreshold(rule.risk_type, rule.threshold);
 				localRules.value[index].action = normalizeAction(rule.risk_type, rule.action);
 			});
 			return;
@@ -83,7 +125,7 @@
 
 		localRules.value = next.map((rule) => ({
 			...rule,
-			threshold: Number(rule.threshold),
+			threshold: normalizeThreshold(rule.risk_type, rule.threshold),
 			action: normalizeAction(rule.risk_type, rule.action)
 		}));
 	};
@@ -96,7 +138,7 @@
 				{
 					risk_type: rule.risk_type,
 					enabled: rule.enabled,
-					threshold: Number(rule.threshold),
+					threshold: normalizeThreshold(rule.risk_type, rule.threshold),
 					action: normalizeAction(rule.risk_type, rule.action)
 				}
 			]);
@@ -111,8 +153,23 @@
 		await saveRule(rule);
 	};
 
+	const handleRiskLevelThresholdChange = async (rule: IAmlRiskRuleResponse, value: string | null) => {
+		if (value === null) return;
+		rule.threshold = Number(value);
+		await handleThresholdChange(rule);
+	};
+
 	const handleThresholdChange = async (rule: IAmlRiskRuleResponse) => {
 		const threshold = Number(rule.threshold);
+		if (isRiskLevelRule(rule.risk_type)) {
+			if (!isValidRiskLevelThreshold(threshold)) {
+				syncLocalRules();
+				return;
+			}
+			rule.threshold = threshold;
+			await saveRule(rule);
+			return;
+		}
 		if (Number.isNaN(threshold) || threshold < 0 || threshold > 100) {
 			syncLocalRules();
 			return;
@@ -138,6 +195,7 @@
 		() => formAmlScoreTransaction.value.provider_slug,
 		async (slug) => {
 			if (!slug) return;
+			isSecondaryExpanded.value = false;
 			await getAmlRiskRules(slug);
 		},
 		{ immediate: true }
@@ -154,7 +212,7 @@
 		</div>
 
 		<div class="risk-rules__card">
-			<ui-skeleton v-if="showSkeleton" :rows="5" :row-height="44" :rows-gap="16" :item-border-radius="12" />
+			<ui-skeleton v-if="showSkeleton" :rows="2" :row-height="46" :rows-gap="16" :item-border-radius="12" />
 
 			<div v-else class="risk-rules__content">
 				<div class="risk-rules__head">
@@ -164,7 +222,7 @@
 				</div>
 
 				<div class="risk-rules__body">
-					<div v-for="rule in localRules" :key="rule.risk_type" class="risk-rules__row">
+					<div v-for="rule in primaryRules" :key="rule.risk_type" class="risk-rules__row">
 						<div class="risk-rules__risk">
 							<ui-checkbox
 								:model-value="rule.enabled"
@@ -173,10 +231,32 @@
 							>
 								{{ getRiskLabel(rule.risk_type) }}
 							</ui-checkbox>
+							<tooltip-helper
+								v-if="isRiskLevelRule(rule.risk_type) && isAmlBotProvider"
+								class="risk-rules__risk-help"
+								:title="$t('Risk level')"
+								:text="$t('AMLBot PRO mode signal limit')"
+								icon-color="#dd4c1e"
+								icon-type="400"
+								icon-size="sm"
+							/>
 						</div>
 
 						<div class="risk-rules__field">
-							<ui-input v-model="rule.threshold" type="number" size="md" @change="handleThresholdChange(rule)">
+							<ui-select
+								v-if="isRiskLevelRule(rule.risk_type)"
+								:model-value="String(rule.threshold)"
+								:options="riskLevelThresholdOptions"
+								size="md"
+								@update:model-value="(value) => handleRiskLevelThresholdChange(rule, value)"
+							/>
+							<ui-input
+								v-else
+								v-model="rule.threshold"
+								type="number"
+								size="md"
+								@change="handleThresholdChange(rule)"
+							>
 								<template #append>%</template>
 							</ui-input>
 						</div>
@@ -188,6 +268,68 @@
 								size="md"
 								@change="handleActionChange(rule)"
 							/>
+						</div>
+					</div>
+
+					<div v-if="secondaryRules.length" class="risk-rules__secondary">
+						<button
+							type="button"
+							class="risk-rules__toggle"
+							@click="isSecondaryExpanded = !isSecondaryExpanded"
+						>
+							<span>{{ isSecondaryExpanded ? $t("Hide") : $t("Show more") }}</span>
+							<ui-icon
+								class="risk-rules__toggle-icon"
+								:class="{ 'risk-rules__toggle-icon--open': isSecondaryExpanded }"
+								name="arrow-forward 1"
+								type="400"
+								size="md"
+							/>
+						</button>
+
+						<div
+							class="risk-rules__collapse"
+							:class="{ 'risk-rules__collapse--open': isSecondaryExpanded }"
+						>
+							<div class="risk-rules__collapse-clip">
+								<div class="risk-rules__collapse-inner">
+									<div
+										v-for="rule in secondaryRules"
+										:key="rule.risk_type"
+										class="risk-rules__row"
+									>
+										<div class="risk-rules__risk">
+											<ui-checkbox
+												:model-value="rule.enabled"
+												size="sm"
+												@update:model-value="(value: boolean) => handleToggleEnabled(rule, value)"
+											>
+												{{ getRiskLabel(rule.risk_type) }}
+											</ui-checkbox>
+										</div>
+
+										<div class="risk-rules__field">
+											<ui-input
+												v-model="rule.threshold"
+												type="number"
+												size="md"
+												@change="handleThresholdChange(rule)"
+											>
+												<template #append>%</template>
+											</ui-input>
+										</div>
+
+										<div class="risk-rules__field">
+											<ui-select
+												v-model="rule.action"
+												:options="getActionOptions(rule.risk_type)"
+												size="md"
+												@change="handleActionChange(rule)"
+											/>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -241,6 +383,15 @@
 			grid-template-columns: minmax(160px, 1fr) minmax(180px, 344px) minmax(180px, 344px);
 			gap: 34px;
 			align-items: center;
+
+			@media (max-width: 900px) {
+				grid-template-columns: 1fr;
+				gap: 12px;
+			}
+		}
+
+		&__row {
+			padding: 1px;
 		}
 
 		&__head {
@@ -248,6 +399,10 @@
 			border-radius: 12px;
 			background-color: $blue-opacity;
 			box-shadow: 0 0 8px rgba(0, 0, 0, 0.04);
+
+			@media (max-width: 900px) {
+				padding: 12px 16px;
+			}
 		}
 
 		&__head-cell {
@@ -261,6 +416,16 @@
 
 			&:first-child {
 				padding-left: 32px;
+
+				@media (max-width: 900px) {
+					padding-left: 0;
+				}
+			}
+
+			@media (max-width: 900px) {
+				&:not(:first-child) {
+					display: none;
+				}
 			}
 		}
 
@@ -271,12 +436,21 @@
 		}
 
 		&__risk {
+			display: flex;
+			align-items: center;
+			gap: 6px;
 			min-width: 0;
 
 			:deep(.ui-checkbox) {
 				align-items: center;
 				gap: 12px;
+				min-width: 0;
 			}
+		}
+
+		&__risk-help {
+			flex-shrink: 0;
+			line-height: 0;
 		}
 
 		&__field {
@@ -288,28 +462,63 @@
 				width: 100%;
 			}
 		}
-	}
 
-	@media (max-width: 900px) {
-		.risk-rules {
-			&__head,
-			&__row {
-				grid-template-columns: 1fr;
-				gap: 12px;
-			}
+		&__secondary {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
 
-			&__head {
-				padding: 12px 16px;
-			}
+		&__toggle {
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			padding: 4px 0;
+			border: none;
+			background: transparent;
+			color: $blue;
+			font-size: 14px;
+			font-weight: 500;
+			line-height: 20px;
+			cursor: pointer;
+			transition: opacity 0.2s ease;
 
-			&__head-cell {
-				&:first-child {
-					padding-left: 0;
+			@media (hover: hover) {
+				&:hover {
+					opacity: 0.7;
 				}
+			}
+		}
 
-				&:not(:first-child) {
-					display: none;
-				}
+		&__collapse {
+			display: grid;
+			grid-template-rows: 0fr;
+			width: 100%;
+			transition: grid-template-rows 0.3s ease;
+
+			&--open {
+				grid-template-rows: 1fr;
+			}
+		}
+
+		&__collapse-clip {
+			overflow: hidden;
+			min-height: 0;
+		}
+
+		&__collapse-inner {
+			display: flex;
+			flex-direction: column;
+			gap: 24px;
+			padding: 16px 0 0;
+		}
+
+		&__toggle-icon {
+			transform: rotate(90deg);
+			transition: transform 0.25s ease;
+
+			&--open {
+				transform: rotate(-90deg);
 			}
 		}
 	}

@@ -27,6 +27,7 @@ import { parsePagination } from "@dv-admin/utils/helpers/parsePagination";
 import { downloadBlobFile } from "@dv-admin/utils/helpers/downloadBlobFile.ts";
 import { useNotifications } from "@shared/utils/composables/useNotifications.ts";
 import { useGeneralStore } from "@dv-admin/stores/general";
+import i18n from "@dv-admin/utils/libs/i18n";
 
 export const useHotWalletsStore = defineStore("hotWallets", () => {
 	const { notify } = useNotifications();
@@ -211,7 +212,7 @@ export const useHotWalletsStore = defineStore("hotWallets", () => {
 			const response = await postApiWalletKeysHot(params);
 			const text = typeFile === "json" ? JSON.stringify(response) : response;
 			downloadBlobFile(text, typeFile === "json" ? "private-keys.json" : "private-keys.csv");
-			notify(message, "success");
+			notify(i18n.global.t(message), "success");
 		} catch (error: any) {
 			throw error;
 		}
