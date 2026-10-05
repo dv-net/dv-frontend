@@ -345,6 +345,7 @@
 	"Forced withdrawal to the processing wallet": "Принудительный вывод на процессинговый кошелек",
 	"Forgot your password": "Забыли пароль",
 	"Form without API is active": "Форма без API активна",
+	"Form without API tooltip": "Включает публичную ссылку на платёжную форму без интеграции через API. Включите настройку, чтобы показать и использовать ссылку",
 	"Format settings": "Настройки формата",
 	"Forwarding email address": "Адрес для пересылки",
 	"Forwarding is enabled. All funds received by hot wallets will be forwarded to cold wallets": "Пересылка включена. Все средства, поступившие на горячие кошельки, будут пересылаться на холодные",

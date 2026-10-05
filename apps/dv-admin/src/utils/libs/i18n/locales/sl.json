@@ -942,5 +942,19 @@
   "Your processing wallet": "Vaša denarnica za obdelavo",
   "Your request has been created. You can track the transaction's progress on the Transfers page": "Vaša zahteva je bila ustvarjena. Napredek transakcije lahko spremljate na strani Prenosi",
   "Your SMTP server address": "Naslov vašega strežnika SMTP",
-  "Your store domain": "Domena vaše trgovine"
+  "Your store domain": "Domena vaše trgovine",
+  "AMLBot PRO mode signal limit": "Za račune AMLBot v načinu PRO so podatki o signalih omejeni. Vrnjeni so samo signali z nizkim in srednjim tveganjem, iz kategorij visokega tveganja pa samo sankcije",
+  "failed to verify email": "Preverjanje e-pošte ni uspelo",
+  "failed to get mnemonic phrase owner seeds: internal: validate otp: failed to validate totp": "pridobivanje seedov lastnika mnemonične fraze ni uspelo: interno: preverjanje otp: preverjanje totp ni uspelo",
+  "failed update settings": "posodobitev nastavitev ni uspela",
+  "get hot wallet keys: internal: validate otp: failed to validate totp": "pridobi ključe vroče denarnice: interno: preverjanje OTP: preverjanje TOTP ni uspelo",
+  "incorrect verification code or email": "napačna potrditvena koda ali e-poštni naslov",
+  "invalid address": "neveljaven naslov",
+  "invalid API credentials": "neveljavne poverilnice API",
+  "invalid credentials": "neveljavni prijavni podatki",
+  "invalid OTP": "neveljaven OTP",
+  "min_balance_usd must be positive non-zero": "min_balance_usd mora biti pozitivno neničelno",
+  "store not found": "trgovina ni najdena",
+  "Unprocessable Entity": "Entitete ni mogoče obdelati",
+  "Form without API tooltip": "Omogoči javno povezavo do plačilnega obrazca za stranke brez integracije API. Vklopite jo, da prikažete in uporabite povezavo"
 }

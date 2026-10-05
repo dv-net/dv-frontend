@@ -942,5 +942,19 @@
   "Your processing wallet": "Az Ön feldolgozó tárcája",
   "Your request has been created. You can track the transaction's progress on the Transfers page": "A kérését létrehoztuk. A tranzakció előrehaladását az Átutalások oldalon követheti nyomon",
   "Your SMTP server address": "Az Ön SMTP-szerverének címe",
-  "Your store domain": "Az üzleted domainje"
+  "Your store domain": "Az üzleted domainje",
+  "AMLBot PRO mode signal limit": "PRO módú AMLBot-fiókok esetén a jelzési adatok korlátozottak. Csak az alacsony és közepes jelzések kerülnek visszaadásra, a magas kockázatú kategóriák közül pedig csak a szankciók",
+  "failed to verify email": "nem sikerült ellenőrizni az e-mail-címet",
+  "failed to get mnemonic phrase owner seeds: internal: validate otp: failed to validate totp": "nem sikerült lekérni a mnemonikus kifejezés tulajdonosi seedjeit: belső: otp ellenőrzése: nem sikerült ellenőrizni a totp-t",
+  "failed update settings": "nem sikerült frissíteni a beállításokat",
+  "get hot wallet keys: internal: validate otp: failed to validate totp": "hot wallet kulcsok lekérése: belső: otp ellenőrzése: nem sikerült ellenőrizni a totp-t",
+  "incorrect verification code or email": "helytelen ellenőrző kód vagy e-mail",
+  "invalid address": "érvénytelen cím",
+  "invalid API credentials": "érvénytelen API-hitelesítő adatok",
+  "invalid credentials": "érvénytelen hitelesítő adatok",
+  "invalid OTP": "érvénytelen OTP",
+  "min_balance_usd must be positive non-zero": "min_balance_usd értékének pozitív, nullától eltérő értéknek kell lennie",
+  "store not found": "üzlet nem található",
+  "Unprocessable Entity": "Feldolgozhatatlan entitás",
+  "Form without API tooltip": "Nyilvános fizetési űrlaplinket engedélyez az API-integráció nélküli ügyfelek számára. Kapcsold be a link megjelenítéséhez és használatához"
 }

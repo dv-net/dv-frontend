@@ -942,5 +942,19 @@
   "Your processing wallet": "محفظة المعالجة الخاصة بك",
   "Your request has been created. You can track the transaction's progress on the Transfers page": "تم إنشاء طلبك. يمكنك تتبع تقدم المعاملة في صفحة التحويلات",
   "Your SMTP server address": "عنوان خادم SMTP الخاص بك",
-  "Your store domain": "نطاق متجرك"
+  "Your store domain": "نطاق متجرك",
+  "AMLBot PRO mode signal limit": "بالنسبة لحسابات AMLBot في وضع PRO، تكون بيانات الإشارات محدودة. يتم إرجاع إشارات Low وMedium فقط، ومن فئات المخاطر High-risk يتم إرجاع Sanctions فقط",
+  "failed to verify email": "فشل التحقق من البريد الإلكتروني",
+  "failed to get mnemonic phrase owner seeds: internal: validate otp: failed to validate totp": "فشل في الحصول على بذور مالك العبارة التذكيرية: داخلي: التحقق من OTP: فشل التحقق من TOTP",
+  "failed update settings": "فشل تحديث الإعدادات",
+  "get hot wallet keys: internal: validate otp: failed to validate totp": "الحصول على مفاتيح المحفظة الساخنة: داخلي: التحقق من OTP: فشل التحقق من TOTP",
+  "incorrect verification code or email": "رمز التحقق أو البريد الإلكتروني غير صحيح",
+  "invalid address": "عنوان غير صالح",
+  "invalid API credentials": "بيانات اعتماد API غير صالحة",
+  "invalid credentials": "بيانات الاعتماد غير صالحة",
+  "invalid OTP": "رمز OTP غير صالح",
+  "min_balance_usd must be positive non-zero": "يجب أن يكون min_balance_usd موجبًا وغير صفري",
+  "store not found": "لم يتم العثور على المتجر",
+  "Unprocessable Entity": "كيان غير قابل للمعالجة",
+  "Form without API tooltip": "يُفعّل رابط نموذج دفع عام للعملاء بدون تكامل API. شغّله لعرض الرابط واستخدامه"
 }

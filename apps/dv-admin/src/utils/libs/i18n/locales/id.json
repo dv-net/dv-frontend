@@ -942,5 +942,19 @@
   "Your processing wallet": "Dompet pemrosesan Anda",
   "Your request has been created. You can track the transaction's progress on the Transfers page": "Permintaan Anda telah dibuat. Anda dapat melacak progres transaksi di halaman Transfer",
   "Your SMTP server address": "Alamat server SMTP Anda",
-  "Your store domain": "Domain toko Anda"
+  "Your store domain": "Domain toko Anda",
+  "AMLBot PRO mode signal limit": "Untuk akun AMLBot dalam mode PRO, data sinyal dibatasi. Hanya sinyal Rendah dan Sedang yang dikembalikan, dan dari kategori berisiko tinggi hanya Sanksi",
+  "failed to verify email": "gagal memverifikasi email",
+  "failed to get mnemonic phrase owner seeds: internal: validate otp: failed to validate totp": "gagal mendapatkan seed pemilik frasa mnemonik: internal: validasi OTP: gagal memvalidasi TOTP",
+  "failed update settings": "gagal memperbarui pengaturan",
+  "get hot wallet keys: internal: validate otp: failed to validate totp": "dapatkan kunci hot wallet: internal: validasi otp: gagal memvalidasi totp",
+  "incorrect verification code or email": "kode verifikasi atau email salah",
+  "invalid address": "alamat tidak valid",
+  "invalid API credentials": "kredensial API tidak valid",
+  "invalid credentials": "kredensial tidak valid",
+  "invalid OTP": "OTP tidak valid",
+  "min_balance_usd must be positive non-zero": "min_balance_usd harus bernilai positif dan bukan nol",
+  "store not found": "toko tidak ditemukan",
+  "Unprocessable Entity": "Entitas Tidak Dapat Diproses",
+  "Form without API tooltip": "Mengaktifkan tautan formulir pembayaran publik untuk pelanggan tanpa integrasi API. Aktifkan untuk menampilkan dan menggunakan tautan tersebut"
 }

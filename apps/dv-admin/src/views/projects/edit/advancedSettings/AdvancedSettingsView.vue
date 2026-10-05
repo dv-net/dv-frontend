@@ -263,17 +263,19 @@
 						<template #append>$</template>
 					</ui-input>
 				</ui-form-item>
-				<ui-form-item :label="$t('Link to payment form without API')">
+				<ui-form-item
+					:class="{ 'link-pay-form--hidden': !currentProject.public_payment_form_enabled }"
+					:label="$t('Link to payment form without API')"
+				>
 					<div class="link">
 						<span class="link__text">{{ linkPayForm }}</span>
 						<ui-copy-text :copied-text="linkPayForm" color-icon="#6b6d80" />
 					</div>
 				</ui-form-item>
-				<ui-switch
-					class="mt-8"
-					v-model="currentProject.public_payment_form_enabled"
-					:text="$t('Form without API is active')"
-				/>
+				<div class="form__switch mt-8">
+					<ui-switch v-model="currentProject.public_payment_form_enabled" :text="$t('Form without API is active')" />
+					<tooltip-helper :title="$t('Form without API is active')" :text="$t('Form without API tooltip')" />
+				</div>
 			</div>
 		</block-section>
 		<div class="advanced__footer">
@@ -281,7 +283,7 @@
 				mode="neutral"
 				size="xl"
 				left-icon-name="check-circle"
-				left-icon-type="filled"
+				left-icon-type="400"
 				:loading="isSaving"
 				@click="handlePutOneProject"
 			>
@@ -404,6 +406,14 @@
 						line-height: 16px;
 					}
 				}
+			}
+			&__switch {
+				display: flex;
+				align-items: center;
+				gap: 8px;
+			}
+			.link-pay-form--hidden {
+				visibility: hidden;
 			}
 			.link {
 				display: flex;

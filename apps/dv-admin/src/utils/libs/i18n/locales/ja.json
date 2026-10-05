@@ -942,5 +942,19 @@
   "Your processing wallet": "あなたの処理用ウォレット",
   "Your request has been created. You can track the transaction's progress on the Transfers page": "リクエストが作成されました。取引の進行状況は Transfers ページで確認できます",
   "Your SMTP server address": "お客様のSMTPサーバーアドレス",
-  "Your store domain": "ストアのドメイン"
+  "Your store domain": "ストアのドメイン",
+  "AMLBot PRO mode signal limit": "PROモードのAMLBotアカウントでは、シグナルデータが制限されます。LowおよびMediumのシグナルのみが返され、High-riskカテゴリからはSanctionsのみが返されます。",
+  "failed to verify email": "メールアドレスの確認に失敗しました",
+  "failed to get mnemonic phrase owner seeds: internal: validate otp: failed to validate totp": "ニーモニックフレーズ所有者シードの取得に失敗しました: internal: validate otp: totp の検証に失敗しました",
+  "failed update settings": "設定の更新に失敗しました",
+  "get hot wallet keys: internal: validate otp: failed to validate totp": "ホットウォレットキーを取得: 内部: otpを検証: totpの検証に失敗しました",
+  "incorrect verification code or email": "認証コードまたはメールアドレスが正しくありません",
+  "invalid address": "無効なアドレス",
+  "invalid API credentials": "API認証情報が無効です",
+  "invalid credentials": "認証情報が無効です",
+  "invalid OTP": "無効なOTP",
+  "min_balance_usd must be positive non-zero": "min_balance_usd は 0 より大きい値である必要があります",
+  "store not found": "ストアが見つかりません",
+  "Unprocessable Entity": "処理できないエンティティ",
+  "Form without API tooltip": "API連携なしで顧客が利用できる公開決済フォームリンクを有効にします。リンクを表示して使用するにはオンにしてください"
 }

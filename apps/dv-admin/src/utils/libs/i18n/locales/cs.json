@@ -942,5 +942,19 @@
   "Your processing wallet": "Vaše peněženka pro zpracování",
   "Your request has been created. You can track the transaction's progress on the Transfers page": "Váš požadavek byl vytvořen. Průběh transakce můžete sledovat na stránce Převody",
   "Your SMTP server address": "Adresa vašeho SMTP serveru",
-  "Your store domain": "Doména vašeho obchodu"
+  "Your store domain": "Doména vašeho obchodu",
+  "AMLBot PRO mode signal limit": "Pro účty AMLBot v režimu PRO jsou data signálů omezená. Vracejí se pouze signály s nízkým a středním rizikem a z vysoce rizikových kategorií pouze sankce.",
+  "failed to verify email": "nepodařilo se ověřit e-mail",
+  "failed to get mnemonic phrase owner seeds: internal: validate otp: failed to validate totp": "nepodařilo se získat seedy vlastníka mnemonické fráze: interní: ověřit otp: nepodařilo se ověřit totp",
+  "failed update settings": "Nepodařilo se aktualizovat nastavení",
+  "get hot wallet keys: internal: validate otp: failed to validate totp": "získat klíče hot wallet: interní: ověřit otp: ověření totp se nezdařilo",
+  "incorrect verification code or email": "nesprávný ověřovací kód nebo e-mail",
+  "invalid address": "neplatná adresa",
+  "invalid API credentials": "neplatné přihlašovací údaje API",
+  "invalid credentials": "neplatné přihlašovací údaje",
+  "invalid OTP": "neplatné OTP",
+  "min_balance_usd must be positive non-zero": "min_balance_usd musí být kladné nenulové číslo",
+  "store not found": "obchod nenalezen",
+  "Unprocessable Entity": "Nezpracovatelná entita",
+  "Form without API tooltip": "Povolí veřejný odkaz na platební formulář pro zákazníky bez integrace API. Zapněte jej, aby se odkaz zobrazil a bylo možné jej použít"
 }

@@ -14,7 +14,7 @@
 
 	const { modelValue, type } = toRefs(props);
 
-	const { userData2Fa } = storeToRefs(useAuthStore());
+	const { userData2Fa, verificationCode2Fa } = storeToRefs(useAuthStore());
 	const { walletSeeds, walletKeys } = storeToRefs(useHotWalletsStore());
 
 	const isOpen = computed<boolean>({
@@ -25,6 +25,7 @@
 	const handleCloseDialog = () => {
 		walletSeeds.value = {};
 		walletKeys.value = {};
+		verificationCode2Fa.value = "";
 	};
 </script>
 

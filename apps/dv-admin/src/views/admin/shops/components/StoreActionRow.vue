@@ -123,7 +123,7 @@
 							type="secondary"
 							size="xl"
 							left-icon-name="check-circle"
-							left-icon-type="filled"
+							left-icon-type="400"
 							left-icon-color="rgba(48, 51, 69, 1)"
 							:loading="isSubmitting"
 							:disabled="!reasonText.trim()"

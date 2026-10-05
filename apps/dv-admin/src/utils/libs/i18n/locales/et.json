@@ -942,5 +942,19 @@
   "Your processing wallet": "Teie töötlemisrahakott",
   "Your request has been created. You can track the transaction's progress on the Transfers page": "Teie taotlus on loodud. Tehingu edenemist saate jälgida ülekannete lehel",
   "Your SMTP server address": "Teie SMTP-serveri aadress",
-  "Your store domain": "Teie poe domeen"
+  "Your store domain": "Teie poe domeen",
+  "AMLBot PRO mode signal limit": "AMLBoti kontode puhul PRO-režiimis on signaaliandmed piiratud. Tagastatakse ainult madala ja keskmise taseme signaalid ning kõrge riskiga kategooriatest ainult sanktsioonid",
+  "failed to verify email": "E-posti aadressi kinnitamine ebaõnnestus",
+  "failed to get mnemonic phrase owner seeds: internal: validate otp: failed to validate totp": "mnemofraasi omaniku seemnete hankimine ebaõnnestus: sisemine: otp valideerimine: totp valideerimine ebaõnnestus",
+  "failed update settings": "seadete värskendamine ebaõnnestus",
+  "get hot wallet keys: internal: validate otp: failed to validate totp": "hangi kuuma rahakoti võtmed: sisemine: valideeri otp: totp valideerimine ebaõnnestus",
+  "incorrect verification code or email": "Vale kinnituskood või e-posti aadress",
+  "invalid address": "kehtetu aadress",
+  "invalid API credentials": "kehtetud API mandaadid",
+  "invalid credentials": "kehtetud sisselogimisandmed",
+  "invalid OTP": "kehtetu OTP",
+  "min_balance_usd must be positive non-zero": "min_balance_usd peab olema positiivne ja nullist erinev",
+  "store not found": "poodi ei leitud",
+  "Unprocessable Entity": "Töötlematu olem",
+  "Form without API tooltip": "Võimaldab avaliku maksevormi lingi klientidele ilma API-integratsioonita. Lülita see sisse, et linki kuvada ja kasutada"
 }

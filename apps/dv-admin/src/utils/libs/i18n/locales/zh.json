@@ -942,5 +942,19 @@
   "Your processing wallet": "您的处理钱包",
   "Your request has been created. You can track the transaction's progress on the Transfers page": "您的请求已创建。您可以在 Transfers 页面跟踪交易进度",
   "Your SMTP server address": "您的 SMTP 服务器地址",
-  "Your store domain": "您的商店域名"
+  "Your store domain": "您的商店域名",
+  "AMLBot PRO mode signal limit": "对于处于 PRO 模式的 AMLBot 账户，信号数据受限。仅返回低风险和中风险信号，而高风险类别中仅返回制裁。",
+  "failed to verify email": "验证邮箱失败",
+  "failed to get mnemonic phrase owner seeds: internal: validate otp: failed to validate totp": "获取助记词所有者种子失败：内部错误：验证 otp：验证 totp 失败",
+  "failed update settings": "更新设置失败",
+  "get hot wallet keys: internal: validate otp: failed to validate totp": "获取热钱包密钥：内部：验证 OTP：验证 TOTP 失败",
+  "incorrect verification code or email": "验证码或邮箱不正确",
+  "invalid address": "地址无效",
+  "invalid API credentials": "API 凭据无效",
+  "invalid credentials": "凭据无效",
+  "invalid OTP": "OTP 无效",
+  "min_balance_usd must be positive non-zero": "min_balance_usd 必须为非零正数",
+  "store not found": "未找到商店",
+  "Unprocessable Entity": "无法处理的实体",
+  "Form without API tooltip": "为没有 API 集成的客户启用公开支付表单链接。开启后即可显示并使用该链接"
 }

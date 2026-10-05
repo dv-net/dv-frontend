@@ -180,7 +180,15 @@
 			:is-show-banner="isShowWarning"
 		/>
 
-		<ui-button mode="neutral" size="xl" :loading="isLoadingPutExchangePairs" @click="putExchangePairs(slug)">
+		<ui-button
+			mode="neutral"
+			size="xl"
+			left-icon-name="check-circle"
+			left-icon-type="400"
+			:loading="isLoadingPutExchangePairs"
+			:disabled="isShowWarning"
+			@click="putExchangePairs(slug)"
+		>
 			{{ $t("Save") }}
 		</ui-button>
 	</div>

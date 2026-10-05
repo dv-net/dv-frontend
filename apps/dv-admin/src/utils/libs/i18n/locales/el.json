@@ -942,5 +942,19 @@
   "Your processing wallet": "Το πορτοφόλι επεξεργασίας σας",
   "Your request has been created. You can track the transaction's progress on the Transfers page": "Το αίτημά σας έχει δημιουργηθεί. Μπορείτε να παρακολουθείτε την πρόοδο της συναλλαγής στη σελίδα Μεταφορές",
   "Your SMTP server address": "Η διεύθυνση του διακομιστή SMTP σας",
-  "Your store domain": "Το domain του καταστήματός σας"
+  "Your store domain": "Το domain του καταστήματός σας",
+  "AMLBot PRO mode signal limit": "Για λογαριασμούς AMLBot σε λειτουργία PRO, τα δεδομένα σημάτων είναι περιορισμένα. Επιστρέφονται μόνο σήματα χαμηλού και μεσαίου κινδύνου, και από τις κατηγορίες υψηλού κινδύνου μόνο οι Κυρώσεις",
+  "failed to verify email": "απέτυχε η επαλήθευση email",
+  "failed to get mnemonic phrase owner seeds: internal: validate otp: failed to validate totp": "απέτυχε η λήψη των seed κατόχου της μνημονικής φράσης: εσωτερικό: επικύρωση otp: αποτυχία επικύρωσης totp",
+  "failed update settings": "απέτυχε η ενημέρωση των ρυθμίσεων",
+  "get hot wallet keys: internal: validate otp: failed to validate totp": "λήψη κλειδιών hot wallet: εσωτερικό: επικύρωση otp: απέτυχε η επικύρωση totp",
+  "incorrect verification code or email": "λανθασμένος κωδικός επαλήθευσης ή email",
+  "invalid address": "μη έγκυρη διεύθυνση",
+  "invalid API credentials": "μη έγκυρα διαπιστευτήρια API",
+  "invalid credentials": "μη έγκυρα διαπιστευτήρια",
+  "invalid OTP": "μη έγκυρο OTP",
+  "min_balance_usd must be positive non-zero": "min_balance_usd πρέπει να είναι θετικό και μη μηδενικό",
+  "store not found": "το κατάστημα δεν βρέθηκε",
+  "Unprocessable Entity": "Μη επεξεργάσιμη οντότητα",
+  "Form without API tooltip": "Ενεργοποιεί έναν δημόσιο σύνδεσμο φόρμας πληρωμής για πελάτες χωρίς ενσωμάτωση API. Ενεργοποιήστε το για να εμφανιστεί και να χρησιμοποιηθεί ο σύνδεσμος"
 }

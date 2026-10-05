@@ -942,5 +942,19 @@
   "Your processing wallet": "Ví xử lý của bạn",
   "Your request has been created. You can track the transaction's progress on the Transfers page": "Yêu cầu của bạn đã được tạo. Bạn có thể theo dõi tiến trình giao dịch trên trang Chuyển tiền",
   "Your SMTP server address": "Địa chỉ máy chủ SMTP của bạn",
-  "Your store domain": "Tên miền cửa hàng của bạn"
+  "Your store domain": "Tên miền cửa hàng của bạn",
+  "AMLBot PRO mode signal limit": "Đối với tài khoản AMLBot ở chế độ PRO, dữ liệu tín hiệu bị giới hạn. Chỉ trả về các tín hiệu Thấp và Trung bình, và trong các danh mục rủi ro cao chỉ có Lệnh trừng phạt",
+  "failed to verify email": "không thể xác minh email",
+  "failed to get mnemonic phrase owner seeds: internal: validate otp: failed to validate totp": "không lấy được seed của chủ sở hữu cụm từ ghi nhớ: nội bộ: xác thực otp: không xác thực được totp",
+  "failed update settings": "Không cập nhật được cài đặt",
+  "get hot wallet keys: internal: validate otp: failed to validate totp": "lấy khóa ví nóng: nội bộ: xác thực otp: không thể xác thực totp",
+  "incorrect verification code or email": "mã xác minh hoặc email không đúng",
+  "invalid address": "địa chỉ không hợp lệ",
+  "invalid API credentials": "thông tin xác thực API không hợp lệ",
+  "invalid credentials": "thông tin đăng nhập không hợp lệ",
+  "invalid OTP": "OTP không hợp lệ",
+  "min_balance_usd must be positive non-zero": "min_balance_usd phải là số dương khác 0",
+  "store not found": "không tìm thấy cửa hàng",
+  "Unprocessable Entity": "Thực thể không thể xử lý",
+  "Form without API tooltip": "Bật liên kết biểu mẫu thanh toán công khai cho khách hàng mà không cần tích hợp API. Bật tùy chọn này để hiển thị và sử dụng liên kết"
 }

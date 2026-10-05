@@ -942,5 +942,19 @@
   "Your processing wallet": "Uw verwerkingswallet",
   "Your request has been created. You can track the transaction's progress on the Transfers page": "Uw verzoek is aangemaakt. U kunt de voortgang van de transactie volgen op de Transfers-pagina",
   "Your SMTP server address": "Het adres van uw SMTP-server",
-  "Your store domain": "Je winkeldomein"
+  "Your store domain": "Je winkeldomein",
+  "AMLBot PRO mode signal limit": "Voor AMLBot-accounts in PRO-modus zijn signaalgegevens beperkt. Alleen signalen met Laag en Gemiddeld worden geretourneerd, en van de hoogrisicocategorieën alleen Sancties",
+  "failed to verify email": "verifiëren van e-mail mislukt",
+  "failed to get mnemonic phrase owner seeds: internal: validate otp: failed to validate totp": "ophalen van seeds van eigenaar van mnemonic phrase mislukt: intern: otp valideren: totp valideren mislukt",
+  "failed update settings": "Instellingen bijwerken mislukt",
+  "get hot wallet keys: internal: validate otp: failed to validate totp": "hot wallet-sleutels ophalen: intern: otp valideren: totp valideren mislukt",
+  "incorrect verification code or email": "onjuiste verificatiecode of e-mailadres",
+  "invalid address": "ongeldig adres",
+  "invalid API credentials": "ongeldige API-inloggegevens",
+  "invalid credentials": "ongeldige inloggegevens",
+  "invalid OTP": "ongeldige OTP",
+  "min_balance_usd must be positive non-zero": "min_balance_usd moet positief en niet nul zijn",
+  "store not found": "winkel niet gevonden",
+  "Unprocessable Entity": "Onverwerkbare entiteit",
+  "Form without API tooltip": "Schakelt een openbare link naar een betaalformulier in voor klanten zonder API-integratie. Schakel dit in om de link weer te geven en te gebruiken"
 }

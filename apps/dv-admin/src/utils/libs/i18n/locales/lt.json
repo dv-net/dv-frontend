@@ -942,5 +942,19 @@
   "Your processing wallet": "Jūsų apdorojimo piniginė",
   "Your request has been created. You can track the transaction's progress on the Transfers page": "Jūsų užklausa sukurta. Operacijos eigą galite stebėti Pervedimų puslapyje",
   "Your SMTP server address": "Jūsų SMTP serverio adresas",
-  "Your store domain": "Jūsų parduotuvės domenas"
+  "Your store domain": "Jūsų parduotuvės domenas",
+  "AMLBot PRO mode signal limit": "AMLBot paskyroms PRO režimu signalų duomenys yra riboti. Grąžinami tik žemo ir vidutinio lygio signalai, o iš aukštos rizikos kategorijų – tik sankcijos",
+  "failed to verify email": "Nepavyko patvirtinti el. pašto",
+  "failed to get mnemonic phrase owner seeds: internal: validate otp: failed to validate totp": "nepavyko gauti mnemoninės frazės savininko sėklų: vidinė klaida: patvirtinti otp: nepavyko patvirtinti totp",
+  "failed update settings": "Nepavyko atnaujinti nustatymų",
+  "get hot wallet keys: internal: validate otp: failed to validate totp": "gauti karštosios piniginės raktus: vidinė klaida: patikrinti otp: nepavyko patikrinti totp",
+  "incorrect verification code or email": "neteisingas patvirtinimo kodas arba el. pašto adresas",
+  "invalid address": "neteisingas adresas",
+  "invalid API credentials": "neteisingi API prisijungimo duomenys",
+  "invalid credentials": "neteisingi prisijungimo duomenys",
+  "invalid OTP": "neteisingas OTP",
+  "min_balance_usd must be positive non-zero": "min_balance_usd reikšmė turi būti teigiama ir nenulinė",
+  "store not found": "parduotuvė nerasta",
+  "Unprocessable Entity": "Neapdorojamas objektas",
+  "Form without API tooltip": "Įgalina viešą mokėjimo formos nuorodą klientams be API integracijos. Įjunkite, kad būtų rodoma ir galima naudoti nuorodą"
 }

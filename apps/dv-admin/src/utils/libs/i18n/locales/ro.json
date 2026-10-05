@@ -942,5 +942,19 @@
   "Your processing wallet": "Portofelul dvs. de procesare",
   "Your request has been created. You can track the transaction's progress on the Transfers page": "Solicitarea dvs. a fost creată. Puteți urmări progresul tranzacției pe pagina Transferuri",
   "Your SMTP server address": "Adresa serverului dvs. SMTP",
-  "Your store domain": "Domeniul magazinului tău"
+  "Your store domain": "Domeniul magazinului tău",
+  "AMLBot PRO mode signal limit": "Pentru conturile AMLBot în modul PRO, datele semnalelor sunt limitate. Sunt returnate doar semnalele Low și Medium, iar din categoriile High-risk doar Sanctions",
+  "failed to verify email": "nu s-a putut verifica e-mailul",
+  "failed to get mnemonic phrase owner seeds: internal: validate otp: failed to validate totp": "nu s-au putut obține seed-urile proprietarului frazei mnemonice: intern: validare otp: validarea totp a eșuat",
+  "failed update settings": "actualizarea setărilor a eșuat",
+  "get hot wallet keys: internal: validate otp: failed to validate totp": "obținere chei hot wallet: intern: validare otp: validarea totp a eșuat",
+  "incorrect verification code or email": "cod de verificare sau e-mail incorect",
+  "invalid address": "adresă invalidă",
+  "invalid API credentials": "date de autentificare API nevalide",
+  "invalid credentials": "acreditări nevalide",
+  "invalid OTP": "OTP invalid",
+  "min_balance_usd must be positive non-zero": "min_balance_usd trebuie să fie pozitiv și diferit de zero",
+  "store not found": "magazinul nu a fost găsit",
+  "Unprocessable Entity": "Entitate neprocesabilă",
+  "Form without API tooltip": "Activează un link public către formularul de plată pentru clienți fără integrare API. Activează-l pentru a afișa și utiliza linkul"
 }

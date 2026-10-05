@@ -942,5 +942,19 @@
   "Your processing wallet": "Din processeringsplånbok",
   "Your request has been created. You can track the transaction's progress on the Transfers page": "Din begäran har skapats. Du kan följa transaktionens förlopp på sidan Överföringar",
   "Your SMTP server address": "Din SMTP-serveradress",
-  "Your store domain": "Din butiksdomän"
+  "Your store domain": "Din butiksdomän",
+  "AMLBot PRO mode signal limit": "För AMLBot-konton i PRO-läge är signaldata begränsade. Endast signaler på nivåerna Låg och Medel returneras, och från högriskkategorier endast Sanktioner",
+  "failed to verify email": "det gick inte att verifiera e-postadressen",
+  "failed to get mnemonic phrase owner seeds: internal: validate otp: failed to validate totp": "misslyckades med att hämta ägarens seeds för minnesfras: internt: validera otp: misslyckades med att validera totp",
+  "failed update settings": "misslyckades med att uppdatera inställningar",
+  "get hot wallet keys: internal: validate otp: failed to validate totp": "hämta hot wallet-nycklar: internt: validera OTP: kunde inte validera TOTP",
+  "incorrect verification code or email": "felaktig verifieringskod eller e-post",
+  "invalid address": "ogiltig adress",
+  "invalid API credentials": "ogiltiga API-uppgifter",
+  "invalid credentials": "ogiltiga inloggningsuppgifter",
+  "invalid OTP": "ogiltig OTP",
+  "min_balance_usd must be positive non-zero": "min_balance_usd måste vara positivt och inte noll",
+  "store not found": "butiken hittades inte",
+  "Unprocessable Entity": "Obearbetbar entitet",
+  "Form without API tooltip": "Aktiverar en offentlig länk till ett betalningsformulär för kunder utan API-integration. Slå på den för att visa och använda länken"
 }

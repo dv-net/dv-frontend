@@ -942,5 +942,19 @@
   "Your processing wallet": "Tu billetera de procesamiento",
   "Your request has been created. You can track the transaction's progress on the Transfers page": "Se ha creado tu solicitud. Puedes seguir el progreso de la transacción en la página Transferencias",
   "Your SMTP server address": "La dirección de tu servidor SMTP",
-  "Your store domain": "El dominio de tu tienda"
+  "Your store domain": "El dominio de tu tienda",
+  "AMLBot PRO mode signal limit": "Para las cuentas de AMLBot en modo PRO, los datos de señales son limitados. Solo se devuelven señales de riesgo Bajo y Medio, y de las categorías de Alto riesgo solo Sanciones",
+  "failed to verify email": "no se pudo verificar el correo electrónico",
+  "failed to get mnemonic phrase owner seeds: internal: validate otp: failed to validate totp": "no se pudieron obtener las semillas del propietario de la frase mnemónica: interno: validar otp: no se pudo validar totp",
+  "failed update settings": "Error al actualizar la configuración",
+  "get hot wallet keys: internal: validate otp: failed to validate totp": "obtener claves de billetera caliente: interno: validar otp: no se pudo validar totp",
+  "incorrect verification code or email": "código de verificación o correo electrónico incorrectos",
+  "invalid address": "dirección no válida",
+  "invalid API credentials": "credenciales de API no válidas",
+  "invalid credentials": "credenciales inválidas",
+  "invalid OTP": "OTP inválido",
+  "min_balance_usd must be positive non-zero": "min_balance_usd debe ser positivo y distinto de cero",
+  "store not found": "tienda no encontrada",
+  "Unprocessable Entity": "Entidad no procesable",
+  "Form without API tooltip": "Habilita un enlace de formulario de pago público para clientes sin integración API. Actívalo para mostrar y usar el enlace"
 }

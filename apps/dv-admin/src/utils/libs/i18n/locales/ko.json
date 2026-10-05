@@ -942,5 +942,19 @@
   "Your processing wallet": "회원님의 처리 지갑",
   "Your request has been created. You can track the transaction's progress on the Transfers page": "요청이 생성되었습니다. 이체 페이지에서 트랜잭션 진행 상황을 추적할 수 있습니다",
   "Your SMTP server address": "SMTP 서버 주소",
-  "Your store domain": "스토어 도메인"
+  "Your store domain": "스토어 도메인",
+  "AMLBot PRO mode signal limit": "PRO 모드의 AMLBot 계정에서는 신호 데이터가 제한됩니다. Low 및 Medium 신호만 반환되며, High-risk 카테고리 중에서는 Sanctions만 반환됩니다",
+  "failed to verify email": "이메일 인증에 실패했습니다",
+  "failed to get mnemonic phrase owner seeds: internal: validate otp: failed to validate totp": "니모닉 문구 소유자 시드를 가져오지 못했습니다: 내부 오류: OTP 검증: TOTP 검증에 실패했습니다",
+  "failed update settings": "설정 업데이트 실패",
+  "get hot wallet keys: internal: validate otp: failed to validate totp": "핫 월렛 키 가져오기: 내부: OTP 검증: TOTP 검증 실패",
+  "incorrect verification code or email": "인증 코드 또는 이메일이 올바르지 않습니다",
+  "invalid address": "잘못된 주소",
+  "invalid API credentials": "잘못된 API 자격 증명",
+  "invalid credentials": "인증 정보가 올바르지 않습니다",
+  "invalid OTP": "유효하지 않은 OTP",
+  "min_balance_usd must be positive non-zero": "min_balance_usd은(는) 0보다 큰 값이어야 합니다",
+  "store not found": "스토어를 찾을 수 없음",
+  "Unprocessable Entity": "처리할 수 없는 엔터티",
+  "Form without API tooltip": "API 연동 없이 고객에게 공개 결제 양식 링크를 활성화합니다. 링크를 표시하고 사용하려면 켜세요"
 }

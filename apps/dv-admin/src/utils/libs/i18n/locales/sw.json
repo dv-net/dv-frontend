@@ -942,5 +942,19 @@
   "Your processing wallet": "Pochi yako ya uchakataji",
   "Your request has been created. You can track the transaction's progress on the Transfers page": "Ombi lako limeundwa. Unaweza kufuatilia maendeleo ya muamala kwenye ukurasa wa Uhamisho",
   "Your SMTP server address": "Anwani ya seva yako ya SMTP",
-  "Your store domain": "Kikoa cha duka lako"
+  "Your store domain": "Kikoa cha duka lako",
+  "AMLBot PRO mode signal limit": "Kwa akaunti za AMLBot katika hali ya PRO, data ya viashiria imewekewa kikomo. Ni viashiria vya Low na Medium pekee vinavyorejeshwa, na kutoka kwenye kategoria za High-risk ni Sanctions pekee",
+  "failed to verify email": "imeshindwa kuthibitisha barua pepe",
+  "failed to get mnemonic phrase owner seeds: internal: validate otp: failed to validate totp": "imeshindwa kupata mbegu za mmiliki wa kifungu cha mnemonic: ya ndani: thibitisha otp: imeshindwa kuthibitisha totp",
+  "failed update settings": "Imeshindwa kusasisha mipangilio",
+  "get hot wallet keys: internal: validate otp: failed to validate totp": "pata funguo za hot wallet: ya ndani: thibitisha otp: imeshindwa kuthibitisha totp",
+  "incorrect verification code or email": "msimbo wa uthibitishaji au barua pepe si sahihi",
+  "invalid address": "anwani batili",
+  "invalid API credentials": "vitambulisho vya API si sahihi",
+  "invalid credentials": "vitambulisho batili",
+  "invalid OTP": "OTP batili",
+  "min_balance_usd must be positive non-zero": "min_balance_usd lazima iwe chanya na si sifuri",
+  "store not found": "duka halijapatikana",
+  "Unprocessable Entity": "Huluki Isiyoweza Kuchakatwa",
+  "Form without API tooltip": "Huwezesha kiungo cha fomu ya malipo ya umma kwa wateja bila ujumuishaji wa API. Washa ili kuonyesha na kutumia kiungo"
 }

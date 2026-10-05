@@ -942,5 +942,19 @@
   "Your processing wallet": "Käsittelylompakkosi",
   "Your request has been created. You can track the transaction's progress on the Transfers page": "Pyyntösi on luotu. Voit seurata tapahtuman etenemistä Siirrot-sivulla",
   "Your SMTP server address": "SMTP-palvelimesi osoite",
-  "Your store domain": "Kauppasi verkkotunnus"
+  "Your store domain": "Kauppasi verkkotunnus",
+  "AMLBot PRO mode signal limit": "PRO-tilassa olevilla AMLBot-tileillä signaalitiedot ovat rajoitettuja. Vain matalan ja keskitasoisen riskin signaalit palautetaan, ja korkean riskin kategorioista vain pakotteet",
+  "failed to verify email": "sähköpostin vahvistaminen epäonnistui",
+  "failed to get mnemonic phrase owner seeds: internal: validate otp: failed to validate totp": "muistilauseen omistajan siementen hakeminen epäonnistui: sisäinen: vahvista otp: totp:n vahvistaminen epäonnistui",
+  "failed update settings": "Asetusten päivitys epäonnistui",
+  "get hot wallet keys: internal: validate otp: failed to validate totp": "hae kuumalompakon avaimet: sisäinen: vahvista otp: totp:n vahvistus epäonnistui",
+  "incorrect verification code or email": "virheellinen vahvistuskoodi tai sähköposti",
+  "invalid address": "virheellinen osoite",
+  "invalid API credentials": "virheelliset API-tunnistetiedot",
+  "invalid credentials": "virheelliset kirjautumistiedot",
+  "invalid OTP": "virheellinen OTP",
+  "min_balance_usd must be positive non-zero": "min_balance_usd on oltava positiivinen ja nollasta poikkeava",
+  "store not found": "kauppaa ei löytynyt",
+  "Unprocessable Entity": "Käsittelykelvoton entiteetti",
+  "Form without API tooltip": "Mahdollistaa julkisen maksulomakelinkin asiakkaille ilman API-integraatiota. Ota se käyttöön näyttääksesi ja käyttääksesi linkkiä"
 }

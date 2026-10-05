@@ -942,5 +942,19 @@
   "Your processing wallet": "Din behandlingswallet",
   "Your request has been created. You can track the transaction's progress on the Transfers page": "Din anmodning er blevet oprettet. Du kan følge transaktionens status på siden Overførsler",
   "Your SMTP server address": "Din SMTP-serveradresse",
-  "Your store domain": "Dit butiksdomæne"
+  "Your store domain": "Dit butiksdomæne",
+  "AMLBot PRO mode signal limit": "For AMLBot-konti i PRO-tilstand er signaldata begrænset. Kun Lav- og Mellem-signaler returneres, og fra Højrisiko-kategorier kun Sanktioner",
+  "failed to verify email": "kunne ikke bekræfte e-mail",
+  "failed to get mnemonic phrase owner seeds: internal: validate otp: failed to validate totp": "kunne ikke hente ejer-seeds for mnemonisk frase: intern: valider otp: kunne ikke validere totp",
+  "failed update settings": "kunne ikke opdatere indstillinger",
+  "get hot wallet keys: internal: validate otp: failed to validate totp": "hent hot wallet-nøgler: intern: valider otp: kunne ikke validere totp",
+  "incorrect verification code or email": "forkert bekræftelseskode eller e-mail",
+  "invalid address": "ugyldig adresse",
+  "invalid API credentials": "ugyldige API-legitimationsoplysninger",
+  "invalid credentials": "ugyldige loginoplysninger",
+  "invalid OTP": "ugyldig OTP",
+  "min_balance_usd must be positive non-zero": "min_balance_usd skal være positiv og ikke-nul",
+  "store not found": "butik ikke fundet",
+  "Unprocessable Entity": "Entiteten kan ikke behandles",
+  "Form without API tooltip": "Aktiverer et offentligt link til en betalingsformular for kunder uden API-integration. Slå det til for at vise og bruge linket"
 }

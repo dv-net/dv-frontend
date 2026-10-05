@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [1.1.1] - 2026-10-05
+
 - feat: AML risk rules — `RISK_LEVEL` (Low–Critical), collapse secondary rules, AMLBot PRO signal-limit hint [DNS-207]
 - fix: translate DNS-200 API/notification error messages in en/ru [DNS-200]
 - feat: AML `accept_and_flag` risk action and withdrawal address `for_flagged` (AML withdrawal) switch with 2FA save [DNS-181]

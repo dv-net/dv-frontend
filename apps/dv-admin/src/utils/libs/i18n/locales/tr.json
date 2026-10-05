@@ -942,5 +942,19 @@
   "Your processing wallet": "İşleme cüzdanınız",
   "Your request has been created. You can track the transaction's progress on the Transfers page": "Talebiniz oluşturuldu. İşlemin ilerlemesini Transferler sayfasından takip edebilirsiniz",
   "Your SMTP server address": "SMTP sunucusu adresiniz",
-  "Your store domain": "Mağaza alan adınız"
+  "Your store domain": "Mağaza alan adınız",
+  "AMLBot PRO mode signal limit": "PRO modundaki AMLBot hesapları için sinyal verileri sınırlıdır. Yalnızca Düşük ve Orta sinyaller döndürülür ve Yüksek riskli kategorilerden yalnızca Yaptırımlar",
+  "failed to verify email": "e-posta doğrulanamadı",
+  "failed to get mnemonic phrase owner seeds: internal: validate otp: failed to validate totp": "mnemonic ifade sahibi seed'leri alınamadı: dahili: otp doğrulama: totp doğrulanamadı",
+  "failed update settings": "ayarlar güncellenemedi",
+  "get hot wallet keys: internal: validate otp: failed to validate totp": "sıcak cüzdan anahtarlarını al: dahili: otp'yi doğrula: totp doğrulanamadı",
+  "incorrect verification code or email": "yanlış doğrulama kodu veya e-posta",
+  "invalid address": "geçersiz adres",
+  "invalid API credentials": "geçersiz API kimlik bilgileri",
+  "invalid credentials": "geçersiz kimlik bilgileri",
+  "invalid OTP": "geçersiz OTP",
+  "min_balance_usd must be positive non-zero": "min_balance_usd pozitif ve sıfırdan farklı olmalıdır",
+  "store not found": "mağaza bulunamadı",
+  "Unprocessable Entity": "İşlenemeyen Varlık",
+  "Form without API tooltip": "API entegrasyonu olmadan müşteriler için herkese açık bir ödeme formu bağlantısını etkinleştirir. Bağlantıyı göstermek ve kullanmak için bunu açın"
 }

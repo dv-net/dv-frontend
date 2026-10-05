@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import { computed, ref } from "vue";
+	import { computed, ref, watch } from "vue";
 	import { storeToRefs } from "pinia";
 	import { useRouter, useRoute } from "vue-router";
 	import { UiButton, UiIcon, UiInput, UiLink, UiSelect } from "@dv.net/ui-kit";
@@ -86,14 +86,27 @@
 	});
 
 	const handleAddRule = async () => {
-		await postExchangeWithdrawalSetting(props.slug, form.value);
-		showInfoMessages.value = { ...form.value };
-		form.value = { ...START_FORM };
+		try {
+			const data = await postExchangeWithdrawalSetting(props.slug, form.value);
+			if (!data) return;
+			showInfoMessages.value = { ...form.value };
+			form.value = { ...START_FORM };
+		} catch (error: any) {
+			console.error(error);
+		}
 	};
 
 	const handleGoDocs = () => {
 		window.open(`https://docs.dv.net/${locale.value}/exchanges/${route.params.slug}.html`, "_blank");
 	};
+
+	watch([() => form.value.ticker, () => form.value.chain], ([ticker], [prevTicker]) => {
+		if (ticker !== prevTicker) {
+			form.value.chain = "";
+		}
+		form.value.address = "";
+		form.value.min_amount = "";
+	});
 </script>
 
 <template>

@@ -942,5 +942,19 @@
   "Your processing wallet": "Jūsu apstrādes maks",
   "Your request has been created. You can track the transaction's progress on the Transfers page": "Jūsu pieprasījums ir izveidots. Jūs varat sekot darījuma norisei lapā Pārskaitījumi",
   "Your SMTP server address": "Jūsu SMTP servera adrese",
-  "Your store domain": "Jūsu veikala domēns"
+  "Your store domain": "Jūsu veikala domēns",
+  "AMLBot PRO mode signal limit": "AMLBot kontiem PRO režīmā signālu dati ir ierobežoti. Tiek atgriezti tikai zema un vidēja līmeņa signāli, un no augsta riska kategorijām — tikai sankcijas",
+  "failed to verify email": "neizdevās verificēt e-pastu",
+  "failed to get mnemonic phrase owner seeds: internal: validate otp: failed to validate totp": "neizdevās iegūt mnemoniskās frāzes īpašnieka sēklas: iekšēja kļūda: validēt otp: neizdevās validēt totp",
+  "failed update settings": "neizdevās atjaunināt iestatījumus",
+  "get hot wallet keys: internal: validate otp: failed to validate totp": "iegūt karstā maka atslēgas: iekšēji: validēt OTP: neizdevās validēt TOTP",
+  "incorrect verification code or email": "nepareizs verifikācijas kods vai e-pasts",
+  "invalid address": "nederīga adrese",
+  "invalid API credentials": "nederīgi API akreditācijas dati",
+  "invalid credentials": "Nederīgi akreditācijas dati",
+  "invalid OTP": "nederīgs OTP",
+  "min_balance_usd must be positive non-zero": "min_balance_usd ir jābūt pozitīvam skaitlim, kas nav nulle",
+  "store not found": "veikals nav atrasts",
+  "Unprocessable Entity": "Neapstrādājama entītija",
+  "Form without API tooltip": "Iespējo publisku maksājuma veidlapas saiti klientiem bez API integrācijas. Ieslēdziet to, lai parādītu un izmantotu saiti"
 }

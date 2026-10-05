@@ -22,15 +22,14 @@
 	});
 
 	const versions = computed(() => {
-		const backendCurrent: string =
-			systemVersions.value?.new_backend_version?.installed_version || dictionary.value?.backend_version_tag || "—";
-		const backendNew: string = systemVersions.value?.new_backend_version?.available_version || "—";
-		const processingCurrent: string =
-			systemVersions.value?.new_processing_version?.installed_version ||
-			dictionary.value?.processing_version_tag ||
-			"—";
-		const processingNew: string = systemVersions.value?.new_processing_version?.available_version || "—";
-		return { backendNew, backendCurrent, processingNew, processingCurrent };
+		const backend = systemVersions.value?.new_backend_version;
+		const processing = systemVersions.value?.new_processing_version;
+		return {
+			backendCurrent: backend?.installed_version || dictionary.value?.backend_version_tag || "—",
+			backendNew: backend?.need_for_update ? backend.available_version || "—" : null,
+			processingCurrent: processing?.installed_version || dictionary.value?.processing_version_tag || "—",
+			processingNew: processing?.need_for_update ? processing.available_version || "—" : null
+		};
 	});
 
 	const handleUpdateVersions = async () => {
@@ -127,7 +126,7 @@
 								<span class="column__label">{{ $t("Installed") }}:</span>
 								<span class="column__text">{{ versions.backendCurrent }}</span>
 							</div>
-							<div class="column__row">
+							<div v-if="versions.backendNew" class="column__row">
 								<span class="column__label">{{ $t("Available for installation") }}:</span>
 								<span class="column__text">{{ versions.backendNew }}</span>
 							</div>
@@ -140,7 +139,7 @@
 								<span class="column__label">{{ $t("Installed") }}:</span>
 								<span class="column__text">{{ versions.processingCurrent }}</span>
 							</div>
-							<div class="column__row">
+							<div v-if="versions.processingNew" class="column__row">
 								<span class="column__label">{{ $t("Available for installation") }}:</span>
 								<span class="column__text">{{ versions.processingNew }}</span>
 							</div>
@@ -149,7 +148,14 @@
 				</div>
 				<div class="card__bottom">
 					<ui-confirm :method="handleUpdateVersions" @click.stop :title="`${$t('Update all')}?`">
-						<ui-button mode="neutral" size="lg" :disabled="isDisabledBtn" :loading="isLoadingUpdateVersions">
+						<ui-button
+							mode="neutral"
+							size="lg"
+							left-icon-name="autorenew 1"
+							left-icon-type="400"
+							:disabled="isDisabledBtn"
+							:loading="isLoadingUpdateVersions"
+						>
 							{{ $t("Update all") }}
 						</ui-button>
 					</ui-confirm>

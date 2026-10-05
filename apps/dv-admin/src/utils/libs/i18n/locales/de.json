@@ -942,5 +942,19 @@
   "Your processing wallet": "Ihre Processing-Wallet",
   "Your request has been created. You can track the transaction's progress on the Transfers page": "Ihre Anfrage wurde erstellt. Sie können den Fortschritt der Transaktion auf der Seite „Transfers“ verfolgen",
   "Your SMTP server address": "Adresse Ihres SMTP-Servers",
-  "Your store domain": "Ihre Shop-Domain"
+  "Your store domain": "Ihre Shop-Domain",
+  "AMLBot PRO mode signal limit": "Bei AMLBot-Konten im PRO-Modus sind Signaldaten eingeschränkt. Es werden nur niedrige und mittlere Signale zurückgegeben, und aus Hochrisiko-Kategorien nur Sanktionen",
+  "failed to verify email": "E-Mail konnte nicht verifiziert werden",
+  "failed to get mnemonic phrase owner seeds: internal: validate otp: failed to validate totp": "Fehler beim Abrufen der Seeds des Inhabers der mnemonischen Phrase: intern: OTP validieren: TOTP-Validierung fehlgeschlagen",
+  "failed update settings": "Aktualisierung der Einstellungen fehlgeschlagen",
+  "get hot wallet keys: internal: validate otp: failed to validate totp": "Hot-Wallet-Schlüssel abrufen: intern: OTP validieren: TOTP konnte nicht validiert werden",
+  "incorrect verification code or email": "Falscher Bestätigungscode oder falsche E-Mail-Adresse",
+  "invalid address": "ungültige Adresse",
+  "invalid API credentials": "Ungültige API-Anmeldedaten",
+  "invalid credentials": "Ungültige Anmeldedaten",
+  "invalid OTP": "ungültiges OTP",
+  "min_balance_usd must be positive non-zero": "min_balance_usd muss positiv und ungleich null sein",
+  "store not found": "Shop nicht gefunden",
+  "Unprocessable Entity": "Nicht verarbeitbare Entität",
+  "Form without API tooltip": "Aktiviert einen öffentlichen Zahlungsformular-Link für Kunden ohne API-Integration. Schalten Sie dies ein, um den Link anzuzeigen und zu verwenden"
 }

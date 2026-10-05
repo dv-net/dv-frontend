@@ -345,6 +345,7 @@
 	"Forced withdrawal to the processing wallet": "Forced withdrawal to the processing wallet",
 	"Forgot your password": "Forgot your password",
 	"Form without API is active": "Form without API is active",
+	"Form without API tooltip": "Enables a public payment form link for customers without API integration. Turn it on to show and use the link",
 	"Format settings": "Format settings",
 	"Forwarding email address": "Forwarding email address",
 	"Forwarding is enabled. All funds received by hot wallets will be forwarded to cold wallets": "Forwarding is enabled. All funds received by hot wallets will be forwarded to cold wallets",

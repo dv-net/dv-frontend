@@ -69,11 +69,14 @@ export const useWithdrawalExchangeStore = defineStore("withdrawalExchange", () =
 			const currency_id = exchangeChainsList.value.find(
 				(item) => item.chain === body.chain && item.ticker === body.ticker
 			)?.currency_id;
-			if (!currency_id) return;
+			if (!currency_id) {
+				throw new Error("Currency not found for selected ticker and chain");
+			}
 			body.currency_id = currency_id;
 			const data = await postApiExchangeWithdrawalSetting(slug, body);
 			if (data) exchangeWithdrawalSettingList.value.push(data);
 			notify(t("Rule created"), "success");
+			return data;
 		} catch (error: any) {
 			throw error;
 		} finally {

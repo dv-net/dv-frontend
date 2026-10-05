@@ -942,5 +942,19 @@
   "Your processing wallet": "आपका प्रोसेसिंग वॉलेट",
   "Your request has been created. You can track the transaction's progress on the Transfers page": "आपका अनुरोध बनाया गया है। आप Transfers पेज पर लेन-देन की प्रगति ट्रैक कर सकते हैं",
   "Your SMTP server address": "आपके SMTP सर्वर का पता",
-  "Your store domain": "आपके स्टोर का डोमेन"
+  "Your store domain": "आपके स्टोर का डोमेन",
+  "AMLBot PRO mode signal limit": "PRO मोड में AMLBot खातों के लिए, संकेत डेटा सीमित है। केवल निम्न और मध्यम संकेत लौटाए जाते हैं, और उच्च-जोखिम श्रेणियों में से केवल प्रतिबंध",
+  "failed to verify email": "ईमेल सत्यापित करने में विफल",
+  "failed to get mnemonic phrase owner seeds: internal: validate otp: failed to validate totp": "निमोनिक फ़्रेज़ ओनर सीड्स प्राप्त करने में विफल: आंतरिक: OTP सत्यापित करें: TOTP सत्यापित करने में विफल",
+  "failed update settings": "सेटिंग्स अपडेट करने में विफल",
+  "get hot wallet keys: internal: validate otp: failed to validate totp": "हॉट वॉलेट कुंजियाँ प्राप्त करें: आंतरिक: otp सत्यापित करें: totp सत्यापित करने में विफल",
+  "incorrect verification code or email": "गलत सत्यापन कोड या ईमेल",
+  "invalid address": "अमान्य पता",
+  "invalid API credentials": "अमान्य API क्रेडेंशियल्स",
+  "invalid credentials": "अमान्य क्रेडेंशियल્સ",
+  "invalid OTP": "अमान्य OTP",
+  "min_balance_usd must be positive non-zero": "min_balance_usd धनात्मक गैर-शून्य होना चाहिए",
+  "store not found": "स्टोर नहीं मिला",
+  "Unprocessable Entity": "अप्रसंस्करणीय इकाई",
+  "Form without API tooltip": "API इंटीग्रेशन के बिना ग्राहकों के लिए सार्वजनिक भुगतान फ़ॉर्म लिंक सक्षम करता है। लिंक दिखाने और उपयोग करने के लिए इसे चालू करें"
 }

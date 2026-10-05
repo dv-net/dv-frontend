@@ -942,5 +942,19 @@
   "Your processing wallet": "Ваш процесинговий гаманець",
   "Your request has been created. You can track the transaction's progress on the Transfers page": "Ваш запит створено. Ви можете відстежувати хід транзакції на сторінці «Перекази»",
   "Your SMTP server address": "Адреса вашого SMTP-сервера",
-  "Your store domain": "Домен вашого магазину"
+  "Your store domain": "Домен вашого магазину",
+  "AMLBot PRO mode signal limit": "Для облікових записів AMLBot у режимі PRO дані сигналів обмежені. Повертаються лише сигнали низького та середнього рівня, а з категорій високого ризику — лише санкції",
+  "failed to verify email": "Не вдалося підтвердити електронну пошту",
+  "failed to get mnemonic phrase owner seeds: internal: validate otp: failed to validate totp": "не вдалося отримати seeds власника мнемонічної фрази: internal: validate otp: не вдалося validate totp",
+  "failed update settings": "Не вдалося оновити налаштування",
+  "get hot wallet keys: internal: validate otp: failed to validate totp": "отримання ключів гарячого гаманця: внутрішня помилка: перевірка otp: не вдалося перевірити totp",
+  "incorrect verification code or email": "неправильний код підтвердження або електронна адреса",
+  "invalid address": "недійсна адреса",
+  "invalid API credentials": "недійсні облікові дані API",
+  "invalid credentials": "недійсні облікові дані",
+  "invalid OTP": "Недійсний OTP",
+  "min_balance_usd must be positive non-zero": "min_balance_usd має бути додатним ненульовим",
+  "store not found": "магазин не знайдено",
+  "Unprocessable Entity": "Необроблювана сутність",
+  "Form without API tooltip": "Вмикає публічне посилання на платіжну форму для клієнтів без інтеграції API. Увімкніть його, щоб показати й використовувати посилання"
 }

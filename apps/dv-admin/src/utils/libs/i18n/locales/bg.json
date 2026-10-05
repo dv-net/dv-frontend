@@ -942,5 +942,19 @@
   "Your processing wallet": "Вашият портфейл за обработка",
   "Your request has been created. You can track the transaction's progress on the Transfers page": "Вашата заявка е създадена. Можете да проследите напредъка на транзакцията на страницата „Трансфери“",
   "Your SMTP server address": "Адресът на вашия SMTP сървър",
-  "Your store domain": "Домейнът на вашия магазин"
+  "Your store domain": "Домейнът на вашия магазин",
+  "AMLBot PRO mode signal limit": "За акаунти в AMLBot в режим PRO данните за сигналите са ограничени. Връщат се само сигнали Low и Medium, а от високорисковите категории — само Sanctions",
+  "failed to verify email": "неуспешно потвърждаване на имейла",
+  "failed to get mnemonic phrase owner seeds: internal: validate otp: failed to validate totp": "неуспешно получаване на seed-овете на собственика на мнемоничната фраза: вътрешна грешка: валидиране на otp: неуспешно валидиране на totp",
+  "failed update settings": "неуспешно актуализиране на настройките",
+  "get hot wallet keys: internal: validate otp: failed to validate totp": "получаване на ключове за горещ портфейл: вътрешна грешка: валидиране на otp: неуспешно валидиране на totp",
+  "incorrect verification code or email": "неправилен код за потвърждение или имейл",
+  "invalid address": "невалиден адрес",
+  "invalid API credentials": "невалидни API идентификационни данни",
+  "invalid credentials": "невалидни данни за вход",
+  "invalid OTP": "невалиден OTP",
+  "min_balance_usd must be positive non-zero": "min_balance_usd трябва да бъде положително ненулево число",
+  "store not found": "магазинът не е намерен",
+  "Unprocessable Entity": "Необработваем обект",
+  "Form without API tooltip": "Активира публична връзка към формуляр за плащане за клиенти без API интеграция. Включете го, за да покажете и използвате връзката"
 }

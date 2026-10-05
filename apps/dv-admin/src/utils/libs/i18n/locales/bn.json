@@ -942,5 +942,19 @@
   "Your processing wallet": "আপনার প্রসেসিং ওয়ালেট",
   "Your request has been created. You can track the transaction's progress on the Transfers page": "আপনার অনুরোধ তৈরি করা হয়েছে। আপনি ট্রান্সফার পৃষ্ঠায় লেনদেনের অগ্রগতি অনুসরণ করতে পারেন",
   "Your SMTP server address": "আপনার SMTP সার্ভার ঠিকানা",
-  "Your store domain": "আপনার স্টোরের ডোমেইন"
+  "Your store domain": "আপনার স্টোরের ডোমেইন",
+  "AMLBot PRO mode signal limit": "PRO মোডে থাকা AMLBot অ্যাকাউন্টগুলির জন্য, সিগন্যাল ডেটা সীমিত। শুধুমাত্র Low এবং Medium সিগন্যাল ফেরত দেওয়া হয়, এবং High-risk ক্যাটাগরিগুলির মধ্যে শুধুমাত্র Sanctions",
+  "failed to verify email": "ইমেল যাচাই করতে ব্যর্থ হয়েছে",
+  "failed to get mnemonic phrase owner seeds: internal: validate otp: failed to validate totp": "mnemonic phrase owner seeds পেতে ব্যর্থ: অভ্যন্তরীণ: OTP যাচাই: TOTP যাচাই করতে ব্যর্থ",
+  "failed update settings": "সেটিংস আপডেট ব্যর্থ হয়েছে",
+  "get hot wallet keys: internal: validate otp: failed to validate totp": "হট ওয়ালেট কী পেতে: অভ্যন্তরীণ: OTP যাচাই: TOTP যাচাই করতে ব্যর্থ",
+  "incorrect verification code or email": "ভুল যাচাইকরণ কোড বা ইমেল",
+  "invalid address": "অবৈধ ঠিকানা",
+  "invalid API credentials": "অবৈধ API ক্রেডেনশিয়াল",
+  "invalid credentials": "ভুল লগইন তথ্য",
+  "invalid OTP": "ভুল OTP",
+  "min_balance_usd must be positive non-zero": "min_balance_usd অবশ্যই ধনাত্মক ও শূন্য নয় এমন হতে হবে",
+  "store not found": "স্টোর খুঁজে পাওয়া যায়নি",
+  "Unprocessable Entity": "প্রক্রিয়াকরণযোগ্য নয় এমন সত্তা",
+  "Form without API tooltip": "গ্রাহকদের জন্য API ইন্টিগ্রেশন ছাড়াই একটি পাবলিক পেমেন্ট ফর্ম লিংক সক্রিয় করে। লিংকটি দেখাতে ও ব্যবহার করতে এটি চালু করুন"
 }
