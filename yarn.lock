@@ -343,10 +343,10 @@
     fs-extra "^11.1.1"
     openai "^5.13.1"
 
-"@dv.net/ui-kit@^7.7.18":
-  version "7.7.18"
-  resolved "https://registry.yarnpkg.com/@dv.net/ui-kit/-/ui-kit-7.7.18.tgz#a89b2881ab1bd88df2212c1de02b68a5beab27c2"
-  integrity sha512-3dMUZ59YG71ONwL3/Y0jJ3qjNFY3CGPtrK0wnkjvvIEvCQEF8waQQiIWErY0AEkY9qTrYgiZBbr5CtUls65Ycw==
+"@dv.net/ui-kit@^7.7.19":
+  version "7.7.19"
+  resolved "https://registry.yarnpkg.com/@dv.net/ui-kit/-/ui-kit-7.7.19.tgz#3b899d4983c6ae46b2aa55d06ca49cb6b9366369"
+  integrity sha512-9ICGcrcFraBUIh+Qmir5lk3ECcHQ97JdL+qLaX5rfV6MHoT29ZvNJ5bLtd5VOFfe3e8LRPNyyioj1qKlhvaWEw==
   dependencies:
     "@floating-ui/vue" "^2.0.1"
     "@vuepic/vue-datepicker" "^12.1.0"

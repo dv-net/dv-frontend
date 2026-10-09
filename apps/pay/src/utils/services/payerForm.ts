@@ -30,10 +30,6 @@ export const getApiWalletTxFind = async (payerId: string): Promise<IWalletTxFind
 	return resp.data.data;
 };
 
-export const postApiWalletRefreshAddress = async (payerId: string, address: string): Promise<void> => {
-	await api.post(`/public/wallet/${payerId}/refresh-address`, { Address: address });
-};
-
 export const getApiWalletAmlCheck = async (
 	walletId: string,
 	hash: string

@@ -30,7 +30,7 @@
 		"i18n:prune:pay": "dv-translator prune --dir pay-shared/utils/libs/i18n/locales"
 	},
 	"dependencies": {
-		"@dv.net/ui-kit": "^7.7.18",
+		"@dv.net/ui-kit": "^7.7.19",
 		"@reown/appkit": "1.8.24",
 		"@reown/appkit-adapter-wagmi": "1.8.24",
 		"@tanstack/vue-query": "5.104.0",

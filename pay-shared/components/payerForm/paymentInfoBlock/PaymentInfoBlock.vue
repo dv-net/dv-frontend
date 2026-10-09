@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import { UiButton, UiCopyText, UiIcon, UiInput, UiLink } from "@dv.net/ui-kit";
+	import { UiCopyText, UiIcon, UiInput, UiLink } from "@dv.net/ui-kit";
 	import type { CurrencyType } from "@shared/utils/types/blockchain";
 	import type { BlockchainType } from "@shared/utils/types/blockchain";
 	import BlockchainIcon from "@shared/components/ui/blockchainIcon/BlockchainIcon.vue";
@@ -19,9 +19,7 @@
 		currencyLabel = "",
 		showChangeChain = false,
 		payerId = null,
-		store = null,
-		showRefreshAddress = false,
-		isRefreshingAddress = false
+		store = null
 	} = defineProps<{
 		currentAddress?: string | null;
 		currentCurrency?: string | null;
@@ -32,13 +30,10 @@
 		showChangeChain?: boolean;
 		payerId?: string | null;
 		store?: IPayerStoreResponse | null;
-		showRefreshAddress?: boolean;
-		isRefreshingAddress?: boolean;
 	}>();
 
 	const emit = defineEmits<{
 		(event: "change-step", step: 1 | 2): void;
-		(event: "refresh-address"): void;
 	}>();
 
 	const inputTextSum = computed(() => `${currentPrice} ${currentCurrency ?? ""}`.trim());
@@ -97,15 +92,6 @@
 								<ui-copy-text v-if="currentAddress" :copied-text="currentAddress" color-icon="#242424" />
 							</template>
 						</ui-input>
-						<ui-button
-							v-if="showRefreshAddress"
-							type="secondary"
-							size="sm"
-							:loading="isRefreshingAddress"
-							@click="emit('refresh-address')"
-						>
-							{{ $t("Refresh address") }}
-						</ui-button>
 					</row-template>
 					<row-template :label="$t('Sum')">
 						<ui-input type="text" :model-value="inputTextSum" readonly-interactive filled>

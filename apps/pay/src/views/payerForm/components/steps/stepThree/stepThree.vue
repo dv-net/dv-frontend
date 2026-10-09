@@ -11,7 +11,6 @@
 	import PaymentInfoBlock from "@pay-shared/components/payerForm/paymentInfoBlock/PaymentInfoBlock.vue";
 	import BannerInfo from "@pay-shared/components/payerForm/bannerInfo/BannerInfo.vue";
 	import AmountEditor from "@pay-shared/components/payerForm/amountEditor/AmountEditor.vue";
-	import { postApiWalletRefreshAddress } from "@pay/utils/services/payerForm";
 
 	const payerFormStore = usePayerFormStore();
 
@@ -28,21 +27,9 @@
 		store,
 		amount
 	} = storeToRefs(payerFormStore);
-	const { getAmountRate, getPayerInfo } = payerFormStore;
+	const { getAmountRate } = payerFormStore;
 
 	const isShowModalTronWallets = ref<boolean>(false);
-	const isRefreshingAddress = ref<boolean>(false);
-
-	const handleRefreshAddress = async () => {
-		if (!payerId.value || !currentAddress.value) return;
-		isRefreshingAddress.value = true;
-		try {
-			await postApiWalletRefreshAddress(payerId.value, currentAddress.value);
-			await getPayerInfo(payerId.value);
-		} finally {
-			isRefreshingAddress.value = false;
-		}
-	};
 	const isShowModalEvmWallets = ref<boolean>(false);
 	const walletEvmConnectRef = ref<InstanceType<typeof WalletEvmConnect> | null>(null);
 	const isEvmConnected = computed(() => walletEvmConnectRef.value?.isConnected || false);
@@ -116,10 +103,7 @@
 					:show-change-chain="infoCurrentChain.isSingleNativeChain"
 					:payer-id="payerId"
 					:store="store"
-					show-refresh-address
-					:is-refreshing-address="isRefreshingAddress"
 					@change-step="currentStep = $event"
-					@refresh-address="handleRefreshAddress"
 				>
 					<template #amount>
 						<amount-editor v-model:amount="amount" size="md" :minimal-payment="store?.minimal_payment" />
