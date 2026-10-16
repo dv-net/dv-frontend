@@ -3,6 +3,7 @@
 	import { storeToRefs } from "pinia";
 	import { useI18n } from "vue-i18n";
 	import { UiSkeleton } from "@dv.net/ui-kit";
+	import IconNotFound from "@dv-admin/components/icons/IconNotFound.vue";
 	import {
 		getApiRefundRequests,
 		postApiRefundApprove,
@@ -12,6 +13,7 @@
 	} from "@dv-admin/utils/services/refunds";
 	import type { IRefundRequest } from "@dv-admin/utils/types/api/apiGo";
 	import { useProjectsStore } from "@dv-admin/stores/projects";
+	import { useRefundsStore } from "@dv-admin/stores/refunds";
 	import { useGeneralStore } from "@dv-admin/stores/general";
 	import { useNotifications } from "@shared/utils/composables/useNotifications";
 	import RefundRequestCard from "@dv-admin/views/projects/refunds/components/RefundRequestCard.vue";
@@ -20,6 +22,7 @@
 	const { notify } = useNotifications();
 	const { projects } = storeToRefs(useProjectsStore());
 	const { getProjects } = useProjectsStore();
+	const { setRefundRequestsCount } = useRefundsStore();
 	const { otpGlobalCode } = storeToRefs(useGeneralStore());
 	const { openOtpGlobalModal } = useGeneralStore();
 
@@ -36,6 +39,7 @@
 		try {
 			isLoading.value = true;
 			refundRequests.value = (await getApiRefundRequests()) ?? [];
+			setRefundRequestsCount(refundRequests.value.length);
 		} catch (error) {
 			console.error(error);
 		} finally {
@@ -47,6 +51,7 @@
 		refundRequests.value = VISIBLE_STATUSES.has(updated.status)
 			? refundRequests.value.map((item) => (item.id === updated.id ? updated : item))
 			: refundRequests.value.filter((item) => item.id !== updated.id);
+		setRefundRequestsCount(refundRequests.value.length);
 	};
 
 	const handleReject = async (refundId: string) => {
@@ -111,7 +116,8 @@
 			</div>
 
 			<div v-else-if="!refundRequests.length" class="panel-card panel-card--empty">
-				{{ $t("No pending refund requests") }}
+				<icon-not-found class="panel-card__empty-icon" />
+				<p class="panel-card__empty-text">{{ $t("No pending refund requests") }}</p>
 			</div>
 
 			<div v-else class="panel__body">
@@ -186,6 +192,7 @@
 		padding: 4px;
 		border-radius: 24px;
 		background: $blue-opacity;
+		min-height: 180px;
 
 		&__body {
 			display: flex;
@@ -205,10 +212,26 @@
 		}
 
 		&--empty {
-			color: $secondary;
-			font-size: 14px;
-			line-height: 20px;
+			display: flex;
+			flex: 1;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			gap: 4px;
 			text-align: center;
+		}
+
+		&__empty-icon {
+			width: 200px;
+			height: 102px;
+		}
+
+		&__empty-text {
+			margin: 0;
+			color: $secondary;
+			font-size: 16px;
+			font-weight: 500;
+			line-height: 24px;
 		}
 	}
 </style>

@@ -7,6 +7,7 @@
 	import { useUserSettingsStore } from "@dv-admin/stores/userSettings";
 	import { useAuthStore } from "@dv-admin/stores/auth";
 	import { useRootStore } from "@dv-admin/stores/root";
+	import { useRefundsStore } from "@dv-admin/stores/refunds";
 	import { computed, onMounted, watch } from "vue";
 	import { useI18n } from "vue-i18n";
 
@@ -20,6 +21,8 @@
 	const { isRootUser } = storeToRefs(useAuthStore());
 	const { pendingPagination } = storeToRefs(useRootStore());
 	const { getPendingStoresList } = useRootStore();
+	const { refundRequestsCount } = storeToRefs(useRefundsStore());
+	const { loadRefundRequestsCount } = useRefundsStore();
 
 	const pagesRequireAdminRights: string[] = ["/settings/logs", "/admin"];
 
@@ -34,7 +37,10 @@
 		await getPendingStoresList();
 	};
 
-	onMounted(loadPendingStoresIndicator);
+	onMounted(() => {
+		loadPendingStoresIndicator();
+		loadRefundRequestsCount();
+	});
 	watch(isRootUser, loadPendingStoresIndicator);
 
 	const menuItems = computed(() =>
@@ -57,6 +63,9 @@
 									class: pagesRequireAdminRights.includes(child.path) && !isRootUser.value ? "none" : "",
 									...(child.path === "/admin/shops" && pendingStoresTotal.value
 										? { indicator: pendingStoresTotal.value }
+										: {}),
+									...(child.path === "/projects/refunds" && refundRequestsCount.value
+										? { indicator: refundRequestsCount.value }
 										: {})
 								}
 							}))
