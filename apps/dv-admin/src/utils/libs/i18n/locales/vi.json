@@ -956,5 +956,20 @@
   "min_balance_usd must be positive non-zero": "min_balance_usd phải là số dương khác 0",
   "store not found": "không tìm thấy cửa hàng",
   "Unprocessable Entity": "Thực thể không thể xử lý",
-  "Form without API tooltip": "Bật liên kết biểu mẫu thanh toán công khai cho khách hàng mà không cần tích hợp API. Bật tùy chọn này để hiển thị và sử dụng liên kết"
+  "Form without API tooltip": "Bật liên kết biểu mẫu thanh toán công khai cho khách hàng mà không cần tích hợp API. Bật tùy chọn này để hiển thị và sử dụng liên kết",
+  "Approve": "Phê duyệt",
+  "Cancel refund": "Hủy hoàn tiền",
+  "Cancel scheduled refund": "Hủy hoàn tiền đã lên lịch",
+  "Deposit": "Nạp tiền",
+  "Funds will be sent after": "Tiền sẽ được gửi sau",
+  "Last error": "Lỗi gần nhất",
+  "Refund": "Hoàn tiền",
+  "Refund approved": "Hoàn tiền đã được phê duyệt",
+  "Refund request": "Yêu cầu hoàn tiền",
+  "Refund sent": "Đã gửi hoàn tiền",
+  "Scheduled": "Đã lên lịch",
+  "Scheduled refund canceled": "Khoản hoàn tiền đã lên lịch đã bị hủy",
+  "Send after": "Gửi sau",
+  "Send now": "Gửi ngay",
+  "The request will return to review": "Yêu cầu sẽ quay lại để xem xét"
 }

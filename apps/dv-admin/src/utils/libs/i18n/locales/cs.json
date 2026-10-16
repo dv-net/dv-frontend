@@ -956,5 +956,20 @@
   "min_balance_usd must be positive non-zero": "min_balance_usd musí být kladné nenulové číslo",
   "store not found": "obchod nenalezen",
   "Unprocessable Entity": "Nezpracovatelná entita",
-  "Form without API tooltip": "Povolí veřejný odkaz na platební formulář pro zákazníky bez integrace API. Zapněte jej, aby se odkaz zobrazil a bylo možné jej použít"
+  "Form without API tooltip": "Povolí veřejný odkaz na platební formulář pro zákazníky bez integrace API. Zapněte jej, aby se odkaz zobrazil a bylo možné jej použít",
+  "Approve": "Schválit",
+  "Cancel refund": "Zrušit vrácení peněz",
+  "Cancel scheduled refund": "Zrušit naplánované vrácení peněz",
+  "Deposit": "Vklad",
+  "Funds will be sent after": "Prostředky budou odeslány po",
+  "Last error": "Poslední chyba",
+  "Refund": "Vrácení peněz",
+  "Refund approved": "Refundace schválena",
+  "Refund request": "Žádost o vrácení peněz",
+  "Refund sent": "Refundace odeslána",
+  "Scheduled": "Naplánováno",
+  "Scheduled refund canceled": "Naplánované vrácení peněz zrušeno",
+  "Send after": "Odeslat po",
+  "Send now": "Odeslat nyní",
+  "The request will return to review": "Žádost se vrátí ke kontrole"
 }

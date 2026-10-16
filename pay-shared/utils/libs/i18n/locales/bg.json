@@ -124,5 +124,14 @@
   "You pay via DV.net": "Плащате чрез DV.net",
   "Your payment did not pass AML verification": "Вашето плащане не премина AML проверката",
   "Your payment did not pass AML verification. You can request a refund to your address": "Вашето плащане не премина AML проверка. Можете да заявите възстановяване на сумата към вашия адрес",
-  "Your permanent wallet — funds are credited to it automatically upon receipt": "Вашият постоянен портфейл — средствата се зачисляват по него автоматично при получаване"
+  "Your permanent wallet — funds are credited to it automatically upon receipt": "Вашият постоянен портфейл — средствата се зачисляват по него автоматично при получаване",
+  "A refund request has already been submitted": "Заявка за възстановяване на средства вече е подадена",
+  "A refund to another address is sent after the merchant reviews it": "Възстановяването към друг адрес се изпраща, след като търговецът го прегледа",
+  "A refund to the sender address is sent automatically in about 6 hours": "Възстановяването към адреса на подателя се изпраща автоматично след около 6 часа",
+  "Exchange refund warning": "Ако депозитът е от борса, възстановяването към адреса на подателя може да не пристигне",
+  "Failed to submit the refund request": "Неуспешно подаване на заявката за възстановяване на сумата",
+  "Funds will be sent after": "Средствата ще бъдат изпратени след",
+  "Refund fee unavailable": "Възстановяването на средства не е налично: адресът няма достатъчно средства, за да плати мрежовата такса",
+  "Return to the sender address": "Връщане към адреса на подателя",
+  "Scheduled": "Планирано"
 }

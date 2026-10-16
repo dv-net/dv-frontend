@@ -956,5 +956,20 @@
   "min_balance_usd must be positive non-zero": "min_balance_usd ir jābūt pozitīvam skaitlim, kas nav nulle",
   "store not found": "veikals nav atrasts",
   "Unprocessable Entity": "Neapstrādājama entītija",
-  "Form without API tooltip": "Iespējo publisku maksājuma veidlapas saiti klientiem bez API integrācijas. Ieslēdziet to, lai parādītu un izmantotu saiti"
+  "Form without API tooltip": "Iespējo publisku maksājuma veidlapas saiti klientiem bez API integrācijas. Ieslēdziet to, lai parādītu un izmantotu saiti",
+  "Approve": "Apstiprināt",
+  "Cancel refund": "Atcelt atmaksu",
+  "Cancel scheduled refund": "Atcelt ieplānoto atmaksu",
+  "Deposit": "Depozīts",
+  "Funds will be sent after": "Līdzekļi tiks nosūtīti pēc",
+  "Last error": "Pēdējā kļūda",
+  "Refund": "Atmaksa",
+  "Refund approved": "Atmaksa apstiprināta",
+  "Refund request": "Atmaksas pieprasījums",
+  "Refund sent": "Atmaksa nosūtīta",
+  "Scheduled": "Ieplānots",
+  "Scheduled refund canceled": "Ieplānotā atmaksa atcelta",
+  "Send after": "Nosūtīt pēc",
+  "Send now": "Sūtīt tagad",
+  "The request will return to review": "Pieprasījums tiks atgriezts pārskatīšanai"
 }

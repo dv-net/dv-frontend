@@ -956,5 +956,20 @@
   "min_balance_usd must be positive non-zero": "min_balance_usd måste vara positivt och inte noll",
   "store not found": "butiken hittades inte",
   "Unprocessable Entity": "Obearbetbar entitet",
-  "Form without API tooltip": "Aktiverar en offentlig länk till ett betalningsformulär för kunder utan API-integration. Slå på den för att visa och använda länken"
+  "Form without API tooltip": "Aktiverar en offentlig länk till ett betalningsformulär för kunder utan API-integration. Slå på den för att visa och använda länken",
+  "Approve": "Godkänn",
+  "Cancel refund": "Avbryt återbetalning",
+  "Cancel scheduled refund": "Avbryt schemalagd återbetalning",
+  "Deposit": "Insättning",
+  "Funds will be sent after": "Medel kommer att skickas efter",
+  "Last error": "Senaste felet",
+  "Refund": "Återbetala",
+  "Refund approved": "Återbetalning godkänd",
+  "Refund request": "Återbetalningsbegäran",
+  "Refund sent": "Återbetalning skickad",
+  "Scheduled": "Schemalagd",
+  "Scheduled refund canceled": "Schemalagd återbetalning avbruten",
+  "Send after": "Skicka efter",
+  "Send now": "Skicka nu",
+  "The request will return to review": "Begäran kommer att återgå till granskning"
 }

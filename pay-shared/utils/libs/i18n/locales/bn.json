@@ -124,5 +124,14 @@
   "You pay via DV.net": "আপনি DV.net-এর মাধ্যমে পেমেন্ট করেন",
   "Your payment did not pass AML verification": "আপনার পেমেন্ট AML যাচাইকরণে উত্তীর্ণ হয়নি",
   "Your payment did not pass AML verification. You can request a refund to your address": "আপনার পেমেন্ট AML যাচাইকরণে পাস করেনি। আপনি আপনার ঠিকানায় রিফান্ডের অনুরোধ করতে পারেন",
-  "Your permanent wallet — funds are credited to it automatically upon receipt": "আপনার স্থায়ী ওয়ালেট — প্রাপ্তির সাথে সাথেই এতে স্বয়ংক্রিয়ভাবে অর্থ জমা হয়"
+  "Your permanent wallet — funds are credited to it automatically upon receipt": "আপনার স্থায়ী ওয়ালেট — প্রাপ্তির সাথে সাথেই এতে স্বয়ংক্রিয়ভাবে অর্থ জমা হয়",
+  "A refund request has already been submitted": "একটি রিফান্ড অনুরোধ ইতিমধ্যেই জমা দেওয়া হয়েছে",
+  "A refund to another address is sent after the merchant reviews it": "অন্য ঠিকানায় রিফান্ডটি মার্চেন্ট পর্যালোচনা করার পর পাঠানো হয়",
+  "A refund to the sender address is sent automatically in about 6 hours": "প্রেরকের ঠিকানায় রিফান্ডটি প্রায় 6 ঘণ্টার মধ্যে স্বয়ংক্রিয়ভাবে পাঠানো হয়",
+  "Exchange refund warning": "যদি ডিপোজিটটি কোনো এক্সচেঞ্জ থেকে এসে থাকে, প্রেরকের ঠিকানায় রিফান্ড পৌঁছাতে নাও পারে",
+  "Failed to submit the refund request": "রিফান্ড অনুরোধ জমা দিতে ব্যর্থ হয়েছে",
+  "Funds will be sent after": "তহবিল পাঠানো হবে পরে",
+  "Refund fee unavailable": "রিফান্ড উপলভ্য নয়: নেটওয়ার্ক ফি পরিশোধ করার জন্য অ্যাড্রেসটিতে পর্যাপ্ত ফান্ড নেই",
+  "Return to the sender address": "প্রেরকের ঠিকানায় ফেরত পাঠান",
+  "Scheduled": "নির্ধারিত"
 }

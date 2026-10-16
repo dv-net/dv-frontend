@@ -956,5 +956,20 @@
   "min_balance_usd must be positive non-zero": "min_balance_usd धनात्मक गैर-शून्य होना चाहिए",
   "store not found": "स्टोर नहीं मिला",
   "Unprocessable Entity": "अप्रसंस्करणीय इकाई",
-  "Form without API tooltip": "API इंटीग्रेशन के बिना ग्राहकों के लिए सार्वजनिक भुगतान फ़ॉर्म लिंक सक्षम करता है। लिंक दिखाने और उपयोग करने के लिए इसे चालू करें"
+  "Form without API tooltip": "API इंटीग्रेशन के बिना ग्राहकों के लिए सार्वजनिक भुगतान फ़ॉर्म लिंक सक्षम करता है। लिंक दिखाने और उपयोग करने के लिए इसे चालू करें",
+  "Approve": "स्वीकृत करें",
+  "Cancel refund": "रिफंड रद्द करें",
+  "Cancel scheduled refund": "निर्धारित रिफ़ंड रद्द करें",
+  "Deposit": "जमा",
+  "Funds will be sent after": "धनराशि इसके बाद भेजी जाएगी",
+  "Last error": "अंतिम त्रुटि",
+  "Refund": "रिफंड",
+  "Refund approved": "रिफंड स्वीकृत",
+  "Refund request": "रिफंड अनुरोध",
+  "Refund sent": "रिफंड भेज दिया गया",
+  "Scheduled": "निर्धारित",
+  "Scheduled refund canceled": "निर्धारित रिफ़ंड रद्द किया गया",
+  "Send after": "इसके बाद भेजें",
+  "Send now": "अभी भेजें",
+  "The request will return to review": "अनुरोध समीक्षा में वापस चला जाएगा"
 }

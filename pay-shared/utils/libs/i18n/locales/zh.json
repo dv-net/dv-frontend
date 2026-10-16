@@ -124,5 +124,14 @@
   "You pay via DV.net": "您通过 DV.net 支付",
   "Your payment did not pass AML verification": "您的付款未通过 AML 验证",
   "Your payment did not pass AML verification. You can request a refund to your address": "您的付款未通过 AML 验证。您可以申请退款至您的地址",
-  "Your permanent wallet — funds are credited to it automatically upon receipt": "您的永久钱包——资金在收到后会自动记入该钱包"
+  "Your permanent wallet — funds are credited to it automatically upon receipt": "您的永久钱包——资金在收到后会自动记入该钱包",
+  "A refund request has already been submitted": "退款请求已提交",
+  "A refund to another address is sent after the merchant reviews it": "向另一个地址的退款将在商户审核后发送",
+  "A refund to the sender address is sent automatically in about 6 hours": "退款将在约 6 小时后自动发送至发送方地址",
+  "Exchange refund warning": "如果该笔充值来自交易所，退款至发送方地址可能无法到账",
+  "Failed to submit the refund request": "提交退款请求失败",
+  "Funds will be sent after": "资金将在之后发送",
+  "Refund fee unavailable": "无法退款：该地址没有足够的资金支付网络手续费",
+  "Return to the sender address": "退回至发送方地址",
+  "Scheduled": "已计划"
 }

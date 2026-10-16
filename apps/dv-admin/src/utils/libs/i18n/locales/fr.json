@@ -956,5 +956,20 @@
   "min_balance_usd must be positive non-zero": "min_balance_usd doit être positif et non nul",
   "store not found": "boutique introuvable",
   "Unprocessable Entity": "Entité non traitable",
-  "Form without API tooltip": "Active un lien de formulaire de paiement public pour les clients sans intégration API. Activez-le pour afficher et utiliser le lien"
+  "Form without API tooltip": "Active un lien de formulaire de paiement public pour les clients sans intégration API. Activez-le pour afficher et utiliser le lien",
+  "Approve": "Approuver",
+  "Cancel refund": "Annuler le remboursement",
+  "Cancel scheduled refund": "Annuler le remboursement programmé",
+  "Deposit": "Dépôt",
+  "Funds will be sent after": "Les fonds seront envoyés après",
+  "Last error": "Dernière erreur",
+  "Refund": "Remboursement",
+  "Refund approved": "Remboursement approuvé",
+  "Refund request": "Demande de remboursement",
+  "Refund sent": "Remboursement envoyé",
+  "Scheduled": "Programmé",
+  "Scheduled refund canceled": "Remboursement planifié annulé",
+  "Send after": "Envoyer après",
+  "Send now": "Envoyer maintenant",
+  "The request will return to review": "La demande sera renvoyée pour examen"
 }

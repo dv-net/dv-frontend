@@ -124,5 +124,14 @@
   "You pay via DV.net": "DV.net経由で支払います",
   "Your payment did not pass AML verification": "お支払いはAML検証を通過しませんでした",
   "Your payment did not pass AML verification. You can request a refund to your address": "お支払いはAML検証に合格しませんでした。ご自身のアドレスへの返金をリクエストできます",
-  "Your permanent wallet — funds are credited to it automatically upon receipt": "あなたの永続ウォレット — 資金は受領時に自動的に入金されます"
+  "Your permanent wallet — funds are credited to it automatically upon receipt": "あなたの永続ウォレット — 資金は受領時に自動的に入金されます",
+  "A refund request has already been submitted": "返金リクエストはすでに送信されています",
+  "A refund to another address is sent after the merchant reviews it": "別のアドレスへの返金は、加盟店による確認後に送信されます",
+  "A refund to the sender address is sent automatically in about 6 hours": "送信元アドレスへの返金は約6時間後に自動的に送信されます",
+  "Exchange refund warning": "入金が取引所から行われた場合、送信元アドレスへの返金は届かない可能性があります",
+  "Failed to submit the refund request": "返金リクエストの送信に失敗しました",
+  "Funds will be sent after": "資金は後ほど送金されます",
+  "Refund fee unavailable": "返金は利用できません: このアドレスにはネットワーク手数料を支払うのに十分な資金がありません",
+  "Return to the sender address": "送信元アドレスに返送する",
+  "Scheduled": "スケジュール済み"
 }

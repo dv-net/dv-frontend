@@ -124,5 +124,14 @@
   "You pay via DV.net": "Você paga via DV.net",
   "Your payment did not pass AML verification": "Seu pagamento não passou na verificação AML",
   "Your payment did not pass AML verification. You can request a refund to your address": "Seu pagamento não passou na verificação AML. Você pode solicitar um reembolso para o seu endereço",
-  "Your permanent wallet — funds are credited to it automatically upon receipt": "Sua carteira permanente — os fundos são creditados nela automaticamente após o recebimento"
+  "Your permanent wallet — funds are credited to it automatically upon receipt": "Sua carteira permanente — os fundos são creditados nela automaticamente após o recebimento",
+  "A refund request has already been submitted": "Uma solicitação de reembolso já foi enviada",
+  "A refund to another address is sent after the merchant reviews it": "Um reembolso para outro endereço é enviado depois que o comerciante o analisa",
+  "A refund to the sender address is sent automatically in about 6 hours": "Um reembolso para o endereço do remetente é enviado automaticamente em cerca de 6 horas",
+  "Exchange refund warning": "Se o depósito veio de uma exchange, um reembolso para o endereço do remetente pode não chegar",
+  "Failed to submit the refund request": "Falha ao enviar a solicitação de reembolso",
+  "Funds will be sent after": "Os fundos serão enviados após",
+  "Refund fee unavailable": "Reembolso indisponível: o endereço não tem fundos suficientes para pagar a taxa de rede",
+  "Return to the sender address": "Devolver para o endereço do remetente",
+  "Scheduled": "Agendado"
 }

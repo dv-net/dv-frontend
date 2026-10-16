@@ -124,5 +124,14 @@
   "You pay via DV.net": "Bạn thanh toán qua DV.net",
   "Your payment did not pass AML verification": "Khoản thanh toán của bạn không vượt qua xác minh AML",
   "Your payment did not pass AML verification. You can request a refund to your address": "Khoản thanh toán của bạn không vượt qua xác minh AML. Bạn có thể yêu cầu hoàn tiền về địa chỉ của mình",
-  "Your permanent wallet — funds are credited to it automatically upon receipt": "Ví cố định của bạn — tiền được tự động ghi có vào ví này khi nhận được"
+  "Your permanent wallet — funds are credited to it automatically upon receipt": "Ví cố định của bạn — tiền được tự động ghi có vào ví này khi nhận được",
+  "A refund request has already been submitted": "Yêu cầu hoàn tiền đã được gửi trước đó",
+  "A refund to another address is sent after the merchant reviews it": "Khoản hoàn tiền đến một địa chỉ khác sẽ được gửi sau khi người bán xem xét",
+  "A refund to the sender address is sent automatically in about 6 hours": "Khoản hoàn tiền về địa chỉ người gửi sẽ được gửi tự động sau khoảng 6 giờ",
+  "Exchange refund warning": "Nếu khoản nạp đến từ một sàn giao dịch, khoản hoàn tiền về địa chỉ người gửi có thể không đến nơi",
+  "Failed to submit the refund request": "Không thể gửi yêu cầu hoàn tiền",
+  "Funds will be sent after": "Tiền sẽ được gửi sau",
+  "Refund fee unavailable": "Không thể hoàn tiền: địa chỉ không có đủ tiền để trả phí mạng lưới",
+  "Return to the sender address": "Trả về địa chỉ người gửi",
+  "Scheduled": "Đã lên lịch"
 }

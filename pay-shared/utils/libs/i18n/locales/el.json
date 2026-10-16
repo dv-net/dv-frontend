@@ -124,5 +124,14 @@
   "You pay via DV.net": "Πληρώνετε μέσω DV.net",
   "Your payment did not pass AML verification": "Η πληρωμή σας δεν πέρασε την επαλήθευση AML",
   "Your payment did not pass AML verification. You can request a refund to your address": "Η πληρωμή σας δεν πέρασε την επαλήθευση AML. Μπορείτε να ζητήσετε επιστροφή χρημάτων στη διεύθυνσή σας",
-  "Your permanent wallet — funds are credited to it automatically upon receipt": "Το μόνιμο πορτοφόλι σας — τα κεφάλαια πιστώνονται σε αυτό αυτόματα κατά την παραλαβή"
+  "Your permanent wallet — funds are credited to it automatically upon receipt": "Το μόνιμο πορτοφόλι σας — τα κεφάλαια πιστώνονται σε αυτό αυτόματα κατά την παραλαβή",
+  "A refund request has already been submitted": "Ένα αίτημα επιστροφής χρημάτων έχει ήδη υποβληθεί",
+  "A refund to another address is sent after the merchant reviews it": "Η επιστροφή χρημάτων σε άλλη διεύθυνση αποστέλλεται αφού την ελέγξει ο έμπορος",
+  "A refund to the sender address is sent automatically in about 6 hours": "Η επιστροφή χρημάτων στη διεύθυνση αποστολέα αποστέλλεται αυτόματα σε περίπου 6 ώρες",
+  "Exchange refund warning": "Εάν η κατάθεση προήλθε από ανταλλακτήριο, η επιστροφή χρημάτων στη διεύθυνση αποστολέα ενδέχεται να μην φτάσει",
+  "Failed to submit the refund request": "Αποτυχία υποβολής του αιτήματος επιστροφής χρημάτων",
+  "Funds will be sent after": "Τα χρήματα θα σταλούν μετά",
+  "Refund fee unavailable": "Η επιστροφή χρημάτων δεν είναι διαθέσιμη: η διεύθυνση δεν έχει αρκετά κεφάλαια για να πληρώσει τη χρέωση δικτύου",
+  "Return to the sender address": "Επιστροφή στη διεύθυνση αποστολέα",
+  "Scheduled": "Προγραμματισμένο"
 }

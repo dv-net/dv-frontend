@@ -956,5 +956,20 @@
   "min_balance_usd must be positive non-zero": "min_balance_usd on oltava positiivinen ja nollasta poikkeava",
   "store not found": "kauppaa ei löytynyt",
   "Unprocessable Entity": "Käsittelykelvoton entiteetti",
-  "Form without API tooltip": "Mahdollistaa julkisen maksulomakelinkin asiakkaille ilman API-integraatiota. Ota se käyttöön näyttääksesi ja käyttääksesi linkkiä"
+  "Form without API tooltip": "Mahdollistaa julkisen maksulomakelinkin asiakkaille ilman API-integraatiota. Ota se käyttöön näyttääksesi ja käyttääksesi linkkiä",
+  "Approve": "Hyväksy",
+  "Cancel refund": "Peruuta hyvitys",
+  "Cancel scheduled refund": "Peru ajoitettu hyvitys",
+  "Deposit": "Talletus",
+  "Funds will be sent after": "Varat lähetetään myöhemmin kuin",
+  "Last error": "Viimeisin virhe",
+  "Refund": "Hyvitys",
+  "Refund approved": "Hyvitys hyväksytty",
+  "Refund request": "Hyvityspyyntö",
+  "Refund sent": "Hyvitys lähetetty",
+  "Scheduled": "Ajastettu",
+  "Scheduled refund canceled": "Ajastettu hyvitys peruttu",
+  "Send after": "Lähetä jälkeen",
+  "Send now": "Lähetä nyt",
+  "The request will return to review": "Pyyntö palautuu tarkistettavaksi"
 }

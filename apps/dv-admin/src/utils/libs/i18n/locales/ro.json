@@ -956,5 +956,20 @@
   "min_balance_usd must be positive non-zero": "min_balance_usd trebuie să fie pozitiv și diferit de zero",
   "store not found": "magazinul nu a fost găsit",
   "Unprocessable Entity": "Entitate neprocesabilă",
-  "Form without API tooltip": "Activează un link public către formularul de plată pentru clienți fără integrare API. Activează-l pentru a afișa și utiliza linkul"
+  "Form without API tooltip": "Activează un link public către formularul de plată pentru clienți fără integrare API. Activează-l pentru a afișa și utiliza linkul",
+  "Approve": "Aprobă",
+  "Cancel refund": "Anulează rambursarea",
+  "Cancel scheduled refund": "Anulează rambursarea programată",
+  "Deposit": "Depunere",
+  "Funds will be sent after": "Fondurile vor fi trimise după",
+  "Last error": "Ultima eroare",
+  "Refund": "Rambursare",
+  "Refund approved": "Rambursare aprobată",
+  "Refund request": "Cerere de rambursare",
+  "Refund sent": "Rambursare trimisă",
+  "Scheduled": "Programat",
+  "Scheduled refund canceled": "Rambursarea programată a fost anulată",
+  "Send after": "Trimite după",
+  "Send now": "Trimite acum",
+  "The request will return to review": "Solicitarea va reveni la revizuire"
 }

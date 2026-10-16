@@ -956,5 +956,20 @@
   "min_balance_usd must be positive non-zero": "min_balance_usd pozitif ve sıfırdan farklı olmalıdır",
   "store not found": "mağaza bulunamadı",
   "Unprocessable Entity": "İşlenemeyen Varlık",
-  "Form without API tooltip": "API entegrasyonu olmadan müşteriler için herkese açık bir ödeme formu bağlantısını etkinleştirir. Bağlantıyı göstermek ve kullanmak için bunu açın"
+  "Form without API tooltip": "API entegrasyonu olmadan müşteriler için herkese açık bir ödeme formu bağlantısını etkinleştirir. Bağlantıyı göstermek ve kullanmak için bunu açın",
+  "Approve": "Onayla",
+  "Cancel refund": "İadeyi iptal et",
+  "Cancel scheduled refund": "Planlanan iadeyi iptal et",
+  "Deposit": "Para Yatırma",
+  "Funds will be sent after": "Fonlar şu tarihten sonra gönderilecek",
+  "Last error": "Son hata",
+  "Refund": "İade",
+  "Refund approved": "İade onaylandı",
+  "Refund request": "İade talebi",
+  "Refund sent": "İade gönderildi",
+  "Scheduled": "Planlanmış",
+  "Scheduled refund canceled": "Planlanan iade iptal edildi",
+  "Send after": "Şundan sonra gönder",
+  "Send now": "Şimdi gönder",
+  "The request will return to review": "Talep incelemeye geri dönecek"
 }

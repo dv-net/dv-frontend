@@ -956,5 +956,20 @@
   "min_balance_usd must be positive non-zero": "min_balance_usd értékének pozitív, nullától eltérő értéknek kell lennie",
   "store not found": "üzlet nem található",
   "Unprocessable Entity": "Feldolgozhatatlan entitás",
-  "Form without API tooltip": "Nyilvános fizetési űrlaplinket engedélyez az API-integráció nélküli ügyfelek számára. Kapcsold be a link megjelenítéséhez és használatához"
+  "Form without API tooltip": "Nyilvános fizetési űrlaplinket engedélyez az API-integráció nélküli ügyfelek számára. Kapcsold be a link megjelenítéséhez és használatához",
+  "Approve": "Jóváhagyás",
+  "Cancel refund": "Visszatérítés megszakítása",
+  "Cancel scheduled refund": "Ütemezett visszatérítés lemondása",
+  "Deposit": "Befizetés",
+  "Funds will be sent after": "A pénzeszközök elküldésre kerülnek ezután",
+  "Last error": "Legutóbbi hiba",
+  "Refund": "Visszatérítés",
+  "Refund approved": "Visszatérítés jóváhagyva",
+  "Refund request": "Visszatérítési kérelem",
+  "Refund sent": "Visszatérítés elküldve",
+  "Scheduled": "Ütemezett",
+  "Scheduled refund canceled": "Ütemezett visszatérítés törölve",
+  "Send after": "Küldés ezután",
+  "Send now": "Küldés most",
+  "The request will return to review": "A kérés visszakerül felülvizsgálatra"
 }

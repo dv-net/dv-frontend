@@ -124,5 +124,14 @@
   "You pay via DV.net": "Du betalar via DV.net",
   "Your payment did not pass AML verification": "Din betalning klarade inte AML-verifieringen",
   "Your payment did not pass AML verification. You can request a refund to your address": "Din betalning klarade inte AML-verifieringen. Du kan begära en återbetalning till din adress",
-  "Your permanent wallet — funds are credited to it automatically upon receipt": "Din permanenta plånbok — medel sätts automatiskt in på den vid mottagande"
+  "Your permanent wallet — funds are credited to it automatically upon receipt": "Din permanenta plånbok — medel sätts automatiskt in på den vid mottagande",
+  "A refund request has already been submitted": "En begäran om återbetalning har redan skickats",
+  "A refund to another address is sent after the merchant reviews it": "En återbetalning till en annan adress skickas efter att handlaren har granskat den",
+  "A refund to the sender address is sent automatically in about 6 hours": "En återbetalning till avsändaradressen skickas automatiskt om cirka 6 timmar",
+  "Exchange refund warning": "Om insättningen kom från en börs kan en återbetalning till avsändaradressen eventuellt inte komma fram",
+  "Failed to submit the refund request": "Det gick inte att skicka begäran om återbetalning",
+  "Funds will be sent after": "Medel skickas efter",
+  "Refund fee unavailable": "Återbetalning är inte tillgänglig: adressen har inte tillräckligt med medel för att betala nätverksavgiften",
+  "Return to the sender address": "Returnera till avsändaradressen",
+  "Scheduled": "Schemalagd"
 }

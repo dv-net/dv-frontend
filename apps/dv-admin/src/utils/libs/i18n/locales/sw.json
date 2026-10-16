@@ -956,5 +956,20 @@
   "min_balance_usd must be positive non-zero": "min_balance_usd lazima iwe chanya na si sifuri",
   "store not found": "duka halijapatikana",
   "Unprocessable Entity": "Huluki Isiyoweza Kuchakatwa",
-  "Form without API tooltip": "Huwezesha kiungo cha fomu ya malipo ya umma kwa wateja bila ujumuishaji wa API. Washa ili kuonyesha na kutumia kiungo"
+  "Form without API tooltip": "Huwezesha kiungo cha fomu ya malipo ya umma kwa wateja bila ujumuishaji wa API. Washa ili kuonyesha na kutumia kiungo",
+  "Approve": "Idhinisha",
+  "Cancel refund": "Ghairi marejesho",
+  "Cancel scheduled refund": "Ghairi urejeshaji wa pesa ulioratibiwa",
+  "Deposit": "Amana",
+  "Funds will be sent after": "Fedha zitatumwa baada ya",
+  "Last error": "Hitilafu ya mwisho",
+  "Refund": "Rejesha",
+  "Refund approved": "Rejesho limeidhinishwa",
+  "Refund request": "Ombi la kurejeshewa fedha",
+  "Refund sent": "Marejesho yametumwa",
+  "Scheduled": "Iliyopangwa",
+  "Scheduled refund canceled": "Rejesho lililoratibiwa limeghairiwa",
+  "Send after": "Tuma baada ya",
+  "Send now": "Tuma sasa",
+  "The request will return to review": "Ombi litarudi kwenye ukaguzi"
 }

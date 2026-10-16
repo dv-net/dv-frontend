@@ -956,5 +956,20 @@
   "min_balance_usd must be positive non-zero": "min_balance_usd må være positiv og ikke null",
   "store not found": "butikk ikke funnet",
   "Unprocessable Entity": "Ubehandlelig entitet",
-  "Form without API tooltip": "Aktiverer en offentlig lenke til et betalingsskjema for kunder uten API-integrasjon. Slå den på for å vise og bruke lenken"
+  "Form without API tooltip": "Aktiverer en offentlig lenke til et betalingsskjema for kunder uten API-integrasjon. Slå den på for å vise og bruke lenken",
+  "Approve": "Godkjenn",
+  "Cancel refund": "Avbryt refusjon",
+  "Cancel scheduled refund": "Avbryt planlagt refusjon",
+  "Deposit": "Innskudd",
+  "Funds will be sent after": "Midlene vil bli sendt etter",
+  "Last error": "Siste feil",
+  "Refund": "Refusjon",
+  "Refund approved": "Refusjon godkjent",
+  "Refund request": "Refusjonsforespørsel",
+  "Refund sent": "Refusjon sendt",
+  "Scheduled": "Planlagt",
+  "Scheduled refund canceled": "Planlagt refusjon kansellert",
+  "Send after": "Send etter",
+  "Send now": "Send nå",
+  "The request will return to review": "Forespørselen vil gå tilbake til gjennomgang"
 }

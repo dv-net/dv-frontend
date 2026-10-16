@@ -956,5 +956,20 @@
   "min_balance_usd must be positive non-zero": "min_balance_usd reikšmė turi būti teigiama ir nenulinė",
   "store not found": "parduotuvė nerasta",
   "Unprocessable Entity": "Neapdorojamas objektas",
-  "Form without API tooltip": "Įgalina viešą mokėjimo formos nuorodą klientams be API integracijos. Įjunkite, kad būtų rodoma ir galima naudoti nuorodą"
+  "Form without API tooltip": "Įgalina viešą mokėjimo formos nuorodą klientams be API integracijos. Įjunkite, kad būtų rodoma ir galima naudoti nuorodą",
+  "Approve": "Patvirtinti",
+  "Cancel refund": "Atšaukti pinigų grąžinimą",
+  "Cancel scheduled refund": "Atšaukti suplanuotą lėšų grąžinimą",
+  "Deposit": "Įnašas",
+  "Funds will be sent after": "Lėšos bus išsiųstos po",
+  "Last error": "Paskutinė klaida",
+  "Refund": "Grąžinti lėšas",
+  "Refund approved": "Pinigų grąžinimas patvirtintas",
+  "Refund request": "Pinigų grąžinimo užklausa",
+  "Refund sent": "Grąžinimas išsiųstas",
+  "Scheduled": "Suplanuota",
+  "Scheduled refund canceled": "Suplanuotas pinigų grąžinimas atšauktas",
+  "Send after": "Siųsti po",
+  "Send now": "Siųsti dabar",
+  "The request will return to review": "Užklausa bus grąžinta peržiūrai"
 }

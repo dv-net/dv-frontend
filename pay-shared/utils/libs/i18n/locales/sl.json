@@ -124,5 +124,14 @@
   "You pay via DV.net": "Plačate prek DV.net",
   "Your payment did not pass AML verification": "Vaše plačilo ni prestalo preverjanja AML",
   "Your payment did not pass AML verification. You can request a refund to your address": "Vaše plačilo ni prestalo preverjanja AML. Zahtevate lahko vračilo na svoj naslov",
-  "Your permanent wallet — funds are credited to it automatically upon receipt": "Vaša stalna denarnica — sredstva se nanjo samodejno pripišejo ob prejemu"
+  "Your permanent wallet — funds are credited to it automatically upon receipt": "Vaša stalna denarnica — sredstva se nanjo samodejno pripišejo ob prejemu",
+  "A refund request has already been submitted": "Zahteva za vračilo je že bila oddana",
+  "A refund to another address is sent after the merchant reviews it": "Vračilo na drug naslov se pošlje, ko ga trgovec pregleda",
+  "A refund to the sender address is sent automatically in about 6 hours": "Vračilo na naslov pošiljatelja se samodejno pošlje čez približno 6 ur",
+  "Exchange refund warning": "Če je polog prišel z borze, vračilo na naslov pošiljatelja morda ne bo prispelo",
+  "Failed to submit the refund request": "Zahteve za vračilo ni bilo mogoče oddati",
+  "Funds will be sent after": "Sredstva bodo poslana po",
+  "Refund fee unavailable": "Vračilo ni na voljo: naslov nima dovolj sredstev za plačilo omrežne provizije",
+  "Return to the sender address": "Vrni na naslov pošiljatelja",
+  "Scheduled": "Načrtovano"
 }

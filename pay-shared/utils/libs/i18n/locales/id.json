@@ -124,5 +124,14 @@
   "You pay via DV.net": "Anda membayar melalui DV.net",
   "Your payment did not pass AML verification": "Pembayaran Anda tidak lolos verifikasi AML",
   "Your payment did not pass AML verification. You can request a refund to your address": "Pembayaran Anda tidak lolos verifikasi AML. Anda dapat meminta pengembalian dana ke alamat Anda",
-  "Your permanent wallet — funds are credited to it automatically upon receipt": "Dompet permanen Anda — dana dikreditkan ke dompet ini secara otomatis setelah diterima"
+  "Your permanent wallet — funds are credited to it automatically upon receipt": "Dompet permanen Anda — dana dikreditkan ke dompet ini secara otomatis setelah diterima",
+  "A refund request has already been submitted": "Permintaan pengembalian dana sudah diajukan",
+  "A refund to another address is sent after the merchant reviews it": "Pengembalian dana ke alamat lain dikirim setelah merchant meninjaunya",
+  "A refund to the sender address is sent automatically in about 6 hours": "Pengembalian dana ke alamat pengirim dikirim secara otomatis dalam sekitar 6 jam",
+  "Exchange refund warning": "Jika deposit berasal dari exchange, pengembalian dana ke alamat pengirim mungkin tidak sampai",
+  "Failed to submit the refund request": "Gagal mengirimkan permintaan pengembalian dana",
+  "Funds will be sent after": "Dana akan dikirim setelah",
+  "Refund fee unavailable": "Pengembalian dana tidak tersedia: alamat tidak memiliki cukup dana untuk membayar biaya jaringan",
+  "Return to the sender address": "Kembalikan ke alamat pengirim",
+  "Scheduled": "Terjadwal"
 }

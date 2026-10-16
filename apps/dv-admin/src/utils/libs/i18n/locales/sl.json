@@ -956,5 +956,20 @@
   "min_balance_usd must be positive non-zero": "min_balance_usd mora biti pozitivno neničelno",
   "store not found": "trgovina ni najdena",
   "Unprocessable Entity": "Entitete ni mogoče obdelati",
-  "Form without API tooltip": "Omogoči javno povezavo do plačilnega obrazca za stranke brez integracije API. Vklopite jo, da prikažete in uporabite povezavo"
+  "Form without API tooltip": "Omogoči javno povezavo do plačilnega obrazca za stranke brez integracije API. Vklopite jo, da prikažete in uporabite povezavo",
+  "Approve": "Odobri",
+  "Cancel refund": "Prekliči vračilo",
+  "Cancel scheduled refund": "Prekliči načrtovano vračilo",
+  "Deposit": "Polog",
+  "Funds will be sent after": "Sredstva bodo poslana po",
+  "Last error": "Zadnja napaka",
+  "Refund": "Vračilo",
+  "Refund approved": "Vračilo odobreno",
+  "Refund request": "Zahteva za vračilo",
+  "Refund sent": "Vračilo poslano",
+  "Scheduled": "Načrtovano",
+  "Scheduled refund canceled": "Načrtovano vračilo preklicano",
+  "Send after": "Pošlji po",
+  "Send now": "Pošlji zdaj",
+  "The request will return to review": "Zahteva bo vrnjena v pregled"
 }

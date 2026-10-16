@@ -956,5 +956,20 @@
   "min_balance_usd must be positive non-zero": "min_balance_usd має бути додатним ненульовим",
   "store not found": "магазин не знайдено",
   "Unprocessable Entity": "Необроблювана сутність",
-  "Form without API tooltip": "Вмикає публічне посилання на платіжну форму для клієнтів без інтеграції API. Увімкніть його, щоб показати й використовувати посилання"
+  "Form without API tooltip": "Вмикає публічне посилання на платіжну форму для клієнтів без інтеграції API. Увімкніть його, щоб показати й використовувати посилання",
+  "Approve": "Схвалити",
+  "Cancel refund": "Скасувати повернення коштів",
+  "Cancel scheduled refund": "Скасувати заплановане повернення коштів",
+  "Deposit": "Депозит",
+  "Funds will be sent after": "Кошти буде надіслано після",
+  "Last error": "Остання помилка",
+  "Refund": "Відшкодування",
+  "Refund approved": "Відшкодування схвалено",
+  "Refund request": "Запит на повернення коштів",
+  "Refund sent": "Повернення коштів надіслано",
+  "Scheduled": "Заплановано",
+  "Scheduled refund canceled": "Заплановане повернення коштів скасовано",
+  "Send after": "Надіслати після",
+  "Send now": "Надіслати зараз",
+  "The request will return to review": "Запит буде повернено на розгляд"
 }

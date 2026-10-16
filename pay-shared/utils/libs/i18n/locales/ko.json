@@ -124,5 +124,14 @@
   "You pay via DV.net": "DV.net을 통해 결제합니다",
   "Your payment did not pass AML verification": "결제가 AML 검증을 통과하지 못했습니다",
   "Your payment did not pass AML verification. You can request a refund to your address": "결제가 AML 검증을 통과하지 못했습니다. 귀하의 주소로 환불을 요청할 수 있습니다",
-  "Your permanent wallet — funds are credited to it automatically upon receipt": "귀하의 영구 지갑 — 자금은 수령 즉시 자동으로 입금됩니다"
+  "Your permanent wallet — funds are credited to it automatically upon receipt": "귀하의 영구 지갑 — 자금은 수령 즉시 자동으로 입금됩니다",
+  "A refund request has already been submitted": "환불 요청이 이미 제출되었습니다",
+  "A refund to another address is sent after the merchant reviews it": "다른 주소로의 환불은 가맹점이 검토한 후 전송됩니다",
+  "A refund to the sender address is sent automatically in about 6 hours": "발신자 주소로의 환불은 약 6시간 후 자동으로 전송됩니다",
+  "Exchange refund warning": "입금이 거래소에서 이루어진 경우, 발신자 주소로 환불해도 도착하지 않을 수 있습니다",
+  "Failed to submit the refund request": "환불 요청 제출에 실패했습니다",
+  "Funds will be sent after": "자금은 다음 시점 이후에 전송됩니다",
+  "Refund fee unavailable": "환불을 사용할 수 없습니다: 해당 주소에 네트워크 수수료를 지불할 충분한 자금이 없습니다",
+  "Return to the sender address": "발신자 주소로 반환",
+  "Scheduled": "예약됨"
 }

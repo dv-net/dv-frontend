@@ -956,5 +956,20 @@
   "min_balance_usd must be positive non-zero": "min_balance_usd은(는) 0보다 큰 값이어야 합니다",
   "store not found": "스토어를 찾을 수 없음",
   "Unprocessable Entity": "처리할 수 없는 엔터티",
-  "Form without API tooltip": "API 연동 없이 고객에게 공개 결제 양식 링크를 활성화합니다. 링크를 표시하고 사용하려면 켜세요"
+  "Form without API tooltip": "API 연동 없이 고객에게 공개 결제 양식 링크를 활성화합니다. 링크를 표시하고 사용하려면 켜세요",
+  "Approve": "승인",
+  "Cancel refund": "환불 취소",
+  "Cancel scheduled refund": "예약된 환불 취소",
+  "Deposit": "입금",
+  "Funds will be sent after": "자금은 다음 이후에 전송됩니다",
+  "Last error": "마지막 오류",
+  "Refund": "환불",
+  "Refund approved": "환불 승인됨",
+  "Refund request": "환불 요청",
+  "Refund sent": "환불이 전송되었습니다",
+  "Scheduled": "예약됨",
+  "Scheduled refund canceled": "예약된 환불이 취소됨",
+  "Send after": "이후 전송",
+  "Send now": "지금 보내기",
+  "The request will return to review": "요청이 검토 단계로 돌아갑니다"
 }

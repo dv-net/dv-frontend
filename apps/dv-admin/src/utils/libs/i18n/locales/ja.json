@@ -956,5 +956,20 @@
   "min_balance_usd must be positive non-zero": "min_balance_usd は 0 より大きい値である必要があります",
   "store not found": "ストアが見つかりません",
   "Unprocessable Entity": "処理できないエンティティ",
-  "Form without API tooltip": "API連携なしで顧客が利用できる公開決済フォームリンクを有効にします。リンクを表示して使用するにはオンにしてください"
+  "Form without API tooltip": "API連携なしで顧客が利用できる公開決済フォームリンクを有効にします。リンクを表示して使用するにはオンにしてください",
+  "Approve": "承認",
+  "Cancel refund": "返金をキャンセル",
+  "Cancel scheduled refund": "予定された返金をキャンセル",
+  "Deposit": "入金",
+  "Funds will be sent after": "資金は以下の日時以降に送金されます",
+  "Last error": "直近のエラー",
+  "Refund": "返金",
+  "Refund approved": "返金が承認されました",
+  "Refund request": "返金リクエスト",
+  "Refund sent": "返金が送信されました",
+  "Scheduled": "スケジュール済み",
+  "Scheduled refund canceled": "予定された返金がキャンセルされました",
+  "Send after": "以降に送信",
+  "Send now": "今すぐ送信",
+  "The request will return to review": "リクエストはレビューに戻されます"
 }

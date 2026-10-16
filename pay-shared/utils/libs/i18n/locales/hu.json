@@ -124,5 +124,14 @@
   "You pay via DV.net": "Ön a DV.net-en keresztül fizet",
   "Your payment did not pass AML verification": "Fizetése nem ment át az AML-ellenőrzésen",
   "Your payment did not pass AML verification. You can request a refund to your address": "Fizetése nem ment át az AML-ellenőrzésen. Visszatérítést kérhet a címére",
-  "Your permanent wallet — funds are credited to it automatically upon receipt": "Állandó tárcád — a pénzeszközök beérkezéskor automatikusan jóváíródnak rajta"
+  "Your permanent wallet — funds are credited to it automatically upon receipt": "Állandó tárcád — a pénzeszközök beérkezéskor automatikusan jóváíródnak rajta",
+  "A refund request has already been submitted": "Már benyújtottak egy visszatérítési kérelmet",
+  "A refund to another address is sent after the merchant reviews it": "A másik címre történő visszatérítést a kereskedő felülvizsgálata után küldjük el",
+  "A refund to the sender address is sent automatically in about 6 hours": "A visszatérítés körülbelül 6 óra múlva automatikusan elküldésre kerül a feladó címére",
+  "Exchange refund warning": "Ha a befizetés tőzsdéről érkezett, előfordulhat, hogy a küldő címére történő visszatérítés nem érkezik meg",
+  "Failed to submit the refund request": "Nem sikerült elküldeni a visszatérítési kérelmet",
+  "Funds will be sent after": "Az összeg elküldésére ezután kerül sor",
+  "Refund fee unavailable": "A visszatérítés nem érhető el: a címen nincs elegendő fedezet a hálózati díj kifizetéséhez",
+  "Return to the sender address": "Visszaküldés a küldő címére",
+  "Scheduled": "Ütemezve"
 }

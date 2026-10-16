@@ -124,5 +124,14 @@
   "You pay via DV.net": "Unalipa kupitia DV.net",
   "Your payment did not pass AML verification": "Malipo yako hayakupita uthibitishaji wa AML",
   "Your payment did not pass AML verification. You can request a refund to your address": "Malipo yako hayakupita uthibitishaji wa AML. Unaweza kuomba kurejeshewa pesa kwenye anwani yako",
-  "Your permanent wallet — funds are credited to it automatically upon receipt": "Pochi yako ya kudumu — fedha huwekwa humo kiotomatiki mara zinapopokelewa"
+  "Your permanent wallet — funds are credited to it automatically upon receipt": "Pochi yako ya kudumu — fedha huwekwa humo kiotomatiki mara zinapopokelewa",
+  "A refund request has already been submitted": "Ombi la kurejeshewa pesa tayari limewasilishwa",
+  "A refund to another address is sent after the merchant reviews it": "Rejesho kwa anwani nyingine hutumwa baada ya mfanyabiashara kulikagua",
+  "A refund to the sender address is sent automatically in about 6 hours": "Marejesho kwa anwani ya mtumaji hutumwa kiotomatiki baada ya takriban saa 6",
+  "Exchange refund warning": "Ikiwa amana ilitoka kwenye exchange, urejeshaji fedha kwa anwani ya mtumaji huenda usifike",
+  "Failed to submit the refund request": "Imeshindwa kuwasilisha ombi la kurejesha pesa",
+  "Funds will be sent after": "Fedha zitatumwa baada ya",
+  "Refund fee unavailable": "Urejeshaji wa fedha haupatikani: anwani haina fedha za kutosha kulipa ada ya mtandao",
+  "Return to the sender address": "Rudisha kwenye anwani ya mtumaji",
+  "Scheduled": "Iliyoratibiwa"
 }

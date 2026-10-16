@@ -124,5 +124,14 @@
   "You pay via DV.net": "Platíte přes DV.net",
   "Your payment did not pass AML verification": "Vaše platba neprošla ověřením AML",
   "Your payment did not pass AML verification. You can request a refund to your address": "Vaše platba neprošla ověřením AML. Můžete požádat o vrácení prostředků na svou adresu",
-  "Your permanent wallet — funds are credited to it automatically upon receipt": "Vaše trvalá peněženka — prostředky jsou na ni po přijetí automaticky připisovány"
+  "Your permanent wallet — funds are credited to it automatically upon receipt": "Vaše trvalá peněženka — prostředky jsou na ni po přijetí automaticky připisovány",
+  "A refund request has already been submitted": "Žádost o vrácení peněz již byla odeslána",
+  "A refund to another address is sent after the merchant reviews it": "Refundace na jinou adresu bude odeslána poté, co ji obchodník zkontroluje",
+  "A refund to the sender address is sent automatically in about 6 hours": "Vrácení prostředků na adresu odesílatele bude odesláno automaticky přibližně za 6 hodin",
+  "Exchange refund warning": "Pokud vklad přišel z burzy, vrácení prostředků na adresu odesílatele nemusí dorazit",
+  "Failed to submit the refund request": "Nepodařilo se odeslat žádost o vrácení peněz",
+  "Funds will be sent after": "Prostředky budou odeslány po",
+  "Refund fee unavailable": "Vrácení peněz není k dispozici: adresa nemá dostatek prostředků na zaplacení síťového poplatku",
+  "Return to the sender address": "Vrátit na adresu odesílatele",
+  "Scheduled": "Naplánováno"
 }

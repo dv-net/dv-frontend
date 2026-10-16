@@ -956,5 +956,20 @@
   "min_balance_usd must be positive non-zero": "min_balance_usd peab olema positiivne ja nullist erinev",
   "store not found": "poodi ei leitud",
   "Unprocessable Entity": "Töötlematu olem",
-  "Form without API tooltip": "Võimaldab avaliku maksevormi lingi klientidele ilma API-integratsioonita. Lülita see sisse, et linki kuvada ja kasutada"
+  "Form without API tooltip": "Võimaldab avaliku maksevormi lingi klientidele ilma API-integratsioonita. Lülita see sisse, et linki kuvada ja kasutada",
+  "Approve": "Kinnita",
+  "Cancel refund": "Tühista tagasimakse",
+  "Cancel scheduled refund": "Tühista ajastatud tagasimakse",
+  "Deposit": "Sissemakse",
+  "Funds will be sent after": "Raha saadetakse pärast",
+  "Last error": "Viimane viga",
+  "Refund": "Tagasimakse",
+  "Refund approved": "Tagasimakse heaks kiidetud",
+  "Refund request": "Tagasimakse taotlus",
+  "Refund sent": "Tagasimakse saadetud",
+  "Scheduled": "Ajastatud",
+  "Scheduled refund canceled": "Ajastatud tagasimakse tühistati",
+  "Send after": "Saada pärast",
+  "Send now": "Saada kohe",
+  "The request will return to review": "Taotlus naaseb ülevaatamisele"
 }

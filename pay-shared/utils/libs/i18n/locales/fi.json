@@ -124,5 +124,14 @@
   "You pay via DV.net": "Maksat DV.netin kautta",
   "Your payment did not pass AML verification": "Maksusi ei läpäissyt AML-tarkistusta",
   "Your payment did not pass AML verification. You can request a refund to your address": "Maksusi ei läpäissyt AML-varmennusta. Voit pyytää palautusta osoitteeseesi",
-  "Your permanent wallet — funds are credited to it automatically upon receipt": "Pysyvä lompakkosi — varat hyvitetään sille automaattisesti vastaanoton yhteydessä"
+  "Your permanent wallet — funds are credited to it automatically upon receipt": "Pysyvä lompakkosi — varat hyvitetään sille automaattisesti vastaanoton yhteydessä",
+  "A refund request has already been submitted": "Hyvityspyyntö on jo lähetetty",
+  "A refund to another address is sent after the merchant reviews it": "Hyvitys toiseen osoitteeseen lähetetään sen jälkeen, kun kauppias on tarkistanut sen",
+  "A refund to the sender address is sent automatically in about 6 hours": "Hyvitys lähettäjän osoitteeseen lähetetään automaattisesti noin 6 tunnin kuluttua",
+  "Exchange refund warning": "Jos talletus tuli pörssistä, palautus lähettäjän osoitteeseen ei välttämättä saavu",
+  "Failed to submit the refund request": "Hyvityspyynnön lähettäminen epäonnistui",
+  "Funds will be sent after": "Varat lähetetään sen jälkeen, kun",
+  "Refund fee unavailable": "Maksunpalautus ei ole käytettävissä: osoitteella ei ole riittävästi varoja verkkomaksun maksamiseen",
+  "Return to the sender address": "Palauta lähettäjän osoitteeseen",
+  "Scheduled": "Ajastettu"
 }

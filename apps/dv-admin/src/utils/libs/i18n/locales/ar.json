@@ -956,5 +956,20 @@
   "min_balance_usd must be positive non-zero": "يجب أن يكون min_balance_usd موجبًا وغير صفري",
   "store not found": "لم يتم العثور على المتجر",
   "Unprocessable Entity": "كيان غير قابل للمعالجة",
-  "Form without API tooltip": "يُفعّل رابط نموذج دفع عام للعملاء بدون تكامل API. شغّله لعرض الرابط واستخدامه"
+  "Form without API tooltip": "يُفعّل رابط نموذج دفع عام للعملاء بدون تكامل API. شغّله لعرض الرابط واستخدامه",
+  "Approve": "موافقة",
+  "Cancel refund": "إلغاء الاسترداد",
+  "Cancel scheduled refund": "إلغاء ردّ الأموال المجدول",
+  "Deposit": "إيداع",
+  "Funds will be sent after": "سيتم إرسال الأموال بعد",
+  "Last error": "آخر خطأ",
+  "Refund": "استرداد",
+  "Refund approved": "تمت الموافقة على استرداد المبلغ",
+  "Refund request": "طلب استرداد الأموال",
+  "Refund sent": "تم إرسال الاسترداد",
+  "Scheduled": "مجدول",
+  "Scheduled refund canceled": "تم إلغاء ردّ المبلغ المجدول",
+  "Send after": "إرسال بعد",
+  "Send now": "إرسال الآن",
+  "The request will return to review": "سيعود الطلب إلى المراجعة"
 }

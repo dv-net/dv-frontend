@@ -124,5 +124,14 @@
   "You pay via DV.net": "Ви сплачуєте через DV.net",
   "Your payment did not pass AML verification": "Ваш платіж не пройшов AML-перевірку",
   "Your payment did not pass AML verification. You can request a refund to your address": "Ваш платіж не пройшов AML-перевірку. Ви можете запросити повернення коштів на свою адресу",
-  "Your permanent wallet — funds are credited to it automatically upon receipt": "Ваш постійний гаманець — кошти зараховуються на нього автоматично після надходження"
+  "Your permanent wallet — funds are credited to it automatically upon receipt": "Ваш постійний гаманець — кошти зараховуються на нього автоматично після надходження",
+  "A refund request has already been submitted": "Запит на повернення коштів уже надіслано",
+  "A refund to another address is sent after the merchant reviews it": "Повернення коштів на іншу адресу надсилається після того, як мерчант його розгляне",
+  "A refund to the sender address is sent automatically in about 6 hours": "Повернення на адресу відправника буде надіслано автоматично приблизно через 6 годин",
+  "Exchange refund warning": "Якщо депозит надійшов з біржі, повернення коштів на адресу відправника може не надійти",
+  "Failed to submit the refund request": "Не вдалося надіслати запит на повернення коштів",
+  "Funds will be sent after": "Кошти буде надіслано після",
+  "Refund fee unavailable": "Повернення коштів недоступне: на адресі недостатньо коштів для сплати мережевої комісії",
+  "Return to the sender address": "Повернути на адресу відправника",
+  "Scheduled": "Заплановано"
 }

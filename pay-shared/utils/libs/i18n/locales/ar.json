@@ -124,5 +124,14 @@
   "You pay via DV.net": "تدفع عبر DV.net",
   "Your payment did not pass AML verification": "لم تجتز دفعتك التحقق من AML",
   "Your payment did not pass AML verification. You can request a refund to your address": "لم تجتز دفعتك التحقق من AML. يمكنك طلب استرداد إلى عنوانك",
-  "Your permanent wallet — funds are credited to it automatically upon receipt": "محفظتك الدائمة — تُضاف الأموال إليها تلقائيًا عند الاستلام"
+  "Your permanent wallet — funds are credited to it automatically upon receipt": "محفظتك الدائمة — تُضاف الأموال إليها تلقائيًا عند الاستلام",
+  "A refund request has already been submitted": "تم تقديم طلب استرداد الأموال بالفعل",
+  "A refund to another address is sent after the merchant reviews it": "يُرسَل ردّ الأموال إلى عنوان آخر بعد أن يراجعه التاجر",
+  "A refund to the sender address is sent automatically in about 6 hours": "يُرسَل المبلغ المسترد إلى عنوان المُرسِل تلقائيًا خلال حوالي 6 ساعات",
+  "Exchange refund warning": "إذا كان الإيداع قادمًا من منصة تداول، فقد لا يصل ردّ الأموال إلى عنوان المرسل",
+  "Failed to submit the refund request": "فشل إرسال طلب استرداد الأموال",
+  "Funds will be sent after": "سيتم إرسال الأموال بعد",
+  "Refund fee unavailable": "استرداد الأموال غير متاح: لا يحتوي العنوان على أموال كافية لدفع رسوم الشبكة",
+  "Return to the sender address": "الإرجاع إلى عنوان المُرسِل",
+  "Scheduled": "مجدول"
 }

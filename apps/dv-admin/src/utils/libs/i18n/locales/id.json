@@ -956,5 +956,20 @@
   "min_balance_usd must be positive non-zero": "min_balance_usd harus bernilai positif dan bukan nol",
   "store not found": "toko tidak ditemukan",
   "Unprocessable Entity": "Entitas Tidak Dapat Diproses",
-  "Form without API tooltip": "Mengaktifkan tautan formulir pembayaran publik untuk pelanggan tanpa integrasi API. Aktifkan untuk menampilkan dan menggunakan tautan tersebut"
+  "Form without API tooltip": "Mengaktifkan tautan formulir pembayaran publik untuk pelanggan tanpa integrasi API. Aktifkan untuk menampilkan dan menggunakan tautan tersebut",
+  "Approve": "Setujui",
+  "Cancel refund": "Batalkan pengembalian dana",
+  "Cancel scheduled refund": "Batalkan pengembalian dana terjadwal",
+  "Deposit": "Deposit",
+  "Funds will be sent after": "Dana akan dikirim setelah",
+  "Last error": "Kesalahan terakhir",
+  "Refund": "Pengembalian Dana",
+  "Refund approved": "Pengembalian dana disetujui",
+  "Refund request": "Permintaan pengembalian dana",
+  "Refund sent": "Pengembalian dana terkirim",
+  "Scheduled": "Terjadwal",
+  "Scheduled refund canceled": "Pengembalian dana terjadwal dibatalkan",
+  "Send after": "Kirim setelah",
+  "Send now": "Kirim sekarang",
+  "The request will return to review": "Permintaan akan dikembalikan untuk ditinjau"
 }

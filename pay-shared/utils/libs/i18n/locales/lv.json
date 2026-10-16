@@ -124,5 +124,14 @@
   "You pay via DV.net": "Jūs maksājat, izmantojot DV.net",
   "Your payment did not pass AML verification": "Jūsu maksājums neizturēja AML pārbaudi",
   "Your payment did not pass AML verification. You can request a refund to your address": "Jūsu maksājums neizturēja AML pārbaudi. Varat pieprasīt atmaksu uz savu adresi",
-  "Your permanent wallet — funds are credited to it automatically upon receipt": "Jūsu pastāvīgais maks — līdzekļi tajā tiek ieskaitīti automātiski pēc saņemšanas"
+  "Your permanent wallet — funds are credited to it automatically upon receipt": "Jūsu pastāvīgais maks — līdzekļi tajā tiek ieskaitīti automātiski pēc saņemšanas",
+  "A refund request has already been submitted": "Atmaksas pieprasījums jau ir iesniegts",
+  "A refund to another address is sent after the merchant reviews it": "Atmaksa uz citu adresi tiek nosūtīta pēc tam, kad tirgotājs to ir pārskatījis",
+  "A refund to the sender address is sent automatically in about 6 hours": "Atmaksa uz sūtītāja adresi tiek nosūtīta automātiski apmēram pēc 6 stundām",
+  "Exchange refund warning": "Ja depozīts tika veikts no biržas, atmaksa uz sūtītāja adresi var nepienākt",
+  "Failed to submit the refund request": "Neizdevās iesniegt atmaksas pieprasījumu",
+  "Funds will be sent after": "Līdzekļi tiks nosūtīti pēc",
+  "Refund fee unavailable": "Atmaksa nav pieejama: adresē nav pietiekami daudz līdzekļu, lai samaksātu tīkla maksu",
+  "Return to the sender address": "Atgriezt uz sūtītāja adresi",
+  "Scheduled": "Ieplānots"
 }

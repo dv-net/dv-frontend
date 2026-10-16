@@ -956,5 +956,20 @@
   "min_balance_usd must be positive non-zero": "min_balance_usd moet positief en niet nul zijn",
   "store not found": "winkel niet gevonden",
   "Unprocessable Entity": "Onverwerkbare entiteit",
-  "Form without API tooltip": "Schakelt een openbare link naar een betaalformulier in voor klanten zonder API-integratie. Schakel dit in om de link weer te geven en te gebruiken"
+  "Form without API tooltip": "Schakelt een openbare link naar een betaalformulier in voor klanten zonder API-integratie. Schakel dit in om de link weer te geven en te gebruiken",
+  "Approve": "Goedkeuren",
+  "Cancel refund": "Terugbetaling annuleren",
+  "Cancel scheduled refund": "Geplande terugbetaling annuleren",
+  "Deposit": "Storting",
+  "Funds will be sent after": "Tegoeden worden verzonden na",
+  "Last error": "Laatste fout",
+  "Refund": "Terugbetaling",
+  "Refund approved": "Terugbetaling goedgekeurd",
+  "Refund request": "Terugbetalingsverzoek",
+  "Refund sent": "Terugbetaling verzonden",
+  "Scheduled": "Gepland",
+  "Scheduled refund canceled": "Geplande terugbetaling geannuleerd",
+  "Send after": "Verzenden na",
+  "Send now": "Nu verzenden",
+  "The request will return to review": "Het verzoek wordt teruggestuurd ter beoordeling"
 }

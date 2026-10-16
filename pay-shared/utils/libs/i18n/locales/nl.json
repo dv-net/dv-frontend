@@ -124,5 +124,14 @@
   "You pay via DV.net": "U betaalt via DV.net",
   "Your payment did not pass AML verification": "Uw betaling heeft de AML-verificatie niet doorstaan",
   "Your payment did not pass AML verification. You can request a refund to your address": "Je betaling heeft de AML-verificatie niet doorstaan. Je kunt een terugbetaling naar je adres aanvragen",
-  "Your permanent wallet — funds are credited to it automatically upon receipt": "Je permanente wallet — tegoeden worden er automatisch op bijgeschreven na ontvangst"
+  "Your permanent wallet — funds are credited to it automatically upon receipt": "Je permanente wallet — tegoeden worden er automatisch op bijgeschreven na ontvangst",
+  "A refund request has already been submitted": "Er is al een terugbetalingsverzoek ingediend",
+  "A refund to another address is sent after the merchant reviews it": "Een terugbetaling naar een ander adres wordt verzonden nadat de merchant deze heeft beoordeeld",
+  "A refund to the sender address is sent automatically in about 6 hours": "Een terugbetaling naar het afzenderadres wordt automatisch over ongeveer 6 uur verzonden",
+  "Exchange refund warning": "Als de storting afkomstig was van een exchange, komt een terugbetaling naar het afzenderadres mogelijk niet aan",
+  "Failed to submit the refund request": "Indienen van het terugbetalingsverzoek is mislukt",
+  "Funds will be sent after": "Tegoeden worden verzonden na",
+  "Refund fee unavailable": "Terugbetaling is niet beschikbaar: het adres heeft niet genoeg saldo om de netwerkkosten te betalen",
+  "Return to the sender address": "Terugsturen naar het afzenderadres",
+  "Scheduled": "Gepland"
 }

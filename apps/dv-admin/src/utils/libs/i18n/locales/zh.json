@@ -956,5 +956,20 @@
   "min_balance_usd must be positive non-zero": "min_balance_usd 必须为非零正数",
   "store not found": "未找到商店",
   "Unprocessable Entity": "无法处理的实体",
-  "Form without API tooltip": "为没有 API 集成的客户启用公开支付表单链接。开启后即可显示并使用该链接"
+  "Form without API tooltip": "为没有 API 集成的客户启用公开支付表单链接。开启后即可显示并使用该链接",
+  "Approve": "批准",
+  "Cancel refund": "取消退款",
+  "Cancel scheduled refund": "取消计划退款",
+  "Deposit": "充值",
+  "Funds will be sent after": "资金将在以下时间后发送",
+  "Last error": "上次错误",
+  "Refund": "退款",
+  "Refund approved": "退款已批准",
+  "Refund request": "退款请求",
+  "Refund sent": "退款已发送",
+  "Scheduled": "已安排",
+  "Scheduled refund canceled": "计划退款已取消",
+  "Send after": "之后发送",
+  "Send now": "立即发送",
+  "The request will return to review": "该请求将返回审核"
 }

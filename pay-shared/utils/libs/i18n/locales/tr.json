@@ -124,5 +124,14 @@
   "You pay via DV.net": "DV.net üzerinden ödeme yaparsınız",
   "Your payment did not pass AML verification": "Ödemeniz AML doğrulamasından geçemedi",
   "Your payment did not pass AML verification. You can request a refund to your address": "Ödemeniz AML doğrulamasından geçmedi. Adresinize geri ödeme talep edebilirsiniz",
-  "Your permanent wallet — funds are credited to it automatically upon receipt": "Kalıcı cüzdanınız — fonlar alındığında otomatik olarak bu cüzdana yatırılır"
+  "Your permanent wallet — funds are credited to it automatically upon receipt": "Kalıcı cüzdanınız — fonlar alındığında otomatik olarak bu cüzdana yatırılır",
+  "A refund request has already been submitted": "Para iadesi talebi zaten gönderildi",
+  "A refund to another address is sent after the merchant reviews it": "Başka bir adrese yapılacak iade, satıcı tarafından incelendikten sonra gönderilir",
+  "A refund to the sender address is sent automatically in about 6 hours": "Gönderen adresine yapılan geri ödeme yaklaşık 6 saat içinde otomatik olarak gönderilir",
+  "Exchange refund warning": "Yatırma işlemi bir borsadan geldiyse, gönderen adresine yapılacak iade ulaşmayabilir",
+  "Failed to submit the refund request": "İade talebi gönderilemedi",
+  "Funds will be sent after": "Fonlar şu tarihten sonra gönderilecek",
+  "Refund fee unavailable": "Geri ödeme kullanılamıyor: adresin ağ ücretini ödemek için yeterli bakiyesi yok",
+  "Return to the sender address": "Gönderen adresine iade et",
+  "Scheduled": "Planlandı"
 }

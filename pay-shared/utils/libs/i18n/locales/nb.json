@@ -124,5 +124,14 @@
   "You pay via DV.net": "Du betaler via DV.net",
   "Your payment did not pass AML verification": "Betalingen din besto ikke AML-verifiseringen",
   "Your payment did not pass AML verification. You can request a refund to your address": "Betalingen din besto ikke AML-verifiseringen. Du kan be om refusjon til adressen din",
-  "Your permanent wallet — funds are credited to it automatically upon receipt": "Din permanente lommebok — midler krediteres den automatisk ved mottak"
+  "Your permanent wallet — funds are credited to it automatically upon receipt": "Din permanente lommebok — midler krediteres den automatisk ved mottak",
+  "A refund request has already been submitted": "En refusjonsforespørsel er allerede sendt inn",
+  "A refund to another address is sent after the merchant reviews it": "En refusjon til en annen adresse sendes etter at forhandleren har gjennomgått den",
+  "A refund to the sender address is sent automatically in about 6 hours": "En refusjon til avsenderadressen sendes automatisk om ca. 6 timer",
+  "Exchange refund warning": "Hvis innskuddet kom fra en børs, kan det hende at en refusjon til avsenderadressen ikke kommer frem",
+  "Failed to submit the refund request": "Kunne ikke sende inn refusjonsforespørselen",
+  "Funds will be sent after": "Midlene vil bli sendt etter",
+  "Refund fee unavailable": "Tilbakebetaling er ikke tilgjengelig: adressen har ikke nok midler til å betale nettverksgebyret",
+  "Return to the sender address": "Returner til avsenderadressen",
+  "Scheduled": "Planlagt"
 }
