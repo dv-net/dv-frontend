@@ -17,6 +17,7 @@
 	import { storeToRefs } from "pinia";
 	import { useHotWalletsStore } from "@dv-admin/stores/hotWallets";
 	import { useGeneralStore } from "@dv-admin/stores/general";
+	import ExternalWithdrawDialog from "@dv-admin/views/hotWallets/components/sendButton/externalWithdrawDialog/ExternalWithdrawDialog.vue";
 
 	const { notify } = useNotifications();
 	const { t } = useI18n();
@@ -40,6 +41,7 @@
 	);
 
 	const isShowDropdown = ref<Record<string, boolean>>({});
+	const isExternalWithdrawOpen = ref(false);
 
 	const isShowDownloadKeys = computed<boolean>(() => !includedWallets.value.length);
 
@@ -71,6 +73,11 @@
 		await postWithdrawManualOrProcessing(type, item.currency_id, item.id);
 	};
 
+	const handleExternalWithdraw = (item: IHotWalletsItem) => {
+		isShowDropdown.value[item.id] = false;
+		isExternalWithdrawOpen.value = true;
+	};
+
 	const handleMarkIsDirty = async (item: IHotWalletsItem) => {
 		isShowDropdown.value[item.id] = false;
 		try {
@@ -89,6 +96,7 @@
 </script>
 
 <template>
+	<external-withdraw-dialog v-model="isExternalWithdrawOpen" :wallet="data" />
 	<ui-dropdown
 		trigger="click"
 		popper-class="global-dropdown__wallets"
@@ -120,6 +128,15 @@
 					<ui-icon-button icon-name="send" container-small size="lg" />
 					<span>{{ $t("To the processing") }}</span>
 					<tooltip-helper :title="$t('To the processing')" :text="$t('Forced withdrawal to the processing wallet')" />
+				</div>
+
+				<div class="global-dropdown__wallets-item" @click="handleExternalWithdraw(data)">
+					<ui-icon-button icon-name="account-balance-wallet" container-small size="lg" />
+					<span>{{ $t("To an external address") }}</span>
+					<tooltip-helper
+						:title="$t('To an external address')"
+						:text="$t('Sends the amount from this wallet to any address')"
+					/>
 				</div>
 
 				<div class="global-dropdown__wallets-item" @click="handleMarkIsDirty(data)">

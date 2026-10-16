@@ -566,6 +566,24 @@ export type IWithdrawalFromProcessingRequest = {
 	request_id: string;
 };
 
+export interface IExternalWithdrawRequest {
+	wallet_address_id: string;
+	address_to: string;
+	amount: string;
+	totp: string;
+}
+
+export interface IExternalWithdrawalResponse {
+	transfer_id: string;
+	status: string;
+	from_address: string;
+	address_to: string;
+	amount: string;
+	amount_usd: string;
+	currency_id: string;
+	message?: string;
+}
+
 export type IDepositSummaryDetailsCurrencyResponse = {
 	[key in BlockchainType]: {
 		tx_count: number;

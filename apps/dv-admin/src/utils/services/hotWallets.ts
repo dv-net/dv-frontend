@@ -1,6 +1,8 @@
 import api from "@dv-admin/utils/libs/axios";
 import type {
 	IExternalWalletRequest,
+	IExternalWithdrawRequest,
+	IExternalWithdrawalResponse,
 	IHotWalletsRequest,
 	IHotWalletsResponse,
 	IMarkIsDirtyRequest,
@@ -38,6 +40,11 @@ export const postApiWithdrawManual = async (currency_id: string, wallet_address_
 
 export const postApiWithdrawProcessing = async (currency_id: string, wallet_address_id: string) => {
 	await api.post("/dv-admin/withdrawal/withdraw-to-processing", { currency_id, wallet_address_id });
+};
+
+export const postApiWithdrawExternal = async (body: IExternalWithdrawRequest): Promise<IExternalWithdrawalResponse> => {
+	const resp = await api.post("/dv-admin/withdrawal/withdraw-external", body, { suppressNotify: true });
+	return resp.data.data;
 };
 
 export const postApiWalletKeysHot = async (params: IWalletKeysHotRequest) => {
