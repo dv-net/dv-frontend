@@ -279,7 +279,7 @@
 							</div>
 
 							<div class="step__blockchain-container">
-								<div v-for="item in processingWallets" :key="item.address">
+								<div v-for="item in processingWallets" :key="item.currency.id">
 									<block-section class="step__blockchain" mode="grey-border" radius="lg">
 										<div class="step__blockchain__header">
 											<blockchain-icon :type="item.currency.id" class="step__blockchain__icon" />

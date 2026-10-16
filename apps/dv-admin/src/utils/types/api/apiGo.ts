@@ -511,6 +511,8 @@ export interface ITransferItem {
 	message: string | null;
 	created_at: string | null;
 	updated_at: string | null;
+	refund_request_id?: string | null;
+	execute_after?: string | null;
 }
 
 export interface ITransferResponse {
@@ -1190,7 +1192,14 @@ export interface IMarkIsDirtyRequest {
 	address: string;
 }
 
-export type RefundStatus = "pending_review" | "rejected" | "processing" | "completed" | "failed";
+export type RefundStatus =
+	| "pending_review"
+	| "rejected"
+	| "processing"
+	| "scheduled"
+	| "canceled"
+	| "completed"
+	| "failed";
 
 export interface IRefundRequest {
 	id: string;
@@ -1204,4 +1213,6 @@ export interface IRefundRequest {
 	reviewed_at?: string | null;
 	created_at: string;
 	updated_at: string | null;
+	execute_after?: string | null;
+	last_error?: string | null;
 }

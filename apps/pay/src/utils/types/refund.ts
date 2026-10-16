@@ -1,4 +1,4 @@
-export type RefundStatus = "pending_review" | "rejected" | "processing" | "completed" | "failed";
+export type RefundStatus = "pending_review" | "scheduled" | "rejected" | "processing" | "completed" | "failed";
 
 export type RefundCabinetBucket = "available" | RefundStatus;
 
@@ -43,8 +43,10 @@ export interface IRefundCabinetItem {
 	risk_level: string;
 	score: string;
 	created_at: string | null;
+	from_address?: string | null;
 	refund_status?: RefundStatus | null;
 	destination_address?: string | null;
+	refund_execute_after?: string | null;
 }
 
 export type IRefundCabinetResponse = Partial<Record<RefundCabinetBucket, IRefundCabinetItem[]>>;

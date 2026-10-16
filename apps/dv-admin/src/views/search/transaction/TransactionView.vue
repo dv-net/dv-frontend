@@ -25,6 +25,7 @@
 		type TAmlCheckStatus
 	} from "@dv-admin/utils/constants/aml";
 	import { ALL_STATUSES } from "@dv-admin/utils/constants/general";
+	import { TRANSACTION_TYPE_LABELS } from "@dv-admin/utils/constants/transactionTypes";
 
 	const { transaction } = storeToRefs(useSearchStore());
 	const { getSearchData } = useSearchStore();
@@ -75,6 +76,12 @@
 		return riskLevel in AML_RISK_LEVEL_LABELS ? t(AML_RISK_LEVEL_LABELS[riskLevel]) : riskLevel;
 	});
 
+	const transactionTypeLabel = computed(() => {
+		const type = transaction.value?.type;
+		if (!type) return "—";
+		return t(TRANSACTION_TYPE_LABELS[type] ?? type);
+	});
+
 	const amlStatusLabel = computed(() => {
 		const status = transaction.value?.aml_check?.status;
 		if (!status) return "—";
@@ -104,7 +111,7 @@
 					:label="$t('Total')"
 					:value="formatAmountBlockchain(transaction.amount, { currencyId: transaction.currency_id })"
 				/>
-				<row-element class="info__item" :label="$t('Transaction type')" :value="transaction.type" />
+				<row-element class="info__item" :label="$t('Transaction type')" :value="transactionTypeLabel" />
 				<row-element class="info__item" :label="$t('Amount, USD')" :value="formatDollars(transaction.amount_usd)" />
 				<row-element class="info__item" :label="$t('Currency')" :value="getCurrentCoin(transaction.currency_id)" />
 				<row-element class="info__item" :label="$t('Recipient')" :value="transaction.to_address" is-copy-value />

@@ -15,7 +15,11 @@
 		"BNB.BNBSmartChain",
 		"POL.Polygon",
 		"ETH.Arbitrum",
-		"TRX.Tron"
+		"TRX.Tron",
+		"BTC.Bitcoin",
+		"LTC.Litecoin",
+		"BCH.Bitcoincash",
+		"DOGE.Dogecoin"
 	];
 
 	const isVisibleTable = computed<boolean>(() => {

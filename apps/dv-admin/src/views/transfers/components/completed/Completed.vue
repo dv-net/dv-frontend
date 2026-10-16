@@ -2,11 +2,12 @@
 	import BlockchainIcon from "@shared/components/ui/blockchainIcon/BlockchainIcon.vue";
 	import { computed, type Ref, ref } from "vue";
 	import LayoutBlock from "@dv-admin/views/transfers/components/layoutBlock/LayoutBlock.vue";
-	import { UiTabs, UiTabsItem, UiIcon, UiCollapse, UiCollapseItem, UiConfirm, UiPagination } from "@dv.net/ui-kit";
+	import { UiTabs, UiTabsItem, UiIcon, UiCollapse, UiCollapseItem, UiConfirm, UiLink, UiPagination } from "@dv.net/ui-kit";
 	import { storeToRefs } from "pinia";
 	import { useTransferStore } from "@dv-admin/stores/transfer";
 	import { formatAmountBlockchain, formatDollars, getCurrentCoin } from "@shared/utils/helpers/general";
 	import { formatDate, timeDifference } from "@dv-admin/utils/helpers/dateParse";
+	import { TRANSFER_TYPE } from "@dv-admin/utils/constants/transfer";
 	import type { IPagination, ITransferItem } from "@dv-admin/utils/types/api/apiGo";
 	import { copiedText } from "@shared/utils/helpers/general";
 	import DisplayHash from "@shared/components/ui/displayHash/DisplayHash.vue";
@@ -100,7 +101,7 @@
 									<ui-icon type="400" name="sync-alt" size="xs" />
 								</div>
 								<p class="column-event__text">
-									{{ $t(item.kind === "from_address" ? "Withdrawal from hot wallet" : "Withdrawal from processing wallet") }}
+									{{ TRANSFER_TYPE[item.kind] ? $t(TRANSFER_TYPE[item.kind]) : "Unknown" }}
 								</p>
 							</div>
 							<div class="header__item price">
@@ -169,8 +170,18 @@
 								<span class="content__inner-label">{{ $t("Date") }}:</span>
 								<span>{{ formatDate(item.created_at) }}</span>
 							</div>
-							<div v-if="item?.tx_hash" class="content__item content__item--hash">
-								<span>{{ $t("Transaction hash") }}:</span>
+							<div v-if="item.execute_after" class="content__item">
+								<span class="content__inner-label">{{ $t("Send after") }}:</span>
+								<span>{{ formatDate(item.execute_after) }}</span>
+							</div>
+							<div v-if="item.refund_request_id" class="content__item">
+								<span class="content__inner-label">{{ $t("Refund") }}:</span>
+								<ui-link size="md" :to="{ name: 'projects-refunds' }">
+									{{ $t("Refund request") }}
+								</ui-link>
+							</div>
+							<div v-if="item?.tx_hash" class="content__item">
+								<span class="content__inner-label">{{ $t("Transaction hash") }}:</span>
 								<display-hash
 									type="transaction"
 									size-icon="xs"
@@ -302,21 +313,12 @@
 		display: grid;
 		grid-template-columns: 1fr 1fr 115px 190px;
 		column-gap: 20px;
+		row-gap: 12px;
 
 		&__item {
 			display: flex;
 			flex-direction: column;
 			gap: 4px;
-
-			&--hash {
-				color: $secondary;
-				font-size: 12px;
-				font-weight: 500;
-				line-height: 16px;
-				display: flex;
-				flex-direction: column;
-				gap: 4px;
-			}
 
 			&:not(:last-child) {
 				border-right: 1px solid $grey;

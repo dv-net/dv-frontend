@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [1.2.0] - 2026-10-16
+
+- feat: refund flow — admin review and scheduled send, transfer refund label, transaction type label, and payer cabinet claim hints [DNS-218]
+
 ## [1.1.1] - 2026-10-05
 
 - feat: AML risk rules — `RISK_LEVEL` (Low–Critical), collapse secondary rules, AMLBot PRO signal-limit hint [DNS-207]

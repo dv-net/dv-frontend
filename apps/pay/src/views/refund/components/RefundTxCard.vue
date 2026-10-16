@@ -69,6 +69,8 @@
 			case "processing":
 			case "pending_review":
 				return "warning";
+			case "scheduled":
+				return "info";
 			default:
 				return showClaimAction ? "success" : "neutral";
 		}
@@ -175,6 +177,10 @@
 				</div>
 			</div>
 		</div>
+
+		<p v-if="item.refund_status === 'scheduled' && item.refund_execute_after" class="tx-card__schedule">
+			{{ $t("Funds will be sent after") }} {{ formatCreatedDate(item.refund_execute_after) }}
+		</p>
 
 		<div v-if="showClaimAction && !isClaimOpen" class="tx-card__actions">
 			<ui-button mode="neutral" size="lg" left-icon-name="account-balance-wallet" @click="isClaimOpen = true">
@@ -323,6 +329,13 @@
 			}
 		}
 
+		&__schedule {
+			margin: 0;
+			color: $main-text-grey-color;
+			font-size: 13px;
+			line-height: 18px;
+		}
+
 		&__claim {
 			padding: 16px;
 			border-radius: 16px;
@@ -405,6 +418,10 @@
 
 			&[data-tone="danger"] {
 				color: #c4452d;
+			}
+
+			&[data-tone="info"] {
+				color: #2f6fed;
 			}
 
 			&[data-tone="neutral"] {

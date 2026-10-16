@@ -1,12 +1,13 @@
 <script setup lang="ts">
-	import { UiCollapse, UiCollapseItem, UiIcon, UiSkeleton } from "@dv.net/ui-kit";
+	import { UiCollapse, UiCollapseItem, UiIcon, UiLink, UiSkeleton } from "@dv.net/ui-kit";
 	import BlockchainIcon from "@shared/components/ui/blockchainIcon/BlockchainIcon.vue";
 	import { computed, ref } from "vue";
 	import LayoutBlock from "@dv-admin/views/transfers/components/layoutBlock/LayoutBlock.vue";
 	import { storeToRefs } from "pinia";
 	import { useTransferStore } from "@dv-admin/stores/transfer";
 	import { formatAmountBlockchain, formatDollars, getCurrentCoin } from "@shared/utils/helpers/general";
-	import { timeDifference } from "@dv-admin/utils/helpers/dateParse";
+	import { formatDate, timeDifference } from "@dv-admin/utils/helpers/dateParse";
+	import { TRANSFER_TYPE } from "@dv-admin/utils/constants/transfer";
 	import { copiedText } from "@shared/utils/helpers/general";
 	import ShowStatusGeneral from "@dv-admin/components/ui/showStatusGeneral/ShowStatusGeneral.vue";
 	import DisplayHash from "@shared/components/ui/displayHash/DisplayHash.vue";
@@ -52,7 +53,7 @@
 									<ui-icon type="400" name="sync-alt" size="xs" />
 								</div>
 								<p class="column-event__text">
-									{{ $t(item.kind === "from_address" ? "Withdrawal from hot wallet" : "Withdrawal from processing wallet") }}
+									{{ TRANSFER_TYPE[item.kind] ? $t(TRANSFER_TYPE[item.kind]) : "Unknown" }}
 								</p>
 							</div>
 							<div class="header__item price">
@@ -105,6 +106,16 @@
 								</template>
 								<div v-else>—</div>
 							</div>
+						</div>
+						<div v-if="item.execute_after" class="content__item">
+							<span class="content__inner-label">{{ $t("Send after") }}:</span>
+							<span>{{ formatDate(item.execute_after) }}</span>
+						</div>
+						<div v-if="item.refund_request_id" class="content__item">
+							<span class="content__inner-label">{{ $t("Refund") }}:</span>
+							<ui-link size="md" :to="{ name: 'projects-refunds' }">
+								{{ $t("Refund request") }}
+							</ui-link>
 						</div>
 					</div>
 				</UiCollapseItem>

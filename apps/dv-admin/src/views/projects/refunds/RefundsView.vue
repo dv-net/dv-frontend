@@ -3,9 +3,16 @@
 	import { storeToRefs } from "pinia";
 	import { useI18n } from "vue-i18n";
 	import { UiSkeleton } from "@dv.net/ui-kit";
-	import { getApiRefundRequests, postApiRefundReject } from "@dv-admin/utils/services/refunds";
+	import {
+		getApiRefundRequests,
+		postApiRefundApprove,
+		postApiRefundCancel,
+		postApiRefundExecuteNow,
+		postApiRefundReject
+	} from "@dv-admin/utils/services/refunds";
 	import type { IRefundRequest } from "@dv-admin/utils/types/api/apiGo";
 	import { useProjectsStore } from "@dv-admin/stores/projects";
+	import { useGeneralStore } from "@dv-admin/stores/general";
 	import { useNotifications } from "@shared/utils/composables/useNotifications";
 	import RefundRequestCard from "@dv-admin/views/projects/refunds/components/RefundRequestCard.vue";
 
@@ -13,6 +20,10 @@
 	const { notify } = useNotifications();
 	const { projects } = storeToRefs(useProjectsStore());
 	const { getProjects } = useProjectsStore();
+	const { otpGlobalCode } = storeToRefs(useGeneralStore());
+	const { openOtpGlobalModal } = useGeneralStore();
+
+	const VISIBLE_STATUSES = new Set<IRefundRequest["status"]>(["pending_review", "scheduled", "failed"]);
 
 	const refundRequests = ref<IRefundRequest[]>([]);
 	const isLoading = ref(false);
@@ -32,10 +43,38 @@
 		}
 	};
 
+	const applyRefundUpdate = (updated: IRefundRequest) => {
+		refundRequests.value = VISIBLE_STATUSES.has(updated.status)
+			? refundRequests.value.map((item) => (item.id === updated.id ? updated : item))
+			: refundRequests.value.filter((item) => item.id !== updated.id);
+	};
+
 	const handleReject = async (refundId: string) => {
-		await postApiRefundReject(refundId);
-		refundRequests.value = refundRequests.value.filter((item) => item.id !== refundId);
+		applyRefundUpdate(await postApiRefundReject(refundId));
 		notify(t("Refund request rejected"), "success");
+	};
+
+	const handleApprove = async (refundId: string) => {
+		if (!otpGlobalCode.value) {
+			openOtpGlobalModal(() => handleApprove(refundId));
+			return;
+		}
+		applyRefundUpdate(await postApiRefundApprove(refundId, otpGlobalCode.value));
+		notify(t("Refund approved"), "success");
+	};
+
+	const handleCancel = async (refundId: string) => {
+		applyRefundUpdate(await postApiRefundCancel(refundId));
+		notify(t("Scheduled refund canceled"), "success");
+	};
+
+	const handleExecuteNow = async (refundId: string) => {
+		if (!otpGlobalCode.value) {
+			openOtpGlobalModal(() => handleExecuteNow(refundId));
+			return;
+		}
+		applyRefundUpdate(await postApiRefundExecuteNow(refundId, otpGlobalCode.value));
+		notify(t("Refund sent"), "success");
 	};
 
 	onMounted(async () => {
@@ -82,6 +121,9 @@
 					:item="item"
 					:project-name="projectNameById.get(item.store_id)"
 					:reject-request="() => handleReject(item.id)"
+					:approve-request="() => handleApprove(item.id)"
+					:cancel-request="() => handleCancel(item.id)"
+					:execute-now-request="() => handleExecuteNow(item.id)"
 				/>
 			</div>
 		</section>

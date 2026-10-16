@@ -7,6 +7,7 @@ export const getRefundTokenCookieKey = (storeId: string): string => `${REFUND_TO
 
 export const REFUND_STATUS = {
 	PENDING_REVIEW: "pending_review",
+	SCHEDULED: "scheduled",
 	REJECTED: "rejected",
 	PROCESSING: "processing",
 	COMPLETED: "completed",
@@ -16,6 +17,7 @@ export const REFUND_STATUS = {
 export const REFUND_CABINET_BUCKET_ORDER: RefundCabinetBucket[] = [
 	"available",
 	REFUND_STATUS.PENDING_REVIEW,
+	REFUND_STATUS.SCHEDULED,
 	REFUND_STATUS.PROCESSING,
 	REFUND_STATUS.COMPLETED,
 	REFUND_STATUS.FAILED,
@@ -25,6 +27,7 @@ export const REFUND_CABINET_BUCKET_ORDER: RefundCabinetBucket[] = [
 export const REFUND_STATUS_LABELS: Record<RefundCabinetBucket, string> = {
 	available: "Available for refund",
 	pending_review: "Pending review",
+	scheduled: "Scheduled",
 	processing: "Processing",
 	completed: "Completed",
 	failed: "Failed",

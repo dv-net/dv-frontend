@@ -4,6 +4,7 @@
 	import type { IProcessingWalletsResponse } from "@dv-admin/utils/types/api/apiGo.ts";
 	import TopTronResources from "@dv-admin/views/dashboard/components/processing/processingRow/topTronResources/TopTronResources.vue";
 	import TopEvm from "@dv-admin/views/dashboard/components/processing/processingRow/topEvm/TopEvm.vue";
+	import TopBitcoinLike from "@dv-admin/views/dashboard/components/processing/processingRow/topBitcoinLike/TopBitcoinLike.vue";
 	import BlockWithdrawalFromProcessing from "@dv-admin/views/dashboard/components/processing/processingRow/blockWithdrawalFromProcessing/BlockWithdrawalFromProcessing.vue";
 	import { storeToRefs } from "pinia";
 	import { useUserSettingsStore } from "@dv-admin/stores/userSettings";
@@ -20,6 +21,7 @@
 	const amountRecommendReplenishing: number = 50;
 
 	const isTron = computed<boolean>(() => data.currency.id === "TRX.Tron");
+	const isBitcoinLike = computed<boolean>(() => data.currency.is_bitcoin_like);
 
 	const currentTronType = computed<string | null>(() => {
 		const find = userSettings.value.find((item) => item.name === "transfer_type");
@@ -40,6 +42,7 @@
 	});
 
 	const currentColorBorderRow = computed<string>(() => {
+		if (isBitcoinLike.value) return "green";
 		if (isTron.value && currentTronType.value !== TRANSFER_TYPES.BURNTRX) {
 			return "green";
 		}
@@ -88,6 +91,12 @@
 			v-model="isShowWithdrawalFromProcessing"
 			:count-max-transfers="currentCountTransfers"
 			:show-warning-column="showWarningColumn"
+			@close="handleClose"
+		/>
+		<top-bitcoin-like
+			v-else-if="isBitcoinLike"
+			:data="data"
+			v-model="isShowWithdrawalFromProcessing"
 			@close="handleClose"
 		/>
 		<div v-else class="center flex-grow-1">{{ $t("Not found") }}</div>

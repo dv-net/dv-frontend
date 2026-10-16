@@ -35,7 +35,8 @@ export const postApiRefundClaim = async (
 	token: string
 ): Promise<IRefundRequest> => {
 	const resp = await api.post(`/public/refund/blocked-transactions/${blockedTransactionId}/claim`, body, {
-		headers: refundAuthHeaders(token)
+		headers: refundAuthHeaders(token),
+		suppressNotify: true
 	});
 	return resp.data.data;
 };

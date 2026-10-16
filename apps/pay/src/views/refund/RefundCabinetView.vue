@@ -16,6 +16,12 @@
 	const { cabinetSections, isLoadingCabinet, isLoadingClaim, walletId, storeId } = storeToRefs(refundStore);
 	const { loadCabinet, claimRefund, logout, prefillPartialFromQuery, syncTokenFromStore } = refundStore;
 
+	const claimErrorStatus = (error: unknown): number | undefined => {
+		if (!error || typeof error !== "object" || !("response" in error)) return undefined;
+		const response = (error as { response?: { status?: number } }).response;
+		return response?.status;
+	};
+
 	const route = useRoute();
 	const router = useRouter();
 	const { notify } = useNotifications();
@@ -28,6 +34,17 @@
 			await claimRefund(item, destinationAddress);
 			notify(t("Refund request submitted"), "success");
 		} catch (error) {
+			const status = claimErrorStatus(error);
+			if (status === 422) {
+				notify(t("Refund fee unavailable"));
+				return;
+			}
+			if (status === 409) {
+				notify(t("A refund request has already been submitted"));
+				await loadCabinet();
+				return;
+			}
+			notify(t("Failed to submit the refund request"));
 			console.error(error);
 		}
 	};

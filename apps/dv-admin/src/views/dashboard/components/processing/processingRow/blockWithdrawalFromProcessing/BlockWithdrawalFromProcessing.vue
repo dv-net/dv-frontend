@@ -1,7 +1,7 @@
 <script setup lang="ts">
 	import BlockchainIcon from "@shared/components/ui/blockchainIcon/BlockchainIcon.vue";
 	import { UiButton, UiForm, UiFormItem, UiInput, UiTooltip } from "@dv.net/ui-kit";
-	import { computed, ref } from "vue";
+	import { computed, ref, watch } from "vue";
 	import type {
 		IProcessingWalletsResponse,
 		IWithdrawalFromProcessingRequest
@@ -64,6 +64,13 @@
 		updateAmounts(asset);
 	};
 
+	const selectSingleAsset = () => {
+		if (data.assets.length !== 1) return;
+		selectAsset(data.assets[0]);
+	};
+
+	watch(() => data.assets.length, selectSingleAsset, { immediate: true });
+
 	const selectAllAmount = () => {
 		if (!selectedAsset.value) return;
 		updateAmounts(selectedAsset.value);
@@ -103,6 +110,7 @@
 		selectedAsset.value = null;
 		amountUsdWithdrawProcessing.value = null;
 		formRef.value?.resetValidate();
+		selectSingleAsset();
 	};
 
 	defineExpose({

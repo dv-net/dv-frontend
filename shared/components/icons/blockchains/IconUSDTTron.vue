@@ -1,6 +1,12 @@
+<script setup lang="ts">
+	import { useId } from "vue";
+
+	const clipId = useId();
+</script>
+
 <template>
 	<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-		<g clip-path="url(#clip0_7752_6392)">
+		<g :clip-path="`url(#${clipId})`">
 			<circle cx="12" cy="12" r="12" fill="#22A079" />
 			<path
 				fill-rule="evenodd"
@@ -18,7 +24,7 @@
 			/>
 		</g>
 		<defs>
-			<clipPath id="clip0_7752_6392">
+			<clipPath :id="clipId">
 				<rect width="24" height="24" fill="white" />
 			</clipPath>
 		</defs>

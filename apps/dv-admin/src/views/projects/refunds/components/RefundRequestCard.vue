@@ -14,14 +14,19 @@
 		pending_review: "Pending review",
 		rejected: "Rejected",
 		processing: "Processing",
+		scheduled: "Scheduled",
+		canceled: "Canceled",
 		completed: "Completed",
 		failed: "Failed"
 	};
 
-	const { item, projectName, rejectRequest } = defineProps<{
+	const { item, projectName, rejectRequest, approveRequest, cancelRequest, executeNowRequest } = defineProps<{
 		item: IRefundRequest;
 		projectName?: string;
 		rejectRequest: () => Promise<unknown>;
+		approveRequest: () => Promise<unknown>;
+		cancelRequest: () => Promise<unknown>;
+		executeNowRequest: () => Promise<unknown>;
 	}>();
 
 	const isCompact = useMediaQuery("(max-width: 1024px)");
@@ -37,13 +42,17 @@
 				return "danger";
 			case "processing":
 			case "pending_review":
+			case "canceled":
 				return "warning";
+			case "scheduled":
+				return "info";
 			default:
 				return "neutral";
 		}
 	});
 
-	const canReject = computed(() => item.status === "pending_review");
+	const canReview = computed(() => item.status === "pending_review");
+	const canManageScheduled = computed(() => item.status === "scheduled");
 
 	const displayWalletId = computed(() => {
 		if (!item.wallet_id) return "";
@@ -117,15 +126,48 @@
 			</div>
 		</div>
 
-		<div v-if="canReject" class="tx-card__actions">
+		<p v-if="item.status === 'scheduled' && item.execute_after" class="tx-card__note">
+			{{ $t("Funds will be sent after") }} {{ formatDate(item.execute_after) }}
+		</p>
+		<p v-if="item.last_error" class="tx-card__error">
+			<span class="tx-card__error-label">{{ $t("Last error") }}</span>
+			<span>{{ item.last_error }}</span>
+		</p>
+
+		<div v-if="canReview || canManageScheduled" class="tx-card__actions">
+			<ui-button v-if="canReview" mode="neutral" size="lg" left-icon-name="check-circle" @click="approveRequest">
+				{{ $t("Approve") }}
+			</ui-button>
 			<ui-confirm
+				v-if="canReview"
 				:title="`${$t('Reject refund request')}?`"
 				:text="$t('The payer will not be able to submit another refund request for this deposit')"
 				:method="rejectRequest"
 			>
 				<template #default="{ loading }">
-					<ui-button mode="neutral" size="lg" left-icon-name="cancel" :loading="loading">
+					<ui-button type="secondary" size="lg" left-icon-name="cancel" :loading="loading">
 						{{ $t("Reject") }}
+					</ui-button>
+				</template>
+			</ui-confirm>
+			<ui-button
+				v-if="canManageScheduled"
+				mode="neutral"
+				size="lg"
+				left-icon-name="send"
+				@click="executeNowRequest"
+			>
+				{{ $t("Send now") }}
+			</ui-button>
+			<ui-confirm
+				v-if="canManageScheduled"
+				:title="`${$t('Cancel scheduled refund')}?`"
+				:text="$t('The request will return to review')"
+				:method="cancelRequest"
+			>
+				<template #default="{ loading }">
+					<ui-button type="secondary" size="lg" left-icon-name="cancel" :loading="loading">
+						{{ $t("Cancel refund") }}
 					</ui-button>
 				</template>
 			</ui-confirm>
@@ -223,11 +265,40 @@
 			}
 		}
 
+		&__note,
+		&__error {
+			margin: 0;
+			font-size: 13px;
+			line-height: 18px;
+		}
+
+		&__note {
+			color: $secondary;
+		}
+
+		&__error {
+			display: flex;
+			flex-direction: column;
+			gap: 2px;
+			color: #c4452d;
+		}
+
+		&__error-label {
+			color: $secondary;
+			font-size: 12px;
+			font-weight: 500;
+			line-height: 16px;
+		}
+
 		&__actions {
 			display: flex;
 			justify-content: flex-end;
+			flex-wrap: wrap;
+			gap: 8px;
 
 			@include mediamax(480) {
+				flex-direction: column;
+
 				:deep(.ui-button) {
 					width: 100%;
 				}
@@ -313,6 +384,10 @@
 
 			&[data-tone="danger"] {
 				color: #c4452d;
+			}
+
+			&[data-tone="info"] {
+				color: $blue;
 			}
 
 			&[data-tone="neutral"] {
