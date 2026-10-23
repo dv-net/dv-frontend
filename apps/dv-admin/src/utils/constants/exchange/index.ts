@@ -18,6 +18,8 @@ import IconBybit from "@dv-admin/components/icons/exchanges/connect/IconBybit.vu
 import IconBybitSmall from "@dv-admin/components/icons/exchanges/IconBybit.vue";
 import IconBingx from "@dv-admin/components/icons/exchanges/connect/IconBingx.vue";
 import IconBingxSmall from "@dv-admin/components/icons/exchanges/IconBingx.vue";
+import IconKraken from "@dv-admin/components/icons/exchanges/connect/IconKraken.vue";
+import IconKrakenSmall from "@dv-admin/components/icons/exchanges/IconKraken.vue";
 
 export const exchangeLogo: Record<ExchangeSlugType, Component> = {
 	okx: markRaw(IconOkx),
@@ -28,7 +30,8 @@ export const exchangeLogo: Record<ExchangeSlugType, Component> = {
 	gate: markRaw(IconGate),
 	mexc: markRaw(IconMexc),
 	bybit: markRaw(IconBybit),
-	bingx: markRaw(IconBingx)
+	bingx: markRaw(IconBingx),
+	kraken: markRaw(IconKraken)
 };
 
 export const exchangeLogoSmall: Record<ExchangeSlugType, Component> = {
@@ -40,7 +43,8 @@ export const exchangeLogoSmall: Record<ExchangeSlugType, Component> = {
 	gate: markRaw(IconGateSmall),
 	mexc: markRaw(IconMexcSmall),
 	bybit: markRaw(IconBybitSmall),
-	bingx: markRaw(IconBingxSmall)
+	bingx: markRaw(IconBingxSmall),
+	kraken: markRaw(IconKrakenSmall)
 };
 
 export const EXCHANGE_SETTING_LABELS: Record<string, string> = {
