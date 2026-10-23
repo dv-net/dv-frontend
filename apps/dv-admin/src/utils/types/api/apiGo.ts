@@ -748,7 +748,8 @@ export type ExchangeSlugType =
 	| "mexc"
 	| "gate"
 	| "bybit"
-	| "bingx";
+	| "bingx"
+	| "kraken";
 
 export interface IExchangeList {
 	exchange: string;
