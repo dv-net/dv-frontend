@@ -34,7 +34,6 @@
   "Email must be valid": "Barua pepe lazima iwe halali",
   "Enter cryptocurrency, chain or contract": "Weka sarafu-fiche, mnyororo au mkataba",
   "Enter email": "Weka barua pepe",
-  "Enter the 6-character code from your email": "Ingiza msimbo wa vibambo 6 kutoka kwenye barua pepe yako",
   "Enter the address where we should send the refund. The address must match the blockchain of the deposit": "Weka anwani ambapo tunapaswa kutuma marejesho. Anwani lazima ilingane na blockchain ya amana",
   "Enter the email used for this payment. We will send a verification code": "Weka barua pepe iliyotumika kwa malipo haya. Tutatuma msimbo wa uthibitishaji",
   "Enter verification code": "Weka msimbo wa uthibitishaji",
@@ -133,5 +132,6 @@
   "Funds will be sent after": "Fedha zitatumwa baada ya",
   "Refund fee unavailable": "Urejeshaji wa fedha haupatikani: anwani haina fedha za kutosha kulipa ada ya mtandao",
   "Return to the sender address": "Rudisha kwenye anwani ya mtumaji",
-  "Scheduled": "Iliyoratibiwa"
+  "Scheduled": "Iliyoratibiwa",
+  "Blocked payments": "Malipo yaliyozuiwa"
 }

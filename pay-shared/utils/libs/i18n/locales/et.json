@@ -34,7 +34,6 @@
   "Email must be valid": "E-posti aadress peab olema kehtiv",
   "Enter cryptocurrency, chain or contract": "Sisesta krüptovaluuta, võrk või leping",
   "Enter email": "Sisesta e-posti aadress",
-  "Enter the 6-character code from your email": "Sisestage e-kirjas olev 6-kohaline kood",
   "Enter the address where we should send the refund. The address must match the blockchain of the deposit": "Sisestage aadress, kuhu peaksime tagasimakse saatma. Aadress peab vastama sissemakse plokiahelale",
   "Enter the email used for this payment. We will send a verification code": "Sisestage selle makse jaoks kasutatud e-posti aadress. Saadame kinnituskoodi",
   "Enter verification code": "Sisestage kinnituskood",
@@ -133,5 +132,6 @@
   "Funds will be sent after": "Raha saadetakse pärast",
   "Refund fee unavailable": "Tagasimakse pole saadaval: aadressil ei ole piisavalt vahendeid võrgutasu maksmiseks",
   "Return to the sender address": "Tagasta saatja aadressile",
-  "Scheduled": "Ajastatud"
+  "Scheduled": "Ajastatud",
+  "Blocked payments": "Blokeeritud maksed"
 }

@@ -34,7 +34,6 @@
   "Email must be valid": "有効なメールアドレスを入力してください",
   "Enter cryptocurrency, chain or contract": "暗号資産、チェーン、またはコントラクトを入力",
   "Enter email": "メールアドレスを入力",
-  "Enter the 6-character code from your email": "メールに記載された6文字のコードを入力してください",
   "Enter the address where we should send the refund. The address must match the blockchain of the deposit": "返金の送信先アドレスを入力してください。アドレスは入金のブロックチェーンと一致している必要があります。",
   "Enter the email used for this payment. We will send a verification code": "この支払いに使用したメールアドレスを入力してください。確認コードを送信します",
   "Enter verification code": "確認コードを入力",
@@ -133,5 +132,6 @@
   "Funds will be sent after": "資金は後ほど送金されます",
   "Refund fee unavailable": "返金は利用できません: このアドレスにはネットワーク手数料を支払うのに十分な資金がありません",
   "Return to the sender address": "送信元アドレスに返送する",
-  "Scheduled": "スケジュール済み"
+  "Scheduled": "スケジュール済み",
+  "Blocked payments": "ブロックされた決済"
 }

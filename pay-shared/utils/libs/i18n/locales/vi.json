@@ -34,7 +34,6 @@
   "Email must be valid": "Email phải hợp lệ",
   "Enter cryptocurrency, chain or contract": "Nhập tiền mã hóa, chuỗi hoặc hợp đồng",
   "Enter email": "Nhập email",
-  "Enter the 6-character code from your email": "Nhập mã 6 ký tự từ email của bạn",
   "Enter the address where we should send the refund. The address must match the blockchain of the deposit": "Nhập địa chỉ mà chúng tôi sẽ gửi khoản hoàn tiền. Địa chỉ phải thuộc cùng blockchain với khoản tiền nạp",
   "Enter the email used for this payment. We will send a verification code": "Nhập email được sử dụng cho khoản thanh toán này. Chúng tôi sẽ gửi mã xác minh",
   "Enter verification code": "Nhập mã xác minh",
@@ -133,5 +132,6 @@
   "Funds will be sent after": "Tiền sẽ được gửi sau",
   "Refund fee unavailable": "Không thể hoàn tiền: địa chỉ không có đủ tiền để trả phí mạng lưới",
   "Return to the sender address": "Trả về địa chỉ người gửi",
-  "Scheduled": "Đã lên lịch"
+  "Scheduled": "Đã lên lịch",
+  "Blocked payments": "Thanh toán bị chặn"
 }

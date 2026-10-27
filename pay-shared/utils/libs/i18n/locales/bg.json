@@ -34,7 +34,6 @@
   "Email must be valid": "Имейлът трябва да е валиден",
   "Enter cryptocurrency, chain or contract": "Въведете криптовалута, верига или контракт",
   "Enter email": "Въведете имейл",
-  "Enter the 6-character code from your email": "Въведете 6-символния код от имейла си",
   "Enter the address where we should send the refund. The address must match the blockchain of the deposit": "Въведете адреса, на който трябва да изпратим възстановената сума. Адресът трябва да съответства на блокчейна на депозита",
   "Enter the email used for this payment. We will send a verification code": "Въведете имейла, използван за това плащане. Ще изпратим код за потвърждение",
   "Enter verification code": "Въведете кода за потвърждение",
@@ -133,5 +132,6 @@
   "Funds will be sent after": "Средствата ще бъдат изпратени след",
   "Refund fee unavailable": "Възстановяването на средства не е налично: адресът няма достатъчно средства, за да плати мрежовата такса",
   "Return to the sender address": "Връщане към адреса на подателя",
-  "Scheduled": "Планирано"
+  "Scheduled": "Планирано",
+  "Blocked payments": "Блокирани плащания"
 }

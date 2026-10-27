@@ -34,7 +34,6 @@
   "Email must be valid": "Sähköpostiosoitteen on oltava kelvollinen",
   "Enter cryptocurrency, chain or contract": "Syötä kryptovaluutta, ketju tai sopimus",
   "Enter email": "Syötä sähköpostiosoite",
-  "Enter the 6-character code from your email": "Syötä sähköpostiisi lähetetty 6-merkkinen koodi",
   "Enter the address where we should send the refund. The address must match the blockchain of the deposit": "Anna osoite, johon palautus lähetetään. Osoitteen on vastattava talletuksen lohkoketjua",
   "Enter the email used for this payment. We will send a verification code": "Syötä tätä maksua varten käytetty sähköpostiosoite. Lähetämme vahvistuskoodin",
   "Enter verification code": "Syötä vahvistuskoodi",
@@ -133,5 +132,6 @@
   "Funds will be sent after": "Varat lähetetään sen jälkeen, kun",
   "Refund fee unavailable": "Maksunpalautus ei ole käytettävissä: osoitteella ei ole riittävästi varoja verkkomaksun maksamiseen",
   "Return to the sender address": "Palauta lähettäjän osoitteeseen",
-  "Scheduled": "Ajastettu"
+  "Scheduled": "Ajastettu",
+  "Blocked payments": "Estetyt maksut"
 }

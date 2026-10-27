@@ -14,13 +14,8 @@ export const useRefundsStore = defineStore("refunds", () => {
 		}
 	};
 
-	const setRefundRequestsCount = (count: number) => {
-		refundRequestsCount.value = count;
-	};
-
 	return {
 		refundRequestsCount,
-		loadRefundRequestsCount,
-		setRefundRequestsCount
+		loadRefundRequestsCount
 	};
 });

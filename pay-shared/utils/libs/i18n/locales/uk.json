@@ -34,7 +34,6 @@
   "Email must be valid": "Адреса електронної пошти має бути дійсною",
   "Enter cryptocurrency, chain or contract": "Введіть криптовалюту, мережу або контракт",
   "Enter email": "Введіть email",
-  "Enter the 6-character code from your email": "Введіть 6-символьний код із вашого електронного листа",
   "Enter the address where we should send the refund. The address must match the blockchain of the deposit": "Введіть адресу, на яку ми маємо надіслати повернення коштів. Адреса має відповідати блокчейну депозиту",
   "Enter the email used for this payment. We will send a verification code": "Введіть електронну адресу, використану для цього платежу. Ми надішлемо код підтвердження",
   "Enter verification code": "Введіть код підтвердження",
@@ -133,5 +132,6 @@
   "Funds will be sent after": "Кошти буде надіслано після",
   "Refund fee unavailable": "Повернення коштів недоступне: на адресі недостатньо коштів для сплати мережевої комісії",
   "Return to the sender address": "Повернути на адресу відправника",
-  "Scheduled": "Заплановано"
+  "Scheduled": "Заплановано",
+  "Blocked payments": "Заблоковані платежі"
 }

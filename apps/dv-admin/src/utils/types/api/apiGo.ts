@@ -1235,3 +1235,73 @@ export interface IRefundRequest {
 	execute_after?: string | null;
 	last_error?: string | null;
 }
+
+export interface IRefundBlockedTransaction {
+	id: string;
+	transaction_id: string;
+	tx_hash: string;
+	amount: string;
+	amount_usd: string | null;
+	currency_id: string;
+	currency_code: string;
+	blockchain: string;
+	from_address: string;
+	to_address: string;
+	risk_level: string;
+	score: string;
+	tx_created_at: string | null;
+	blocked_at: string | null;
+}
+
+export interface IRefundAmlCheck {
+	id: string;
+	service: string;
+	external_id: string;
+	status: TAmlCheckStatus;
+	score: string;
+	risk_level: TAmlRiskLevel | null;
+	created_at: string | null;
+	updated_at: string | null;
+}
+
+export interface IRefundTransfer {
+	id: string;
+	number: number | null;
+	status: string | null;
+	stage: string | null;
+	step: string | null;
+	tx_hash: string | null;
+	amount: string | null;
+	amount_usd: string | null;
+	message: string | null;
+	created_at: string | null;
+	updated_at: string | null;
+}
+
+export interface IRefundRequestDetailed {
+	id: string;
+	wallet_id: string;
+	store_id: string;
+	destination_address: string;
+	status: RefundStatus;
+	email: string;
+	reviewed_at: string | null;
+	execute_after: string | null;
+	last_error: string | null;
+	created_at: string;
+	updated_at: string | null;
+	blocked_transaction: IRefundBlockedTransaction;
+	aml_check: IRefundAmlCheck;
+	transfer: IRefundTransfer | null;
+}
+
+export interface IRefundRequestsListParams {
+	statuses?: RefundStatus[];
+	page?: number;
+	page_size?: number;
+}
+
+export interface IRefundRequestsListResponse {
+	items: IRefundRequestDetailed[];
+	pagination: IPagination;
+}

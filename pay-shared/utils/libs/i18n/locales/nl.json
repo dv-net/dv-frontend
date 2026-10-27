@@ -34,7 +34,6 @@
   "Email must be valid": "E-mailadres moet geldig zijn",
   "Enter cryptocurrency, chain or contract": "Voer cryptovaluta, chain of contract in",
   "Enter email": "Voer e-mailadres in",
-  "Enter the 6-character code from your email": "Voer de code van 6 tekens uit je e-mail in",
   "Enter the address where we should send the refund. The address must match the blockchain of the deposit": "Voer het adres in waarnaar we de terugbetaling moeten sturen. Het adres moet overeenkomen met de blockchain van de storting",
   "Enter the email used for this payment. We will send a verification code": "Voer het e-mailadres in dat voor deze betaling is gebruikt. We sturen een verificatiecode",
   "Enter verification code": "Voer verificatiecode in",
@@ -133,5 +132,6 @@
   "Funds will be sent after": "Tegoeden worden verzonden na",
   "Refund fee unavailable": "Terugbetaling is niet beschikbaar: het adres heeft niet genoeg saldo om de netwerkkosten te betalen",
   "Return to the sender address": "Terugsturen naar het afzenderadres",
-  "Scheduled": "Gepland"
+  "Scheduled": "Gepland",
+  "Blocked payments": "Geblokkeerde betalingen"
 }

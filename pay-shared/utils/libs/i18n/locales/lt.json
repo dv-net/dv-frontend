@@ -34,7 +34,6 @@
   "Email must be valid": "El. pašto adresas turi būti galiojantis",
   "Enter cryptocurrency, chain or contract": "Įveskite kriptovaliutą, tinklą arba kontraktą",
   "Enter email": "Įveskite el. paštą",
-  "Enter the 6-character code from your email": "Įveskite 6 simbolių kodą iš el. laiško",
   "Enter the address where we should send the refund. The address must match the blockchain of the deposit": "Įveskite adresą, kuriuo turėtume išsiųsti lėšų grąžinimą. Adresas turi atitikti įmokos blokų grandinę",
   "Enter the email used for this payment. We will send a verification code": "Įveskite šiam mokėjimui naudotą el. pašto adresą. Atsiųsime patvirtinimo kodą",
   "Enter verification code": "Įveskite patvirtinimo kodą",
@@ -133,5 +132,6 @@
   "Funds will be sent after": "Lėšos bus išsiųstos po",
   "Refund fee unavailable": "Pinigų grąžinimas negalimas: adrese nepakanka lėšų tinklo mokesčiui sumokėti",
   "Return to the sender address": "Grąžinti į siuntėjo adresą",
-  "Scheduled": "Suplanuota"
+  "Scheduled": "Suplanuota",
+  "Blocked payments": "Užblokuoti mokėjimai"
 }

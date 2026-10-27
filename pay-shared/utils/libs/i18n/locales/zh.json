@@ -34,7 +34,6 @@
   "Email must be valid": "电子邮件必须有效",
   "Enter cryptocurrency, chain or contract": "输入加密货币、链或合约",
   "Enter email": "输入邮箱",
-  "Enter the 6-character code from your email": "输入你电子邮件中的 6 位字符代码",
   "Enter the address where we should send the refund. The address must match the blockchain of the deposit": "请输入接收退款的地址。该地址必须与充值所使用的区块链一致",
   "Enter the email used for this payment. We will send a verification code": "输入用于此付款的电子邮件。我们将发送验证码",
   "Enter verification code": "输入验证码",
@@ -133,5 +132,6 @@
   "Funds will be sent after": "资金将在之后发送",
   "Refund fee unavailable": "无法退款：该地址没有足够的资金支付网络手续费",
   "Return to the sender address": "退回至发送方地址",
-  "Scheduled": "已计划"
+  "Scheduled": "已计划",
+  "Blocked payments": "已阻止的付款"
 }

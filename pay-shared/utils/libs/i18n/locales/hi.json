@@ -34,7 +34,6 @@
   "Email must be valid": "ईमेल मान्य होना चाहिए",
   "Enter cryptocurrency, chain or contract": "क्रिप्टोकरेंसी, चेन या कॉन्ट्रैक्ट दर्ज करें",
   "Enter email": "ईमेल दर्ज करें",
-  "Enter the 6-character code from your email": "अपने ईमेल से 6-अक्षर वाला कोड दर्ज करें",
   "Enter the address where we should send the refund. The address must match the blockchain of the deposit": "वह पता दर्ज करें जहाँ हमें रिफंड भेजना चाहिए। पता डिपॉज़िट की ब्लॉकचेन से मेल खाना चाहिए",
   "Enter the email used for this payment. We will send a verification code": "इस भुगतान के लिए उपयोग किया गया ईमेल दर्ज करें। हम एक सत्यापन कोड भेजेंगे",
   "Enter verification code": "सत्यापन कोड दर्ज करें",
@@ -133,5 +132,6 @@
   "Funds will be sent after": "धनराशि इसके बाद भेजी जाएगी",
   "Refund fee unavailable": "रिफंड उपलब्ध नहीं है: नेटवर्क शुल्क का भुगतान करने के लिए इस पते में पर्याप्त धनराशि नहीं है",
   "Return to the sender address": "प्रेषक पते पर वापस करें",
-  "Scheduled": "निर्धारित"
+  "Scheduled": "निर्धारित",
+  "Blocked payments": "अवरुद्ध भुगतान"
 }

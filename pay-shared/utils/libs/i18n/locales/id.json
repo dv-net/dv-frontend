@@ -34,7 +34,6 @@
   "Email must be valid": "Email harus valid",
   "Enter cryptocurrency, chain or contract": "Masukkan mata uang kripto, jaringan, atau kontrak",
   "Enter email": "Masukkan email",
-  "Enter the 6-character code from your email": "Masukkan kode 6 karakter dari email Anda",
   "Enter the address where we should send the refund. The address must match the blockchain of the deposit": "Masukkan alamat tempat kami harus mengirimkan pengembalian dana. Alamat harus sesuai dengan blockchain deposit",
   "Enter the email used for this payment. We will send a verification code": "Masukkan email yang digunakan untuk pembayaran ini. Kami akan mengirimkan kode verifikasi",
   "Enter verification code": "Masukkan kode verifikasi",
@@ -133,5 +132,6 @@
   "Funds will be sent after": "Dana akan dikirim setelah",
   "Refund fee unavailable": "Pengembalian dana tidak tersedia: alamat tidak memiliki cukup dana untuk membayar biaya jaringan",
   "Return to the sender address": "Kembalikan ke alamat pengirim",
-  "Scheduled": "Terjadwal"
+  "Scheduled": "Terjadwal",
+  "Blocked payments": "Pembayaran yang diblokir"
 }

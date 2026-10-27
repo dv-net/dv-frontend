@@ -34,7 +34,6 @@
   "Email must be valid": "Adresa de e-mail trebuie să fie validă",
   "Enter cryptocurrency, chain or contract": "Introduceți criptomoneda, lanțul sau contractul",
   "Enter email": "Introduceți e-mailul",
-  "Enter the 6-character code from your email": "Introduceți codul de 6 caractere din e-mailul dvs.",
   "Enter the address where we should send the refund. The address must match the blockchain of the deposit": "Introduceți adresa la care ar trebui să trimitem rambursarea. Adresa trebuie să corespundă blockchainului depunerii",
   "Enter the email used for this payment. We will send a verification code": "Introduceți adresa de e-mail utilizată pentru această plată. Vom trimite un cod de verificare",
   "Enter verification code": "Introduceți codul de verificare",
@@ -133,5 +132,6 @@
   "Funds will be sent after": "Fondurile vor fi trimise după",
   "Refund fee unavailable": "Rambursarea nu este disponibilă: adresa nu are suficiente fonduri pentru a plăti comisionul de rețea",
   "Return to the sender address": "Returnează către adresa expeditorului",
-  "Scheduled": "Programat"
+  "Scheduled": "Programat",
+  "Blocked payments": "Plăți blocate"
 }

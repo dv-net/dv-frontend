@@ -34,7 +34,6 @@
   "Email must be valid": "E-Mail muss gültig sein",
   "Enter cryptocurrency, chain or contract": "Kryptowährung, Chain oder Contract eingeben",
   "Enter email": "E-Mail-Adresse eingeben",
-  "Enter the 6-character code from your email": "Geben Sie den 6-stelligen Code aus Ihrer E-Mail ein",
   "Enter the address where we should send the refund. The address must match the blockchain of the deposit": "Geben Sie die Adresse ein, an die wir die Rückerstattung senden sollen. Die Adresse muss mit der Blockchain der Einzahlung übereinstimmen",
   "Enter the email used for this payment. We will send a verification code": "Geben Sie die für diese Zahlung verwendete E-Mail-Adresse ein. Wir senden einen Bestätigungscode",
   "Enter verification code": "Bestätigungscode eingeben",
@@ -133,5 +132,6 @@
   "Funds will be sent after": "Gelder werden danach gesendet",
   "Refund fee unavailable": "Rückerstattung ist nicht verfügbar: Die Adresse verfügt nicht über genügend Guthaben, um die Netzwerkgebühr zu bezahlen",
   "Return to the sender address": "An die Absenderadresse zurücksenden",
-  "Scheduled": "Geplant"
+  "Scheduled": "Geplant",
+  "Blocked payments": "Gesperrte Zahlungen"
 }

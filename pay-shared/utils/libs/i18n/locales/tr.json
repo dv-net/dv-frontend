@@ -34,7 +34,6 @@
   "Email must be valid": "E-posta geçerli olmalıdır",
   "Enter cryptocurrency, chain or contract": "Kripto para birimi, zincir veya kontrat girin",
   "Enter email": "E-posta gir",
-  "Enter the 6-character code from your email": "E-postanızdaki 6 karakterli kodu girin",
   "Enter the address where we should send the refund. The address must match the blockchain of the deposit": "İadeyi göndermemiz gereken adresi girin. Adres, yatırma işleminin blok zinciriyle eşleşmelidir",
   "Enter the email used for this payment. We will send a verification code": "Bu ödeme için kullanılan e-posta adresini girin. Bir doğrulama kodu göndereceğiz",
   "Enter verification code": "Doğrulama kodunu girin",
@@ -133,5 +132,6 @@
   "Funds will be sent after": "Fonlar şu tarihten sonra gönderilecek",
   "Refund fee unavailable": "Geri ödeme kullanılamıyor: adresin ağ ücretini ödemek için yeterli bakiyesi yok",
   "Return to the sender address": "Gönderen adresine iade et",
-  "Scheduled": "Planlandı"
+  "Scheduled": "Planlandı",
+  "Blocked payments": "Engellenen ödemeler"
 }

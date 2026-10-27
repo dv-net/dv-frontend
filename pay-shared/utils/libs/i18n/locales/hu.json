@@ -34,7 +34,6 @@
   "Email must be valid": "Az e-mail-címnek érvényesnek kell lennie",
   "Enter cryptocurrency, chain or contract": "Adjon meg kriptovalutát, láncot vagy szerződést",
   "Enter email": "Adja meg az e-mail-címet",
-  "Enter the 6-character code from your email": "Add meg az e-mailben kapott 6 karakteres kódot",
   "Enter the address where we should send the refund. The address must match the blockchain of the deposit": "Adja meg a címet, ahová a visszatérítést küldjük. A címnek a befizetés blokkláncához kell tartoznia",
   "Enter the email used for this payment. We will send a verification code": "Add meg a fizetéshez használt e-mail-címet. Küldünk egy ellenőrző kódot",
   "Enter verification code": "Adja meg az ellenőrző kódot",
@@ -133,5 +132,6 @@
   "Funds will be sent after": "Az összeg elküldésére ezután kerül sor",
   "Refund fee unavailable": "A visszatérítés nem érhető el: a címen nincs elegendő fedezet a hálózati díj kifizetéséhez",
   "Return to the sender address": "Visszaküldés a küldő címére",
-  "Scheduled": "Ütemezve"
+  "Scheduled": "Ütemezve",
+  "Blocked payments": "Blokkolt fizetések"
 }

@@ -1,7 +1,8 @@
 <script setup lang="ts">
 	import { computed } from "vue";
 	import { UiButton, UiConfirm, UiCopyText } from "@dv.net/ui-kit";
-	import type { IRefundRequest, RefundStatus } from "@dv-admin/utils/types/api/apiGo";
+	import type { IRefundRequestDetailed } from "@dv-admin/utils/types/api/apiGo";
+	import { REFUND_STATUS_LABELS } from "@dv-admin/utils/constants/refund";
 	import { formatDate } from "@dv-admin/utils/helpers/dateParse";
 	import { truncateHash } from "@shared/utils/helpers/general";
 	import { useMediaQuery } from "@shared/utils/composables/useMediaQuery";
@@ -10,18 +11,8 @@
 	import IconCalendar from "@dv-admin/components/icons/refund/IconCalendar.vue";
 	import IconDocument from "@dv-admin/components/icons/projects/IconDocument.vue";
 
-	const STATUS_LABELS: Record<RefundStatus, string> = {
-		pending_review: "Pending review",
-		rejected: "Rejected",
-		processing: "Processing",
-		scheduled: "Scheduled",
-		canceled: "Canceled",
-		completed: "Completed",
-		failed: "Failed"
-	};
-
 	const { item, projectName, rejectRequest, approveRequest, cancelRequest, executeNowRequest } = defineProps<{
-		item: IRefundRequest;
+		item: IRefundRequestDetailed;
 		projectName?: string;
 		rejectRequest: () => Promise<unknown>;
 		approveRequest: () => Promise<unknown>;
@@ -31,7 +22,7 @@
 
 	const isCompact = useMediaQuery("(max-width: 1024px)");
 
-	const statusLabel = computed(() => STATUS_LABELS[item.status] ?? item.status);
+	const statusLabel = computed(() => REFUND_STATUS_LABELS[item.status] ?? item.status);
 
 	const statusTone = computed(() => {
 		switch (item.status) {

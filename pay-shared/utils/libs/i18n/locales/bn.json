@@ -34,7 +34,6 @@
   "Email must be valid": "ইমেলটি বৈধ হতে হবে",
   "Enter cryptocurrency, chain or contract": "ক্রিপ্টোকারেন্সি, চেইন বা কন্ট্রাক্ট লিখুন",
   "Enter email": "ইমেল লিখুন",
-  "Enter the 6-character code from your email": "আপনার ইমেল থেকে ৬-অক্ষরের কোডটি লিখুন",
   "Enter the address where we should send the refund. The address must match the blockchain of the deposit": "যে ঠিকানায় আমরা রিফান্ড পাঠাব সেটি লিখুন। ঠিকানাটি অবশ্যই ডিপোজিটের ব্লকচেইনের সাথে মিলতে হবে",
   "Enter the email used for this payment. We will send a verification code": "এই পেমেন্টের জন্য ব্যবহৃত ইমেইলটি লিখুন। আমরা একটি যাচাইকরণ কোড পাঠাব",
   "Enter verification code": "যাচাইকরণ কোড লিখুন",
@@ -133,5 +132,6 @@
   "Funds will be sent after": "তহবিল পাঠানো হবে পরে",
   "Refund fee unavailable": "রিফান্ড উপলভ্য নয়: নেটওয়ার্ক ফি পরিশোধ করার জন্য অ্যাড্রেসটিতে পর্যাপ্ত ফান্ড নেই",
   "Return to the sender address": "প্রেরকের ঠিকানায় ফেরত পাঠান",
-  "Scheduled": "নির্ধারিত"
+  "Scheduled": "নির্ধারিত",
+  "Blocked payments": "ব্লক করা পেমেন্ট"
 }

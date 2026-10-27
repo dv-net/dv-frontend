@@ -34,7 +34,6 @@
   "Email must be valid": "유효한 이메일이어야 합니다",
   "Enter cryptocurrency, chain or contract": "암호화폐, 체인 또는 컨트랙트를 입력하세요",
   "Enter email": "이메일 입력",
-  "Enter the 6-character code from your email": "이메일에 있는 6자 코드를 입력하세요",
   "Enter the address where we should send the refund. The address must match the blockchain of the deposit": "환불을 보낼 주소를 입력하세요. 주소는 입금이 이루어진 블록체인과 일치해야 합니다",
   "Enter the email used for this payment. We will send a verification code": "이 결제에 사용한 이메일을 입력하세요. 인증 코드를 보내드리겠습니다",
   "Enter verification code": "인증 코드 입력",
@@ -133,5 +132,6 @@
   "Funds will be sent after": "자금은 다음 시점 이후에 전송됩니다",
   "Refund fee unavailable": "환불을 사용할 수 없습니다: 해당 주소에 네트워크 수수료를 지불할 충분한 자금이 없습니다",
   "Return to the sender address": "발신자 주소로 반환",
-  "Scheduled": "예약됨"
+  "Scheduled": "예약됨",
+  "Blocked payments": "차단된 결제"
 }

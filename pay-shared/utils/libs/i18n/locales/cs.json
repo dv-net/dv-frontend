@@ -34,7 +34,6 @@
   "Email must be valid": "E-mail musí být platný",
   "Enter cryptocurrency, chain or contract": "Zadejte kryptoměnu, síť nebo kontrakt",
   "Enter email": "Zadejte e-mail",
-  "Enter the 6-character code from your email": "Zadejte šestiznakový kód z e-mailu",
   "Enter the address where we should send the refund. The address must match the blockchain of the deposit": "Zadejte adresu, na kterou máme odeslat refundaci. Adresa musí odpovídat blockchainu vkladu",
   "Enter the email used for this payment. We will send a verification code": "Zadejte e-mail použitý pro tuto platbu. Zašleme ověřovací kód",
   "Enter verification code": "Zadejte ověřovací kód",
@@ -133,5 +132,6 @@
   "Funds will be sent after": "Prostředky budou odeslány po",
   "Refund fee unavailable": "Vrácení peněz není k dispozici: adresa nemá dostatek prostředků na zaplacení síťového poplatku",
   "Return to the sender address": "Vrátit na adresu odesílatele",
-  "Scheduled": "Naplánováno"
+  "Scheduled": "Naplánováno",
+  "Blocked payments": "Blokované platby"
 }

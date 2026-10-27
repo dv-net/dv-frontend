@@ -34,7 +34,6 @@
   "Email must be valid": "يجب أن يكون البريد الإلكتروني صالحًا",
   "Enter cryptocurrency, chain or contract": "أدخل العملة المشفرة أو السلسلة أو العقد",
   "Enter email": "أدخل البريد الإلكتروني",
-  "Enter the 6-character code from your email": "أدخل الرمز المكوّن من 6 أحرف من بريدك الإلكتروني",
   "Enter the address where we should send the refund. The address must match the blockchain of the deposit": "أدخل العنوان الذي ينبغي أن نرسل إليه الاسترداد. يجب أن يتطابق العنوان مع بلوكتشين الإيداع",
   "Enter the email used for this payment. We will send a verification code": "أدخل البريد الإلكتروني المستخدم في عملية الدفع هذه. سنرسل رمز تحقق",
   "Enter verification code": "أدخل رمز التحقق",
@@ -133,5 +132,6 @@
   "Funds will be sent after": "سيتم إرسال الأموال بعد",
   "Refund fee unavailable": "استرداد الأموال غير متاح: لا يحتوي العنوان على أموال كافية لدفع رسوم الشبكة",
   "Return to the sender address": "الإرجاع إلى عنوان المُرسِل",
-  "Scheduled": "مجدول"
+  "Scheduled": "مجدول",
+  "Blocked payments": "المدفوعات المحظورة"
 }

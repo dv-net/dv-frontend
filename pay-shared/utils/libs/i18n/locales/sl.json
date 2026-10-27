@@ -34,7 +34,6 @@
   "Email must be valid": "E-poštni naslov mora biti veljaven",
   "Enter cryptocurrency, chain or contract": "Vnesite kriptovaluto, verigo ali pogodbo",
   "Enter email": "Vnesite e-poštni naslov",
-  "Enter the 6-character code from your email": "Vnesite 6-znakovno kodo iz e-pošte",
   "Enter the address where we should send the refund. The address must match the blockchain of the deposit": "Vnesite naslov, na katerega naj pošljemo vračilo. Naslov se mora ujemati z verigo blokov pologa",
   "Enter the email used for this payment. We will send a verification code": "Vnesite e-poštni naslov, uporabljen za to plačilo. Poslali vam bomo kodo za preverjanje",
   "Enter verification code": "Vnesite potrditveno kodo",
@@ -133,5 +132,6 @@
   "Funds will be sent after": "Sredstva bodo poslana po",
   "Refund fee unavailable": "Vračilo ni na voljo: naslov nima dovolj sredstev za plačilo omrežne provizije",
   "Return to the sender address": "Vrni na naslov pošiljatelja",
-  "Scheduled": "Načrtovano"
+  "Scheduled": "Načrtovano",
+  "Blocked payments": "Blokirana plačila"
 }

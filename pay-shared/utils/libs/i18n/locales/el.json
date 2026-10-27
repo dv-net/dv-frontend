@@ -34,7 +34,6 @@
   "Email must be valid": "Το email πρέπει να είναι έγκυρο",
   "Enter cryptocurrency, chain or contract": "Εισαγάγετε κρυπτονόμισμα, αλυσίδα ή συμβόλαιο",
   "Enter email": "Εισαγάγετε email",
-  "Enter the 6-character code from your email": "Εισαγάγετε τον κωδικό 6 χαρακτήρων από το email σας",
   "Enter the address where we should send the refund. The address must match the blockchain of the deposit": "Εισαγάγετε τη διεύθυνση στην οποία θα πρέπει να στείλουμε την επιστροφή χρημάτων. Η διεύθυνση πρέπει να αντιστοιχεί στο blockchain της κατάθεσης",
   "Enter the email used for this payment. We will send a verification code": "Εισαγάγετε το email που χρησιμοποιήθηκε για αυτήν την πληρωμή. Θα στείλουμε έναν κωδικό επαλήθευσης",
   "Enter verification code": "Εισαγάγετε τον κωδικό επαλήθευσης",
@@ -133,5 +132,6 @@
   "Funds will be sent after": "Τα χρήματα θα σταλούν μετά",
   "Refund fee unavailable": "Η επιστροφή χρημάτων δεν είναι διαθέσιμη: η διεύθυνση δεν έχει αρκετά κεφάλαια για να πληρώσει τη χρέωση δικτύου",
   "Return to the sender address": "Επιστροφή στη διεύθυνση αποστολέα",
-  "Scheduled": "Προγραμματισμένο"
+  "Scheduled": "Προγραμματισμένο",
+  "Blocked payments": "Αποκλεισμένες πληρωμές"
 }

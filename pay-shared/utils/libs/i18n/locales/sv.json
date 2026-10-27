@@ -34,7 +34,6 @@
   "Email must be valid": "E-postadressen måste vara giltig",
   "Enter cryptocurrency, chain or contract": "Ange kryptovaluta, kedja eller kontrakt",
   "Enter email": "Ange e-postadress",
-  "Enter the 6-character code from your email": "Ange 6-teckenskoden från ditt e-postmeddelande",
   "Enter the address where we should send the refund. The address must match the blockchain of the deposit": "Ange adressen dit vi ska skicka återbetalningen. Adressen måste matcha insättningens blockkedja",
   "Enter the email used for this payment. We will send a verification code": "Ange e-postadressen som användes för den här betalningen. Vi skickar en verifieringskod",
   "Enter verification code": "Ange verifieringskod",
@@ -133,5 +132,6 @@
   "Funds will be sent after": "Medel skickas efter",
   "Refund fee unavailable": "Återbetalning är inte tillgänglig: adressen har inte tillräckligt med medel för att betala nätverksavgiften",
   "Return to the sender address": "Returnera till avsändaradressen",
-  "Scheduled": "Schemalagd"
+  "Scheduled": "Schemalagd",
+  "Blocked payments": "Blockerade betalningar"
 }

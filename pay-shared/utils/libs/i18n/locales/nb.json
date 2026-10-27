@@ -34,7 +34,6 @@
   "Email must be valid": "E-postadressen må være gyldig",
   "Enter cryptocurrency, chain or contract": "Angi kryptovaluta, kjede eller kontrakt",
   "Enter email": "Skriv inn e-post",
-  "Enter the 6-character code from your email": "Skriv inn koden på 6 tegn fra e-posten din",
   "Enter the address where we should send the refund. The address must match the blockchain of the deposit": "Skriv inn adressen vi skal sende refusjonen til. Adressen må samsvare med blokkjeden for innskuddet",
   "Enter the email used for this payment. We will send a verification code": "Angi e-postadressen som ble brukt for denne betalingen. Vi sender en bekreftelseskode",
   "Enter verification code": "Angi bekreftelseskode",
@@ -133,5 +132,6 @@
   "Funds will be sent after": "Midlene vil bli sendt etter",
   "Refund fee unavailable": "Tilbakebetaling er ikke tilgjengelig: adressen har ikke nok midler til å betale nettverksgebyret",
   "Return to the sender address": "Returner til avsenderadressen",
-  "Scheduled": "Planlagt"
+  "Scheduled": "Planlagt",
+  "Blocked payments": "Blokkerte betalinger"
 }

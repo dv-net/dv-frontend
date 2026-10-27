@@ -1,8 +1,19 @@
-import type { IRefundRequest } from "@dv-admin/utils/types/api/apiGo";
+import type {
+	IRefundRequest,
+	IRefundRequestsListParams,
+	IRefundRequestsListResponse
+} from "@dv-admin/utils/types/api/apiGo";
 import api from "@dv-admin/utils/libs/axios";
 
 export const getApiRefundRequests = async (): Promise<IRefundRequest[]> => {
 	const resp = await api.get("/dv-admin/refund-requests");
+	return resp.data.data;
+};
+
+export const getApiRefundRequestsList = async (
+	params: IRefundRequestsListParams
+): Promise<IRefundRequestsListResponse> => {
+	const resp = await api.get("/dv-admin/refund-requests/list", { params });
 	return resp.data.data;
 };
 
