@@ -39,7 +39,6 @@
 		invoiceCurrency,
 		stepMap,
 		filteredBlockchains,
-		filteredCurrencies,
 		invoiceUuid,
 		moneyCameAudioRef,
 		paymentFoundAudioRef
@@ -135,15 +134,6 @@
 			} else {
 				currentStep.value = 2;
 			}
-			return;
-		} else if (filteredCurrencies.value.length === 1) {
-			currentCurrency.value = getCurrentCoin(filteredCurrencies.value[0].currency.id);
-			currentChain.value =
-				filteredBlockchains.value.length === 1
-					? getCurrentBlockchain(filteredBlockchains.value[0].currency.id)
-					: null;
-			currentStep.value = currentChain.value ? 3 : 2;
-			updateQuery();
 		}
 	};
 

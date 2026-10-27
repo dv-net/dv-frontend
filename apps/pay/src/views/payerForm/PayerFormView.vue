@@ -35,14 +35,20 @@
 		isShowAdvertising,
 		stepMap,
 		filteredBlockchains,
-		filteredCurrencies,
 		isShowBlockLatestTransactions,
-		sidebarTransactions,
+		isShowBlockBlockedTransactions,
+		latestTransactions,
+		blockedLatestTransactions,
 		moneyCameAudioRef,
 		paymentFoundAudioRef
 	} = storeToRefs(usePayerFormStore());
-	const { getWalletTxFind, checkValidationCurrencyAndChain, getStartInfo, clearAmlPolling, restorePendingPaymentSession } =
-		usePayerFormStore();
+	const {
+		getWalletTxFind,
+		checkValidationCurrencyAndChain,
+		getStartInfo,
+		clearAmlPolling,
+		restorePendingPaymentSession
+	} = usePayerFormStore();
 
 	const route = useRoute();
 	const router = useRouter();
@@ -111,13 +117,6 @@
 			} else {
 				currentStep.value = 2;
 			}
-			return;
-		} else if (filteredCurrencies.value.length === 1) {
-			currentCurrency.value = getCurrentCoin(filteredCurrencies.value[0].currency.id);
-			currentChain.value =
-				filteredBlockchains.value.length === 1 ? getCurrentBlockchain(filteredBlockchains.value[0].currency.id) : null;
-			currentStep.value = currentChain.value ? 3 : 2;
-			updateQuery();
 		}
 	};
 
@@ -166,9 +165,7 @@
 			: t("Payment by cryptocurrency");
 
 		const hasPendingPayment = await restorePendingPaymentSession();
-		if (!hasPendingPayment) {
-			getQueryParams();
-		}
+		if (!hasPendingPayment) getQueryParams();
 		void startPolling();
 	});
 
@@ -197,7 +194,9 @@
 				:current-step="currentStep"
 				:is-show-advertising="isShowAdvertising"
 				:is-show-block-latest-transactions="isShowBlockLatestTransactions"
-				:transactions="sidebarTransactions"
+				:is-show-block-blocked-transactions="isShowBlockBlockedTransactions"
+				:transactions="latestTransactions"
+				:blocked-transactions="blockedLatestTransactions"
 				@request-refund="handleRequestRefund"
 			>
 				<amount-editor v-model:amount="amount" size="lg" :minimal-payment="store?.minimal_payment" />
@@ -206,7 +205,14 @@
 			<block-latest-transactions
 				v-if="isShowBlockLatestTransactions"
 				class="form__latest-transactions"
-				:transactions="sidebarTransactions"
+				:transactions="latestTransactions"
+				@request-refund="handleRequestRefund"
+			/>
+			<block-latest-transactions
+				v-if="isShowBlockBlockedTransactions"
+				class="form__blocked-transactions"
+				title="Blocked payments"
+				:transactions="blockedLatestTransactions"
 				@request-refund="handleRequestRefund"
 			/>
 		</div>
@@ -240,7 +246,8 @@
 			}
 		}
 		&__advertising,
-		&__latest-transactions {
+		&__latest-transactions,
+		&__blocked-transactions {
 			display: none;
 			@include mediamax(1024) {
 				display: flex;

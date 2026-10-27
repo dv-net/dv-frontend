@@ -85,19 +85,40 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		{ id: 4, label: "Ready", isActive: false }
 	]);
 
+	const startPaymentFromFirstStep = () => {
+		currentCurrency.value = null;
+		currentChain.value = null;
+		currentStep.value = 1;
+		timeline.value.forEach((item) => {
+			item.isActive = item.id === 1;
+		});
+	};
+
 	const isShowAdvertising = computed<boolean>(() => ![3, 4, 5].includes(currentStep.value));
-	const isShowBlockLatestTransactions = computed<boolean>(() => {
-		return !errorStore.value && ![3, 4, 5].includes(currentStep.value) && Boolean(transactionsConfirmed.value.length);
-	});
+	const showPaymentsBlocks = computed<boolean>(() => !errorStore.value && ![3, 4, 5].includes(currentStep.value));
+	const blockedIdByHash = computed(
+		() => new Map(blockedTransactions.value.map((item) => [item.tx_hash, item.blocked_transaction_id]))
+	);
 
-	const sidebarTransactions = computed<ILatestTransaction[]>(() => {
-		const blockedByHash = new Map(blockedTransactions.value.map((item) => [item.tx_hash, item.blocked_transaction_id]));
+	const latestTransactions = computed<ILatestTransaction[]>(() =>
+		transactionsConfirmed.value
+			.filter((transaction) => !blockedIdByHash.value.has(transaction.hash))
+			.map((transaction) => ({ ...transaction }))
+	);
 
-		return transactionsConfirmed.value.map((transaction) => ({
-			...transaction,
-			blocked_transaction_id: blockedByHash.get(transaction.hash)
-		}));
-	});
+	const blockedLatestTransactions = computed<ILatestTransaction[]>(() =>
+		transactionsConfirmed.value.flatMap((transaction) => {
+			const blockedId = blockedIdByHash.value.get(transaction.hash);
+			return blockedId ? [{ ...transaction, blocked_transaction_id: blockedId }] : [];
+		})
+	);
+
+	const isShowBlockLatestTransactions = computed<boolean>(
+		() => showPaymentsBlocks.value && latestTransactions.value.length > 0
+	);
+	const isShowBlockBlockedTransactions = computed<boolean>(
+		() => showPaymentsBlocks.value && blockedLatestTransactions.value.length > 0
+	);
 
 	const loadBlockedTransactions = async () => {
 		if (!payerId.value) {
@@ -319,7 +340,7 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		try {
 			const data = await getApiWalletTxFind(id);
 			if (data.confirmed) {
-				transactionsConfirmed.value = data.confirmed.slice(0, 9).map((transaction) => ({
+				transactionsConfirmed.value = data.confirmed.map((transaction) => ({
 					...transaction,
 					is_less_than_1_hour: isLessThan1Hour(transaction.created_at, new Date().toISOString())
 				}));
@@ -487,7 +508,8 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		transactionsConfirmed,
 		transactionsUnconfirmed,
 		blockedTransactions,
-		sidebarTransactions,
+		latestTransactions,
+		blockedLatestTransactions,
 		arrayCurrencyIds,
 		currentTransaction,
 		errorStore,
@@ -496,6 +518,7 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		filteredBlockchains,
 		isShowAdvertising,
 		isShowBlockLatestTransactions,
+		isShowBlockBlockedTransactions,
 		stepMap,
 		filteredCurrencies,
 		moneyCameAudioRef,
@@ -507,6 +530,7 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		getStoreTopup,
 		checkValidationCurrencyAndChain,
 		getStartInfo,
+		startPaymentFromFirstStep,
 		clearAmlPolling,
 		restorePendingPaymentSession,
 		loadBlockedTransactions

@@ -5,7 +5,13 @@
 	import { storeToRefs } from "pinia";
 	import { useRefundStore } from "@pay/stores/refund";
 	import { REFUND_CODE_LENGTH } from "@pay/utils/constants/refund";
-	import { parseRefundEntryPartialQuery, parseRefundEntryQuery, buildRefundCabinetRoute, buildRefundEntryPartialRoute } from "@pay/utils/helpers/refundEntry";
+	import {
+		parseRefundEntryPartialQuery,
+		parseRefundEntryQuery,
+		buildRefundCabinetRoute,
+		buildRefundEntryPartialRoute
+	} from "@pay/utils/helpers/refundEntry";
+	import { usePayerFormStore } from "@pay/stores/payerForm";
 	import { EMAIL_REGEX } from "@shared/utils/constants/regex";
 	import { loaderShutdown } from "@pay-shared/utils/helpers/general";
 	import type { UiFormRules } from "@dv.net/ui-kit/dist/components/UiForm/types";
@@ -97,6 +103,7 @@
 	const handleLookupBack = async () => {
 		const context = getRefundContext();
 		if (!context?.wallet_id) return;
+		usePayerFormStore().startPaymentFromFirstStep();
 		await router.push({ name: "payer-wallet", params: { payerId: context.wallet_id } });
 	};
 
@@ -237,9 +244,6 @@
 					:model="verifyForm"
 					@submit.prevent="handleVerify"
 				>
-					<p class="form__hint">
-						{{ $t("Enter the 6-character code from your email") }}
-					</p>
 					<ui-form-item name="code" :label="$t('Verification code')">
 						<ui-input
 							v-model="verifyForm.code"

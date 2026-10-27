@@ -17,7 +17,9 @@
 		currentStep,
 		isShowAdvertising = false,
 		isShowBlockLatestTransactions = false,
+		isShowBlockBlockedTransactions = false,
 		transactions = [],
+		blockedTransactions = [],
 		amount = null,
 		fiatCurrency = "USD"
 	} = defineProps<{
@@ -27,7 +29,9 @@
 		currentStep: number;
 		isShowAdvertising?: boolean;
 		isShowBlockLatestTransactions?: boolean;
+		isShowBlockBlockedTransactions?: boolean;
 		transactions?: ILatestTransaction[];
+		blockedTransactions?: ILatestTransaction[];
 		amount?: number | string | null;
 		fiatCurrency?: string;
 	}>();
@@ -86,6 +90,14 @@
 			v-if="isShowBlockLatestTransactions"
 			class="sidebar__latest-transactions"
 			:transactions="transactions"
+			:fiat-currency="fiatCurrency"
+			@request-refund="emit('requestRefund', $event)"
+		/>
+		<block-latest-transactions
+			v-if="isShowBlockBlockedTransactions"
+			class="sidebar__blocked-transactions"
+			title="Blocked payments"
+			:transactions="blockedTransactions"
 			:fiat-currency="fiatCurrency"
 			@request-refund="emit('requestRefund', $event)"
 		/>
@@ -187,7 +199,8 @@
 			}
 		}
 		&__advertising,
-		&__latest-transactions {
+		&__latest-transactions,
+		&__blocked-transactions {
 			@include mediamax(1024) {
 				display: none;
 			}

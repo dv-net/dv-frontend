@@ -1,14 +1,17 @@
 <script setup lang="ts">
 	import { UiButton, UiForm, UiFormItem, UiInput, UiModal } from "@dv.net/ui-kit";
 	import type { UiFormRules } from "@dv.net/ui-kit/dist/components/UiForm/types";
-	import { computed, ref, watch } from "vue";
+	import { computed, nextTick, ref, watch, type ComponentPublicInstance } from "vue";
 	import { useI18n } from "vue-i18n";
 	import BlockchainCard from "@dv-admin/components/ui/blockchainCard/BlockchainCard.vue";
-	import PriceOutput from "@dv-admin/components/ui/priceOutput/PriceOutput.vue";
-	import DisplayHash from "@shared/components/ui/displayHash/DisplayHash.vue";
 	import { postApiWithdrawExternal } from "@dv-admin/utils/services/hotWallets";
 	import type { IHotWalletsItem } from "@dv-admin/utils/types/api/apiGo";
-	import { convertCurrencyInUsd, formatDollars } from "@shared/utils/helpers/general";
+	import {
+		convertCurrencyInUsd,
+		formatAmountBlockchain,
+		formatDollars,
+		getCurrentCoin
+	} from "@shared/utils/helpers/general";
 	import { useNotifications } from "@shared/utils/composables/useNotifications";
 
 	const { wallet } = defineProps<{ wallet: IHotWalletsItem }>();
@@ -18,10 +21,31 @@
 	const { notify } = useNotifications();
 
 	const formRef = ref<HTMLFormElement | null>(null);
+	const amountInputRef = ref<ComponentPublicInstance | null>(null);
+	const totpInputRef = ref<ComponentPublicInstance | null>(null);
 	const isSubmitting = ref(false);
 	const form = ref({ addressTo: "", amount: "", totp: "" });
 
-	const amountValue = computed(() => Number(form.value.amount.trim().replace(",", ".")));
+	const nativeInput = (instance: ComponentPublicInstance | null) => {
+		const root = instance?.$el;
+		return root instanceof HTMLElement ? root.querySelector("input") : null;
+	};
+
+	const writeInputValue = (instance: ComponentPublicInstance | null, value: string) => {
+		const input = nativeInput(instance);
+		if (input && input.value !== value) input.value = value;
+	};
+
+	const sanitizeAmount = (value: string) => {
+		const normalized = value.replace(",", ".").replace(/[^\d.]/g, "");
+		const dotIndex = normalized.indexOf(".");
+		if (dotIndex === -1) return normalized;
+		return `${normalized.slice(0, dotIndex + 1)}${normalized.slice(dotIndex + 1).replace(/\./g, "")}`;
+	};
+
+	const sanitizeTotp = (value: string) => value.replace(/\D/g, "").slice(0, 6);
+
+	const amountValue = computed(() => Number(form.value.amount.trim()));
 	const amountUsd = computed(() => {
 		const balance = Number(wallet.amount);
 		if (!Number.isFinite(amountValue.value) || amountValue.value <= 0 || !balance) return null;
@@ -69,7 +93,7 @@
 	};
 
 	const submitWithdrawal = async () => {
-		const amount = form.value.amount.trim().replace(",", ".");
+		const amount = form.value.amount.trim();
 		try {
 			isSubmitting.value = true;
 			const transfer = await postApiWithdrawExternal({
@@ -92,6 +116,10 @@
 		}
 	};
 
+	const selectAllAmount = () => {
+		form.value.amount = sanitizeAmount(wallet.amount);
+	};
+
 	const handleWithdraw = async () => {
 		if (!formRef.value || !(await formRef.value.validate())) return;
 		await submitWithdrawal();
@@ -102,10 +130,28 @@
 	});
 
 	watch(
+		() => form.value.amount,
+		(value) => {
+			const amount = sanitizeAmount(value);
+			if (amount !== value) form.value.amount = amount;
+			writeInputValue(amountInputRef.value, amount);
+			nextTick(() => writeInputValue(amountInputRef.value, form.value.amount));
+		}
+	);
+
+	watch(
 		() => form.value.totp,
 		(value) => {
-			const digits = value.replace(/\D/g, "").slice(0, 6);
+			const digits = sanitizeTotp(value);
 			if (digits !== value) form.value.totp = digits;
+			const input = nativeInput(totpInputRef.value);
+			if (input) {
+				input.inputMode = "numeric";
+				input.maxLength = 6;
+				input.autocomplete = "one-time-code";
+				if (input.value !== digits) input.value = digits;
+			}
+			nextTick(() => writeInputValue(totpInputRef.value, form.value.totp));
 		}
 	);
 </script>
@@ -117,15 +163,33 @@
 			<div class="dialog__body">
 				<div class="source">
 					<blockchain-card :type="wallet.currency_id" />
-					<price-output :amount="wallet.amount" :currency-id="wallet.currency_id" :amount-usd="wallet.amount_usd" />
+					<div class="source-price">
+						<span>{{ formatDollars(wallet.amount_usd, { countPartMoreOneDollar: 2 }) }}</span>
+						<span>•</span>
+						<span class="source-price__muted">
+							{{ formatAmountBlockchain(wallet.amount, { currencyId: wallet.currency_id }) }}
+						</span>
+						<span class="source-price__muted">{{ getCurrentCoin(wallet.currency_id) }}</span>
+					</div>
 				</div>
-				<display-hash type="address" :hash="wallet.address" size-icon="sm" :currency-id="wallet.currency_id" />
-				<p class="hint">{{ $t("Network fee is taken from this wallet") }}</p>
 				<ui-form ref="formRef" :model="form" :rules="rules" @submit.prevent="handleWithdraw">
 					<ui-form-item name="amount" :label="$t('Transfer amount')">
-						<ui-input v-model="form.amount" size="lg" inputmode="decimal" :placeholder="$t('Enter the amount')">
-							<template v-if="amountUsd !== null" #append>
-								<span class="amount-usd">≈ {{ formatDollars(amountUsd, { countPartMoreOneDollar: 1 }) }}</span>
+						<ui-input ref="amountInputRef" v-model="form.amount" size="lg" :placeholder="$t('Enter the amount')">
+							<template #append>
+								<div class="amount-append">
+									<span v-if="amountUsd !== null" class="amount-usd">
+										≈ {{ formatDollars(amountUsd, { countPartMoreOneDollar: 2 }) }}
+									</span>
+									<ui-button
+										type="secondary"
+										size="lg"
+										native-type="button"
+										:disabled="!Number(wallet.amount)"
+										@click="selectAllAmount"
+									>
+										{{ $t("All") }}
+									</ui-button>
+								</div>
 							</template>
 						</ui-input>
 					</ui-form-item>
@@ -133,14 +197,7 @@
 						<ui-input v-model="form.addressTo" size="lg" :placeholder="$t('Enter address')" />
 					</ui-form-item>
 					<ui-form-item name="totp" :label="$t('6-digit 2FA code')">
-						<ui-input
-							v-model="form.totp"
-							size="lg"
-							type="tel"
-							autocomplete="one-time-code"
-							maxlength="6"
-							:placeholder="$t('Enter the code')"
-						/>
+						<ui-input ref="totpInputRef" v-model="form.totp" size="lg" :placeholder="$t('Enter the code')" />
 					</ui-form-item>
 					<ui-button
 						class="w-full"
@@ -190,11 +247,25 @@
 		gap: 12px;
 	}
 
-	.hint {
-		margin: 0;
-		color: $secondary;
+	.source-price {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+		color: $black;
 		font-size: 14px;
+		font-weight: 400;
 		line-height: 20px;
+
+		&__muted {
+			color: $secondary;
+			text-transform: uppercase;
+		}
+	}
+
+	.amount-append {
+		display: flex;
+		align-items: center;
+		gap: 12px;
 	}
 
 	.amount-usd {

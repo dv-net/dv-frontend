@@ -52,24 +52,49 @@
 		};
 	});
 
+	const showTokenSelect = computed<boolean>(() => data.assets.length > 1);
+
+	const tokenBalanceLabel = (asset: IProcessingWalletsAssets) => {
+		const amount = formatAmountBlockchain(asset.amount, { currencyId: asset.currency_id });
+		const fiatAmount = formatDollars(asset.amount_usd, { currency: "", countPartMoreOneDollar: 2 });
+		if (amount === "0" || fiatAmount === "0") return amount;
+		return `${amount} • ${formatDollars(asset.amount_usd, { countPartMoreOneDollar: 2 })}`;
+	};
+
+	const tokenTooltipAmount = (asset: IProcessingWalletsAssets) =>
+		`${formatAmountBlockchain(asset.amount, { currencyId: asset.currency_id })} ${getCurrentCoin(asset.currency_id)}`;
+
+	const tokenTooltipUsd = (asset: IProcessingWalletsAssets) =>
+		formatDollars(asset.amount_usd, { countPartMoreOneDollar: 2 });
+
 	const updateAmounts = (asset: IProcessingWalletsAssets) => {
 		form.value.amount = parseFloat(formatAmountBlockchain(asset.amount, { currencyId: asset.currency_id }));
 		amountUsdWithdrawProcessing.value = parseFloat(asset.amount_usd);
 	};
 
 	const selectAsset = (asset: IProcessingWalletsAssets) => {
-		if (!asset) return;
+		if (selectedAsset.value?.currency_id === asset.currency_id) return;
 		form.value.currency_id = asset.currency_id;
 		selectedAsset.value = asset;
-		updateAmounts(asset);
+		form.value.amount = null;
+		amountUsdWithdrawProcessing.value = null;
 	};
 
-	const selectSingleAsset = () => {
-		if (data.assets.length !== 1) return;
-		selectAsset(data.assets[0]);
+	const preselectAsset = () => {
+		if (!data.assets.length) {
+			selectedAsset.value = null;
+			form.value.currency_id = "";
+			return;
+		}
+		const current = data.assets.find((asset) => asset.currency_id === selectedAsset.value?.currency_id);
+		const native = data.assets.find((asset) => asset.currency_id === data.currency.id);
+		const asset = current ?? native ?? data.assets[0];
+		if (current) {
+			selectedAsset.value = current;
+			return;
+		}
+		selectAsset(asset);
 	};
-
-	watch(() => data.assets.length, selectSingleAsset, { immediate: true });
 
 	const selectAllAmount = () => {
 		if (!selectedAsset.value) return;
@@ -110,8 +135,10 @@
 		selectedAsset.value = null;
 		amountUsdWithdrawProcessing.value = null;
 		formRef.value?.resetValidate();
-		selectSingleAsset();
+		preselectAsset();
 	};
+
+	watch(() => data.assets, preselectAsset, { immediate: true });
 
 	defineExpose({
 		clearForm
@@ -120,33 +147,41 @@
 
 <template>
 	<div class="block">
-		<div class="block__column">
+		<div v-if="showTokenSelect" class="block__column">
 			<span class="block__label">{{ $t("Select a token") }}</span>
 			<div class="block__tokens">
-				<template v-for="item in data.assets" :key="item.currency_id">
-					<template v-if="!selectedAsset || selectedAsset.currency_id !== item.currency_id">
-						<ui-tooltip
-							:text="`${formatAmountBlockchain(item.amount, { currencyId: item.currency_id })} • ${formatDollars(item.amount_usd, { countPartMoreOneDollar: 1 })}`"
-						>
-							<button class="item" @click="selectAsset(item)">
-								<span class="item__content">
-									<blockchain-icon :type="item.currency_id as BlockchainType" width="16px" height="16px" />
-									<span>{{ getCurrentCoin(item.currency_id) }}</span>
-								</span>
-							</button>
-						</ui-tooltip>
+				<ui-tooltip
+					v-for="item in data.assets"
+					:key="item.currency_id"
+					:disabled="selectedAsset?.currency_id === item.currency_id"
+					:title="`${$t('Balances')} ${getCurrentCoin(item.currency_id)}`"
+				>
+					<template #text>
+						<span class="token-tooltip">
+							<span class="token-tooltip__row">
+								<span class="token-tooltip__label">{{ $t("Coin amount") }}:</span>
+								<span class="token-tooltip__value">{{ tokenTooltipAmount(item) }}</span>
+							</span>
+							<span class="token-tooltip__row">
+								<span class="token-tooltip__label">{{ $t("Dollar value") }}:</span>
+								<span class="token-tooltip__value">{{ tokenTooltipUsd(item) }}</span>
+							</span>
+						</span>
 					</template>
-					<button v-else class="item" @click="selectAsset(item)">
+					<button
+						class="item"
+						:class="{ selected: selectedAsset?.currency_id === item.currency_id }"
+						@click="selectAsset(item)"
+					>
 						<span class="item__content">
 							<blockchain-icon :type="item.currency_id as BlockchainType" width="16px" height="16px" />
 							<span>{{ getCurrentCoin(item.currency_id) }}</span>
 						</span>
 						<span class="item__price">
-							{{ formatAmountBlockchain(selectedAsset.amount, { currencyId: selectedAsset.currency_id }) }} •
-							{{ formatDollars(selectedAsset.amount_usd, { countPartMoreOneDollar: 1 }) }}
+							<span class="item__price-inner">{{ tokenBalanceLabel(item) }}</span>
 						</span>
 					</button>
-				</template>
+				</ui-tooltip>
 			</div>
 		</div>
 		<ui-form class="form" ref="formRef" @submit.prevent="withdrawHandler" :rules="rulesForm" :model="form">
@@ -161,7 +196,7 @@
 					<template #append>
 						<div class="input-sum__inner">
 							<span v-if="amountUsdWithdrawProcessing" class="input-sum__amount">
-								≈ {{ formatDollars(amountUsdWithdrawProcessing, { countPartMoreOneDollar: 1 }) }}
+								≈ {{ formatDollars(amountUsdWithdrawProcessing, { countPartMoreOneDollar: 2 }) }}
 							</span>
 							<ui-button type="secondary" size="lg" :disabled="isDisabledAllAmount" @click="selectAllAmount">
 								{{ $t("All") }}
@@ -173,7 +208,15 @@
 			<ui-form-item name="address_to" :label="$t('Where to withdraw')">
 				<ui-input v-model="form.address_to" :placeholder="$t('Enter address')" />
 			</ui-form-item>
-			<ui-button class="w-full mt-28" native-type="submit" mode="neutral" size="xl" :disabled="isDisabledBtnWithdraw">
+			<ui-button
+				class="w-full mt-28"
+				native-type="submit"
+				mode="neutral"
+				size="xl"
+				left-icon-name="send"
+				left-icon-type="400"
+				:disabled="isDisabledBtnWithdraw"
+			>
 				{{ $t("Withdraw") }}
 			</ui-button>
 		</ui-form>
@@ -207,14 +250,27 @@
 			.item {
 				display: flex;
 				align-items: center;
-				gap: 8px;
 				padding: 4px 12px;
 				border-radius: 12px;
 				border: 1px solid $grey;
 				background-color: $white;
 				min-height: 40px;
+				transition: border-color 0.25s ease;
+
+				@media (hover: hover) {
+					&:not(.selected):hover {
+						border-color: $blue;
+					}
+				}
+
 				&.selected {
-					border: 1px solid $blue;
+					border-color: $blue;
+
+					.item__price {
+						grid-template-columns: 1fr;
+						margin-left: 8px;
+						opacity: 1;
+					}
 				}
 				&__content {
 					display: flex;
@@ -226,10 +282,23 @@
 					line-height: 24px;
 				}
 				&__price {
+					display: grid;
+					grid-template-columns: 0fr;
+					margin-left: 0;
+					opacity: 0;
+					transition:
+						grid-template-columns 0.25s ease,
+						margin-left 0.25s ease,
+						opacity 0.2s ease;
+				}
+				&__price-inner {
+					overflow: hidden;
+					min-width: 0;
 					color: $grey-opacity;
 					font-size: 14px;
 					font-weight: 400;
 					line-height: 20px;
+					white-space: nowrap;
 				}
 			}
 		}
@@ -263,6 +332,32 @@
 					white-space: nowrap;
 				}
 			}
+		}
+	}
+
+	.token-tooltip {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+		font-size: 14px;
+		line-height: 20px;
+
+		&__row {
+			display: flex;
+			align-items: baseline;
+			justify-content: space-between;
+			gap: 16px;
+		}
+
+		&__label {
+			color: $grey-opacity;
+			font-weight: 400;
+		}
+
+		&__value {
+			color: #fff;
+			font-weight: 500;
+			white-space: nowrap;
 		}
 	}
 </style>

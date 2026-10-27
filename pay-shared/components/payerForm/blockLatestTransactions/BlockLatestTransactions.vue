@@ -12,9 +12,10 @@
 	import type { ILatestTransaction } from "./types";
 	import { formatFiatAmount } from "@pay-shared/utils/helpers/fiat";
 
-	const { transactions, fiatCurrency = "USD" } = defineProps<{
+	const { transactions, fiatCurrency = "USD", title = "Latest payments" } = defineProps<{
 		transactions: ILatestTransaction[];
 		fiatCurrency?: string;
+		title?: string;
 	}>();
 
 	const emit = defineEmits<{
@@ -62,7 +63,7 @@
 	<wrapper-block>
 		<div class="payments">
 			<div class="payments__top">
-				<h2 class="payments__title">{{ $t("Latest payments") }}</h2>
+				<h2 class="payments__title">{{ $t(title) }}</h2>
 				<ui-pagination
 					v-if="lastTransactionsPagination"
 					:per-page="lastTransactionsPagination.perPage"

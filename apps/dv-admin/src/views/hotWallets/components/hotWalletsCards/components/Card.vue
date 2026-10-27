@@ -54,7 +54,7 @@
 
 			<div class="price">
 				<div class="content">
-					<span>{{ formatDollars(item.amount_usd) }}</span>
+					<span>{{ formatDollars(item.amount_usd, { countPartMoreOneDollar: 2 }) }}</span>
 					<span class="content__label">
 						{{ formatAmountBlockchain(item.amount, { currencyId: item.currency_id }) }} {{ getCurrentCoin(item.currency_id) }}
 					</span>

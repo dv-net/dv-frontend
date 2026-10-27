@@ -2,9 +2,16 @@
 
 ## [Unreleased]
 
-## [1.2.0] - 2026-10-16
+- feat: show blocked payments in a separate payer-form block under latest payments [DNS-229]
+
+## [1.1.3] - 2026-10-23
+
+- feat: add Kraken exchange icons and update exchange records
+
+## [1.1.2] - 2026-10-16
 
 - feat: refund flow — admin review and scheduled send, transfer refund label, transaction type label, and payer cabinet claim hints [DNS-218]
+- change: remove the payer form refresh-address action [DNS-216]
 
 ## [1.1.1] - 2026-10-05
 

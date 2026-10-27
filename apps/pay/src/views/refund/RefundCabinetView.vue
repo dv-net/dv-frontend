@@ -7,6 +7,7 @@
 	import { REFUND_CABINET_BUCKET_ORDER, REFUND_STATUS_LABELS } from "@pay/utils/constants/refund";
 	import type { IRefundCabinetItem } from "@pay/utils/types/refund";
 	import { buildRefundEntryPartialRoute, parseRefundEntryPartialQuery } from "@pay/utils/helpers/refundEntry";
+	import { usePayerFormStore } from "@pay/stores/payerForm";
 	import { useNotifications } from "@shared/utils/composables/useNotifications";
 	import RefundTxCard from "@pay/views/refund/components/RefundTxCard.vue";
 	import { loaderShutdown } from "@pay-shared/utils/helpers/general";
@@ -66,6 +67,7 @@
 
 	const handleBackToPayment = async () => {
 		if (!walletId.value) return;
+		usePayerFormStore().startPaymentFromFirstStep();
 		await router.push({ name: "payer-wallet", params: { payerId: walletId.value } });
 	};
 

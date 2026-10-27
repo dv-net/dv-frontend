@@ -82,9 +82,12 @@
 					</div>
 					<div class="row__column">{{ item.count_with_balance }}</div>
 					<div class="row__column">
-						{{ formatAmountBlockchain(item.balance, { currencyId: item.currency.id }) }} {{ getCurrentCoin(item.currency.id) }}
+						{{ formatAmountBlockchain(item.balance, { currencyId: item.currency.id }) }}
+						{{ getCurrentCoin(item.currency.id) }}
 					</div>
-					<div class="row__column row__column--bitcoin">{{ formatDollars(item.balance_usd) }}</div>
+					<div class="row__column row__column--bitcoin">
+						{{ formatDollars(item.balance_usd, { countPartMoreOneDollar: 2 }) }}
+					</div>
 				</div>
 
 				<div v-if="walletSummary.length > 3" class="flex center py-10">
@@ -104,7 +107,7 @@
 					<div class="table__footer-column">{{ totalCountWallets ?? "-" }}</div>
 					<div class="table__footer-column"></div>
 					<div class="table__footer-column">
-						{{ formatDollars(walletBalancesHot) }}
+						{{ formatDollars(walletBalancesHot, { countPartMoreOneDollar: 2 }) }}
 					</div>
 				</div>
 			</div>

@@ -166,7 +166,7 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 			syncInvoiceStatus(data.invoice.status);
 
 			const createdAt = invoice.value?.created_at;
-			transactionsConfirmed.value = data.confirmed.slice(0, 9).map((payment) => {
+			transactionsConfirmed.value = data.confirmed.map((payment) => {
 				const mapped = mapPaySimplePaymentToTransaction(payment, createdAt);
 				return {
 					...mapped,

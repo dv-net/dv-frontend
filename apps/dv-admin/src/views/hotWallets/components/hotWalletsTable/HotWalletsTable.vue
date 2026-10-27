@@ -2,7 +2,6 @@
 	import BlockchainCard from "@dv-admin/components/ui/blockchainCard/BlockchainCard.vue";
 	import { storeToRefs } from "pinia";
 	import { useHotWalletsStore } from "@dv-admin/stores/hotWallets";
-	import PriceOutput from "@dv-admin/components/ui/priceOutput/PriceOutput.vue";
 	import DisplayHash from "@shared/components/ui/displayHash/DisplayHash.vue";
 	import SendButton from "@dv-admin/views/hotWallets/components/sendButton/SendButton.vue";
 	import { UiCheckbox, UiTable, UiTooltip, UiIcon } from "@dv.net/ui-kit";
@@ -10,6 +9,7 @@
 	import type { UiTableHeader } from "@dv.net/ui-kit/dist/components/UiTable/types";
 	import type { UiPaginationMeta } from "@dv.net/ui-kit/dist/components/UiPagination/types";
 	import { useI18n } from "vue-i18n";
+	import { formatAmountBlockchain, formatDollars, getCurrentCoin } from "@shared/utils/helpers/general";
 
 	const { wallets, walletsPagination, isLoading } = storeToRefs(useHotWalletsStore());
 	const { getWallets, handleSelectWallet } = useHotWalletsStore();
@@ -66,7 +66,12 @@
 			</template>
 
 			<template #body-cell-amount="{ row }">
-				<price-output :amount="row.amount" :currencyId="row.currency_id" :amountUsd="row.amount_usd" />
+				<div class="amount">
+					<span>{{ formatDollars(row.amount_usd, { countPartMoreOneDollar: 2 }) }}</span>
+					<span>•</span>
+					<span class="amount__muted">{{ formatAmountBlockchain(row.amount, { currencyId: row.currency_id }) }}</span>
+					<span class="amount__muted">{{ getCurrentCoin(row.currency_id) }}</span>
+				</div>
 			</template>
 
 			<template #body-cell-link="{ row }">
@@ -81,6 +86,21 @@
 </template>
 
 <style scoped lang="scss">
+	.amount {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+		color: $black;
+		font-size: 14px;
+		font-weight: 400;
+		line-height: 20px;
+
+		&__muted {
+			color: $secondary;
+			text-transform: uppercase;
+		}
+	}
+
 	.currency-cell {
 		display: flex;
 		align-items: center;
