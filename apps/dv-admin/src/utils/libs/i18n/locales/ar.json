@@ -999,5 +999,9 @@
   "With an error": "مع وجود خطأ",
   "Withdraw to an external address": "السحب إلى عنوان خارجي",
   "Withdrawal result is unknown": "نتيجة السحب غير معروفة",
-  "Withdrawal to an external address created": "تم إنشاء عملية سحب إلى عنوان خارجي"
+  "Withdrawal to an external address created": "تم إنشاء عملية سحب إلى عنوان خارجي",
+  "Amount": "المبلغ",
+  "Score": "النقاط",
+  "Stage": "المرحلة",
+  "Step": "الخطوة"
 }

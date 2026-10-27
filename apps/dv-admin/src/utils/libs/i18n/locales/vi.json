@@ -788,7 +788,7 @@
   "transaction not found": "không tìm thấy giao dịch",
   "Transaction type": "Loại giao dịch",
   "Transactions": "Giao dịch",
-  "Transfer": "Chuyển khoản",
+  "Transfer": "Chuyển tiền",
   "Transfer AML check": "Kiểm tra AML chuyển khoản",
   "Transfer amount": "Số tiền chuyển khoản",
   "Transfer deleted": "Khoản chuyển đã bị xóa",
@@ -999,5 +999,9 @@
   "With an error": "Có lỗi",
   "Withdraw to an external address": "Rút về một địa chỉ bên ngoài",
   "Withdrawal result is unknown": "Kết quả rút tiền không xác định",
-  "Withdrawal to an external address created": "Lệnh rút tiền đến địa chỉ bên ngoài đã được tạo"
+  "Withdrawal to an external address created": "Lệnh rút tiền đến địa chỉ bên ngoài đã được tạo",
+  "Amount": "Số tiền",
+  "Score": "Điểm",
+  "Stage": "Giai đoạn",
+  "Step": "Bước"
 }

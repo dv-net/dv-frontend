@@ -999,5 +999,9 @@
   "With an error": "エラーあり",
   "Withdraw to an external address": "外部アドレスに出金",
   "Withdrawal result is unknown": "出金結果は不明です",
-  "Withdrawal to an external address created": "外部アドレスへの出金が作成されました"
+  "Withdrawal to an external address created": "外部アドレスへの出金が作成されました",
+  "Amount": "金額",
+  "Score": "スコア",
+  "Stage": "ステージ",
+  "Step": "ステップ"
 }

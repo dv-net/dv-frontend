@@ -999,5 +999,9 @@
   "With an error": "Med ett fel",
   "Withdraw to an external address": "Ta ut till en extern adress",
   "Withdrawal result is unknown": "Uttagsresultatet är okänt",
-  "Withdrawal to an external address created": "Uttag till en extern adress har skapats"
+  "Withdrawal to an external address created": "Uttag till en extern adress har skapats",
+  "Amount": "Belopp",
+  "Score": "Poäng",
+  "Stage": "Steg",
+  "Step": "Steg"
 }

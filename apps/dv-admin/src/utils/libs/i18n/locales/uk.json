@@ -788,7 +788,7 @@
   "transaction not found": "транзакцію не знайдено",
   "Transaction type": "Тип транзакції",
   "Transactions": "Транзакції",
-  "Transfer": "Переказ",
+  "Transfer": "Трансфер",
   "Transfer AML check": "AML-перевірка переказу",
   "Transfer amount": "Сума переказу",
   "Transfer deleted": "Переказ видалено",
@@ -999,5 +999,9 @@
   "With an error": "З помилкою",
   "Withdraw to an external address": "Вивести на зовнішню адресу",
   "Withdrawal result is unknown": "Результат виведення невідомий",
-  "Withdrawal to an external address created": "Виведення на зовнішню адресу створено"
+  "Withdrawal to an external address created": "Виведення на зовнішню адресу створено",
+  "Amount": "Сума",
+  "Score": "Оцінка",
+  "Stage": "Етап",
+  "Step": "Крок"
 }

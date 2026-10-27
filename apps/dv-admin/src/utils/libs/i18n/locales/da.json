@@ -788,7 +788,7 @@
   "transaction not found": "transaktion ikke fundet",
   "Transaction type": "Transaktionstype",
   "Transactions": "Transaktioner",
-  "Transfer": "Overfør",
+  "Transfer": "Overførsel",
   "Transfer AML check": "AML-kontrol af overførsel",
   "Transfer amount": "Overførselsbeløb",
   "Transfer deleted": "Overførsel slettet",
@@ -999,5 +999,9 @@
   "With an error": "Med en fejl",
   "Withdraw to an external address": "Hæv til en ekstern adresse",
   "Withdrawal result is unknown": "Resultatet af udbetalingen er ukendt",
-  "Withdrawal to an external address created": "Udbetaling til en ekstern adresse oprettet"
+  "Withdrawal to an external address created": "Udbetaling til en ekstern adresse oprettet",
+  "Amount": "Beløb",
+  "Score": "Score",
+  "Stage": "Fase",
+  "Step": "Trin"
 }

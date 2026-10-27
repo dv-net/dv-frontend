@@ -999,5 +999,9 @@
   "With an error": "Με σφάλμα",
   "Withdraw to an external address": "Ανάληψη σε εξωτερική διεύθυνση",
   "Withdrawal result is unknown": "Το αποτέλεσμα της ανάληψης είναι άγνωστο",
-  "Withdrawal to an external address created": "Δημιουργήθηκε ανάληψη σε εξωτερική διεύθυνση"
+  "Withdrawal to an external address created": "Δημιουργήθηκε ανάληψη σε εξωτερική διεύθυνση",
+  "Amount": "Ποσό",
+  "Score": "Βαθμολογία",
+  "Stage": "Στάδιο",
+  "Step": "Βήμα"
 }

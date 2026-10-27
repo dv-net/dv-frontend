@@ -788,7 +788,7 @@
   "transaction not found": "लेन-देन नहीं मिला",
   "Transaction type": "लेन-देन का प्रकार",
   "Transactions": "लेन-देन",
-  "Transfer": "हस्तांतरण",
+  "Transfer": "स्थानांतरण",
   "Transfer AML check": "ट्रांसफर AML जांच",
   "Transfer amount": "हस्तांतरण राशि",
   "Transfer deleted": "ट्रांसफ़र हटाया गया",
@@ -999,5 +999,9 @@
   "With an error": "त्रुटि के साथ",
   "Withdraw to an external address": "बाहरी पते पर निकासी करें",
   "Withdrawal result is unknown": "निकासी परिणाम अज्ञात है",
-  "Withdrawal to an external address created": "बाहरी पते पर निकासी बनाई गई"
+  "Withdrawal to an external address created": "बाहरी पते पर निकासी बनाई गई",
+  "Amount": "राशि",
+  "Score": "स्कोर",
+  "Stage": "चरण",
+  "Step": "चरण"
 }

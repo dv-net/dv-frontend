@@ -999,5 +999,9 @@
   "With an error": "Con un error",
   "Withdraw to an external address": "Retirar a una dirección externa",
   "Withdrawal result is unknown": "Se desconoce el resultado del retiro",
-  "Withdrawal to an external address created": "Retiro a una dirección externa creado"
+  "Withdrawal to an external address created": "Retiro a una dirección externa creado",
+  "Amount": "Importe",
+  "Score": "Puntuación",
+  "Stage": "Etapa",
+  "Step": "Paso"
 }

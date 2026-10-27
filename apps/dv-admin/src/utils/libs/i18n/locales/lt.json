@@ -999,5 +999,9 @@
   "With an error": "Su klaida",
   "Withdraw to an external address": "Išvesti į išorinį adresą",
   "Withdrawal result is unknown": "Išėmimo rezultatas nežinomas",
-  "Withdrawal to an external address created": "Sukurtas išėmimas į išorinį adresą"
+  "Withdrawal to an external address created": "Sukurtas išėmimas į išorinį adresą",
+  "Amount": "Suma",
+  "Score": "Balas",
+  "Stage": "Etapas",
+  "Step": "Žingsnis"
 }

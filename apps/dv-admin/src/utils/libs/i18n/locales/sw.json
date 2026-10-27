@@ -788,7 +788,7 @@
   "transaction not found": "muamala haukupatikana",
   "Transaction type": "Aina ya muamala",
   "Transactions": "Miamala",
-  "Transfer": "Hamisha",
+  "Transfer": "Hamisho",
   "Transfer AML check": "Ukaguzi wa AML wa uhamisho",
   "Transfer amount": "Kiasi cha uhamisho",
   "Transfer deleted": "Uhamisho umefutwa",
@@ -999,5 +999,9 @@
   "With an error": "Na hitilafu",
   "Withdraw to an external address": "Toa kwenda kwenye anwani ya nje",
   "Withdrawal result is unknown": "Matokeo ya uondoaji hayajulikani",
-  "Withdrawal to an external address created": "Utoaji kwenda anwani ya nje umeundwa"
+  "Withdrawal to an external address created": "Utoaji kwenda anwani ya nje umeundwa",
+  "Amount": "Kiasi",
+  "Score": "Alama",
+  "Stage": "Hatua",
+  "Step": "Hatua"
 }

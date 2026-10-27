@@ -999,5 +999,9 @@
   "With an error": "Ar kļūdu",
   "Withdraw to an external address": "Izņemt uz ārēju adresi",
   "Withdrawal result is unknown": "Izņemšanas rezultāts nav zināms",
-  "Withdrawal to an external address created": "Izveidota izmaksa uz ārēju adresi"
+  "Withdrawal to an external address created": "Izveidota izmaksa uz ārēju adresi",
+  "Amount": "Summa",
+  "Score": "Rezultāts",
+  "Stage": "Posms",
+  "Step": "Solis"
 }

@@ -999,5 +999,9 @@
   "With an error": "Hibával",
   "Withdraw to an external address": "Kiutalás külső címre",
   "Withdrawal result is unknown": "A kifizetés eredménye ismeretlen",
-  "Withdrawal to an external address created": "Külső címre történő kiutalás létrehozva"
+  "Withdrawal to an external address created": "Külső címre történő kiutalás létrehozva",
+  "Amount": "Összeg",
+  "Score": "Pontszám",
+  "Stage": "Szakasz",
+  "Step": "Lépés"
 }

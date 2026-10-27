@@ -999,5 +999,9 @@
   "With an error": "Cu o eroare",
   "Withdraw to an external address": "Retragere către o adresă externă",
   "Withdrawal result is unknown": "Rezultatul retragerii este necunoscut",
-  "Withdrawal to an external address created": "Retragerea către o adresă externă a fost creată"
+  "Withdrawal to an external address created": "Retragerea către o adresă externă a fost creată",
+  "Amount": "Sumă",
+  "Score": "Scor",
+  "Stage": "Etapă",
+  "Step": "Pas"
 }

@@ -788,7 +788,7 @@
   "transaction not found": "লেনদেন পাওয়া যায়নি",
   "Transaction type": "লেনদেনের ধরন",
   "Transactions": "লেনদেন",
-  "Transfer": "স্থানান্তর",
+  "Transfer": "Трансфер",
   "Transfer AML check": "ট্রান্সফার AML চেক",
   "Transfer amount": "ট্রান্সফারের পরিমাণ",
   "Transfer deleted": "ট্রান্সফার মুছে ফেলা হয়েছে",
@@ -999,5 +999,9 @@
   "With an error": "ত্রুটিসহ",
   "Withdraw to an external address": "বাহ্যিক ঠিকানায় উত্তোলন করুন",
   "Withdrawal result is unknown": "উত্তোলনের ফলাফল অজানা",
-  "Withdrawal to an external address created": "বাহ্যিক ঠিকানায় উত্তোলন তৈরি হয়েছে"
+  "Withdrawal to an external address created": "বাহ্যিক ঠিকানায় উত্তোলন তৈরি হয়েছে",
+  "Amount": "পরিমাণ",
+  "Score": "স্কোর",
+  "Stage": "পর্যায়",
+  "Step": "ধাপ"
 }

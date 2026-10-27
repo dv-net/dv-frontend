@@ -999,5 +999,9 @@
   "With an error": "Dengan kesalahan",
   "Withdraw to an external address": "Tarik ke alamat eksternal",
   "Withdrawal result is unknown": "Hasil penarikan tidak diketahui",
-  "Withdrawal to an external address created": "Penarikan ke alamat eksternal telah dibuat"
+  "Withdrawal to an external address created": "Penarikan ke alamat eksternal telah dibuat",
+  "Amount": "Jumlah",
+  "Score": "Skor",
+  "Stage": "Tahap",
+  "Step": "Langkah"
 }

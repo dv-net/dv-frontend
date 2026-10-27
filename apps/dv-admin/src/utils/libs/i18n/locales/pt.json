@@ -788,7 +788,7 @@
   "transaction not found": "transação não encontrada",
   "Transaction type": "Tipo de transação",
   "Transactions": "Transações",
-  "Transfer": "Transferir",
+  "Transfer": "Transferência",
   "Transfer AML check": "Verificação AML da transferência",
   "Transfer amount": "Valor da transferência",
   "Transfer deleted": "Transferência excluída",
@@ -999,5 +999,9 @@
   "With an error": "Com um erro",
   "Withdraw to an external address": "Sacar para um endereço externo",
   "Withdrawal result is unknown": "O resultado da retirada é desconhecido",
-  "Withdrawal to an external address created": "Saque para um endereço externo criado"
+  "Withdrawal to an external address created": "Saque para um endereço externo criado",
+  "Amount": "Valor",
+  "Score": "Pontuação",
+  "Stage": "Estágio",
+  "Step": "Etapa"
 }

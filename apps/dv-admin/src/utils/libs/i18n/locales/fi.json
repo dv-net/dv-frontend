@@ -999,5 +999,9 @@
   "With an error": "Virheellä",
   "Withdraw to an external address": "Nosta ulkoiseen osoitteeseen",
   "Withdrawal result is unknown": "Noston tulos on tuntematon",
-  "Withdrawal to an external address created": "Nosto ulkoiseen osoitteeseen luotu"
+  "Withdrawal to an external address created": "Nosto ulkoiseen osoitteeseen luotu",
+  "Amount": "Summa",
+  "Score": "Pisteet",
+  "Stage": "Vaihe",
+  "Step": "Vaihe"
 }

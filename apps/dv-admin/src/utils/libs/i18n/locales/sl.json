@@ -999,5 +999,9 @@
   "With an error": "Z napako",
   "Withdraw to an external address": "Izplačaj na zunanji naslov",
   "Withdrawal result is unknown": "Rezultat dviga ni znan",
-  "Withdrawal to an external address created": "Ustvarjen dvig na zunanji naslov"
+  "Withdrawal to an external address created": "Ustvarjen dvig na zunanji naslov",
+  "Amount": "Znesek",
+  "Score": "Ocena",
+  "Stage": "Faza",
+  "Step": "Korak"
 }

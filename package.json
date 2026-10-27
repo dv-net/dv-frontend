@@ -1,7 +1,7 @@
 {
 	"name": "dv-frontend",
 	"private": false,
-	"version": "1.1.4",
+	"version": "1.1.5",
 	"type": "module",
 	"engines": {
 		"node": "^22.22.2 || ^24.15.0 || >=26.0.0"
@@ -30,7 +30,7 @@
 		"i18n:prune:pay": "dv-translator prune --dir pay-shared/utils/libs/i18n/locales"
 	},
 	"dependencies": {
-		"@dv.net/ui-kit": "^7.7.19",
+		"@dv.net/ui-kit": "^7.7.20",
 		"@reown/appkit": "1.8.24",
 		"@reown/appkit-adapter-wagmi": "1.8.24",
 		"@tanstack/vue-query": "5.104.0",
@@ -55,7 +55,7 @@
 		"vue3-cookies": "^1.0.6"
 	},
 	"devDependencies": {
-		"@dv.net/translator": "^2.0.1",
+		"@dv.net/translator": "^2.1.0",
 		"@rushstack/eslint-patch": "^1.16.1",
 		"@tsconfig/node20": "^20.1.10",
 		"@types/js-cookie": "^3.0.6",

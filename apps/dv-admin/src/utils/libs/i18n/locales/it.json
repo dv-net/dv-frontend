@@ -999,5 +999,9 @@
   "With an error": "Con un errore",
   "Withdraw to an external address": "Preleva verso un indirizzo esterno",
   "Withdrawal result is unknown": "Il risultato del prelievo è sconosciuto",
-  "Withdrawal to an external address created": "Prelievo verso un indirizzo esterno creato"
+  "Withdrawal to an external address created": "Prelievo verso un indirizzo esterno creato",
+  "Amount": "Importo",
+  "Score": "Punteggio",
+  "Stage": "Fase",
+  "Step": "Passaggio"
 }

@@ -999,5 +999,9 @@
   "With an error": "Veaga",
   "Withdraw to an external address": "Võta välja välisele aadressile",
   "Withdrawal result is unknown": "Väljamakse tulemus on teadmata",
-  "Withdrawal to an external address created": "Väljamakse välisele aadressile loodud"
+  "Withdrawal to an external address created": "Väljamakse välisele aadressile loodud",
+  "Amount": "Summa",
+  "Score": "Skoor",
+  "Stage": "Etapp",
+  "Step": "Samm"
 }

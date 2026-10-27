@@ -999,5 +999,9 @@
   "With an error": "S chybou",
   "Withdraw to an external address": "Vybrať na externú adresu",
   "Withdrawal result is unknown": "Výsledok výberu nie je známy",
-  "Withdrawal to an external address created": "Výber na externú adresu bol vytvorený"
+  "Withdrawal to an external address created": "Výber na externú adresu bol vytvorený",
+  "Amount": "Suma",
+  "Score": "Skóre",
+  "Stage": "Fáza",
+  "Step": "Krok"
 }

@@ -999,5 +999,9 @@
   "With an error": "Bir hatayla",
   "Withdraw to an external address": "Harici bir adrese çekim yap",
   "Withdrawal result is unknown": "Para çekme sonucu bilinmiyor",
-  "Withdrawal to an external address created": "Harici bir adrese para çekme işlemi oluşturuldu"
+  "Withdrawal to an external address created": "Harici bir adrese para çekme işlemi oluşturuldu",
+  "Amount": "Tutar",
+  "Score": "Puan",
+  "Stage": "Aşama",
+  "Step": "Adım"
 }

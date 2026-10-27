@@ -999,5 +999,9 @@
   "With an error": "오류 있음",
   "Withdraw to an external address": "외부 주소로 출금",
   "Withdrawal result is unknown": "출금 결과를 알 수 없습니다",
-  "Withdrawal to an external address created": "외부 주소로의 출금이 생성되었습니다"
+  "Withdrawal to an external address created": "외부 주소로의 출금이 생성되었습니다",
+  "Amount": "금액",
+  "Score": "점수",
+  "Stage": "단계",
+  "Step": "단계"
 }

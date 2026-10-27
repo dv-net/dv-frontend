@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [1.1.5] - 2026-10-27
+
+- change: show blocked deposit and refund transfer details on the refund request card [DNS-229]
+
 ## [1.1.4] - 2026-10-27
 
 - feat: show blocked payments in a separate payer-form block under latest payments [DNS-229]

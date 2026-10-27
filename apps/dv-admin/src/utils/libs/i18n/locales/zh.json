@@ -999,5 +999,9 @@
   "With an error": "有错误",
   "Withdraw to an external address": "提现到外部地址",
   "Withdrawal result is unknown": "提现结果未知",
-  "Withdrawal to an external address created": "已创建提现到外部地址"
+  "Withdrawal to an external address created": "已创建提现到外部地址",
+  "Amount": "金额",
+  "Score": "评分",
+  "Stage": "阶段",
+  "Step": "步骤"
 }

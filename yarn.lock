@@ -333,20 +333,20 @@
   resolved "https://registry.yarnpkg.com/@date-fns/tz/-/tz-1.5.0.tgz#e9e79b7583f0b1322c53db884a0112551095e3f3"
   integrity sha512-lwYN/vDPeNRULcepoE/LO2Pgx+7/RV+S9ARfbc9lr2DtGkOD7pAiruHvbR1RX3Qyf6ja47EWJDMsNK5vK08DJg==
 
-"@dv.net/translator@^2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@dv.net/translator/-/translator-2.0.1.tgz#dbd88817be48b5e32023bb5462b03a48ec40b616"
-  integrity sha512-vWvIr7iXmgEz4PYh+Ao5CrtIG03jBYruObiZPHhtZdXHUirN0M5JK2Lob/7Q4KAcz14knAXaAsssB5gi0hN/Sg==
+"@dv.net/translator@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@dv.net/translator/-/translator-2.1.0.tgz#19214debfad007120e4f62af13f501c40f0455cc"
+  integrity sha512-8xmQcn72gVStepzJzcvKqRjDqxOikR+gupaReVND/pLudH55Vsn/UAxXgufxwuCz+cq/rX9ax0/MbGN4uA9CIQ==
   dependencies:
     commander "^11.1.0"
     dotenv "^17.4.2"
     fs-extra "^11.1.1"
     openai "^5.13.1"
 
-"@dv.net/ui-kit@^7.7.19":
-  version "7.7.19"
-  resolved "https://registry.yarnpkg.com/@dv.net/ui-kit/-/ui-kit-7.7.19.tgz#3b899d4983c6ae46b2aa55d06ca49cb6b9366369"
-  integrity sha512-9ICGcrcFraBUIh+Qmir5lk3ECcHQ97JdL+qLaX5rfV6MHoT29ZvNJ5bLtd5VOFfe3e8LRPNyyioj1qKlhvaWEw==
+"@dv.net/ui-kit@^7.7.20":
+  version "7.7.20"
+  resolved "https://registry.yarnpkg.com/@dv.net/ui-kit/-/ui-kit-7.7.20.tgz#92a2a220c68c65ba64614341f164e9263463336b"
+  integrity sha512-jY9GS74DLuuN4jPjXJva8QqSomgoh/FtpO+z4a9rHbsF3Cwf2thxrkHkw6KcsyELG31SsI4bO53gnQ86XQBQnA==
   dependencies:
     "@floating-ui/vue" "^2.0.1"
     "@vuepic/vue-datepicker" "^12.1.0"
