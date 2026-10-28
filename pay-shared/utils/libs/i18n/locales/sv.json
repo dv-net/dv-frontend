@@ -133,5 +133,8 @@
   "Refund fee unavailable": "Återbetalning är inte tillgänglig: adressen har inte tillräckligt med medel för att betala nätverksavgiften",
   "Return to the sender address": "Returnera till avsändaradressen",
   "Scheduled": "Schemalagd",
-  "Blocked payments": "Blockerade betalningar"
+  "Blocked payments": "Blockerade betalningar",
+  "Amount": "Belopp",
+  "Recipient": "Mottagare",
+  "Sender": "Avsändare"
 }

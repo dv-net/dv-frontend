@@ -133,5 +133,8 @@
   "Refund fee unavailable": "Tilbakebetaling er ikke tilgjengelig: adressen har ikke nok midler til å betale nettverksgebyret",
   "Return to the sender address": "Returner til avsenderadressen",
   "Scheduled": "Planlagt",
-  "Blocked payments": "Blokkerte betalinger"
+  "Blocked payments": "Blokkerte betalinger",
+  "Amount": "Beløp",
+  "Recipient": "Mottaker",
+  "Sender": "Avsender"
 }

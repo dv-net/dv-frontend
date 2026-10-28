@@ -133,5 +133,8 @@
   "Refund fee unavailable": "Tagasimakse pole saadaval: aadressil ei ole piisavalt vahendeid võrgutasu maksmiseks",
   "Return to the sender address": "Tagasta saatja aadressile",
   "Scheduled": "Ajastatud",
-  "Blocked payments": "Blokeeritud maksed"
+  "Blocked payments": "Blokeeritud maksed",
+  "Amount": "Summa",
+  "Recipient": "Saaja",
+  "Sender": "Saatja"
 }

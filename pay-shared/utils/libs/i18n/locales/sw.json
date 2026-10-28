@@ -133,5 +133,8 @@
   "Refund fee unavailable": "Urejeshaji wa fedha haupatikani: anwani haina fedha za kutosha kulipa ada ya mtandao",
   "Return to the sender address": "Rudisha kwenye anwani ya mtumaji",
   "Scheduled": "Iliyoratibiwa",
-  "Blocked payments": "Malipo yaliyozuiwa"
+  "Blocked payments": "Malipo yaliyozuiwa",
+  "Amount": "Kiasi",
+  "Recipient": "Mpokeaji",
+  "Sender": "Mtumaji"
 }

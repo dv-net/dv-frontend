@@ -12,7 +12,11 @@
 		postApiRefundReject
 	} from "@dv-admin/utils/services/refunds";
 	import type { IPagination, IRefundRequestDetailed, RefundStatus } from "@dv-admin/utils/types/api/apiGo";
-	import { REFUND_REQUESTS_PAGE_SIZE, REFUND_STATUS_FILTER_LABELS, REFUND_STATUSES } from "@dv-admin/utils/constants/refund";
+	import {
+		REFUND_REQUESTS_PAGE_SIZE,
+		REFUND_STATUS_FILTER_LABELS,
+		REFUND_STATUSES
+	} from "@dv-admin/utils/constants/refund";
 	import { useProjectsStore } from "@dv-admin/stores/projects";
 	import { useRefundsStore } from "@dv-admin/stores/refunds";
 	import { useGeneralStore } from "@dv-admin/stores/general";
@@ -33,6 +37,7 @@
 	const pagination = ref<IPagination | null>(null);
 	const page = ref(1);
 	const statusFilter = ref<RefundStatus | "all">("all");
+	const statusCounts = ref<Partial<Record<RefundStatus | "all", number>>>({});
 	const isLoading = ref(true);
 	let requestId = 0;
 
@@ -41,10 +46,11 @@
 	});
 
 	const statusOptions = computed(() => [
-		{ value: "all", label: t("All") },
+		{ value: "all" as const, label: t("All"), count: statusCounts.value.all ?? 0 },
 		...REFUND_STATUSES.map((status) => ({
 			value: status,
-			label: t(REFUND_STATUS_FILTER_LABELS[status])
+			label: t(REFUND_STATUS_FILTER_LABELS[status]),
+			count: statusCounts.value[status] ?? 0
 		}))
 	]);
 
@@ -57,6 +63,20 @@
 			...(statusFilter.value === "all" ? {} : { statuses: [statusFilter.value] })
 		});
 
+	const loadStatusCounts = async () => {
+		const [allResponse, ...statusResponses] = await Promise.all([
+			getApiRefundRequestsList({ page: 1, page_size: 1 }),
+			...REFUND_STATUSES.map((status) => getApiRefundRequestsList({ page: 1, page_size: 1, statuses: [status] }))
+		]);
+		const counts: Partial<Record<RefundStatus | "all", number>> = {
+			all: allResponse?.pagination?.total ?? 0
+		};
+		REFUND_STATUSES.forEach((status, index) => {
+			counts[status] = statusResponses[index]?.pagination?.total ?? 0;
+		});
+		statusCounts.value = counts;
+	};
+
 	const loadRefundRequests = async () => {
 		const currentRequestId = ++requestId;
 		let data = await fetchRefundRequestsPage();
@@ -68,11 +88,19 @@
 		if (currentRequestId !== requestId) return;
 		refundRequests.value = data?.items ?? [];
 		pagination.value = data?.pagination ?? null;
+		const nextTotal = pagination.value?.total ?? 0;
+		const previousTotal = statusCounts.value[statusFilter.value];
+		if (previousTotal !== nextTotal) {
+			statusCounts.value = { ...statusCounts.value, [statusFilter.value]: nextTotal };
+		}
+		if (previousTotal !== undefined && previousTotal !== nextTotal) {
+			void loadStatusCounts().catch((error) => console.error(error));
+		}
 	};
 
 	const refreshAfterAction = async () => {
 		try {
-			await Promise.all([loadRefundRequests(), loadRefundRequestsCount()]);
+			await Promise.all([loadRefundRequests(), loadRefundRequestsCount(), loadStatusCounts()]);
 		} catch (error) {
 			console.error(error);
 		}
@@ -91,7 +119,6 @@
 		}
 		await postApiRefundApprove(refundId, otpGlobalCode.value);
 		await refreshAfterAction();
-		notify(t("Refund approved"), "success");
 	};
 
 	const handleCancel = async (refundId: string) => {
@@ -136,6 +163,7 @@
 	onMounted(async () => {
 		await Promise.all([
 			getProjects(),
+			loadStatusCounts(),
 			startPolling(async () => {
 				try {
 					await Promise.all([loadRefundRequests(), loadRefundRequestsCount()]);
@@ -150,12 +178,7 @@
 <template>
 	<div class="page">
 		<div class="page__header">
-			<div class="page__title-row">
-				<h1 class="global-title-h1">{{ $t("Refund requests") }}</h1>
-				<span v-if="!isLoading && listTotal" class="page__count">
-					{{ listTotal }}
-				</span>
-			</div>
+			<h1 class="global-title-h1">{{ $t("Refund requests") }}</h1>
 			<p class="page__subtitle">
 				{{ $t("Payers can request a refund for deposits blocked by AML. Review pending requests here") }}
 			</p>
@@ -170,7 +193,10 @@
 			@update:model-value="setStatusFilter"
 		>
 			<ui-tabs-item v-for="option in statusOptions" :key="option.value" :value="option.value">
-				{{ option.label }}
+				<span class="filters__tab">
+					{{ option.label }}
+					<span v-if="option.value !== 'all' && option.count > 0" class="filters__count">{{ option.count }}</span>
+				</span>
 			</ui-tabs-item>
 		</ui-tabs>
 
@@ -223,12 +249,6 @@
 			gap: 8px;
 		}
 
-		&__title-row {
-			display: flex;
-			align-items: center;
-			gap: 8px;
-		}
-
 		&__subtitle {
 			margin: 0;
 			color: $secondary;
@@ -236,26 +256,32 @@
 			font-weight: 400;
 			line-height: 20px;
 		}
+	}
+
+	.filters {
+		align-self: flex-start;
+		max-width: 100%;
+
+		&__tab {
+			display: inline-flex;
+			align-items: center;
+			gap: 6px;
+		}
 
 		&__count {
 			display: inline-flex;
 			align-items: center;
 			justify-content: center;
-			min-width: 22px;
-			height: 22px;
-			padding: 0 6px;
-			border-radius: 11px;
+			min-width: 18px;
+			height: 18px;
+			padding: 0 5px;
+			border-radius: 9px;
 			background: rgba(48, 51, 69, 0.06);
 			color: $secondary;
 			font-size: 12px;
 			font-weight: 500;
 			line-height: 1;
 		}
-	}
-
-	.filters {
-		align-self: flex-start;
-		max-width: 100%;
 	}
 
 	.panel {

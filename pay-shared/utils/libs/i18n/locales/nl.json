@@ -133,5 +133,8 @@
   "Refund fee unavailable": "Terugbetaling is niet beschikbaar: het adres heeft niet genoeg saldo om de netwerkkosten te betalen",
   "Return to the sender address": "Terugsturen naar het afzenderadres",
   "Scheduled": "Gepland",
-  "Blocked payments": "Geblokkeerde betalingen"
+  "Blocked payments": "Geblokkeerde betalingen",
+  "Amount": "Bedrag",
+  "Recipient": "Ontvanger",
+  "Sender": "Afzender"
 }

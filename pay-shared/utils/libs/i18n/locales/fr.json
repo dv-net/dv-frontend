@@ -133,5 +133,8 @@
   "Refund fee unavailable": "Remboursement indisponible : l’adresse ne dispose pas de fonds suffisants pour payer les frais de réseau",
   "Return to the sender address": "Renvoyer à l’adresse de l’expéditeur",
   "Scheduled": "Planifié",
-  "Blocked payments": "Paiements bloqués"
+  "Blocked payments": "Paiements bloqués",
+  "Amount": "Montant",
+  "Recipient": "Destinataire",
+  "Sender": "Expéditeur"
 }

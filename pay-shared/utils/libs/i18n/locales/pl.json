@@ -133,5 +133,8 @@
   "Refund fee unavailable": "Zwrot jest niedostępny: adres nie ma wystarczających środków na pokrycie opłaty sieciowej",
   "Return to the sender address": "Zwróć na adres nadawcy",
   "Scheduled": "Zaplanowane",
-  "Blocked payments": "Zablokowane płatności"
+  "Blocked payments": "Zablokowane płatności",
+  "Amount": "Kwota",
+  "Recipient": "Odbiorca",
+  "Sender": "Nadawca"
 }

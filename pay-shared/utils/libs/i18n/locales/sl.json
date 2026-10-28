@@ -133,5 +133,8 @@
   "Refund fee unavailable": "Vračilo ni na voljo: naslov nima dovolj sredstev za plačilo omrežne provizije",
   "Return to the sender address": "Vrni na naslov pošiljatelja",
   "Scheduled": "Načrtovano",
-  "Blocked payments": "Blokirana plačila"
+  "Blocked payments": "Blokirana plačila",
+  "Amount": "Znesek",
+  "Recipient": "Prejemnik",
+  "Sender": "Pošiljatelj"
 }

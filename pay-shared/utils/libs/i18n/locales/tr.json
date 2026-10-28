@@ -133,5 +133,8 @@
   "Refund fee unavailable": "Geri ödeme kullanılamıyor: adresin ağ ücretini ödemek için yeterli bakiyesi yok",
   "Return to the sender address": "Gönderen adresine iade et",
   "Scheduled": "Planlandı",
-  "Blocked payments": "Engellenen ödemeler"
+  "Blocked payments": "Engellenen ödemeler",
+  "Amount": "Tutar",
+  "Recipient": "Alıcı",
+  "Sender": "Gönderen"
 }

@@ -133,5 +133,8 @@
   "Refund fee unavailable": "Maksunpalautus ei ole käytettävissä: osoitteella ei ole riittävästi varoja verkkomaksun maksamiseen",
   "Return to the sender address": "Palauta lähettäjän osoitteeseen",
   "Scheduled": "Ajastettu",
-  "Blocked payments": "Estetyt maksut"
+  "Blocked payments": "Estetyt maksut",
+  "Amount": "Summa",
+  "Recipient": "Vastaanottaja",
+  "Sender": "Lähettäjä"
 }

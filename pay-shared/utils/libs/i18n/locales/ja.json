@@ -133,5 +133,8 @@
   "Refund fee unavailable": "返金は利用できません: このアドレスにはネットワーク手数料を支払うのに十分な資金がありません",
   "Return to the sender address": "送信元アドレスに返送する",
   "Scheduled": "スケジュール済み",
-  "Blocked payments": "ブロックされた決済"
+  "Blocked payments": "ブロックされた決済",
+  "Amount": "金額",
+  "Recipient": "受取人",
+  "Sender": "送信者"
 }

@@ -133,5 +133,8 @@
   "Refund fee unavailable": "Vrátenie peňazí nie je dostupné: adresa nemá dostatok prostriedkov na zaplatenie sieťového poplatku",
   "Return to the sender address": "Vrátiť na adresu odosielateľa",
   "Scheduled": "Naplánované",
-  "Blocked payments": "Blokované platby"
+  "Blocked payments": "Blokované platby",
+  "Amount": "Suma",
+  "Recipient": "Príjemca",
+  "Sender": "Odosielateľ"
 }

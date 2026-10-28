@@ -133,5 +133,8 @@
   "Refund fee unavailable": "Pengembalian dana tidak tersedia: alamat tidak memiliki cukup dana untuk membayar biaya jaringan",
   "Return to the sender address": "Kembalikan ke alamat pengirim",
   "Scheduled": "Terjadwal",
-  "Blocked payments": "Pembayaran yang diblokir"
+  "Blocked payments": "Pembayaran yang diblokir",
+  "Amount": "Jumlah",
+  "Recipient": "Penerima",
+  "Sender": "Pengirim"
 }

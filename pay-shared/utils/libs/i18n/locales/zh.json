@@ -133,5 +133,8 @@
   "Refund fee unavailable": "无法退款：该地址没有足够的资金支付网络手续费",
   "Return to the sender address": "退回至发送方地址",
   "Scheduled": "已计划",
-  "Blocked payments": "已阻止的付款"
+  "Blocked payments": "已阻止的付款",
+  "Amount": "金额",
+  "Recipient": "收款人",
+  "Sender": "发送方"
 }

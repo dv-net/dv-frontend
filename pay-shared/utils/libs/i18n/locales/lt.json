@@ -133,5 +133,8 @@
   "Refund fee unavailable": "Pinigų grąžinimas negalimas: adrese nepakanka lėšų tinklo mokesčiui sumokėti",
   "Return to the sender address": "Grąžinti į siuntėjo adresą",
   "Scheduled": "Suplanuota",
-  "Blocked payments": "Užblokuoti mokėjimai"
+  "Blocked payments": "Užblokuoti mokėjimai",
+  "Amount": "Suma",
+  "Recipient": "Gavėjas",
+  "Sender": "Siuntėjas"
 }

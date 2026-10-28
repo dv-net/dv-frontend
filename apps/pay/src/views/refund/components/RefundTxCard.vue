@@ -5,6 +5,8 @@
 	import { REFUND_STATUS_LABELS } from "@pay/utils/constants/refund";
 	import {
 		changeChainBsc,
+		formatAmountBlockchain,
+		formatDollars,
 		getCurrentBlockchain,
 		getCurrentCoin,
 		truncateHash
@@ -37,6 +39,8 @@
 
 	const isClaimOpen = ref(false);
 	const isCompact = useMediaQuery("(max-width: 1024px)");
+	const isNarrow = useMediaQuery("(max-width: 768px)");
+	const assetIconSize = computed(() => (isNarrow.value ? "24px" : "32px"));
 
 	const formatCreatedDate = (value: string) => {
 		const date = dayjs(value);
@@ -45,9 +49,7 @@
 
 	const coinLabel = computed(() => (item.currency_id ? getCurrentCoin(item.currency_id) : item.currency_id));
 	const networkLabel = computed(() => {
-		const chain = item.currency_id
-			? getCurrentBlockchain(item.currency_id) || item.blockchain
-			: item.blockchain;
+		const chain = item.currency_id ? getCurrentBlockchain(item.currency_id) || item.blockchain : item.blockchain;
 		return changeChainBsc(chain);
 	});
 
@@ -81,9 +83,23 @@
 		return isCompact.value ? truncateHash(item.tx_hash, 10, 6) : item.tx_hash;
 	});
 
-	const displayDestination = computed(() => {
-		if (!item.destination_address) return "";
-		return isCompact.value ? truncateHash(item.destination_address, 10, 6) : item.destination_address;
+	const displayAddress = (address: string) => (isCompact.value ? truncateHash(address, 10, 6) : address);
+
+	const fiatLabel = computed(() =>
+		item.amount_usd ? formatDollars(item.amount_usd, { countPartMoreOneDollar: 2 }) : ""
+	);
+
+	const cryptoAmount = computed(() => {
+		if (!item.amount) return "";
+		if (!item.currency_id) return item.amount;
+		return `${formatAmountBlockchain(item.amount, { currencyId: item.currency_id })} ${getCurrentCoin(item.currency_id)}`;
+	});
+
+	const partyAddresses = computed(() => {
+		const rows: { labelKey: "Sender" | "Recipient"; address: string }[] = [];
+		if (item.from_address) rows.push({ labelKey: "Sender", address: item.from_address });
+		if (item.to_address) rows.push({ labelKey: "Recipient", address: item.to_address });
+		return rows;
 	});
 
 	const openExplorer = (type: "address" | "transaction", hash: string) => {
@@ -97,11 +113,24 @@
 	<article class="tx-card">
 		<header class="tx-card__header">
 			<div class="tx-card__asset">
-				<blockchain-icon :type="item.currency_id as BlockchainType" width="32px" height="32px" />
-				<div class="tx-card__asset-text">
-					<span class="tx-card__coin">{{ coinLabel }}</span>
-					<span class="tx-card__dot">·</span>
-					<span class="tx-card__network">{{ networkLabel }}</span>
+				<blockchain-icon
+					class="tx-card__asset-icon"
+					:type="item.currency_id as BlockchainType"
+					:width="assetIconSize"
+					:height="assetIconSize"
+				/>
+				<div class="tx-card__asset-line">
+					<span class="tx-card__identity">
+						<span v-if="coinLabel" class="tx-card__coin">{{ coinLabel }}</span>
+						<span v-if="coinLabel && networkLabel" class="tx-card__dot">·</span>
+						<span v-if="networkLabel" class="tx-card__network">{{ networkLabel }}</span>
+					</span>
+					<span v-if="fiatLabel || cryptoAmount" class="tx-card__sum">
+						<span v-if="coinLabel || networkLabel" class="tx-card__dot tx-card__sum-dot">·</span>
+						<span v-if="fiatLabel" class="tx-card__amount">{{ fiatLabel }}</span>
+						<span v-if="fiatLabel && cryptoAmount" class="tx-card__dot">·</span>
+						<span v-if="cryptoAmount" class="tx-card__amount">{{ cryptoAmount }}</span>
+					</span>
 				</div>
 			</div>
 			<time v-if="item.created_at" class="tx-card__date" :datetime="item.created_at">
@@ -110,12 +139,7 @@
 			</time>
 		</header>
 
-		<button
-			v-if="item.tx_hash"
-			type="button"
-			class="tx-card__hash"
-			@click="openExplorer('transaction', item.tx_hash)"
-		>
+		<button v-if="item.tx_hash" type="button" class="tx-card__hash" @click="openExplorer('transaction', item.tx_hash)">
 			<span class="tx-card__hash-text">{{ displayTxHash }}</span>
 			<div class="tx-card__hash-actions">
 				<span @click.stop>
@@ -155,6 +179,30 @@
 					<span class="metric__value">{{ item.score }}</span>
 				</div>
 			</div>
+			<div v-if="partyAddresses.length" class="tx-card__parties">
+				<div
+					v-for="row in partyAddresses"
+					:key="row.labelKey"
+					class="metric"
+					role="button"
+					tabindex="0"
+					@click="openExplorer('address', row.address)"
+					@keydown.enter="openExplorer('address', row.address)"
+				>
+					<div class="metric__icon" aria-hidden="true">
+						<icon-wallet />
+					</div>
+					<div class="metric__body">
+						<span class="metric__label">{{ $t(row.labelKey) }}</span>
+						<span class="metric__value metric__value--hash">
+							<span class="metric__hash-text">{{ displayAddress(row.address) }}</span>
+							<span @click.stop>
+								<ui-copy-text :copied-text="row.address" color-icon="#A4A5B1" size-icon="sm" />
+							</span>
+						</span>
+					</div>
+				</div>
+			</div>
 			<div
 				v-if="item.destination_address"
 				class="metric metric--wide"
@@ -169,7 +217,7 @@
 				<div class="metric__body">
 					<span class="metric__label">{{ $t("Destination address") }}</span>
 					<span class="metric__value metric__value--hash">
-						<span class="metric__hash-text">{{ displayDestination }}</span>
+						<span class="metric__hash-text">{{ displayAddress(item.destination_address) }}</span>
 						<span @click.stop>
 							<ui-copy-text :copied-text="item.destination_address" color-icon="#A4A5B1" size-icon="sm" />
 						</span>
@@ -216,7 +264,7 @@
 
 		&__header {
 			display: flex;
-			align-items: center;
+			align-items: flex-start;
 			justify-content: space-between;
 			gap: 12px;
 			min-width: 0;
@@ -226,31 +274,73 @@
 			display: flex;
 			align-items: center;
 			gap: 8px;
+			flex: 1;
 			min-width: 0;
+
+			@include mediamax(768) {
+				display: grid;
+				grid-template-columns: auto minmax(0, 1fr);
+				align-items: center;
+				column-gap: 8px;
+				row-gap: 2px;
+			}
 		}
 
-		&__asset-text {
+		&__asset-icon {
+			@include mediamax(768) {
+				grid-row: 1;
+				grid-column: 1;
+				align-self: center;
+			}
+		}
+
+		&__asset-line {
 			display: flex;
+			align-items: center;
+			flex-wrap: wrap;
+			gap: 6px;
+			min-width: 0;
+
+			@include mediamax(768) {
+				display: contents;
+			}
+		}
+
+		&__identity,
+		&__sum {
+			display: inline-flex;
 			align-items: center;
 			gap: 6px;
 			min-width: 0;
 		}
 
-		&__coin {
+		&__sum {
+			@include mediamax(768) {
+				grid-column: 1 / -1;
+				grid-row: 2;
+			}
+		}
+
+		&__sum-dot {
+			@include mediamax(768) {
+				display: none;
+			}
+		}
+
+		&__coin,
+		&__network {
 			color: $main-color;
 			font-size: 14px;
 			font-weight: 500;
-			line-height: 16px;
-			white-space: nowrap;
+			line-height: 20px;
 		}
 
 		&__dot,
-		&__network {
+		&__amount {
 			color: $main-text-grey-color;
 			font-size: 14px;
 			font-weight: 400;
-			line-height: 16px;
-			white-space: nowrap;
+			line-height: 20px;
 		}
 
 		&__date {
@@ -277,8 +367,10 @@
 		&__hash {
 			display: flex;
 			align-items: center;
+			align-self: flex-start;
 			justify-content: flex-start;
 			gap: 6px;
+			width: fit-content;
 			max-width: 100%;
 			min-width: 0;
 			padding: 0;
@@ -315,6 +407,26 @@
 			gap: 8px;
 			@include mediamax(1024) {
 				grid-template-columns: 1fr;
+			}
+		}
+
+		&__parties {
+			grid-column: 1 / -1;
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 8px;
+			min-width: 0;
+
+			@include mediamax(1024) {
+				grid-template-columns: 1fr;
+			}
+
+			.metric {
+				cursor: pointer;
+			}
+
+			.metric:only-child {
+				grid-column: 1 / -1;
 			}
 		}
 

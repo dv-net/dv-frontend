@@ -133,5 +133,8 @@
   "Refund fee unavailable": "A visszatérítés nem érhető el: a címen nincs elegendő fedezet a hálózati díj kifizetéséhez",
   "Return to the sender address": "Visszaküldés a küldő címére",
   "Scheduled": "Ütemezve",
-  "Blocked payments": "Blokkolt fizetések"
+  "Blocked payments": "Blokkolt fizetések",
+  "Amount": "Összeg",
+  "Recipient": "Címzett",
+  "Sender": "Küldő"
 }

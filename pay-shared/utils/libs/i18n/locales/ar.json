@@ -133,5 +133,8 @@
   "Refund fee unavailable": "استرداد الأموال غير متاح: لا يحتوي العنوان على أموال كافية لدفع رسوم الشبكة",
   "Return to the sender address": "الإرجاع إلى عنوان المُرسِل",
   "Scheduled": "مجدول",
-  "Blocked payments": "المدفوعات المحظورة"
+  "Blocked payments": "المدفوعات المحظورة",
+  "Amount": "المبلغ",
+  "Recipient": "المستلم",
+  "Sender": "المرسل"
 }

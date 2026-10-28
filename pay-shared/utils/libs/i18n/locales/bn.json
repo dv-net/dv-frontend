@@ -133,5 +133,8 @@
   "Refund fee unavailable": "রিফান্ড উপলভ্য নয়: নেটওয়ার্ক ফি পরিশোধ করার জন্য অ্যাড্রেসটিতে পর্যাপ্ত ফান্ড নেই",
   "Return to the sender address": "প্রেরকের ঠিকানায় ফেরত পাঠান",
   "Scheduled": "নির্ধারিত",
-  "Blocked payments": "ব্লক করা পেমেন্ট"
+  "Blocked payments": "ব্লক করা পেমেন্ট",
+  "Amount": "পরিমাণ",
+  "Recipient": "প্রাপক",
+  "Sender": "প্রেরক"
 }

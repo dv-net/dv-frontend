@@ -133,5 +133,8 @@
   "Refund fee unavailable": "Rückerstattung ist nicht verfügbar: Die Adresse verfügt nicht über genügend Guthaben, um die Netzwerkgebühr zu bezahlen",
   "Return to the sender address": "An die Absenderadresse zurücksenden",
   "Scheduled": "Geplant",
-  "Blocked payments": "Gesperrte Zahlungen"
+  "Blocked payments": "Gesperrte Zahlungen",
+  "Amount": "Betrag",
+  "Recipient": "Empfänger",
+  "Sender": "Absender"
 }

@@ -133,5 +133,8 @@
   "Refund fee unavailable": "रिफंड उपलब्ध नहीं है: नेटवर्क शुल्क का भुगतान करने के लिए इस पते में पर्याप्त धनराशि नहीं है",
   "Return to the sender address": "प्रेषक पते पर वापस करें",
   "Scheduled": "निर्धारित",
-  "Blocked payments": "अवरुद्ध भुगतान"
+  "Blocked payments": "अवरुद्ध भुगतान",
+  "Amount": "राशि",
+  "Recipient": "प्राप्तकर्ता",
+  "Sender": "प्रेषक"
 }

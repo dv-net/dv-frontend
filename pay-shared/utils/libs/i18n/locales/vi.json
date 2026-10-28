@@ -133,5 +133,8 @@
   "Refund fee unavailable": "Không thể hoàn tiền: địa chỉ không có đủ tiền để trả phí mạng lưới",
   "Return to the sender address": "Trả về địa chỉ người gửi",
   "Scheduled": "Đã lên lịch",
-  "Blocked payments": "Thanh toán bị chặn"
+  "Blocked payments": "Thanh toán bị chặn",
+  "Amount": "Số tiền",
+  "Recipient": "Người nhận",
+  "Sender": "Người gửi"
 }

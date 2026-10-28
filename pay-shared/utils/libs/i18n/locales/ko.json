@@ -133,5 +133,8 @@
   "Refund fee unavailable": "환불을 사용할 수 없습니다: 해당 주소에 네트워크 수수료를 지불할 충분한 자금이 없습니다",
   "Return to the sender address": "발신자 주소로 반환",
   "Scheduled": "예약됨",
-  "Blocked payments": "차단된 결제"
+  "Blocked payments": "차단된 결제",
+  "Amount": "금액",
+  "Recipient": "수취인",
+  "Sender": "송금인"
 }

@@ -133,5 +133,8 @@
   "Refund fee unavailable": "Il rimborso non è disponibile: l'indirizzo non dispone di fondi sufficienti per pagare la commissione di rete",
   "Return to the sender address": "Restituisci all'indirizzo del mittente",
   "Scheduled": "Programmato",
-  "Blocked payments": "Pagamenti bloccati"
+  "Blocked payments": "Pagamenti bloccati",
+  "Amount": "Importo",
+  "Recipient": "Destinatario",
+  "Sender": "Mittente"
 }

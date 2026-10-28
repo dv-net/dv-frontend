@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+- change: show per-status counts on admin refund tabs and rename the Russian menu item to «Возвраты» [DNS-233]
+- change: show deposit amount, sender and recipient on the payer refund card [DNS-233]
+
 ## [1.1.5] - 2026-10-27
 
 - change: show blocked deposit and refund transfer details on the refund request card [DNS-229]

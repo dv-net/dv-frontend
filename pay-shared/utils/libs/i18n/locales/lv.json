@@ -133,5 +133,8 @@
   "Refund fee unavailable": "Atmaksa nav pieejama: adresē nav pietiekami daudz līdzekļu, lai samaksātu tīkla maksu",
   "Return to the sender address": "Atgriezt uz sūtītāja adresi",
   "Scheduled": "Ieplānots",
-  "Blocked payments": "Bloķētie maksājumi"
+  "Blocked payments": "Bloķētie maksājumi",
+  "Amount": "Summa",
+  "Recipient": "Saņēmējs",
+  "Sender": "Sūtītājs"
 }

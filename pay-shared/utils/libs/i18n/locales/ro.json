@@ -133,5 +133,8 @@
   "Refund fee unavailable": "Rambursarea nu este disponibilă: adresa nu are suficiente fonduri pentru a plăti comisionul de rețea",
   "Return to the sender address": "Returnează către adresa expeditorului",
   "Scheduled": "Programat",
-  "Blocked payments": "Plăți blocate"
+  "Blocked payments": "Plăți blocate",
+  "Amount": "Sumă",
+  "Recipient": "Destinatar",
+  "Sender": "Expeditor"
 }

@@ -40,10 +40,13 @@ export interface IRefundCabinetItem {
 	tx_hash: string;
 	blockchain: string;
 	currency_id: string;
+	amount?: string | null;
+	amount_usd?: string | null;
 	risk_level: string;
 	score: string;
 	created_at: string | null;
 	from_address?: string | null;
+	to_address?: string | null;
 	refund_status?: RefundStatus | null;
 	destination_address?: string | null;
 	refund_execute_after?: string | null;
