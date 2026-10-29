@@ -1003,5 +1003,19 @@
   "Amount": "Kwota",
   "Score": "Wynik",
   "Stage": "Etap",
-  "Step": "Krok"
+  "Step": "Krok",
+  "Connect the crypto exchange before changing the proxy or VPN": "Połącz giełdę kryptowalut przed zmianą serwera proxy lub VPN",
+  "exchange is unreachable with the new network settings": "Giełda jest nieosiągalna przy nowych ustawieniach sieci",
+  "Exchange network interface tooltip": "Ruch do tej giełdy korzysta z wybranego interfejsu serwera, na przykład tunelu VPN. Pozostaw puste, aby użyć domyślnej trasy systemowej",
+  "Exchange proxy tooltip": "Żądania do tej giełdy przechodzą przez ten proxy. Pozostaw puste, aby użyć połączenia bezpośredniego. Zapisane hasło jest wyświetlane jako xxxxx i zostanie zachowane, jeśli pozostawisz je bez zmian. Dozwolone schematy to http, https, socks5 i socks5h",
+  "Interface": "Interfejs",
+  "invalid proxy url: expected scheme://[user:password@]host:port with scheme http, https, socks5 or socks5h": "Nieprawidłowy URL proxy: użyj scheme://user:password{'@'}host:port z http, https, socks5 lub socks5h",
+  "Maximum 2048 characters": "Maksymalnie 2048 znaki",
+  "network interface not found on the server": "Nie znaleziono interfejsu sieciowego na serwerze",
+  "Proxy": "Proxy",
+  "Proxy or VPN for this exchange": "Proxy lub VPN dla tej giełdy",
+  "set exchange keys before network settings": "Ustaw klucze giełdy przed ustawieniami sieci",
+  "System default route": "Domyślna trasa systemowa",
+  "The saved network interface is no longer on the server": "Zapisany interfejs sieciowy nie znajduje się już na serwerze",
+  "VPN or network interface": "VPN lub interfejs sieciowy"
 }

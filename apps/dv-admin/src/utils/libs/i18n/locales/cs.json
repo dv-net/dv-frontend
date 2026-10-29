@@ -1003,5 +1003,19 @@
   "Amount": "Částka",
   "Score": "Skóre",
   "Stage": "Fáze",
-  "Step": "Krok"
+  "Step": "Krok",
+  "Connect the crypto exchange before changing the proxy or VPN": "Připojte kryptoměnovou burzu před změnou proxy nebo VPN",
+  "exchange is unreachable with the new network settings": "Burza je s novým nastavením sítě nedostupná",
+  "Exchange network interface tooltip": "Provoz k této burze používá vybrané serverové rozhraní, například tunel VPN. Ponechte prázdné, chcete-li použít výchozí systémovou trasu",
+  "Exchange proxy tooltip": "Požadavky na tuto burzu procházejí přes tento proxy server. Pro přímé připojení ponechte prázdné. Uložené heslo se zobrazuje jako xxxxx a bude zachováno, pokud jej ponecháte beze změny. Povolená schémata jsou http, https, socks5 a socks5h",
+  "Interface": "Rozhraní",
+  "invalid proxy url: expected scheme://[user:password@]host:port with scheme http, https, socks5 or socks5h": "Neplatná URL proxy: použijte scheme://user:password{'@'}host:port s http, https, socks5 nebo socks5h",
+  "Maximum 2048 characters": "Maximálně 2048 znaků",
+  "network interface not found on the server": "Síťové rozhraní nebylo na serveru nalezeno",
+  "Proxy": "Proxy",
+  "Proxy or VPN for this exchange": "Proxy nebo VPN pro tuto burzu",
+  "set exchange keys before network settings": "Nastavte klíče burzy před nastavením sítě",
+  "System default route": "Výchozí systémová trasa",
+  "The saved network interface is no longer on the server": "Uložené síťové rozhraní se již na serveru nenachází",
+  "VPN or network interface": "VPN nebo síťové rozhraní"
 }

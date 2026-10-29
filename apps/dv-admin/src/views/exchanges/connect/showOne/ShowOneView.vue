@@ -11,6 +11,7 @@
 	import type { IExchangeListKeysResponse, ExchangeSlugType } from "@dv-admin/utils/types/api/apiGo";
 	import { useWithdrawalStore } from "@dv-admin/stores/withdrawal";
 	import ConnectAddresses from "@dv-admin/views/exchanges/connect/showOne/components/connectAddresses/ConnectAddresses.vue";
+	import ExchangeNetworkSettings from "@dv-admin/views/exchanges/connect/showOne/components/exchangeNetworkSettings/ExchangeNetworkSettings.vue";
 	import BannerInfo from "@dv-admin/components/ui/bannerInfo/BannerInfo.vue";
 
 	const { exchangeList, isLoadingUpdateKeys, isLoadingDeleteKeys, isShowBannerSuccess } =
@@ -53,77 +54,87 @@
 		</h1>
 		<block-section class="page__inner">
 			<info-one-exchange-connect :slug="slug" />
-			<form class="form">
-				<div class="form__inputs">
-					<div v-for="(item, index) in exchangeKeys" :key="index" class="form__input">
-						<div class="form__input-label">
-							<span>
-								{{ $t(item.name in EXCHANGE_SETTING_LABELS ? EXCHANGE_SETTING_LABELS[item.name] : item.name) }}
-							</span>
-							<ui-tooltip
-								class="flex flex-y-start"
-								mode="dark"
-								position="top-start"
-								is-gold-title
-								:title="$t(item.name in EXCHANGE_HELP_TOOLTIPS ? EXCHANGE_HELP_TOOLTIPS[item.name].title : item.name)"
-								:text="$t(item.name in EXCHANGE_HELP_TOOLTIPS ? EXCHANGE_HELP_TOOLTIPS[item.name].text : item.name)"
-							>
-								<ui-icon type="400" name="help" />
-							</ui-tooltip>
+			<div class="page__connect">
+				<form class="form" @submit.prevent>
+					<div class="form__inputs">
+						<div v-for="(item, index) in exchangeKeys" :key="index" class="form__input">
+							<div class="form__input-label">
+								<span>
+									{{ $t(item.name in EXCHANGE_SETTING_LABELS ? EXCHANGE_SETTING_LABELS[item.name] : item.name) }}
+								</span>
+								<ui-tooltip
+									class="flex flex-y-start"
+									mode="dark"
+									position="top-start"
+									is-gold-title
+									:title="$t(item.name in EXCHANGE_HELP_TOOLTIPS ? EXCHANGE_HELP_TOOLTIPS[item.name].title : item.name)"
+									:text="$t(item.name in EXCHANGE_HELP_TOOLTIPS ? EXCHANGE_HELP_TOOLTIPS[item.name].text : item.name)"
+								>
+									<ui-icon type="400" name="help" />
+								</ui-tooltip>
+							</div>
+							<ui-input
+								v-model="item.valueEnteredUser"
+								size="lg"
+								:placeholder="item.value || ''"
+								filled
+								showPassword
+								is-empty-value-null
+							/>
 						</div>
-						<ui-input
-							v-model="item.valueEnteredUser"
-							size="lg"
-							:placeholder="item.value || ''"
-							filled
-							showPassword
-							is-empty-value-null
-						/>
 					</div>
-				</div>
-				<div class="form__actions">
-					<ui-confirm :method="() => deleteExchangeKeys(slug)" @click.stop :title="`${$t('Delete crypto exchange')}?`">
+					<div class="form__actions">
+						<ui-confirm
+							:method="() => deleteExchangeKeys(slug)"
+							@click.stop
+							:title="`${$t('Delete crypto exchange')}?`"
+						>
+							<ui-button
+								type="secondary"
+								size="xl"
+								left-icon-name="delete"
+								left-icon-size="lg"
+								:loading="isLoadingDeleteKeys"
+							>
+								{{ $t("Delete keys") }}
+							</ui-button>
+						</ui-confirm>
 						<ui-button
 							type="secondary"
 							size="xl"
-							left-icon-name="delete"
+							:left-icon-name="exchangeList?.current_exchange === slug ? 'block' : 'done'"
 							left-icon-size="lg"
-							:loading="isLoadingDeleteKeys"
+							:loading="isLoadingSetExchange"
+							@click="postSetExchange(slug)"
+							:disabled="connectedExchanges.every((item) => item.slug !== slug)"
 						>
-							{{ $t("Delete keys") }}
+							{{ $t(exchangeList?.current_exchange === slug ? "Turn off" : "Turn on") }}
 						</ui-button>
-					</ui-confirm>
-					<ui-button
-						type="secondary"
-						size="xl"
-						:left-icon-name="exchangeList?.current_exchange === slug ? 'block' : 'done'"
-						left-icon-size="lg"
-						:loading="isLoadingSetExchange"
-						@click="postSetExchange(slug)"
-						:disabled="connectedExchanges.every((item) => item.slug !== slug)"
-					>
-						{{ $t(exchangeList?.current_exchange === slug ? "Turn off" : "Turn on") }}
-					</ui-button>
-					<ui-button
-						mode="neutral"
-						size="xl"
-						left-icon-name="add-circle"
-						left-icon-size="lg"
-						:loading="isLoadingUpdateKeys"
-						@click="
-							postExchangeKeyUpdates(
-								slug,
-								$t(isConnectCurrentExchange ? 'Crypto exchange edited' : 'Crypto exchange connected')
-							)
-						"
-						:disabled="!exchangeKeys.every((item) => item.valueEnteredUser)"
-					>
-						{{ $t(isConnectCurrentExchange ? "Edit crypto exchange" : "Connect a crypto exchange") }}
-					</ui-button>
-				</div>
-			</form>
+						<ui-button
+							mode="neutral"
+							size="xl"
+							left-icon-name="add-circle"
+							left-icon-size="lg"
+							:loading="isLoadingUpdateKeys"
+							@click="
+								postExchangeKeyUpdates(
+									slug,
+									$t(isConnectCurrentExchange ? 'Crypto exchange edited' : 'Crypto exchange connected')
+								)
+							"
+							:disabled="!exchangeKeys.every((item) => item.valueEnteredUser)"
+						>
+							{{ $t(isConnectCurrentExchange ? "Edit crypto exchange" : "Connect a crypto exchange") }}
+						</ui-button>
+					</div>
+				</form>
+				<exchange-network-settings :slug="slug" />
+			</div>
 		</block-section>
-		<banner-info :is-show="isShowBannerSuccess" :text="$t('Success! Crypto exchange “{exchange}” verified, connection established', { exchange: slug })" />
+		<banner-info
+			:is-show="isShowBannerSuccess"
+			:text="$t('Success! Crypto exchange “{exchange}” verified, connection established', { exchange: slug })"
+		/>
 		<connect-addresses />
 	</div>
 </template>
@@ -137,6 +148,11 @@
 			display: flex;
 			flex-direction: column;
 			gap: 40px;
+			.page__connect {
+				display: flex;
+				flex-direction: column;
+				gap: 20px;
+			}
 			.form {
 				display: flex;
 				flex-direction: column;

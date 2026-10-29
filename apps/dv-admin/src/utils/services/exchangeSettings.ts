@@ -4,6 +4,9 @@ import type {
 	IExchangeDepositAddressesResponse,
 	IExchangeList,
 	IExchangeListResponse,
+	IExchangeNetworkInterfacesResponse,
+	IExchangeNetworkSettings,
+	IExchangeNetworkSettingsRequest,
 	IExchangeTestRequest
 } from "@dv-admin/utils/types/api/apiGo";
 
@@ -44,5 +47,23 @@ export const postApiExchangeTest = async (body: IExchangeTestRequest) => {
 
 export const getApiBalanceCurrentExchange = async (slug: string): Promise<IBalancesCurrentExchange> => {
 	const resp = await api.get(`/dv-admin/exchange/${slug}/balance`);
+	return resp.data.data;
+};
+
+export const getApiExchangeNetworkInterfaces = async (): Promise<IExchangeNetworkInterfacesResponse> => {
+	const resp = await api.get("/dv-admin/exchange/network-interfaces");
+	return resp.data.data;
+};
+
+export const getApiExchangeNetworkSettings = async (slug: string): Promise<IExchangeNetworkSettings> => {
+	const resp = await api.get(`/dv-admin/exchange/${slug}/network`);
+	return resp.data.data;
+};
+
+export const putApiExchangeNetworkSettings = async (
+	slug: string,
+	body: IExchangeNetworkSettingsRequest
+): Promise<IExchangeNetworkSettings> => {
+	const resp = await api.put(`/dv-admin/exchange/${slug}/network`, body);
 	return resp.data.data;
 };

@@ -1003,5 +1003,19 @@
   "Amount": "Сума",
   "Score": "Оцінка",
   "Stage": "Етап",
-  "Step": "Крок"
+  "Step": "Крок",
+  "Connect the crypto exchange before changing the proxy or VPN": "Підключіть криптобіржу, перш ніж змінювати проксі або VPN",
+  "exchange is unreachable with the new network settings": "Біржа недоступна з новими налаштуваннями мережі",
+  "Exchange network interface tooltip": "Трафік до цієї біржі використовує вибраний інтерфейс сервера, наприклад VPN-тунель. Залиште порожнім, щоб використовувати системний маршрут за замовчуванням",
+  "Exchange proxy tooltip": "Запити до цієї біржі проходять через цей проксі. Залиште порожнім для прямого з’єднання. Збережений пароль відображається як xxxxx і зберігається, якщо залишити його без змін. Дозволені схеми: http, https, socks5 і socks5h",
+  "Interface": "Інтерфейс",
+  "invalid proxy url: expected scheme://[user:password@]host:port with scheme http, https, socks5 or socks5h": "Недійсна URL-адреса проксі: використовуйте scheme://user:password{'@'}host:port з http, https, socks5 або socks5h",
+  "Maximum 2048 characters": "Максимум 2048 символів",
+  "network interface not found on the server": "Мережевий інтерфейс не знайдено на сервері",
+  "Proxy": "Проксі",
+  "Proxy or VPN for this exchange": "Проксі або VPN для цієї біржі",
+  "set exchange keys before network settings": "Установіть ключі обміну перед налаштуваннями мережі",
+  "System default route": "Системний маршрут за замовчуванням",
+  "The saved network interface is no longer on the server": "Збереженого мережевого інтерфейсу більше немає на сервері",
+  "VPN or network interface": "VPN або мережевий інтерфейс"
 }

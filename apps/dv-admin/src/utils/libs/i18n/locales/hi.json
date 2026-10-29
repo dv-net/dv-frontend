@@ -1003,5 +1003,19 @@
   "Amount": "राशि",
   "Score": "स्कोर",
   "Stage": "चरण",
-  "Step": "चरण"
+  "Step": "चरण",
+  "Connect the crypto exchange before changing the proxy or VPN": "प्रॉक्सी या VPN बदलने से पहले क्रिप्टो एक्सचेंज को कनेक्ट करें",
+  "exchange is unreachable with the new network settings": "नई नेटवर्क सेटिंग्स के साथ एक्सचेंज तक पहुँचा नहीं जा सकता",
+  "Exchange network interface tooltip": "इस एक्सचेंज के लिए ट्रैफ़िक चयनित सर्वर इंटरफ़ेस का उपयोग करता है, उदाहरण के लिए VPN टनल। सिस्टम के डिफ़ॉल्ट रूट का उपयोग करने के लिए खाली छोड़ें",
+  "Exchange proxy tooltip": "इस एक्सचेंज के अनुरोध इस प्रॉक्सी के माध्यम से जाते हैं। सीधे कनेक्शन के लिए खाली छोड़ें। सहेजा गया पासवर्ड xxxxx के रूप में दिखाया जाता है और यदि आप इसे अपरिवर्तित छोड़ते हैं तो रखा जाता है। अनुमत स्कीम http, https, socks5 और socks5h हैं",
+  "Interface": "इंटरफ़ेस",
+  "invalid proxy url: expected scheme://[user:password@]host:port with scheme http, https, socks5 or socks5h": "अमान्य proxy URL: http, https, socks5 या socks5h के साथ scheme://user:password{'@'}host:port उपयोग करें",
+  "Maximum 2048 characters": "अधिकतम 2048 वर्ण",
+  "network interface not found on the server": "सर्वर पर नेटवर्क इंटरफ़ेस नहीं मिला",
+  "Proxy": "प्रॉक्सी",
+  "Proxy or VPN for this exchange": "इस एक्सचेंज के लिए Proxy या VPN",
+  "set exchange keys before network settings": "नेटवर्क सेटिंग्स से पहले एक्सचेंज कुंजियाँ सेट करें",
+  "System default route": "सिस्टम डिफ़ॉल्ट रूट",
+  "The saved network interface is no longer on the server": "सहेजा गया नेटवर्क इंटरफ़ेस अब सर्वर पर नहीं है",
+  "VPN or network interface": "VPN या नेटवर्क इंटरफ़ेस"
 }

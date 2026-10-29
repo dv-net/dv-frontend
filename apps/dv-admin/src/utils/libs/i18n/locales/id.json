@@ -1003,5 +1003,19 @@
   "Amount": "Jumlah",
   "Score": "Skor",
   "Stage": "Tahap",
-  "Step": "Langkah"
+  "Step": "Langkah",
+  "Connect the crypto exchange before changing the proxy or VPN": "Hubungkan bursa kripto sebelum mengubah proxy atau VPN",
+  "exchange is unreachable with the new network settings": "Exchange tidak dapat dijangkau dengan pengaturan jaringan baru",
+  "Exchange network interface tooltip": "Traffic ke exchange ini menggunakan antarmuka server yang dipilih, misalnya tunnel VPN. Biarkan kosong untuk menggunakan rute default sistem",
+  "Exchange proxy tooltip": "Permintaan ke bursa ini melalui proxy ini. Biarkan kosong untuk koneksi langsung. Kata sandi yang tersimpan ditampilkan sebagai xxxxx dan akan tetap disimpan jika Anda membiarkannya tidak berubah. Skema yang diizinkan adalah http, https, socks5, dan socks5h",
+  "Interface": "Antarmuka",
+  "invalid proxy url: expected scheme://[user:password@]host:port with scheme http, https, socks5 or socks5h": "URL proxy tidak valid: gunakan scheme://user:password{'@'}host:port dengan http, https, socks5, atau socks5h",
+  "Maximum 2048 characters": "Maksimum 2048 karakter",
+  "network interface not found on the server": "Antarmuka jaringan tidak ditemukan di server",
+  "Proxy": "Proksi",
+  "Proxy or VPN for this exchange": "Proxy atau VPN untuk bursa ini",
+  "set exchange keys before network settings": "Atur kunci exchange sebelum pengaturan jaringan",
+  "System default route": "Rute default sistem",
+  "The saved network interface is no longer on the server": "Antarmuka jaringan yang disimpan tidak lagi ada di server",
+  "VPN or network interface": "VPN atau antarmuka jaringan"
 }

@@ -1003,5 +1003,19 @@
   "Amount": "Összeg",
   "Score": "Pontszám",
   "Stage": "Szakasz",
-  "Step": "Lépés"
+  "Step": "Lépés",
+  "Connect the crypto exchange before changing the proxy or VPN": "Csatlakoztassa a kriptotőzsdét, mielőtt módosítaná a proxyt vagy a VPN-t",
+  "exchange is unreachable with the new network settings": "A tőzsde nem érhető el az új hálózati beállításokkal",
+  "Exchange network interface tooltip": "Az ehhez a tőzsdéhez irányuló forgalom a kiválasztott szerverinterfészt használja, például egy VPN-alagutat. Hagyja üresen a rendszer alapértelmezett útvonalának használatához",
+  "Exchange proxy tooltip": "Az ehhez a tőzsdéhez intézett kérések ezen a proxyn keresztül mennek. Hagyja üresen a közvetlen kapcsolathoz. A mentett jelszó xxxxx-ként jelenik meg, és megmarad, ha változatlanul hagyja. Az engedélyezett sémák: http, https, socks5 és socks5h",
+  "Interface": "Felület",
+  "invalid proxy url: expected scheme://[user:password@]host:port with scheme http, https, socks5 or socks5h": "Érvénytelen proxy URL: használja a scheme://user:password{'@'}host:port formátumot http, https, socks5 vagy socks5h sémával",
+  "Maximum 2048 characters": "Legfeljebb 2048 karakter",
+  "network interface not found on the server": "A hálózati interfész nem található a szerveren",
+  "Proxy": "Proxy",
+  "Proxy or VPN for this exchange": "Proxy vagy VPN ehhez a tőzsdéhez",
+  "set exchange keys before network settings": "Állítsa be a tőzsdei kulcsokat a hálózati beállítások előtt",
+  "System default route": "Rendszer alapértelmezett útvonala",
+  "The saved network interface is no longer on the server": "A mentett hálózati interfész már nincs a szerveren",
+  "VPN or network interface": "VPN vagy hálózati interfész"
 }

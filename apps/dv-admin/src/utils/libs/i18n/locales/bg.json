@@ -1003,5 +1003,19 @@
   "Amount": "Сума",
   "Score": "Резултат",
   "Stage": "Етап",
-  "Step": "Стъпка"
+  "Step": "Стъпка",
+  "Connect the crypto exchange before changing the proxy or VPN": "Свържете криптоборсата, преди да промените проксито или VPN",
+  "exchange is unreachable with the new network settings": "Борсата е недостъпна с новите мрежови настройки",
+  "Exchange network interface tooltip": "Трафикът към тази борса използва избрания сървърен интерфейс, например VPN тунел. Оставете празно, за да използвате системния маршрут по подразбиране",
+  "Exchange proxy tooltip": "Заявките към тази борса преминават през това прокси. Оставете празно за директна връзка. Запазената парола се показва като xxxxx и се запазва, ако я оставите непроменена. Разрешените схеми са http, https, socks5 и socks5h",
+  "Interface": "Интерфейс",
+  "invalid proxy url: expected scheme://[user:password@]host:port with scheme http, https, socks5 or socks5h": "Невалиден URL адрес на прокси: използвайте scheme://user:password{'@'}host:port с http, https, socks5 или socks5h",
+  "Maximum 2048 characters": "Максимум 2048 символа",
+  "network interface not found on the server": "Мрежовият интерфейс не е намерен на сървъра",
+  "Proxy": "Прокси",
+  "Proxy or VPN for this exchange": "Прокси или VPN за тази борса",
+  "set exchange keys before network settings": "Задайте ключовете за обмен преди мрежовите настройки",
+  "System default route": "Системен маршрут по подразбиране",
+  "The saved network interface is no longer on the server": "Запазеният мрежов интерфейс вече не е на сървъра",
+  "VPN or network interface": "VPN или мрежов интерфейс"
 }

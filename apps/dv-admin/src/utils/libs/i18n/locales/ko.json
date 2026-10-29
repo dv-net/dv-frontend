@@ -1003,5 +1003,19 @@
   "Amount": "금액",
   "Score": "점수",
   "Stage": "단계",
-  "Step": "단계"
+  "Step": "단계",
+  "Connect the crypto exchange before changing the proxy or VPN": "프록시 또는 VPN을 변경하기 전에 암호화폐 거래소를 연결하세요",
+  "exchange is unreachable with the new network settings": "새 네트워크 설정으로는 거래소에 연결할 수 없습니다",
+  "Exchange network interface tooltip": "이 거래소로 향하는 트래픽은 선택한 서버 인터페이스(예: VPN 터널)를 사용합니다. 시스템 기본 라우트를 사용하려면 비워 두세요",
+  "Exchange proxy tooltip": "이 거래소로의 요청은 이 프록시를 통해 전달됩니다. 직접 연결하려면 비워 두세요. 저장된 비밀번호는 xxxxx로 표시되며 변경하지 않으면 그대로 유지됩니다. 허용되는 스킴은 http, https, socks5 및 socks5h입니다.",
+  "Interface": "인터페이스",
+  "invalid proxy url: expected scheme://[user:password@]host:port with scheme http, https, socks5 or socks5h": "잘못된 프록시 URL: http, https, socks5 또는 socks5h와 함께 scheme://user:password{'@'}host:port를 사용하세요",
+  "Maximum 2048 characters": "최대 2048자",
+  "network interface not found on the server": "서버에서 네트워크 인터페이스를 찾을 수 없습니다",
+  "Proxy": "프록시",
+  "Proxy or VPN for this exchange": "이 거래소용 프록시 또는 VPN",
+  "set exchange keys before network settings": "네트워크 설정 전에 거래소 키를 설정하세요",
+  "System default route": "시스템 기본 경로",
+  "The saved network interface is no longer on the server": "저장된 네트워크 인터페이스가 더 이상 서버에 없습니다",
+  "VPN or network interface": "VPN 또는 네트워크 인터페이스"
 }

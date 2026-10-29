@@ -1003,5 +1003,19 @@
   "Amount": "Tutar",
   "Score": "Puan",
   "Stage": "Aşama",
-  "Step": "Adım"
+  "Step": "Adım",
+  "Connect the crypto exchange before changing the proxy or VPN": "Proxy veya VPN’i değiştirmeden önce kripto borsasını bağlayın",
+  "exchange is unreachable with the new network settings": "Yeni ağ ayarlarıyla borsaya ulaşılamıyor",
+  "Exchange network interface tooltip": "Bu borsaya giden trafik, seçilen sunucu ağ arabirimini, örneğin bir VPN tünelini kullanır. Sistemin varsayılan rotasını kullanmak için boş bırakın",
+  "Exchange proxy tooltip": "Bu borsaya yapılan istekler bu proxy üzerinden geçer. Doğrudan bağlantı için boş bırakın. Kaydedilmiş bir parola xxxxx olarak gösterilir ve değiştirmeden bırakırsanız korunur. İzin verilen şemalar http, https, socks5 ve socks5h'dir",
+  "Interface": "Arayüz",
+  "invalid proxy url: expected scheme://[user:password@]host:port with scheme http, https, socks5 or socks5h": "Geçersiz proxy URL'si: http, https, socks5 veya socks5h ile scheme://user:password{'@'}host:port kullanın",
+  "Maximum 2048 characters": "Maksimum 2048 karakter",
+  "network interface not found on the server": "Sunucuda ağ arayüzü bulunamadı",
+  "Proxy": "Proxy",
+  "Proxy or VPN for this exchange": "Bu borsa için proxy veya VPN",
+  "set exchange keys before network settings": "Ağ ayarlarından önce borsa anahtarlarını ayarlayın",
+  "System default route": "Sistem varsayılan rotası",
+  "The saved network interface is no longer on the server": "Kaydedilen ağ arayüzü artık sunucuda yok",
+  "VPN or network interface": "VPN veya ağ arayüzü"
 }

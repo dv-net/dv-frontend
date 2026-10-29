@@ -1003,5 +1003,19 @@
   "Amount": "Suma",
   "Score": "Balas",
   "Stage": "Etapas",
-  "Step": "Žingsnis"
+  "Step": "Žingsnis",
+  "Connect the crypto exchange before changing the proxy or VPN": "Prijunkite kriptovaliutų biržą prieš keisdami tarpinį serverį arba VPN",
+  "exchange is unreachable with the new network settings": "Birža nepasiekiama naudojant naujus tinklo nustatymus",
+  "Exchange network interface tooltip": "Srautas į šią biržą naudoja pasirinktą serverio sąsają, pavyzdžiui, VPN tunelį. Palikite tuščią, kad būtų naudojamas numatytasis sistemos maršrutas",
+  "Exchange proxy tooltip": "Užklausos į šią biržą siunčiamos per šį tarpinį serverį. Palikite tuščią tiesioginiam ryšiui. Išsaugotas slaptažodis rodomas kaip xxxxx ir bus išsaugotas, jei paliksite jį nepakeistą. Leidžiamos schemos yra http, https, socks5 ir socks5h",
+  "Interface": "Sąsaja",
+  "invalid proxy url: expected scheme://[user:password@]host:port with scheme http, https, socks5 or socks5h": "Netinkamas tarpinio serverio URL: naudokite scheme://user:password{'@'}host:port su http, https, socks5 arba socks5h",
+  "Maximum 2048 characters": "Ne daugiau kaip 2048 simboliai",
+  "network interface not found on the server": "Tinklo sąsaja serveryje nerasta",
+  "Proxy": "Tarpinis serveris",
+  "Proxy or VPN for this exchange": "Proxy arba VPN šiai biržai",
+  "set exchange keys before network settings": "Nustatykite biržos raktus prieš tinklo nustatymus",
+  "System default route": "Sistemos numatytasis maršrutas",
+  "The saved network interface is no longer on the server": "Išsaugotos tinklo sąsajos serveryje nebėra",
+  "VPN or network interface": "VPN arba tinklo sąsaja"
 }

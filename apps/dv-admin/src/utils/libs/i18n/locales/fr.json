@@ -1003,5 +1003,19 @@
   "Amount": "Montant",
   "Score": "Score",
   "Stage": "Étape",
-  "Step": "Étape"
+  "Step": "Étape",
+  "Connect the crypto exchange before changing the proxy or VPN": "Connectez la plateforme d’échange crypto avant de changer le proxy ou le VPN",
+  "exchange is unreachable with the new network settings": "La plateforme d’échange est inaccessible avec les nouveaux paramètres réseau",
+  "Exchange network interface tooltip": "Le trafic vers cette plateforme d’échange utilise l’interface serveur sélectionnée, par exemple un tunnel VPN. Laissez vide pour utiliser la route par défaut du système",
+  "Exchange proxy tooltip": "Les requêtes vers cette plateforme d’échange passent par ce proxy. Laissez vide pour une connexion directe. Un mot de passe enregistré s’affiche sous la forme xxxxx et est conservé si vous le laissez inchangé. Les schémas autorisés sont http, https, socks5 et socks5h",
+  "Interface": "Interface",
+  "invalid proxy url: expected scheme://[user:password@]host:port with scheme http, https, socks5 or socks5h": "URL de proxy invalide : utilisez scheme://user:password{'@'}host:port avec http, https, socks5 ou socks5h",
+  "Maximum 2048 characters": "2048 caractères maximum",
+  "network interface not found on the server": "Interface réseau introuvable sur le serveur",
+  "Proxy": "Proxy",
+  "Proxy or VPN for this exchange": "Proxy ou VPN pour cette plateforme d’échange",
+  "set exchange keys before network settings": "Définissez les clés d’échange avant les paramètres réseau",
+  "System default route": "Route par défaut du système",
+  "The saved network interface is no longer on the server": "L’interface réseau enregistrée n’est plus sur le serveur",
+  "VPN or network interface": "VPN ou interface réseau"
 }

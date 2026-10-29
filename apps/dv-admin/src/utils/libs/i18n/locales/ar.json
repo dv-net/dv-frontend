@@ -1003,5 +1003,19 @@
   "Amount": "المبلغ",
   "Score": "النقاط",
   "Stage": "المرحلة",
-  "Step": "الخطوة"
+  "Step": "الخطوة",
+  "Connect the crypto exchange before changing the proxy or VPN": "قم بتوصيل منصة تداول العملات المشفرة قبل تغيير البروكسي أو VPN",
+  "exchange is unreachable with the new network settings": "يتعذر الوصول إلى Exchange باستخدام إعدادات الشبكة الجديدة",
+  "Exchange network interface tooltip": "حركة المرور إلى هذه المنصة تستخدم واجهة الخادم المحددة، على سبيل المثال نفق VPN. اتركه فارغًا لاستخدام مسار التوجيه الافتراضي للنظام",
+  "Exchange proxy tooltip": "طلبات هذه البورصة تمر عبر هذا الوكيل. اتركه فارغًا لاتصال مباشر. تظهر كلمة المرور المحفوظة على شكل xxxxx ويتم الاحتفاظ بها إذا تركتها دون تغيير. المخططات المسموح بها هي http و https و socks5 و socks5h",
+  "Interface": "الواجهة",
+  "invalid proxy url: expected scheme://[user:password@]host:port with scheme http, https, socks5 or socks5h": "عنوان URL للوكيل غير صالح: استخدم scheme://user:password{'@'}host:port مع http أو https أو socks5 أو socks5h",
+  "Maximum 2048 characters": "الحد الأقصى 2048 حرفًا",
+  "network interface not found on the server": "لم يتم العثور على واجهة الشبكة على الخادم",
+  "Proxy": "الوكيل",
+  "Proxy or VPN for this exchange": "بروكسي أو VPN لمنصة التداول هذه",
+  "set exchange keys before network settings": "عيّن مفاتيح منصة التداول قبل إعدادات الشبكة",
+  "System default route": "المسار الافتراضي للنظام",
+  "The saved network interface is no longer on the server": "واجهة الشبكة المحفوظة لم تعد موجودة على الخادم",
+  "VPN or network interface": "VPN أو واجهة الشبكة"
 }

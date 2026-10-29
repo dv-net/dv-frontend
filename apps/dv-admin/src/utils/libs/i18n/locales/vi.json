@@ -1003,5 +1003,19 @@
   "Amount": "Số tiền",
   "Score": "Điểm",
   "Stage": "Giai đoạn",
-  "Step": "Bước"
+  "Step": "Bước",
+  "Connect the crypto exchange before changing the proxy or VPN": "Kết nối sàn giao dịch tiền mã hóa trước khi thay đổi proxy hoặc VPN",
+  "exchange is unreachable with the new network settings": "Không thể truy cập sàn giao dịch với cài đặt mạng mới",
+  "Exchange network interface tooltip": "Lưu lượng truy cập đến sàn giao dịch này sử dụng giao diện máy chủ đã chọn, ví dụ như đường hầm VPN. Để trống để sử dụng tuyến mặc định của hệ thống",
+  "Exchange proxy tooltip": "Các yêu cầu tới sàn giao dịch này sẽ đi qua proxy này. Để trống để kết nối trực tiếp. Mật khẩu đã lưu được hiển thị là xxxxx và sẽ được giữ nguyên nếu bạn không thay đổi. Các scheme được phép là http, https, socks5 và socks5h",
+  "Interface": "Giao diện",
+  "invalid proxy url: expected scheme://[user:password@]host:port with scheme http, https, socks5 or socks5h": "URL proxy không hợp lệ: sử dụng scheme://user:password{'@'}host:port với http, https, socks5 hoặc socks5h",
+  "Maximum 2048 characters": "Tối đa 2048 ký tự",
+  "network interface not found on the server": "Không tìm thấy giao diện mạng trên máy chủ",
+  "Proxy": "Proxy",
+  "Proxy or VPN for this exchange": "Proxy hoặc VPN cho sàn giao dịch này",
+  "set exchange keys before network settings": "Thiết lập các khóa sàn giao dịch trước khi cài đặt mạng",
+  "System default route": "Tuyến mặc định của hệ thống",
+  "The saved network interface is no longer on the server": "Giao diện mạng đã lưu không còn trên máy chủ nữa",
+  "VPN or network interface": "VPN hoặc giao diện mạng"
 }

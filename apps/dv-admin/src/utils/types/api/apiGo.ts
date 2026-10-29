@@ -740,16 +740,7 @@ export interface IExchangeListKeysResponse {
 }
 
 export type ExchangeSlugType =
-	| "binance"
-	| "okx"
-	| "htx"
-	| "bitget"
-	| "kucoin"
-	| "mexc"
-	| "gate"
-	| "bybit"
-	| "bingx"
-	| "kraken";
+	"binance" | "okx" | "htx" | "bitget" | "kucoin" | "mexc" | "gate" | "bybit" | "bingx" | "kraken";
 
 export interface IExchangeList {
 	exchange: string;
@@ -780,6 +771,32 @@ export interface IExchangeTestRequest {
 		passphrase?: string;
 	};
 	slug: string;
+}
+
+export interface IExchangeNetworkInterfaceAddress {
+	ip: string;
+	private: boolean;
+}
+
+export interface IExchangeNetworkInterface {
+	name: string;
+	addresses: IExchangeNetworkInterfaceAddress[];
+}
+
+export interface IExchangeNetworkInterfacesResponse {
+	default: string;
+	interfaces: IExchangeNetworkInterface[];
+}
+
+export interface IExchangeNetworkSettings {
+	proxy_url: string | null;
+	network_interface: string | null;
+	interface_available: boolean;
+}
+
+export interface IExchangeNetworkSettingsRequest {
+	proxy_url: string | null;
+	network_interface: string | null;
 }
 
 export type IUsersSettings =
@@ -1212,13 +1229,7 @@ export interface IMarkIsDirtyRequest {
 }
 
 export type RefundStatus =
-	| "pending_review"
-	| "rejected"
-	| "processing"
-	| "scheduled"
-	| "canceled"
-	| "completed"
-	| "failed";
+	"pending_review" | "rejected" | "processing" | "scheduled" | "canceled" | "completed" | "failed";
 
 export interface IRefundRequest {
 	id: string;

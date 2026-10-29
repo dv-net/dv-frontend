@@ -1003,5 +1003,19 @@
   "Amount": "Importe",
   "Score": "Puntuación",
   "Stage": "Etapa",
-  "Step": "Paso"
+  "Step": "Paso",
+  "Connect the crypto exchange before changing the proxy or VPN": "Conecta el exchange de criptomonedas antes de cambiar el proxy o la VPN",
+  "exchange is unreachable with the new network settings": "No se puede acceder a Exchange con la nueva configuración de red",
+  "Exchange network interface tooltip": "El tráfico hacia este exchange usa la interfaz de servidor seleccionada, por ejemplo, un túnel VPN. Déjalo vacío para usar la ruta predeterminada del sistema",
+  "Exchange proxy tooltip": "Las solicitudes a este exchange pasan por este proxy. Déjalo vacío para una conexión directa. Una contraseña guardada se muestra como xxxxx y se conserva si la dejas sin cambios. Los esquemas permitidos son http, https, socks5 y socks5h",
+  "Interface": "Interfaz",
+  "invalid proxy url: expected scheme://[user:password@]host:port with scheme http, https, socks5 or socks5h": "URL de proxy no válida: usa scheme://user:password{'@'}host:port con http, https, socks5 o socks5h",
+  "Maximum 2048 characters": "Máximo 2048 caracteres",
+  "network interface not found on the server": "Interfaz de red no encontrada en el servidor",
+  "Proxy": "Proxy",
+  "Proxy or VPN for this exchange": "Proxy o VPN para este exchange",
+  "set exchange keys before network settings": "Configura las claves de intercambio antes de los ajustes de red",
+  "System default route": "Ruta predeterminada del sistema",
+  "The saved network interface is no longer on the server": "La interfaz de red guardada ya no está en el servidor",
+  "VPN or network interface": "VPN o interfaz de red"
 }

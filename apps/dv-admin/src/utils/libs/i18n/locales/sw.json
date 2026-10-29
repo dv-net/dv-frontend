@@ -1003,5 +1003,19 @@
   "Amount": "Kiasi",
   "Score": "Alama",
   "Stage": "Hatua",
-  "Step": "Hatua"
+  "Step": "Hatua",
+  "Connect the crypto exchange before changing the proxy or VPN": "Unganisha huduma ya kubadilisha crypto kabla ya kubadilisha proksi au VPN",
+  "exchange is unreachable with the new network settings": "Exchange haipatikani kwa mipangilio mipya ya mtandao",
+  "Exchange network interface tooltip": "Trafiki kwenda kwenye ubadilishaji huu hutumia kiolesura cha seva kilichochaguliwa, kwa mfano handaki la VPN. Acha wazi ili kutumia njia chaguomsingi ya mfumo",
+  "Exchange proxy tooltip": "Maombi kwenda exchange hii hupitia proxy hii. Acha tupu kwa muunganisho wa moja kwa moja. Nenosiri lililohifadhiwa huonyeshwa kama xxxxx na huhifadhiwa ukiliacha bila kubadilishwa. Skimu zinazoruhusiwa ni http, https, socks5 na socks5h",
+  "Interface": "Kiolesura",
+  "invalid proxy url: expected scheme://[user:password@]host:port with scheme http, https, socks5 or socks5h": "URL ya proksi si sahihi: tumia scheme://user:password{'@'}host:port kwa http, https, socks5 au socks5h",
+  "Maximum 2048 characters": "Herufi zisizozidi 2048",
+  "network interface not found on the server": "Kiolesura cha mtandao hakijapatikana kwenye seva",
+  "Proxy": "Proksi",
+  "Proxy or VPN for this exchange": "Proksi au VPN kwa ubadilishaji huu",
+  "set exchange keys before network settings": "Weka funguo za ubadilishaji kabla ya mipangilio ya mtandao",
+  "System default route": "Njia chaguomsingi ya mfumo",
+  "The saved network interface is no longer on the server": "Kiolesura cha mtandao kilichohifadhiwa hakipo tena kwenye seva",
+  "VPN or network interface": "VPN au kiolesura cha mtandao"
 }

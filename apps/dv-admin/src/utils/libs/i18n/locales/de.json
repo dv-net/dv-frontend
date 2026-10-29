@@ -1003,5 +1003,19 @@
   "Amount": "Betrag",
   "Score": "Punktzahl",
   "Stage": "Phase",
-  "Step": "Schritt"
+  "Step": "Schritt",
+  "Connect the crypto exchange before changing the proxy or VPN": "Verbinden Sie die Kryptobörse, bevor Sie den Proxy oder das VPN ändern",
+  "exchange is unreachable with the new network settings": "Exchange ist mit den neuen Netzwerkeinstellungen nicht erreichbar",
+  "Exchange network interface tooltip": "Der Datenverkehr zu dieser Börse nutzt die ausgewählte Serverschnittstelle, zum Beispiel einen VPN-Tunnel. Leer lassen, um die Standardroute des Systems zu verwenden",
+  "Exchange proxy tooltip": "Anfragen an diese Exchange laufen über diesen Proxy. Für eine direkte Verbindung leer lassen. Ein gespeichertes Passwort wird als xxxxx angezeigt und beibehalten, wenn Sie es unverändert lassen. Zulässige Schemas sind http, https, socks5 und socks5h",
+  "Interface": "Schnittstelle",
+  "invalid proxy url: expected scheme://[user:password@]host:port with scheme http, https, socks5 or socks5h": "Ungültige Proxy-URL: Verwenden Sie scheme://user:password{'@'}host:port mit http, https, socks5 oder socks5h",
+  "Maximum 2048 characters": "Maximal 2048 Zeichen",
+  "network interface not found on the server": "Netzwerkschnittstelle auf dem Server nicht gefunden",
+  "Proxy": "Proxy",
+  "Proxy or VPN for this exchange": "Proxy oder VPN für diese Börse",
+  "set exchange keys before network settings": "Legen Sie die Exchange-Schlüssel vor den Netzwerkeinstellungen fest",
+  "System default route": "Standardroute des Systems",
+  "The saved network interface is no longer on the server": "Die gespeicherte Netzwerkschnittstelle befindet sich nicht mehr auf dem Server",
+  "VPN or network interface": "VPN oder Netzwerkschnittstelle"
 }

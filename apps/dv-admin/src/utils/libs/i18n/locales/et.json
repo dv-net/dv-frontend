@@ -1003,5 +1003,19 @@
   "Amount": "Summa",
   "Score": "Skoor",
   "Stage": "Etapp",
-  "Step": "Samm"
+  "Step": "Samm",
+  "Connect the crypto exchange before changing the proxy or VPN": "Ühendage krüptobörs enne puhverserveri või VPN-i muutmist",
+  "exchange is unreachable with the new network settings": "Börs ei ole uute võrguseadetega kättesaadav",
+  "Exchange network interface tooltip": "Sellele börsile suunatud liiklus kasutab valitud serveriliidest, näiteks VPN-tunnelit. Jäta tühjaks, et kasutada süsteemi vaikemarsruuti",
+  "Exchange proxy tooltip": "Päringud sellele börsile lähevad läbi selle puhverserveri. Otseühenduse jaoks jätke tühjaks. Salvestatud parool kuvatakse kujul xxxxx ja see säilitatakse, kui jätate selle muutmata. Lubatud skeemid on http, https, socks5 ja socks5h",
+  "Interface": "Liides",
+  "invalid proxy url: expected scheme://[user:password@]host:port with scheme http, https, socks5 or socks5h": "Vigane proxy URL: kasutage vormingut scheme://user:password{'@'}host:port koos http, https, socks5 või socks5h-ga",
+  "Maximum 2048 characters": "Maksimaalselt 2048 tähemärki",
+  "network interface not found on the server": "Võrguliidest serverist ei leitud",
+  "Proxy": "Puhverserver",
+  "Proxy or VPN for this exchange": "Selle börsi jaoks puhverserver või VPN",
+  "set exchange keys before network settings": "Seadistage börsi võtmed enne võrguseadeid",
+  "System default route": "Süsteemi vaikemarsruut",
+  "The saved network interface is no longer on the server": "Salvestatud võrguliidest pole enam serveris",
+  "VPN or network interface": "VPN või võrguliides"
 }

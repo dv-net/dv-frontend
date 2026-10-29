@@ -1003,5 +1003,19 @@
   "Amount": "Znesek",
   "Score": "Ocena",
   "Stage": "Faza",
-  "Step": "Korak"
+  "Step": "Korak",
+  "Connect the crypto exchange before changing the proxy or VPN": "Povežite kripto borzo pred spremembo proxyja ali VPN-ja",
+  "exchange is unreachable with the new network settings": "Borza je z novimi omrežnimi nastavitvami nedosegljiva",
+  "Exchange network interface tooltip": "Promet do te borze uporablja izbrani strežniški vmesnik, na primer tunel VPN. Pustite prazno, če želite uporabiti privzeto sistemsko pot",
+  "Exchange proxy tooltip": "Zahteve do te borze gredo prek tega posredniškega strežnika. Pustite prazno za neposredno povezavo. Shranjeno geslo je prikazano kot xxxxx in se ohrani, če ga ne spremenite. Dovoljene sheme so http, https, socks5 in socks5h",
+  "Interface": "Vmesnik",
+  "invalid proxy url: expected scheme://[user:password@]host:port with scheme http, https, socks5 or socks5h": "Neveljaven URL posredniškega strežnika: uporabite scheme://user:password{'@'}host:port z http, https, socks5 ali socks5h",
+  "Maximum 2048 characters": "Največ 2048 znakov",
+  "network interface not found on the server": "Omrežni vmesnik ni bil najden na strežniku",
+  "Proxy": "Proxy",
+  "Proxy or VPN for this exchange": "Proxy ali VPN za to borzo",
+  "set exchange keys before network settings": "Pred omrežnimi nastavitvami nastavite ključe menjalnice",
+  "System default route": "Sistemska privzeta pot",
+  "The saved network interface is no longer on the server": "Shranjeni omrežni vmesnik ni več na strežniku",
+  "VPN or network interface": "VPN ali omrežni vmesnik"
 }

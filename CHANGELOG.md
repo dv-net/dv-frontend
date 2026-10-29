@@ -2,8 +2,11 @@
 
 ## [Unreleased]
 
+## [1.1.6] - 2026-10-29
+
 - change: show per-status counts on admin refund tabs and rename the Russian menu item to «Возвраты» [DNS-233]
 - change: show deposit amount, sender and recipient on the payer refund card [DNS-233]
+- feat: advanced exchange settings for a proxy or network interface [DNS-234]
 
 ## [1.1.5] - 2026-10-27
 

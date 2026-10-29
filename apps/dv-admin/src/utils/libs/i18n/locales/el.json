@@ -1003,5 +1003,19 @@
   "Amount": "Ποσό",
   "Score": "Βαθμολογία",
   "Stage": "Στάδιο",
-  "Step": "Βήμα"
+  "Step": "Βήμα",
+  "Connect the crypto exchange before changing the proxy or VPN": "Συνδέστε το ανταλλακτήριο κρυπτονομισμάτων πριν αλλάξετε το proxy ή το VPN",
+  "exchange is unreachable with the new network settings": "Το ανταλλακτήριο δεν είναι προσβάσιμο με τις νέες ρυθμίσεις δικτύου",
+  "Exchange network interface tooltip": "Η κίνηση προς αυτό το ανταλλακτήριο χρησιμοποιεί την επιλεγμένη διεπαφή διακομιστή, για παράδειγμα μια σήραγγα VPN. Αφήστε το κενό για χρήση της προεπιλεγμένης διαδρομής συστήματος",
+  "Exchange proxy tooltip": "Τα αιτήματα προς αυτό το ανταλλακτήριο περνούν μέσω αυτού του διακομιστή μεσολάβησης. Αφήστε το κενό για απευθείας σύνδεση. Ένας αποθηκευμένος κωδικός πρόσβασης εμφανίζεται ως xxxxx και διατηρείται αν τον αφήσετε αμετάβλητο. Τα επιτρεπόμενα σχήματα είναι http, https, socks5 και socks5h",
+  "Interface": "Διεπαφή",
+  "invalid proxy url: expected scheme://[user:password@]host:port with scheme http, https, socks5 or socks5h": "Μη έγκυρη διεύθυνση URL διακομιστή μεσολάβησης: χρησιμοποιήστε scheme://user:password{'@'}host:port με http, https, socks5 ή socks5h",
+  "Maximum 2048 characters": "Μέγιστο 2048 χαρακτήρες",
+  "network interface not found on the server": "Η διεπαφή δικτύου δεν βρέθηκε στον διακομιστή",
+  "Proxy": "Διακομιστής μεσολάβησης",
+  "Proxy or VPN for this exchange": "Proxy ή VPN για αυτό το ανταλλακτήριο",
+  "set exchange keys before network settings": "Ορίστε τα κλειδιά ανταλλακτηρίου πριν από τις ρυθμίσεις δικτύου",
+  "System default route": "Προεπιλεγμένη διαδρομή συστήματος",
+  "The saved network interface is no longer on the server": "Η αποθηκευμένη διεπαφή δικτύου δεν υπάρχει πλέον στον διακομιστή",
+  "VPN or network interface": "VPN ή διεπαφή δικτύου"
 }

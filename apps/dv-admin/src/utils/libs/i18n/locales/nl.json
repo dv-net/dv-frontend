@@ -1003,5 +1003,19 @@
   "Amount": "Bedrag",
   "Score": "Score",
   "Stage": "Fase",
-  "Step": "Stap"
+  "Step": "Stap",
+  "Connect the crypto exchange before changing the proxy or VPN": "Verbind de crypto-exchange voordat u de proxy of VPN wijzigt",
+  "exchange is unreachable with the new network settings": "Exchange is onbereikbaar met de nieuwe netwerkinstellingen",
+  "Exchange network interface tooltip": "Verkeer naar deze exchange gebruikt de geselecteerde serverinterface, bijvoorbeeld een VPN-tunnel. Laat leeg om de standaardroute van het systeem te gebruiken",
+  "Exchange proxy tooltip": "Verzoeken naar deze exchange lopen via deze proxy. Laat leeg voor een directe verbinding. Een opgeslagen wachtwoord wordt weergegeven als xxxxx en blijft behouden als u het ongewijzigd laat. Toegestane schema's zijn http, https, socks5 en socks5h",
+  "Interface": "Interface",
+  "invalid proxy url: expected scheme://[user:password@]host:port with scheme http, https, socks5 or socks5h": "Ongeldige proxy-URL: gebruik scheme://user:password{'@'}host:port met http, https, socks5 of socks5h",
+  "Maximum 2048 characters": "Maximaal 2048 tekens",
+  "network interface not found on the server": "Netwerkinterface niet gevonden op de server",
+  "Proxy": "Proxy",
+  "Proxy or VPN for this exchange": "Proxy of VPN voor deze exchange",
+  "set exchange keys before network settings": "Stel de exchange-sleutels in vóór de netwerkinstellingen",
+  "System default route": "Standaardroute van het systeem",
+  "The saved network interface is no longer on the server": "De opgeslagen netwerkinterface staat niet meer op de server",
+  "VPN or network interface": "VPN of netwerkinterface"
 }

@@ -1003,5 +1003,19 @@
   "Amount": "金额",
   "Score": "评分",
   "Stage": "阶段",
-  "Step": "步骤"
+  "Step": "步骤",
+  "Connect the crypto exchange before changing the proxy or VPN": "在更改代理或 VPN 之前，请先连接加密货币交易所",
+  "exchange is unreachable with the new network settings": "使用新的网络设置无法访问交易所",
+  "Exchange network interface tooltip": "到此交易所的流量将使用所选的服务器接口，例如 VPN 隧道。留空则使用系统默认路由",
+  "Exchange proxy tooltip": "对此交易所的请求将通过此代理。留空则直接连接。已保存的密码显示为 xxxxx；如果保持不变，则会保留该密码。允许的协议为 http、https、socks5 和 socks5h",
+  "Interface": "界面",
+  "invalid proxy url: expected scheme://[user:password@]host:port with scheme http, https, socks5 or socks5h": "无效的代理 URL：请使用 scheme://user:password{'@'}host:port，协议为 http、https、socks5 或 socks5h",
+  "Maximum 2048 characters": "最多 2048 个字符",
+  "network interface not found on the server": "在服务器上未找到网络接口",
+  "Proxy": "代理",
+  "Proxy or VPN for this exchange": "此交易所的代理或 VPN",
+  "set exchange keys before network settings": "请先设置交易所密钥，再进行网络设置",
+  "System default route": "系统默认路由",
+  "The saved network interface is no longer on the server": "保存的网络接口已不在服务器上",
+  "VPN or network interface": "VPN 或网络接口"
 }

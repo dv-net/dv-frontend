@@ -1003,5 +1003,19 @@
   "Amount": "Summa",
   "Score": "Rezultāts",
   "Stage": "Posms",
-  "Step": "Solis"
+  "Step": "Solis",
+  "Connect the crypto exchange before changing the proxy or VPN": "Pievienojiet kriptovalūtu biržu, pirms maināt starpniekserveri vai VPN",
+  "exchange is unreachable with the new network settings": "Birža nav sasniedzama ar jaunajiem tīkla iestatījumiem",
+  "Exchange network interface tooltip": "Datplūsma uz šo biržu izmanto atlasīto servera saskarni, piemēram, VPN tuneli. Atstājiet tukšu, lai izmantotu sistēmas noklusējuma maršrutu",
+  "Exchange proxy tooltip": "Pieprasījumi uz šo biržu tiek veikti caur šo proxy. Atstājiet tukšu tiešam savienojumam. Saglabāta parole tiek rādīta kā xxxxx un tiek saglabāta, ja atstājat to nemainītu. Atļautās shēmas ir http, https, socks5 un socks5h",
+  "Interface": "Saskarne",
+  "invalid proxy url: expected scheme://[user:password@]host:port with scheme http, https, socks5 or socks5h": "Nederīgs starpniekservera URL: izmantojiet scheme://user:password{'@'}host:port ar http, https, socks5 vai socks5h",
+  "Maximum 2048 characters": "Maksimums 2048 rakstzīmes",
+  "network interface not found on the server": "Tīkla interfeiss serverī nav atrasts",
+  "Proxy": "Starpniekserveris",
+  "Proxy or VPN for this exchange": "Starpniekserveris vai VPN šai biržai",
+  "set exchange keys before network settings": "Iestatiet biržas atslēgas pirms tīkla iestatījumiem",
+  "System default route": "Sistēmas noklusējuma maršruts",
+  "The saved network interface is no longer on the server": "Saglabātā tīkla saskarne vairs neatrodas serverī",
+  "VPN or network interface": "VPN vai tīkla interfeiss"
 }

@@ -1003,5 +1003,19 @@
   "Amount": "金額",
   "Score": "スコア",
   "Stage": "ステージ",
-  "Step": "ステップ"
+  "Step": "ステップ",
+  "Connect the crypto exchange before changing the proxy or VPN": "プロキシまたはVPNを変更する前に、暗号資産取引所に接続してください",
+  "exchange is unreachable with the new network settings": "新しいネットワーク設定では Exchange に到達できません",
+  "Exchange network interface tooltip": "この取引所へのトラフィックは、選択したサーバーインターフェース（例：VPNトンネル）を使用します。システムのデフォルトルートを使用する場合は空のままにしてください",
+  "Exchange proxy tooltip": "この取引所へのリクエストはこのプロキシを経由します。直接接続する場合は空のままにしてください。保存済みのパスワードは xxxxx と表示され、変更しない場合は保持されます。許可されるスキームは http、https、socks5、socks5h です。",
+  "Interface": "インターフェース",
+  "invalid proxy url: expected scheme://[user:password@]host:port with scheme http, https, socks5 or socks5h": "無効なプロキシ URL: http、https、socks5、または socks5h で scheme://user:password{'@'}host:port を使用してください",
+  "Maximum 2048 characters": "最大2048文字",
+  "network interface not found on the server": "サーバー上にネットワークインターフェイスが見つかりません",
+  "Proxy": "プロキシ",
+  "Proxy or VPN for this exchange": "この取引所のプロキシまたはVPN",
+  "set exchange keys before network settings": "ネットワーク設定の前に取引所キーを設定してください",
+  "System default route": "システムのデフォルトルート",
+  "The saved network interface is no longer on the server": "保存済みのネットワークインターフェースはサーバー上に存在しなくなりました",
+  "VPN or network interface": "VPNまたはネットワークインターフェース"
 }

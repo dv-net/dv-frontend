@@ -1003,5 +1003,19 @@
   "Amount": "Sumă",
   "Score": "Scor",
   "Stage": "Etapă",
-  "Step": "Pas"
+  "Step": "Pas",
+  "Connect the crypto exchange before changing the proxy or VPN": "Conectați exchange-ul crypto înainte de a schimba proxy-ul sau VPN-ul",
+  "exchange is unreachable with the new network settings": "Exchange-ul nu poate fi accesat cu noile setări de rețea",
+  "Exchange network interface tooltip": "Traficul către acest exchange folosește interfața serverului selectată, de exemplu un tunel VPN. Lăsați gol pentru a utiliza ruta implicită a sistemului",
+  "Exchange proxy tooltip": "Solicitările către acest exchange trec prin acest proxy. Lăsați necompletat pentru o conexiune directă. O parolă salvată este afișată ca xxxxx și este păstrată dacă o lăsați neschimbată. Schemele permise sunt http, https, socks5 și socks5h",
+  "Interface": "Interfață",
+  "invalid proxy url: expected scheme://[user:password@]host:port with scheme http, https, socks5 or socks5h": "URL proxy nevalid: folosiți scheme://user:password{'@'}host:port cu http, https, socks5 sau socks5h",
+  "Maximum 2048 characters": "Maximum 2048 de caractere",
+  "network interface not found on the server": "Interfața de rețea nu a fost găsită pe server",
+  "Proxy": "Proxy",
+  "Proxy or VPN for this exchange": "Proxy sau VPN pentru acest exchange",
+  "set exchange keys before network settings": "Setați cheile de schimb înainte de setările de rețea",
+  "System default route": "Rută implicită de sistem",
+  "The saved network interface is no longer on the server": "Interfața de rețea salvată nu mai este pe server",
+  "VPN or network interface": "VPN sau interfață de rețea"
 }

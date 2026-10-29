@@ -1003,5 +1003,19 @@
   "Amount": "Beløp",
   "Score": "Poengsum",
   "Stage": "Stadium",
-  "Step": "Trinn"
+  "Step": "Trinn",
+  "Connect the crypto exchange before changing the proxy or VPN": "Koble til kryptobørsen før du endrer proxyen eller VPN-et",
+  "exchange is unreachable with the new network settings": "Børsen kan ikke nås med de nye nettverksinnstillingene",
+  "Exchange network interface tooltip": "Trafikk til denne børsen bruker det valgte servergrensesnittet, for eksempel en VPN-tunnel. La stå tomt for å bruke systemets standardrute",
+  "Exchange proxy tooltip": "Forespørsler til denne børsen går gjennom denne proxyen. La stå tomt for en direkte tilkobling. Et lagret passord vises som xxxxx og beholdes hvis du lar det være uendret. Tillatte protokoller er http, https, socks5 og socks5h",
+  "Interface": "Grensesnitt",
+  "invalid proxy url: expected scheme://[user:password@]host:port with scheme http, https, socks5 or socks5h": "Ugyldig proxy-URL: bruk scheme://user:password{'@'}host:port med http, https, socks5 eller socks5h",
+  "Maximum 2048 characters": "Maksimalt 2048 tegn",
+  "network interface not found on the server": "Nettverksgrensesnittet ble ikke funnet på serveren",
+  "Proxy": "Proxy",
+  "Proxy or VPN for this exchange": "Proxy eller VPN for denne børsen",
+  "set exchange keys before network settings": "Angi børsnøklene før nettverksinnstillingene",
+  "System default route": "Systemets standardrute",
+  "The saved network interface is no longer on the server": "Det lagrede nettverksgrensesnittet finnes ikke lenger på serveren",
+  "VPN or network interface": "VPN eller nettverksgrensesnitt"
 }
