@@ -2,6 +2,7 @@ import api from "@pay/utils/libs/axios";
 import type {
 	IRefundCabinetResponse,
 	IRefundClaimRequest,
+	IRefundEstimate,
 	IRefundLookupRequest,
 	IRefundRequest,
 	IRefundVerifyRequest,
@@ -35,6 +36,18 @@ export const postApiRefundClaim = async (
 	token: string
 ): Promise<IRefundRequest> => {
 	const resp = await api.post(`/public/refund/blocked-transactions/${blockedTransactionId}/claim`, body, {
+		headers: refundAuthHeaders(token),
+		suppressNotify: true
+	});
+	return resp.data.data;
+};
+
+export const postApiRefundEstimate = async (
+	blockedTransactionId: string,
+	body: IRefundClaimRequest,
+	token: string
+): Promise<IRefundEstimate> => {
+	const resp = await api.post(`/public/refund/blocked-transactions/${blockedTransactionId}/estimate`, body, {
 		headers: refundAuthHeaders(token),
 		suppressNotify: true
 	});

@@ -34,6 +34,21 @@ export interface IRefundClaimRequest {
 	destination_address: string;
 }
 
+export interface IRefundEstimate {
+	blocked_transaction_id: string;
+	amount: string | number;
+	currency_id: string;
+	estimated_fee: string | number | null;
+	fee_currency_id: string;
+	fee_from_amount: boolean;
+	amount_to_receive: string | number | null;
+	fee_covered: boolean;
+	fee_balance: string | number | null;
+	fee_shortage: string | number | null;
+	activation_required: boolean;
+	requires_review: boolean;
+}
+
 export interface IRefundCabinetItem {
 	blocked_transaction_id: string;
 	transaction_id: string;

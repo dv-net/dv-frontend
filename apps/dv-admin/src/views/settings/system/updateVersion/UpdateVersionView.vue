@@ -3,7 +3,7 @@
 	import { useRouter } from "vue-router";
 	import { storeToRefs } from "pinia";
 	import { useGeneralStore } from "@dv-admin/stores/general";
-	import { UiButton, UiIcon, UiSkeleton, UiConfirm } from "@dv.net/ui-kit";
+	import { UiButton, UiIcon, UiSkeleton } from "@dv.net/ui-kit";
 	import Breadcrumbs from "@dv-admin/components/ui/breadcrumbs/Breadcrumbs.vue";
 	import BlockSection from "@dv-admin/components/ui/BlockSection/BlockSection.vue";
 	import { postApiSystemUpdateBackend, postApiSystemUpdateProcessing } from "@dv-admin/utils/services/systemSettings";
@@ -147,18 +147,17 @@
 					</div>
 				</div>
 				<div class="card__bottom">
-					<ui-confirm :method="handleUpdateVersions" @click.stop :title="`${$t('Update all')}?`">
-						<ui-button
-							mode="neutral"
-							size="lg"
-							left-icon-name="autorenew 1"
-							left-icon-type="400"
-							:disabled="isDisabledBtn"
-							:loading="isLoadingUpdateVersions"
-						>
-							{{ $t("Update all") }}
-						</ui-button>
-					</ui-confirm>
+					<ui-button
+						mode="neutral"
+						size="lg"
+						left-icon-name="autorenew 1"
+						left-icon-type="400"
+						:disabled="isDisabledBtn"
+						:loading="isLoadingUpdateVersions"
+						@click="handleUpdateVersions"
+					>
+						{{ $t("Update all") }}
+					</ui-button>
 				</div>
 			</block-section>
 			<block-section v-else mode="grey-border" class="not-found">

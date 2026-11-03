@@ -7,6 +7,7 @@
 - change: show per-status counts on admin refund tabs and rename the Russian menu item to «Возвраты» [DNS-233]
 - change: show deposit amount, sender and recipient on the payer refund card [DNS-233]
 - feat: advanced exchange settings for a proxy or network interface [DNS-234]
+- feat: estimate the payer refund before submit — amount to receive, network fee, and a deposit top-up when the fee is not covered [DNS-235]
 
 ## [1.1.5] - 2026-10-27
 
