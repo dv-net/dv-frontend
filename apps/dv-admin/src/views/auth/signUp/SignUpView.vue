@@ -67,6 +67,8 @@
 		if (!userRootSystemInfo.value?.is_captcha_enabled) delete payload["cf-turnstile-response"];
 		await registration(payload);
 	};
+
+	const goToSignIn = () => router.push({ name: "sign-in" });
 </script>
 
 <template>
@@ -140,7 +142,7 @@
 					:animation-data="loginAnimation"
 					class="reg-animation"
 					ref="loginAnimationRef"
-					@complete="router.push({ name: 'sign-in' })"
+					@complete="goToSignIn"
 					:auto-play="false"
 					:loop="false"
 				/>
