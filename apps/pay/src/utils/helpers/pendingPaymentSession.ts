@@ -1,7 +1,10 @@
 import type { TAmlPaymentPhase } from "@pay/utils/constants/aml";
-import { PENDING_PAYMENT_LS_KEY } from "@pay/utils/constants/payerForm";
+import { PAYMENT_LS_TTL_MS, PENDING_PAYMENT_LS_PREFIX } from "@pay/utils/constants/payerForm";
 import type { IPendingPaymentSession } from "@pay/utils/types/payerForm";
 import type { IWalletTransactionResponse } from "@pay-shared/utils/types/transaction";
+
+/** `pay:pending-payment:{walletId}` — one key per wallet so sessions of different wallets do not evict each other */
+const getPendingPaymentLsKey = (walletId: string): string => `${PENDING_PAYMENT_LS_PREFIX}:${walletId}`;
 
 export const savePendingPaymentSession = (
 	walletId: string,
@@ -11,28 +14,31 @@ export const savePendingPaymentSession = (
 	const session: IPendingPaymentSession = {
 		wallet_id: walletId,
 		transaction,
-		aml_phase: amlPhase
+		aml_phase: amlPhase,
+		saved_at: Date.now()
 	};
-	localStorage.setItem(PENDING_PAYMENT_LS_KEY, JSON.stringify(session));
+	localStorage.setItem(getPendingPaymentLsKey(walletId), JSON.stringify(session));
 };
 
-export const readPendingPaymentSession = (): IPendingPaymentSession | null => {
-	const raw = localStorage.getItem(PENDING_PAYMENT_LS_KEY);
+export const readPendingPaymentSession = (walletId: string): IPendingPaymentSession | null => {
+	const key = getPendingPaymentLsKey(walletId);
+	const raw = localStorage.getItem(key);
 	if (!raw) return null;
 
 	try {
 		const session = JSON.parse(raw) as IPendingPaymentSession;
-		if (!session.wallet_id || !session.transaction?.hash) {
-			localStorage.removeItem(PENDING_PAYMENT_LS_KEY);
+		const isExpired = !session.saved_at || Date.now() - session.saved_at > PAYMENT_LS_TTL_MS;
+		if (session.wallet_id !== walletId || !session.transaction?.hash || isExpired) {
+			localStorage.removeItem(key);
 			return null;
 		}
 		return session;
 	} catch {
-		localStorage.removeItem(PENDING_PAYMENT_LS_KEY);
+		localStorage.removeItem(key);
 		return null;
 	}
 };
 
-export const clearPendingPaymentSession = (): void => {
-	localStorage.removeItem(PENDING_PAYMENT_LS_KEY);
+export const clearPendingPaymentSession = (walletId: string): void => {
+	localStorage.removeItem(getPendingPaymentLsKey(walletId));
 };

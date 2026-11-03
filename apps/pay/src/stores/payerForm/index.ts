@@ -16,7 +16,7 @@ import {
 	getCurrentBlockchain,
 	getCurrentCoin
 } from "@shared/utils/helpers/general.ts";
-import { isLessThan1Hour } from "@pay-shared/utils/helpers/dateParse";
+import { isLessThan1Hour, isWithinPeriod } from "@pay-shared/utils/helpers/dateParse";
 import type { BlockchainType } from "@shared/utils/types/blockchain";
 import type { CurrencyType } from "@shared/utils/types/blockchain";
 import { SORT_CHAIN } from "@pay-shared/utils/constants/blockchain";
@@ -24,7 +24,7 @@ import { loaderShutdown } from "@pay-shared/utils/helpers/general";
 import type { ILatestTransaction } from "@pay-shared/components/payerForm/blockLatestTransactions/types";
 import type { IPayerFormTimelineItem } from "@pay-shared/utils/types/payerForm";
 import type { IBlockedTransactionItem } from "@pay/utils/types/aml";
-import { TRANSACTIONS_LS_PREFIX } from "@pay/utils/constants/payerForm";
+import { PAYMENT_LS_TTL_MS, TRANSACTIONS_LS_PREFIX } from "@pay/utils/constants/payerForm";
 import {
 	clearTransactionsSnapshot,
 	readTransactionsSnapshot,
@@ -217,7 +217,7 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		if (phase === AML_PAYMENT_PHASE.checking) {
 			savePendingPaymentSession(payerId.value, currentTransaction.value, phase);
 		} else {
-			clearPendingPaymentSession();
+			clearPendingPaymentSession(payerId.value);
 		}
 	};
 
@@ -285,30 +285,27 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 	};
 
 	const restorePendingPaymentSession = async (): Promise<boolean> => {
-		const session = readPendingPaymentSession();
-		if (!session || !payerId.value) return false;
-		if (session.wallet_id !== payerId.value) {
-			clearPendingPaymentSession();
-			return false;
-		}
+		if (!payerId.value) return false;
+		const walletId = payerId.value;
+		const session = readPendingPaymentSession(walletId);
+		if (!session) return false;
 
 		if (session.aml_phase !== AML_PAYMENT_PHASE.checking) {
-			clearPendingPaymentSession();
+			clearPendingPaymentSession(walletId);
 			return false;
 		}
 
-		const walletId = payerId.value;
 		const txHash = session.transaction.hash;
 
 		try {
 			const check = await getApiWalletAmlCheck(walletId, txHash);
 
 			if (check && !check.in_progress && check.status !== AML_CHECK_STATUS.pending) {
-				clearPendingPaymentSession();
+				clearPendingPaymentSession(walletId);
 				return false;
 			}
 		} catch {
-			clearPendingPaymentSession();
+			clearPendingPaymentSession(walletId);
 			return false;
 		}
 
@@ -347,7 +344,7 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 			}
 			if (data.unconfirmed) transactionsUnconfirmed.value = data.unconfirmed;
 
-			const transactionsLs = readTransactionsSnapshot(TRANSACTIONS_LS_PREFIX, id);
+			const transactionsLs = readTransactionsSnapshot(TRANSACTIONS_LS_PREFIX, id, PAYMENT_LS_TTL_MS);
 			if (!transactionsLs) {
 				writeTransactionsSnapshot(TRANSACTIONS_LS_PREFIX, id, {
 					confirmed: transactionsConfirmed.value,
@@ -355,6 +352,8 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 				});
 				return;
 			}
+			// Keep the baseline lists, only refresh saved_at: TTL counts from when the page was last open
+			writeTransactionsSnapshot(TRANSACTIONS_LS_PREFIX, id, transactionsLs);
 			// Step 3: new unconfirmed → step 4; new confirmed (skipped unconfirmed) → step 5
 			if (currentStep.value === 3) {
 				const newUnconfirmed = checkForNewUnconfirmedTransactions(transactionsLs);
@@ -482,6 +481,7 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 			(newTx) =>
 				Boolean(newTx.hash) &&
 				newTx.currency_code === currentCurrencyChainId.value &&
+				isWithinPeriod(newTx.created_at, PAYMENT_LS_TTL_MS) &&
 				!transactionsLs.confirmed.some((oldTx) => oldTx.hash === newTx.hash)
 		);
 	};
