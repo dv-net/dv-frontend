@@ -1,9 +1,12 @@
 import type { RefundCabinetBucket, RefundStatus } from "@pay/utils/types/refund";
 
 export const REFUND_TOKEN_KEY = "p";
-export const REFUND_TOKEN_COOKIE_TTL = "3d";
+/** Matches the backend wallet session token lifetime (AuthByWallet) */
+export const REFUND_TOKEN_COOKIE_TTL = "3h";
 
-export const getRefundTokenCookieKey = (storeId: string): string => `${REFUND_TOKEN_KEY}:${storeId.trim()}`;
+/** Refund session is scoped to a payer wallet within a store, so both ids are part of the key */
+export const getRefundTokenCookieKey = (storeId: string, walletId: string): string =>
+	`${REFUND_TOKEN_KEY}:${storeId.trim()}:${walletId.trim()}`;
 
 export const REFUND_STATUS = {
 	PENDING_REVIEW: "pending_review",

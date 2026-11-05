@@ -5,8 +5,7 @@ import { getCookie } from "@shared/utils/helpers/cookie";
 
 export const requireRefundToken = (to: RouteLocationNormalized) => {
 	const context = parseRefundEntryPartialQuery(to.query);
-	const storeId = context?.store_id;
-	const token = storeId ? getCookie(getRefundTokenCookieKey(storeId)) : null;
+	const token = context ? getCookie(getRefundTokenCookieKey(context.store_id, context.wallet_id)) : null;
 
 	if (!token) {
 		return context ? buildRefundEntryPartialRoute(context) : { name: "refund-entry" };

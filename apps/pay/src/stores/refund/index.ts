@@ -63,23 +63,25 @@ export const useRefundStore = defineStore("refund", () => {
 		}, 1000);
 	};
 
-	const syncTokenFromStore = () => {
+	const getTokenCookieKey = (): string | null => {
 		const storeIdValue = storeId.value.trim();
-		if (!storeIdValue) {
-			token.value = null;
-			return;
-		}
-		token.value = getCookie(getRefundTokenCookieKey(storeIdValue));
+		const walletIdValue = walletId.value.trim();
+		if (!storeIdValue || !walletIdValue) return null;
+		return getRefundTokenCookieKey(storeIdValue, walletIdValue);
+	};
+
+	const syncTokenFromStore = () => {
+		const cookieKey = getTokenCookieKey();
+		token.value = cookieKey ? getCookie(cookieKey) : null;
 	};
 
 	const persistToken = (value: string | null) => {
-		const storeIdValue = storeId.value.trim();
-		if (!storeIdValue) {
+		const cookieKey = getTokenCookieKey();
+		if (!cookieKey) {
 			token.value = value;
 			return;
 		}
 
-		const cookieKey = getRefundTokenCookieKey(storeIdValue);
 		token.value = value;
 		if (value) {
 			setCookie(cookieKey, value, REFUND_TOKEN_COOKIE_TTL);
@@ -177,7 +179,8 @@ export const useRefundStore = defineStore("refund", () => {
 		syncTokenFromStore();
 	};
 
-	watch(storeId, () => {
+	watch([storeId, walletId], () => {
+		cabinet.value = null;
 		syncTokenFromStore();
 	});
 
