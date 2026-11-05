@@ -11,6 +11,7 @@
 	import { onMounted, ref, watch } from "vue";
 	import type { ILatestTransaction } from "./types";
 	import { formatFiatAmount } from "@pay-shared/utils/helpers/fiat";
+	import { openExternal } from "@shared/utils/helpers/url";
 
 	const { transactions, fiatCurrency = "USD", title = "Latest payments" } = defineProps<{
 		transactions: ILatestTransaction[];
@@ -30,7 +31,7 @@
 
 	const handleOpenExplorer = (item: ILatestTransaction) => {
 		const link = getLinkExplorer(item.currency_code, "transaction", item.hash);
-		if (link) window.open(link, "_blank");
+		openExternal(link);
 	};
 
 	const getLastTransactions = () => {

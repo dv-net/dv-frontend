@@ -3,11 +3,12 @@
 	import { useRouter } from "vue-router";
 	import { UiButton } from "@dv.net/ui-kit/dist";
 	import IconLogo from "@dv-admin/components/icons/IconLogo.vue";
+	import { openExternal } from "@shared/utils/helpers/url";
 
 	const router = useRouter();
 
 	const goToSupport = () => {
-		window.open("https://t.me/dv_net_support_bot", "_blank");
+		openExternal("https://t.me/dv_net_support_bot");
 	};
 </script>
 

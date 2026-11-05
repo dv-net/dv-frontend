@@ -6,6 +6,7 @@
 	import CurrencyIcon from "@pay-shared/components/ui/currencyIcon/CurrencyIcon.vue";
 	import RowTemplate from "@pay-shared/components/payerForm/rowTemplate/RowTemplate.vue";
 	import { changeChainBsc } from "@shared/utils/helpers/general.ts";
+	import { getSafeUrl } from "@shared/utils/helpers/url";
 	import { blockchainCurrencyId } from "@shared/utils/constants/blockchain";
 	import type { IPayerStoreResponse } from "@pay-shared/utils/types/payer";
 	import { computed } from "vue";
@@ -37,6 +38,7 @@
 	}>();
 
 	const inputTextSum = computed(() => `${currentPrice} ${currentCurrency ?? ""}`.trim());
+	const safeSiteUrl = computed(() => getSafeUrl(store?.site_url));
 </script>
 
 <template>
@@ -121,14 +123,14 @@
 					<span v-else>—</span>
 				</div>
 				<div class="details__body">
-					<template v-if="store?.name && store?.site_url">
+					<template v-if="store?.name && safeSiteUrl">
 						<span>{{ $t("Site") }}</span>
-						<ui-link :href="store.site_url" target="_blank" class="flex flex-y-center gap-8">
+						<ui-link :href="safeSiteUrl" target="_blank" class="flex flex-y-center gap-8">
 							<span>{{ store.name }}</span>
 							<ui-icon name="new-windows" type="400" />
 						</ui-link>
 					</template>
-					<template v-else-if="store?.name && !store?.site_url">
+					<template v-else-if="store?.name">
 						<span>{{ $t("Site") }}</span>
 						<span>{{ store.name }}</span>
 					</template>

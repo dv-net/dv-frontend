@@ -2,11 +2,12 @@
 	import { onMounted, ref } from "vue";
 	import { UiLink } from "@dv.net/ui-kit";
 	import WrapperBlock from "@pay-shared/components/payerForm/wrapperBlock/WrapperBlock.vue";
+	import { openExternal } from "@shared/utils/helpers/url";
 
 	const shieldSrc = ref<string>("");
 
 	const goToLanding = () => {
-		window.open("https://dv.net", "_blank");
+		openExternal("https://dv.net");
 	};
 
 	onMounted(() => {

@@ -2,14 +2,14 @@
 	import { UiIcon } from "@dv.net/ui-kit";
 	import { ref } from "vue";
 	import type { INavLinks } from "@pay-shared/utils/types/layouts";
+	import { openExternal } from "@shared/utils/helpers/url";
 
 	const { navLinks } = defineProps<{ navLinks: INavLinks[] }>();
 
 	const isOpenMenu = ref<boolean>(false);
 
 	const goToSite = (link: string) => {
-		if (!link) return;
-		window.open(link, "_blank");
+		openExternal(link);
 	};
 
 	const toggleModal = () => {

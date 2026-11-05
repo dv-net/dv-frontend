@@ -12,6 +12,7 @@
 	import BlockSection from "@dv-admin/components/ui/BlockSection/BlockSection.vue";
 	import { itemsTelegram, advantagesCardsTelegram } from "@dv-admin/utils/constants/profile";
 	import { UiButton } from "@dv.net/ui-kit";
+	import { getSafeUrl, openExternal } from "@shared/utils/helpers/url";
 
 	const router = useRouter();
 	const { ownerData } = storeToRefs(useAuthStore());
@@ -21,6 +22,7 @@
 	const infoTg = ref<IUserTgLinkResponse | null>(null);
 
 	const isAuthorizedLc = computed<boolean>(() => Boolean(ownerData.value?.is_authorized));
+	const safeTgLink = computed<string | null>(() => getSafeUrl(infoTg.value?.link));
 
 	const getInfoDomain = (
 		url: string
@@ -46,7 +48,7 @@
 	};
 
 	const goToTelegram = (link: string) => {
-		window.open(link, "_blank");
+		openExternal(link);
 	};
 
 	const connectTelegram = async () => {
@@ -95,9 +97,10 @@
 				<div v-if="!isLoading && infoTg" class="page__rows">
 					<row-connect-telegram :item="itemsTelegram[0]">
 						<div class="link">
-							<ui-link :href="infoTg.link" target="_blank" class="flex-grow-1">
+							<ui-link v-if="safeTgLink" :href="safeTgLink" target="_blank" class="flex-grow-1">
 								{{ getInfoDomain(infoTg.link)?.domain }}
 							</ui-link>
+							<span v-else class="flex-grow-1">{{ getInfoDomain(infoTg.link)?.domain }}</span>
 							<ui-copy-text :copied-text="infoTg.link" size-icon="sm" color-icon="#A4A5B1" />
 							<ui-icon
 								name="new-windows"
@@ -116,9 +119,10 @@
 					</row-connect-telegram>
 					<row-connect-telegram :item="itemsTelegram[2]" :code="getInfoDomain(infoTg.link)?.startValue">
 						<div class="id">
-							<ui-link :href="getInfoDomain(infoTg.link)?.domainAll" target="_blank">
+							<ui-link v-if="safeTgLink" :href="getInfoDomain(safeTgLink)?.domainAll" target="_blank">
 								@{{ getInfoDomain(infoTg.link)?.pathname }}
 							</ui-link>
+							<span v-else>@{{ getInfoDomain(infoTg.link)?.pathname }}</span>
 						</div>
 					</row-connect-telegram>
 				</div>

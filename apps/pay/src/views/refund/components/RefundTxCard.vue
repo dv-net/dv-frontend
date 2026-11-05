@@ -22,6 +22,7 @@
 	import IconCalendar from "@pay/components/icons/refund/IconCalendar.vue";
 	import { useMediaQuery } from "@shared/utils/composables/useMediaQuery";
 	import dayjs from "dayjs";
+	import { openExternal } from "@shared/utils/helpers/url";
 
 	const {
 		item,
@@ -105,7 +106,7 @@
 	const openExplorer = (type: "address" | "transaction", hash: string) => {
 		if (!item.currency_id || !hash) return;
 		const link = getLinkExplorer(item.currency_id, type, hash);
-		if (link) window.open(link, "_blank");
+		openExternal(link);
 	};
 </script>
 

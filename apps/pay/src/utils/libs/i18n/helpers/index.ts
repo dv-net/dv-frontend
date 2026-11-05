@@ -29,6 +29,7 @@ export const updateTranslationsUiKit = (value: string, t: any) => {
 	config.uiTable.translations.noData = t("Not found");
 	config.uiNotification.translations.error = t("Error");
 	config.uiNotification.translations.success = t("Success");
+	config.uiNotification.translations.infoTitle = t("Information");
 	config.uiLanguages.translations.changeLanguage = t("Change language");
 	config.uiPagination.translations.from = t("from");
 };

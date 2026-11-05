@@ -3,6 +3,7 @@
 	import { useI18n } from "vue-i18n";
 	import { UiButton, UiDropdown, UiIcon, UiInput, UiLink } from "@dv.net/ui-kit";
 	import StatusBadge from "@dv-admin/components/ui/statusBadge/StatusBadge.vue";
+	import { getSafeUrl } from "@shared/utils/helpers/url";
 	import {
 		STORE_VERIFICATION_STATUS,
 		STORE_VERIFICATION_STATUS_LABELS,
@@ -47,6 +48,7 @@
 	const isShowDropdown = ref(false);
 
 	const isReasonMode = computed(() => reasonAction.value !== null);
+	const safeSiteUrl = computed(() => getSafeUrl(props.row.site));
 
 	const reasonPlaceholder = computed(() =>
 		reasonAction.value === "clarification" ? t("Describe what needs clarification…") : t("Enter rejection reason…")
@@ -99,9 +101,10 @@
 		<div class="ui-table__body-cell-inner">
 			<div class="store-cell">
 				<span class="store-cell__name">{{ row.name }}</span>
-				<ui-link v-if="row.site" :href="row.site" target="_blank">
+				<ui-link v-if="safeSiteUrl" :href="safeSiteUrl" target="_blank">
 					{{ row.site }}
 				</ui-link>
+				<span v-else-if="row.site">{{ row.site }}</span>
 				<p v-if="showDescription && row.description" class="store-cell__description">
 					{{ row.description }}
 				</p>

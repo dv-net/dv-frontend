@@ -14,6 +14,7 @@
 	import { useI18n } from "vue-i18n";
 	import type { BlockchainType } from "@shared/utils/types/blockchain";
 	import BlockBalancesExchange from "@dv-admin/views/exchanges/components/blockBalancesExchange/BlockBalancesExchange.vue";
+	import { openExternal } from "@shared/utils/helpers/url";
 
 	const {
 		getExchangeWithdrawalSetting,
@@ -39,7 +40,7 @@
 	]);
 
 	const handleGoDocs = () => {
-		window.open(`https://docs.dv.net/${locale.value}/exchanges/${slug}.html`, "_blank");
+		openExternal(`https://docs.dv.net/${locale.value}/exchanges/${slug}.html`);
 	};
 
 	onMounted(async () => {
