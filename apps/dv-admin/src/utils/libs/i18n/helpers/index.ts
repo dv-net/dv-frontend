@@ -41,6 +41,7 @@ export const updateTranslationsUiKit = (value: string, t: any) => {
 	config.uiDatePicker.translations.yesterdayPlaceholder = t("Yesterday");
 	config.uiNotification.translations.error = t("Error");
 	config.uiNotification.translations.success = t("Success");
+	config.uiNotification.translations.infoTitle = t("Information");
 	config.uiConfirm.translations.confirmBtn = t("Confirm");
 	config.uiConfirm.translations.cancelBtn = t("Cancel.verb");
 	config.uiPagination.translations.from = t("of");

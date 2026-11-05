@@ -5,4 +5,5 @@ export interface IPendingPaymentSession {
 	wallet_id: string;
 	transaction: IWalletTransactionResponse;
 	aml_phase: TAmlPaymentPhase | null;
+	saved_at: number;
 }

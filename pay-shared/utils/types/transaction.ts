@@ -22,4 +22,5 @@ export interface IWalletTxFindResponse {
 
 export interface ITransactionsLsSnapshot extends IWalletTxFindResponse {
 	wallet_id: string;
+	saved_at?: number;
 }

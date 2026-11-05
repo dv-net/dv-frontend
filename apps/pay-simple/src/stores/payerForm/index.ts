@@ -10,6 +10,7 @@ import {
 	getCurrentCoin
 } from "@shared/utils/helpers/general.ts";
 import { isLessThan1Hour } from "@pay-shared/utils/helpers/dateParse";
+import { getSafeUrl } from "@shared/utils/helpers/url";
 import type { BlockchainType } from "@shared/utils/types/blockchain";
 import type { CurrencyType } from "@shared/utils/types/blockchain";
 import { SORT_CHAIN } from "@pay-shared/utils/constants/blockchain";
@@ -137,9 +138,8 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		isPoolingProgress.value = false;
 		errorStore.value = "error";
 		timeline.value.forEach((item) => (item.isActive = false));
-		if (invoice.value?.failure_redirect_url) {
-			window.location.href = invoice.value.failure_redirect_url;
-		}
+		const failureUrl = getSafeUrl(invoice.value?.failure_redirect_url);
+		if (failureUrl) window.location.href = failureUrl;
 	};
 
 	const finishWithSuccess = (tx?: IWalletTransactionResponse | null, options?: { redirect?: boolean }) => {
@@ -149,9 +149,8 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		if (invoiceUuid.value) clearTransactionsSnapshot(TRANSACTIONS_LS_PREFIX, invoiceUuid.value);
 		currentStep.value = 5;
 		moneyCameAudioRef.value?.play();
-		if (options?.redirect && invoice.value?.success_redirect_url) {
-			window.location.href = invoice.value.success_redirect_url;
-		}
+		const successUrl = options?.redirect ? getSafeUrl(invoice.value?.success_redirect_url) : null;
+		if (successUrl) window.location.href = successUrl;
 	};
 
 	/**

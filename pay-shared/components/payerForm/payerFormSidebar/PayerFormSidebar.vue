@@ -1,6 +1,7 @@
 <script setup lang="ts">
 	import { UiCopyText, UiIcon, UiLink } from "@dv.net/ui-kit";
 	import { truncateHash } from "@shared/utils/helpers/general.ts";
+	import { getSafeUrl } from "@shared/utils/helpers/url";
 	import { computed } from "vue";
 	import BlockAdvertising from "@pay-shared/components/payerForm/blockAdvertising/BlockAdvertising.vue";
 	import WrapperBlock from "@pay-shared/components/payerForm/wrapperBlock/WrapperBlock.vue";
@@ -41,6 +42,7 @@
 	const isShowSidebar = computed<boolean>(() => ![3, 4, 5].includes(currentStep));
 	const isShowDetails = computed<boolean>(() => !hasError && isShowSidebar.value);
 	const formattedAmount = computed<string>(() => formatFiatAmount(amount, fiatCurrency));
+	const safeSiteUrl = computed<string | null>(() => getSafeUrl(store?.site_url));
 
 	const emit = defineEmits<{
 		requestRefund: [blockedTransactionId: string];
@@ -61,10 +63,10 @@
 						</div>
 						<span v-else>—</span>
 					</div>
-					<div v-if="store?.name && store?.site_url" class="row">
+					<div v-if="store?.name && safeSiteUrl" class="row">
 						<span class="row__label">{{ $t("Site") }}</span>
 						<ui-link
-							:href="store.site_url"
+							:href="safeSiteUrl"
 							target="_blank"
 							:size="isMediaMax480 ? 'lg' : 'xl'"
 							class="flex flex-y-center gap-8"
@@ -73,7 +75,7 @@
 							<ui-icon name="new-windows" type="400" />
 						</ui-link>
 					</div>
-					<div v-else-if="store?.name && !store?.site_url" class="row">
+					<div v-else-if="store?.name" class="row">
 						<span class="row__label">{{ $t("Site") }}</span>
 						<span>{{ store.name }}</span>
 					</div>

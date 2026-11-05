@@ -10,6 +10,7 @@
 	import type { INotificationsItemResponse } from "@dv-admin/utils/types/api/apiGo.ts";
 	import type { IUiSelectOptions } from "@dv-admin/utils/types/general.ts";
 	import NotFoundMessage from "@dv-admin/components/ui/notFoundMessage/NotFoundMessage.vue";
+	import MailPreview from "@dv-admin/views/notifications/components/mailPreview/MailPreview.vue";
 	import { debounce } from "@shared/utils/helpers/debounce.ts";
 
 	const { t } = useI18n();
@@ -129,7 +130,9 @@
 						<span>{{ $t("Copy") }}</span>
 						<ui-copy-text :copied-text="row.message_text" size-icon="sm" color-icon="#828282" />
 					</div>
-					<div class="expande__mail" v-html="row.message_text" />
+					<div class="expande__mail">
+						<mail-preview :html="row.message_text" />
+					</div>
 				</div>
 				<div v-else class="px-24 py-12">
 					<not-found-message />

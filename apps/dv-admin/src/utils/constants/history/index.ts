@@ -3,6 +3,14 @@ import type { ITransactionRequest } from "@dv-admin/utils/types/api/apiGo.ts";
 import { getLastDaysRange } from "@dv-admin/utils/helpers/dateParse.ts";
 import i18n from "@dv-admin/utils/libs/i18n";
 
+/** Tooltip text goes through `textContent` so chart labels are never parsed as HTML */
+const createTooltipNode = (tag: "div" | "span", className: string, text = ""): HTMLElement => {
+	const el = document.createElement(tag);
+	el.className = className;
+	el.textContent = text;
+	return el;
+};
+
 export const filterTransactionsStartData: ITransactionRequest = {
 	page: 1,
 	type: "deposit",
@@ -94,13 +102,19 @@ export const optionsChartTransactions: any = {
 					return;
 				}
 
-				tooltipEl.innerHTML = `
-					<div class="chartjs-tooltip__top">${point.label}</div>
-					<div class="chartjs-tooltip__content">
-						<span class="chartjs-tooltip__label">${i18n.global.t("Income")}</span>
-						<span class="chartjs-tooltip__price">${formatDollars(price, { errorValue: "", countPartMoreOneDollar: 2 })}</span>
-					</div>
-    		`;
+				const content = createTooltipNode("div", "chartjs-tooltip__content");
+				content.append(
+					createTooltipNode("span", "chartjs-tooltip__label", i18n.global.t("Income")),
+					createTooltipNode(
+						"span",
+						"chartjs-tooltip__price",
+						formatDollars(price, { errorValue: "", countPartMoreOneDollar: 2 })
+					)
+				);
+				tooltipEl.replaceChildren(
+					createTooltipNode("div", "chartjs-tooltip__top", String(point.label ?? "")),
+					content
+				);
 
 				const canvas = context.chart?.canvas;
 				if (!canvas) {

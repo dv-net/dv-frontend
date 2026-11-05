@@ -11,6 +11,7 @@
 	import TooltipHelper from "@dv-admin/components/ui/tooltipHelper/TooltipHelper.vue";
 	import DisplayHash from "@shared/components/ui/displayHash/DisplayHash.vue";
 	import { useI18n } from "vue-i18n";
+	import { openExternal } from "@shared/utils/helpers/url";
 	const { isLoadingPostWithdrawalSetting, withdrawalRules, exchangeChainsList, withdrawalCurrenciesRateSource } =
 		storeToRefs(useWithdrawalExchangeStore());
 	const { postExchangeWithdrawalSetting } = useWithdrawalExchangeStore();
@@ -97,7 +98,7 @@
 	};
 
 	const handleGoDocs = () => {
-		window.open(`https://docs.dv.net/${locale.value}/exchanges/${route.params.slug}.html`, "_blank");
+		openExternal(`https://docs.dv.net/${locale.value}/exchanges/${route.params.slug}.html`);
 	};
 
 	watch([() => form.value.ticker, () => form.value.chain], ([ticker], [prevTicker]) => {

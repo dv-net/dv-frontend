@@ -31,6 +31,7 @@ import { useNotifications } from "@shared/utils/composables/useNotifications";
 import { splitDomain } from "@shared/utils/helpers/general.ts";
 import type { IProfileUserChangeEmail } from "@dv-admin/utils/types/schemas";
 import { getCookie, removeCookie, setCookie } from "@shared/utils/helpers/cookie";
+import { openExternal } from "@shared/utils/helpers/url";
 
 const { notify } = useNotifications();
 
@@ -240,9 +241,9 @@ export const useAuthStore = defineStore("auth", () => {
 				myDvAuthLink.value = await getApiMyDvAuthLink();
 			}
 			if (ownerData.value.is_authorized) {
-				window.open(splitDomain(myDvAuthLink.value)?.base, "_blank");
+				openExternal(splitDomain(myDvAuthLink.value)?.base, { keepReferrer: true });
 			} else {
-				if (myDvAuthLink.value) window.open(myDvAuthLink.value, "_blank");
+				openExternal(myDvAuthLink.value, { keepReferrer: true });
 			}
 		} catch (error: any) {
 			console.error(error);

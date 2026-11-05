@@ -9,6 +9,7 @@
 	import Webhooks from "@dv-admin/views/projects/edit/main/components/webhooks/Webhooks.vue";
 	import { useProjectsStore } from "@dv-admin/stores/projects";
 	import { useI18n } from "vue-i18n";
+	import { openExternal } from "@shared/utils/helpers/url";
 
 	const { keysProject } = storeToRefs(useApiKeysProjectStore());
 	const { postKeyProject } = useApiKeysProjectStore();
@@ -21,7 +22,7 @@
 	const isShowBtnAddKey = computed<boolean>(() => !isLoading.value && !keysProject.value.length);
 
 	const goToDocumentation = () => {
-		window.open(`https://docs.dv.net/${locale.value}/`, "_blank");
+		openExternal(`https://docs.dv.net/${locale.value}/`);
 	};
 </script>
 

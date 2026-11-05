@@ -3,7 +3,12 @@ import type { ITransactionsLsSnapshot, IWalletTxFindResponse } from "@pay-shared
 /** `pay:transactions:{walletId}` — one key per wallet so concurrent payment tabs do not overwrite each other */
 export const getTransactionsLsKey = (prefix: string, walletId: string): string => `${prefix}:${walletId}`;
 
-export const readTransactionsSnapshot = (prefix: string, walletId: string): ITransactionsLsSnapshot | null => {
+/** With `maxAgeMs`, a snapshot not written within that period (or without `saved_at`) is dropped */
+export const readTransactionsSnapshot = (
+	prefix: string,
+	walletId: string,
+	maxAgeMs?: number
+): ITransactionsLsSnapshot | null => {
 	const key = getTransactionsLsKey(prefix, walletId);
 	const raw = localStorage.getItem(key);
 	if (!raw) return null;
@@ -14,10 +19,15 @@ export const readTransactionsSnapshot = (prefix: string, walletId: string): ITra
 			localStorage.removeItem(key);
 			return null;
 		}
+		if (maxAgeMs !== undefined && (!parsed.saved_at || Date.now() - parsed.saved_at > maxAgeMs)) {
+			localStorage.removeItem(key);
+			return null;
+		}
 		return {
 			wallet_id: walletId,
 			confirmed: parsed.confirmed ?? [],
-			unconfirmed: parsed.unconfirmed ?? []
+			unconfirmed: parsed.unconfirmed ?? [],
+			saved_at: parsed.saved_at
 		};
 	} catch {
 		localStorage.removeItem(key);
@@ -29,13 +39,12 @@ export const writeTransactionsSnapshot = (prefix: string, walletId: string, snap
 	const payload: ITransactionsLsSnapshot = {
 		wallet_id: walletId,
 		confirmed: snapshot.confirmed,
-		unconfirmed: snapshot.unconfirmed
+		unconfirmed: snapshot.unconfirmed,
+		saved_at: Date.now()
 	};
-	localStorage.removeItem(prefix); // drop legacy un-namespaced key
 	localStorage.setItem(getTransactionsLsKey(prefix, walletId), JSON.stringify(payload));
 };
 
 export const clearTransactionsSnapshot = (prefix: string, walletId: string): void => {
-	localStorage.removeItem(prefix); // drop legacy un-namespaced key
 	localStorage.removeItem(getTransactionsLsKey(prefix, walletId));
 };

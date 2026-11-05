@@ -4,6 +4,7 @@
 	import { useI18n } from "vue-i18n";
 	import { useMediaQuery } from "@shared/utils/composables/useMediaQuery.ts";
 	import WrapperBlock from "@pay-shared/components/payerForm/wrapperBlock/WrapperBlock.vue";
+	import { openExternal } from "@shared/utils/helpers/url";
 
 	const { t } = useI18n();
 
@@ -17,7 +18,7 @@
 	]);
 
 	const goToLanding = () => {
-		window.open("https://dv.net", "_blank");
+		openExternal("https://dv.net");
 	};
 
 	onMounted(() => {
