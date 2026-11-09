@@ -42,6 +42,32 @@ export const postApiRefundClaim = async (
 	return resp.data.data;
 };
 
+export const postApiRefundToSender = async (
+	walletId: string,
+	blockedTransactionId: string,
+	body: IRefundClaimRequest
+): Promise<IRefundRequest> => {
+	const resp = await api.post(
+		`/public/wallet/${walletId}/blocked-transactions/${blockedTransactionId}/refund-to-sender`,
+		body,
+		{ suppressNotify: true }
+	);
+	return resp.data.data;
+};
+
+export const postApiRefundToSenderEstimate = async (
+	walletId: string,
+	blockedTransactionId: string,
+	body: IRefundClaimRequest
+): Promise<IRefundEstimate> => {
+	const resp = await api.post(
+		`/public/wallet/${walletId}/blocked-transactions/${blockedTransactionId}/refund-to-sender/estimate`,
+		body,
+		{ suppressNotify: true }
+	);
+	return resp.data.data;
+};
+
 export const postApiRefundEstimate = async (
 	blockedTransactionId: string,
 	body: IRefundClaimRequest,

@@ -7,20 +7,25 @@
 	import BannerInfo from "@pay-shared/components/payerForm/bannerInfo/BannerInfo.vue";
 	import TransactionBlockInfo from "@pay-shared/components/payerForm/transactionBlockInfo/TransactionBlockInfo.vue";
 	import { LottieAnimation } from "lottie-web-vue";
-	import type { IPayerAddressResponse } from "@pay-shared/utils/types/payer";
+	import type { IPayerAddressResponse, IPayerStoreResponse } from "@pay-shared/utils/types/payer";
 	import type { IWalletTransactionResponse } from "@pay-shared/utils/types/transaction";
 	import loaderSuccessfulPayment from "@pay-shared/assets/animations/loaderSuccessfulPayment.json";
+
+	type LottieAnimationData = Record<string, unknown>;
 
 	const {
 		currentTransaction = null,
 		addresses,
-		payerId = null,
-		formattedFiatAmount
+		store = null,
+		formattedFiatAmount,
+		successAnimation = null
 	} = defineProps<{
 		currentTransaction?: IWalletTransactionResponse | null;
 		addresses: IPayerAddressResponse[];
-		payerId?: string | null;
+		store?: IPayerStoreResponse | null;
 		formattedFiatAmount: string;
+		/** Replaces the default payment animation. Used by the AML success screen. */
+		successAnimation?: LottieAnimationData | null;
 	}>();
 </script>
 
@@ -32,7 +37,8 @@
 					<div class="content">
 						<lottie-animation
 							class="content__loader"
-							:animation-data="loaderSuccessfulPayment"
+							:animation-data="successAnimation || loaderSuccessfulPayment"
+							:loop="!successAnimation"
 						/>
 						<div class="content__inner">
 							<div class="content__title">{{ $t("Payment received successfully") }}!</div>
@@ -53,7 +59,7 @@
 				<transaction-block-info
 					:current-transaction="currentTransaction"
 					:addresses="addresses"
-					:payer-id="payerId"
+					:store="store"
 					:formatted-fiat-amount="formattedFiatAmount"
 				/>
 			</div>
@@ -93,9 +99,19 @@
 					align-items: center;
 					flex-direction: column;
 					&__loader {
+						display: flex;
+						align-items: center;
+						justify-content: center;
 						width: 150px;
+						height: 150px;
 						@include mediamax(576) {
 							width: 100px;
+							height: 100px;
+						}
+						:deep(svg) {
+							display: block;
+							width: 100%;
+							height: 100%;
 						}
 					}
 					&__inner {

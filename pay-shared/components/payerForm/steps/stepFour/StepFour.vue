@@ -12,19 +12,19 @@
 	import { computed, defineAsyncComponent } from "vue";
 	import TransactionBlockInfo from "@pay-shared/components/payerForm/transactionBlockInfo/TransactionBlockInfo.vue";
 	import { useTimer } from "@pay-shared/utils/composables/useTimer.ts";
-	import type { IPayerAddressResponse } from "@pay-shared/utils/types/payer";
+	import type { IPayerAddressResponse, IPayerStoreResponse } from "@pay-shared/utils/types/payer";
 	import type { IWalletTransactionResponse } from "@pay-shared/utils/types/transaction";
 	import loaderWaitingConfirmation from "@pay-shared/assets/animations/loaderWaitingConfirmation.json";
 
 	const {
 		currentTransaction = null,
 		addresses,
-		payerId = null,
+		store = null,
 		formattedFiatAmount
 	} = defineProps<{
 		currentTransaction?: IWalletTransactionResponse | null;
 		addresses: IPayerAddressResponse[];
-		payerId?: string | null;
+		store?: IPayerStoreResponse | null;
 		formattedFiatAmount: string;
 	}>();
 
@@ -83,7 +83,7 @@
 				<transaction-block-info
 					:current-transaction="currentTransaction"
 					:addresses="addresses"
-					:payer-id="payerId"
+					:store="store"
 					:formatted-fiat-amount="formattedFiatAmount"
 				/>
 			</div>

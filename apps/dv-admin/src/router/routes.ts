@@ -11,7 +11,6 @@ import profile from "@dv-admin/router/modules/profile";
 import installer from "@dv-admin/router/modules/installer";
 import withdrawal from "@dv-admin/router/modules/withdrawal";
 import notFound from "@dv-admin/router/modules/notFound";
-import userSettings from "@dv-admin/router/modules/userSettings";
 import transactionHistory from "@dv-admin/router/modules/history";
 import settings from "@dv-admin/router/modules/settings";
 import exchanges from "@dv-admin/router/modules/exchanges";
@@ -38,7 +37,6 @@ export const routes: Array<RouteRecordRaw> = [
 	...search,
 	...transfers,
 	...notFound,
-	...userSettings,
 	...quickStart,
 	...confirmationMnemonics,
 	...aml,

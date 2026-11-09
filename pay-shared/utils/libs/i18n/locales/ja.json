@@ -126,7 +126,6 @@
   "Your permanent wallet — funds are credited to it automatically upon receipt": "あなたの永続ウォレット — 資金は受領時に自動的に入金されます",
   "A refund request has already been submitted": "返金リクエストはすでに送信されています",
   "A refund to another address is sent after the merchant reviews it": "別のアドレスへの返金は、加盟店による確認後に送信されます",
-  "A refund to the sender address is sent automatically in about 6 hours": "送信元アドレスへの返金は約6時間後に自動的に送信されます",
   "Exchange refund warning": "入金が取引所から行われた場合、送信元アドレスへの返金は届かない可能性があります",
   "Failed to submit the refund request": "返金リクエストの送信に失敗しました",
   "Funds will be sent after": "資金は後ほど送金されます",

@@ -14,11 +14,6 @@ export const formatDateList: (IUiSelectOptions & { example: string })[] = [
 	{ value: DATE_FORMATS.US_DATE, label: "American", example: "10-02-2025" }
 ];
 
-export const USER_SETTING_LABELS: Record<string, string> = {
-	transfers_status: "Transfer status",
-	transfer_type: "Transfer type"
-};
-
 export const ROOT_SETTING_LABELS: Record<string, string> = {
 	dv_admin_secret_key: "Secret key",
 	anonymous_telemetry: "Sending statistics",

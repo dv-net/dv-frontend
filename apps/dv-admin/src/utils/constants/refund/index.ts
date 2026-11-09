@@ -2,6 +2,13 @@ import type { RefundStatus } from "@dv-admin/utils/types/api/apiGo";
 
 export const REFUND_REQUESTS_PAGE_SIZE = 20;
 
+export const REFUND_AUTH_MODE_SETTING = "refund_auth_mode";
+
+export const REFUND_AUTH_MODE = {
+	ALWAYS: "always",
+	CUSTOM_ADDRESS_ONLY: "custom_address_only"
+} as const;
+
 export const REFUND_STATUS_LABELS: Record<RefundStatus, string> = {
 	pending_review: "Pending review",
 	scheduled: "Scheduled request",

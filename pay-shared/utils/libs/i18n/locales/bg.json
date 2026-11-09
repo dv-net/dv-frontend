@@ -126,7 +126,6 @@
   "Your permanent wallet — funds are credited to it automatically upon receipt": "Вашият постоянен портфейл — средствата се зачисляват по него автоматично при получаване",
   "A refund request has already been submitted": "Заявка за възстановяване на средства вече е подадена",
   "A refund to another address is sent after the merchant reviews it": "Възстановяването към друг адрес се изпраща, след като търговецът го прегледа",
-  "A refund to the sender address is sent automatically in about 6 hours": "Възстановяването към адреса на подателя се изпраща автоматично след около 6 часа",
   "Exchange refund warning": "Ако депозитът е от борса, възстановяването към адреса на подателя може да не пристигне",
   "Failed to submit the refund request": "Неуспешно подаване на заявката за възстановяване на сумата",
   "Funds will be sent after": "Средствата ще бъдат изпратени след",

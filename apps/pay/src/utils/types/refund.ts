@@ -1,3 +1,5 @@
+import type { IAmlBlockReason } from "@pay/utils/types/aml";
+
 export type RefundStatus = "pending_review" | "scheduled" | "rejected" | "processing" | "completed" | "failed";
 
 export type RefundCabinetBucket = "available" | RefundStatus;
@@ -65,6 +67,8 @@ export interface IRefundCabinetItem {
 	refund_status?: RefundStatus | null;
 	destination_address?: string | null;
 	refund_execute_after?: string | null;
+	block_reasons?: IAmlBlockReason[] | null;
+	refund_to_sender_without_auth?: boolean;
 }
 
 export type IRefundCabinetResponse = Partial<Record<RefundCabinetBucket, IRefundCabinetItem[]>>;
@@ -77,8 +81,9 @@ export interface IRefundRequest {
 	transfer_id?: string | null;
 	destination_address: string;
 	status: RefundStatus;
-	email: string;
+	email: string | null;
 	reviewed_at?: string | null;
+	execute_after?: string | null;
 	created_at: string;
 	updated_at: string | null;
 }

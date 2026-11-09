@@ -126,7 +126,6 @@
   "Your permanent wallet — funds are credited to it automatically upon receipt": "محفظتك الدائمة — تُضاف الأموال إليها تلقائيًا عند الاستلام",
   "A refund request has already been submitted": "تم تقديم طلب استرداد الأموال بالفعل",
   "A refund to another address is sent after the merchant reviews it": "يُرسَل ردّ الأموال إلى عنوان آخر بعد أن يراجعه التاجر",
-  "A refund to the sender address is sent automatically in about 6 hours": "يُرسَل المبلغ المسترد إلى عنوان المُرسِل تلقائيًا خلال حوالي 6 ساعات",
   "Exchange refund warning": "إذا كان الإيداع قادمًا من منصة تداول، فقد لا يصل ردّ الأموال إلى عنوان المرسل",
   "Failed to submit the refund request": "فشل إرسال طلب استرداد الأموال",
   "Funds will be sent after": "سيتم إرسال الأموال بعد",

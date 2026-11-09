@@ -5,7 +5,7 @@
 	import { computed } from "vue";
 	import { formatFiatAmount } from "@pay-shared/utils/helpers/fiat";
 
-	const { currentTransaction, addresses, payerId, invoiceCurrency } = storeToRefs(usePayerFormStore());
+	const { currentTransaction, addresses, store, invoiceCurrency } = storeToRefs(usePayerFormStore());
 
 	const formattedFiatAmount = computed(() =>
 		formatFiatAmount(
@@ -19,7 +19,7 @@
 	<step-four-shared
 		:current-transaction="currentTransaction"
 		:addresses="addresses"
-		:payer-id="payerId"
+		:store="store"
 		:formatted-fiat-amount="formattedFiatAmount"
 	/>
 </template>

@@ -5,17 +5,22 @@
 	const {
 		timeline: timelineProp,
 		currentStep,
-		stepMap
+		stepMap,
+		lastStepStatus = null
 	} = defineProps<{
 		timeline: IPayerFormTimelineItem[];
 		currentStep: number;
 		stepMap: Record<number, number>;
+		lastStepStatus?: "checking" | "rejected" | null;
 	}>();
 
 	const timeline = computed(() => {
 		return timelineProp.map((item) => {
 			if (currentStep === 4 && item.id === 3) {
 				return { ...item, label: "Waiting for deposit" };
+			}
+			if (currentStep === 5 && item.id === 4 && (lastStepStatus === "checking" || lastStepStatus === "rejected")) {
+				return { ...item, label: "AML verification in progress" };
 			}
 			return item;
 		});
@@ -62,7 +67,8 @@
 					:ref="(el) => (itemRefs[index] = el as HTMLDivElement | null)"
 					class="timeline__item"
 					:class="{
-						success: currentStep === 5 && timeline.length - 1 === index,
+						success: currentStep === 5 && timeline.length - 1 === index && lastStepStatus !== 'rejected',
+						rejected: currentStep === 5 && timeline.length - 1 === index && lastStepStatus === 'rejected',
 						waiting: currentStep === 4 && item.id === 3
 					}"
 					@click="item.callback && item.callback()"
@@ -172,6 +178,13 @@
 				color: #1f9649;
 				.timeline__item-label {
 					background-color: #1f9649;
+					color: $text-header-form-background;
+				}
+			}
+			&.rejected {
+				color: #e53935;
+				.timeline__item-label {
+					background-color: #e53935;
 					color: $text-header-form-background;
 				}
 			}

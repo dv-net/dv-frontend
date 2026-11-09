@@ -126,7 +126,6 @@
   "Your permanent wallet — funds are credited to it automatically upon receipt": "Twój stały portfel — środki są na nim księgowane automatycznie po otrzymaniu",
   "A refund request has already been submitted": "Żądanie zwrotu zostało już przesłane",
   "A refund to another address is sent after the merchant reviews it": "Zwrot na inny adres zostanie wysłany po weryfikacji przez sprzedawcę",
-  "A refund to the sender address is sent automatically in about 6 hours": "Zwrot na adres nadawcy zostanie automatycznie wysłany za około 6 godzin",
   "Exchange refund warning": "Jeśli wpłata pochodziła z giełdy, zwrot na adres nadawcy może nie dotrzeć",
   "Failed to submit the refund request": "Nie udało się złożyć wniosku o zwrot",
   "Funds will be sent after": "Środki zostaną wysłane po",

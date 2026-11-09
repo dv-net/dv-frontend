@@ -4,8 +4,10 @@ import {
 	getApiRefundCabinet,
 	postApiRefundClaim,
 	postApiRefundLookup,
+	postApiRefundToSender,
 	postApiRefundVerify
 } from "@pay/utils/services/refund";
+import { getApiWalletBlockedTransactions } from "@pay/utils/services/payerForm";
 import type { IRefundCabinetItem, IRefundCabinetResponse, IRefundEntryPartialQuery, IRefundLookupRequest } from "@pay/utils/types/refund";
 import {
 	REFUND_CABINET_BUCKET_ORDER,
@@ -21,16 +23,23 @@ export const useRefundStore = defineStore("refund", () => {
 	const email = ref("");
 	const code = ref("");
 	const token = ref<string | null>(null);
-	const entryStep = ref<"lookup" | "verify">("lookup");
+	const entryStep = ref<"choice" | "lookup" | "verify">("lookup");
 	const cabinet = ref<IRefundCabinetResponse | null>(null);
 	const isLoadingLookup = ref(false);
 	const isLoadingVerify = ref(false);
 	const isLoadingCabinet = ref(false);
 	const isLoadingClaim = ref(false);
 	const resendCooldownSec = ref(0);
+	const senderRefundItems = ref<IRefundCabinetItem[]>([]);
+	const isLoadingSenderRefundItems = ref(false);
+	const claimingSenderRefundId = ref<string | null>(null);
 	let resendTimer: ReturnType<typeof setInterval> | null = null;
 
 	const isAuthenticated = computed(() => Boolean(token.value));
+
+	const canRefundToSender = computed(() =>
+		senderRefundItems.value.some((item) => item.refund_to_sender_without_auth)
+	);
 
 	const sortCabinetItemsByDateDesc = (items: IRefundCabinetItem[]) =>
 		[...items].sort((a, b) => {
@@ -157,6 +166,48 @@ export const useRefundStore = defineStore("refund", () => {
 		}
 	};
 
+	const loadSenderRefundItems = async () => {
+		const walletIdValue = walletId.value.trim();
+		if (!walletIdValue) {
+			senderRefundItems.value = [];
+			return;
+		}
+		try {
+			isLoadingSenderRefundItems.value = true;
+			senderRefundItems.value = await getApiWalletBlockedTransactions(walletIdValue);
+		} catch (error) {
+			senderRefundItems.value = [];
+			console.error(error);
+		} finally {
+			isLoadingSenderRefundItems.value = false;
+		}
+	};
+
+	const claimRefundToSender = async (item: IRefundCabinetItem, destinationAddress: string) => {
+		const walletIdValue = walletId.value.trim();
+		if (!walletIdValue) return;
+		try {
+			claimingSenderRefundId.value = item.blocked_transaction_id;
+			const request = await postApiRefundToSender(walletIdValue, item.blocked_transaction_id, {
+				destination_address: destinationAddress.trim()
+			});
+			senderRefundItems.value = senderRefundItems.value.map((current) =>
+				current.blocked_transaction_id === item.blocked_transaction_id
+					? {
+							...current,
+							refund_status: request.status,
+							destination_address: request.destination_address,
+							refund_execute_after: request.execute_after ?? null
+						}
+					: current
+			);
+		} catch (error) {
+			throw error;
+		} finally {
+			claimingSenderRefundId.value = null;
+		}
+	};
+
 	const logout = () => {
 		persistToken(null);
 		cabinet.value = null;
@@ -181,6 +232,7 @@ export const useRefundStore = defineStore("refund", () => {
 
 	watch([storeId, walletId], () => {
 		cabinet.value = null;
+		senderRefundItems.value = [];
 		syncTokenFromStore();
 	});
 
@@ -199,10 +251,16 @@ export const useRefundStore = defineStore("refund", () => {
 		isLoadingClaim,
 		resendCooldownSec,
 		isAuthenticated,
+		senderRefundItems,
+		isLoadingSenderRefundItems,
+		claimingSenderRefundId,
+		canRefundToSender,
 		sendCode,
 		verifyCode,
 		loadCabinet,
 		claimRefund,
+		loadSenderRefundItems,
+		claimRefundToSender,
 		logout,
 		prefillFromQuery,
 		prefillPartialFromQuery,

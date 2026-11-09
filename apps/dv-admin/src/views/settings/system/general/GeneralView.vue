@@ -7,6 +7,7 @@
 	import { useSystemSettingsStore } from "@dv-admin/stores/systemSettings";
 	import { onMounted, ref } from "vue";
 	import { ROOT_SETTING_GENERAL_DESCRIPTIONS, ROOT_SETTING_LABELS } from "@dv-admin/utils/constants/settings";
+	import { REFUND_AUTH_MODE, REFUND_AUTH_MODE_SETTING } from "@dv-admin/utils/constants/refund";
 	import { useNotifications } from "@shared/utils/composables/useNotifications";
 	import { useI18n } from "vue-i18n";
 	import { useUserSettingsStore } from "@dv-admin/stores/userSettings";
@@ -25,8 +26,11 @@
 
 	const isLoading = ref<boolean>(false);
 	const withdrawFromProcessing = ref<ISettingsResponse>();
+	const refundAuthSetting = ref<ISettingsResponse>();
 	const isShowOtpModal = ref<boolean>(false);
 	const toggleWithdrawFromProcessing = ref<boolean>(false);
+	const refundWithoutEmail = ref(false);
+	const isSavingRefundAuth = ref(false);
 
 	const handleChangeSettings = async () => {
 		try {
@@ -62,6 +66,24 @@
 		}
 	};
 
+	const saveRefundAuthMode = async () => {
+		const setting = refundAuthSetting.value;
+		if (!setting || isSavingRefundAuth.value) return;
+		const nextValue = refundWithoutEmail.value ? REFUND_AUTH_MODE.CUSTOM_ADDRESS_ONLY : REFUND_AUTH_MODE.ALWAYS;
+		const previousValue = setting.value;
+		setting.value = nextValue;
+		isSavingRefundAuth.value = true;
+		try {
+			await postUserSettings(setting, null);
+		} catch (error: any) {
+			console.error(error);
+			setting.value = previousValue;
+			refundWithoutEmail.value = previousValue === REFUND_AUTH_MODE.CUSTOM_ADDRESS_ONLY;
+		} finally {
+			isSavingRefundAuth.value = false;
+		}
+	};
+
 	const handleCloseOtpModal = () => {
 		toggleWithdrawFromProcessing.value = !toggleWithdrawFromProcessing.value;
 		if (withdrawFromProcessing.value) {
@@ -76,6 +98,8 @@
 		]);
 		withdrawFromProcessing.value = userSettings.value.find((el) => el.name === "withdraw_from_processing");
 		toggleWithdrawFromProcessing.value = withdrawFromProcessing.value?.value === "enabled";
+		refundAuthSetting.value = userSettings.value.find((el) => el.name === REFUND_AUTH_MODE_SETTING);
+		refundWithoutEmail.value = refundAuthSetting.value?.value === REFUND_AUTH_MODE.CUSTOM_ADDRESS_ONLY;
 	});
 </script>
 
@@ -120,13 +144,20 @@
 					</div>
 				</div>
 			</block-section>
-			<ui-button mode="neutral" size="xl" :loading="isLoading" @click="handleChangeSettings">
+			<ui-button
+				mode="neutral"
+				size="xl"
+				left-icon-name="check-circle"
+				left-icon-type="400"
+				:loading="isLoading"
+				@click="handleChangeSettings"
+			>
 				{{ $t("Save") }}
 			</ui-button>
 		</div>
 
-		<block-section v-if="withdrawFromProcessing" class="processing" :title="$t('Advanced')">
-			<div class="processing__row">
+		<block-section v-if="withdrawFromProcessing || refundAuthSetting" class="processing" :title="$t('Advanced')">
+			<div v-if="withdrawFromProcessing" class="processing__row">
 				<div class="processing__content">
 					<span class="processing__content-title">
 						{{
@@ -143,6 +174,13 @@
 				</div>
 				<ui-switch v-model="toggleWithdrawFromProcessing" @change="handleChangeProcessing" />
 				<otp-modal v-model:is-show="isShowOtpModal" :setting="withdrawFromProcessing" @close="handleCloseOtpModal" />
+			</div>
+			<div v-if="refundAuthSetting" class="processing__row">
+				<div class="processing__content">
+					<span class="processing__content-title">{{ $t("Refund to the sender without email") }}</span>
+					<span class="processing__content-description">{{ $t("Refund auth mode description") }}</span>
+				</div>
+				<ui-switch v-model="refundWithoutEmail" :disabled="isSavingRefundAuth" @change="saveRefundAuthMode" />
 			</div>
 		</block-section>
 	</div>
@@ -202,10 +240,14 @@
 			}
 		}
 		.processing {
+			display: flex;
+			flex-direction: column;
+			gap: 20px;
 			&__row {
 				display: flex;
 				align-items: center;
 				justify-content: space-between;
+				gap: 24px;
 			}
 			&__content {
 				display: flex;

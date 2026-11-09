@@ -9,9 +9,14 @@
 	import { formatAmountBlockchain, getCurrentCoin, truncateHash } from "@shared/utils/helpers/general";
 	import { useI18n } from "vue-i18n";
 
-	const { item, loading = false } = defineProps<{
+	const {
+		item,
+		loading = false,
+		toSender = false
+	} = defineProps<{
 		item: IRefundCabinetItem;
 		loading?: boolean;
+		toSender?: boolean;
 	}>();
 
 	const emit = defineEmits<{
@@ -21,11 +26,12 @@
 
 	const { t } = useI18n();
 	const isCompact = useMediaQuery("(max-width: 768px)");
-	const destinationAddress = ref("");
+	const destinationAddress = ref(toSender ? (item.from_address ?? "") : "");
 	const fillButtonSize = computed(() => (isCompact.value ? "lg" : "xl"));
 	const { estimate, isEstimating, isWaiting, errorKey, quoteCycle, canClaim } = useRefundEstimate(
 		item.blocked_transaction_id,
-		destinationAddress
+		destinationAddress,
+		toSender
 	);
 
 	const showEstimate = computed(() => destinationAddress.value.trim().length >= 20);
@@ -114,8 +120,9 @@
 	<form class="claim-form" @submit.prevent="submit">
 		<p class="claim-form__hint">
 			<ui-icon class="claim-form__hint-icon" name="info" type="400" size="sm" />
-			<span>
-				{{ $t("A refund to the sender address is sent automatically in about 6 hours") }}.
+			<span v-if="toSender">{{ $t("A refund to the sender address is sent automatically within an hour") }}</span>
+			<span v-else>
+				{{ $t("A refund to the sender address is sent automatically within an hour") }}.
 				{{ $t("A refund to another address is sent after the merchant reviews it") }}
 			</span>
 		</p>
@@ -123,14 +130,19 @@
 			<ui-input
 				v-model="destinationAddress"
 				class="claim-form__input"
-				:label="$t('Destination address')"
-				:placeholder="$t('Destination address')"
+				:label="$t(toSender ? 'Sender address' : 'Destination address')"
+				:placeholder="$t(toSender ? 'Sender address' : 'Destination address')"
+				:readonly="toSender"
 				size="md"
 				name="destination_address"
 				autocomplete="off"
-			/>
+			>
+				<template v-if="toSender && destinationAddress" #append>
+					<ui-copy-text :copied-text="destinationAddress" color-icon="#A4A5B1" size-icon="sm" />
+				</template>
+			</ui-input>
 			<ui-button
-				v-if="item.from_address"
+				v-if="item.from_address && !toSender"
 				class="claim-form__fill"
 				native-type="button"
 				:size="fillButtonSize"
@@ -233,7 +245,7 @@
 				:loading="loading"
 				:disabled="!canClaim || loading"
 			>
-				{{ $t("Submit refund request") }}
+				{{ $t(toSender ? "Return to the sender address" : "Submit refund request") }}
 			</ui-button>
 			<ui-button
 				native-type="button"

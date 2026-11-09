@@ -126,7 +126,6 @@
   "Your permanent wallet — funds are credited to it automatically upon receipt": "귀하의 영구 지갑 — 자금은 수령 즉시 자동으로 입금됩니다",
   "A refund request has already been submitted": "환불 요청이 이미 제출되었습니다",
   "A refund to another address is sent after the merchant reviews it": "다른 주소로의 환불은 가맹점이 검토한 후 전송됩니다",
-  "A refund to the sender address is sent automatically in about 6 hours": "발신자 주소로의 환불은 약 6시간 후 자동으로 전송됩니다",
   "Exchange refund warning": "입금이 거래소에서 이루어진 경우, 발신자 주소로 환불해도 도착하지 않을 수 있습니다",
   "Failed to submit the refund request": "환불 요청 제출에 실패했습니다",
   "Funds will be sent after": "자금은 다음 시점 이후에 전송됩니다",

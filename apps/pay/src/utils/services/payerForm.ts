@@ -1,5 +1,6 @@
 import api from "@pay/utils/libs/axios";
-import type { IAmlCheckStatusResponse, IBlockedTransactionItem } from "@pay/utils/types/aml";
+import type { IAmlCheckStatusResponse } from "@pay/utils/types/aml";
+import type { IRefundCabinetItem } from "@pay/utils/types/refund";
 import type { IPayerResponse } from "@pay-shared/utils/types/payer";
 import type { IWalletTxFindResponse } from "@pay-shared/utils/types/transaction";
 
@@ -38,7 +39,7 @@ export const getApiWalletAmlCheck = async (
 	return resp.data.data ?? null;
 };
 
-export const getApiWalletBlockedTransactions = async (walletId: string): Promise<IBlockedTransactionItem[]> => {
+export const getApiWalletBlockedTransactions = async (walletId: string): Promise<IRefundCabinetItem[]> => {
 	const resp = await api.get(`/public/wallet/${walletId}/blocked-transactions`);
 	return resp.data.data ?? [];
 };

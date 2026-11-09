@@ -1,6 +1,6 @@
 import { computed, onUnmounted, ref, watch, type Ref } from "vue";
 import { storeToRefs } from "pinia";
-import { postApiRefundEstimate } from "@pay/utils/services/refund";
+import { postApiRefundEstimate, postApiRefundToSenderEstimate } from "@pay/utils/services/refund";
 import type { IRefundEstimate } from "@pay/utils/types/refund";
 import { useRefundStore } from "@pay/stores/refund";
 import { usePolling } from "@shared/utils/composables/usePolling";
@@ -21,14 +21,26 @@ const readEstimateError = (error: unknown): { status?: number; message: string }
 const estimateErrorKey = (status: number | undefined, message: string): string | null => {
 	if (status === 409) return "A refund request has already been submitted";
 	if (status === 404) return "Not found";
+	if (status === 403) return "Refund without email is no longer available";
 	if (status !== 422) return null;
+	if (message.includes("not a sender")) return "The address is not a sender of the deposit";
+	if (message.includes("not enough native coin")) return "Refund fee unavailable";
 	if (message.includes("not enough funds")) return "Not enough funds on the deposit address";
 	if (message.includes("cannot be refunded")) return "The deposit cannot be refunded";
-	return "The address does not match the deposit blockchain";
+	if (message.includes("invalid destination address")) return "The address does not match the deposit blockchain";
+	return "An unexpected error occurred";
 };
 
-export const useRefundEstimate = (blockedTransactionId: string, destinationAddress: Ref<string>) => {
-	const { token } = storeToRefs(useRefundStore());
+export const useRefundEstimate = (blockedTransactionId: string, destinationAddress: Ref<string>, toSender = false) => {
+	const { token, walletId } = storeToRefs(useRefundStore());
+
+	const requestEstimate = (address: string): Promise<IRefundEstimate> | null => {
+		const body = { destination_address: address };
+		if (toSender) {
+			return walletId.value ? postApiRefundToSenderEstimate(walletId.value, blockedTransactionId, body) : null;
+		}
+		return token.value ? postApiRefundEstimate(blockedTransactionId, body, token.value) : null;
+	};
 	const { startPolling, stopPolling } = usePolling();
 	const estimate = ref<IRefundEstimate | null>(null);
 	const isEstimating = ref(false);
@@ -47,8 +59,8 @@ export const useRefundEstimate = (blockedTransactionId: string, destinationAddre
 
 	const runEstimate = async () => {
 		const address = destinationAddress.value.trim();
-		const refundToken = token.value;
-		if (address.length < MIN_ADDRESS_LENGTH || !refundToken) {
+		const request = address.length < MIN_ADDRESS_LENGTH ? null : requestEstimate(address);
+		if (!request) {
 			stopPolling();
 			isWaiting.value = false;
 			isEstimating.value = false;
@@ -61,7 +73,7 @@ export const useRefundEstimate = (blockedTransactionId: string, destinationAddre
 		if (initial) isEstimating.value = true;
 
 		try {
-			const data = await postApiRefundEstimate(blockedTransactionId, { destination_address: address }, refundToken);
+			const data = await request;
 			if (currentRequest !== requestId) return;
 			estimate.value = data;
 			errorKey.value = null;
@@ -87,26 +99,30 @@ export const useRefundEstimate = (blockedTransactionId: string, destinationAddre
 		}
 	};
 
-	watch(destinationAddress, (value) => {
-		stopPolling();
-		clearDebounce();
-		requestId += 1;
-		opened = false;
-		estimate.value = null;
-		errorKey.value = null;
-		isEstimating.value = false;
+	watch(
+		destinationAddress,
+		(value) => {
+			stopPolling();
+			clearDebounce();
+			requestId += 1;
+			opened = false;
+			estimate.value = null;
+			errorKey.value = null;
+			isEstimating.value = false;
 
-		const address = value.trim();
-		if (address.length < MIN_ADDRESS_LENGTH) {
-			isWaiting.value = false;
-			return;
-		}
+			const address = value.trim();
+			if (address.length < MIN_ADDRESS_LENGTH) {
+				isWaiting.value = false;
+				return;
+			}
 
-		isWaiting.value = true;
-		debounceTimer = setTimeout(() => {
-			void startPolling(runEstimate, ESTIMATE_REFRESH_MS);
-		}, ESTIMATE_DEBOUNCE_MS);
-	});
+			isWaiting.value = true;
+			debounceTimer = setTimeout(() => {
+				void startPolling(runEstimate, ESTIMATE_REFRESH_MS);
+			}, ESTIMATE_DEBOUNCE_MS);
+		},
+		{ immediate: true }
+	);
 
 	onUnmounted(() => {
 		clearDebounce();

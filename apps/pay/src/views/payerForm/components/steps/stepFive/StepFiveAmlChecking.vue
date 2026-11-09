@@ -4,7 +4,7 @@
 	import TransactionBlockInfo from "@pay-shared/components/payerForm/transactionBlockInfo/TransactionBlockInfo.vue";
 	import { LottieAnimation } from "lottie-web-vue";
 	import { shallowRef } from "vue";
-	import type { IPayerAddressResponse } from "@pay-shared/utils/types/payer";
+	import type { IPayerAddressResponse, IPayerStoreResponse } from "@pay-shared/utils/types/payer";
 	import type { IWalletTransactionResponse } from "@pay-shared/utils/types/transaction";
 
 	type LottieAnimationData = Record<string, unknown>;
@@ -12,17 +12,17 @@
 	const {
 		currentTransaction = null,
 		addresses,
-		payerId = null,
+		store = null,
 		formattedFiatAmount
 	} = defineProps<{
 		currentTransaction?: IWalletTransactionResponse | null;
 		addresses: IPayerAddressResponse[];
-		payerId?: string | null;
+		store?: IPayerStoreResponse | null;
 		formattedFiatAmount: string;
 	}>();
 
 	const loaderWaitingConfirmation = shallowRef<LottieAnimationData | null>(null);
-	void import("@pay-shared/assets/animations/loaderWaitingConfirmation.json").then((module) => {
+	void import("@pay-shared/assets/animations/loaderAmlChecking.json").then((module) => {
 		loaderWaitingConfirmation.value = module.default;
 	});
 </script>
@@ -50,7 +50,7 @@
 				<transaction-block-info
 					:current-transaction="currentTransaction"
 					:addresses="addresses"
-					:payer-id="payerId"
+					:store="store"
 					:formatted-fiat-amount="formattedFiatAmount"
 				/>
 			</div>
@@ -88,9 +88,19 @@
 					flex-direction: column;
 					gap: 16px;
 					&__loader {
+						display: flex;
+						align-items: center;
+						justify-content: center;
 						width: 100px;
+						height: 100px;
 						@include mediamax(576) {
 							width: 80px;
+							height: 80px;
+						}
+						:deep(svg) {
+							display: block;
+							width: 100%;
+							height: 100%;
 						}
 					}
 					&__inner {
@@ -104,10 +114,7 @@
 						font-size: 20px;
 						font-weight: 600;
 						line-height: 24px;
-						color: $main-text-link-and-price-color;
-						@include mediamax(768) {
-							font-size: 18px;
-						}
+						color: rgb(22, 126, 180);
 					}
 					&__text {
 						margin: 0;

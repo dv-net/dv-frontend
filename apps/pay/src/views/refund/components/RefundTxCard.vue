@@ -27,11 +27,13 @@
 	const {
 		item,
 		showClaimAction = false,
-		claimLoading = false
+		claimLoading = false,
+		toSender = false
 	} = defineProps<{
 		item: IRefundCabinetItem;
 		showClaimAction?: boolean;
 		claimLoading?: boolean;
+		toSender?: boolean;
 	}>();
 
 	const emit = defineEmits<{
@@ -233,7 +235,7 @@
 
 		<div v-if="showClaimAction && !isClaimOpen" class="tx-card__actions">
 			<ui-button mode="neutral" size="lg" left-icon-name="account-balance-wallet" @click="isClaimOpen = true">
-				{{ $t("Request refund") }}
+				{{ $t(toSender ? "Return to the sender address" : "Request refund") }}
 			</ui-button>
 		</div>
 
@@ -242,6 +244,7 @@
 			class="tx-card__claim"
 			:item="item"
 			:loading="claimLoading"
+			:to-sender="toSender"
 			@claim="emit('claim', $event)"
 			@cancel="isClaimOpen = false"
 		/>

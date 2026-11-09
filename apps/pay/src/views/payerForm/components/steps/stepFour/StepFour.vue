@@ -5,7 +5,7 @@
 	import { computed } from "vue";
 	import { formatDollars } from "@shared/utils/helpers/general.ts";
 
-	const { currentTransaction, addresses, payerId } = storeToRefs(usePayerFormStore());
+	const { currentTransaction, addresses, store } = storeToRefs(usePayerFormStore());
 
 	const formattedFiatAmount = computed(() =>
 		formatDollars(currentTransaction.value?.amount_usd, { countPartMoreOneDollar: 2 })
@@ -16,7 +16,7 @@
 	<step-four-shared
 		:current-transaction="currentTransaction"
 		:addresses="addresses"
-		:payer-id="payerId"
+		:store="store"
 		:formatted-fiat-amount="formattedFiatAmount"
 	/>
 </template>

@@ -126,7 +126,6 @@
   "Your permanent wallet — funds are credited to it automatically upon receipt": "Din permanente wallet — midlerne krediteres den automatisk ved modtagelse",
   "A refund request has already been submitted": "Der er allerede indsendt en anmodning om refusion",
   "A refund to another address is sent after the merchant reviews it": "En refusion til en anden adresse sendes, efter at forhandleren har gennemgået den",
-  "A refund to the sender address is sent automatically in about 6 hours": "En tilbagebetaling til afsenderadressen sendes automatisk om cirka 6 timer",
   "Exchange refund warning": "Hvis indbetalingen kom fra en børs, kommer en tilbagebetaling til afsenderadressen muligvis ikke frem",
   "Failed to submit the refund request": "Kunne ikke indsende anmodningen om refusion",
   "Funds will be sent after": "Midlerne sendes efter",

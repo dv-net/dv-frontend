@@ -126,7 +126,6 @@
   "Your permanent wallet — funds are credited to it automatically upon receipt": "Ваш постійний гаманець — кошти зараховуються на нього автоматично після надходження",
   "A refund request has already been submitted": "Запит на повернення коштів уже надіслано",
   "A refund to another address is sent after the merchant reviews it": "Повернення коштів на іншу адресу надсилається після того, як мерчант його розгляне",
-  "A refund to the sender address is sent automatically in about 6 hours": "Повернення на адресу відправника буде надіслано автоматично приблизно через 6 годин",
   "Exchange refund warning": "Якщо депозит надійшов з біржі, повернення коштів на адресу відправника може не надійти",
   "Failed to submit the refund request": "Не вдалося надіслати запит на повернення коштів",
   "Funds will be sent after": "Кошти буде надіслано після",

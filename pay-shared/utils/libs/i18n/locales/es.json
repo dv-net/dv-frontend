@@ -126,7 +126,6 @@
   "Your permanent wallet — funds are credited to it automatically upon receipt": "Tu billetera permanente — los fondos se acreditan en ella automáticamente al recibirlos",
   "A refund request has already been submitted": "Ya se ha enviado una solicitud de reembolso",
   "A refund to another address is sent after the merchant reviews it": "Se envía un reembolso a otra dirección después de que el comerciante lo revise",
-  "A refund to the sender address is sent automatically in about 6 hours": "Se envía automáticamente un reembolso a la dirección del remitente en aproximadamente 6 horas",
   "Exchange refund warning": "Si el depósito provino de un exchange, es posible que un reembolso a la dirección del remitente no llegue",
   "Failed to submit the refund request": "No se pudo enviar la solicitud de reembolso",
   "Funds will be sent after": "Los fondos se enviarán después de",

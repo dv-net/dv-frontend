@@ -126,7 +126,6 @@
   "Your permanent wallet — funds are credited to it automatically upon receipt": "Din permanenta plånbok — medel sätts automatiskt in på den vid mottagande",
   "A refund request has already been submitted": "En begäran om återbetalning har redan skickats",
   "A refund to another address is sent after the merchant reviews it": "En återbetalning till en annan adress skickas efter att handlaren har granskat den",
-  "A refund to the sender address is sent automatically in about 6 hours": "En återbetalning till avsändaradressen skickas automatiskt om cirka 6 timmar",
   "Exchange refund warning": "Om insättningen kom från en börs kan en återbetalning till avsändaradressen eventuellt inte komma fram",
   "Failed to submit the refund request": "Det gick inte att skicka begäran om återbetalning",
   "Funds will be sent after": "Medel skickas efter",

@@ -23,7 +23,8 @@ import { SORT_CHAIN } from "@pay-shared/utils/constants/blockchain";
 import { loaderShutdown } from "@pay-shared/utils/helpers/general";
 import type { ILatestTransaction } from "@pay-shared/components/payerForm/blockLatestTransactions/types";
 import type { IPayerFormTimelineItem } from "@pay-shared/utils/types/payerForm";
-import type { IBlockedTransactionItem } from "@pay/utils/types/aml";
+import type { IAmlBlockReason } from "@pay/utils/types/aml";
+import type { IRefundCabinetItem } from "@pay/utils/types/refund";
 import { PAYMENT_LS_TTL_MS, TRANSACTIONS_LS_PREFIX } from "@pay/utils/constants/payerForm";
 import {
 	clearTransactionsSnapshot,
@@ -54,6 +55,8 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 	const payerId = ref<string | null>(null);
 	const payerEmail = ref<string | null>(null);
 	const amlPaymentPhase = ref<TAmlPaymentPhase | null>(null);
+	const amlScore = ref<string | null>(null);
+	const amlBlockReasons = ref<IAmlBlockReason[]>([]);
 	const amount = ref<number | null>(null);
 	const rates = ref<Record<string, string> | null>(null);
 	const store = ref<IPayerStoreResponse | null>(null);
@@ -61,7 +64,7 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 	const arrayCurrencyIds = ref<string[]>([]);
 	const transactionsConfirmed = ref<IWalletTransactionResponse[]>([]);
 	const transactionsUnconfirmed = ref<IWalletTransactionResponse[]>([]);
-	const blockedTransactions = ref<IBlockedTransactionItem[]>([]);
+	const blockedTransactions = ref<IRefundCabinetItem[]>([]);
 	const currentTransaction = ref<IWalletTransactionResponse | null>(null);
 	const errorStore = ref<"error" | "store-disabled" | null>(null);
 	const moneyCameAudioRef = ref<HTMLAudioElement | null>(null);
@@ -210,8 +213,14 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		return blocked.some((item) => item.tx_hash === txHash);
 	};
 
+	const clearAmlRisk = () => {
+		amlScore.value = null;
+		amlBlockReasons.value = [];
+	};
+
 	const persistAmlPhase = (phase: TAmlPaymentPhase) => {
 		amlPaymentPhase.value = phase;
+		if (phase !== AML_PAYMENT_PHASE.blocked) clearAmlRisk();
 		if (!payerId.value || !currentTransaction.value) return;
 
 		if (phase === AML_PAYMENT_PHASE.checking) {
@@ -262,13 +271,22 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 					continue;
 				}
 
+				// Provider did not finish the check (tx not indexed yet). The payer still receives the payment.
 				if (check.status === AML_CHECK_STATUS.failed) {
-					persistAmlPhase(AML_PAYMENT_PHASE.failed);
+					persistAmlPhase(AML_PAYMENT_PHASE.passed);
+					moneyCameAudioRef.value?.play();
 					return;
 				}
 
-				const blocked = await isTransactionBlocked(walletId, txHash);
-				if (blocked) await loadBlockedTransactions();
+				const blocked =
+					check.block_reasons === undefined
+						? await isTransactionBlocked(walletId, txHash)
+						: check.block_reasons !== null;
+				if (blocked) {
+					await loadBlockedTransactions();
+					amlScore.value = check.score;
+					amlBlockReasons.value = check.block_reasons ?? [];
+				}
 				persistAmlPhase(blocked ? AML_PAYMENT_PHASE.blocked : AML_PAYMENT_PHASE.passed);
 				if (!blocked) moneyCameAudioRef.value?.play();
 				return;
@@ -500,6 +518,8 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		payerId,
 		payerEmail,
 		amlPaymentPhase,
+		amlScore,
+		amlBlockReasons,
 		timeline,
 		isPoolingProgress,
 		rates,

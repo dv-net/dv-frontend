@@ -1,6 +1,7 @@
 <script setup lang="ts">
-	import { UiButton, UiForm, UiFormItem, UiInput } from "@dv.net/ui-kit";
-	import { computed, onMounted, reactive, ref } from "vue";
+	import { UiButton, UiForm, UiFormItem, UiInput, UiSkeleton } from "@dv.net/ui-kit";
+	import { computed, onMounted, reactive, ref, watch } from "vue";
+	import RefundMethodChoice from "@pay/views/refund/components/RefundMethodChoice.vue";
 	import { useRoute, useRouter } from "vue-router";
 	import { storeToRefs } from "pinia";
 	import { useRefundStore } from "@pay/stores/refund";
@@ -27,9 +28,17 @@
 		isLoadingLookup,
 		isLoadingVerify,
 		resendCooldownSec,
-		isAuthenticated
+		isAuthenticated,
+		canRefundToSender
 	} = storeToRefs(refundStore);
-	const { sendCode, verifyCode, prefillFromQuery, prefillPartialFromQuery, syncTokenFromStore } = refundStore;
+	const {
+		sendCode,
+		verifyCode,
+		prefillFromQuery,
+		prefillPartialFromQuery,
+		syncTokenFromStore,
+		loadSenderRefundItems
+	} = refundStore;
 
 	const route = useRoute();
 	const router = useRouter();
@@ -41,6 +50,7 @@
 	const verifyFormRef = ref<HTMLFormElement | null>(null);
 	const isPrefilledEntry = ref(false);
 	const isAutoSendingCode = ref(false);
+	const isResolvingEntry = ref(true);
 
 	const lookupForm = reactive({
 		email: email
@@ -67,7 +77,10 @@
 		]
 	}));
 
+	const isChoiceStep = computed(() => !isResolvingEntry.value && entryStep.value === "choice");
+
 	const panelSubtitle = computed(() => {
+		if (entryStep.value === "choice") return t("Choose how to get your funds back");
 		if (isPrefilledEntry.value) {
 			return t("We sent a verification code to your email. Enter it below to access the refund cabinet");
 		}
@@ -100,11 +113,19 @@
 		});
 	};
 
-	const handleLookupBack = async () => {
+	const goToPayment = async () => {
 		const context = getRefundContext();
 		if (!context?.wallet_id) return;
 		usePayerFormStore().startPaymentFromFirstStep();
 		await router.push({ name: "payer-wallet", params: { payerId: context.wallet_id } });
+	};
+
+	const handleLookupBack = async () => {
+		if (canRefundToSender.value) {
+			entryStep.value = "choice";
+			return;
+		}
+		await goToPayment();
 	};
 
 	const handleSendCode = async () => {
@@ -163,31 +184,71 @@
 		prefillPartialFromQuery(partialPayload);
 	};
 
+	const resolveEntry = async () => {
+		try {
+			await initPrefilledEntry();
+			if (!getRefundContext()) {
+				void router.back();
+				return;
+			}
+			syncTokenFromStore();
+			if (isAuthenticated.value) {
+				const context = getRefundContext();
+				await router.replace(context ? buildRefundCabinetRoute(context) : { name: "refund-cabinet" });
+				return;
+			}
+			if (isPrefilledEntry.value || entryStep.value === "verify") return;
+			await loadSenderRefundItems();
+			if (canRefundToSender.value) entryStep.value = "choice";
+		} finally {
+			isResolvingEntry.value = false;
+		}
+	};
+
+	watch(canRefundToSender, (allowed) => {
+		if (!allowed && entryStep.value === "choice") entryStep.value = "lookup";
+	});
+
 	onMounted(async () => {
 		loaderShutdown();
-		await initPrefilledEntry();
-		if (!getRefundContext()) {
-			void router.back();
-			return;
-		}
-		syncTokenFromStore();
-		if (isAuthenticated.value) {
-			const context = getRefundContext();
-			await router.replace(context ? buildRefundCabinetRoute(context) : { name: "refund-cabinet" });
-			return;
-		}
+		await resolveEntry();
 	});
 </script>
 
 <template>
 	<div class="refund-entry">
-		<section class="panel">
-			<header class="panel__header">
-				<h1 class="panel__title">{{ $t("Refund blocked deposits") }}</h1>
-				<p class="panel__subtitle">{{ panelSubtitle }}</p>
+		<section class="panel" :class="{ 'panel--wide': isChoiceStep }">
+			<header class="panel__header" :class="{ 'panel__header--row': isChoiceStep }">
+				<div class="panel__intro">
+					<h1 class="panel__title">{{ $t("Refund blocked deposits") }}</h1>
+					<p class="panel__subtitle">{{ panelSubtitle }}</p>
+				</div>
+				<ui-button
+					v-if="isChoiceStep"
+					class="panel__back"
+					size="lg"
+					type="outline"
+					mode="neutral"
+					left-icon-name="arrow-back"
+					@click="goToPayment"
+				>
+					{{ $t("Back to payment") }}
+				</ui-button>
 			</header>
 
-			<div class="panel-card">
+			<div v-if="isResolvingEntry && !isAutoSendingCode" class="panel-card panel-card--skeleton">
+				<ui-skeleton
+					role="status"
+					:aria-label="$t('Loading refund options')"
+					:rows="1"
+					:row-height="160"
+					:item-border-radius="20"
+				/>
+			</div>
+
+			<refund-method-choice v-else-if="isChoiceStep" @email="entryStep = 'lookup'" />
+
+			<div v-else class="panel-card">
 				<div v-if="isAutoSendingCode" class="form form--loading">
 					<p class="form__hint">{{ $t("Sending verification code") }}</p>
 				</div>
@@ -220,7 +281,7 @@
 							left-icon-name="arrow-back"
 							@click="handleLookupBack"
 						>
-							{{ $t("Back to payment") }}
+							{{ $t(canRefundToSender ? "Back" : "Back to payment") }}
 						</ui-button>
 						<ui-button
 							class="form__action-primary"
@@ -320,11 +381,41 @@
 		border-radius: 24px;
 		background: #f7f9fb;
 
+		&--wide {
+			max-width: none;
+		}
+
 		&__header {
 			display: flex;
 			flex-direction: column;
 			gap: 4px;
 			padding: 12px 16px 8px;
+
+			&--row {
+				flex-direction: row;
+				align-items: center;
+				justify-content: space-between;
+				gap: 16px;
+				@include mediamax(768) {
+					flex-direction: column;
+					align-items: stretch;
+					gap: 12px;
+				}
+			}
+		}
+
+		&__intro {
+			display: flex;
+			flex-direction: column;
+			gap: 4px;
+			min-width: 0;
+		}
+
+		&__back {
+			flex-shrink: 0;
+			@include mediamax(768) {
+				width: 100%;
+			}
 		}
 
 		&__title {
@@ -353,6 +444,10 @@
 		box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
 		@include mediamax(480) {
 			padding: 16px;
+		}
+
+		&--skeleton {
+			padding: 8px;
 		}
 	}
 

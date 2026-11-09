@@ -10,6 +10,7 @@
 	import BlockAdvertising from "@pay-shared/components/payerForm/blockAdvertising/BlockAdvertising.vue";
 	import { getApiWalletConfirm } from "@pay/utils/services/payerForm.ts";
 	import { buildRefundEntryPartialRoute } from "@pay/utils/helpers/refundEntry";
+	import { AML_PAYMENT_PHASE } from "@pay/utils/constants/aml";
 	import { useI18n } from "vue-i18n";
 	import AudioPayment from "@pay-shared/components/payerForm/audioPayment/AudioPayment.vue";
 	import BlockLatestTransactions from "@pay-shared/components/payerForm/blockLatestTransactions/BlockLatestTransactions.vue";
@@ -40,7 +41,8 @@
 		latestTransactions,
 		blockedLatestTransactions,
 		moneyCameAudioRef,
-		paymentFoundAudioRef
+		paymentFoundAudioRef,
+		amlPaymentPhase
 	} = storeToRefs(usePayerFormStore());
 	const {
 		getWalletTxFind,
@@ -74,6 +76,12 @@
 
 	const currentStepComponent = computed<Component>(() => {
 		return stepComponents[currentStep.value];
+	});
+
+	const headerLastStepStatus = computed<"checking" | "rejected" | null>(() => {
+		if (amlPaymentPhase.value === AML_PAYMENT_PHASE.checking) return "checking";
+		if (amlPaymentPhase.value === AML_PAYMENT_PHASE.blocked) return "rejected";
+		return null;
 	});
 
 	const startPolling = async () => {
@@ -181,7 +189,12 @@
 		v-model:payment-found-audio-ref="paymentFoundAudioRef"
 	/>
 	<div class="form">
-		<payer-form-header :timeline="timeline" :current-step="currentStep" :step-map="stepMap" />
+		<payer-form-header
+			:timeline="timeline"
+			:current-step="currentStep"
+			:step-map="stepMap"
+			:last-step-status="headerLastStepStatus"
+		/>
 		<div class="form__inner">
 			<div class="form__body">
 				<form-error v-if="errorStore" :type="errorStore" />
