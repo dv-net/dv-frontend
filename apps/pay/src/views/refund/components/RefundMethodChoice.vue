@@ -29,7 +29,6 @@
 	const handleClaim = async (item: IRefundCabinetItem, destinationAddress: string) => {
 		try {
 			await claimRefundToSender(item, destinationAddress);
-			notify(t("Refund request submitted"), "success");
 		} catch (error) {
 			const { status, message } = readClaimError(error);
 			if (status === 409) {

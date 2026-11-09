@@ -134,7 +134,6 @@
 		}
 		await postApiRefundExecuteNow(refundId, otpGlobalCode.value);
 		await refreshAfterAction();
-		notify(t("Refund sent"), "success");
 	};
 
 	const handlePageChange = async (nextPage: number) => {
