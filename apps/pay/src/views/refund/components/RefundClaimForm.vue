@@ -1,6 +1,7 @@
 <script setup lang="ts">
 	import { computed, ref } from "vue";
 	import { UiButton, UiCopyText, UiIcon, UiInput, UiSkeleton } from "@dv.net/ui-kit";
+	import { isBitcoinLikeDeposit } from "@pay/utils/constants/refund";
 	import type { IRefundCabinetItem, IRefundEstimate } from "@pay/utils/types/refund";
 	import { ESTIMATE_REFRESH_MS, useRefundEstimate } from "@pay/views/refund/composables/useRefundEstimate";
 	import IconDeposit from "@pay/components/icons/refund/IconDeposit.vue";
@@ -27,6 +28,9 @@
 	const { t } = useI18n();
 	const isCompact = useMediaQuery("(max-width: 768px)");
 	const destinationAddress = ref(toSender ? (item.from_address ?? "") : "");
+	const senderAddressEditable = computed(
+		() => toSender && isBitcoinLikeDeposit(item.currency_id, item.blockchain)
+	);
 	const fillButtonSize = computed(() => (isCompact.value ? "lg" : "xl"));
 	const { estimate, isEstimating, isWaiting, errorKey, quoteCycle, canClaim } = useRefundEstimate(
 		item.blocked_transaction_id,
@@ -132,12 +136,12 @@
 				class="claim-form__input"
 				:label="$t(toSender ? 'Sender address' : 'Destination address')"
 				:placeholder="$t(toSender ? 'Sender address' : 'Destination address')"
-				:readonly="toSender"
+				:readonly="toSender && !senderAddressEditable"
 				size="md"
 				name="destination_address"
 				autocomplete="off"
 			>
-				<template v-if="toSender && destinationAddress" #append>
+				<template v-if="toSender && !senderAddressEditable && destinationAddress" #append>
 					<ui-copy-text :copied-text="destinationAddress" color-icon="#A4A5B1" size-icon="sm" />
 				</template>
 			</ui-input>

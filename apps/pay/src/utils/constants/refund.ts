@@ -1,4 +1,13 @@
+import { getCurrentBlockchain } from "@shared/utils/helpers/general";
 import type { RefundCabinetBucket, RefundStatus } from "@pay/utils/types/refund";
+
+/** A BTC-like deposit can have several inputs, so the stored sender is not the only destination */
+const BITCOIN_LIKE_CHAINS = new Set(["bitcoin", "litecoin", "bitcoincash", "dogecoin"]);
+
+export const isBitcoinLikeDeposit = (currencyId?: string | null, blockchain?: string | null): boolean => {
+	const chain = (currencyId ? getCurrentBlockchain(currencyId) : "") || blockchain || "";
+	return BITCOIN_LIKE_CHAINS.has(chain.trim().toLowerCase());
+};
 
 export const REFUND_TOKEN_KEY = "p";
 /** Matches the backend wallet session token lifetime (AuthByWallet) */

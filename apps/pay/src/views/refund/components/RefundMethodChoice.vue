@@ -6,6 +6,7 @@
 	import { useNotifications } from "@shared/utils/composables/useNotifications";
 	import RefundTxCard from "@pay/views/refund/components/RefundTxCard.vue";
 	import IconTransfer from "@pay/components/icons/refund/IconTransfer.vue";
+	import { isBitcoinLikeDeposit } from "@pay/utils/constants/refund";
 	import type { IRefundCabinetItem } from "@pay/utils/types/refund";
 
 	const emit = defineEmits<{
@@ -93,7 +94,7 @@
 					v-for="item in senderRefundItems"
 					:key="item.blocked_transaction_id"
 					:item="item"
-					:show-claim-action="!item.refund_status && Boolean(item.from_address)"
+					:show-claim-action="!item.refund_status && (Boolean(item.from_address) || isBitcoinLikeDeposit(item.currency_id, item.blockchain))"
 					:claim-loading="claimingSenderRefundId === item.blocked_transaction_id"
 					to-sender
 					@claim="handleClaim(item, $event)"
