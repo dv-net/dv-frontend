@@ -89,6 +89,11 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 	]);
 
 	const startPaymentFromFirstStep = () => {
+		clearAmlPolling();
+		isPoolingProgress.value = true;
+		currentTransaction.value = null;
+		amlPaymentPhase.value = null;
+		clearAmlRisk();
 		currentCurrency.value = null;
 		currentChain.value = null;
 		currentStep.value = 1;
