@@ -1,6 +1,7 @@
 import { defineStore, storeToRefs } from "pinia";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import {
+	deleteApiWithdrawalWalletAddresses,
 	getApiExchangeDepositAddresses,
 	getApiWithdrawalCurrencyRules,
 	getApiWithdrawalRules,
@@ -8,6 +9,7 @@ import {
 	postApiSetExchange
 } from "@dv-admin/utils/services/withdrawal";
 import type {
+	IBatchDeleteWithdrawalAddressRequest,
 	IDepositAddressesResponse,
 	IExchangeList,
 	IWithdrawalAddressItemRequest,
@@ -15,12 +17,15 @@ import type {
 	IWithdrawalAddressRequest,
 	IWithdrawalRulesResponse
 } from "@dv-admin/utils/types/api/apiGo";
+import type { IPendingDeleteWalletGroup } from "@dv-admin/utils/types/schemas";
 import { useExchangeSettingsStore } from "@dv-admin/stores/exchangeSettings";
 import { getApiExchangeConnectionChecks, getApiExchangeDepositUpdate } from "@dv-admin/utils/services/exchangeSettings";
 import { useNotifications } from "@shared/utils/composables/useNotifications";
 import { useI18n } from "vue-i18n";
 
 const { notify } = useNotifications();
+
+export const MAX_BATCH_DELETE_ADDRESSES = 100;
 
 export const useWithdrawalStore = defineStore("withdrawal", () => {
 	const { t } = useI18n();
@@ -31,6 +36,7 @@ export const useWithdrawalStore = defineStore("withdrawal", () => {
 	const isLoadingConnectedExchanges = ref<boolean>(false);
 	const isLoadingSetExchange = ref<boolean>(false);
 	const isLoadingEditAddresses = ref<boolean>(false);
+	const isLoadingDeleteAddresses = ref<boolean>(false);
 	const isLoadingUpdateDepositAddresses = ref<boolean>(false);
 	const isShowBannerSuccessToggleExchange = ref<boolean>(false);
 	const withdrawalRules = ref<IWithdrawalRulesResponse[]>([]);
@@ -40,9 +46,25 @@ export const useWithdrawalStore = defineStore("withdrawal", () => {
 	const addressesTotp = ref<string>("");
 	const currentAddressTab = ref<string>("1");
 	const isShowAuthentication = ref<boolean>(false);
+	const isShowDeleteAuthentication = ref<boolean>(false);
+	const pendingDeleteGroups = ref<IPendingDeleteWalletGroup[]>([]);
+	const pendingDeleteReloadList = ref<boolean>(false);
 	const arrayErrorsAddresses = ref<string[]>([]);
 	const connectedExchanges = ref<IExchangeList[]>([]);
 	const depositAddresses = ref<IDepositAddressesResponse[]>([]);
+
+	const pendingDeleteAddresses = computed<IWithdrawalAddressItemResponse[]>(() =>
+		pendingDeleteGroups.value.flatMap((group) => group.addresses)
+	);
+	const hasPendingDeleteManualAddressWarning = computed<boolean>(() =>
+		pendingDeleteGroups.value.some((group) => {
+			if (!group.manualAddress) return false;
+			return group.addresses.some((item) => item.address === group.manualAddress);
+		})
+	);
+	const hasAnyWithdrawalAddresses = computed<boolean>(() =>
+		withdrawalRules.value.some((item) => Boolean(item.addressees?.length))
+	);
 
 	const getWithdrawalRules = async () => {
 		try {
@@ -197,6 +219,95 @@ export const useWithdrawalStore = defineStore("withdrawal", () => {
 		isShowAuthentication.value = false;
 	};
 
+	const resetDeleteAddressAuthentication = () => {
+		isShowDeleteAuthentication.value = false;
+		pendingDeleteGroups.value = [];
+		pendingDeleteReloadList.value = false;
+	};
+
+	const openDeleteAuthentication = (groups: IPendingDeleteWalletGroup[], reloadList = false) => {
+		const normalizedGroups = groups
+			.map((group) => ({
+				...group,
+				addresses: group.addresses.filter((item) => Boolean(item.id && item.address))
+			}))
+			.filter((group) => group.walletId && group.addresses.length);
+
+		if (!normalizedGroups.length) return;
+
+		for (const group of normalizedGroups) {
+			if (group.addresses.length > MAX_BATCH_DELETE_ADDRESSES) {
+				notify(t("You can select up to {count} addresses", { count: MAX_BATCH_DELETE_ADDRESSES }));
+				return;
+			}
+		}
+
+		resetAddressAuthentication();
+		pendingDeleteGroups.value = normalizedGroups;
+		pendingDeleteReloadList.value = reloadList;
+		isShowDeleteAuthentication.value = true;
+	};
+
+	const startDeleteWithdrawalAddresses = (params: {
+		walletId: string;
+		addresses: IWithdrawalAddressItemResponse[];
+		manualAddress?: string | null;
+		currencyId?: string;
+		reloadList?: boolean;
+	}) => {
+		openDeleteAuthentication(
+			[
+				{
+					walletId: params.walletId,
+					currencyId: params.currencyId,
+					addresses: params.addresses,
+					manualAddress: params.manualAddress ?? null
+				}
+			],
+			Boolean(params.reloadList)
+		);
+	};
+
+	const startDeleteAllWithdrawalAddresses = () => {
+		openDeleteAuthentication(
+			withdrawalRules.value.map((rule) => ({
+				walletId: rule.id,
+				currencyId: rule.currency.id,
+				addresses: rule.addressees ?? [],
+				manualAddress: rule.low_balance_rules?.manual_address ?? null
+			})),
+			true
+		);
+	};
+
+	const deleteWithdrawalWalletAddresses = async (totp: string) => {
+		if (isLoadingDeleteAddresses.value || !pendingDeleteGroups.value.length || !totp) return;
+		try {
+			isLoadingDeleteAddresses.value = true;
+			const groups = pendingDeleteGroups.value;
+			const reloadList = pendingDeleteReloadList.value;
+			for (const group of groups) {
+				const body: IBatchDeleteWithdrawalAddressRequest = {
+					address_ids: group.addresses.map((item) => item.id),
+					totp
+				};
+				await deleteApiWithdrawalWalletAddresses(group.walletId, body);
+			}
+			if (reloadList) {
+				await getWithdrawalRules();
+			} else {
+				const currencyId = groups[0]?.currencyId;
+				if (currencyId) await getWithdrawalCurrencyRules(currencyId);
+			}
+			notify(t("Addresses deleted"), "success");
+			resetDeleteAddressAuthentication();
+		} catch (error: any) {
+			throw error;
+		} finally {
+			isLoadingDeleteAddresses.value = false;
+		}
+	};
+
 	return {
 		isLoading,
 		isDataReceivedAddresses,
@@ -205,7 +316,14 @@ export const useWithdrawalStore = defineStore("withdrawal", () => {
 		connectedExchanges,
 		currentAddressTab,
 		isLoadingEditAddresses,
+		isLoadingDeleteAddresses,
 		isShowAuthentication,
+		isShowDeleteAuthentication,
+		pendingDeleteGroups,
+		pendingDeleteReloadList,
+		pendingDeleteAddresses,
+		hasPendingDeleteManualAddressWarning,
+		hasAnyWithdrawalAddresses,
 		withdrawalRules,
 		withdrawalCurrencyRules,
 		isShowBannerInfo,
@@ -218,7 +336,11 @@ export const useWithdrawalStore = defineStore("withdrawal", () => {
 		getWithdrawalRules,
 		getWithdrawalCurrencyRules,
 		patchWithdrawalWalletAddresses,
+		startDeleteWithdrawalAddresses,
+		startDeleteAllWithdrawalAddresses,
+		deleteWithdrawalWalletAddresses,
 		resetAddressAuthentication,
+		resetDeleteAddressAuthentication,
 		getConnectedExchanges,
 		postSetExchange,
 		getExchangeDepositAddresses,

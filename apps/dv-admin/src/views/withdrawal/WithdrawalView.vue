@@ -1,14 +1,15 @@
 <script setup lang="ts">
 	import { useWithdrawalStore } from "@dv-admin/stores/withdrawal";
-	import { computed, onMounted } from "vue";
+	import { computed, onMounted, onUnmounted } from "vue";
 	import WithdrawalTable from "@dv-admin/views/withdrawal/components/withdrawalTable/WithdrawalTable.vue";
+	import DeleteAuthentication from "@dv-admin/views/withdrawal/addresses/components/authentication/DeleteAuthentication.vue";
 	import { UiButton, UiSkeleton } from "@dv.net/ui-kit";
 	import { storeToRefs } from "pinia";
 	import { useUserSettingsStore } from "@dv-admin/stores/userSettings";
 	import { useExchangeSettingsStore } from "@dv-admin/stores/exchangeSettings";
 	import { useI18n } from "vue-i18n";
 
-	const { getWithdrawalRules, getExchangeDepositAddresses } = useWithdrawalStore();
+	const { getWithdrawalRules, getExchangeDepositAddresses, resetDeleteAddressAuthentication } = useWithdrawalStore();
 	const { userSettings, isLoadingUpdateUserSettings, isLoading } = storeToRefs(useUserSettingsStore());
 	const { postUserSettings } = useUserSettingsStore();
 	const { getUserSettings } = useUserSettingsStore();
@@ -37,6 +38,10 @@
 
 	onMounted(async () => {
 		await Promise.all([getUserSettings(), getWithdrawalRules(), getExchangeList(), getExchangeDepositAddresses()]);
+	});
+
+	onUnmounted(() => {
+		resetDeleteAddressAuthentication();
 	});
 </script>
 
@@ -73,6 +78,7 @@
 			</ui-button>
 		</div>
 		<withdrawal-table />
+		<delete-authentication />
 	</div>
 </template>
 

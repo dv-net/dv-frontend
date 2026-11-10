@@ -1,0 +1,414 @@
+<script setup lang="ts">
+	import { UiButton, UiIcon, UiModal } from "@dv.net/ui-kit";
+	import { storeToRefs } from "pinia";
+	import { useWithdrawalStore } from "@dv-admin/stores/withdrawal";
+	import BannerAttention from "@dv-admin/components/ui/bannerAttention/BannerAttention.vue";
+	import BlockchainCard from "@dv-admin/components/ui/blockchainCard/BlockchainCard.vue";
+	import type { BlockchainType } from "@shared/utils/types/blockchain";
+	import { computed, nextTick, ref, watch } from "vue";
+	import { useAuthStore } from "@dv-admin/stores/auth";
+	import { useRouter } from "vue-router";
+
+	const router = useRouter();
+	const {
+		isLoadingDeleteAddresses,
+		isShowDeleteAuthentication,
+		pendingDeleteGroups,
+		pendingDeleteReloadList,
+		hasPendingDeleteManualAddressWarning
+	} = storeToRefs(useWithdrawalStore());
+	const { resetDeleteAddressAuthentication, deleteWithdrawalWalletAddresses } = useWithdrawalStore();
+	const { userData2Fa } = storeToRefs(useAuthStore());
+
+	const COUNT_INPUTS = 6;
+	const otp = ref<string[]>(Array(COUNT_INPUTS).fill(""));
+	const otpRefs = ref<HTMLInputElement[]>([]);
+
+	const isDisabledBtn = computed<boolean>(() => !otp.value.every(Boolean) || isLoadingDeleteAddresses.value);
+	const resetOtp = () => {
+		otp.value = Array(COUNT_INPUTS).fill("");
+	};
+
+	const handleCloseModal = () => {
+		if (isLoadingDeleteAddresses.value) return;
+		resetDeleteAddressAuthentication();
+		resetOtp();
+	};
+
+	const handleInput = (event: Event, index: number) => {
+		const target = event.target as HTMLInputElement | null;
+		if (!target) return;
+		otp.value[index] = target.value.replace(/\D/g, "");
+		if (otp.value[index] && index + 1 < otp.value.length) {
+			nextTick(() => {
+				otpRefs.value[index + 1]?.focus();
+			});
+		}
+	};
+
+	const handlePaste = (event: ClipboardEvent) => {
+		const pastedText = event.clipboardData?.getData("text") || "";
+		const cleaned = pastedText.replace(/\D/g, "").slice(0, COUNT_INPUTS);
+		if (!cleaned.length) return;
+		event.preventDefault();
+		const digits = cleaned.split("");
+		otp.value = [...digits, ...Array(COUNT_INPUTS - digits.length).fill("")];
+		nextTick(() => {
+			otpRefs.value[Math.min(digits.length, COUNT_INPUTS) - 1]?.focus();
+		});
+	};
+
+	const onBackspace = (index: number) => {
+		if (otp.value[index] === "" && index > 0) {
+			nextTick(() => {
+				otpRefs.value[index - 1]?.focus();
+			});
+		}
+	};
+
+	const handleSendForm = async () => {
+		if (isDisabledBtn.value) return;
+		try {
+			await deleteWithdrawalWalletAddresses(otp.value.join(""));
+			resetOtp();
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
+	const goToProfile = async () => {
+		handleCloseModal();
+		await router.push({ name: "profile-personal-data" });
+	};
+
+	watch(isShowDeleteAuthentication, async (isShow) => {
+		if (!isShow) {
+			resetOtp();
+			return;
+		}
+		await nextTick();
+		otpRefs.value[0]?.focus();
+	});
+</script>
+
+<template>
+	<ui-modal
+		v-model="isShowDeleteAuthentication"
+		popperClass="global-confirm-modal"
+		padding="0"
+		background="transparent"
+		:isShowBtnClose="false"
+		@close="handleCloseModal"
+	>
+		<div class="global-confirm-modal__header">
+			<div class="global-confirm-modal__header-left-side">
+				<ui-icon name="warning" type="filled" size="lg" />
+				{{ $t("Confirm deletion") }}
+			</div>
+			<button
+				type="button"
+				class="delete-modal__close"
+				:aria-label="$t('Close')"
+				:disabled="isLoadingDeleteAddresses"
+				@click="handleCloseModal"
+			>
+				<ui-icon name="close" type="400" size="lg" color="fff" />
+			</button>
+		</div>
+
+		<form v-if="userData2Fa?.is_confirmed" class="delete-modal" @submit.prevent="handleSendForm">
+			<div class="delete-modal__body">
+				<div class="delete-modal__lead">
+					<p class="delete-modal__title">
+						{{
+							$t(
+								pendingDeleteReloadList
+									? "All withdrawal wallets will be deleted"
+									: "Selected addresses will be deleted"
+							)
+						}}
+					</p>
+					<p class="delete-modal__hint">{{ $t("This action cannot be undone") }}</p>
+				</div>
+
+				<div class="delete-modal__groups">
+					<section v-for="group in pendingDeleteGroups" :key="group.walletId" class="group">
+						<div class="group__header">
+							<blockchain-card v-if="group.currencyId" :type="group.currencyId as BlockchainType" />
+						</div>
+						<ul class="group__list">
+							<li v-for="item in group.addresses" :key="item.id" class="group__item">
+								<span class="group__address">{{ item.address }}</span>
+								<span v-if="item.name" class="group__name">{{ item.name }}</span>
+							</li>
+						</ul>
+					</section>
+				</div>
+
+				<banner-attention
+					:is-show-banner="hasPendingDeleteManualAddressWarning"
+					:text="$t('Multi-withdrawal disabled warning')"
+				/>
+
+				<div class="otp">
+					<div class="otp__heading">
+						<ui-icon name="lock" type="400" size="md" />
+						<span class="otp__title">{{ $t("Two-factor authentication") }}</span>
+					</div>
+					<p class="delete-modal__hint">{{ $t("Enter the code generated by your application") }}</p>
+					<div class="otp__inputs">
+						<input
+							v-for="(item, index) in otp"
+							:key="index"
+							ref="otpRefs"
+							v-model="otp[index]"
+							type="tel"
+							inputmode="numeric"
+							autocomplete="one-time-code"
+							class="otp__input"
+							maxlength="1"
+							:aria-label="`${$t('Two-factor authentication')} ${index + 1}`"
+							:disabled="isLoadingDeleteAddresses"
+							@input="handleInput($event, index)"
+							@paste="handlePaste"
+							@keydown.backspace="onBackspace(index)"
+						/>
+					</div>
+				</div>
+			</div>
+
+			<div class="global-confirm-modal__footer">
+				<ui-button
+					type="negative"
+					size="xxl"
+					nativeType="submit"
+					left-icon-name="delete"
+					left-icon-size="md"
+					:loading="isLoadingDeleteAddresses"
+					:disabled="isDisabledBtn"
+				>
+					{{ $t("Delete") }}
+				</ui-button>
+				<ui-button
+					type="secondary"
+					size="xxl"
+					left-icon-name="close"
+					left-icon-size="md"
+					:disabled="isLoadingDeleteAddresses"
+					@click="handleCloseModal"
+				>
+					{{ $t("Cancel.verb") }}
+				</ui-button>
+			</div>
+		</form>
+
+		<div v-else class="delete-modal">
+			<div class="delete-modal__body delete-modal__body--centered">
+				<span class="delete-modal__lock">
+					<ui-icon name="lock" type="filled" size="xl" />
+				</span>
+				<p class="delete-modal__title">{{ $t("You don't have 2FA enabled") }}</p>
+				<p class="delete-modal__hint">{{ $t("Go to your profile to enable 2FA") }}</p>
+			</div>
+			<div class="global-confirm-modal__footer">
+				<ui-button
+					mode="neutral"
+					size="xxl"
+					left-icon-name="verified-user"
+					left-icon-size="md"
+					left-icon-color="#fff"
+					@click="goToProfile"
+				>
+					{{ $t("Go to profile") }}
+				</ui-button>
+				<ui-button type="secondary" size="xxl" left-icon-name="close" left-icon-size="md" @click="handleCloseModal">
+					{{ $t("Cancel.verb") }}
+				</ui-button>
+			</div>
+		</div>
+	</ui-modal>
+</template>
+
+<style scoped lang="scss">
+	.delete-modal {
+		background: $white;
+
+		&__close {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 0;
+			border: none;
+			background: transparent;
+			cursor: pointer;
+			opacity: 0.8;
+			transition: opacity 0.2s ease;
+
+			&:hover {
+				opacity: 1;
+			}
+
+			&:disabled {
+				cursor: not-allowed;
+				opacity: 0.4;
+			}
+		}
+
+		&__body {
+			display: flex;
+			flex-direction: column;
+			gap: 20px;
+			padding: 28px;
+
+			&--centered {
+				align-items: center;
+				gap: 8px;
+				padding: 40px 28px;
+				text-align: center;
+			}
+		}
+
+		&__lead {
+			display: flex;
+			flex-direction: column;
+			gap: 4px;
+		}
+
+		&__title {
+			color: $black;
+			font-size: 20px;
+			font-weight: 500;
+			line-height: 28px;
+		}
+
+		&__hint {
+			color: $secondary;
+			font-size: 14px;
+			font-weight: 400;
+			line-height: 20px;
+		}
+
+		&__lock {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 56px;
+			height: 56px;
+			margin-bottom: 8px;
+			border-radius: 50%;
+			background: $blue-light;
+			color: $blue;
+		}
+
+		&__groups {
+			display: flex;
+			flex-direction: column;
+			gap: 12px;
+			max-height: 290px;
+			overflow-y: auto;
+			padding-right: 4px;
+		}
+	}
+
+	.group {
+		flex-shrink: 0;
+		border-radius: 12px;
+		border: 1px solid #ecf0f5;
+		overflow: hidden;
+
+		&__header {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 12px;
+			padding: 10px 12px;
+			background: $blue-opacity;
+			border-bottom: 1px solid #ecf0f5;
+		}
+
+		&__list {
+			display: flex;
+			flex-direction: column;
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+
+		&__item {
+			display: flex;
+			flex-direction: column;
+			gap: 2px;
+			padding: 10px 12px;
+
+			& + & {
+				border-top: 1px solid #ecf0f5;
+			}
+		}
+
+		&__address {
+			color: $black;
+			font-size: 14px;
+			font-weight: 500;
+			line-height: 20px;
+			word-break: break-all;
+		}
+
+		&__name {
+			color: $grey-opacity;
+			font-size: 12px;
+			font-weight: 400;
+			line-height: 16px;
+		}
+	}
+
+	.otp {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+		padding-top: 20px;
+		border-top: 1px solid #ecf0f5;
+
+		&__heading {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			color: $black;
+		}
+
+		&__title {
+			font-size: 16px;
+			font-weight: 500;
+			line-height: 24px;
+		}
+
+		&__inputs {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			margin-top: 12px;
+		}
+
+		&__input {
+			width: 50px;
+			height: 48px;
+			border: none;
+			border-radius: 8px;
+			outline: none;
+			box-shadow: 0 0 0 1px $grey;
+			color: $black;
+			font-size: 20px;
+			font-weight: 500;
+			text-align: center;
+			transition: box-shadow 0.2s cubic-bezier(0.42, 0, 0.58, 1);
+
+			&:focus {
+				box-shadow: 0 0 0 2px $blue;
+			}
+
+			&:disabled {
+				opacity: 0.6;
+				cursor: not-allowed;
+			}
+		}
+	}
+</style>

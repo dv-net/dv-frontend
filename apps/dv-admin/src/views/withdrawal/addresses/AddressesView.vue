@@ -4,12 +4,13 @@
 	import { computed, onMounted, onUnmounted, ref, watch } from "vue";
 	import Breadcrumbs from "@dv-admin/components/ui/breadcrumbs/Breadcrumbs.vue";
 	import { useRoute } from "vue-router";
-	import { useWithdrawalStore } from "@dv-admin/stores/withdrawal";
+	import { MAX_BATCH_DELETE_ADDRESSES, useWithdrawalStore } from "@dv-admin/stores/withdrawal";
 	import { storeToRefs } from "pinia";
 	import { capitalizeFirstLetter } from "@shared/utils/helpers/general";
 	import type { IWithdrawalAddressItemResponse } from "@dv-admin/utils/types/api/apiGo";
 	import { ADDRESS_REGEX } from "@shared/utils/constants/regex";
 	import Authentication from "@dv-admin/views/withdrawal/addresses/components/authentication/Authentication.vue";
+	import DeleteAuthentication from "@dv-admin/views/withdrawal/addresses/components/authentication/DeleteAuthentication.vue";
 	import GlobalInput from "@dv-admin/components/ui/globalInput/GlobalInput.vue";
 	import ConnectedExchangesList from "@dv-admin/views/withdrawal/addresses/components/connectedExchangesList/ConnectedExchangesList.vue";
 	import {
@@ -33,13 +34,21 @@
 		withdrawalCurrencyRules,
 		isLoading,
 		isShowAuthentication,
+		isShowDeleteAuthentication,
 		arrayErrorsAddresses,
 		currentAddressTab,
 		withdrawalCurrentCurrencyRulesAddressesHistory,
 		isDataReceivedAddresses,
 		isShowBannerInfo
 	} = storeToRefs(useWithdrawalStore());
-	const { getWithdrawalCurrencyRules, getConnectedExchanges, getExchangeDepositAddresses } = useWithdrawalStore();
+	const {
+		getWithdrawalCurrencyRules,
+		getConnectedExchanges,
+		getExchangeDepositAddresses,
+		resetAddressAuthentication,
+		resetDeleteAddressAuthentication,
+		startDeleteWithdrawalAddresses
+	} = useWithdrawalStore();
 	const { bitcoinLikeNetworks } = storeToRefs(useGeneralStore());
 
 	const route = useRoute();
@@ -47,6 +56,7 @@
 	const isShowBannerWarning = ref<boolean>(false);
 	const currencyId = route.params.currencyId as string;
 	const multipleSelectionAddresses = ref<string[]>([]);
+	const isTableLocked = computed<boolean>(() => isShowAuthentication.value || isShowDeleteAuthentication.value);
 
 	const headers = computed<UiTableHeader[]>(() => [
 		{ selection: true },
@@ -69,21 +79,50 @@
 		withdrawalCurrencyRules.value.addressees = withdrawalCurrencyRules.value.addressees.filter(
 			(item) => item.id !== deletedId
 		);
-		// Удаляем элемент из выбранных
 		multipleSelectionAddresses.value = multipleSelectionAddresses.value.filter((id) => id !== deletedId);
 	};
 
 	const handleDeleteSelectedAddresses = () => {
-		if (!withdrawalCurrencyRules.value?.addressees || !withdrawalCurrencyRules.value?.addressees?.length) return;
-		const deleteIds = new Set(multipleSelectionAddresses.value);
-		withdrawalCurrencyRules.value.addressees = withdrawalCurrencyRules.value.addressees.filter(
-			(item) => !deleteIds.has(item.id)
-		);
-		multipleSelectionAddresses.value = [];
+		if (!withdrawalCurrencyRules.value?.addressees?.length || !multipleSelectionAddresses.value.length) return;
+
+		const savedIds = new Set(withdrawalCurrentCurrencyRulesAddressesHistory.value.map((item) => item.id));
+		const selectedIds = multipleSelectionAddresses.value.slice(0, MAX_BATCH_DELETE_ADDRESSES);
+		const localIds = selectedIds.filter((id) => !savedIds.has(id));
+		const serverIds = selectedIds.filter((id) => savedIds.has(id));
+
+		if (localIds.length) {
+			const localIdSet = new Set(localIds);
+			withdrawalCurrencyRules.value.addressees = withdrawalCurrencyRules.value.addressees.filter(
+				(item) => !localIdSet.has(item.id)
+			);
+		}
+
+		multipleSelectionAddresses.value = serverIds;
+
+		if (!serverIds.length) return;
+
+		const serverIdSet = new Set(serverIds);
+		startDeleteWithdrawalAddresses({
+			walletId: withdrawalCurrencyRules.value.id,
+			addresses: withdrawalCurrencyRules.value.addressees.filter((item) => serverIdSet.has(item.id)),
+			manualAddress: withdrawalCurrencyRules.value.low_balance_rules?.manual_address,
+			currencyId: withdrawalCurrencyRules.value.currency.id
+		});
 	};
+
+	watch(multipleSelectionAddresses, (ids) => {
+		if (ids.length <= MAX_BATCH_DELETE_ADDRESSES) return;
+		multipleSelectionAddresses.value = ids.slice(0, MAX_BATCH_DELETE_ADDRESSES);
+		notify(t("You can select up to {count} addresses", { count: MAX_BATCH_DELETE_ADDRESSES }));
+	});
+
+	watch(isShowDeleteAuthentication, (isShow, wasShow) => {
+		if (wasShow && !isShow) multipleSelectionAddresses.value = [];
+	});
 
 	// Validation before sending to backend
 	const handleCheckAddresses = async () => {
+		resetDeleteAddressAuthentication();
 		// Cannot delete address if it's specified in forwarding rules
 		const filteredAddresses = withdrawalCurrencyRules.value.addressees.map((item) => item.address);
 		if (
@@ -196,7 +235,8 @@
 	});
 
 	onUnmounted(() => {
-		isShowAuthentication.value = false;
+		resetAddressAuthentication();
+		resetDeleteAddressAuthentication();
 		isShowBannerInfo.value = false;
 	});
 </script>
@@ -234,7 +274,7 @@
 					:headers="headers"
 					:data="filteredAddressees"
 					table-layout="fixed"
-					:class="{ 'page__table--dimmed': isShowAuthentication }"
+					:class="{ 'page__table--dimmed': isTableLocked }"
 					v-model:selected="multipleSelectionAddresses"
 					selected-key="id"
 				>
@@ -278,6 +318,7 @@
 								leftIconType="400"
 								leftIconName="delete"
 								type="negative"
+								:disabled="isTableLocked"
 								@click="handleDeleteSelectedAddresses"
 							>
 								{{ $t("Delete selected") }}
@@ -291,7 +332,7 @@
 						ref="textarea"
 						class="textarea"
 						:value="addressesTextarea"
-						:disabled="isShowAuthentication"
+						:disabled="isTableLocked"
 						@blur="handleGetOutputAddresses"
 					/>
 				</global-input>
@@ -306,8 +347,9 @@
 				/>
 
 				<authentication />
+				<delete-authentication />
 
-				<div v-if="!isShowAuthentication" class="page__form-actions">
+				<div v-if="!isTableLocked" class="page__form-actions">
 					<ui-button
 						type="primary"
 						size="xl"

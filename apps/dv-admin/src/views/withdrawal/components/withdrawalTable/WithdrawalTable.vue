@@ -10,7 +10,9 @@
 	import { useI18n } from "vue-i18n";
 	import TooltipHelper from "@dv-admin/components/ui/tooltipHelper/TooltipHelper.vue";
 
-	const { withdrawalRules, depositAddresses, isLoading } = storeToRefs(useWithdrawalStore());
+	const { withdrawalRules, depositAddresses, isLoading, isLoadingDeleteAddresses, hasAnyWithdrawalAddresses } =
+		storeToRefs(useWithdrawalStore());
+	const { startDeleteAllWithdrawalAddresses } = useWithdrawalStore();
 	const { exchangeList } = storeToRefs(useExchangeSettingsStore());
 	const router = useRouter();
 	const { t } = useI18n();
@@ -49,7 +51,18 @@
 					:text="$t('Withdrawal addresses added by you for specific crypto exchanges')"
 				/>
 			</div>
-			<div />
+			<div class="cryptocurrencies__actions">
+				<ui-button
+					v-if="!isLoading && hasAnyWithdrawalAddresses"
+					type="negative"
+					size="sm"
+					left-icon-name="delete"
+					:disabled="isLoadingDeleteAddresses"
+					@click="startDeleteAllWithdrawalAddresses"
+				>
+					{{ $t("Delete all wallets") }}
+				</ui-button>
+			</div>
 		</div>
 		<ui-skeleton v-if="isLoading" :rows="15" :rowHeight="45" :item-border-radius="8" :rows-gap="8" />
 		<div v-else class="cryptocurrencies__rows">
@@ -65,18 +78,15 @@
 						<span>{{ $t("Not set") }}</span>
 						<tooltip-helper
 							:title="$t('Add wallets')"
-							:text="
-								$t(
-									'All funds received by hot wallets will remain there. Specify your wallets for forwarding'
-								)
-							"
+							:text="$t('All funds received by hot wallets will remain there. Specify your wallets for forwarding')"
 						/>
 					</div>
 				</div>
-				<div>
+				<div class="cryptocurrencies__actions">
 					<ui-button
 						type="secondary"
 						size="sm"
+						left-icon-name="edit"
 						@click="router.push({ name: `withdrawal-addresses`, params: { currencyId: item?.currency?.id } })"
 					>
 						{{ $t("Change wallets") }}
@@ -92,31 +102,39 @@
 		display: flex;
 		flex-direction: column;
 		gap: 12px;
+
 		&__header {
 			display: grid;
-			grid-template-columns: 1fr 1fr 160px;
+			grid-template-columns: 1fr 1fr 220px;
+			align-items: center;
 			gap: 20px;
+			min-height: 32px;
 			color: $grey-opacity;
 			font-size: 14px;
 			font-weight: 500;
 			line-height: 20px;
 			padding: 0 12px;
 		}
+
 		&__rows {
 			display: flex;
 			flex-direction: column;
 			border-radius: 12px;
 			border: 1px solid #ecf0f5;
 		}
+
 		&__row {
 			display: grid;
-			grid-template-columns: 1fr 1fr 160px;
+			grid-template-columns: 1fr 1fr 220px;
+			align-items: center;
 			gap: 20px;
 			padding: 12px;
 			border-bottom: 1px solid #ecf0f5;
+
 			&:last-child {
 				border-bottom: unset;
 			}
+
 			.addresses {
 				display: flex;
 				align-items: center;
@@ -125,6 +143,7 @@
 				font-weight: 500;
 				color: $black;
 				justify-content: space-between;
+
 				&__text {
 					display: flex;
 					align-items: center;
@@ -132,11 +151,19 @@
 					color: #dd4c1e;
 					font-size: 14px;
 					font-weight: 500;
+
 					&--green {
 						color: #1f9649;
 					}
 				}
 			}
+		}
+
+		&__actions {
+			display: flex;
+			align-items: center;
+			justify-content: flex-end;
+			gap: 8px;
 		}
 	}
 </style>
