@@ -1,7 +1,7 @@
 <script setup lang="ts">
 	import BlockchainIcon from "@shared/components/ui/blockchainIcon/BlockchainIcon.vue";
-	import { UiButton, UiForm, UiFormItem, UiInput, UiTooltip } from "@dv.net/ui-kit";
-	import { computed, ref, watch } from "vue";
+	import { UiButton, UiForm, UiFormItem, UiInput } from "@dv.net/ui-kit";
+	import { computed, nextTick, ref, watch } from "vue";
 	import type {
 		IProcessingWalletsResponse,
 		IWithdrawalFromProcessingRequest
@@ -26,6 +26,10 @@
 	const { data } = defineProps<{ data: IProcessingWalletsResponse }>();
 
 	const formRef = ref<HTMLFormElement | null>(null);
+	const tokensRef = ref<HTMLElement | null>(null);
+	const tokenRefs = ref<HTMLButtonElement[]>([]);
+	const indicatorReady = ref(false);
+	const indicatorStyle = ref<Record<string, string>>({ opacity: "0" });
 	const selectedAsset = ref<IProcessingWalletsAssets | null>(null);
 	const amountUsdWithdrawProcessing = ref<number | null>(null);
 	const defaultFormValues = {
@@ -54,26 +58,62 @@
 
 	const showTokenSelect = computed<boolean>(() => data.assets.length > 1);
 
+	const tokenAmountLabel = (asset: IProcessingWalletsAssets) =>
+		formatAmountBlockchain(asset.amount, { currencyId: asset.currency_id });
+
+	const isZeroAsset = (asset: IProcessingWalletsAssets) => tokenAmountLabel(asset) === "0";
+
 	const tokenBalanceLabel = (asset: IProcessingWalletsAssets) => {
-		const amount = formatAmountBlockchain(asset.amount, { currencyId: asset.currency_id });
+		const amount = tokenAmountLabel(asset);
 		const fiatAmount = formatDollars(asset.amount_usd, { currency: "", countPartMoreOneDollar: 2 });
 		if (amount === "0" || fiatAmount === "0") return amount;
 		return `${amount} • ${formatDollars(asset.amount_usd, { countPartMoreOneDollar: 2 })}`;
 	};
-
-	const tokenTooltipAmount = (asset: IProcessingWalletsAssets) =>
-		`${formatAmountBlockchain(asset.amount, { currencyId: asset.currency_id })} ${getCurrentCoin(asset.currency_id)}`;
-
-	const tokenTooltipUsd = (asset: IProcessingWalletsAssets) =>
-		formatDollars(asset.amount_usd, { countPartMoreOneDollar: 2 });
 
 	const updateAmounts = (asset: IProcessingWalletsAssets) => {
 		form.value.amount = parseFloat(formatAmountBlockchain(asset.amount, { currencyId: asset.currency_id }));
 		amountUsdWithdrawProcessing.value = parseFloat(asset.amount_usd);
 	};
 
+	const setTokenRef = (element: Element | null, index: number) => {
+		if (element instanceof HTMLButtonElement) {
+			tokenRefs.value[index] = element;
+			return;
+		}
+		delete tokenRefs.value[index];
+	};
+
+	const placeIndicator = () => {
+		const container = tokensRef.value;
+		const index = data.assets.findIndex((asset) => asset.currency_id === selectedAsset.value?.currency_id);
+		const button = tokenRefs.value[index];
+		if (!container || !button) {
+			indicatorReady.value = false;
+			indicatorStyle.value = { opacity: "0" };
+			return;
+		}
+		const containerRect = container.getBoundingClientRect();
+		const rect = button.getBoundingClientRect();
+		if (rect.width === 0 || rect.height === 0) {
+			indicatorReady.value = false;
+			indicatorStyle.value = { opacity: "0" };
+			return;
+		}
+		indicatorStyle.value = {
+			opacity: "1",
+			width: `${rect.width}px`,
+			height: `${rect.height}px`,
+			transform: `translate(${rect.left - containerRect.left}px, ${rect.top - containerRect.top}px)`
+		};
+		if (!indicatorReady.value) {
+			requestAnimationFrame(() => {
+				indicatorReady.value = true;
+			});
+		}
+	};
+
 	const selectAsset = (asset: IProcessingWalletsAssets) => {
-		if (selectedAsset.value?.currency_id === asset.currency_id) return;
+		if (isZeroAsset(asset) || selectedAsset.value?.currency_id === asset.currency_id) return;
 		form.value.currency_id = asset.currency_id;
 		selectedAsset.value = asset;
 		form.value.amount = null;
@@ -81,19 +121,21 @@
 	};
 
 	const preselectAsset = () => {
-		if (!data.assets.length) {
+		const selectable = data.assets.filter((asset) => !isZeroAsset(asset));
+		if (!selectable.length) {
 			selectedAsset.value = null;
 			form.value.currency_id = "";
+			form.value.amount = null;
+			amountUsdWithdrawProcessing.value = null;
 			return;
 		}
-		const current = data.assets.find((asset) => asset.currency_id === selectedAsset.value?.currency_id);
-		const native = data.assets.find((asset) => asset.currency_id === data.currency.id);
-		const asset = current ?? native ?? data.assets[0];
+		const current = selectable.find((asset) => asset.currency_id === selectedAsset.value?.currency_id);
 		if (current) {
 			selectedAsset.value = current;
 			return;
 		}
-		selectAsset(asset);
+		const native = selectable.find((asset) => asset.currency_id === data.currency.id);
+		selectAsset(native ?? selectable[0]);
 	};
 
 	const selectAllAmount = () => {
@@ -138,7 +180,27 @@
 		preselectAsset();
 	};
 
-	watch(() => data.assets, preselectAsset, { immediate: true });
+	watch(
+		() => data.assets,
+		() => {
+			preselectAsset();
+			void nextTick(placeIndicator);
+		},
+		{ immediate: true }
+	);
+	watch(
+		() => selectedAsset.value?.currency_id,
+		() => {
+			void nextTick(placeIndicator);
+		}
+	);
+	watch(tokensRef, (element, _, onCleanup) => {
+		if (!element) return;
+		const observer = new ResizeObserver(() => placeIndicator());
+		observer.observe(element);
+		void nextTick(placeIndicator);
+		onCleanup(() => observer.disconnect());
+	});
 
 	defineExpose({
 		clearForm
@@ -149,39 +211,26 @@
 	<div class="block">
 		<div v-if="showTokenSelect" class="block__column">
 			<span class="block__label">{{ $t("Select a token") }}</span>
-			<div class="block__tokens">
-				<ui-tooltip
-					v-for="item in data.assets"
+			<div ref="tokensRef" class="block__tokens">
+				<span class="token-indicator" :class="{ 'token-indicator--ready': indicatorReady }" :style="indicatorStyle" />
+				<button
+					v-for="(item, index) in data.assets"
 					:key="item.currency_id"
-					:disabled="selectedAsset?.currency_id === item.currency_id"
-					:title="`${$t('Balances')} ${getCurrentCoin(item.currency_id)}`"
+					:ref="(element) => setTokenRef(element as Element | null, index)"
+					type="button"
+					class="item"
+					:class="{ selected: selectedAsset?.currency_id === item.currency_id }"
+					:disabled="isZeroAsset(item)"
+					@click="selectAsset(item)"
 				>
-					<template #text>
-						<span class="token-tooltip">
-							<span class="token-tooltip__row">
-								<span class="token-tooltip__label">{{ $t("Coin amount") }}:</span>
-								<span class="token-tooltip__value">{{ tokenTooltipAmount(item) }}</span>
-							</span>
-							<span class="token-tooltip__row">
-								<span class="token-tooltip__label">{{ $t("Dollar value") }}:</span>
-								<span class="token-tooltip__value">{{ tokenTooltipUsd(item) }}</span>
-							</span>
-						</span>
-					</template>
-					<button
-						class="item"
-						:class="{ selected: selectedAsset?.currency_id === item.currency_id }"
-						@click="selectAsset(item)"
-					>
-						<span class="item__content">
-							<blockchain-icon :type="item.currency_id as BlockchainType" width="16px" height="16px" />
-							<span>{{ getCurrentCoin(item.currency_id) }}</span>
-						</span>
-						<span class="item__price">
-							<span class="item__price-inner">{{ tokenBalanceLabel(item) }}</span>
-						</span>
-					</button>
-				</ui-tooltip>
+					<span class="item__content">
+						<blockchain-icon :type="item.currency_id as BlockchainType" width="16px" height="16px" />
+						<span>{{ getCurrentCoin(item.currency_id) }}</span>
+					</span>
+					<span class="item__price">
+						<span class="item__price-inner">{{ tokenBalanceLabel(item) }}</span>
+					</span>
+				</button>
 			</div>
 		</div>
 		<ui-form class="form" ref="formRef" @submit.prevent="withdrawHandler" :rules="rulesForm" :model="form">
@@ -243,11 +292,30 @@
 			gap: 12px;
 		}
 		&__tokens {
+			position: relative;
 			display: flex;
 			align-items: center;
 			flex-wrap: wrap;
 			gap: 6px;
+			.token-indicator {
+				position: absolute;
+				top: 0;
+				left: 0;
+				z-index: 1;
+				border-radius: 12px;
+				pointer-events: none;
+				box-shadow: inset 0 0 0 1px $blue;
+				&--ready {
+					transition:
+						transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+						width 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+						height 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+						opacity 0.2s ease;
+				}
+			}
 			.item {
+				position: relative;
+				z-index: 0;
 				display: flex;
 				align-items: center;
 				padding: 4px 12px;
@@ -255,22 +323,20 @@
 				border: 1px solid $grey;
 				background-color: $white;
 				min-height: 40px;
-				transition: border-color 0.25s ease;
+
+				&:disabled {
+					cursor: not-allowed;
+					opacity: 0.45;
+				}
 
 				@media (hover: hover) {
-					&:not(.selected):hover {
+					&:not(.selected):not(:disabled):hover {
 						border-color: $blue;
 					}
 				}
 
 				&.selected {
-					border-color: $blue;
-
-					.item__price {
-						grid-template-columns: 1fr;
-						margin-left: 8px;
-						opacity: 1;
-					}
+					border-color: transparent;
 				}
 				&__content {
 					display: flex;
@@ -280,16 +346,16 @@
 					font-size: 14px;
 					font-weight: 700;
 					line-height: 24px;
+					:deep(svg) {
+						transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+					}
+				}
+				&.selected &__content :deep(svg) {
+					transform: scale(1.12);
 				}
 				&__price {
 					display: grid;
-					grid-template-columns: 0fr;
-					margin-left: 0;
-					opacity: 0;
-					transition:
-						grid-template-columns 0.25s ease,
-						margin-left 0.25s ease,
-						opacity 0.2s ease;
+					margin-left: 8px;
 				}
 				&__price-inner {
 					overflow: hidden;
@@ -299,6 +365,10 @@
 					font-weight: 400;
 					line-height: 20px;
 					white-space: nowrap;
+					transition: color 0.35s ease;
+				}
+				&.selected &__price-inner {
+					color: $black;
 				}
 			}
 		}
@@ -335,29 +405,9 @@
 		}
 	}
 
-	.token-tooltip {
-		display: flex;
-		flex-direction: column;
-		gap: 4px;
-		font-size: 14px;
-		line-height: 20px;
-
-		&__row {
-			display: flex;
-			align-items: baseline;
-			justify-content: space-between;
-			gap: 16px;
-		}
-
-		&__label {
-			color: $grey-opacity;
-			font-weight: 400;
-		}
-
-		&__value {
-			color: #fff;
-			font-weight: 500;
-			white-space: nowrap;
+	@media (prefers-reduced-motion: reduce) {
+		.token-indicator--ready {
+			transition: none;
 		}
 	}
 </style>

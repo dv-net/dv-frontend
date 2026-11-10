@@ -19,6 +19,7 @@
 	const isDisabledBtn = computed<boolean>(() => !otp.value.every(Boolean));
 
 	const handleSendForm = async () => {
+		if (isLoading.value || isDisabledBtn.value) return;
 		try {
 			isLoading.value = true;
 			if (otpGlobalCallback.value) {
@@ -37,6 +38,10 @@
 		const target = event.target as HTMLInputElement | null;
 		if (!target) return;
 		otp.value[index] = target.value.replace(/\D/g, "");
+		if (otp.value.every(Boolean)) {
+			void handleSendForm();
+			return;
+		}
 		if (otp.value[index] && index + 1 < otp.value.length) {
 			nextTick(() => {
 				otpRefs.value[index + 1].focus();
@@ -47,14 +52,14 @@
 	const handlePaste = (event: ClipboardEvent) => {
 		const pastedText = event.clipboardData?.getData("text") || "";
 		const cleaned = pastedText.replace(/\D/g, "").slice(0, COUNT_INPUTS);
-		if (cleaned.length) {
-			event.preventDefault();
-			const digits = cleaned.split("");
-			otp.value = [...digits, ...Array(COUNT_INPUTS - digits.length).fill("")];
-			nextTick(() => {
-				otpRefs.value[digits.length - 1]?.focus();
-			});
-		}
+		if (!cleaned.length) return;
+		event.preventDefault();
+		const digits = cleaned.split("");
+		otp.value = [...digits, ...Array(COUNT_INPUTS - digits.length).fill("")];
+		nextTick(() => {
+			otpRefs.value[digits.length - 1]?.focus();
+			if (digits.length === COUNT_INPUTS) void handleSendForm();
+		});
 	};
 
 	const onBackspace = (index: number) => {
