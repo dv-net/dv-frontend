@@ -1017,5 +1017,17 @@
   "set exchange keys before network settings": "ネットワーク設定の前に取引所キーを設定してください",
   "System default route": "システムのデフォルトルート",
   "The saved network interface is no longer on the server": "保存済みのネットワークインターフェースはサーバー上に存在しなくなりました",
-  "VPN or network interface": "VPNまたはネットワークインターフェース"
+  "VPN or network interface": "VPNまたはネットワークインターフェース",
+  "Addresses deleted": "アドレスを削除しました",
+  "All withdrawal wallets will be deleted": "すべての出金ウォレットが削除されます",
+  "Close": "閉じる",
+  "Confirm deletion": "削除を確認",
+  "Delete all wallets": "すべてのウォレットを削除",
+  "Mail preview": "メールプレビュー",
+  "Multi-withdrawal disabled warning": "選択されたアドレスが手動転送アドレスとして使用されているため、複数出金ルールは自動的に無効に切り替わります",
+  "Refund auth mode description": "支払者は、メール認証なしで入金送信元への返金をリクエストできます。別のアドレスへの返金には、引き続きメールが必要です",
+  "Refund to the sender without email": "メールなしで送信者に返金",
+  "Selected addresses will be deleted": "選択したアドレスは削除されます",
+  "This action cannot be undone": "この操作は元に戻せません",
+  "You can select up to {count} addresses": "最大{count}個のアドレスを選択できます"
 }

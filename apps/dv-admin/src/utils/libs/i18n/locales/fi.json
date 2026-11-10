@@ -1017,5 +1017,17 @@
   "set exchange keys before network settings": "Aseta pörssiavaimet ennen verkkoasetuksia",
   "System default route": "Järjestelmän oletusreitti",
   "The saved network interface is no longer on the server": "Tallennettua verkkoliitäntää ei enää ole palvelimella",
-  "VPN or network interface": "VPN tai verkkoliitäntä"
+  "VPN or network interface": "VPN tai verkkoliitäntä",
+  "Addresses deleted": "Osoitteet poistettu",
+  "All withdrawal wallets will be deleted": "Kaikki nostolompakot poistetaan",
+  "Close": "Sulje",
+  "Confirm deletion": "Vahvista poistaminen",
+  "Delete all wallets": "Poista kaikki lompakot",
+  "Mail preview": "Sähköpostin esikatselu",
+  "Multi-withdrawal disabled warning": "Moninostosääntö poistetaan automaattisesti käytöstä, koska valittua osoitetta käytetään manuaalisena edelleenlähetysosoitteena",
+  "Refund auth mode description": "Maksaja voi pyytää hyvitystä talletuksen lähettäjälle ilman sähköpostivahvistusta. Hyvitys toiseen osoitteeseen edellyttää edelleen sähköpostia",
+  "Refund to the sender without email": "Hyvitä lähettäjälle ilman sähköpostia",
+  "Selected addresses will be deleted": "Valitut osoitteet poistetaan",
+  "This action cannot be undone": "Tätä toimintoa ei voi kumota",
+  "You can select up to {count} addresses": "Voit valita enintään {count} osoitetta"
 }

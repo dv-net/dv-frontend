@@ -1017,5 +1017,17 @@
   "set exchange keys before network settings": "Angiv udvekslingsnøglerne før netværksindstillingerne",
   "System default route": "Systemets standardrute",
   "The saved network interface is no longer on the server": "Den gemte netværksgrænseflade findes ikke længere på serveren",
-  "VPN or network interface": "VPN eller netværksgrænseflade"
+  "VPN or network interface": "VPN eller netværksgrænseflade",
+  "Addresses deleted": "Adresser slettet",
+  "All withdrawal wallets will be deleted": "Alle udbetalings-wallets vil blive slettet",
+  "Close": "Luk",
+  "Confirm deletion": "Bekræft sletning",
+  "Delete all wallets": "Slet alle wallets",
+  "Mail preview": "Forhåndsvisning af mail",
+  "Multi-withdrawal disabled warning": "Reglen for flere udbetalinger skifter automatisk til deaktiveret, fordi en valgt adresse bruges som den manuelle videresendelsesadresse",
+  "Refund auth mode description": "Betaleren kan anmode om en refusion til indbetalingsafsenderen uden e-mailbekræftelse. En refusion til en anden adresse kræver stadig e-mail",
+  "Refund to the sender without email": "Refunder til afsenderen uden e-mail",
+  "Selected addresses will be deleted": "Valgte adresser vil blive slettet",
+  "This action cannot be undone": "Denne handling kan ikke fortrydes",
+  "You can select up to {count} addresses": "Du kan vælge op til {count} adresser"
 }

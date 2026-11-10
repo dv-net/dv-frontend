@@ -1017,5 +1017,17 @@
   "set exchange keys before network settings": "请先设置交易所密钥，再进行网络设置",
   "System default route": "系统默认路由",
   "The saved network interface is no longer on the server": "保存的网络接口已不在服务器上",
-  "VPN or network interface": "VPN 或网络接口"
+  "VPN or network interface": "VPN 或网络接口",
+  "Addresses deleted": "地址已删除",
+  "All withdrawal wallets will be deleted": "所有提现钱包都将被删除",
+  "Close": "关闭",
+  "Confirm deletion": "确认删除",
+  "Delete all wallets": "删除所有钱包",
+  "Mail preview": "邮件预览",
+  "Multi-withdrawal disabled warning": "多笔提现规则将自动切换为禁用状态，因为所选地址被用作手动转发地址",
+  "Refund auth mode description": "付款人可以在无需电子邮件验证的情况下请求将退款退回至充值发送方。退款到其他地址仍需要电子邮件",
+  "Refund to the sender without email": "无需电子邮件即可退款给发送方",
+  "Selected addresses will be deleted": "所选地址将被删除",
+  "This action cannot be undone": "此操作无法撤销",
+  "You can select up to {count} addresses": "您最多可以选择 {count} 个地址"
 }

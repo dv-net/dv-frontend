@@ -1017,5 +1017,17 @@
   "set exchange keys before network settings": "Задайте ключовете за обмен преди мрежовите настройки",
   "System default route": "Системен маршрут по подразбиране",
   "The saved network interface is no longer on the server": "Запазеният мрежов интерфейс вече не е на сървъра",
-  "VPN or network interface": "VPN или мрежов интерфейс"
+  "VPN or network interface": "VPN или мрежов интерфейс",
+  "Addresses deleted": "Адресите са изтрити",
+  "All withdrawal wallets will be deleted": "Всички портфейли за теглене ще бъдат изтрити",
+  "Close": "Затвори",
+  "Confirm deletion": "Потвърждаване на изтриването",
+  "Delete all wallets": "Изтриване на всички портфейли",
+  "Mail preview": "Преглед на имейл",
+  "Multi-withdrawal disabled warning": "Правилото за мулти-теглене автоматично ще се превключи на деактивирано, защото избран адрес се използва като адрес за ръчно препращане",
+  "Refund auth mode description": "Платецът може да поиска възстановяване на средства към подателя на депозита без имейл потвърждение. Възстановяването на средства към друг адрес все още изисква имейл",
+  "Refund to the sender without email": "Възстановяване на сумата на подателя без имейл",
+  "Selected addresses will be deleted": "Избраните адреси ще бъдат изтрити",
+  "This action cannot be undone": "Това действие не може да бъде отменено",
+  "You can select up to {count} addresses": "Можете да изберете до {count} адреса"
 }

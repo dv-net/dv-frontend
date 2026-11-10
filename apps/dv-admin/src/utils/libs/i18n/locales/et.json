@@ -1017,5 +1017,17 @@
   "set exchange keys before network settings": "Seadistage börsi võtmed enne võrguseadeid",
   "System default route": "Süsteemi vaikemarsruut",
   "The saved network interface is no longer on the server": "Salvestatud võrguliidest pole enam serveris",
-  "VPN or network interface": "VPN või võrguliides"
+  "VPN or network interface": "VPN või võrguliides",
+  "Addresses deleted": "Aadressid kustutatud",
+  "All withdrawal wallets will be deleted": "Kõik väljamakse rahakotid kustutatakse",
+  "Close": "Sulge",
+  "Confirm deletion": "Kinnita kustutamine",
+  "Delete all wallets": "Kustuta kõik rahakotid",
+  "Mail preview": "E-kirja eelvaade",
+  "Multi-withdrawal disabled warning": "Mitme väljamakse reegel lülitub automaatselt keelatud olekusse, kuna valitud aadressi kasutatakse käsitsi edasisuunamise aadressina",
+  "Refund auth mode description": "Maksja saab taotleda tagasimakset sissemakse saatjale ilma e-posti kinnitamiseta. Tagasimakse teisele aadressile nõuab endiselt e-posti aadressi",
+  "Refund to the sender without email": "Tagasta saatjale ilma e-postita",
+  "Selected addresses will be deleted": "Valitud aadressid kustutatakse",
+  "This action cannot be undone": "Seda toimingut ei saa tagasi võtta",
+  "You can select up to {count} addresses": "Saate valida kuni {count} aadressi"
 }

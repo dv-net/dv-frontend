@@ -1017,5 +1017,17 @@
   "set exchange keys before network settings": "عيّن مفاتيح منصة التداول قبل إعدادات الشبكة",
   "System default route": "المسار الافتراضي للنظام",
   "The saved network interface is no longer on the server": "واجهة الشبكة المحفوظة لم تعد موجودة على الخادم",
-  "VPN or network interface": "VPN أو واجهة الشبكة"
+  "VPN or network interface": "VPN أو واجهة الشبكة",
+  "Addresses deleted": "تم حذف العناوين",
+  "All withdrawal wallets will be deleted": "سيتم حذف جميع محافظ السحب",
+  "Close": "إغلاق",
+  "Confirm deletion": "تأكيد الحذف",
+  "Delete all wallets": "حذف جميع المحافظ",
+  "Mail preview": "معاينة البريد الإلكتروني",
+  "Multi-withdrawal disabled warning": "سيتم تبديل قاعدة السحب المتعدد تلقائيًا إلى معطّلة لأن عنوانًا محددًا يُستخدم كعنوان التحويل اليدوي",
+  "Refund auth mode description": "يمكن للدافع طلب استرداد إلى مرسل الإيداع دون التحقق عبر البريد الإلكتروني. لا يزال الاسترداد إلى عنوان آخر يتطلب البريد الإلكتروني",
+  "Refund to the sender without email": "ردّ الأموال إلى المُرسِل بدون بريد إلكتروني",
+  "Selected addresses will be deleted": "سيتم حذف العناوين المحددة",
+  "This action cannot be undone": "لا يمكن التراجع عن هذا الإجراء",
+  "You can select up to {count} addresses": "يمكنك تحديد ما يصل إلى {count} عنوانًا"
 }

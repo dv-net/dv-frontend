@@ -1017,5 +1017,17 @@
   "set exchange keys before network settings": "Ορίστε τα κλειδιά ανταλλακτηρίου πριν από τις ρυθμίσεις δικτύου",
   "System default route": "Προεπιλεγμένη διαδρομή συστήματος",
   "The saved network interface is no longer on the server": "Η αποθηκευμένη διεπαφή δικτύου δεν υπάρχει πλέον στον διακομιστή",
-  "VPN or network interface": "VPN ή διεπαφή δικτύου"
+  "VPN or network interface": "VPN ή διεπαφή δικτύου",
+  "Addresses deleted": "Οι διευθύνσεις διαγράφηκαν",
+  "All withdrawal wallets will be deleted": "Όλα τα πορτοφόλια ανάληψης θα διαγραφούν",
+  "Close": "Κλείσιμο",
+  "Confirm deletion": "Επιβεβαίωση διαγραφής",
+  "Delete all wallets": "Διαγραφή όλων των πορτοφολιών",
+  "Mail preview": "Προεπισκόπηση email",
+  "Multi-withdrawal disabled warning": "Ο κανόνας πολλαπλών αναλήψεων θα απενεργοποιηθεί αυτόματα, επειδή μια επιλεγμένη διεύθυνση χρησιμοποιείται ως διεύθυνση μη αυτόματης προώθησης",
+  "Refund auth mode description": "Ο πληρωτής μπορεί να ζητήσει επιστροφή χρημάτων στον αποστολέα της κατάθεσης χωρίς επαλήθευση email. Η επιστροφή χρημάτων σε άλλη διεύθυνση εξακολουθεί να απαιτεί email",
+  "Refund to the sender without email": "Επιστροφή χρημάτων στον αποστολέα χωρίς email",
+  "Selected addresses will be deleted": "Οι επιλεγμένες διευθύνσεις θα διαγραφούν",
+  "This action cannot be undone": "Αυτή η ενέργεια δεν μπορεί να αναιρεθεί",
+  "You can select up to {count} addresses": "Μπορείτε να επιλέξετε έως {count} διευθύνσεις"
 }

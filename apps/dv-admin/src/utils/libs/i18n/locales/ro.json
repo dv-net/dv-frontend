@@ -1017,5 +1017,17 @@
   "set exchange keys before network settings": "Setați cheile de schimb înainte de setările de rețea",
   "System default route": "Rută implicită de sistem",
   "The saved network interface is no longer on the server": "Interfața de rețea salvată nu mai este pe server",
-  "VPN or network interface": "VPN sau interfață de rețea"
+  "VPN or network interface": "VPN sau interfață de rețea",
+  "Addresses deleted": "Adrese șterse",
+  "All withdrawal wallets will be deleted": "Toate portofelele de retragere vor fi șterse",
+  "Close": "Închide",
+  "Confirm deletion": "Confirmă ștergerea",
+  "Delete all wallets": "Șterge toate portofelele",
+  "Mail preview": "Previzualizare e-mail",
+  "Multi-withdrawal disabled warning": "Regula de retragere multiplă va fi comutată automat la dezactivată deoarece o adresă selectată este utilizată ca adresă de redirecționare manuală",
+  "Refund auth mode description": "Plătitorul poate solicita o rambursare către expeditorul depunerii fără verificarea e-mailului. O rambursare către o altă adresă necesită în continuare e-mail",
+  "Refund to the sender without email": "Rambursează către expeditor fără e-mail",
+  "Selected addresses will be deleted": "Adresele selectate vor fi șterse",
+  "This action cannot be undone": "Această acțiune nu poate fi anulată",
+  "You can select up to {count} addresses": "Puteți selecta până la {count} adrese"
 }

@@ -1017,5 +1017,17 @@
   "set exchange keys before network settings": "নেটওয়ার্ক সেটিংসের আগে এক্সচেঞ্জ কীগুলি সেট করুন",
   "System default route": "সিস্টেমের ডিফল্ট রুট",
   "The saved network interface is no longer on the server": "সংরক্ষিত নেটওয়ার্ক ইন্টারফেসটি আর সার্ভারে নেই",
-  "VPN or network interface": "VPN অথবা নেটওয়ার্ক ইন্টারফেস"
+  "VPN or network interface": "VPN অথবা নেটওয়ার্ক ইন্টারফেস",
+  "Addresses deleted": "ঠিকানাগুলি মুছে ফেলা হয়েছে",
+  "All withdrawal wallets will be deleted": "সমস্ত উত্তোলন ওয়ালেট মুছে ফেলা হবে",
+  "Close": "বন্ধ করুন",
+  "Confirm deletion": "মুছে ফেলা নিশ্চিত করুন",
+  "Delete all wallets": "সব ওয়ালেট মুছুন",
+  "Mail preview": "মেইল প্রিভিউ",
+  "Multi-withdrawal disabled warning": "মাল্টি-উইথড্রয়াল নিয়মটি স্বয়ংক্রিয়ভাবে নিষ্ক্রিয় অবস্থায় পরিবর্তিত হবে কারণ নির্বাচিত একটি ঠিকানা ম্যানুয়াল ফরওয়ার্ডিং ঠিকানা হিসেবে ব্যবহৃত হয়েছে",
+  "Refund auth mode description": "পেয়ার ইমেল যাচাইকরণ ছাড়াই ডিপোজিট প্রেরকের কাছে রিফান্ডের অনুরোধ করতে পারেন। অন্য কোনো ঠিকানায় রিফান্ডের জন্য এখনও ইমেল প্রয়োজন",
+  "Refund to the sender without email": "ইমেল ছাড়া প্রেরককে রিফান্ড করুন",
+  "Selected addresses will be deleted": "নির্বাচিত ঠিকানাগুলি মুছে ফেলা হবে",
+  "This action cannot be undone": "এই পদক্ষেপটি পূর্বাবস্থায় ফেরানো যাবে না",
+  "You can select up to {count} addresses": "আপনি সর্বোচ্চ {count}টি ঠিকানা নির্বাচন করতে পারেন"
 }

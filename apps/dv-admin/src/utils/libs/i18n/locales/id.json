@@ -1017,5 +1017,17 @@
   "set exchange keys before network settings": "Atur kunci exchange sebelum pengaturan jaringan",
   "System default route": "Rute default sistem",
   "The saved network interface is no longer on the server": "Antarmuka jaringan yang disimpan tidak lagi ada di server",
-  "VPN or network interface": "VPN atau antarmuka jaringan"
+  "VPN or network interface": "VPN atau antarmuka jaringan",
+  "Addresses deleted": "Alamat dihapus",
+  "All withdrawal wallets will be deleted": "Semua dompet penarikan akan dihapus",
+  "Close": "Tutup",
+  "Confirm deletion": "Konfirmasi penghapusan",
+  "Delete all wallets": "Hapus semua dompet",
+  "Mail preview": "Pratinjau email",
+  "Multi-withdrawal disabled warning": "Aturan multi-penarikan akan secara otomatis beralih menjadi dinonaktifkan karena alamat yang dipilih digunakan sebagai alamat penerusan manual",
+  "Refund auth mode description": "Pembayar dapat meminta pengembalian dana ke pengirim deposit tanpa verifikasi email. Pengembalian dana ke alamat lain tetap memerlukan email",
+  "Refund to the sender without email": "Kembalikan dana ke pengirim tanpa email",
+  "Selected addresses will be deleted": "Alamat yang dipilih akan dihapus",
+  "This action cannot be undone": "Tindakan ini tidak dapat dibatalkan",
+  "You can select up to {count} addresses": "Anda dapat memilih hingga {count} alamat"
 }

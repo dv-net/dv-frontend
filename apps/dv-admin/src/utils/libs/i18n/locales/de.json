@@ -1017,5 +1017,17 @@
   "set exchange keys before network settings": "Legen Sie die Exchange-Schlüssel vor den Netzwerkeinstellungen fest",
   "System default route": "Standardroute des Systems",
   "The saved network interface is no longer on the server": "Die gespeicherte Netzwerkschnittstelle befindet sich nicht mehr auf dem Server",
-  "VPN or network interface": "VPN oder Netzwerkschnittstelle"
+  "VPN or network interface": "VPN oder Netzwerkschnittstelle",
+  "Addresses deleted": "Adressen gelöscht",
+  "All withdrawal wallets will be deleted": "Alle Auszahlungs-Wallets werden gelöscht",
+  "Close": "Schließen",
+  "Confirm deletion": "Löschung bestätigen",
+  "Delete all wallets": "Alle Wallets löschen",
+  "Mail preview": "E-Mail-Vorschau",
+  "Multi-withdrawal disabled warning": "Die Multi-Auszahlungsregel wird automatisch deaktiviert, da eine ausgewählte Adresse als manuelle Weiterleitungsadresse verwendet wird",
+  "Refund auth mode description": "Der Zahler kann ohne E-Mail-Verifizierung eine Rückerstattung an den Einzahlungsabsender anfordern. Eine Rückerstattung an eine andere Adresse erfordert weiterhin eine E-Mail.",
+  "Refund to the sender without email": "Ohne E-Mail an den Absender zurückerstatten",
+  "Selected addresses will be deleted": "Ausgewählte Adressen werden gelöscht",
+  "This action cannot be undone": "Diese Aktion kann nicht rückgängig gemacht werden",
+  "You can select up to {count} addresses": "Sie können bis zu {count} Adressen auswählen"
 }

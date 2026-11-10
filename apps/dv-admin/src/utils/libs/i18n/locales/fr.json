@@ -1017,5 +1017,17 @@
   "set exchange keys before network settings": "Définissez les clés d’échange avant les paramètres réseau",
   "System default route": "Route par défaut du système",
   "The saved network interface is no longer on the server": "L’interface réseau enregistrée n’est plus sur le serveur",
-  "VPN or network interface": "VPN ou interface réseau"
+  "VPN or network interface": "VPN ou interface réseau",
+  "Addresses deleted": "Adresses supprimées",
+  "All withdrawal wallets will be deleted": "Tous les portefeuilles de retrait seront supprimés",
+  "Close": "Fermer",
+  "Confirm deletion": "Confirmer la suppression",
+  "Delete all wallets": "Supprimer tous les portefeuilles",
+  "Mail preview": "Aperçu de l’e-mail",
+  "Multi-withdrawal disabled warning": "La règle de retrait multiple passera automatiquement à l’état désactivé, car une adresse sélectionnée est utilisée comme adresse de transfert manuel",
+  "Refund auth mode description": "Le payeur peut demander un remboursement à l’expéditeur du dépôt sans vérification par e-mail. Un remboursement vers une autre adresse nécessite toujours un e-mail",
+  "Refund to the sender without email": "Rembourser l’expéditeur sans e-mail",
+  "Selected addresses will be deleted": "Les adresses sélectionnées seront supprimées",
+  "This action cannot be undone": "Cette action est irréversible",
+  "You can select up to {count} addresses": "Vous pouvez sélectionner jusqu’à {count} adresses"
 }

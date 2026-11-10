@@ -1017,5 +1017,17 @@
   "set exchange keys before network settings": "Ställ in växlingsnycklarna före nätverksinställningarna",
   "System default route": "Systemets standardrutt",
   "The saved network interface is no longer on the server": "Det sparade nätverksgränssnittet finns inte längre på servern",
-  "VPN or network interface": "VPN eller nätverksgränssnitt"
+  "VPN or network interface": "VPN eller nätverksgränssnitt",
+  "Addresses deleted": "Adresser raderade",
+  "All withdrawal wallets will be deleted": "Alla uttagsplånböcker kommer att raderas",
+  "Close": "Stäng",
+  "Confirm deletion": "Bekräfta radering",
+  "Delete all wallets": "Ta bort alla plånböcker",
+  "Mail preview": "Förhandsgranskning av e-post",
+  "Multi-withdrawal disabled warning": "Regeln för flera uttag kommer automatiskt att inaktiveras eftersom en vald adress används som manuell vidarebefordringsadress",
+  "Refund auth mode description": "Betalaren kan begära en återbetalning till insättningens avsändare utan e-postverifiering. En återbetalning till en annan adress kräver fortfarande e-post",
+  "Refund to the sender without email": "Återbetala till avsändaren utan e-post",
+  "Selected addresses will be deleted": "Valda adresser kommer att tas bort",
+  "This action cannot be undone": "Denna åtgärd kan inte ångras",
+  "You can select up to {count} addresses": "Du kan välja upp till {count} adresser"
 }

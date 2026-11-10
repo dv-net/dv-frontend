@@ -1017,5 +1017,17 @@
   "set exchange keys before network settings": "Weka funguo za ubadilishaji kabla ya mipangilio ya mtandao",
   "System default route": "Njia chaguomsingi ya mfumo",
   "The saved network interface is no longer on the server": "Kiolesura cha mtandao kilichohifadhiwa hakipo tena kwenye seva",
-  "VPN or network interface": "VPN au kiolesura cha mtandao"
+  "VPN or network interface": "VPN au kiolesura cha mtandao",
+  "Addresses deleted": "Anwani zimefutwa",
+  "All withdrawal wallets will be deleted": "Pochi zote za kutoa fedha zitafutwa",
+  "Close": "Funga",
+  "Confirm deletion": "Thibitisha ufutaji",
+  "Delete all wallets": "Futa pochi zote",
+  "Mail preview": "Onyesho la awali la barua pepe",
+  "Multi-withdrawal disabled warning": "Sheria ya uondoaji wa aina nyingi itabadilika kiotomatiki kuwa imezimwa kwa sababu anwani iliyochaguliwa inatumika kama anwani ya usambazaji wa mikono",
+  "Refund auth mode description": "Mlipaji anaweza kuomba kurejeshewa fedha kwa mtumaji wa amana bila uthibitishaji wa barua pepe. Kurejeshewa fedha kwa anwani nyingine bado kunahitaji barua pepe",
+  "Refund to the sender without email": "Rejesha fedha kwa mtumaji bila barua pepe",
+  "Selected addresses will be deleted": "Anwani zilizochaguliwa zitafutwa",
+  "This action cannot be undone": "Kitendo hiki hakiwezi kutenduliwa",
+  "You can select up to {count} addresses": "Unaweza kuchagua hadi anwani {count}"
 }

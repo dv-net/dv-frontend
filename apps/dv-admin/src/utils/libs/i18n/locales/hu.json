@@ -1017,5 +1017,17 @@
   "set exchange keys before network settings": "Állítsa be a tőzsdei kulcsokat a hálózati beállítások előtt",
   "System default route": "Rendszer alapértelmezett útvonala",
   "The saved network interface is no longer on the server": "A mentett hálózati interfész már nincs a szerveren",
-  "VPN or network interface": "VPN vagy hálózati interfész"
+  "VPN or network interface": "VPN vagy hálózati interfész",
+  "Addresses deleted": "Címek törölve",
+  "All withdrawal wallets will be deleted": "Az összes kifizetési tárca törölve lesz",
+  "Close": "Bezárás",
+  "Confirm deletion": "Törlés megerősítése",
+  "Delete all wallets": "Összes tárca törlése",
+  "Mail preview": "E-mail előnézet",
+  "Multi-withdrawal disabled warning": "A tömeges kiutalási szabály automatikusan letiltottra vált, mert egy kiválasztott cím manuális továbbítási címként van használatban",
+  "Refund auth mode description": "A fizető e-mailes ellenőrzés nélkül kérhet visszatérítést a befizetés küldőjének. Másik címre történő visszatérítéshez továbbra is e-mail szükséges",
+  "Refund to the sender without email": "Visszatérítés a küldőnek e-mail nélkül",
+  "Selected addresses will be deleted": "A kiválasztott címek törlődnek",
+  "This action cannot be undone": "Ez a művelet nem vonható vissza",
+  "You can select up to {count} addresses": "Legfeljebb {count} címet választhat ki"
 }

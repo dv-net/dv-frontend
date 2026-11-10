@@ -1017,5 +1017,17 @@
   "set exchange keys before network settings": "Angi børsnøklene før nettverksinnstillingene",
   "System default route": "Systemets standardrute",
   "The saved network interface is no longer on the server": "Det lagrede nettverksgrensesnittet finnes ikke lenger på serveren",
-  "VPN or network interface": "VPN eller nettverksgrensesnitt"
+  "VPN or network interface": "VPN eller nettverksgrensesnitt",
+  "Addresses deleted": "Adresser slettet",
+  "All withdrawal wallets will be deleted": "Alle uttakslommebøker vil bli slettet",
+  "Close": "Lukk",
+  "Confirm deletion": "Bekreft sletting",
+  "Delete all wallets": "Slett alle lommebøker",
+  "Mail preview": "Forhåndsvisning av e-post",
+  "Multi-withdrawal disabled warning": "Multiuttaksregelen blir automatisk deaktivert fordi en valgt adresse brukes som den manuelle videresendingsadressen",
+  "Refund auth mode description": "Betaleren kan be om refusjon til avsenderen av innskuddet uten e-postverifisering. En refusjon til en annen adresse krever fortsatt e-post",
+  "Refund to the sender without email": "Refunder til avsenderen uten e-post",
+  "Selected addresses will be deleted": "Valgte adresser vil bli slettet",
+  "This action cannot be undone": "Denne handlingen kan ikke angres",
+  "You can select up to {count} addresses": "Du kan velge opptil {count} adresser"
 }

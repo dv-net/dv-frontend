@@ -1017,5 +1017,17 @@
   "set exchange keys before network settings": "Nustatykite biržos raktus prieš tinklo nustatymus",
   "System default route": "Sistemos numatytasis maršrutas",
   "The saved network interface is no longer on the server": "Išsaugotos tinklo sąsajos serveryje nebėra",
-  "VPN or network interface": "VPN arba tinklo sąsaja"
+  "VPN or network interface": "VPN arba tinklo sąsaja",
+  "Addresses deleted": "Adresai ištrinti",
+  "All withdrawal wallets will be deleted": "Visos išėmimo piniginės bus ištrintos",
+  "Close": "Uždaryti",
+  "Confirm deletion": "Patvirtinti ištrynimą",
+  "Delete all wallets": "Ištrinti visas pinigines",
+  "Mail preview": "Laiško peržiūra",
+  "Multi-withdrawal disabled warning": "Kelių išėmimų taisyklė automatiškai persijungs į išjungtą būseną, nes pasirinktas adresas naudojamas kaip rankinio persiuntimo adresas",
+  "Refund auth mode description": "Mokėtojas gali paprašyti grąžinti lėšas indėlio siuntėjui be el. pašto patvirtinimo. Grąžinimui į kitą adresą vis tiek reikalingas el. paštas",
+  "Refund to the sender without email": "Grąžinti lėšas siuntėjui be el. pašto",
+  "Selected addresses will be deleted": "Pasirinkti adresai bus ištrinti",
+  "This action cannot be undone": "Šio veiksmo negalima atšaukti",
+  "You can select up to {count} addresses": "Galite pasirinkti iki {count} adresų"
 }

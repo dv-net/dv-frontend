@@ -1017,5 +1017,17 @@
   "set exchange keys before network settings": "Pred omrežnimi nastavitvami nastavite ključe menjalnice",
   "System default route": "Sistemska privzeta pot",
   "The saved network interface is no longer on the server": "Shranjeni omrežni vmesnik ni več na strežniku",
-  "VPN or network interface": "VPN ali omrežni vmesnik"
+  "VPN or network interface": "VPN ali omrežni vmesnik",
+  "Addresses deleted": "Naslovi izbrisani",
+  "All withdrawal wallets will be deleted": "Vse denarnice za dvige bodo izbrisane",
+  "Close": "Zapri",
+  "Confirm deletion": "Potrdi izbris",
+  "Delete all wallets": "Izbriši vse denarnice",
+  "Mail preview": "Predogled e-pošte",
+  "Multi-withdrawal disabled warning": "Pravilo za več dvigov se bo samodejno preklopilo v onemogočeno stanje, ker se izbrani naslov uporablja kot naslov za ročno posredovanje",
+  "Refund auth mode description": "Plačnik lahko zahteva vračilo pošiljatelju pologa brez preverjanja e-pošte. Vračilo na drug naslov še vedno zahteva e-pošto",
+  "Refund to the sender without email": "Vračilo pošiljatelju brez e-pošte",
+  "Selected addresses will be deleted": "Izbrani naslovi bodo izbrisani",
+  "This action cannot be undone": "Tega dejanja ni mogoče razveljaviti",
+  "You can select up to {count} addresses": "Izberete lahko največ {count} naslovov"
 }

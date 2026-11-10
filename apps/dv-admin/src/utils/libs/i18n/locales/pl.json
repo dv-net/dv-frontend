@@ -1017,5 +1017,17 @@
   "set exchange keys before network settings": "Ustaw klucze giełdy przed ustawieniami sieci",
   "System default route": "Domyślna trasa systemowa",
   "The saved network interface is no longer on the server": "Zapisany interfejs sieciowy nie znajduje się już na serwerze",
-  "VPN or network interface": "VPN lub interfejs sieciowy"
+  "VPN or network interface": "VPN lub interfejs sieciowy",
+  "Addresses deleted": "Adresy usunięte",
+  "All withdrawal wallets will be deleted": "Wszystkie portfele do wypłat zostaną usunięte",
+  "Close": "Zamknij",
+  "Confirm deletion": "Potwierdź usunięcie",
+  "Delete all wallets": "Usuń wszystkie portfele",
+  "Mail preview": "Podgląd wiadomości e-mail",
+  "Multi-withdrawal disabled warning": "Reguła wielu wypłat zostanie automatycznie przełączona na wyłączoną, ponieważ wybrany adres jest używany jako adres ręcznego przekazywania",
+  "Refund auth mode description": "Płatnik może zażądać zwrotu środków do nadawcy depozytu bez weryfikacji e-mail. Zwrot na inny adres nadal wymaga e-maila",
+  "Refund to the sender without email": "Zwróć środki nadawcy bez e-maila",
+  "Selected addresses will be deleted": "Wybrane adresy zostaną usunięte",
+  "This action cannot be undone": "Tej czynności nie można cofnąć",
+  "You can select up to {count} addresses": "Możesz wybrać maksymalnie {count} adresów"
 }

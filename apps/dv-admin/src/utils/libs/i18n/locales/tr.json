@@ -1017,5 +1017,17 @@
   "set exchange keys before network settings": "Ağ ayarlarından önce borsa anahtarlarını ayarlayın",
   "System default route": "Sistem varsayılan rotası",
   "The saved network interface is no longer on the server": "Kaydedilen ağ arayüzü artık sunucuda yok",
-  "VPN or network interface": "VPN veya ağ arayüzü"
+  "VPN or network interface": "VPN veya ağ arayüzü",
+  "Addresses deleted": "Adresler silindi",
+  "All withdrawal wallets will be deleted": "Tüm para çekme cüzdanları silinecek",
+  "Close": "Kapat",
+  "Confirm deletion": "Silmeyi onayla",
+  "Delete all wallets": "Tüm cüzdanları sil",
+  "Mail preview": "E-posta önizlemesi",
+  "Multi-withdrawal disabled warning": "Seçilen bir adres manuel yönlendirme adresi olarak kullanıldığı için çoklu çekim kuralı otomatik olarak devre dışı durumuna geçecektir",
+  "Refund auth mode description": "Ödeyen, e-posta doğrulaması olmadan yatırma göndericisine iade talep edebilir. Başka bir adrese iade için hâlâ e-posta gerekir",
+  "Refund to the sender without email": "E-posta olmadan gönderene geri ödeme yap",
+  "Selected addresses will be deleted": "Seçilen adresler silinecek",
+  "This action cannot be undone": "Bu işlem geri alınamaz",
+  "You can select up to {count} addresses": "En fazla {count} adres seçebilirsiniz"
 }

@@ -1017,5 +1017,17 @@
   "set exchange keys before network settings": "Iestatiet biržas atslēgas pirms tīkla iestatījumiem",
   "System default route": "Sistēmas noklusējuma maršruts",
   "The saved network interface is no longer on the server": "Saglabātā tīkla saskarne vairs neatrodas serverī",
-  "VPN or network interface": "VPN vai tīkla interfeiss"
+  "VPN or network interface": "VPN vai tīkla interfeiss",
+  "Addresses deleted": "Adreses izdzēstas",
+  "All withdrawal wallets will be deleted": "Visi izmaksu maki tiks dzēsti",
+  "Close": "Aizvērt",
+  "Confirm deletion": "Apstiprināt dzēšanu",
+  "Delete all wallets": "Dzēst visus makus",
+  "Mail preview": "E-pasta priekšskatījums",
+  "Multi-withdrawal disabled warning": "Vairāku izmaksu noteikums automātiski tiks atspējots, jo atlasītā adrese tiek izmantota kā manuālās pārsūtīšanas adrese",
+  "Refund auth mode description": "Maksātājs var pieprasīt atmaksu depozīta nosūtītājam bez e-pasta verifikācijas. Atmaksa uz citu adresi joprojām prasa e-pastu",
+  "Refund to the sender without email": "Atmaksāt sūtītājam bez e-pasta",
+  "Selected addresses will be deleted": "Atlasītās adreses tiks dzēstas",
+  "This action cannot be undone": "Šo darbību nevar atsaukt",
+  "You can select up to {count} addresses": "Varat atlasīt līdz {count} adresēm"
 }

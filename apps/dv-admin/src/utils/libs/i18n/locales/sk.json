@@ -1017,5 +1017,17 @@
   "set exchange keys before network settings": "Pred nastavením siete nastavte kľúče burzy",
   "System default route": "Predvolená systémová trasa",
   "The saved network interface is no longer on the server": "Uložené sieťové rozhranie už nie je na serveri",
-  "VPN or network interface": "VPN alebo sieťové rozhranie"
+  "VPN or network interface": "VPN alebo sieťové rozhranie",
+  "Addresses deleted": "Adresy odstránené",
+  "All withdrawal wallets will be deleted": "Všetky peňaženky na výbery budú odstránené",
+  "Close": "Zavrieť",
+  "Confirm deletion": "Potvrdiť odstránenie",
+  "Delete all wallets": "Odstrániť všetky peňaženky",
+  "Mail preview": "Náhľad e-mailu",
+  "Multi-withdrawal disabled warning": "Pravidlo hromadného výberu sa automaticky prepne na vypnuté, pretože vybraná adresa sa používa ako adresa manuálneho preposielania",
+  "Refund auth mode description": "Platiteľ môže požiadať o vrátenie prostriedkov odosielateľovi vkladu bez overenia e-mailu. Vrátenie prostriedkov na inú adresu si stále vyžaduje e-mail",
+  "Refund to the sender without email": "Vrátiť odosielateľovi bez e-mailu",
+  "Selected addresses will be deleted": "Vybrané adresy budú odstránené",
+  "This action cannot be undone": "Túto akciu nie je možné vrátiť späť",
+  "You can select up to {count} addresses": "Môžete vybrať až {count} adries"
 }

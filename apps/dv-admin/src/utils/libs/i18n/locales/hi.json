@@ -1017,5 +1017,17 @@
   "set exchange keys before network settings": "नेटवर्क सेटिंग्स से पहले एक्सचेंज कुंजियाँ सेट करें",
   "System default route": "सिस्टम डिफ़ॉल्ट रूट",
   "The saved network interface is no longer on the server": "सहेजा गया नेटवर्क इंटरफ़ेस अब सर्वर पर नहीं है",
-  "VPN or network interface": "VPN या नेटवर्क इंटरफ़ेस"
+  "VPN or network interface": "VPN या नेटवर्क इंटरफ़ेस",
+  "Addresses deleted": "पते हटा दिए गए",
+  "All withdrawal wallets will be deleted": "सभी निकासी वॉलेट हटा दिए जाएंगे",
+  "Close": "बंद करें",
+  "Confirm deletion": "हटाने की पुष्टि करें",
+  "Delete all wallets": "सभी वॉलेट हटाएँ",
+  "Mail preview": "मेल पूर्वावलोकन",
+  "Multi-withdrawal disabled warning": "मल्टी-विदड्रॉअल नियम अपने आप अक्षम पर स्विच हो जाएगा क्योंकि चुना गया पता मैन्युअल फ़ॉरवर्डिंग पते के रूप में उपयोग किया जा रहा है",
+  "Refund auth mode description": "भुगतानकर्ता ईमेल सत्यापन के बिना डिपॉज़िट भेजने वाले को रिफ़ंड का अनुरोध कर सकता है। किसी अन्य पते पर रिफ़ंड के लिए अभी भी ईमेल आवश्यक है",
+  "Refund to the sender without email": "ईमेल के बिना प्रेषक को रिफंड करें",
+  "Selected addresses will be deleted": "चयनित पते हटा दिए जाएंगे",
+  "This action cannot be undone": "यह कार्रवाई पूर्ववत नहीं की जा सकती",
+  "You can select up to {count} addresses": "आप अधिकतम {count} पते चुन सकते हैं"
 }

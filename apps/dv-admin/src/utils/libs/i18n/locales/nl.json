@@ -1017,5 +1017,17 @@
   "set exchange keys before network settings": "Stel de exchange-sleutels in vóór de netwerkinstellingen",
   "System default route": "Standaardroute van het systeem",
   "The saved network interface is no longer on the server": "De opgeslagen netwerkinterface staat niet meer op de server",
-  "VPN or network interface": "VPN of netwerkinterface"
+  "VPN or network interface": "VPN of netwerkinterface",
+  "Addresses deleted": "Adressen verwijderd",
+  "All withdrawal wallets will be deleted": "Alle opname-wallets worden verwijderd",
+  "Close": "Sluiten",
+  "Confirm deletion": "Verwijdering bevestigen",
+  "Delete all wallets": "Alle wallets verwijderen",
+  "Mail preview": "E-mailvoorbeeld",
+  "Multi-withdrawal disabled warning": "De multi-opnameregel wordt automatisch uitgeschakeld omdat een geselecteerd adres wordt gebruikt als het handmatige doorstuuradres",
+  "Refund auth mode description": "De betaler kan zonder e-mailverificatie een terugbetaling aanvragen naar de afzender van de storting. Een terugbetaling naar een ander adres vereist nog steeds e-mail",
+  "Refund to the sender without email": "Terugbetalen aan de afzender zonder e-mail",
+  "Selected addresses will be deleted": "Geselecteerde adressen worden verwijderd",
+  "This action cannot be undone": "Deze actie kan niet ongedaan worden gemaakt",
+  "You can select up to {count} addresses": "Je kunt maximaal {count} adressen selecteren"
 }

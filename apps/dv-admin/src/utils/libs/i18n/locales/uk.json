@@ -1017,5 +1017,17 @@
   "set exchange keys before network settings": "Установіть ключі обміну перед налаштуваннями мережі",
   "System default route": "Системний маршрут за замовчуванням",
   "The saved network interface is no longer on the server": "Збереженого мережевого інтерфейсу більше немає на сервері",
-  "VPN or network interface": "VPN або мережевий інтерфейс"
+  "VPN or network interface": "VPN або мережевий інтерфейс",
+  "Addresses deleted": "Адреси видалено",
+  "All withdrawal wallets will be deleted": "Усі гаманці для виведення коштів буде видалено",
+  "Close": "Закрити",
+  "Confirm deletion": "Підтвердити видалення",
+  "Delete all wallets": "Видалити всі гаманці",
+  "Mail preview": "Попередній перегляд листа",
+  "Multi-withdrawal disabled warning": "Правило мультививедення буде автоматично вимкнено, оскільки вибрана адреса використовується як адреса ручного пересилання",
+  "Refund auth mode description": "Платник може запросити повернення коштів відправнику депозиту без підтвердження електронної пошти. Для повернення коштів на іншу адресу все ще потрібна електронна пошта",
+  "Refund to the sender without email": "Повернути відправнику без email",
+  "Selected addresses will be deleted": "Вибрані адреси буде видалено",
+  "This action cannot be undone": "Цю дію неможливо скасувати",
+  "You can select up to {count} addresses": "Ви можете вибрати до {count} адрес"
 }

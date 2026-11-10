@@ -1017,5 +1017,17 @@
   "set exchange keys before network settings": "Thiết lập các khóa sàn giao dịch trước khi cài đặt mạng",
   "System default route": "Tuyến mặc định của hệ thống",
   "The saved network interface is no longer on the server": "Giao diện mạng đã lưu không còn trên máy chủ nữa",
-  "VPN or network interface": "VPN hoặc giao diện mạng"
+  "VPN or network interface": "VPN hoặc giao diện mạng",
+  "Addresses deleted": "Đã xóa địa chỉ",
+  "All withdrawal wallets will be deleted": "Tất cả ví rút tiền sẽ bị xóa",
+  "Close": "Đóng",
+  "Confirm deletion": "Xác nhận xóa",
+  "Delete all wallets": "Xóa tất cả ví",
+  "Mail preview": "Xem trước email",
+  "Multi-withdrawal disabled warning": "Quy tắc rút tiền hàng loạt sẽ tự động chuyển sang trạng thái bị vô hiệu hóa vì một địa chỉ đã chọn được sử dụng làm địa chỉ chuyển tiếp thủ công",
+  "Refund auth mode description": "Người thanh toán có thể yêu cầu hoàn tiền cho người gửi khoản nạp mà không cần xác minh email. Hoàn tiền đến địa chỉ khác vẫn yêu cầu email",
+  "Refund to the sender without email": "Hoàn tiền cho người gửi mà không cần email",
+  "Selected addresses will be deleted": "Các địa chỉ đã chọn sẽ bị xóa",
+  "This action cannot be undone": "Không thể hoàn tác hành động này",
+  "You can select up to {count} addresses": "Bạn có thể chọn tối đa {count} địa chỉ"
 }

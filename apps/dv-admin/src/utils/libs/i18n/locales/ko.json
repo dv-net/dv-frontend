@@ -1017,5 +1017,17 @@
   "set exchange keys before network settings": "네트워크 설정 전에 거래소 키를 설정하세요",
   "System default route": "시스템 기본 경로",
   "The saved network interface is no longer on the server": "저장된 네트워크 인터페이스가 더 이상 서버에 없습니다",
-  "VPN or network interface": "VPN 또는 네트워크 인터페이스"
+  "VPN or network interface": "VPN 또는 네트워크 인터페이스",
+  "Addresses deleted": "주소가 삭제되었습니다",
+  "All withdrawal wallets will be deleted": "모든 출금 지갑이 삭제됩니다",
+  "Close": "닫기",
+  "Confirm deletion": "삭제 확인",
+  "Delete all wallets": "모든 지갑 삭제",
+  "Mail preview": "메일 미리보기",
+  "Multi-withdrawal disabled warning": "선택한 주소가 수동 전달 주소로 사용되고 있으므로 다중 출금 규칙은 자동으로 비활성화됩니다",
+  "Refund auth mode description": "결제자는 이메일 인증 없이 입금 발신자에게 환불을 요청할 수 있습니다. 다른 주소로 환불하려면 여전히 이메일이 필요합니다",
+  "Refund to the sender without email": "이메일 없이 송금자에게 환불",
+  "Selected addresses will be deleted": "선택한 주소가 삭제됩니다",
+  "This action cannot be undone": "이 작업은 실행 취소할 수 없습니다",
+  "You can select up to {count} addresses": "최대 {count}개의 주소를 선택할 수 있습니다"
 }
