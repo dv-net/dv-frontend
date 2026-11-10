@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [1.1.7] - 2026-11-10
+
+- feat: batch delete withdrawal wallet addresses with 2FA confirmation — delete selected addresses or all wallets at once
+
 ## [1.1.6] - 2026-10-29
 
 - change: show per-status counts on admin refund tabs and rename the Russian menu item to «Возвраты» [DNS-233]
