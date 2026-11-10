@@ -1,6 +1,7 @@
 import { type Component } from "vue";
 import type { ENUM_ADDRESS_BOOK_TYPES } from "@dv-admin/utils/constants/addressBook";
 import type { BlockchainType } from "@shared/utils/types/blockchain";
+import type { IWithdrawalAddressItemResponse } from "@dv-admin/utils/types/api/apiGo";
 
 export interface IProfileUserChangeEmail {
 	code: string;
@@ -86,4 +87,11 @@ export interface IMapAddressBookRow {
 	withdrawalCurrencies: IAddressBookCurrencies[];
 	hasAnyWithdrawalRule: boolean;
 	hasAllWithdrawalRules: boolean;
+}
+
+export interface IPendingDeleteWalletGroup {
+	walletId: string;
+	currencyId?: string;
+	addresses: IWithdrawalAddressItemResponse[];
+	manualAddress: string | null;
 }

@@ -17,6 +17,7 @@ import type {
 	IWithdrawalAddressRequest,
 	IWithdrawalRulesResponse
 } from "@dv-admin/utils/types/api/apiGo";
+import type { IPendingDeleteWalletGroup } from "@dv-admin/utils/types/schemas";
 import { useExchangeSettingsStore } from "@dv-admin/stores/exchangeSettings";
 import { getApiExchangeConnectionChecks, getApiExchangeDepositUpdate } from "@dv-admin/utils/services/exchangeSettings";
 import { useNotifications } from "@shared/utils/composables/useNotifications";
@@ -25,13 +26,6 @@ import { useI18n } from "vue-i18n";
 const { notify } = useNotifications();
 
 export const MAX_BATCH_DELETE_ADDRESSES = 100;
-
-interface IPendingDeleteWalletGroup {
-	walletId: string;
-	currencyId?: string;
-	addresses: IWithdrawalAddressItemResponse[];
-	manualAddress: string | null;
-}
 
 export const useWithdrawalStore = defineStore("withdrawal", () => {
 	const { t } = useI18n();
@@ -325,6 +319,8 @@ export const useWithdrawalStore = defineStore("withdrawal", () => {
 		isLoadingDeleteAddresses,
 		isShowAuthentication,
 		isShowDeleteAuthentication,
+		pendingDeleteGroups,
+		pendingDeleteReloadList,
 		pendingDeleteAddresses,
 		hasPendingDeleteManualAddressWarning,
 		hasAnyWithdrawalAddresses,
