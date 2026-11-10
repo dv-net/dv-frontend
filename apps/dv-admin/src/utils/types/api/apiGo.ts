@@ -486,6 +486,13 @@ export interface IWithdrawalAddressRequest {
 	totp: string;
 }
 
+export interface IBatchDeleteWithdrawalAddressRequest {
+	address_ids: string[];
+	totp: string;
+}
+
+export type IBatchDeleteWithdrawalAddressResponse = string;
+
 export interface ITransferPrefetchResponse {
 	from_addresses: string[];
 	to_addresses: string[];

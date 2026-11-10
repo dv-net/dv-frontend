@@ -10,7 +10,14 @@
 	import { useI18n } from "vue-i18n";
 	import TooltipHelper from "@dv-admin/components/ui/tooltipHelper/TooltipHelper.vue";
 
-	const { withdrawalRules, depositAddresses, isLoading } = storeToRefs(useWithdrawalStore());
+	const {
+		withdrawalRules,
+		depositAddresses,
+		isLoading,
+		isLoadingDeleteAddresses,
+		hasAnyWithdrawalAddresses
+	} = storeToRefs(useWithdrawalStore());
+	const { startDeleteAllWithdrawalAddresses } = useWithdrawalStore();
 	const { exchangeList } = storeToRefs(useExchangeSettingsStore());
 	const router = useRouter();
 	const { t } = useI18n();
@@ -34,22 +41,34 @@
 
 <template>
 	<block-section class="cryptocurrencies">
-		<div class="cryptocurrencies__header">
-			<div>{{ $t("Cryptocurrency") }}</div>
-			<div class="flex gap-4">
-				{{ $t("Regular addresses") }}
-				<tooltip-helper
-					:title="$t('Regular addresses')"
-					:text="$t('Added by you manually (for example, a cold wallet)')"
-				/>
-				/
-				{{ $t("Exchange") }}
-				<tooltip-helper
-					:title="$t('Exchange')"
-					:text="$t('Withdrawal addresses added by you for specific crypto exchanges')"
-				/>
+		<div class="cryptocurrencies__toolbar">
+			<div class="cryptocurrencies__header">
+				<div>{{ $t("Cryptocurrency") }}</div>
+				<div class="flex gap-4">
+					{{ $t("Regular addresses") }}
+					<tooltip-helper
+						:title="$t('Regular addresses')"
+						:text="$t('Added by you manually (for example, a cold wallet)')"
+					/>
+					/
+					{{ $t("Exchange") }}
+					<tooltip-helper
+						:title="$t('Exchange')"
+						:text="$t('Withdrawal addresses added by you for specific crypto exchanges')"
+					/>
+				</div>
+				<div />
 			</div>
-			<div />
+			<ui-button
+				v-if="hasAnyWithdrawalAddresses"
+				type="negative"
+				size="sm"
+				:disabled="isLoadingDeleteAddresses"
+				:loading="isLoadingDeleteAddresses"
+				@click="startDeleteAllWithdrawalAddresses"
+			>
+				{{ $t("Delete all wallets") }}
+			</ui-button>
 		</div>
 		<ui-skeleton v-if="isLoading" :rows="15" :rowHeight="45" :item-border-radius="8" :rows-gap="8" />
 		<div v-else class="cryptocurrencies__rows">
@@ -73,7 +92,7 @@
 						/>
 					</div>
 				</div>
-				<div>
+				<div class="cryptocurrencies__actions">
 					<ui-button
 						type="secondary"
 						size="sm"
@@ -92,31 +111,44 @@
 		display: flex;
 		flex-direction: column;
 		gap: 12px;
+
+		&__toolbar {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 16px;
+		}
+
 		&__header {
 			display: grid;
 			grid-template-columns: 1fr 1fr 160px;
 			gap: 20px;
+			flex: 1;
 			color: $grey-opacity;
 			font-size: 14px;
 			font-weight: 500;
 			line-height: 20px;
 			padding: 0 12px;
 		}
+
 		&__rows {
 			display: flex;
 			flex-direction: column;
 			border-radius: 12px;
 			border: 1px solid #ecf0f5;
 		}
+
 		&__row {
 			display: grid;
 			grid-template-columns: 1fr 1fr 160px;
 			gap: 20px;
 			padding: 12px;
 			border-bottom: 1px solid #ecf0f5;
+
 			&:last-child {
 				border-bottom: unset;
 			}
+
 			.addresses {
 				display: flex;
 				align-items: center;
@@ -125,6 +157,7 @@
 				font-weight: 500;
 				color: $black;
 				justify-content: space-between;
+
 				&__text {
 					display: flex;
 					align-items: center;
@@ -132,11 +165,19 @@
 					color: #dd4c1e;
 					font-size: 14px;
 					font-weight: 500;
+
 					&--green {
 						color: #1f9649;
 					}
 				}
 			}
+		}
+
+		&__actions {
+			display: flex;
+			align-items: center;
+			justify-content: flex-end;
+			gap: 8px;
 		}
 	}
 </style>

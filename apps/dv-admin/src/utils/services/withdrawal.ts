@@ -1,6 +1,8 @@
 import api from "@dv-admin/utils/libs/axios";
 import type {
 	IAddressesConverterResponse,
+	IBatchDeleteWithdrawalAddressRequest,
+	IBatchDeleteWithdrawalAddressResponse,
 	ICurrenciesRateSource,
 	IDepositAddressesResponse,
 	IExchangeChainsResponse,
@@ -34,6 +36,14 @@ export const patchApiWithdrawalCurrencyRules = async (currencyId: string, body: 
 
 export const patchApiWithdrawalWalletAddresses = async (walletId: string, body: IWithdrawalAddressRequest) => {
 	await api.patch(`/dv-admin/withdrawal-wallet/${walletId}/addresses`, body);
+};
+
+export const deleteApiWithdrawalWalletAddresses = async (
+	walletId: string,
+	body: IBatchDeleteWithdrawalAddressRequest
+): Promise<IBatchDeleteWithdrawalAddressResponse> => {
+	const resp = await api.delete(`/dv-admin/withdrawal-wallet/${walletId}/addresses`, { data: body });
+	return resp.data.data;
 };
 
 export const getApiExchangeDepositAddresses = async (): Promise<IDepositAddressesResponse[]> => {
