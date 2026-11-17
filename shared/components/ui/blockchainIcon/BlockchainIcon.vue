@@ -1,7 +1,8 @@
 <script setup lang="ts">
 	import type { BlockchainType } from "@shared/utils/types/blockchain";
-	import { type Component, computed, shallowRef, watch } from "vue";
-	import { getBlockchainIcon } from "./blockchainIconLoaders";
+	import { getCurrentBlockchain, getCurrentCoin } from "@shared/utils/helpers/general";
+	import { computed } from "vue";
+	import { getBlockchainIconUrl } from "./blockchainIconLoaders";
 
 	const {
 		width = "24px",
@@ -13,8 +14,13 @@
 		height?: string;
 	}>();
 
-	const iconToShow = shallowRef<Component | null>(null);
-	let loadId = 0;
+	const src = computed(() => getBlockchainIconUrl(type));
+	const alt = computed(() => {
+		if (!type) return "";
+		const coin = getCurrentCoin(type);
+		const blockchain = getCurrentBlockchain(type);
+		return blockchain ? `${coin} ${blockchain}` : coin;
+	});
 
 	const iconStyle = computed(() => ({
 		width,
@@ -24,21 +30,16 @@
 		maxWidth: width,
 		maxHeight: height
 	}));
-
-	watch(
-		() => type,
-		async (blockchainType) => {
-			const currentLoadId = ++loadId;
-			const component = await getBlockchainIcon(blockchainType);
-			if (currentLoadId === loadId) {
-				iconToShow.value = component;
-			}
-		},
-		{ immediate: true }
-	);
 </script>
 
 <template>
-	<component v-if="iconToShow" class="flex-shrink-0" :is="iconToShow" :style="iconStyle" />
-	<span v-else class="flex-shrink-0" :style="iconStyle" aria-hidden="true" />
+	<img class="icon" :src="src" :style="iconStyle" :alt="alt" draggable="false" />
 </template>
+
+<style scoped lang="scss">
+	.icon {
+		display: block;
+		flex-shrink: 0;
+		object-fit: contain;
+	}
+</style>

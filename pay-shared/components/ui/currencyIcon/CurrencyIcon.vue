@@ -1,7 +1,7 @@
 <script setup lang="ts">
 	import type { CurrencyType } from "@shared/utils/types/blockchain";
-	import { type Component, computed, shallowRef, watch } from "vue";
-	import { getCurrencyIcon } from "./currencyIconLoaders";
+	import { computed } from "vue";
+	import { getCurrencyIconUrl } from "./currencyIconLoaders";
 
 	const {
 		width = "24px",
@@ -13,8 +13,8 @@
 		height?: string;
 	}>();
 
-	const iconToShow = shallowRef<Component | null>(null);
-	let loadId = 0;
+	const src = computed(() => getCurrencyIconUrl(type));
+	const alt = computed(() => type ?? "");
 
 	const iconStyle = computed(() => ({
 		width,
@@ -24,21 +24,16 @@
 		maxWidth: width,
 		maxHeight: height
 	}));
-
-	watch(
-		() => type,
-		async (currencyType) => {
-			const currentLoadId = ++loadId;
-			const component = await getCurrencyIcon(currencyType);
-			if (currentLoadId === loadId) {
-				iconToShow.value = component;
-			}
-		},
-		{ immediate: true }
-	);
 </script>
 
 <template>
-	<component v-if="iconToShow" class="flex-shrink-0" :is="iconToShow" :style="iconStyle" />
-	<span v-else class="flex-shrink-0" :style="iconStyle" aria-hidden="true" />
+	<img class="icon" :src="src" :style="iconStyle" :alt="alt" draggable="false" />
 </template>
+
+<style scoped lang="scss">
+	.icon {
+		display: block;
+		flex-shrink: 0;
+		object-fit: contain;
+	}
+</style>

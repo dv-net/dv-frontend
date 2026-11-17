@@ -1,74 +1,65 @@
-import type { Component } from "vue";
-import { markRaw } from "vue";
 import type { BlockchainType } from "@shared/utils/types/blockchain";
+import { getIconUrl } from "@shared/utils/helpers/iconUrls";
 
-type IconModule = { default: Component };
-
-export const blockchainIconLoaders: Record<BlockchainType, () => Promise<IconModule>> = {
-	"BCH.Bitcoincash": () => import("@shared/components/icons/blockchains/IconBitcoincash.vue"),
-	"BTC.Bitcoin": () => import("@shared/components/icons/blockchains/IconBitcoin.vue"),
-	"LTC.Litecoin": () => import("@shared/components/icons/blockchains/IconLitecoin.vue"),
-	"TRX.Tron": () => import("@shared/components/icons/blockchains/IconTRXTron.vue"),
-	"USDT.Tron": () => import("@shared/components/icons/blockchains/IconUSDTTron.vue"),
-	"USDD.Tron": () => import("@shared/components/icons/blockchains/IconUsddTron.vue"),
-	"USD1.Tron": () => import("@shared/components/icons/blockchains/IconUsd1Tron.vue"),
-	"ETH.Ethereum": () => import("@shared/components/icons/blockchains/IconEthereum.vue"),
-	"USDC.Ethereum": () => import("@shared/components/icons/blockchains/IconUSDCEthereum.vue"),
-	"DAI.Ethereum": () => import("@shared/components/icons/blockchains/IconDAIEthereum.vue"),
-	"USDT.Ethereum": () => import("@shared/components/icons/blockchains/IconUSDTEthereum.vue"),
-	"USDE.Ethereum": () => import("@shared/components/icons/blockchains/IconUsdeEthereum.vue"),
-	"USDD.Ethereum": () => import("@shared/components/icons/blockchains/IconUsddEthereum.vue"),
-	"USD1.Ethereum": () => import("@shared/components/icons/blockchains/IconUsd1Ethereum.vue"),
-	"SHIB.Ethereum": () => import("@shared/components/icons/blockchains/IconShibEthereum.vue"),
-	"SAND.Ethereum": () => import("@shared/components/icons/blockchains/IconSandEthereum.vue"),
-	"XAUT.Ethereum": () => import("@shared/components/icons/blockchains/IconXautEthereum.vue"),
-	"WLD.Ethereum": () => import("@shared/components/icons/blockchains/IconWldEthereum.vue"),
-	"PYUSD.Ethereum": () => import("@shared/components/icons/blockchains/IconPyusdEthereum.vue"),
-	"ARB.Ethereum": () => import("@shared/components/icons/blockchains/IconArbEthereum.vue"),
-	"PEPE.Ethereum": () => import("@shared/components/icons/blockchains/IconPepeEthereum.vue"),
-	"WLFI.Ethereum": () => import("@shared/components/icons/blockchains/IconWlfiEthereum.vue"),
-	"CAKE.Ethereum": () => import("@shared/components/icons/blockchains/IconCakeEthereum.vue"),
-	"ENA.Ethereum": () => import("@shared/components/icons/blockchains/IconEnaEthereum.vue"),
-	"BNB.BNBSmartChain": () => import("@shared/components/icons/blockchains/IconBinance.vue"),
-	"USDT.BNBSmartChain": () => import("@shared/components/icons/blockchains/IconUSDTBinance.vue"),
-	"USDD.BNBSmartChain": () => import("@shared/components/icons/blockchains/IconUsddBsc.vue"),
-	"USDC.BNBSmartChain": () => import("@shared/components/icons/blockchains/IconUSDCBinance.vue"),
-	"USDE.BNBSmartChain": () => import("@shared/components/icons/blockchains/IconUsdeBsc.vue"),
-	"DAI.BNBSmartChain": () => import("@shared/components/icons/blockchains/IconDAIBinance.vue"),
-	"CAKE.BNBSmartChain": () => import("@shared/components/icons/blockchains/IconCakeBsc.vue"),
-	"SHIB.BNBSmartChain": () => import("@shared/components/icons/blockchains/IconShibBsc.vue"),
-	"WLFI.BNBSmartChain": () => import("@shared/components/icons/blockchains/IconWlfiBsc.vue"),
-	"USD1.BNBSmartChain": () => import("@shared/components/icons/blockchains/IconUsd1Bsc.vue"),
-	"POL.Polygon": () => import("@shared/components/icons/blockchains/IconPolygon.vue"),
-	"USDT.Polygon": () => import("@shared/components/icons/blockchains/IconUSDTPolygon.vue"),
-	"USDC.Polygon": () => import("@shared/components/icons/blockchains/IconUSDCPolygon.vue"),
-	"DAI.Polygon": () => import("@shared/components/icons/blockchains/IconDAIPolygon.vue"),
-	"SAND.Polygon": () => import("@shared/components/icons/blockchains/IconSandPolygon.vue"),
-	"ARB.Arbitrum": () => import("@shared/components/icons/blockchains/IconArbArbitrum.vue"),
-	"ETH.Arbitrum": () => import("@shared/components/icons/blockchains/IconETHArbitrum.vue"),
-	"USDT.Arbitrum": () => import("@shared/components/icons/blockchains/IconUSDTArbitrum.vue"),
-	"USDC.Arbitrum": () => import("@shared/components/icons/blockchains/IconUSDCArbitrum.vue"),
-	"DAI.Arbitrum": () => import("@shared/components/icons/blockchains/IconDAIArbitrum.vue"),
-	"PYUSD.Arbitrum": () => import("@shared/components/icons/blockchains/IconPyusdArbitrum.vue"),
-	"CAKE.Arbitrum": () => import("@shared/components/icons/blockchains/IconCakeArbitrum.vue"),
-	"DOGE.Dogecoin": () => import("@shared/components/icons/blockchains/IconDOGEDogecoin.vue")
+const blockchainIconFiles: Record<BlockchainType, string> = {
+	"BCH.Bitcoincash": "IconBitcoincash.svg",
+	"BTC.Bitcoin": "IconBitcoin.svg",
+	"LTC.Litecoin": "IconLitecoin.svg",
+	"TRX.Tron": "IconTRXTron.svg",
+	"USDT.Tron": "IconUSDTTron.svg",
+	"USDD.Tron": "IconUsddTron.svg",
+	"USD1.Tron": "IconUsd1Tron.svg",
+	"ETH.Ethereum": "IconEthereum.svg",
+	"USDC.Ethereum": "IconUSDCEthereum.svg",
+	"DAI.Ethereum": "IconDAIEthereum.svg",
+	"USDT.Ethereum": "IconUSDTEthereum.svg",
+	"USDE.Ethereum": "IconUsdeEthereum.svg",
+	"USDD.Ethereum": "IconUsddEthereum.svg",
+	"USD1.Ethereum": "IconUsd1Ethereum.svg",
+	"SHIB.Ethereum": "IconShibEthereum.svg",
+	"SAND.Ethereum": "IconSandEthereum.svg",
+	"XAUT.Ethereum": "IconXautEthereum.svg",
+	"WLD.Ethereum": "IconWldEthereum.svg",
+	"PYUSD.Ethereum": "IconPyusdEthereum.svg",
+	"ARB.Ethereum": "IconArbEthereum.svg",
+	"PEPE.Ethereum": "IconPepeEthereum.svg",
+	"WLFI.Ethereum": "IconWlfiEthereum.svg",
+	"CAKE.Ethereum": "IconCakeEthereum.svg",
+	"ENA.Ethereum": "IconEnaEthereum.svg",
+	"BNB.BNBSmartChain": "IconBinance.svg",
+	"USDT.BNBSmartChain": "IconUSDTBinance.svg",
+	"USDD.BNBSmartChain": "IconUsddBsc.svg",
+	"USDC.BNBSmartChain": "IconUSDCBinance.svg",
+	"USDE.BNBSmartChain": "IconUsdeBsc.svg",
+	"DAI.BNBSmartChain": "IconDAIBinance.svg",
+	"CAKE.BNBSmartChain": "IconCakeBsc.svg",
+	"SHIB.BNBSmartChain": "IconShibBsc.svg",
+	"WLFI.BNBSmartChain": "IconWlfiBsc.svg",
+	"USD1.BNBSmartChain": "IconUsd1Bsc.svg",
+	"POL.Polygon": "IconPolygon.svg",
+	"USDT.Polygon": "IconUSDTPolygon.svg",
+	"USDC.Polygon": "IconUSDCPolygon.svg",
+	"DAI.Polygon": "IconDAIPolygon.svg",
+	"SAND.Polygon": "IconSandPolygon.svg",
+	"ARB.Arbitrum": "IconArbArbitrum.svg",
+	"ETH.Arbitrum": "IconETHArbitrum.svg",
+	"USDT.Arbitrum": "IconUSDTArbitrum.svg",
+	"USDC.Arbitrum": "IconUSDCArbitrum.svg",
+	"DAI.Arbitrum": "IconDAIArbitrum.svg",
+	"PYUSD.Arbitrum": "IconPyusdArbitrum.svg",
+	"CAKE.Arbitrum": "IconCakeArbitrum.svg",
+	"DOGE.Dogecoin": "IconDOGEDogecoin.svg"
 };
 
-export const loadDefaultBlockchainIcon = () => import("@shared/components/icons/blockchains/iconDefault.vue");
+const blockchainIconUrls = Object.fromEntries(
+	Object.entries(blockchainIconFiles).map(([type, fileName]) => [type, getIconUrl(fileName)])
+) as Record<BlockchainType, string>;
 
-const blockchainIconCache = new Map<string, Component>();
+const defaultBlockchainIconUrl = getIconUrl("iconDefault.svg");
 
-export const getBlockchainIcon = async (blockchainType?: BlockchainType): Promise<Component> => {
-	const cacheKey = blockchainType && blockchainType in blockchainIconLoaders ? blockchainType : "default";
-	const cached = blockchainIconCache.get(cacheKey);
-	if (cached) return cached;
-
-	const module =
-		cacheKey === "default"
-			? await loadDefaultBlockchainIcon()
-			: await blockchainIconLoaders[blockchainType as BlockchainType]();
-
-	const component = markRaw(module.default);
-	blockchainIconCache.set(cacheKey, component);
-	return component;
+export const getBlockchainIconUrl = (blockchainType?: BlockchainType): string => {
+	if (blockchainType && blockchainType in blockchainIconUrls) {
+		return blockchainIconUrls[blockchainType];
+	}
+	return defaultBlockchainIconUrl;
 };
