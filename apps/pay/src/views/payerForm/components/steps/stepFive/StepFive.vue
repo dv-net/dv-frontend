@@ -7,7 +7,6 @@
 	import { computed } from "vue";
 	import { formatDollars } from "@shared/utils/helpers/general.ts";
 	import { AML_PAYMENT_PHASE } from "@pay/utils/constants/aml";
-	import loaderAmlSuccess from "@pay-shared/assets/animations/loaderAmlSuccess.json";
 
 	const { currentTransaction, addresses, payerId, store, amlPaymentPhase, amlScore, amlBlockReasons } =
 		storeToRefs(usePayerFormStore());
@@ -42,6 +41,6 @@
 		:addresses="addresses"
 		:store="store"
 		:formatted-fiat-amount="formattedFiatAmount"
-		:success-animation="loaderAmlSuccess"
+		success-animation="amlSuccess"
 	/>
 </template>

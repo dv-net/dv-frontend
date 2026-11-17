@@ -1,18 +1,11 @@
 <script setup lang="ts">
-	import { LottieAnimation } from "lottie-web-vue";
-	import { computed, nextTick, onMounted, onUnmounted, ref, shallowRef, watch } from "vue";
+	import LottiePlayer from "@pay-shared/components/ui/lottiePlayer/LottiePlayer.vue";
+	import { computed, nextTick, onMounted, onUnmounted, ref, watch } from "vue";
 	import { useI18n } from "vue-i18n";
 	import { useMediaQuery } from "@shared/utils/composables/useMediaQuery.ts";
 
-	type LottieAnimationData = Record<string, unknown>;
-
 	const { locale } = useI18n();
 	const isMediaMax480 = useMediaQuery("(max-width: 480px)");
-
-	const mainLoader = shallowRef<LottieAnimationData | null>(null);
-	void import("@pay-shared/assets/animations/mainLoader.json").then((module) => {
-		mainLoader.value = module.default;
-	});
 
 	const advertisingTextRef = ref<HTMLParagraphElement | null>(null);
 	const lineHeightAdvertisingText = ref<number>(34);
@@ -64,7 +57,7 @@
 <template>
 	<a class="advertising" href="https://dv.net" target="_blank">
 		<div class="advertising__logo">
-			<lottie-animation v-if="mainLoader" :animation-data="mainLoader" :loop="true" />
+			<lottie-player class="advertising__logo-animation" name="mainLoader" />
 		</div>
 		<p ref="advertisingTextRef" class="advertising__text" :style="`line-height: ${lineHeightAdvertisingText}px`">
 			{{
@@ -104,6 +97,10 @@
 			}
 			& > svg {
 				width: 110px;
+			}
+			&-animation {
+				width: 100%;
+				aspect-ratio: 10 / 3;
 			}
 		}
 		&__text {

@@ -11,6 +11,9 @@
 	import { useI18n } from "vue-i18n";
 	import AudioPayment from "@pay-shared/components/payerForm/audioPayment/AudioPayment.vue";
 	import { PAYER_STEP } from "@pay-shared/utils/constants/payerForm";
+	import { isPaymentStage } from "@pay-shared/utils/helpers/payerStep";
+	import { getPendingAnimationName, prefetchLottieAnimations } from "@pay-shared/utils/helpers/lottie";
+	import StepTransition from "@pay-shared/components/ui/stepTransition/StepTransition.vue";
 
 	import StepOne from "@pay-simple/views/payerForm/components/steps/stepOne/StepOne.vue";
 	import StepTwo from "@pay-simple/views/payerForm/components/steps/stepTwo/StepTwo.vue";
@@ -18,9 +21,7 @@
 	import StepFour from "@pay-simple/views/payerForm/components/steps/stepFour/StepFour.vue";
 	import StepFive from "@pay-simple/views/payerForm/components/steps/stepFive/StepFive.vue";
 
-	const FormError = defineAsyncComponent(
-		() => import("@pay-shared/components/payerForm/formError/FormError.vue")
-	);
+	const FormError = defineAsyncComponent(() => import("@pay-shared/components/payerForm/formError/FormError.vue"));
 
 	const {
 		currentStep,
@@ -32,6 +33,7 @@
 		timeline,
 		currentCurrency,
 		currentChain,
+		currentCurrencyChainId,
 		errorStore,
 		isShowAdvertising,
 		isShowBlockLatestTransactions,
@@ -68,6 +70,9 @@
 	const currentStepComponent = computed<Component>(() => {
 		return stepComponents[currentStep.value];
 	});
+
+	/** The sidebar is hidden on payment stages, so the whole form fades when the layout changes */
+	const formLayout = computed<string>(() => (isPaymentStage(currentStep.value) ? "payment" : "select"));
 
 	const startPolling = async () => {
 		if (!isPoolingProgress.value) {
@@ -148,10 +153,17 @@
 	watch(currentStep, (newValue: number) => {
 		timeline.value.forEach((item) => {
 			item.isActive = item.id <= (stepMap.value[currentStep.value] || currentStep.value);
+			if (newValue === PAYER_STEP.sendPayment && item.id === PAYER_STEP.selectChain) {
+				item.isActive = filteredBlockchains.value.length > 1;
+			}
 			if (newValue === PAYER_STEP.confirmation && [1, 2].includes(item.id)) item.isActive = false;
 			if (newValue === PAYER_STEP.result && [1, 2, 3].includes(item.id)) item.isActive = false;
 		});
 		router.push({ query: { ...route.query, step: newValue } });
+	});
+
+	watch(currentCurrencyChainId, (currencyChainId) => {
+		if (currencyChainId) prefetchLottieAnimations([getPendingAnimationName(currencyChainId)]);
 	});
 
 	watch(
@@ -163,6 +175,9 @@
 
 	onMounted(async () => {
 		await getStartInfo(invoiceId);
+		if (!errorStore.value) {
+			prefetchLottieAnimations(["waitingConfirmation", "mainLoader", "successfulPayment"]);
+		}
 		document.title = store.value?.name
 			? `${t("Payment by cryptocurrency in")} ${store.value?.name}`
 			: t("Payment by cryptocurrency");
@@ -187,31 +202,35 @@
 	/>
 	<div class="form">
 		<payer-form-header :timeline="timeline" :current-step="currentStep" :step-map="stepMap" />
-		<div class="form__inner">
-			<div class="form__body">
-				<form-error v-if="errorStore" :type="errorStore" />
-				<component v-else :is="currentStepComponent" />
-			</div>
-			<payer-form-sidebar
-				:payer-id="payerId"
-				:store="store"
-				:has-error="Boolean(errorStore)"
-				:current-step="currentStep"
-				:is-show-advertising="isShowAdvertising"
-				:is-show-block-latest-transactions="isShowBlockLatestTransactions"
-				:transactions="transactionsConfirmed"
-				:amount="amount"
-				:fiat-currency="invoiceCurrency"
-			>
-				<amount-editor
-					v-model:amount="amount"
-					size="lg"
+		<step-transition :step="formLayout">
+			<div class="form__inner">
+				<div class="form__body">
+					<form-error v-if="errorStore" :type="errorStore" />
+					<step-transition v-else :step="currentStep">
+						<component :is="currentStepComponent" />
+					</step-transition>
+				</div>
+				<payer-form-sidebar
+					:payer-id="payerId"
+					:store="store"
+					:has-error="Boolean(errorStore)"
+					:current-step="currentStep"
+					:is-show-advertising="isShowAdvertising"
+					:is-show-block-latest-transactions="isShowBlockLatestTransactions"
+					:transactions="transactionsConfirmed"
+					:amount="amount"
 					:fiat-currency="invoiceCurrency"
-					:minimal-payment="store?.minimal_payment"
-				/>
-			</payer-form-sidebar>
-			<block-advertising v-if="isShowAdvertising" class="form__advertising" />
-		</div>
+				>
+					<amount-editor
+						v-model:amount="amount"
+						size="lg"
+						:fiat-currency="invoiceCurrency"
+						:minimal-payment="store?.minimal_payment"
+					/>
+				</payer-form-sidebar>
+				<block-advertising v-if="isShowAdvertising" class="form__advertising" />
+			</div>
+		</step-transition>
 	</div>
 </template>
 

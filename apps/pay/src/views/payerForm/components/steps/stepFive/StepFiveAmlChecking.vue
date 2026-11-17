@@ -2,12 +2,9 @@
 	import WrapperBlock from "@pay-shared/components/payerForm/wrapperBlock/WrapperBlock.vue";
 	import BannerInfo from "@pay-shared/components/payerForm/bannerInfo/BannerInfo.vue";
 	import TransactionBlockInfo from "@pay-shared/components/payerForm/transactionBlockInfo/TransactionBlockInfo.vue";
-	import { LottieAnimation } from "lottie-web-vue";
-	import { shallowRef } from "vue";
+	import LottiePlayer from "@pay-shared/components/ui/lottiePlayer/LottiePlayer.vue";
 	import type { IPayerAddressResponse, IPayerStoreResponse } from "@pay-shared/utils/types/payer";
 	import type { IWalletTransactionResponse } from "@pay-shared/utils/types/transaction";
-
-	type LottieAnimationData = Record<string, unknown>;
 
 	const {
 		currentTransaction = null,
@@ -20,11 +17,6 @@
 		store?: IPayerStoreResponse | null;
 		formattedFiatAmount: string;
 	}>();
-
-	const loaderWaitingConfirmation = shallowRef<LottieAnimationData | null>(null);
-	void import("@pay-shared/assets/animations/loaderAmlChecking.json").then((module) => {
-		loaderWaitingConfirmation.value = module.default;
-	});
 </script>
 
 <template>
@@ -33,12 +25,7 @@
 			<div class="info">
 				<div class="info__top">
 					<div class="content">
-						<lottie-animation
-							v-if="loaderWaitingConfirmation"
-							class="content__loader"
-							:animation-data="loaderWaitingConfirmation"
-							:loop="true"
-						/>
+						<lottie-player class="content__loader" name="amlChecking" />
 						<div class="content__inner">
 							<div class="content__title">{{ $t("AML verification in progress") }}</div>
 							<p class="content__text">

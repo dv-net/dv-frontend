@@ -6,12 +6,10 @@
 	import type { CurrencyType } from "@shared/utils/types/blockchain";
 	import BannerInfo from "@pay-shared/components/payerForm/bannerInfo/BannerInfo.vue";
 	import TransactionBlockInfo from "@pay-shared/components/payerForm/transactionBlockInfo/TransactionBlockInfo.vue";
-	import { LottieAnimation } from "lottie-web-vue";
+	import LottiePlayer from "@pay-shared/components/ui/lottiePlayer/LottiePlayer.vue";
+	import type { LottieAnimationName } from "@pay-shared/utils/helpers/lottie";
 	import type { IPayerAddressResponse, IPayerStoreResponse } from "@pay-shared/utils/types/payer";
 	import type { IWalletTransactionResponse } from "@pay-shared/utils/types/transaction";
-	import loaderSuccessfulPayment from "@pay-shared/assets/animations/loaderSuccessfulPayment.json";
-
-	type LottieAnimationData = Record<string, unknown>;
 
 	const {
 		currentTransaction = null,
@@ -25,7 +23,7 @@
 		store?: IPayerStoreResponse | null;
 		formattedFiatAmount: string;
 		/** Replaces the default payment animation. Used by the AML success screen. */
-		successAnimation?: LottieAnimationData | null;
+		successAnimation?: LottieAnimationName | null;
 	}>();
 </script>
 
@@ -35,9 +33,9 @@
 			<div class="info">
 				<div class="info__top">
 					<div class="content">
-						<lottie-animation
+						<lottie-player
 							class="content__loader"
-							:animation-data="successAnimation || loaderSuccessfulPayment"
+							:name="successAnimation ?? 'successfulPayment'"
 							:loop="!successAnimation"
 						/>
 						<div class="content__inner">

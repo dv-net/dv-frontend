@@ -8,13 +8,12 @@
 		DEFAULT_CURRENCY_CONFIRMATION,
 		DEFAULT_CURRENCY_DEPOSIT_TIME
 	} from "@shared/utils/constants/blockchain";
-	import { LottieAnimation } from "lottie-web-vue";
+	import LottiePlayer from "@pay-shared/components/ui/lottiePlayer/LottiePlayer.vue";
 	import { computed, defineAsyncComponent } from "vue";
 	import TransactionBlockInfo from "@pay-shared/components/payerForm/transactionBlockInfo/TransactionBlockInfo.vue";
 	import { useTimer } from "@pay-shared/utils/composables/useTimer.ts";
 	import type { IPayerAddressResponse, IPayerStoreResponse } from "@pay-shared/utils/types/payer";
 	import type { IWalletTransactionResponse } from "@pay-shared/utils/types/transaction";
-	import loaderWaitingConfirmation from "@pay-shared/assets/animations/loaderWaitingConfirmation.json";
 
 	const {
 		currentTransaction = null,
@@ -59,11 +58,7 @@
 			<div class="info">
 				<div class="info__top">
 					<div class="content">
-						<lottie-animation
-							class="content__loader"
-							:animation-data="loaderWaitingConfirmation"
-							:loop="true"
-						/>
+						<lottie-player class="content__loader" name="waitingConfirmation" />
 						<div class="content__inner">
 							<div class="content__title">{{ $t("Payment found") }}</div>
 							<div class="content__text">
@@ -73,9 +68,7 @@
 								</span>
 								<span>{{ $t("Elapsed") }} {{ formattedTime }}</span>
 							</div>
-							<span class="content__confirmation">
-								{{ confirmed }}/{{ confirmations }} {{ $t("confirmations") }}
-							</span>
+							<span class="content__confirmation"> {{ confirmed }}/{{ confirmations }} {{ $t("confirmations") }} </span>
 						</div>
 					</div>
 					<advertising-block class="info__advertising-block" />
@@ -133,8 +126,10 @@
 					}
 					&__loader {
 						width: 100px;
+						height: 100px;
 						@include mediamax(576) {
 							width: 80px;
+							height: 80px;
 						}
 					}
 					&__inner {

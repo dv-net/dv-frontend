@@ -12,10 +12,13 @@
 	import { buildRefundEntryPartialRoute } from "@pay/utils/helpers/refundEntry";
 	import { AML_PAYMENT_PHASE } from "@pay/utils/constants/aml";
 	import { PAYER_STEP } from "@pay-shared/utils/constants/payerForm";
+	import { isPaymentStage } from "@pay-shared/utils/helpers/payerStep";
+	import { getPendingAnimationName, prefetchLottieAnimations } from "@pay-shared/utils/helpers/lottie";
 	import { useI18n } from "vue-i18n";
 	import AudioPayment from "@pay-shared/components/payerForm/audioPayment/AudioPayment.vue";
 	import BlockLatestTransactions from "@pay-shared/components/payerForm/blockLatestTransactions/BlockLatestTransactions.vue";
 	import RevealTransition from "@pay-shared/components/ui/revealTransition/RevealTransition.vue";
+	import StepTransition from "@pay-shared/components/ui/stepTransition/StepTransition.vue";
 	import StepOne from "@pay/views/payerForm/components/steps/stepOne/StepOne.vue";
 	import StepTwo from "@pay/views/payerForm/components/steps/stepTwo/StepTwo.vue";
 	import StepThree from "@pay/views/payerForm/components/steps/stepThree/stepThree.vue";
@@ -80,6 +83,8 @@
 	const currentStepComponent = computed<Component>(() => {
 		return stepComponents[currentStep.value];
 	});
+
+	const formLayout = computed<string>(() => (isPaymentStage(currentStep.value) ? "payment" : "select"));
 
 	const headerLastStepStatus = computed<"checking" | "rejected" | null>(() => {
 		if (amlPaymentPhase.value === AML_PAYMENT_PHASE.checking) return "checking";
@@ -151,6 +156,9 @@
 	watch(currentStep, (newValue: number) => {
 		timeline.value.forEach((item) => {
 			item.isActive = item.id <= (stepMap.value[currentStep.value] || currentStep.value);
+			if (newValue === PAYER_STEP.sendPayment && item.id === PAYER_STEP.selectChain) {
+				item.isActive = filteredBlockchains.value.length > 1;
+			}
 			if (newValue === PAYER_STEP.confirmation && [1, 2].includes(item.id)) item.isActive = false;
 			if (newValue === PAYER_STEP.result && [1, 2, 3].includes(item.id)) item.isActive = false;
 		});
@@ -160,6 +168,10 @@
 			}
 		}
 		router.push({ query: { ...route.query, step: newValue } });
+	});
+
+	watch(currentCurrencyChainId, (currencyChainId) => {
+		if (currencyChainId) prefetchLottieAnimations([getPendingAnimationName(currencyChainId)]);
 	});
 
 	watch(
@@ -178,6 +190,9 @@
 		const hasPendingPayment = await restorePendingPaymentSession();
 		if (!hasPendingPayment) getQueryParams();
 		void startPolling();
+		if (!errorStore.value) {
+			prefetchLottieAnimations(["waitingConfirmation", "mainLoader", "successfulPayment", "amlChecking", "amlSuccess"]);
+		}
 	});
 
 	onUnmounted(() => {
@@ -198,46 +213,50 @@
 			:step-map="stepMap"
 			:last-step-status="headerLastStepStatus"
 		/>
-		<div class="form__inner">
-			<div class="form__body">
-				<form-error v-if="errorStore" :type="errorStore" />
-				<component v-else :is="currentStepComponent" />
+		<step-transition :step="formLayout">
+			<div class="form__inner">
+				<div class="form__body">
+					<form-error v-if="errorStore" :type="errorStore" />
+					<step-transition v-else :step="currentStep">
+						<component :is="currentStepComponent" />
+					</step-transition>
+				</div>
+				<payer-form-sidebar
+					:payer-id="payerId"
+					:store="store"
+					:has-error="Boolean(errorStore)"
+					:current-step="currentStep"
+					:is-show-advertising="isShowAdvertising"
+					:is-show-block-latest-transactions="isShowBlockLatestTransactions"
+					:is-show-block-blocked-transactions="isShowBlockBlockedTransactions"
+					:transactions="latestTransactions"
+					:blocked-transactions="blockedLatestTransactions"
+					@request-refund="handleRequestRefund"
+				>
+					<amount-editor v-model:amount="amount" size="lg" :minimal-payment="store?.minimal_payment" />
+				</payer-form-sidebar>
+				<block-advertising v-if="isShowAdvertising" class="form__advertising" />
+				<template v-if="showPaymentsBlocks">
+					<reveal-transition>
+						<block-latest-transactions
+							v-if="latestTransactions.length"
+							class="form__latest-transactions"
+							:transactions="latestTransactions"
+							@request-refund="handleRequestRefund"
+						/>
+					</reveal-transition>
+					<reveal-transition>
+						<block-latest-transactions
+							v-if="blockedLatestTransactions.length"
+							class="form__blocked-transactions"
+							title="Blocked payments"
+							:transactions="blockedLatestTransactions"
+							@request-refund="handleRequestRefund"
+						/>
+					</reveal-transition>
+				</template>
 			</div>
-			<payer-form-sidebar
-				:payer-id="payerId"
-				:store="store"
-				:has-error="Boolean(errorStore)"
-				:current-step="currentStep"
-				:is-show-advertising="isShowAdvertising"
-				:is-show-block-latest-transactions="isShowBlockLatestTransactions"
-				:is-show-block-blocked-transactions="isShowBlockBlockedTransactions"
-				:transactions="latestTransactions"
-				:blocked-transactions="blockedLatestTransactions"
-				@request-refund="handleRequestRefund"
-			>
-				<amount-editor v-model:amount="amount" size="lg" :minimal-payment="store?.minimal_payment" />
-			</payer-form-sidebar>
-			<block-advertising v-if="isShowAdvertising" class="form__advertising" />
-			<template v-if="showPaymentsBlocks">
-				<reveal-transition>
-					<block-latest-transactions
-						v-if="latestTransactions.length"
-						class="form__latest-transactions"
-						:transactions="latestTransactions"
-						@request-refund="handleRequestRefund"
-					/>
-				</reveal-transition>
-				<reveal-transition>
-					<block-latest-transactions
-						v-if="blockedLatestTransactions.length"
-						class="form__blocked-transactions"
-						title="Blocked payments"
-						:transactions="blockedLatestTransactions"
-						@request-refund="handleRequestRefund"
-					/>
-				</reveal-transition>
-			</template>
-		</div>
+		</step-transition>
 	</div>
 </template>
 

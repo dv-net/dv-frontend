@@ -1,29 +1,18 @@
 <script setup lang="ts">
 	import { UiButton } from "@dv.net/ui-kit";
 	import QrcodeVue from "qrcode.vue";
-	import { ref, shallowRef, watch } from "vue";
+	import { ref } from "vue";
 	import type { CurrencyType } from "@shared/utils/types/blockchain";
 	import type { BlockchainType } from "@shared/utils/types/blockchain";
 	import BlockchainIcon from "@shared/components/ui/blockchainIcon/BlockchainIcon.vue";
 	import CurrencyIcon from "@pay-shared/components/ui/currencyIcon/CurrencyIcon.vue";
 	import IconLogoQrCode from "@pay-shared/components/icons/IconLogoQrCode.vue";
-	import { LottieAnimation } from "lottie-web-vue";
+	import LottiePlayer from "@pay-shared/components/ui/lottiePlayer/LottiePlayer.vue";
+	import { getPendingAnimationName } from "@pay-shared/utils/helpers/lottie";
 	import { blockchainCurrencyId } from "@shared/utils/constants/blockchain";
 	import { useI18n } from "vue-i18n";
 	import { changeChainBsc } from "@shared/utils/helpers/general.ts";
 	import borderQrCodeImage from "@pay-shared/assets/images/border-qr-code.png";
-
-	type LottieAnimationData = Record<string, unknown>;
-
-	const loaderTransactionPendingLoaders: Record<string, () => Promise<{ default: LottieAnimationData }>> = {
-		general: () => import("@pay-shared/assets/animations/loaderTransactionPending/general.json"),
-		"BTC.Bitcoin": () => import("@pay-shared/assets/animations/loaderTransactionPending/BTC.Bitcoin.json"),
-		"ETH.Ethereum": () => import("@pay-shared/assets/animations/loaderTransactionPending/ETH.Ethereum.json"),
-		"USDT.BNBSmartChain": () =>
-			import("@pay-shared/assets/animations/loaderTransactionPending/USDT.BNBSmartChain.json"),
-		"USDT.Ethereum": () => import("@pay-shared/assets/animations/loaderTransactionPending/USDT.Ethereum.json"),
-		"USDT.Tron": () => import("@pay-shared/assets/animations/loaderTransactionPending/USDT.Tron.json")
-	};
 
 	const {
 		currentAddress = null,
@@ -55,32 +44,6 @@
 	const { locale } = useI18n();
 
 	const isShowQrCode = ref<boolean>(false);
-	const loaderTransactionPending = shallowRef<LottieAnimationData | null>(null);
-	let loaderTransactionPendingRequestId = 0;
-
-	const loadLoaderTransactionPending = async (currencyChainId: string | null) => {
-		const requestId = ++loaderTransactionPendingRequestId;
-		const animationName =
-			currencyChainId && loaderTransactionPendingLoaders[currencyChainId] ? currencyChainId : "general";
-
-		try {
-			const animationModule = await loaderTransactionPendingLoaders[animationName]();
-			if (requestId !== loaderTransactionPendingRequestId) return;
-			loaderTransactionPending.value = animationModule.default;
-		} catch (error) {
-			console.error(error);
-			if (requestId !== loaderTransactionPendingRequestId) return;
-			loaderTransactionPending.value = null;
-		}
-	};
-
-	watch(
-		() => currentCurrencyChainId,
-		(currencyChainId) => {
-			void loadLoaderTransactionPending(currencyChainId ?? null);
-		},
-		{ immediate: true }
-	);
 </script>
 
 <template>
@@ -88,21 +51,12 @@
 		<div v-if="currentAddress && currentCurrency && currentChain" class="block__inner">
 			<div class="qr">
 				<transition name="qr-swap" :duration="QR_SWAP_DURATION">
-					<div
-						v-if="isShowQrCode"
-						key="qr"
-						class="qr__inner"
-						:style="{ backgroundImage: `url(${borderQrCodeImage})` }"
-					>
+					<div v-if="isShowQrCode" key="qr" class="qr__inner" :style="{ backgroundImage: `url(${borderQrCodeImage})` }">
 						<qrcode-vue :value="currentAddress" class="qr__code" level="M" render-as="svg" />
 						<icon-logo-qr-code class="qr__logo" />
 					</div>
 					<div v-else key="loader" class="qr__loader">
-						<lottie-animation
-							v-if="loaderTransactionPending"
-							:animation-data="loaderTransactionPending"
-							:loop="true"
-						/>
+						<lottie-player class="qr__animation" :name="getPendingAnimationName(currentCurrencyChainId)" />
 					</div>
 				</transition>
 			</div>
@@ -218,6 +172,10 @@
 					position: absolute;
 					inset: 0;
 					@extend .center;
+				}
+				&__animation {
+					width: 100%;
+					height: 100%;
 				}
 				&__code {
 					width: 155px;
