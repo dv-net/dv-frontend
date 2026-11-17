@@ -2,6 +2,15 @@
 
 ## [Unreleased]
 
+## [1.1.8] - 2026-11-17
+
+- feat: fade between payment form steps
+- feat: polish payment form animations and hover states
+- fix: stop the QR code from shifting after the currency swap animation
+- fix: clear the previous AML result when a payment restarts
+- change: serve coin and blockchain logos as static SVG files
+- change: translate new withdrawal and refund strings
+
 ## [1.1.7] - 2026-11-10
 
 - feat: batch delete withdrawal wallet addresses with 2FA confirmation — delete selected addresses or all wallets at once

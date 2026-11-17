@@ -31,7 +31,6 @@
 	const { getAmountRate } = payerFormStore;
 
 	const isShowModalTronWallets = ref<boolean>(false);
-	const isShowModalEvmWallets = ref<boolean>(false);
 	const walletEvmConnectRef = ref<InstanceType<typeof WalletEvmConnect> | null>(null);
 	const isEvmConnected = computed(() => walletEvmConnectRef.value?.isConnected || false);
 	const isLoadingEvmBtn = computed(() => walletEvmConnectRef.value?.isLoadingBtn || false);
@@ -89,7 +88,6 @@
 				<wallet-evm-connect
 					ref="walletEvmConnectRef"
 					v-else-if="isEvmSupported"
-					v-model:is-show-modal-evm-wallets="isShowModalEvmWallets"
 					:recipient-address="currentAddress"
 					:amount="currentPrice"
 					:token="currentCurrency"

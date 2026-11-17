@@ -1,5 +1,4 @@
 <script setup lang="ts">
-	import { createAppKit } from "@reown/appkit/vue";
 	import { computed, watch } from "vue";
 	import {
 		useAccount,
@@ -9,12 +8,7 @@
 		useSwitchChain,
 		useReadContract
 	} from "@wagmi/vue";
-	import {
-		chainIdMap,
-		metadataWalletConnect,
-		networksWalletConnect,
-		wagmiAdapter
-	} from "@pay-shared/utils/constants/connectWallet/evm.ts";
+	import { chainIdMap, getAppKitModal, wagmiAdapter } from "@pay-shared/utils/constants/connectWallet/evm.ts";
 	import { UiButton, UiCopyText, UiIcon, UiInput } from "@dv.net/ui-kit";
 	import IconWalletConnect from "@pay-shared/components/icons/IconWalletConnect.vue";
 	import iconMetaMask from "@pay-shared/assets/images/wallets/metaMask.png";
@@ -50,18 +44,7 @@
 
 	const { chain, recipientAddress, token, amount, addresses } = defineProps<IProps>();
 
-	const modalConnectWallet = createAppKit({
-		adapters: [wagmiAdapter],
-		themeMode: "light",
-		networks: networksWalletConnect,
-		projectId: import.meta.env.VITE_PROJECT_ID_CONNECT_WALLET,
-		metadata: metadataWalletConnect,
-		features: {
-			analytics: false,
-			socials: false,
-			email: false
-		}
-	});
+	const modalConnectWallet = getAppKitModal();
 
 	const walletName = computed<string>(() => {
 		if (!isConnected.value || !connector.value) return "";
@@ -89,11 +72,17 @@
 		return addresses.find((item) => item.currency.id === currencyId)?.currency;
 	});
 
+	const contractAddress = computed(() => {
+		if (!tokenInfo.value || tokenInfo.value.is_native || !tokenInfo.value.contract_address) return undefined;
+		return tokenInfo.value.contract_address as Address;
+	});
+
 	const { data: tokenDecimals } = useReadContract({
 		chainId: computed(() => (chain && chain in chainIdMap ? chainIdMap[chain] : undefined)),
-		address: computed(() => tokenInfo.value?.contract_address as Address | undefined),
+		address: contractAddress,
 		abi: erc20Abi,
-		functionName: "decimals"
+		functionName: "decimals",
+		query: { enabled: computed(() => Boolean(contractAddress.value)) }
 	});
 
 	const handlePayment = async () => {
@@ -221,7 +210,7 @@
 					</template>
 				</ui-input>
 				<div class="info__inner">
-					<ui-button @click="disconnect" type="secondary" size="lg" class="info__btn">
+					<ui-button @click="disconnect()" type="secondary" size="lg" class="info__btn">
 						<icon-disconnect-wallet />
 					</ui-button>
 					<ui-button :loading="isLoadingBtn" @click="handlePayment" size="lg" mode="neutral" class="info__btn">
