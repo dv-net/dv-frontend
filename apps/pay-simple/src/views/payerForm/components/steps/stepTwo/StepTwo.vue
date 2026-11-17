@@ -6,6 +6,7 @@
 	import { useRouter, useRoute } from "vue-router";
 	import type { CurrencyType } from "@shared/utils/types/blockchain";
 	import { computed } from "vue";
+	import { PAYER_STEP } from "@pay-shared/utils/constants/payerForm";
 
 	const { filteredBlockchains, isLoading, currentStep, currentCurrency, currentChain, addresses } =
 		storeToRefs(usePayerFormStore());
@@ -22,13 +23,13 @@
 		if (!currencyId) return;
 		const chain = getCurrentBlockchain(currencyId);
 		currentChain.value = chain;
-		const query = { ...route.query, chain, step: 3 };
+		const query = { ...route.query, chain, step: PAYER_STEP.sendPayment };
 		await router.push({ query });
-		currentStep.value = 3;
+		currentStep.value = PAYER_STEP.sendPayment;
 	};
 
 	const changeCurrency = () => {
-		currentStep.value = 1;
+		currentStep.value = PAYER_STEP.selectCurrency;
 	};
 </script>
 

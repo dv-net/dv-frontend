@@ -8,7 +8,9 @@
 	import { useMediaQuery } from "@shared/utils/composables/useMediaQuery.ts";
 	import BlockLatestTransactions from "@pay-shared/components/payerForm/blockLatestTransactions/BlockLatestTransactions.vue";
 	import type { ILatestTransaction } from "@pay-shared/components/payerForm/blockLatestTransactions/types";
+	import RevealTransition from "@pay-shared/components/ui/revealTransition/RevealTransition.vue";
 	import { formatFiatAmount } from "@pay-shared/utils/helpers/fiat";
+	import { isPaymentStage } from "@pay-shared/utils/helpers/payerStep";
 	import type { IPayerFormSidebarStore } from "./types";
 
 	const {
@@ -39,7 +41,7 @@
 
 	const isMediaMax480 = useMediaQuery("(max-width: 480px)");
 
-	const isShowSidebar = computed<boolean>(() => ![3, 4, 5].includes(currentStep));
+	const isShowSidebar = computed<boolean>(() => !isPaymentStage(currentStep));
 	const isShowDetails = computed<boolean>(() => !hasError && isShowSidebar.value);
 	const formattedAmount = computed<string>(() => formatFiatAmount(amount, fiatCurrency));
 	const safeSiteUrl = computed<string | null>(() => getSafeUrl(store?.site_url));
@@ -88,21 +90,25 @@
 				</div>
 			</div>
 		</wrapper-block>
-		<block-latest-transactions
-			v-if="isShowBlockLatestTransactions"
-			class="sidebar__latest-transactions"
-			:transactions="transactions"
-			:fiat-currency="fiatCurrency"
-			@request-refund="emit('requestRefund', $event)"
-		/>
-		<block-latest-transactions
-			v-if="isShowBlockBlockedTransactions"
-			class="sidebar__blocked-transactions"
-			title="Blocked payments"
-			:transactions="blockedTransactions"
-			:fiat-currency="fiatCurrency"
-			@request-refund="emit('requestRefund', $event)"
-		/>
+		<reveal-transition>
+			<block-latest-transactions
+				v-if="isShowBlockLatestTransactions"
+				class="sidebar__latest-transactions"
+				:transactions="transactions"
+				:fiat-currency="fiatCurrency"
+				@request-refund="emit('requestRefund', $event)"
+			/>
+		</reveal-transition>
+		<reveal-transition>
+			<block-latest-transactions
+				v-if="isShowBlockBlockedTransactions"
+				class="sidebar__blocked-transactions"
+				title="Blocked payments"
+				:transactions="blockedTransactions"
+				:fiat-currency="fiatCurrency"
+				@request-refund="emit('requestRefund', $event)"
+			/>
+		</reveal-transition>
 		<block-advertising v-if="isShowAdvertising" class="sidebar__advertising" />
 	</div>
 </template>

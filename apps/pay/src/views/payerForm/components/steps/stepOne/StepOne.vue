@@ -4,6 +4,7 @@
 	import { storeToRefs } from "pinia";
 	import { getCurrentBlockchain, getCurrentCoin } from "@shared/utils/helpers/general.ts";
 	import { useRoute, useRouter } from "vue-router";
+	import { PAYER_STEP } from "@pay-shared/utils/constants/payerForm";
 
 	const { currentCurrency, currentStep, currentChain, isLoading, filteredBlockchains, filteredCurrencies, addresses } =
 		storeToRefs(usePayerFormStore());
@@ -23,13 +24,13 @@
 			const chain = getCurrentBlockchain(currencyId);
 			currentChain.value = chain;
 			query.chain = chain;
-			query.step = 3;
+			query.step = PAYER_STEP.sendPayment;
 		} else {
-			query.step = 2;
+			query.step = PAYER_STEP.selectChain;
 			delete query.chain;
 		}
 		await router.push({ query });
-		currentStep.value = filteredBlockchains.value.length === 1 ? 3 : 2;
+		currentStep.value = filteredBlockchains.value.length === 1 ? PAYER_STEP.sendPayment : PAYER_STEP.selectChain;
 	};
 </script>
 

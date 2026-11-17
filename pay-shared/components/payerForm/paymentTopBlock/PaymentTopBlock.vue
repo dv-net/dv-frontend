@@ -50,6 +50,8 @@
 		(event: "open-evm-modal"): void;
 	}>();
 
+	const QR_SWAP_DURATION = { enter: 900, leave: 300 };
+
 	const { locale } = useI18n();
 
 	const isShowQrCode = ref<boolean>(false);
@@ -85,18 +87,24 @@
 	<div class="block">
 		<div v-if="currentAddress && currentCurrency && currentChain" class="block__inner">
 			<div class="qr">
-				<div
-					v-if="isShowQrCode"
-					key="qr"
-					class="qr__inner"
-					:style="{ backgroundImage: `url(${borderQrCodeImage})` }"
-				>
-					<qrcode-vue :value="currentAddress" class="qr__code" level="M" render-as="svg" />
-					<icon-logo-qr-code class="qr__logo" />
-				</div>
-				<div v-else key="loader" class="qr__loader">
-					<lottie-animation v-if="loaderTransactionPending" :animation-data="loaderTransactionPending" :loop="true" />
-				</div>
+				<transition name="qr-swap" :duration="QR_SWAP_DURATION">
+					<div
+						v-if="isShowQrCode"
+						key="qr"
+						class="qr__inner"
+						:style="{ backgroundImage: `url(${borderQrCodeImage})` }"
+					>
+						<qrcode-vue :value="currentAddress" class="qr__code" level="M" render-as="svg" />
+						<icon-logo-qr-code class="qr__logo" />
+					</div>
+					<div v-else key="loader" class="qr__loader">
+						<lottie-animation
+							v-if="loaderTransactionPending"
+							:animation-data="loaderTransactionPending"
+							:loop="true"
+						/>
+					</div>
+				</transition>
 			</div>
 			<div class="bottom">
 				<div class="description">
@@ -200,28 +208,22 @@
 				}
 				&__inner {
 					position: absolute;
-					left: 50%;
-					top: 50%;
-					transform: translate(-50%, -50%);
+					inset: 0;
 					@extend .center;
-					width: 100%;
-					height: 100%;
 					background-size: contain;
 					background-repeat: no-repeat;
 					background-position: center;
 				}
 				&__loader {
 					position: absolute;
-					left: 50%;
-					top: 50%;
-					transform: translate(-50%, -50%);
+					inset: 0;
 					@extend .center;
-					width: 100%;
 				}
 				&__code {
 					width: 155px;
 					height: 155px;
 					flex-shrink: 0;
+					clip-path: inset(0);
 				}
 				&__logo {
 					@extend .center;
@@ -289,6 +291,82 @@
 						width: 100%;
 					}
 				}
+			}
+		}
+	}
+
+	$ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+	$ease-scan: cubic-bezier(0.65, 0, 0.35, 1);
+	$ease-pop: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+	.qr__inner.qr-swap-enter-active {
+		transition:
+			opacity 0.45s ease-out,
+			transform 0.7s $ease-out-expo,
+			filter 0.5s ease-out;
+		.qr__code {
+			transition: clip-path 0.65s $ease-scan 0.12s;
+		}
+		.qr__logo {
+			transition:
+				opacity 0.3s ease-out 0.5s,
+				transform 0.4s $ease-pop 0.5s;
+		}
+	}
+	.qr__inner.qr-swap-enter-from {
+		opacity: 0;
+		transform: scale(0.9);
+		filter: blur(8px);
+		.qr__code {
+			clip-path: inset(0 0 100% 0);
+		}
+		.qr__logo {
+			opacity: 0;
+			transform: translate(-50%, -50%) scale(0.4);
+		}
+	}
+	.qr__inner.qr-swap-leave-active {
+		transition:
+			opacity 0.25s ease-in,
+			transform 0.3s ease-in,
+			filter 0.25s ease-in;
+	}
+	.qr__inner.qr-swap-leave-to {
+		opacity: 0;
+		transform: scale(0.94);
+		filter: blur(4px);
+	}
+
+	.qr__loader.qr-swap-enter-active {
+		transition:
+			opacity 0.4s ease-out 0.15s,
+			transform 0.55s $ease-out-expo 0.15s;
+	}
+	.qr__loader.qr-swap-leave-active {
+		transition:
+			opacity 0.2s ease-in,
+			transform 0.25s ease-in;
+	}
+	.qr__loader.qr-swap-enter-from,
+	.qr__loader.qr-swap-leave-to {
+		opacity: 0;
+		transform: scale(0.9);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.qr__inner.qr-swap-enter-from,
+		.qr__inner.qr-swap-leave-to,
+		.qr__loader.qr-swap-enter-from,
+		.qr__loader.qr-swap-leave-to {
+			transform: none;
+			filter: none;
+		}
+		.qr__inner.qr-swap-enter-from {
+			.qr__code {
+				clip-path: inset(0);
+			}
+			.qr__logo {
+				transform: translate(-50%, -50%);
 			}
 		}
 	}

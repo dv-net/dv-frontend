@@ -11,9 +11,11 @@
 	import { getApiWalletConfirm } from "@pay/utils/services/payerForm.ts";
 	import { buildRefundEntryPartialRoute } from "@pay/utils/helpers/refundEntry";
 	import { AML_PAYMENT_PHASE } from "@pay/utils/constants/aml";
+	import { PAYER_STEP } from "@pay-shared/utils/constants/payerForm";
 	import { useI18n } from "vue-i18n";
 	import AudioPayment from "@pay-shared/components/payerForm/audioPayment/AudioPayment.vue";
 	import BlockLatestTransactions from "@pay-shared/components/payerForm/blockLatestTransactions/BlockLatestTransactions.vue";
+	import RevealTransition from "@pay-shared/components/ui/revealTransition/RevealTransition.vue";
 	import StepOne from "@pay/views/payerForm/components/steps/stepOne/StepOne.vue";
 	import StepTwo from "@pay/views/payerForm/components/steps/stepTwo/StepTwo.vue";
 	import StepThree from "@pay/views/payerForm/components/steps/stepThree/stepThree.vue";
@@ -34,6 +36,7 @@
 		currentCurrencyChainId,
 		errorStore,
 		isShowAdvertising,
+		showPaymentsBlocks,
 		stepMap,
 		filteredBlockchains,
 		isShowBlockLatestTransactions,
@@ -67,11 +70,11 @@
 	const email = route.query.email as string | undefined;
 	let timeout: ReturnType<typeof setTimeout> | null = null;
 	const stepComponents: Record<number, Component> = {
-		1: StepOne,
-		2: StepTwo,
-		3: StepThree,
-		4: StepFour,
-		5: StepFive
+		[PAYER_STEP.selectCurrency]: StepOne,
+		[PAYER_STEP.selectChain]: StepTwo,
+		[PAYER_STEP.sendPayment]: StepThree,
+		[PAYER_STEP.confirmation]: StepFour,
+		[PAYER_STEP.result]: StepFive
 	};
 
 	const currentStepComponent = computed<Component>(() => {
@@ -116,22 +119,22 @@
 			currentChain.value = getCurrentBlockchain(currencyId);
 		}
 		if (currentCurrency.value && currentChain.value) {
-			currentStep.value = 3;
+			currentStep.value = PAYER_STEP.sendPayment;
 		} else if (currentCurrency.value) {
 			if (filteredBlockchains.value.length === 1) {
 				currentChain.value = getCurrentBlockchain(filteredBlockchains.value[0].currency.id);
-				currentStep.value = 3;
+				currentStep.value = PAYER_STEP.sendPayment;
 				updateQuery();
 			} else {
-				currentStep.value = 2;
+				currentStep.value = PAYER_STEP.selectChain;
 			}
 		}
 	};
 
 	const parseStepFromQuery = (stepQuery: string | undefined): number => {
-		if (!stepQuery) return 1;
+		if (!stepQuery) return PAYER_STEP.selectCurrency;
 		const step = parseFloat(stepQuery);
-		if (!step || !(step in stepComponents)) return 1;
+		if (!step || !(step in stepComponents)) return PAYER_STEP.selectCurrency;
 		return step;
 	};
 
@@ -148,10 +151,10 @@
 	watch(currentStep, (newValue: number) => {
 		timeline.value.forEach((item) => {
 			item.isActive = item.id <= (stepMap.value[currentStep.value] || currentStep.value);
-			if ([4].includes(newValue) && [1, 2].includes(item.id)) item.isActive = false;
-			if ([5].includes(newValue) && [1, 2, 3].includes(item.id)) item.isActive = false;
+			if (newValue === PAYER_STEP.confirmation && [1, 2].includes(item.id)) item.isActive = false;
+			if (newValue === PAYER_STEP.result && [1, 2, 3].includes(item.id)) item.isActive = false;
 		});
-		if (newValue === 3 && payerId.value) {
+		if (newValue === PAYER_STEP.sendPayment && payerId.value) {
 			if (currentCurrencyChainId.value) {
 				getApiWalletConfirm(payerId.value, currentCurrencyChainId.value);
 			}
@@ -215,19 +218,25 @@
 				<amount-editor v-model:amount="amount" size="lg" :minimal-payment="store?.minimal_payment" />
 			</payer-form-sidebar>
 			<block-advertising v-if="isShowAdvertising" class="form__advertising" />
-			<block-latest-transactions
-				v-if="isShowBlockLatestTransactions"
-				class="form__latest-transactions"
-				:transactions="latestTransactions"
-				@request-refund="handleRequestRefund"
-			/>
-			<block-latest-transactions
-				v-if="isShowBlockBlockedTransactions"
-				class="form__blocked-transactions"
-				title="Blocked payments"
-				:transactions="blockedLatestTransactions"
-				@request-refund="handleRequestRefund"
-			/>
+			<template v-if="showPaymentsBlocks">
+				<reveal-transition>
+					<block-latest-transactions
+						v-if="latestTransactions.length"
+						class="form__latest-transactions"
+						:transactions="latestTransactions"
+						@request-refund="handleRequestRefund"
+					/>
+				</reveal-transition>
+				<reveal-transition>
+					<block-latest-transactions
+						v-if="blockedLatestTransactions.length"
+						class="form__blocked-transactions"
+						title="Blocked payments"
+						:transactions="blockedLatestTransactions"
+						@request-refund="handleRequestRefund"
+					/>
+				</reveal-transition>
+			</template>
 		</div>
 	</div>
 </template>

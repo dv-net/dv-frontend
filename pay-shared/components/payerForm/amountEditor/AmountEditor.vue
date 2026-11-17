@@ -150,10 +150,34 @@
 			line-height: 19px;
 			text-decoration: underline;
 			text-decoration-style: dotted;
+			text-decoration-color: rgba($main-subtitle-color, 0.7);
 			text-underline-offset: 3px;
 			cursor: pointer;
+			outline: none;
+			border-radius: 4px;
+			transition:
+				color 0.22s ease,
+				text-decoration-color 0.22s ease,
+				text-underline-offset 0.22s ease;
+			@media (hover: hover) {
+				&:hover {
+					color: $main-text-link-and-price-color;
+					text-decoration-color: rgba($main-text-link-and-price-color, 0.5);
+					text-underline-offset: 5px;
+				}
+			}
+			&:focus-visible {
+				color: $main-text-link-and-price-color;
+				box-shadow: 0 0 0 2px rgba($main-text-link-and-price-color, 0.35);
+			}
 			&--active {
 				color: $main-text-link-and-price-color;
+				text-decoration-color: rgba($main-text-link-and-price-color, 0.5);
+				@media (hover: hover) {
+					&:hover {
+						text-decoration-color: $main-text-link-and-price-color;
+					}
+				}
 			}
 		}
 		&__input {

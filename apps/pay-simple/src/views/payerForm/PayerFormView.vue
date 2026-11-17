@@ -10,6 +10,7 @@
 	import BlockAdvertising from "@pay-shared/components/payerForm/blockAdvertising/BlockAdvertising.vue";
 	import { useI18n } from "vue-i18n";
 	import AudioPayment from "@pay-shared/components/payerForm/audioPayment/AudioPayment.vue";
+	import { PAYER_STEP } from "@pay-shared/utils/constants/payerForm";
 
 	import StepOne from "@pay-simple/views/payerForm/components/steps/stepOne/StepOne.vue";
 	import StepTwo from "@pay-simple/views/payerForm/components/steps/stepTwo/StepTwo.vue";
@@ -57,11 +58,11 @@
 	let timeout: ReturnType<typeof setTimeout> | null = null;
 	let walletsTimeout: ReturnType<typeof setTimeout> | null = null;
 	const stepComponents: Record<number, Component> = {
-		1: StepOne,
-		2: StepTwo,
-		3: StepThree,
-		4: StepFour,
-		5: StepFive
+		[PAYER_STEP.selectCurrency]: StepOne,
+		[PAYER_STEP.selectChain]: StepTwo,
+		[PAYER_STEP.sendPayment]: StepThree,
+		[PAYER_STEP.confirmation]: StepFour,
+		[PAYER_STEP.result]: StepFive
 	};
 
 	const currentStepComponent = computed<Component>(() => {
@@ -125,30 +126,30 @@
 			currentChain.value = getCurrentBlockchain(currencyId);
 		}
 		if (currentCurrency.value && currentChain.value) {
-			currentStep.value = 3;
+			currentStep.value = PAYER_STEP.sendPayment;
 		} else if (currentCurrency.value) {
 			if (filteredBlockchains.value.length === 1) {
 				currentChain.value = getCurrentBlockchain(filteredBlockchains.value[0].currency.id);
-				currentStep.value = 3;
+				currentStep.value = PAYER_STEP.sendPayment;
 				updateQuery();
 			} else {
-				currentStep.value = 2;
+				currentStep.value = PAYER_STEP.selectChain;
 			}
 		}
 	};
 
 	const parseStepFromQuery = (stepQuery: string | undefined): number => {
-		if (!stepQuery) return 1;
+		if (!stepQuery) return PAYER_STEP.selectCurrency;
 		const step = parseFloat(stepQuery);
-		if (!step || !(step in stepComponents)) return 1;
+		if (!step || !(step in stepComponents)) return PAYER_STEP.selectCurrency;
 		return step;
 	};
 
 	watch(currentStep, (newValue: number) => {
 		timeline.value.forEach((item) => {
 			item.isActive = item.id <= (stepMap.value[currentStep.value] || currentStep.value);
-			if ([4].includes(newValue) && [1, 2].includes(item.id)) item.isActive = false;
-			if ([5].includes(newValue) && [1, 2, 3].includes(item.id)) item.isActive = false;
+			if (newValue === PAYER_STEP.confirmation && [1, 2].includes(item.id)) item.isActive = false;
+			if (newValue === PAYER_STEP.result && [1, 2, 3].includes(item.id)) item.isActive = false;
 		});
 		router.push({ query: { ...route.query, step: newValue } });
 	});

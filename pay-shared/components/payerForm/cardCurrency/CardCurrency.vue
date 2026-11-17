@@ -26,6 +26,9 @@
 		class="card"
 		:class="[`mode-${mode}`, { selected }, { 'hover-active': isHoverActive }]"
 		:style="`min-height: ${height}px`"
+		:role="isHoverActive ? 'button' : undefined"
+		:tabindex="isHoverActive ? 0 : undefined"
+		@keydown.enter.space.self.prevent="($event.currentTarget as HTMLElement).click()"
 	>
 		<div class="card__block">
 			<currency-icon :type="currency as CurrencyType" />
@@ -63,15 +66,16 @@
 		padding: 12px 20px;
 		border-radius: 12px;
 		border: 1px solid $main-border-color;
-		transition: border 0.3s ease-in-out;
+		transition:
+			background-color 0.22s ease,
+			border-color 0.22s ease,
+			box-shadow 0.22s ease,
+			transform 0.22s ease;
 		word-break: break-word;
 		font-size: 16px;
 		@include mediamax(768) {
 			font-size: 14px;
 			padding: 8px 12px;
-		}
-		&.selected {
-			border: 1px solid $main-text-link-and-price-color;
 		}
 		&.mode-grey {
 			background-color: #f6f6f6;
@@ -79,13 +83,36 @@
 		&.mode-white {
 			background-color: $form-background;
 		}
-		@media (hover: hover) {
-			&:hover {
-				&.hover-active {
-					cursor: pointer;
-					border: 1px solid $main-text-link-and-price-color;
+		&.hover-active {
+			cursor: pointer;
+			@media (hover: hover) {
+				&:hover {
+					border-color: #c5d7f8;
+					background-color: $form-background;
+					box-shadow: 0 10px 22px -14px rgba($main-text-link-and-price-color, 0.55);
+					transform: translateY(-1px);
+					.card__block :deep(.icon) {
+						transform: scale(1.045);
+						filter: drop-shadow(0 6px 6px rgba(20, 20, 20, 0.22));
+					}
 				}
 			}
+			&:active {
+				transform: translateY(0) scale(0.985);
+			}
+			&:focus-visible {
+				outline: 2px solid $main-text-link-and-price-color;
+				outline-offset: 2px;
+			}
+		}
+		&.selected,
+		&.selected:hover {
+			border-color: $main-text-link-and-price-color;
+		}
+		.card__block :deep(.icon) {
+			transition:
+				transform 0.22s ease,
+				filter 0.22s ease;
 		}
 		&__block {
 			display: flex;

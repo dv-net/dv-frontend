@@ -8,7 +8,7 @@
 	import { getLinkExplorer } from "@shared/utils/helpers/linkExplorer.ts";
 	import { useI18n } from "vue-i18n";
 	import type { UItableMeta } from "@dv.net/ui-kit/dist/components/UiTable/types";
-	import { onMounted, ref, watch } from "vue";
+	import { computed, ref, useTemplateRef, watch } from "vue";
 	import type { ILatestTransaction } from "./types";
 	import { formatFiatAmount } from "@pay-shared/utils/helpers/fiat";
 	import { openExternal } from "@shared/utils/helpers/url";
@@ -25,39 +25,58 @@
 
 	const { t, locale } = useI18n();
 
-	const lastTransactions = ref<ILatestTransaction[]>([]);
-	const lastTransactionsPagination = ref<UItableMeta | null>(null);
-	const lastTransactionsFilter = ref({ page: 1, perPage: 3 });
+	const PER_PAGE = 3;
+	const PAGE_TURN_DURATION = { enter: 620, leave: 300 };
+
+	const page = ref<number>(1);
+	const pageTurnDirection = ref<"next" | "prev">("next");
+	const viewportRef = useTemplateRef<HTMLElement>("viewport");
+	let heightBeforeTurn = 0;
+
+	const lastTransactions = computed<ILatestTransaction[]>(() =>
+		transactions.slice((page.value - 1) * PER_PAGE, page.value * PER_PAGE)
+	);
+
+	const lastTransactionsPagination = computed<UItableMeta | null>(() =>
+		transactions.length ? ({ page: page.value, perPage: PER_PAGE, total: transactions.length } as UItableMeta) : null
+	);
 
 	const handleOpenExplorer = (item: ILatestTransaction) => {
 		const link = getLinkExplorer(item.currency_code, "transaction", item.hash);
 		openExternal(link);
 	};
 
-	const getLastTransactions = () => {
-		const allTransactions = transactions || [];
-		const total = allTransactions.length;
-		const { page, perPage } = lastTransactionsFilter.value;
-		const startIndex = (page - 1) * perPage;
-		const endIndex = startIndex + perPage;
-		lastTransactions.value = allTransactions.slice(startIndex, endIndex);
-		if (total > 0) {
-			lastTransactionsPagination.value = { page, perPage, total } as UItableMeta;
-		} else {
-			lastTransactionsPagination.value = null;
-		}
+	/** Keeps the block height while pages swap (out-in), then glides to the new page height */
+	const lockViewportHeight = () => {
+		const viewport = viewportRef.value;
+		if (!viewport) return;
+		heightBeforeTurn = viewport.offsetHeight;
+		viewport.style.height = `${heightBeforeTurn}px`;
 	};
 
+	const animateViewportHeight = (element: Element) => {
+		const viewport = viewportRef.value;
+		if (!viewport) return;
+		viewport.style.removeProperty("height");
+		const targetHeight = (element as HTMLElement).offsetHeight;
+		if (!heightBeforeTurn || Math.abs(targetHeight - heightBeforeTurn) < 1) return;
+		viewport.animate([{ height: `${heightBeforeTurn}px` }, { height: `${targetHeight}px` }], {
+			duration: 420,
+			easing: "cubic-bezier(0.4, 0, 0.2, 1)"
+		});
+	};
+
+	watch(page, (newPage, oldPage) => {
+		pageTurnDirection.value = newPage > oldPage ? "next" : "prev";
+	});
+
 	watch(
-		() => transactions,
-		() => {
-			getLastTransactions();
+		() => transactions.length,
+		(total) => {
+			const lastPage = Math.max(1, Math.ceil(total / PER_PAGE));
+			if (page.value > lastPage) page.value = lastPage;
 		}
 	);
-
-	onMounted(() => {
-		getLastTransactions();
-	});
 </script>
 
 <template>
@@ -70,57 +89,69 @@
 					:per-page="lastTransactionsPagination.perPage"
 					:total="lastTransactionsPagination.total"
 					:isShowPerPageSelect="false"
-					v-model:page="lastTransactionsFilter.page"
-					@update:page="getLastTransactions"
+					v-model:page="page"
 				/>
 			</div>
-			<div class="payments__body">
-				<div
-					v-for="item in lastTransactions"
-					:key="item.hash"
-					class="card"
-					:class="{ selected: item.is_less_than_1_hour }"
+			<div ref="viewport" class="payments__viewport">
+				<transition
+					:name="`page-turn-${pageTurnDirection}`"
+					mode="out-in"
+					:duration="PAGE_TURN_DURATION"
+					@before-leave="lockViewportHeight"
+					@enter="animateViewportHeight"
 				>
-					<div class="header">
-						<div class="content">
-							<blockchain-icon :type="item.currency_code as BlockchainType" width="32px" height="32px" />
-							<div class="content__inner">
-								<span class="content__title">{{ getCurrentCoin(item.currency_code) }} {{ item.currency_label }}</span>
-								<span class="content__subtitle">
-									{{ changeChainBsc(getCurrentBlockchain(item.currency_code)) }}
-									{{ item.token_label ? `(${item.token_label})` : null }}
-								</span>
+					<div :key="page" class="payments__body">
+						<div
+							v-for="(item, index) in lastTransactions"
+							:key="item.hash"
+							class="card"
+							:class="{ selected: item.is_less_than_1_hour }"
+							:style="{ '--card-index': index }"
+						>
+							<div class="header">
+								<div class="content">
+									<blockchain-icon :type="item.currency_code as BlockchainType" width="32px" height="32px" />
+									<div class="content__inner">
+										<span class="content__title">
+											{{ getCurrentCoin(item.currency_code) }} {{ item.currency_label }}
+										</span>
+										<span class="content__subtitle">
+											{{ changeChainBsc(getCurrentBlockchain(item.currency_code)) }}
+											{{ item.token_label ? `(${item.token_label})` : null }}
+										</span>
+									</div>
+								</div>
+								<div class="header__amount">
+									{{ formatFiatAmount(item.amount_usd, item.fiat_currency || fiatCurrency) }}
+								</div>
+							</div>
+							<div class="hash" @click="handleOpenExplorer(item)">
+								<span class="hash__text">{{ item.hash }}</span>
+								<div class="hash__icon">
+									<ui-icon type="400" name="new-windows" size="sm" />
+								</div>
+							</div>
+							<div v-if="item.is_less_than_1_hour || item.blocked_transaction_id" class="footer">
+								<div v-if="item.is_less_than_1_hour" class="footer__label">
+									<span>{{ $t("new") }}</span>
+									<span>{{ formatTimeAgo(item.created_at, t, locale) }}</span>
+								</div>
+								<ui-button
+									v-if="item.blocked_transaction_id"
+									class="footer__refund"
+									size="sm"
+									type="outline"
+									mode="neutral"
+									left-icon-name="sync-alt"
+									left-icon-size="sm"
+									@click.stop="emit('requestRefund', item.blocked_transaction_id)"
+								>
+									{{ $t("Process refund") }}
+								</ui-button>
 							</div>
 						</div>
-						<div class="header__amount">
-							{{ formatFiatAmount(item.amount_usd, item.fiat_currency || fiatCurrency) }}
-						</div>
 					</div>
-					<div class="hash" @click="handleOpenExplorer(item)">
-						<span class="hash__text">{{ item.hash }}</span>
-						<div class="hash__icon">
-							<ui-icon type="400" name="new-windows" size="sm" color="#A4A5B1" />
-						</div>
-					</div>
-					<div v-if="item.is_less_than_1_hour || item.blocked_transaction_id" class="footer">
-						<div v-if="item.is_less_than_1_hour" class="footer__label">
-							<span>{{ $t("new") }}</span>
-							<span>{{ formatTimeAgo(item.created_at, t, locale) }}</span>
-						</div>
-						<ui-button
-							v-if="item.blocked_transaction_id"
-							class="footer__refund"
-							size="sm"
-							type="outline"
-							mode="neutral"
-							left-icon-name="sync-alt"
-							left-icon-size="sm"
-							@click.stop="emit('requestRefund', item.blocked_transaction_id)"
-						>
-							{{ $t("Process refund") }}
-						</ui-button>
-					</div>
-				</div>
+				</transition>
 			</div>
 		</div>
 	</wrapper-block>
@@ -160,6 +191,11 @@
 					display: none;
 				}
 			}
+		}
+		&__viewport {
+			perspective: 1600px;
+			overflow-x: clip;
+			overflow-clip-margin: 24px;
 		}
 		&__body {
 			display: flex;
@@ -231,6 +267,7 @@
 						color: $main-subtitle-color;
 						font-size: 14px;
 						font-weight: 400;
+						transition: color 0.25s ease;
 						@include mediamax(1024) {
 							text-wrap: unset;
 							text-overflow: unset;
@@ -242,16 +279,23 @@
 						}
 					}
 					&__icon {
+						display: flex;
 						width: 16px;
 						height: 16px;
 						flex-shrink: 0;
-						& > svg {
-							transition: transform 0.3s ease-in-out;
-							@media (hover: hover) {
-								&:hover {
-									cursor: pointer;
-									transform: scale(1.1);
-								}
+						color: $main-subtitle-color;
+						transition:
+							color 0.25s ease,
+							transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+					}
+					@media (hover: hover) {
+						&:hover {
+							.hash__text,
+							.hash__icon {
+								color: $main-text-link-and-price-color;
+							}
+							.hash__icon {
+								transform: translate(2px, -2px);
 							}
 						}
 					}
@@ -278,6 +322,64 @@
 					}
 				}
 			}
+		}
+	}
+
+	.page-turn-next-leave-active,
+	.page-turn-prev-leave-active {
+		transition:
+			transform 0.3s cubic-bezier(0.55, 0, 1, 0.45),
+			opacity 0.26s ease-in;
+		backface-visibility: hidden;
+	}
+	.page-turn-next-leave-active {
+		transform-origin: left center;
+	}
+	.page-turn-prev-leave-active {
+		transform-origin: right center;
+	}
+	.page-turn-next-leave-to {
+		transform: rotateY(-28deg) translateX(-10%);
+		opacity: 0;
+	}
+	.page-turn-prev-leave-to {
+		transform: rotateY(28deg) translateX(10%);
+		opacity: 0;
+	}
+
+	.page-turn-next-enter-active,
+	.page-turn-prev-enter-active {
+		perspective: 1600px;
+		.card {
+			transition:
+				transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+				opacity 0.4s ease-out;
+			transition-delay: calc(var(--card-index, 0) * 60ms);
+			backface-visibility: hidden;
+		}
+	}
+	.page-turn-next-enter-active .card {
+		transform-origin: right center;
+	}
+	.page-turn-prev-enter-active .card {
+		transform-origin: left center;
+	}
+	.page-turn-next-enter-from .card {
+		transform: rotateY(22deg) translateX(12%);
+		opacity: 0;
+	}
+	.page-turn-prev-enter-from .card {
+		transform: rotateY(-22deg) translateX(-12%);
+		opacity: 0;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.page-turn-next-leave-active,
+		.page-turn-prev-leave-active,
+		.page-turn-next-enter-active .card,
+		.page-turn-prev-enter-active .card {
+			transition: opacity 0.2s ease;
+			transform: none;
 		}
 	}
 </style>

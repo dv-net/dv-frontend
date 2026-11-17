@@ -1,6 +1,8 @@
 <script setup lang="ts">
 	import { ref, watch, nextTick, computed } from "vue";
 	import type { IPayerFormTimelineItem } from "@pay-shared/utils/types/payerForm";
+	import { PAYER_STEP } from "@pay-shared/utils/constants/payerForm";
+	import { isPaymentDetected } from "@pay-shared/utils/helpers/payerStep";
 
 	const {
 		timeline: timelineProp,
@@ -14,17 +16,30 @@
 		lastStepStatus?: "checking" | "rejected" | null;
 	}>();
 
+	const isCurrentItem = (item: IPayerFormTimelineItem): boolean => item.id === (stepMap[currentStep] || currentStep);
+
 	const timeline = computed(() => {
 		return timelineProp.map((item) => {
-			if (currentStep === 4 && item.id === 3) {
+			if (currentStep === PAYER_STEP.confirmation && isCurrentItem(item)) {
 				return { ...item, label: "Waiting for deposit" };
 			}
-			if (currentStep === 5 && item.id === 4 && (lastStepStatus === "checking" || lastStepStatus === "rejected")) {
+			if (
+				currentStep === PAYER_STEP.result &&
+				isCurrentItem(item) &&
+				(lastStepStatus === "checking" || lastStepStatus === "rejected")
+			) {
 				return { ...item, label: "AML verification in progress" };
 			}
 			return item;
 		});
 	});
+
+	const isClickable = (item: IPayerFormTimelineItem): boolean =>
+		Boolean(item.callback) &&
+		item.isActive &&
+		(item.isAvailable?.() ?? true) &&
+		!isCurrentItem(item) &&
+		!isPaymentDetected(currentStep);
 
 	const timelineRef = ref<HTMLDivElement | null>(null);
 	const itemRefs = ref<(HTMLDivElement | null)[]>([]);
@@ -67,11 +82,17 @@
 					:ref="(el) => (itemRefs[index] = el as HTMLDivElement | null)"
 					class="timeline__item"
 					:class="{
-						success: currentStep === 5 && timeline.length - 1 === index && lastStepStatus !== 'rejected',
-						rejected: currentStep === 5 && timeline.length - 1 === index && lastStepStatus === 'rejected',
-						waiting: currentStep === 4 && item.id === 3
+						success:
+							currentStep === PAYER_STEP.result && timeline.length - 1 === index && lastStepStatus !== 'rejected',
+						rejected:
+							currentStep === PAYER_STEP.result && timeline.length - 1 === index && lastStepStatus === 'rejected',
+						waiting: currentStep === PAYER_STEP.confirmation && isCurrentItem(item),
+						clickable: isClickable(item)
 					}"
-					@click="item.callback && item.callback()"
+					:role="isClickable(item) ? 'button' : undefined"
+					:tabindex="isClickable(item) ? 0 : undefined"
+					@click="isClickable(item) && item.callback?.()"
+					@keydown.enter.space.prevent="isClickable(item) && item.callback?.()"
 				>
 					<span class="timeline__item-label">{{ item.id }}</span>
 					<span class="timeline__item-text">{{ $t(item.label) }}</span>
@@ -122,7 +143,6 @@
 			display: flex;
 			align-items: center;
 			flex-grow: 1;
-			cursor: pointer;
 			&:last-child {
 				flex-grow: unset;
 			}
@@ -149,6 +169,14 @@
 			align-items: center;
 			gap: 12px;
 			flex-shrink: 0;
+			margin: -6px -12px -6px -6px;
+			padding: 6px 12px 6px 6px;
+			border-radius: 100px;
+			outline: none;
+			transition:
+				background-color 0.22s ease,
+				box-shadow 0.22s ease,
+				transform 0.22s ease;
 			@include mediamax(768) {
 				gap: 8px;
 			}
@@ -156,6 +184,10 @@
 				border-radius: 100%;
 				background-color: $label-header-form-background;
 				color: $text-header-form-background;
+				transition:
+					background-color 0.22s ease,
+					box-shadow 0.22s ease,
+					transform 0.22s ease;
 				@extend .center;
 				width: 24px;
 				height: 24px;
@@ -170,8 +202,31 @@
 			}
 			&-text {
 				font-size: 16px;
+				transition: color 0.22s ease;
 				@include mediamax(1024) {
 					font-size: 14px;
+				}
+			}
+			&.clickable {
+				cursor: pointer;
+				@media (hover: hover) {
+					&:hover {
+						background-color: rgba($main-text-link-and-price-color, 0.06);
+						.timeline__item-label {
+							background-color: $main-text-link-and-price-color;
+							box-shadow: 0 0 0 4px rgba($main-text-link-and-price-color, 0.15);
+							transform: scale(1.06);
+						}
+						.timeline__item-text {
+							color: $main-text-link-and-price-color;
+						}
+					}
+				}
+				&:active {
+					transform: scale(0.97);
+				}
+				&:focus-visible {
+					box-shadow: 0 0 0 2px $main-text-link-and-price-color;
 				}
 			}
 			&.success {

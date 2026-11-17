@@ -58,7 +58,10 @@
 							:key="item.currency.id"
 							class="card"
 							:class="{ selected: currentChain === getCurrentBlockchain(item.currency.id) }"
+							role="button"
+							tabindex="0"
 							@click="emit('selectBlockchain', item.currency.id)"
+							@keydown.enter.space.self.prevent="emit('selectBlockchain', item.currency.id)"
 						>
 							<div class="card__inner">
 								<blockchain-icon :type="blockchainCurrencyId[item.currency.blockchain]" />
@@ -120,7 +123,12 @@
 				border-radius: 8px;
 				border: 1px solid $main-border-color;
 				background-color: $form-background;
-				transition: border 0.3s ease-in-out;
+				cursor: pointer;
+				transition:
+					background-color 0.22s ease,
+					border-color 0.22s ease,
+					box-shadow 0.22s ease,
+					transform 0.22s ease;
 				@include mediamax(768) {
 					padding: 12px 16px;
 				}
@@ -128,14 +136,32 @@
 					gap: 8px;
 					padding: 8px 12px;
 				}
-				&.selected {
-					border: 1px solid $main-text-link-and-price-color;
-				}
 				@media (hover: hover) {
 					&:hover {
-						cursor: pointer;
-						border: 1px solid $main-text-link-and-price-color;
+						border-color: #c5d7f8;
+						box-shadow: 0 10px 22px -14px rgba($main-text-link-and-price-color, 0.55);
+						transform: translateY(-1px);
+						.card__inner :deep(.icon) {
+							transform: scale(1.045);
+							filter: drop-shadow(0 6px 6px rgba(20, 20, 20, 0.22));
+						}
 					}
+				}
+				&:active {
+					transform: translateY(0) scale(0.985);
+				}
+				&:focus-visible {
+					outline: 2px solid $main-text-link-and-price-color;
+					outline-offset: 2px;
+				}
+				&.selected,
+				&.selected:hover {
+					border-color: $main-text-link-and-price-color;
+				}
+				.card__inner :deep(.icon) {
+					transition:
+						transform 0.22s ease,
+						filter 0.22s ease;
 				}
 				&__inner {
 					display: flex;

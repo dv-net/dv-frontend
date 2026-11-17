@@ -16,6 +16,8 @@ import type { CurrencyType } from "@shared/utils/types/blockchain";
 import { SORT_CHAIN } from "@pay-shared/utils/constants/blockchain";
 import { loaderShutdown } from "@pay-shared/utils/helpers/general";
 import type { IPayerFormTimelineItem } from "@pay-shared/utils/types/payerForm";
+import { PAYER_STEP } from "@pay-shared/utils/constants/payerForm";
+import { isPaymentDetected, isPaymentStage } from "@pay-shared/utils/helpers/payerStep";
 import {
 	mapPaySimpleInvoiceToPayerResponse,
 	mapPaySimplePaymentToTransaction
@@ -33,7 +35,7 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 	const isLoading = ref<boolean>(false);
 	const isPreparingWallets = ref<boolean>(false);
 	const isPoolingProgress = ref<boolean>(true);
-	const currentStep = ref<number>(1);
+	const currentStep = ref<number>(PAYER_STEP.selectCurrency);
 	const currentCurrency = ref<string | null>(null);
 	const currentChain = ref<string | null>(null);
 	const payerId = ref<string | null>(null);
@@ -50,20 +52,31 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 	const errorStore = ref<"error" | "store-disabled" | null>(null);
 	const moneyCameAudioRef = ref<HTMLAudioElement | null>(null);
 	const paymentFoundAudioRef = ref<HTMLAudioElement | null>(null);
-	const stepMap = ref<Record<number, number>>({ 1: 1, 2: 2, 3: 3, 4: 3, 5: 4 });
+	/** Form step → timeline item id */
+	const stepMap = ref<Record<number, number>>({
+		[PAYER_STEP.selectCurrency]: 1,
+		[PAYER_STEP.selectChain]: 2,
+		[PAYER_STEP.sendPayment]: 3,
+		[PAYER_STEP.confirmation]: 3,
+		[PAYER_STEP.result]: 4
+	});
 	const timeline = ref<IPayerFormTimelineItem[]>([
 		{
 			id: 1,
 			label: "Select currency",
 			isActive: true,
-			callback: () => ([4, 5].includes(currentStep.value) ? false : (currentStep.value = 1))
+			callback: () =>
+				isPaymentDetected(currentStep.value) ? false : (currentStep.value = PAYER_STEP.selectCurrency)
 		},
 		{
 			id: 2,
 			label: "select-blockchain.one",
 			isActive: false,
 			callback: () =>
-				filteredBlockchains.value.length > 1 && ![4, 5].includes(currentStep.value) ? (currentStep.value = 2) : false
+				filteredBlockchains.value.length > 1 && !isPaymentDetected(currentStep.value)
+					? (currentStep.value = PAYER_STEP.selectChain)
+					: false,
+			isAvailable: () => filteredBlockchains.value.length > 1
 		},
 		{ id: 3, label: "Sending a payment", isActive: false },
 		{ id: 4, label: "Ready", isActive: false }
@@ -71,9 +84,9 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 
 	const invoiceCurrency = computed<string>(() => invoice.value?.currency || store.value?.currency_id || "USD");
 
-	const isShowAdvertising = computed<boolean>(() => ![3, 4, 5].includes(currentStep.value));
+	const isShowAdvertising = computed<boolean>(() => !isPaymentStage(currentStep.value));
 	const isShowBlockLatestTransactions = computed<boolean>(() => {
-		return !errorStore.value && ![3, 4, 5].includes(currentStep.value) && Boolean(transactionsConfirmed.value.length);
+		return !errorStore.value && !isPaymentStage(currentStep.value) && Boolean(transactionsConfirmed.value.length);
 	});
 
 	const applyPayerData = (
@@ -143,11 +156,11 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 	};
 
 	const finishWithSuccess = (tx?: IWalletTransactionResponse | null, options?: { redirect?: boolean }) => {
-		if (currentStep.value === 5) return;
+		if (currentStep.value === PAYER_STEP.result) return;
 		if (tx) currentTransaction.value = tx;
 		isPoolingProgress.value = false;
 		if (invoiceUuid.value) clearTransactionsSnapshot(TRANSACTIONS_LS_PREFIX, invoiceUuid.value);
-		currentStep.value = 5;
+		currentStep.value = PAYER_STEP.result;
 		moneyCameAudioRef.value?.play();
 		const successUrl = options?.redirect ? getSafeUrl(invoice.value?.success_redirect_url) : null;
 		if (successUrl) window.location.href = successUrl;
@@ -197,11 +210,11 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 			}
 
 			// Step 3: new unconfirmed → step 4; new confirmed (skipped unconfirmed) → step 5
-			if (currentStep.value === 3) {
+			if (currentStep.value === PAYER_STEP.sendPayment) {
 				const newUnconfirmed = checkForNewUnconfirmedTransactions(transactionsLs);
 				if (newUnconfirmed.length) {
 					currentTransaction.value = newUnconfirmed[0];
-					currentStep.value = 4;
+					currentStep.value = PAYER_STEP.confirmation;
 					paymentFoundAudioRef.value?.play();
 					return;
 				}
@@ -213,7 +226,7 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 			}
 
 			// Step 4: tracked tx moved to confirmed → success receipt
-			if (currentStep.value === 4) {
+			if (currentStep.value === PAYER_STEP.confirmation) {
 				const find = transactionsConfirmed.value.find((item) => item.hash === currentTransaction.value?.hash);
 				if (find) {
 					finishWithSuccess(find, { redirect: isInvoiceSuccessStatus(data.invoice.status) });

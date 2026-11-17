@@ -10,6 +10,7 @@
 	import { blockchainCurrencyId } from "@shared/utils/constants/blockchain";
 	import type { IPayerStoreResponse } from "@pay-shared/utils/types/payer";
 	import { computed } from "vue";
+	import { PAYER_STEP } from "@pay-shared/utils/constants/payerForm";
 
 	const {
 		currentAddress = null,
@@ -34,7 +35,7 @@
 	}>();
 
 	const emit = defineEmits<{
-		(event: "change-step", step: 1 | 2): void;
+		(event: "change-step", step: typeof PAYER_STEP.selectCurrency | typeof PAYER_STEP.selectChain): void;
 	}>();
 
 	const inputTextSum = computed(() => `${currentPrice} ${currentCurrency ?? ""}`.trim());
@@ -59,7 +60,7 @@
 									<span v-if="tokenLabel">({{ tokenLabel }})</span>
 								</div>
 							</div>
-							<ui-link v-if="showChangeChain" size="md" @click="emit('change-step', 2)">
+							<ui-link v-if="showChangeChain" size="md" @click="emit('change-step', PAYER_STEP.selectChain)">
 								{{ $t("Change") }}
 							</ui-link>
 						</div>
@@ -77,7 +78,7 @@
 									<span v-if="currencyLabel">({{ currencyLabel }})</span>
 								</div>
 							</div>
-							<ui-link size="md" @click="emit('change-step', 1)">{{ $t("Change") }}</ui-link>
+							<ui-link size="md" @click="emit('change-step', PAYER_STEP.selectCurrency)">{{ $t("Change") }}</ui-link>
 						</div>
 					</row-template>
 				</div>
@@ -91,7 +92,7 @@
 					>
 						<ui-input type="text" :model-value="currentAddress ?? ''" readonly-interactive filled>
 							<template #append>
-								<ui-copy-text v-if="currentAddress" :copied-text="currentAddress" color-icon="#242424" />
+								<ui-copy-text v-if="currentAddress" :copied-text="currentAddress" color-icon="#A4A5B1" />
 							</template>
 						</ui-input>
 					</row-template>
@@ -105,7 +106,7 @@
 								/>
 							</template>
 							<template #append>
-								<ui-copy-text v-if="currentPrice" :copied-text="currentPrice" color-icon="#242424" />
+								<ui-copy-text v-if="currentPrice" :copied-text="currentPrice" color-icon="#A4A5B1" />
 							</template>
 						</ui-input>
 					</row-template>
@@ -118,7 +119,7 @@
 					<span>{{ $t("Payment ID") }}</span>
 					<div v-if="payerId" class="details__top-inner">
 						<span class="details__top-id">{{ payerId }}</span>
-						<ui-copy-text :copied-text="payerId" color-icon="#6B6D80" />
+						<ui-copy-text :copied-text="payerId" color-icon="#A4A5B1" />
 					</div>
 					<span v-else>—</span>
 				</div>

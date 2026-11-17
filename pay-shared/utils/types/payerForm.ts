@@ -3,4 +3,5 @@ export interface IPayerFormTimelineItem {
 	label: string;
 	isActive: boolean;
 	callback?: () => number | false;
+	isAvailable?: () => boolean;
 }

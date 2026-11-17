@@ -23,6 +23,8 @@ import { SORT_CHAIN } from "@pay-shared/utils/constants/blockchain";
 import { loaderShutdown } from "@pay-shared/utils/helpers/general";
 import type { ILatestTransaction } from "@pay-shared/components/payerForm/blockLatestTransactions/types";
 import type { IPayerFormTimelineItem } from "@pay-shared/utils/types/payerForm";
+import { PAYER_STEP } from "@pay-shared/utils/constants/payerForm";
+import { isPaymentDetected, isPaymentStage } from "@pay-shared/utils/helpers/payerStep";
 import type { IAmlBlockReason } from "@pay/utils/types/aml";
 import type { IRefundCabinetItem } from "@pay/utils/types/refund";
 import { PAYMENT_LS_TTL_MS, TRANSACTIONS_LS_PREFIX } from "@pay/utils/constants/payerForm";
@@ -49,7 +51,7 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 
 	const isLoading = ref<boolean>(false);
 	const isPoolingProgress = ref<boolean>(true);
-	const currentStep = ref<number>(1);
+	const currentStep = ref<number>(PAYER_STEP.selectCurrency);
 	const currentCurrency = ref<string | null>(null);
 	const currentChain = ref<string | null>(null);
 	const payerId = ref<string | null>(null);
@@ -69,20 +71,31 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 	const errorStore = ref<"error" | "store-disabled" | null>(null);
 	const moneyCameAudioRef = ref<HTMLAudioElement | null>(null);
 	const paymentFoundAudioRef = ref<HTMLAudioElement | null>(null);
-	const stepMap = ref<Record<number, number>>({ 1: 1, 2: 2, 3: 3, 4: 3, 5: 4 });
+	/** Form step → timeline item id */
+	const stepMap = ref<Record<number, number>>({
+		[PAYER_STEP.selectCurrency]: 1,
+		[PAYER_STEP.selectChain]: 2,
+		[PAYER_STEP.sendPayment]: 3,
+		[PAYER_STEP.confirmation]: 3,
+		[PAYER_STEP.result]: 4
+	});
 	const timeline = ref<IPayerFormTimelineItem[]>([
 		{
 			id: 1,
 			label: "Select currency",
 			isActive: true,
-			callback: () => ([4, 5].includes(currentStep.value) ? false : (currentStep.value = 1))
+			callback: () =>
+				isPaymentDetected(currentStep.value) ? false : (currentStep.value = PAYER_STEP.selectCurrency)
 		},
 		{
 			id: 2,
 			label: "select-blockchain.one",
 			isActive: false,
 			callback: () =>
-				filteredBlockchains.value.length > 1 && ![4, 5].includes(currentStep.value) ? (currentStep.value = 2) : false
+				filteredBlockchains.value.length > 1 && !isPaymentDetected(currentStep.value)
+					? (currentStep.value = PAYER_STEP.selectChain)
+					: false,
+			isAvailable: () => filteredBlockchains.value.length > 1
 		},
 		{ id: 3, label: "Sending a payment", isActive: false },
 		{ id: 4, label: "Ready", isActive: false }
@@ -96,14 +109,14 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		clearAmlRisk();
 		currentCurrency.value = null;
 		currentChain.value = null;
-		currentStep.value = 1;
+		currentStep.value = PAYER_STEP.selectCurrency;
 		timeline.value.forEach((item) => {
 			item.isActive = item.id === 1;
 		});
 	};
 
-	const isShowAdvertising = computed<boolean>(() => ![3, 4, 5].includes(currentStep.value));
-	const showPaymentsBlocks = computed<boolean>(() => !errorStore.value && ![3, 4, 5].includes(currentStep.value));
+	const isShowAdvertising = computed<boolean>(() => !isPaymentStage(currentStep.value));
+	const showPaymentsBlocks = computed<boolean>(() => !errorStore.value && !isPaymentStage(currentStep.value));
 	const blockedIdByHash = computed(
 		() => new Map(blockedTransactions.value.map((item) => [item.tx_hash, item.blocked_transaction_id]))
 	);
@@ -137,7 +150,7 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		try {
 			blockedTransactions.value = await getApiWalletBlockedTransactions(payerId.value);
 		} catch {
-			blockedTransactions.value = [];
+			// Keep the previous list: a transient polling error must not move blocked payments back to "latest"
 		}
 	};
 
@@ -334,17 +347,17 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 
 		applyPendingTransaction(session.transaction);
 		isPoolingProgress.value = false;
-		currentStep.value = 5;
+		currentStep.value = PAYER_STEP.result;
 		startAmlPollingForCurrentTx();
 		return true;
 	};
 
 	const finishWithSuccess = (tx?: IWalletTransactionResponse | null) => {
-		if (currentStep.value === 5) return;
+		if (currentStep.value === PAYER_STEP.result) return;
 		if (tx) currentTransaction.value = tx;
 		isPoolingProgress.value = false;
 		if (payerId.value) clearTransactionsSnapshot(TRANSACTIONS_LS_PREFIX, payerId.value);
-		currentStep.value = 5;
+		currentStep.value = PAYER_STEP.result;
 
 		if (tx && payerId.value) {
 			savePendingPaymentSession(payerId.value, tx, AML_PAYMENT_PHASE.checking);
@@ -378,11 +391,11 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 			// Keep the baseline lists, only refresh saved_at: TTL counts from when the page was last open
 			writeTransactionsSnapshot(TRANSACTIONS_LS_PREFIX, id, transactionsLs);
 			// Step 3: new unconfirmed → step 4; new confirmed (skipped unconfirmed) → step 5
-			if (currentStep.value === 3) {
+			if (currentStep.value === PAYER_STEP.sendPayment) {
 				const newUnconfirmed = checkForNewUnconfirmedTransactions(transactionsLs);
 				if (newUnconfirmed.length) {
 					currentTransaction.value = newUnconfirmed[0];
-					currentStep.value = 4;
+					currentStep.value = PAYER_STEP.confirmation;
 					paymentFoundAudioRef.value?.play();
 					return;
 				}
@@ -393,7 +406,7 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 				}
 			}
 			// Step 4: tracked tx moved to confirmed → success receipt
-			if (currentStep.value === 4) {
+			if (currentStep.value === PAYER_STEP.confirmation) {
 				const find = transactionsConfirmed.value.find((item) => item.hash === currentTransaction.value?.hash);
 				if (find) {
 					finishWithSuccess(find);
@@ -542,6 +555,7 @@ export const usePayerFormStore = defineStore("payerForm", () => {
 		currentAddress,
 		filteredBlockchains,
 		isShowAdvertising,
+		showPaymentsBlocks,
 		isShowBlockLatestTransactions,
 		isShowBlockBlockedTransactions,
 		stepMap,
