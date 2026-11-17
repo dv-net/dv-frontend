@@ -160,18 +160,17 @@
 				@include mediamax(680) {
 					max-width: 280px;
 				}
-				&__inner {
-					position: absolute;
-					inset: 0;
-					@extend .center;
-					background-size: contain;
-					background-repeat: no-repeat;
-					background-position: center;
-				}
+				&__inner,
 				&__loader {
 					position: absolute;
 					inset: 0;
 					@extend .center;
+					will-change: transform, opacity;
+				}
+				&__inner {
+					background-size: contain;
+					background-repeat: no-repeat;
+					background-position: center;
 				}
 				&__animation {
 					width: 100%;
