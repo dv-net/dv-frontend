@@ -1029,5 +1029,11 @@
   "Refund to the sender without email": "Rejesha fedha kwa mtumaji bila barua pepe",
   "Selected addresses will be deleted": "Anwani zilizochaguliwa zitafutwa",
   "This action cannot be undone": "Kitendo hiki hakiwezi kutenduliwa",
-  "You can select up to {count} addresses": "Unaweza kuchagua hadi anwani {count}"
+  "You can select up to {count} addresses": "Unaweza kuchagua hadi anwani {count}",
+  "AML min check amount hint": "Amana zilizo chini ya kiasi hiki cha USD hazikaguliwi. Weka 0 ili kukagua kila amana",
+  "Block reasons": "Sababu za kuzuia",
+  "Enter an amount of 0 or more": "Weka kiasi cha 0 au zaidi",
+  "Minimum check amount": "Kiasi cha chini cha cheki",
+  "Sending an email when a deposit is blocked": "Kutuma barua pepe wakati amana inapozuiwa",
+  "The payer receives this email instead of a payment receipt when AML blocks the deposit": "Mlipaji hupokea barua pepe hii badala ya risiti ya malipo wakati AML inapozuia amana"
 }

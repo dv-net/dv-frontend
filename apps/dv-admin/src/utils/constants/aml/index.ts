@@ -57,6 +57,15 @@ export const AML_RISK_LEVEL_THRESHOLD = {
 export type TAmlRiskLevelThreshold =
 	(typeof AML_RISK_LEVEL_THRESHOLD)[keyof typeof AML_RISK_LEVEL_THRESHOLD];
 
+/** RISK_LEVEL block-reason value and threshold are level ranks, not percents */
+export const AML_RISK_LEVEL_BY_RANK: Record<number, string> = {
+	0: AML_RISK_LEVEL_LABELS[AML_RISK_LEVEL.none],
+	[AML_RISK_LEVEL_THRESHOLD.low]: AML_RISK_LEVEL_LABELS[AML_RISK_LEVEL.low],
+	[AML_RISK_LEVEL_THRESHOLD.medium]: AML_RISK_LEVEL_LABELS[AML_RISK_LEVEL.medium],
+	[AML_RISK_LEVEL_THRESHOLD.high]: AML_RISK_LEVEL_LABELS[AML_RISK_LEVEL.high],
+	[AML_RISK_LEVEL_THRESHOLD.critical]: AML_RISK_LEVEL_LABELS[AML_RISK_LEVEL.critical]
+};
+
 export const AML_RISK_LEVEL_THRESHOLD_LABELS: Record<TAmlRiskLevelThreshold, string> = {
 	[AML_RISK_LEVEL_THRESHOLD.low]: AML_RISK_LEVEL_LABELS[AML_RISK_LEVEL.low],
 	[AML_RISK_LEVEL_THRESHOLD.medium]: AML_RISK_LEVEL_LABELS[AML_RISK_LEVEL.medium],

@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+## [1.1.9] - 2026-11-19
+
+- feat: set a minimum USD amount for the AML check
+- feat: label the store email sent when AML blocks a deposit
+- feat: show AML block reasons on the refund request card
+
 ## [1.1.8] - 2026-11-17
 
 - feat: fade between payment form steps

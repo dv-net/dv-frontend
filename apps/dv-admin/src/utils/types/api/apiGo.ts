@@ -1091,14 +1091,22 @@ export interface IAmlStatisticsResponse {
 	failed_today: number;
 }
 
+export interface IAmlBlockReason {
+	risk_type: string;
+	threshold: number | string;
+	value: number | string;
+}
+
 export interface IAmlSettingsResponse {
 	enabled?: boolean;
 	provider_slug?: string | null;
+	min_check_amount_usd?: number | string;
 }
 
 export interface IAmlSettingsRequest {
 	enabled: boolean;
 	provider_slug: string;
+	min_check_amount_usd?: number;
 }
 
 export interface IAmlRiskRuleResponse {
@@ -1267,6 +1275,7 @@ export interface IRefundBlockedTransaction {
 	to_address: string;
 	risk_level: string;
 	score: string;
+	block_reasons?: IAmlBlockReason[] | null;
 	tx_created_at: string | null;
 	blocked_at: string | null;
 }

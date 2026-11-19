@@ -1029,5 +1029,11 @@
   "Refund to the sender without email": "이메일 없이 송금자에게 환불",
   "Selected addresses will be deleted": "선택한 주소가 삭제됩니다",
   "This action cannot be undone": "이 작업은 실행 취소할 수 없습니다",
-  "You can select up to {count} addresses": "최대 {count}개의 주소를 선택할 수 있습니다"
+  "You can select up to {count} addresses": "최대 {count}개의 주소를 선택할 수 있습니다",
+  "AML min check amount hint": "이 USD 금액 미만의 입금은 확인되지 않습니다. 모든 입금을 확인하려면 0을 입력하세요",
+  "Block reasons": "차단 사유",
+  "Enter an amount of 0 or more": "0 이상의 금액을 입력하세요",
+  "Minimum check amount": "최소 확인 금액",
+  "Sending an email when a deposit is blocked": "입금이 차단되었을 때 이메일 보내기",
+  "The payer receives this email instead of a payment receipt when AML blocks the deposit": "AML이 입금을 차단하면 결제자는 결제 영수증 대신 이 이메일을 받습니다."
 }

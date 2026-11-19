@@ -1029,5 +1029,11 @@
   "Refund to the sender without email": "Rambursează către expeditor fără e-mail",
   "Selected addresses will be deleted": "Adresele selectate vor fi șterse",
   "This action cannot be undone": "Această acțiune nu poate fi anulată",
-  "You can select up to {count} addresses": "Puteți selecta până la {count} adrese"
+  "You can select up to {count} addresses": "Puteți selecta până la {count} adrese",
+  "AML min check amount hint": "Depozitele sub această sumă în USD nu sunt verificate. Introduceți 0 pentru a verifica fiecare depozit",
+  "Block reasons": "Motive de blocare",
+  "Enter an amount of 0 or more": "Introduceți o sumă de 0 sau mai mult",
+  "Minimum check amount": "Suma minimă a cecului",
+  "Sending an email when a deposit is blocked": "Trimiterea unui e-mail când o depunere este blocată",
+  "The payer receives this email instead of a payment receipt when AML blocks the deposit": "Plătitorul primește acest e-mail în locul unei chitanțe de plată atunci când AML blochează depunerea"
 }

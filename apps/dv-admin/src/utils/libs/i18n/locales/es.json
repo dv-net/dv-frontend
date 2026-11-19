@@ -1029,5 +1029,11 @@
   "Refund to the sender without email": "Reembolsar al remitente sin correo electrónico",
   "Selected addresses will be deleted": "Las direcciones seleccionadas se eliminarán",
   "This action cannot be undone": "Esta acción no se puede deshacer",
-  "You can select up to {count} addresses": "Puedes seleccionar hasta {count} direcciones"
+  "You can select up to {count} addresses": "Puedes seleccionar hasta {count} direcciones",
+  "AML min check amount hint": "Los depósitos por debajo de este importe en USD no se comprueban. Introduzca 0 para comprobar todos los depósitos",
+  "Block reasons": "Motivos de bloqueo",
+  "Enter an amount of 0 or more": "Introduce un importe de 0 o más",
+  "Minimum check amount": "Importe mínimo del cheque",
+  "Sending an email when a deposit is blocked": "Enviar un correo electrónico cuando se bloquea un depósito",
+  "The payer receives this email instead of a payment receipt when AML blocks the deposit": "El pagador recibe este correo electrónico en lugar de un recibo de pago cuando AML bloquea el depósito"
 }

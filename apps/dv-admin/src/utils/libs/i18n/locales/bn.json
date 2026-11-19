@@ -1029,5 +1029,11 @@
   "Refund to the sender without email": "ইমেল ছাড়া প্রেরককে রিফান্ড করুন",
   "Selected addresses will be deleted": "নির্বাচিত ঠিকানাগুলি মুছে ফেলা হবে",
   "This action cannot be undone": "এই পদক্ষেপটি পূর্বাবস্থায় ফেরানো যাবে না",
-  "You can select up to {count} addresses": "আপনি সর্বোচ্চ {count}টি ঠিকানা নির্বাচন করতে পারেন"
+  "You can select up to {count} addresses": "আপনি সর্বোচ্চ {count}টি ঠিকানা নির্বাচন করতে পারেন",
+  "AML min check amount hint": "এই USD পরিমাণের কম ডিপোজিটগুলো পরীক্ষা করা হয় না। প্রতিটি ডিপোজিট পরীক্ষা করতে 0 লিখুন",
+  "Block reasons": "ব্লক করার কারণসমূহ",
+  "Enter an amount of 0 or more": "০ বা তার বেশি একটি পরিমাণ লিখুন",
+  "Minimum check amount": "ন্যূনতম চেকের পরিমাণ",
+  "Sending an email when a deposit is blocked": "ডিপোজিট ব্লক করা হলে ইমেইল পাঠানো",
+  "The payer receives this email instead of a payment receipt when AML blocks the deposit": "AML ডিপোজিটটি ব্লক করলে পেমেন্টকারী পেমেন্ট রসিদের পরিবর্তে এই ইমেলটি পান"
 }

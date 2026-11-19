@@ -1,8 +1,15 @@
 <script setup lang="ts">
 	import { computed } from "vue";
+	import { useI18n } from "vue-i18n";
 	import { UiButton, UiConfirm, UiCopyText, UiIcon } from "@dv.net/ui-kit";
-	import type { IRefundRequestDetailed } from "@dv-admin/utils/types/api/apiGo";
-	import { AML_RISK_LEVEL_LABELS, type TAmlRiskLevel } from "@dv-admin/utils/constants/aml";
+	import type { IAmlBlockReason, IRefundRequestDetailed } from "@dv-admin/utils/types/api/apiGo";
+	import {
+		AML_RISK_LEVEL_BY_RANK,
+		AML_RISK_LEVEL_LABELS,
+		AML_RISK_TYPE_LABELS,
+		AML_RISK_TYPE_RISK_LEVEL,
+		type TAmlRiskLevel
+	} from "@dv-admin/utils/constants/aml";
 	import { REFUND_STATUS_LABELS } from "@dv-admin/utils/constants/refund";
 	import { ALL_MODE_TAG, ALL_STATUSES } from "@dv-admin/utils/constants/general";
 	import { formatDate } from "@dv-admin/utils/helpers/dateParse";
@@ -34,6 +41,7 @@
 		executeNowRequest: () => Promise<unknown>;
 	}>();
 
+	const { t } = useI18n();
 	const isCompact = useMediaQuery("(max-width: 1024px)");
 
 	const statusLabel = computed(() => REFUND_STATUS_LABELS[item.status] ?? item.status);
@@ -123,6 +131,31 @@
 		return level in AML_RISK_LEVEL_LABELS ? AML_RISK_LEVEL_LABELS[level as TAmlRiskLevel] : level;
 	});
 
+	const formatReasonAmount = (riskType: string, raw: number | string): string => {
+		const value = Number(raw);
+		if (!Number.isFinite(value)) return "—";
+		if (riskType === AML_RISK_TYPE_RISK_LEVEL) {
+			const level = AML_RISK_LEVEL_BY_RANK[Math.round(value)];
+			return level ? t(level) : "—";
+		}
+		return `${Math.ceil(value)}%`;
+	};
+
+	const reasonLabel = (riskType: string): string => {
+		if (riskType in AML_RISK_TYPE_LABELS) return t(AML_RISK_TYPE_LABELS[riskType]);
+		const text = riskType.replace(/_/g, " ").trim().toLowerCase();
+		return text.charAt(0).toUpperCase() + text.slice(1);
+	};
+
+	const displayedBlockReasons = computed(() =>
+		(item.blocked_transaction?.block_reasons ?? []).map((reason: IAmlBlockReason) => ({
+			key: reason.risk_type,
+			label: reasonLabel(reason.risk_type),
+			value: formatReasonAmount(reason.risk_type, reason.value),
+			threshold: formatReasonAmount(reason.risk_type, reason.threshold)
+		}))
+	);
+
 	const riskTone = (level: string) => {
 		if (level === "high" || level === "critical") return "danger";
 		if (level === "medium") return "warning";
@@ -156,7 +189,8 @@
 				tx.from_address ||
 				tx.to_address ||
 				tx.risk_level ||
-				tx.score
+				tx.score ||
+				tx.block_reasons?.length
 		);
 	});
 
@@ -266,6 +300,18 @@
 					<dd>{{ item.blocked_transaction.score }}</dd>
 				</div>
 			</dl>
+			<div v-if="displayedBlockReasons.length" class="details__reasons">
+				<span class="details__reasons-label">{{ $t("Block reasons") }}</span>
+				<ul class="details__reasons-list">
+					<li v-for="reason in displayedBlockReasons" :key="reason.key" class="details__reason">
+						<span class="details__reason-label">{{ reason.label }}</span>
+						<span class="details__reason-values">
+							<strong>{{ reason.value }}</strong>
+							<span v-if="reason.threshold !== '—'" class="details__reason-threshold">≥ {{ reason.threshold }}</span>
+						</span>
+					</li>
+				</ul>
+			</div>
 			<dl
 				v-if="item.blocked_transaction?.tx_hash || item.blocked_transaction?.from_address || item.blocked_transaction?.to_address"
 				class="details__list details__list--thirds"
@@ -764,6 +810,70 @@
 					grid-template-columns: 1fr;
 				}
 			}
+		}
+
+		&__reasons {
+			display: flex;
+			flex-direction: column;
+			gap: 8px;
+			min-width: 0;
+		}
+
+		&__reasons-label {
+			color: $secondary;
+			font-size: 12px;
+			font-weight: 500;
+			line-height: 14px;
+		}
+
+		&__reasons-list {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 6px;
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+
+		&__reason {
+			display: inline-flex;
+			align-items: center;
+			gap: 12px;
+			width: fit-content;
+			max-width: 100%;
+			padding: 8px 12px;
+			border-radius: 12px;
+			background: rgba(196, 69, 45, 0.05);
+			box-shadow: inset 0 0 0 1px rgba(196, 69, 45, 0.14);
+		}
+
+		&__reason-label {
+			min-width: 0;
+			color: $black;
+			font-size: 13px;
+			font-weight: 500;
+			line-height: 18px;
+		}
+
+		&__reason-values {
+			display: inline-flex;
+			align-items: center;
+			flex-shrink: 0;
+			gap: 8px;
+			color: #c4452d;
+			font-size: 13px;
+			line-height: 18px;
+
+			strong {
+				font-weight: 600;
+			}
+		}
+
+		&__reason-threshold {
+			padding-left: 8px;
+			border-left: 1px solid rgba(196, 69, 45, 0.2);
+			color: $secondary;
+			font-weight: 500;
 		}
 
 		&__item {

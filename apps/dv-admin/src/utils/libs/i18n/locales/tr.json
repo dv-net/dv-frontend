@@ -1029,5 +1029,11 @@
   "Refund to the sender without email": "E-posta olmadan gönderene geri ödeme yap",
   "Selected addresses will be deleted": "Seçilen adresler silinecek",
   "This action cannot be undone": "Bu işlem geri alınamaz",
-  "You can select up to {count} addresses": "En fazla {count} adres seçebilirsiniz"
+  "You can select up to {count} addresses": "En fazla {count} adres seçebilirsiniz",
+  "AML min check amount hint": "Bu USD tutarının altındaki para yatırma işlemleri kontrol edilmez. Her para yatırma işlemini kontrol etmek için 0 girin",
+  "Block reasons": "Engelleme nedenleri",
+  "Enter an amount of 0 or more": "0 veya daha fazla bir tutar girin",
+  "Minimum check amount": "Minimum çek tutarı",
+  "Sending an email when a deposit is blocked": "Bir yatırma işlemi engellendiğinde e-posta gönderme",
+  "The payer receives this email instead of a payment receipt when AML blocks the deposit": "AML yatırma işlemini engellediğinde, ödeme yapan kişi ödeme makbuzu yerine bu e-postayı alır"
 }

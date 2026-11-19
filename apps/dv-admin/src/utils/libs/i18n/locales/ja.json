@@ -1029,5 +1029,11 @@
   "Refund to the sender without email": "メールなしで送信者に返金",
   "Selected addresses will be deleted": "選択したアドレスは削除されます",
   "This action cannot be undone": "この操作は元に戻せません",
-  "You can select up to {count} addresses": "最大{count}個のアドレスを選択できます"
+  "You can select up to {count} addresses": "最大{count}個のアドレスを選択できます",
+  "AML min check amount hint": "このUSD金額を下回る入金はチェックされません。すべての入金をチェックするには0を入力してください",
+  "Block reasons": "ブロック理由",
+  "Enter an amount of 0 or more": "0以上の金額を入力してください",
+  "Minimum check amount": "最低チェック金額",
+  "Sending an email when a deposit is blocked": "入金がブロックされたときにメールを送信",
+  "The payer receives this email instead of a payment receipt when AML blocks the deposit": "AMLにより入金がブロックされた場合、支払者は支払い領収書の代わりにこのメールを受け取ります"
 }

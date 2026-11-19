@@ -1029,5 +1029,11 @@
   "Refund to the sender without email": "Vračilo pošiljatelju brez e-pošte",
   "Selected addresses will be deleted": "Izbrani naslovi bodo izbrisani",
   "This action cannot be undone": "Tega dejanja ni mogoče razveljaviti",
-  "You can select up to {count} addresses": "Izberete lahko največ {count} naslovov"
+  "You can select up to {count} addresses": "Izberete lahko največ {count} naslovov",
+  "AML min check amount hint": "Pologi pod tem zneskom v USD se ne preverjajo. Vnesite 0, da preverite vsak polog",
+  "Block reasons": "Razlogi za blokado",
+  "Enter an amount of 0 or more": "Vnesite znesek 0 ali več",
+  "Minimum check amount": "Najnižji znesek preverjanja",
+  "Sending an email when a deposit is blocked": "Pošiljanje e-pošte, ko je polog blokiran",
+  "The payer receives this email instead of a payment receipt when AML blocks the deposit": "Plačnik prejme to e-poštno sporočilo namesto potrdila o plačilu, ko AML blokira polog"
 }

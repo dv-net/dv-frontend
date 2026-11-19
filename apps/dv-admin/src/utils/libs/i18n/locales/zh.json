@@ -1029,5 +1029,11 @@
   "Refund to the sender without email": "无需电子邮件即可退款给发送方",
   "Selected addresses will be deleted": "所选地址将被删除",
   "This action cannot be undone": "此操作无法撤销",
-  "You can select up to {count} addresses": "您最多可以选择 {count} 个地址"
+  "You can select up to {count} addresses": "您最多可以选择 {count} 个地址",
+  "AML min check amount hint": "低于此 USD 金额的存款不会被检查。输入 0 以检查每笔存款",
+  "Block reasons": "屏蔽原因",
+  "Enter an amount of 0 or more": "请输入 0 或以上的金额",
+  "Minimum check amount": "最低检查金额",
+  "Sending an email when a deposit is blocked": "当充值被阻止时发送电子邮件",
+  "The payer receives this email instead of a payment receipt when AML blocks the deposit": "当 AML 阻止该笔入金时，付款人会收到这封电子邮件，而不是付款收据"
 }

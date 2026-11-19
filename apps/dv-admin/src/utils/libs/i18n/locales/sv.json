@@ -1029,5 +1029,11 @@
   "Refund to the sender without email": "Återbetala till avsändaren utan e-post",
   "Selected addresses will be deleted": "Valda adresser kommer att tas bort",
   "This action cannot be undone": "Denna åtgärd kan inte ångras",
-  "You can select up to {count} addresses": "Du kan välja upp till {count} adresser"
+  "You can select up to {count} addresses": "Du kan välja upp till {count} adresser",
+  "AML min check amount hint": "Insättningar under detta USD-belopp kontrolleras inte. Ange 0 för att kontrollera varje insättning",
+  "Block reasons": "Blockeringsorsaker",
+  "Enter an amount of 0 or more": "Ange ett belopp på 0 eller mer",
+  "Minimum check amount": "Minsta kontrollbelopp",
+  "Sending an email when a deposit is blocked": "Skickar ett e-postmeddelande när en insättning blockeras",
+  "The payer receives this email instead of a payment receipt when AML blocks the deposit": "Betalaren får detta e-postmeddelande i stället för ett betalningskvitto när AML blockerar insättningen"
 }

@@ -1029,5 +1029,11 @@
   "Refund to the sender without email": "Refunder til afsenderen uden e-mail",
   "Selected addresses will be deleted": "Valgte adresser vil blive slettet",
   "This action cannot be undone": "Denne handling kan ikke fortrydes",
-  "You can select up to {count} addresses": "Du kan vælge op til {count} adresser"
+  "You can select up to {count} addresses": "Du kan vælge op til {count} adresser",
+  "AML min check amount hint": "Indbetalinger under dette USD-beløb kontrolleres ikke. Indtast 0 for at kontrollere hver indbetaling",
+  "Block reasons": "Blokeringsårsager",
+  "Enter an amount of 0 or more": "Indtast et beløb på 0 eller mere",
+  "Minimum check amount": "Minimum kontrolbeløb",
+  "Sending an email when a deposit is blocked": "Afsendelse af en e-mail, når en indbetaling blokeres",
+  "The payer receives this email instead of a payment receipt when AML blocks the deposit": "Betaleren modtager denne e-mail i stedet for en betalingskvittering, når AML blokerer indbetalingen"
 }

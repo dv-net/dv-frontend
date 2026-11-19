@@ -1029,5 +1029,11 @@
   "Refund to the sender without email": "Възстановяване на сумата на подателя без имейл",
   "Selected addresses will be deleted": "Избраните адреси ще бъдат изтрити",
   "This action cannot be undone": "Това действие не може да бъде отменено",
-  "You can select up to {count} addresses": "Можете да изберете до {count} адреса"
+  "You can select up to {count} addresses": "Можете да изберете до {count} адреса",
+  "AML min check amount hint": "Депозитите под тази сума в USD не се проверяват. Въведете 0, за да се проверява всеки депозит",
+  "Block reasons": "Причини за блокиране",
+  "Enter an amount of 0 or more": "Въведете сума от 0 или повече",
+  "Minimum check amount": "Минимална сума за проверка",
+  "Sending an email when a deposit is blocked": "Изпращане на имейл, когато депозит е блокиран",
+  "The payer receives this email instead of a payment receipt when AML blocks the deposit": "Платецът получава този имейл вместо разписка за плащане, когато AML блокира депозита"
 }

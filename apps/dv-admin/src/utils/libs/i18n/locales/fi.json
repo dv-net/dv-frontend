@@ -1029,5 +1029,11 @@
   "Refund to the sender without email": "Hyvitä lähettäjälle ilman sähköpostia",
   "Selected addresses will be deleted": "Valitut osoitteet poistetaan",
   "This action cannot be undone": "Tätä toimintoa ei voi kumota",
-  "You can select up to {count} addresses": "Voit valita enintään {count} osoitetta"
+  "You can select up to {count} addresses": "Voit valita enintään {count} osoitetta",
+  "AML min check amount hint": "Tämän USD-summan alittavia talletuksia ei tarkisteta. Syötä 0, jos haluat tarkistaa jokaisen talletuksen",
+  "Block reasons": "Eston syyt",
+  "Enter an amount of 0 or more": "Syötä summa, joka on 0 tai suurempi",
+  "Minimum check amount": "Tarkistuksen vähimmäissumma",
+  "Sending an email when a deposit is blocked": "Sähköpostin lähettäminen, kun talletus estetään",
+  "The payer receives this email instead of a payment receipt when AML blocks the deposit": "Maksaja saa tämän sähköpostin maksukuitin sijaan, kun AML estää talletuksen"
 }

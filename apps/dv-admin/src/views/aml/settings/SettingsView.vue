@@ -4,6 +4,7 @@
 	import { storeToRefs } from "pinia";
 	import { UiButton } from "@dv.net/ui-kit";
 	import AmlStatusBar from "@dv-admin/views/aml/components/amlStatusBar/AmlStatusBar.vue";
+	import AmlMinCheckAmount from "@dv-admin/views/aml/components/amlMinCheckAmount/AmlMinCheckAmount.vue";
 	import AmlRiskRules from "@dv-admin/views/aml/components/amlRiskRules/AmlRiskRules.vue";
 	import { useAmlStore } from "@dv-admin/stores/aml";
 
@@ -56,6 +57,7 @@
 		</div>
 
 		<aml-status-bar :is-loading="isLoading" />
+		<aml-min-check-amount :is-loading="isLoading" />
 		<aml-risk-rules :is-loading="isLoading" />
 	</div>
 </template>

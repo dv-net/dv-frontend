@@ -1029,5 +1029,11 @@
   "Refund to the sender without email": "Επιστροφή χρημάτων στον αποστολέα χωρίς email",
   "Selected addresses will be deleted": "Οι επιλεγμένες διευθύνσεις θα διαγραφούν",
   "This action cannot be undone": "Αυτή η ενέργεια δεν μπορεί να αναιρεθεί",
-  "You can select up to {count} addresses": "Μπορείτε να επιλέξετε έως {count} διευθύνσεις"
+  "You can select up to {count} addresses": "Μπορείτε να επιλέξετε έως {count} διευθύνσεις",
+  "AML min check amount hint": "Οι καταθέσεις κάτω από αυτό το ποσό σε USD δεν ελέγχονται. Εισαγάγετε 0 για έλεγχο κάθε κατάθεσης",
+  "Block reasons": "Λόγοι αποκλεισμού",
+  "Enter an amount of 0 or more": "Εισαγάγετε ένα ποσό 0 ή μεγαλύτερο",
+  "Minimum check amount": "Ελάχιστο ποσό ελέγχου",
+  "Sending an email when a deposit is blocked": "Αποστολή email όταν μια κατάθεση μπλοκάρεται",
+  "The payer receives this email instead of a payment receipt when AML blocks the deposit": "Ο πληρωτής λαμβάνει αυτό το email αντί για απόδειξη πληρωμής όταν το AML μπλοκάρει την κατάθεση"
 }

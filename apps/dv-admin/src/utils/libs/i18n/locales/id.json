@@ -1029,5 +1029,11 @@
   "Refund to the sender without email": "Kembalikan dana ke pengirim tanpa email",
   "Selected addresses will be deleted": "Alamat yang dipilih akan dihapus",
   "This action cannot be undone": "Tindakan ini tidak dapat dibatalkan",
-  "You can select up to {count} addresses": "Anda dapat memilih hingga {count} alamat"
+  "You can select up to {count} addresses": "Anda dapat memilih hingga {count} alamat",
+  "AML min check amount hint": "Deposit di bawah jumlah USD ini tidak diperiksa. Masukkan 0 untuk memeriksa setiap deposit",
+  "Block reasons": "Alasan pemblokiran",
+  "Enter an amount of 0 or more": "Masukkan jumlah 0 atau lebih",
+  "Minimum check amount": "Nominal cek minimum",
+  "Sending an email when a deposit is blocked": "Mengirim email saat deposit diblokir",
+  "The payer receives this email instead of a payment receipt when AML blocks the deposit": "Pembayar menerima email ini alih-alih tanda terima pembayaran ketika AML memblokir deposit"
 }

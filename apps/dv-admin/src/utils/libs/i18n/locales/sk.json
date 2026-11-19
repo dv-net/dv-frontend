@@ -1029,5 +1029,11 @@
   "Refund to the sender without email": "Vrátiť odosielateľovi bez e-mailu",
   "Selected addresses will be deleted": "Vybrané adresy budú odstránené",
   "This action cannot be undone": "Túto akciu nie je možné vrátiť späť",
-  "You can select up to {count} addresses": "Môžete vybrať až {count} adries"
+  "You can select up to {count} addresses": "Môžete vybrať až {count} adries",
+  "AML min check amount hint": "Vklady pod touto sumou v USD sa nekontrolujú. Zadajte 0, ak chcete skontrolovať každý vklad",
+  "Block reasons": "Dôvody zablokovania",
+  "Enter an amount of 0 or more": "Zadajte sumu 0 alebo viac",
+  "Minimum check amount": "Minimálna suma kontroly",
+  "Sending an email when a deposit is blocked": "Odoslanie e-mailu, keď je vklad zablokovaný",
+  "The payer receives this email instead of a payment receipt when AML blocks the deposit": "Platiteľ dostane tento e-mail namiesto potvrdenia o platbe, keď AML zablokuje vklad"
 }

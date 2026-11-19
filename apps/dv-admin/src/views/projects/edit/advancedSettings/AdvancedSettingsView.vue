@@ -22,7 +22,11 @@
 	import { UiForm, UiTable } from "@dv.net/ui-kit";
 	import type { UiFormRules } from "@dv.net/ui-kit/dist/components/UiForm/types";
 	import { isValidUrl } from "@shared/utils/helpers/general.ts";
-	import { STORE_SETTING_LABELS, STORE_SETTING_TOOLTIPS } from "@dv-admin/utils/constants/projects";
+	import {
+		DEPOSIT_AML_BLOCKED_EMAIL_SETTING,
+		STORE_SETTING_LABELS,
+		STORE_SETTING_TOOLTIPS
+	} from "@dv-admin/utils/constants/projects";
 	import DialogWhitelist from "@dv-admin/views/projects/edit/advancedSettings/components/dialogWhitelist/DialogWhitelist.vue";
 	import { useWhiteListProjectStore } from "@dv-admin/stores/projects/whiteList";
 	import type { UiTableHeader } from "@dv.net/ui-kit/dist/components/UiTable/types";
@@ -42,6 +46,22 @@
 	const formRef = ref<HTMLFormElement | null>(null);
 	const isOpenDialogWhitelists = ref<boolean>(false);
 	const feedbackMessage = ref<string>("");
+
+	const storeSettingOrder = [
+		"user_crypto_receipt_email_notification",
+		"external_wallet_email_notification",
+		DEPOSIT_AML_BLOCKED_EMAIL_SETTING
+	];
+
+	const orderedStoreSettings = computed(() =>
+		[...storeSettingList.value].sort((left, right) => {
+			const leftIndex = storeSettingOrder.indexOf(left.name);
+			const rightIndex = storeSettingOrder.indexOf(right.name);
+			const leftRank = leftIndex === -1 ? storeSettingOrder.length : leftIndex;
+			const rightRank = rightIndex === -1 ? storeSettingOrder.length : rightIndex;
+			return leftRank - rightRank;
+		})
+	);
 
 	const linkPayForm = computed<string>(() => {
 		if (!dictionary.value || !currentProject.value) return "";
@@ -181,16 +201,19 @@
 							:text="$t('When you disable a store, you also stop accepting payments for all of its invoices')"
 						/>
 					</div>
-					<div v-for="item in storeSettingList" :key="item.name" class="configuration__item">
-						<ui-switch
-							v-model="item.value"
-							:text="item.name in STORE_SETTING_LABELS ? $t(STORE_SETTING_LABELS[item.name]) : item.name"
-						/>
-						<tooltip-helper
-							:title="item.name in STORE_SETTING_LABELS ? $t(STORE_SETTING_LABELS[item.name]) : item.name"
-							:text="item.name in STORE_SETTING_TOOLTIPS ? $t(STORE_SETTING_TOOLTIPS[item.name]) : item.name"
-						/>
-					</div>
+					<template v-for="item in orderedStoreSettings" :key="item.name">
+						<div v-if="item.name === DEPOSIT_AML_BLOCKED_EMAIL_SETTING" class="configuration__break" />
+						<div class="configuration__item">
+							<ui-switch
+								v-model="item.value"
+								:text="item.name in STORE_SETTING_LABELS ? $t(STORE_SETTING_LABELS[item.name]) : item.name"
+							/>
+							<tooltip-helper
+								:title="item.name in STORE_SETTING_LABELS ? $t(STORE_SETTING_LABELS[item.name]) : item.name"
+								:text="item.name in STORE_SETTING_TOOLTIPS ? $t(STORE_SETTING_TOOLTIPS[item.name]) : item.name"
+							/>
+						</div>
+					</template>
 				</div>
 			</div>
 			<div class="row" v-if="currenciesProject?.length">
@@ -436,8 +459,13 @@
 			padding-bottom: 24px;
 			&__list {
 				display: flex;
+				flex-wrap: wrap;
 				align-items: center;
-				gap: 24px;
+				gap: 16px 24px;
+			}
+			&__break {
+				flex-basis: 100%;
+				height: 0;
 			}
 			&__item {
 				display: flex;
@@ -447,8 +475,11 @@
 				border-right: 1px solid $grey;
 				&:deep(.ui-switch__label) > p {
 					font-size: 14px;
+					white-space: nowrap;
 				}
-				&:last-child {
+				&:last-child,
+				&:has(+ .configuration__break) {
+					padding-right: 0;
 					border-right: unset;
 				}
 			}

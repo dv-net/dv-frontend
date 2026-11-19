@@ -346,7 +346,7 @@
 		padding: 6px;
 		border-radius: 24px;
 		background-color: $blue-opacity;
-		margin: 24px 0;
+		margin: 0 0 24px 0;
 
 		&__intro {
 			display: flex;

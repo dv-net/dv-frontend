@@ -1029,5 +1029,11 @@
   "Refund to the sender without email": "Atmaksāt sūtītājam bez e-pasta",
   "Selected addresses will be deleted": "Atlasītās adreses tiks dzēstas",
   "This action cannot be undone": "Šo darbību nevar atsaukt",
-  "You can select up to {count} addresses": "Varat atlasīt līdz {count} adresēm"
+  "You can select up to {count} addresses": "Varat atlasīt līdz {count} adresēm",
+  "AML min check amount hint": "Depozīti, kas ir zemāki par šo USD summu, netiek pārbaudīti. Ievadiet 0, lai pārbaudītu katru depozītu",
+  "Block reasons": "Bloķēšanas iemesli",
+  "Enter an amount of 0 or more": "Ievadiet summu 0 vai vairāk",
+  "Minimum check amount": "Minimālā pārbaudes summa",
+  "Sending an email when a deposit is blocked": "E-pasta nosūtīšana, kad depozīts ir bloķēts",
+  "The payer receives this email instead of a payment receipt when AML blocks the deposit": "Maksātājs saņem šo e-pastu maksājuma kvīts vietā, kad AML bloķē iemaksu"
 }

@@ -1029,5 +1029,11 @@
   "Refund to the sender without email": "Visszatérítés a küldőnek e-mail nélkül",
   "Selected addresses will be deleted": "A kiválasztott címek törlődnek",
   "This action cannot be undone": "Ez a művelet nem vonható vissza",
-  "You can select up to {count} addresses": "Legfeljebb {count} címet választhat ki"
+  "You can select up to {count} addresses": "Legfeljebb {count} címet választhat ki",
+  "AML min check amount hint": "Az ezen USD-összeg alatti befizetések nincsenek ellenőrizve. Adjon meg 0-t minden befizetés ellenőrzéséhez",
+  "Block reasons": "Blokkolás okai",
+  "Enter an amount of 0 or more": "Adjon meg egy 0 vagy annál nagyobb összeget",
+  "Minimum check amount": "Minimális ellenőrzési összeg",
+  "Sending an email when a deposit is blocked": "E-mail küldése, amikor egy befizetést blokkolnak",
+  "The payer receives this email instead of a payment receipt when AML blocks the deposit": "A fizető ezt az e-mailt kapja fizetési nyugta helyett, amikor az AML blokkolja a befizetést"
 }

@@ -1029,5 +1029,11 @@
   "Refund to the sender without email": "Повернути відправнику без email",
   "Selected addresses will be deleted": "Вибрані адреси буде видалено",
   "This action cannot be undone": "Цю дію неможливо скасувати",
-  "You can select up to {count} addresses": "Ви можете вибрати до {count} адрес"
+  "You can select up to {count} addresses": "Ви можете вибрати до {count} адрес",
+  "AML min check amount hint": "Депозити нижче цієї суми в USD не перевіряються. Введіть 0, щоб перевіряти кожен депозит",
+  "Block reasons": "Причини блокування",
+  "Enter an amount of 0 or more": "Введіть суму 0 або більше",
+  "Minimum check amount": "Мінімальна сума чека",
+  "Sending an email when a deposit is blocked": "Надсилання електронного листа, коли депозит заблоковано",
+  "The payer receives this email instead of a payment receipt when AML blocks the deposit": "Платник отримує цей електронний лист замість квитанції про платіж, коли AML блокує депозит"
 }

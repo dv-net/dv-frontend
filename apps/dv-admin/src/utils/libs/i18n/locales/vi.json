@@ -1029,5 +1029,11 @@
   "Refund to the sender without email": "Hoàn tiền cho người gửi mà không cần email",
   "Selected addresses will be deleted": "Các địa chỉ đã chọn sẽ bị xóa",
   "This action cannot be undone": "Không thể hoàn tác hành động này",
-  "You can select up to {count} addresses": "Bạn có thể chọn tối đa {count} địa chỉ"
+  "You can select up to {count} addresses": "Bạn có thể chọn tối đa {count} địa chỉ",
+  "AML min check amount hint": "Các khoản nạp dưới số tiền USD này sẽ không được kiểm tra. Nhập 0 để kiểm tra mọi khoản nạp",
+  "Block reasons": "Lý do chặn",
+  "Enter an amount of 0 or more": "Nhập số tiền từ 0 trở lên",
+  "Minimum check amount": "Số tiền kiểm tra tối thiểu",
+  "Sending an email when a deposit is blocked": "Gửi email khi một khoản nạp bị chặn",
+  "The payer receives this email instead of a payment receipt when AML blocks the deposit": "Người thanh toán nhận được email này thay vì biên lai thanh toán khi AML chặn khoản nạp tiền"
 }

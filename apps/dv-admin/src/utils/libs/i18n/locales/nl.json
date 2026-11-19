@@ -1029,5 +1029,11 @@
   "Refund to the sender without email": "Terugbetalen aan de afzender zonder e-mail",
   "Selected addresses will be deleted": "Geselecteerde adressen worden verwijderd",
   "This action cannot be undone": "Deze actie kan niet ongedaan worden gemaakt",
-  "You can select up to {count} addresses": "Je kunt maximaal {count} adressen selecteren"
+  "You can select up to {count} addresses": "Je kunt maximaal {count} adressen selecteren",
+  "AML min check amount hint": "Stortingen onder dit bedrag in USD worden niet gecontroleerd. Voer 0 in om elke storting te controleren",
+  "Block reasons": "Blokkeringsredenen",
+  "Enter an amount of 0 or more": "Voer een bedrag van 0 of meer in",
+  "Minimum check amount": "Minimum controlebedrag",
+  "Sending an email when a deposit is blocked": "Een e-mail verzenden wanneer een storting wordt geblokkeerd",
+  "The payer receives this email instead of a payment receipt when AML blocks the deposit": "De betaler ontvangt deze e-mail in plaats van een betalingsbewijs wanneer AML de storting blokkeert"
 }
