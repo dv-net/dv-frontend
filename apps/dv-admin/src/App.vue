@@ -1,8 +1,12 @@
 <script setup lang="ts">
 	import { useRoute } from "vue-router";
 	import type { LayoutNames } from "@dv-admin/layouts";
-	import { type Component, computed, defineAsyncComponent, onMounted, watch } from "vue";
+	import { type Component, computed, onMounted, watch } from "vue";
 	import MainLogoLoader from "@dv-admin/components/ui/mainLogoLoader/MainLogoLoader.vue";
+	import AuthLayout from "@dv-admin/layouts/AuthLayout.vue";
+	import DefaultLayout from "@dv-admin/layouts/DefaultLayout.vue";
+	import InstallerLayout from "@dv-admin/layouts/InstallerLayout.vue";
+	import EmptyLayout from "@dv-admin/layouts/EmptyLayout.vue";
 	import { useI18n } from "vue-i18n";
 	import { useAuthStore } from "@dv-admin/stores/auth";
 	import { storeToRefs } from "pinia";
@@ -13,10 +17,10 @@
 	const { t, locale } = useI18n();
 
 	const layouts: Record<LayoutNames, Component> = {
-		"auth-layout": defineAsyncComponent(() => import("@dv-admin/layouts/AuthLayout.vue")),
-		"default-layout": defineAsyncComponent(() => import("@dv-admin/layouts/DefaultLayout.vue")),
-		"installer-layout": defineAsyncComponent(() => import("@dv-admin/layouts/InstallerLayout.vue")),
-		"empty-layout": defineAsyncComponent(() => import("@dv-admin/layouts/EmptyLayout.vue"))
+		"auth-layout": AuthLayout,
+		"default-layout": DefaultLayout,
+		"installer-layout": InstallerLayout,
+		"empty-layout": EmptyLayout
 	};
 
 	const resolveLayout = computed(() => {

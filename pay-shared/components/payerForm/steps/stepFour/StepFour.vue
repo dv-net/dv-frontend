@@ -9,7 +9,8 @@
 		DEFAULT_CURRENCY_DEPOSIT_TIME
 	} from "@shared/utils/constants/blockchain";
 	import LottiePlayer from "@pay-shared/components/ui/lottiePlayer/LottiePlayer.vue";
-	import { computed, defineAsyncComponent } from "vue";
+	import AdvertisingBlock from "@pay-shared/components/payerForm/advertisingBlock/AdvertisingBlock.vue";
+	import { computed } from "vue";
 	import TransactionBlockInfo from "@pay-shared/components/payerForm/transactionBlockInfo/TransactionBlockInfo.vue";
 	import { useTimer } from "@pay-shared/utils/composables/useTimer.ts";
 	import type { IPayerAddressResponse, IPayerStoreResponse } from "@pay-shared/utils/types/payer";
@@ -28,10 +29,6 @@
 	}>();
 
 	const { formattedTime, counter } = useTimer(currentTransaction?.created_at);
-
-	const AdvertisingBlock = defineAsyncComponent(
-		() => import("@pay-shared/components/payerForm/advertisingBlock/AdvertisingBlock.vue")
-	);
 
 	const confirmations = computed<number>(() => {
 		if (!currentTransaction) return 0;

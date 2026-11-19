@@ -3,7 +3,7 @@
 	import PayerFormSidebar from "@pay-shared/components/payerForm/payerFormSidebar/PayerFormSidebar.vue";
 	import AmountEditor from "@pay-shared/components/payerForm/amountEditor/AmountEditor.vue";
 	import { useRoute, useRouter } from "vue-router";
-	import { type Component, computed, defineAsyncComponent, onMounted, onUnmounted, watch } from "vue";
+	import { type Component, computed, onMounted, onUnmounted, watch } from "vue";
 	import { usePayerFormStore } from "@pay/stores/payerForm";
 	import { storeToRefs } from "pinia";
 	import { getCurrentBlockchain, getCurrentCoin } from "@shared/utils/helpers/general.ts";
@@ -24,8 +24,7 @@
 	import StepThree from "@pay/views/payerForm/components/steps/stepThree/stepThree.vue";
 	import StepFour from "@pay/views/payerForm/components/steps/stepFour/StepFour.vue";
 	import StepFive from "@pay/views/payerForm/components/steps/stepFive/StepFive.vue";
-
-	const FormError = defineAsyncComponent(() => import("@pay-shared/components/payerForm/formError/FormError.vue"));
+	import FormError from "@pay-shared/components/payerForm/formError/FormError.vue";
 
 	const {
 		currentStep,
