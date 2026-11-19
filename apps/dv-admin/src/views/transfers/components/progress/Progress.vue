@@ -8,7 +8,6 @@
 	import { formatAmountBlockchain, formatDollars, getCurrentCoin } from "@shared/utils/helpers/general";
 	import { formatDate, timeDifference } from "@dv-admin/utils/helpers/dateParse";
 	import { TRANSFER_TYPE } from "@dv-admin/utils/constants/transfer";
-	import { copiedText } from "@shared/utils/helpers/general";
 	import ShowStatusGeneral from "@dv-admin/components/ui/showStatusGeneral/ShowStatusGeneral.vue";
 	import DisplayHash from "@shared/components/ui/displayHash/DisplayHash.vue";
 	import imgAvif from "@dv-admin/assets/images/transfers/notFoundProgress.avif";
@@ -44,7 +43,7 @@
 				>
 					<template #header>
 						<div class="header">
-							<div class="header__item column-id" @click.alt.stop="copiedText(String(item.number))">
+							<div class="header__item column-id">
 								<span>ID:</span>
 								<span>{{ item.number }}</span>
 							</div>

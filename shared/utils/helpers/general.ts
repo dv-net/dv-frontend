@@ -162,10 +162,6 @@ export const generateUUID = (): string => {
 		.replace(/^(.{8})(.{4})(.{4})(.{4})(.{12})$/, "$1-$2-$3-$4-$5");
 };
 
-export const copiedText = async (text: string) => {
-	await navigator.clipboard.writeText(text);
-};
-
 // URL validation
 export const isValidUrl = (value: string | null | undefined): boolean => {
 	if (!value) return false;
