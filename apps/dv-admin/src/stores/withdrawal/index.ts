@@ -299,7 +299,6 @@ export const useWithdrawalStore = defineStore("withdrawal", () => {
 				const currencyId = groups[0]?.currencyId;
 				if (currencyId) await getWithdrawalCurrencyRules(currencyId);
 			}
-			notify(t("Addresses deleted"), "success");
 			resetDeleteAddressAuthentication();
 		} catch (error: any) {
 			throw error;
