@@ -28,13 +28,14 @@
 			</div>
 			<blockchain-icon :type="row.currency_id" width="20px" height="20px" />
 		</template>
-		<span v-else>—</span>
+		<span v-else class="empty">—</span>
 	</div>
 
 	<div v-else-if="row.type === ADDRESS_BOOK_TYPES.UNIVERSAL" class="flex flex-y-center gap-8">
-		<span class="output-info-blockchain__text flex-shrink-0">{{
-			row.blockchain ? capitalizeFirstLetter(row.blockchain) : "—"
-		}}</span>
+		<span v-if="row.blockchain" class="output-info-blockchain__text flex-shrink-0">
+			{{ capitalizeFirstLetter(row.blockchain) }}
+		</span>
+		<span v-else class="empty">—</span>
 		<span class="grey-opacity">|</span>
 		<div v-if="row.currencies" class="flex flex-y-center gap-4" style="flex-wrap: wrap">
 			<blockchain-icon
@@ -71,7 +72,7 @@
 		</tooltip-helper>
 	</div>
 
-	<span v-else>—</span>
+	<span v-else class="empty">—</span>
 </template>
 
 <style scoped lang="scss">
@@ -80,6 +81,10 @@
 	}
 
 	.grey-opacity {
+		color: $grey-opacity;
+	}
+
+	.empty {
 		color: $grey-opacity;
 	}
 </style>

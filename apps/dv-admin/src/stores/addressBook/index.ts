@@ -4,14 +4,9 @@ import { ref } from "vue";
 import { ADDRESS_BOOK_TYPES } from "@dv-admin/utils/constants/addressBook";
 import type { IAddressBookCurrencies, IAddressBookList, IMapAddressBookRow } from "@dv-admin/utils/types/schemas";
 import { useGeneralStore } from "@dv-admin/stores/general";
-import { useNotifications } from "@shared/utils/composables/useNotifications.ts";
-import { useI18n } from "vue-i18n";
 import type { IDeleteAddressBookRequest } from "@dv-admin/utils/types/api/apiGo.ts";
 
-const { notify } = useNotifications();
-
 export const useAddressBookStore = defineStore("addressBook", () => {
-	const { t } = useI18n();
 	const { otpGlobalCode } = storeToRefs(useGeneralStore());
 	const { openOtpGlobalModal } = useGeneralStore();
 
@@ -66,9 +61,12 @@ export const useAddressBookStore = defineStore("addressBook", () => {
 		}
 	};
 
+	const getDeleteDropdownKey = (row: IAddressBookList): string =>
+		[row.type, row.id, row.currency_id, row.blockchain, row.address].join(":");
+
 	const deleteWithdrawalAddressBook = async (row: IAddressBookList, deleteWithdrawalRule: boolean) => {
 		try {
-			isShowDropdownDeleteAddress.value[`${row.type}${row.address}`] = false;
+			isShowDropdownDeleteAddress.value[getDeleteDropdownKey(row)] = false;
 			if (!otpGlobalCode.value) {
 				openOtpGlobalModal(() => deleteWithdrawalAddressBook(row, deleteWithdrawalRule));
 				return;
@@ -99,7 +97,6 @@ export const useAddressBookStore = defineStore("addressBook", () => {
 			if (!body) return;
 			await deleteApiWithdrawalAddressBook(body);
 			await getWithdrawalAddressBook();
-			notify(t("Address removed"), "success");
 		} catch (error: any) {
 			throw error;
 		}
@@ -120,6 +117,7 @@ export const useAddressBookStore = defineStore("addressBook", () => {
 		isShowDropdownDeleteAddress,
 		getWithdrawalAddressBook,
 		deleteWithdrawalAddressBook,
+		getDeleteDropdownKey,
 		mapAddressBookRow
 	};
 });

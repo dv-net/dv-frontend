@@ -16,7 +16,8 @@
 	const { t } = useI18n();
 
 	const { addressBookList, isLoading, isShowDropdownDeleteAddress } = storeToRefs(useAddressBookStore());
-	const { getWithdrawalAddressBook, deleteWithdrawalAddressBook, mapAddressBookRow } = useAddressBookStore();
+	const { getWithdrawalAddressBook, deleteWithdrawalAddressBook, getDeleteDropdownKey, mapAddressBookRow } =
+		useAddressBookStore();
 
 	const router = useRouter();
 
@@ -51,7 +52,12 @@
 	<div class="page">
 		<div class="flex flex-y-center flex-x-between">
 			<h1 class="global-title-h1">{{ $t("Address book") }}</h1>
-			<ui-button mode="neutral" @click="router.push({ name: 'address-book-create' })">
+			<ui-button
+				mode="neutral"
+				left-icon-name="add-circle"
+				left-icon-size="md"
+				@click="router.push({ name: 'address-book-create' })"
+			>
 				{{ $t("Add address") }}
 			</ui-button>
 		</div>
@@ -69,7 +75,7 @@
 					:mode="ADDRESS_BOOK_MODE_TYPE[row.type]"
 					:text="$t(ADDRESS_BOOK_TYPE_LABELS[row.type])"
 				/>
-				<span v-else>—</span>
+				<span v-else class="empty">—</span>
 			</template>
 			<template #body-cell-blockchain="{ row }">
 				<output-info-blockchain :row="row" />
@@ -85,7 +91,7 @@
 					<span v-if="row.name" class="table__name">{{ row.name }}</span>
 					<ui-tag v-if="row.tag" mode="neutral" :text="row.tag" />
 				</div>
-				<span v-else>—</span>
+				<span v-else class="empty">—</span>
 			</template>
 			<template #body-cell-submitted_at="{ row }">
 				{{ formatDate(row.submitted_at) }}
@@ -99,7 +105,7 @@
 						trigger="click"
 						popper-class="global-dropdown__wallets"
 						placement="bottom-end"
-						v-model="isShowDropdownDeleteAddress[`${row.type}${row.address}`]"
+						v-model="isShowDropdownDeleteAddress[getDeleteDropdownKey(row)]"
 					>
 						<template #reference>
 							<ui-icon class="delete-btn" name="delete" type="400" color="a4a5b1" size="md" />
@@ -137,6 +143,10 @@
 
 		.table__name {
 			font-size: 16px;
+		}
+
+		.empty {
+			color: $grey-opacity;
 		}
 
 		.delete-btn {

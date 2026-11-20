@@ -4,8 +4,8 @@
 	import { computed, ref } from "vue";
 	import BlockSection from "@dv-admin/components/ui/BlockSection/BlockSection.vue";
 	import type { IAddressBookRequest } from "@dv-admin/utils/types/api/apiGo";
-	import { useNotifications } from "@shared/utils/composables/useNotifications";
 	import { useI18n } from "vue-i18n";
+	import { useRouter } from "vue-router";
 	import type { IUiSelectOptions } from "@dv-admin/utils/types/general.ts";
 	import { getCurrentBlockchain, getCurrentCoin } from "@shared/utils/helpers/general.ts";
 	import { UiForm, UiSelect } from "@dv.net/ui-kit";
@@ -24,8 +24,8 @@
 	} from "@dv-admin/utils/constants/addressBook";
 	import type { UiFormRules } from "@dv.net/ui-kit/dist/components/UiForm/types";
 
-	const { notify } = useNotifications();
 	const { t } = useI18n();
+	const router = useRouter();
 
 	const { otpGlobalCode, dictionary } = storeToRefs(useGeneralStore());
 	const { openOtpGlobalModal } = useGeneralStore();
@@ -115,8 +115,7 @@
 				return;
 			}
 			await postApiWithdrawalAddressBook({ ...body, totp: otpGlobalCode.value });
-			form.value = { ...startDataFormAddressBook };
-			notify(t("The address has been added to the address book"), "success");
+			await router.push({ name: "address-book" });
 		} catch (error: any) {
 			console.error(error);
 			throw error;
@@ -203,7 +202,7 @@
 					</ui-checkbox>
 				</div>
 			</block-section>
-			<ui-button mode="neutral" size="xl" native-type="submit">
+			<ui-button mode="neutral" size="xl" native-type="submit" left-icon-name="add-circle" left-icon-size="lg">
 				{{ $t("Add address") }}
 			</ui-button>
 		</ui-form>

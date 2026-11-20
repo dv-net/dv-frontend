@@ -72,5 +72,11 @@
 	>
 		<ui-icon v-if="iconConfig" :name="iconConfig.name" type="400" size="lg" :color="iconConfig.color" class="pointer" />
 	</ui-tooltip>
-	<span v-else>—</span>
+	<span v-else class="empty">—</span>
 </template>
+
+<style scoped lang="scss">
+	.empty {
+		color: $grey-opacity;
+	}
+</style>
