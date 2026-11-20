@@ -2,6 +2,14 @@
 
 ## [Unreleased]
 
+## [1.1.10] - 2026-11-20
+
+- feat: open chainapi address and transaction pages directly [DNS-338]
+- feat: show 2FA errors inline and reuse the shared modal
+- fix: submit the withdrawal delete confirmation when the code is complete
+- fix: skip success toasts after saving wallets or deleting addresses
+- change: remove alt-click copy of transfer ids
+
 ## [1.1.9] - 2026-11-19
 
 - feat: set a minimum USD amount for the AML check
