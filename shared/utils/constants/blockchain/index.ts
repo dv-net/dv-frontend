@@ -70,42 +70,83 @@ export const DEFAULT_CURRENCIES_INFO: Record<
 	"USDT.Tron": { precision: 2, depositTime: 2, confirmations: 19 }
 };
 
+const CHAIN_API_EXPLORER_URL = "https://chainapi.org";
+
+const chainApiUrl = (chain: string, kind: "addresses" | "transactions") => `${CHAIN_API_EXPLORER_URL}/${chain}/${kind}/`;
+
 export const blockchainPatterns: any = {
 	Bitcoin: {
-		addressUrl: import.meta.env.VITE_EXPLORER_BITCOIN_ADDRESS || "https://mempool.space/address/",
-		transactionUrl: import.meta.env.VITE_EXPLORER_BITCOIN_TRANSACTION || "https://mempool.space/tx/"
+		addressUrl:
+			import.meta.env.VITE_EXPLORER_BITCOIN_ADDRESS || chainApiUrl("bitcoin", "addresses") || "https://mempool.space/address/",
+		transactionUrl:
+			import.meta.env.VITE_EXPLORER_BITCOIN_TRANSACTION || chainApiUrl("bitcoin", "transactions") || "https://mempool.space/tx/"
 	},
 	Bitcoincash: {
-		addressUrl: import.meta.env.VITE_EXPLORER_BITCOINCASH_ADDRESS || "https://blockchair.com/bitcoin-cash/address/",
+		addressUrl:
+			import.meta.env.VITE_EXPLORER_BITCOINCASH_ADDRESS ||
+			chainApiUrl("bitcoincash", "addresses") ||
+			"https://blockchair.com/bitcoin-cash/address/",
 		transactionUrl:
-			import.meta.env.VITE_EXPLORER_BITCOINCASH_TRANSACTION || "https://blockchair.com/bitcoin-cash/transaction/"
+			import.meta.env.VITE_EXPLORER_BITCOINCASH_TRANSACTION ||
+			chainApiUrl("bitcoincash", "transactions") ||
+			"https://blockchair.com/bitcoin-cash/transaction/"
 	},
 	Tron: {
-		addressUrl: import.meta.env.VITE_EXPLORER_TRON_ADDRESS || "https://tronscan.org/#/address/",
-		transactionUrl: import.meta.env.VITE_EXPLORER_TRON_TRANSACTION || "https://tronscan.org/#/transaction/"
+		addressUrl:
+			import.meta.env.VITE_EXPLORER_TRON_ADDRESS || chainApiUrl("tron", "addresses") || "https://tronscan.org/#/address/",
+		transactionUrl:
+			import.meta.env.VITE_EXPLORER_TRON_TRANSACTION ||
+			chainApiUrl("tron", "transactions") ||
+			"https://tronscan.org/#/transaction/"
 	},
 	Ethereum: {
-		addressUrl: import.meta.env.VITE_EXPLORER_ETHEREUM_ADDRESS || "https://etherscan.io/address/",
-		transactionUrl: import.meta.env.VITE_EXPLORER_ETHEREUM_TRANSACTION || "https://etherscan.io/tx/"
+		addressUrl:
+			import.meta.env.VITE_EXPLORER_ETHEREUM_ADDRESS ||
+			chainApiUrl("ethereum", "addresses") ||
+			"https://etherscan.io/address/",
+		transactionUrl:
+			import.meta.env.VITE_EXPLORER_ETHEREUM_TRANSACTION || chainApiUrl("ethereum", "transactions") || "https://etherscan.io/tx/"
 	},
 	Litecoin: {
-		addressUrl: import.meta.env.VITE_EXPLORER_LITECOIN_ADDRESS || "https://litecoinspace.org/address/",
-		transactionUrl: import.meta.env.VITE_EXPLORER_LITECOIN_TRANSACTION || "https://litecoinspace.org/tx/"
+		addressUrl:
+			import.meta.env.VITE_EXPLORER_LITECOIN_ADDRESS ||
+			chainApiUrl("litecoin", "addresses") ||
+			"https://litecoinspace.org/address/",
+		transactionUrl:
+			import.meta.env.VITE_EXPLORER_LITECOIN_TRANSACTION ||
+			chainApiUrl("litecoin", "transactions") ||
+			"https://litecoinspace.org/tx/"
 	},
 	BNBSmartChain: {
-		addressUrl: import.meta.env.VITE_EXPLORER_BNBSMARTCHAIN_ADDRESS || "https://bscscan.com/address/",
-		transactionUrl: import.meta.env.VITE_EXPLORER_BNBSMARTCHAIN_TRANSACTION || "https://bscscan.com/tx/"
+		addressUrl:
+			import.meta.env.VITE_EXPLORER_BNBSMARTCHAIN_ADDRESS || chainApiUrl("bsc", "addresses") || "https://bscscan.com/address/",
+		transactionUrl:
+			import.meta.env.VITE_EXPLORER_BNBSMARTCHAIN_TRANSACTION || chainApiUrl("bsc", "transactions") || "https://bscscan.com/tx/"
 	},
 	Polygon: {
-		addressUrl: import.meta.env.VITE_EXPLORER_POLYGON_ADDRESS || "https://polygonscan.com/address/",
-		transactionUrl: import.meta.env.VITE_EXPLORER_POLYGON_TRANSACTION || "https://polygonscan.com/tx/"
+		addressUrl:
+			import.meta.env.VITE_EXPLORER_POLYGON_ADDRESS ||
+			chainApiUrl("polygon", "addresses") ||
+			"https://polygonscan.com/address/",
+		transactionUrl:
+			import.meta.env.VITE_EXPLORER_POLYGON_TRANSACTION || chainApiUrl("polygon", "transactions") || "https://polygonscan.com/tx/"
 	},
 	Dogecoin: {
-		addressUrl: import.meta.env.VITE_EXPLORER_DOGECOIN_ADDRESS || "https://blockchair.com/dogecoin/address/",
-		transactionUrl: import.meta.env.VITE_EXPLORER_DOGECOIN_TRANSACTION || "https://blockchair.com/dogecoin/transaction/"
+		addressUrl:
+			import.meta.env.VITE_EXPLORER_DOGECOIN_ADDRESS ||
+			chainApiUrl("dogecoin", "addresses") ||
+			"https://blockchair.com/dogecoin/address/",
+		transactionUrl:
+			import.meta.env.VITE_EXPLORER_DOGECOIN_TRANSACTION ||
+			chainApiUrl("dogecoin", "transactions") ||
+			"https://blockchair.com/dogecoin/transaction/"
 	},
 	Arbitrum: {
-		addressUrl: import.meta.env.VITE_EXPLORER_ARBITRUM_ADDRESS || "https://arbiscan.io/address/",
-		transactionUrl: import.meta.env.VITE_EXPLORER_ARBITRUM_TRANSACTION || "https://arbiscan.io/tx/"
+		addressUrl:
+			import.meta.env.VITE_EXPLORER_ARBITRUM_ADDRESS ||
+			chainApiUrl("arbitrum", "addresses") ||
+			"https://arbiscan.io/address/",
+		transactionUrl:
+			import.meta.env.VITE_EXPLORER_ARBITRUM_TRANSACTION || chainApiUrl("arbitrum", "transactions") || "https://arbiscan.io/tx/"
 	}
 };
