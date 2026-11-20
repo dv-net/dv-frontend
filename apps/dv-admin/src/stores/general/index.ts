@@ -14,10 +14,12 @@ export const useGeneralStore = defineStore("general", () => {
 	const otpGlobalCode = ref<string | null>(null);
 	const isShowOtpGlobalModal = ref<boolean>(false);
 	const otpGlobalCallback = ref<(() => Promise<void>) | null>(null);
+	const otpGlobalCancelCallback = ref<(() => void) | null>(null);
 
-	const openOtpGlobalModal = (otpCallbackFn: () => Promise<void>) => {
+	const openOtpGlobalModal = (otpCallbackFn: () => Promise<void>, onCancel?: () => void) => {
 		isShowOtpGlobalModal.value = true;
 		otpGlobalCallback.value = otpCallbackFn;
+		otpGlobalCancelCallback.value = onCancel ?? null;
 	};
 
 	const getDictionary = async (suppressNotify: boolean = false) => {
@@ -73,6 +75,7 @@ export const useGeneralStore = defineStore("general", () => {
 		otpGlobalCode,
 		bitcoinLikeNetworks,
 		otpGlobalCallback,
+		otpGlobalCancelCallback,
 		isShowOtpGlobalModal,
 		dictionary,
 		precisionCurrency,

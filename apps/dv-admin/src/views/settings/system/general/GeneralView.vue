@@ -12,7 +12,6 @@
 	import { useI18n } from "vue-i18n";
 	import { useUserSettingsStore } from "@dv-admin/stores/userSettings";
 	import type { ISettingsResponse } from "@dv-admin/utils/types/api/apiGo";
-	import OtpModal from "@dv-admin/views/settings/system/general/components/otpModal/OtpModal.vue";
 	import { useAuthStore } from "@dv-admin/stores/auth";
 
 	const { notify } = useNotifications();
@@ -27,7 +26,6 @@
 	const isLoading = ref<boolean>(false);
 	const withdrawFromProcessing = ref<ISettingsResponse>();
 	const refundAuthSetting = ref<ISettingsResponse>();
-	const isShowOtpModal = ref<boolean>(false);
 	const toggleWithdrawFromProcessing = ref<boolean>(false);
 	const refundWithoutEmail = ref(false);
 	const isSavingRefundAuth = ref(false);
@@ -52,17 +50,20 @@
 		}
 	};
 
+	const revertWithdrawFromProcessing = (previousValue: string) => {
+		toggleWithdrawFromProcessing.value = previousValue === "enabled";
+		if (withdrawFromProcessing.value) withdrawFromProcessing.value.value = previousValue;
+	};
+
 	const handleChangeProcessing = async () => {
+		if (!withdrawFromProcessing.value) return;
+		const previousValue = withdrawFromProcessing.value.value;
+		withdrawFromProcessing.value.value = toggleWithdrawFromProcessing.value ? "enabled" : "disabled";
 		try {
-			if (!withdrawFromProcessing.value) return;
-			withdrawFromProcessing.value.value = toggleWithdrawFromProcessing.value ? "enabled" : "disabled";
-			if (!withdrawFromProcessing.value.two_factor_verification_required) {
-				await postUserSettings(withdrawFromProcessing.value, t("The settings for sending funds have been changed"));
-			} else {
-				isShowOtpModal.value = true;
-			}
+			await postUserSettings(withdrawFromProcessing.value, null, () => revertWithdrawFromProcessing(previousValue));
 		} catch (error: any) {
 			console.error(error);
+			revertWithdrawFromProcessing(previousValue);
 		}
 	};
 
@@ -81,13 +82,6 @@
 			refundWithoutEmail.value = previousValue === REFUND_AUTH_MODE.CUSTOM_ADDRESS_ONLY;
 		} finally {
 			isSavingRefundAuth.value = false;
-		}
-	};
-
-	const handleCloseOtpModal = () => {
-		toggleWithdrawFromProcessing.value = !toggleWithdrawFromProcessing.value;
-		if (withdrawFromProcessing.value) {
-			withdrawFromProcessing.value.value = toggleWithdrawFromProcessing.value ? "enabled" : "disabled";
 		}
 	};
 
@@ -173,7 +167,6 @@
 					</span>
 				</div>
 				<ui-switch v-model="toggleWithdrawFromProcessing" @change="handleChangeProcessing" />
-				<otp-modal v-model:is-show="isShowOtpModal" :setting="withdrawFromProcessing" @close="handleCloseOtpModal" />
 			</div>
 			<div v-if="refundAuthSetting" class="processing__row">
 				<div class="processing__content">

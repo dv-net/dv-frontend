@@ -30,10 +30,14 @@ export const useUserSettingsStore = defineStore("userSettings", () => {
 		}
 	};
 
-	const postUserSettings = async (setting: ISettingsResponse, message: string | null = "Saved") => {
+	const postUserSettings = async (
+		setting: ISettingsResponse,
+		message: string | null = "Saved",
+		onOtpCancel?: () => void
+	) => {
 		try {
 			if (setting.two_factor_verification_required && !otpGlobalCode.value) {
-				openOtpGlobalModal(() => postUserSettings(setting, message));
+				openOtpGlobalModal(() => postUserSettings(setting, message), onOtpCancel);
 				return;
 			}
 			isLoadingUpdateUserSettings.value = true;

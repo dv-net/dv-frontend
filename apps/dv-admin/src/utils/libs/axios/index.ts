@@ -6,6 +6,38 @@ import i18n from "@dv-admin/utils/libs/i18n";
 const { notify } = useNotifications();
 
 const REQUEST_TIMEOUT_MS: number = 30_000;
+let suppressedErrorNotifyCount = 0;
+
+export const getApiErrorMessage = (error: any): string => {
+	const responseMessage = error?.response?.data?.errors?.[0]?.message;
+	if (responseMessage) return i18n.global.t(responseMessage);
+	return error?.message || "Unknown error";
+};
+
+const readRequestBody = (source: unknown) => {
+	if (typeof source !== "string") return source;
+	try {
+		return JSON.parse(source);
+	} catch {
+		return null;
+	}
+};
+
+const requestCarriesOtp = (config: any): boolean => {
+	return [config?.data, config?.params].some((source) => {
+		const data = readRequestBody(source);
+		return Boolean(data && typeof data === "object" && (data.otp || data.totp));
+	});
+};
+
+export const runWithoutErrorNotify = async <T>(action: () => Promise<T>): Promise<T> => {
+	suppressedErrorNotifyCount += 1;
+	try {
+		return await action();
+	} finally {
+		suppressedErrorNotifyCount -= 1;
+	}
+};
 
 const api: AxiosInstance = axios.create({
 	baseURL: import.meta.env.VITE_API_URL,
@@ -30,12 +62,9 @@ api.interceptors.response.use(
 	(response) => response,
 	(error) => {
 		// Pass { suppressNotify: true } in request config if you don't want to show the error
-		if (!error?.config?.suppressNotify) {
-			if (error?.response?.data?.errors?.[0]?.message) {
-				notify(i18n.global.t(error.response.data.errors[0].message));
-			} else {
-				notify(error.message || "Unknown error");
-			}
+		const otpErrorShownInline = suppressedErrorNotifyCount > 0 && requestCarriesOtp(error?.config);
+		if (!error?.config?.suppressNotify && !otpErrorShownInline) {
+			notify(getApiErrorMessage(error));
 		}
 		if (error.response?.status === HttpStatusCode.Unauthorized) {
 			useAuthStore().removeToken();
