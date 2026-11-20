@@ -39,6 +39,10 @@
 		const target = event.target as HTMLInputElement | null;
 		if (!target) return;
 		otp.value[index] = target.value.replace(/\D/g, "");
+		if (otp.value.every(Boolean)) {
+			void handleSendForm();
+			return;
+		}
 		if (otp.value[index] && index + 1 < otp.value.length) {
 			nextTick(() => {
 				otpRefs.value[index + 1]?.focus();
@@ -55,6 +59,7 @@
 		otp.value = [...digits, ...Array(COUNT_INPUTS - digits.length).fill("")];
 		nextTick(() => {
 			otpRefs.value[Math.min(digits.length, COUNT_INPUTS) - 1]?.focus();
+			if (digits.length === COUNT_INPUTS) void handleSendForm();
 		});
 	};
 
