@@ -1059,9 +1059,15 @@ export interface IAmlHistoryItemResponse {
 	external_id: string;
 	status: TAmlCheckStatus;
 	service_slug: string;
-	score: string;
+	score: string | number;
 	risk_level: TAmlRiskLevel | null;
-	created_at: string;
+	transaction_id: string | null;
+	tx_hash: string | null;
+	amount: string | number | null;
+	amount_usd: string | number | null;
+	currency_id: string | null;
+	email: string | null;
+	created_at: string | null;
 	updated_at: string | null;
 	request_history: {
 		id: string;
@@ -1082,7 +1088,11 @@ export interface IAmlHistoryResponse {
 
 export interface IAmlHistoryFilterRequest {
 	page: number;
+	page_size?: number;
 	provider_slug?: string;
+	status?: TAmlCheckStatus;
+	date_from?: string;
+	date_to?: string;
 }
 
 export interface IAmlStatisticsResponse {

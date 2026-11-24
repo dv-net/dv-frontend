@@ -95,3 +95,123 @@ export interface IPendingDeleteWalletGroup {
 	addresses: IWithdrawalAddressItemResponse[];
 	manualAddress: string | null;
 }
+
+export interface ICoinKytEntity {
+	name?: string;
+	type_label?: string;
+	type?: string;
+}
+
+export interface ICoinKytDiscreteItem {
+	type_label?: string;
+	type?: string;
+	risk_score_grade?: string;
+	received_count_coef?: string | number;
+	sent_count_coef?: string | number;
+	total?: string;
+}
+
+export interface ICoinKytDiscrete {
+	received?: ICoinKytDiscreteItem[];
+	sent?: ICoinKytDiscreteItem[];
+}
+
+export interface ICoinKytIndirect {
+	type_label?: string;
+	type?: string;
+	risk_score_grade?: string;
+	total_count_coef?: string | number;
+	total?: string;
+}
+
+export interface ICoinKytAlert {
+	risk_grade?: string;
+	risk_profile?: string;
+	address?: string;
+}
+
+export interface ICoinKytReport {
+	id?: string;
+	blockchain?: string;
+	token?: string;
+	address?: string;
+	risk_score?: string | number;
+	risk_score_grade?: string;
+	inputs?: number;
+	outputs?: number;
+	from_entity?: ICoinKytEntity[];
+	to_entity?: ICoinKytEntity[];
+	indirects?: ICoinKytIndirect[];
+	block_number?: number;
+	timestamp?: string;
+	link?: string;
+	too_many_indirects?: boolean;
+	owner?: string | ICoinKytEntity;
+	balance?: string | number;
+	received?: string | number;
+	sent?: string | number;
+	discrete?: ICoinKytDiscrete;
+	alerts?: ICoinKytAlert[];
+}
+
+export interface IAmlExposureRow {
+	label: string;
+	percent: number;
+}
+
+export interface IAmlExposureGroup {
+	grade: string;
+	percent: number;
+	rows: IAmlExposureRow[];
+}
+
+export interface IAmlReportContext {
+	id?: string;
+	status?: string;
+	score?: string | number | null;
+	riskLevel?: string | null;
+	txHash?: string | null;
+	amountUsd?: string | number | null;
+	currencyId?: string | null;
+	email?: string | null;
+	createdAt?: string | null;
+	requestPayload?: string | null;
+}
+
+export interface IAmlBotSignals {
+	[category: string]: string | number;
+}
+
+export interface IAmlBotTokenDetails {
+	code?: string;
+	issuer?: string;
+	token_id?: number;
+}
+
+export interface IAmlBotCheckData {
+	tx?: string;
+	address?: string;
+	asset?: string;
+	network?: string;
+	status?: string;
+	flow?: string;
+	direction?: string;
+	riskscore?: string | number;
+	hasHighRisk?: boolean;
+	hasBlackListFlag?: boolean;
+	blackListsConnections?: boolean;
+	fiat?: string | number;
+	amount?: string | number;
+	risky_volume?: string | number;
+	timestamp?: string;
+	signals?: IAmlBotSignals;
+	extras?: { tags?: string[] };
+	counterparty?: { signals?: { in?: IAmlBotSignals; out?: IAmlBotSignals } };
+	tokenDetails?: IAmlBotTokenDetails;
+}
+
+export interface IAmlBotResponse {
+	result?: boolean;
+	description?: string;
+	data?: IAmlBotCheckData;
+}
