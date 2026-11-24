@@ -9,7 +9,7 @@
 	const { notify } = useNotifications();
 	const { t } = useI18n();
 
-	const props = defineProps<{ cancel: (save?: boolean) => void }>();
+	const { cancel } = defineProps<{ cancel: (save?: boolean) => void }>();
 
 	const currentStep = defineModel<number>("currentStep", { default: 0 });
 	const passwords = defineModel<IChangePasswordRequest>("passwords", {
@@ -31,7 +31,7 @@
 		try {
 			isLoading.value = true;
 			await postApiUserChangePassword(passwords.value);
-			props.cancel(true);
+			cancel(true);
 			notify(t("Password changed"), "success");
 		} catch (error: any) {
 			console.error(error);
