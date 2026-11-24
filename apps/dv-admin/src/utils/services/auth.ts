@@ -18,6 +18,10 @@ export async function postAuthUser(body = {} as ISignInRequest): Promise<string>
 	return resp.data.data.token;
 }
 
+export const postApiLogout = async () => {
+	await api.post("/dv-admin/auth/logout", undefined, { suppressNotify: true });
+};
+
 export const postApiForgotPassword = async (email: string) => {
 	await api.post("/public/user/forgot-password", { email });
 };

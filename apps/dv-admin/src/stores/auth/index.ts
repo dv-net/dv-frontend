@@ -10,6 +10,7 @@ import {
 	postApiUser2FaDisable,
 	postApiUserChangeEmail,
 	postApiUserEmailConfirmation,
+	postApiLogout,
 	postAuthUser,
 	postRegisterUser,
 	putApiUser
@@ -104,11 +105,13 @@ export const useAuthStore = defineStore("auth", () => {
 			throw error;
 		}
 	};
-	const logout = () => {
+	const logout = async () => {
 		try {
-			removeToken();
+			if (getToken()) await postApiLogout();
 		} catch (error: any) {
-			throw error;
+			console.error(error);
+		} finally {
+			removeToken();
 		}
 	};
 	const getToken = (): string | null => {
