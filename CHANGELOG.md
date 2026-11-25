@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [1.1.11] - 2026-11-25
+
+- change: set an exchange proxy or VPN before connecting it
+
 ## [1.1.10] - 2026-11-20
 
 - feat: open chainapi address and transaction pages directly [DNS-338]
