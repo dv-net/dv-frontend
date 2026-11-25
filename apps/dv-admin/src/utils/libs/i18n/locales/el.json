@@ -1004,7 +1004,6 @@
   "Score": "Βαθμολογία",
   "Stage": "Στάδιο",
   "Step": "Βήμα",
-  "Connect the crypto exchange before changing the proxy or VPN": "Συνδέστε το ανταλλακτήριο κρυπτονομισμάτων πριν αλλάξετε το proxy ή το VPN",
   "exchange is unreachable with the new network settings": "Το ανταλλακτήριο δεν είναι προσβάσιμο με τις νέες ρυθμίσεις δικτύου",
   "Exchange network interface tooltip": "Η κίνηση προς αυτό το ανταλλακτήριο χρησιμοποιεί την επιλεγμένη διεπαφή διακομιστή, για παράδειγμα μια σήραγγα VPN. Αφήστε το κενό για χρήση της προεπιλεγμένης διαδρομής συστήματος",
   "Exchange proxy tooltip": "Τα αιτήματα προς αυτό το ανταλλακτήριο περνούν μέσω αυτού του διακομιστή μεσολάβησης. Αφήστε το κενό για απευθείας σύνδεση. Ένας αποθηκευμένος κωδικός πρόσβασης εμφανίζεται ως xxxxx και διατηρείται αν τον αφήσετε αμετάβλητο. Τα επιτρεπόμενα σχήματα είναι http, https, socks5 και socks5h",
@@ -1014,7 +1013,6 @@
   "network interface not found on the server": "Η διεπαφή δικτύου δεν βρέθηκε στον διακομιστή",
   "Proxy": "Διακομιστής μεσολάβησης",
   "Proxy or VPN for this exchange": "Proxy ή VPN για αυτό το ανταλλακτήριο",
-  "set exchange keys before network settings": "Ορίστε τα κλειδιά ανταλλακτηρίου πριν από τις ρυθμίσεις δικτύου",
   "System default route": "Προεπιλεγμένη διαδρομή συστήματος",
   "The saved network interface is no longer on the server": "Η αποθηκευμένη διεπαφή δικτύου δεν υπάρχει πλέον στον διακομιστή",
   "VPN or network interface": "VPN ή διεπαφή δικτύου",
@@ -1035,5 +1033,7 @@
   "Enter an amount of 0 or more": "Εισαγάγετε ένα ποσό 0 ή μεγαλύτερο",
   "Minimum check amount": "Ελάχιστο ποσό ελέγχου",
   "Sending an email when a deposit is blocked": "Αποστολή email όταν μια κατάθεση μπλοκάρεται",
-  "The payer receives this email instead of a payment receipt when AML blocks the deposit": "Ο πληρωτής λαμβάνει αυτό το email αντί για απόδειξη πληρωμής όταν το AML μπλοκάρει την κατάθεση"
+  "The payer receives this email instead of a payment receipt when AML blocks the deposit": "Ο πληρωτής λαμβάνει αυτό το email αντί για απόδειξη πληρωμής όταν το AML μπλοκάρει την κατάθεση",
+  "Payment": "Πληρωμή",
+  "Select status": "Επιλέξτε κατάσταση"
 }

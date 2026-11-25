@@ -1004,7 +1004,6 @@
   "Score": "Score",
   "Stage": "Fase",
   "Step": "Trin",
-  "Connect the crypto exchange before changing the proxy or VPN": "Forbind kryptobørsen, før du ændrer proxyen eller VPN",
   "exchange is unreachable with the new network settings": "Børsen kan ikke nås med de nye netværksindstillinger",
   "Exchange network interface tooltip": "Trafik til denne børs bruger den valgte servergrænseflade, for eksempel en VPN-tunnel. Lad stå tomt for at bruge systemets standardrute",
   "Exchange proxy tooltip": "Anmodninger til denne børs går gennem denne proxy. Lad stå tom for en direkte forbindelse. En gemt adgangskode vises som xxxxx og bevares, hvis du lader den være uændret. Tilladte skemaer er http, https, socks5 og socks5h",
@@ -1014,7 +1013,6 @@
   "network interface not found on the server": "Netværksgrænseflade blev ikke fundet på serveren",
   "Proxy": "Proxy",
   "Proxy or VPN for this exchange": "Proxy eller VPN for denne børs",
-  "set exchange keys before network settings": "Angiv udvekslingsnøglerne før netværksindstillingerne",
   "System default route": "Systemets standardrute",
   "The saved network interface is no longer on the server": "Den gemte netværksgrænseflade findes ikke længere på serveren",
   "VPN or network interface": "VPN eller netværksgrænseflade",
@@ -1035,5 +1033,7 @@
   "Enter an amount of 0 or more": "Indtast et beløb på 0 eller mere",
   "Minimum check amount": "Minimum kontrolbeløb",
   "Sending an email when a deposit is blocked": "Afsendelse af en e-mail, når en indbetaling blokeres",
-  "The payer receives this email instead of a payment receipt when AML blocks the deposit": "Betaleren modtager denne e-mail i stedet for en betalingskvittering, når AML blokerer indbetalingen"
+  "The payer receives this email instead of a payment receipt when AML blocks the deposit": "Betaleren modtager denne e-mail i stedet for en betalingskvittering, når AML blokerer indbetalingen",
+  "Payment": "Betaling",
+  "Select status": "Vælg status"
 }

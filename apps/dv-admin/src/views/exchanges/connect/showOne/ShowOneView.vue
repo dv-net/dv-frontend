@@ -9,6 +9,7 @@
 	import { EXCHANGE_SETTING_LABELS, EXCHANGE_HELP_TOOLTIPS } from "@dv-admin/utils/constants/exchange";
 	import { UiButton, UiIcon, UiInput, UiTooltip, UiConfirm } from "@dv.net/ui-kit";
 	import type { IExchangeListKeysResponse, ExchangeSlugType } from "@dv-admin/utils/types/api/apiGo";
+	import type { IExchangeNetworkSettingsExpose } from "@dv-admin/views/exchanges/connect/showOne/components/exchangeNetworkSettings/types";
 	import { useWithdrawalStore } from "@dv-admin/stores/withdrawal";
 	import ConnectAddresses from "@dv-admin/views/exchanges/connect/showOne/components/connectAddresses/ConnectAddresses.vue";
 	import ExchangeNetworkSettings from "@dv-admin/views/exchanges/connect/showOne/components/exchangeNetworkSettings/ExchangeNetworkSettings.vue";
@@ -24,12 +25,27 @@
 	const { getConnectedExchanges } = useWithdrawalStore();
 
 	const route = useRoute();
-	const slug = route.params.slug as ExchangeSlugType;
+	const slug = computed(() => route.params.slug as ExchangeSlugType);
 	const isConnectCurrentExchange = ref<boolean>(false);
+	const isSavingNetworkBeforeConnect = ref(false);
+	const networkSettingsRef = ref<IExchangeNetworkSettingsExpose | null>(null);
+
+	const connectExchange = async (message: string) => {
+		if (isSavingNetworkBeforeConnect.value || isLoadingUpdateKeys.value) return;
+		isSavingNetworkBeforeConnect.value = true;
+		let saved = true;
+		try {
+			if (networkSettingsRef.value) saved = await networkSettingsRef.value.save();
+		} finally {
+			isSavingNetworkBeforeConnect.value = false;
+		}
+		if (!saved) return;
+		await postExchangeKeyUpdates(slug.value, message);
+	};
 
 	const exchangeKeys = computed<IExchangeListKeysResponse[]>(() => {
 		if (!exchangeList.value?.exchanges || !exchangeList.value?.exchanges?.length) return [];
-		const findIndex: number = exchangeList.value.exchanges.findIndex((item) => item.slug === slug);
+		const findIndex: number = exchangeList.value.exchanges.findIndex((item) => item.slug === slug.value);
 		return findIndex === -1 ? [] : exchangeList.value.exchanges[findIndex].keys;
 	});
 
@@ -38,7 +54,7 @@
 			!exchangeList.value ? getExchangeList() : Promise.resolve(),
 			!connectedExchanges.value || !connectedExchanges.value.length ? getConnectedExchanges() : Promise.resolve()
 		]);
-		isConnectCurrentExchange.value = Boolean(connectedExchanges.value.find((item) => item.slug === slug));
+		isConnectCurrentExchange.value = Boolean(connectedExchanges.value.find((item) => item.slug === slug.value));
 	});
 
 	onUnmounted(() => {
@@ -115,12 +131,9 @@
 							size="xl"
 							left-icon-name="add-circle"
 							left-icon-size="lg"
-							:loading="isLoadingUpdateKeys"
+							:loading="isLoadingUpdateKeys || isSavingNetworkBeforeConnect"
 							@click="
-								postExchangeKeyUpdates(
-									slug,
-									$t(isConnectCurrentExchange ? 'Crypto exchange edited' : 'Crypto exchange connected')
-								)
+								connectExchange($t(isConnectCurrentExchange ? 'Crypto exchange edited' : 'Crypto exchange connected'))
 							"
 							:disabled="!exchangeKeys.every((item) => item.valueEnteredUser)"
 						>
@@ -128,7 +141,7 @@
 						</ui-button>
 					</div>
 				</form>
-				<exchange-network-settings :slug="slug" />
+				<exchange-network-settings ref="networkSettingsRef" :key="slug" :slug="slug" />
 			</div>
 		</block-section>
 		<banner-info

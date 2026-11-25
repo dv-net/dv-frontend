@@ -1004,7 +1004,6 @@
   "Score": "점수",
   "Stage": "단계",
   "Step": "단계",
-  "Connect the crypto exchange before changing the proxy or VPN": "프록시 또는 VPN을 변경하기 전에 암호화폐 거래소를 연결하세요",
   "exchange is unreachable with the new network settings": "새 네트워크 설정으로는 거래소에 연결할 수 없습니다",
   "Exchange network interface tooltip": "이 거래소로 향하는 트래픽은 선택한 서버 인터페이스(예: VPN 터널)를 사용합니다. 시스템 기본 라우트를 사용하려면 비워 두세요",
   "Exchange proxy tooltip": "이 거래소로의 요청은 이 프록시를 통해 전달됩니다. 직접 연결하려면 비워 두세요. 저장된 비밀번호는 xxxxx로 표시되며 변경하지 않으면 그대로 유지됩니다. 허용되는 스킴은 http, https, socks5 및 socks5h입니다.",
@@ -1014,7 +1013,6 @@
   "network interface not found on the server": "서버에서 네트워크 인터페이스를 찾을 수 없습니다",
   "Proxy": "프록시",
   "Proxy or VPN for this exchange": "이 거래소용 프록시 또는 VPN",
-  "set exchange keys before network settings": "네트워크 설정 전에 거래소 키를 설정하세요",
   "System default route": "시스템 기본 경로",
   "The saved network interface is no longer on the server": "저장된 네트워크 인터페이스가 더 이상 서버에 없습니다",
   "VPN or network interface": "VPN 또는 네트워크 인터페이스",
@@ -1035,5 +1033,7 @@
   "Enter an amount of 0 or more": "0 이상의 금액을 입력하세요",
   "Minimum check amount": "최소 확인 금액",
   "Sending an email when a deposit is blocked": "입금이 차단되었을 때 이메일 보내기",
-  "The payer receives this email instead of a payment receipt when AML blocks the deposit": "AML이 입금을 차단하면 결제자는 결제 영수증 대신 이 이메일을 받습니다."
+  "The payer receives this email instead of a payment receipt when AML blocks the deposit": "AML이 입금을 차단하면 결제자는 결제 영수증 대신 이 이메일을 받습니다.",
+  "Payment": "결제",
+  "Select status": "상태 선택"
 }

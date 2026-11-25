@@ -1,10 +1,8 @@
 <script setup lang="ts">
-	import { computed, ref, watch } from "vue";
-	import { storeToRefs } from "pinia";
+	import { computed, ref } from "vue";
 	import { useI18n } from "vue-i18n";
 	import { UiButton, UiForm, UiFormItem, UiIcon, UiInput, UiSelect, UiSkeleton, UiTooltip } from "@dv.net/ui-kit";
 	import type { UiFormRules } from "@dv.net/ui-kit/dist/components/UiForm/types";
-	import { useWithdrawalStore } from "@dv-admin/stores/withdrawal";
 	import {
 		getApiExchangeNetworkInterfaces,
 		getApiExchangeNetworkSettings,
@@ -17,7 +15,7 @@
 		IExchangeNetworkSettings,
 		IExchangeNetworkSettingsRequest
 	} from "@dv-admin/utils/types/api/apiGo";
-	import type { IUiFormInstance } from "./types";
+	import type { IExchangeNetworkSettingsExpose, IUiFormInstance } from "./types";
 
 	const PROXY_SCHEMES = new Set(["http:", "https:", "socks5:", "socks5h:"]);
 	const INVALID_PROXY_MESSAGE =
@@ -26,7 +24,6 @@
 	const { slug } = defineProps<{ slug: ExchangeSlugType }>();
 
 	const { t } = useI18n();
-	const { connectedExchanges } = storeToRefs(useWithdrawalStore());
 
 	const formRef = ref<IUiFormInstance | null>(null);
 	const isOpen = ref(false);
@@ -38,8 +35,6 @@
 	const savedForm = ref<IExchangeNetworkSettingsRequest>({ proxy_url: null, network_interface: null });
 	const interfaces = ref<IExchangeNetworkInterface[]>([]);
 	const defaultInterface = ref("");
-
-	const isExchangeConnected = computed(() => connectedExchanges.value.some((item) => item.slug === slug));
 
 	const interfacePlaceholder = computed(() => {
 		if (!defaultInterface.value) return t("System default route");
@@ -105,12 +100,14 @@
 		]
 	}));
 
-	const applySettings = (data: IExchangeNetworkSettings) => {
-		form.value.proxy_url = data.proxy_url;
-		form.value.network_interface = data.network_interface;
+	const applySettings = (data?: Partial<IExchangeNetworkSettings> | null) => {
+		const proxyUrl = data?.proxy_url ?? null;
+		const networkInterface = data?.network_interface ?? null;
+		form.value.proxy_url = proxyUrl;
+		form.value.network_interface = networkInterface;
 		savedForm.value = {
-			proxy_url: data.proxy_url,
-			network_interface: data.network_interface
+			proxy_url: proxyUrl,
+			network_interface: networkInterface
 		};
 	};
 
@@ -123,9 +120,9 @@
 	};
 
 	const loadSettings = async () => {
-		if (!isExchangeConnected.value || settingsLoaded.value) return;
+		if (settingsLoaded.value) return;
 		const data = await getApiExchangeNetworkSettings(slug);
-		applySettings(data);
+		if (!isDirty.value) applySettings(data);
 		settingsLoaded.value = true;
 	};
 
@@ -145,32 +142,34 @@
 		if (isOpen.value) await load();
 	};
 
-	const save = async () => {
-		if (!isExchangeConnected.value || isSaving.value || !settingsLoaded.value || !isDirty.value) return;
-		if (formRef.value?.validate() !== true) return;
+	const save = async (): Promise<boolean> => {
+		if (isSaving.value) return false;
+		if (!isDirty.value) return true;
+		if (formRef.value?.validate() !== true) {
+			isOpen.value = true;
+			if (!interfacesLoaded.value) void loadInterfaces();
+			return false;
+		}
 		const proxy = emptyToNull(form.value.proxy_url);
+		const networkInterface = emptyToNull(form.value.network_interface);
 		try {
 			isSaving.value = true;
 			const data = await putApiExchangeNetworkSettings(slug, {
 				proxy_url: proxy,
-				network_interface: emptyToNull(form.value.network_interface)
+				network_interface: networkInterface
 			});
-			applySettings(data);
+			applySettings(data ?? { proxy_url: proxy, network_interface: networkInterface });
 			settingsLoaded.value = true;
+			return true;
 		} catch (error) {
 			console.error(error);
+			return false;
 		} finally {
 			isSaving.value = false;
 		}
 	};
 
-	watch(isExchangeConnected, (connected) => {
-		if (!connected) {
-			settingsLoaded.value = false;
-			return;
-		}
-		if (isOpen.value) void load();
-	});
+	defineExpose<IExchangeNetworkSettingsExpose>({ save });
 </script>
 
 <template>
@@ -197,9 +196,6 @@
 						:item-border-radius="8"
 					/>
 					<template v-else>
-						<p v-if="!isExchangeConnected" class="advanced__hint">
-							{{ $t("Connect the crypto exchange before changing the proxy or VPN") }}
-						</p>
 						<ui-form ref="formRef" class="advanced__form" :model="form" :rules="rules" @submit.prevent="save">
 							<div class="advanced__field">
 								<div class="advanced__label">
@@ -221,7 +217,7 @@
 										size="lg"
 										filled
 										is-empty-value-null
-										:disabled="!isExchangeConnected || isLoading"
+										:disabled="isLoading"
 										placeholder="socks5://user:password@host:port"
 									/>
 								</ui-form-item>
@@ -245,7 +241,7 @@
 										v-model="form.network_interface"
 										:options="interfaceOptions"
 										:placeholder="interfacePlaceholder"
-										:disabled="!isExchangeConnected || isLoading"
+										:disabled="isLoading"
 										size="lg"
 										filled
 										clearable
@@ -262,7 +258,7 @@
 									left-icon-type="400"
 									left-icon-size="lg"
 									:loading="isSaving"
-									:disabled="!isExchangeConnected || isLoading || !settingsLoaded || !isDirty"
+									:disabled="isLoading || !isDirty"
 								>
 									{{ $t("Save") }}
 								</ui-button>
@@ -361,12 +357,6 @@
 			display: flex;
 			flex-direction: column;
 			gap: 8px;
-		}
-		&__hint {
-			color: $secondary;
-			font-size: 14px;
-			font-weight: 500;
-			line-height: 20px;
 		}
 		&__field {
 			display: grid;

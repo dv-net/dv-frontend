@@ -1004,7 +1004,6 @@
   "Score": "Pisteet",
   "Stage": "Vaihe",
   "Step": "Vaihe",
-  "Connect the crypto exchange before changing the proxy or VPN": "Yhdistä kryptopörssi ennen välityspalvelimen tai VPN:n vaihtamista",
   "exchange is unreachable with the new network settings": "Pörssi ei ole tavoitettavissa uusilla verkkoasetuksilla",
   "Exchange network interface tooltip": "Liikenne tähän pörssiin käyttää valittua palvelimen verkkoliitäntää, esimerkiksi VPN-tunnelia. Jätä tyhjäksi käyttääksesi järjestelmän oletusreittiä",
   "Exchange proxy tooltip": "Tähän pörssiin tehtävät pyynnöt kulkevat tämän välityspalvelimen kautta. Jätä tyhjäksi suoraa yhteyttä varten. Tallennettu salasana näytetään muodossa xxxxx ja säilytetään, jos jätät sen muuttamatta. Sallitut skeemat ovat http, https, socks5 ja socks5h",
@@ -1014,7 +1013,6 @@
   "network interface not found on the server": "Verkkoliitäntää ei löytynyt palvelimelta",
   "Proxy": "Välityspalvelin",
   "Proxy or VPN for this exchange": "Välityspalvelin tai VPN tälle pörssille",
-  "set exchange keys before network settings": "Aseta pörssiavaimet ennen verkkoasetuksia",
   "System default route": "Järjestelmän oletusreitti",
   "The saved network interface is no longer on the server": "Tallennettua verkkoliitäntää ei enää ole palvelimella",
   "VPN or network interface": "VPN tai verkkoliitäntä",
@@ -1035,5 +1033,7 @@
   "Enter an amount of 0 or more": "Syötä summa, joka on 0 tai suurempi",
   "Minimum check amount": "Tarkistuksen vähimmäissumma",
   "Sending an email when a deposit is blocked": "Sähköpostin lähettäminen, kun talletus estetään",
-  "The payer receives this email instead of a payment receipt when AML blocks the deposit": "Maksaja saa tämän sähköpostin maksukuitin sijaan, kun AML estää talletuksen"
+  "The payer receives this email instead of a payment receipt when AML blocks the deposit": "Maksaja saa tämän sähköpostin maksukuitin sijaan, kun AML estää talletuksen",
+  "Payment": "Maksu",
+  "Select status": "Valitse tila"
 }

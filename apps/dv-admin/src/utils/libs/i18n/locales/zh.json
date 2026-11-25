@@ -1004,7 +1004,6 @@
   "Score": "评分",
   "Stage": "阶段",
   "Step": "步骤",
-  "Connect the crypto exchange before changing the proxy or VPN": "在更改代理或 VPN 之前，请先连接加密货币交易所",
   "exchange is unreachable with the new network settings": "使用新的网络设置无法访问交易所",
   "Exchange network interface tooltip": "到此交易所的流量将使用所选的服务器接口，例如 VPN 隧道。留空则使用系统默认路由",
   "Exchange proxy tooltip": "对此交易所的请求将通过此代理。留空则直接连接。已保存的密码显示为 xxxxx；如果保持不变，则会保留该密码。允许的协议为 http、https、socks5 和 socks5h",
@@ -1014,7 +1013,6 @@
   "network interface not found on the server": "在服务器上未找到网络接口",
   "Proxy": "代理",
   "Proxy or VPN for this exchange": "此交易所的代理或 VPN",
-  "set exchange keys before network settings": "请先设置交易所密钥，再进行网络设置",
   "System default route": "系统默认路由",
   "The saved network interface is no longer on the server": "保存的网络接口已不在服务器上",
   "VPN or network interface": "VPN 或网络接口",
@@ -1035,5 +1033,7 @@
   "Enter an amount of 0 or more": "请输入 0 或以上的金额",
   "Minimum check amount": "最低检查金额",
   "Sending an email when a deposit is blocked": "当充值被阻止时发送电子邮件",
-  "The payer receives this email instead of a payment receipt when AML blocks the deposit": "当 AML 阻止该笔入金时，付款人会收到这封电子邮件，而不是付款收据"
+  "The payer receives this email instead of a payment receipt when AML blocks the deposit": "当 AML 阻止该笔入金时，付款人会收到这封电子邮件，而不是付款收据",
+  "Payment": "支付",
+  "Select status": "选择状态"
 }

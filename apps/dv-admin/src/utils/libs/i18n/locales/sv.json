@@ -1004,7 +1004,6 @@
   "Score": "Poäng",
   "Stage": "Steg",
   "Step": "Steg",
-  "Connect the crypto exchange before changing the proxy or VPN": "Anslut kryptobörsen innan du ändrar proxy eller VPN",
   "exchange is unreachable with the new network settings": "Exchange kan inte nås med de nya nätverksinställningarna",
   "Exchange network interface tooltip": "Trafik till denna börs använder det valda servergränssnittet, till exempel en VPN-tunnel. Lämna tomt för att använda systemets standardrutt",
   "Exchange proxy tooltip": "Förfrågningar till denna börs går via denna proxy. Lämna tomt för en direktanslutning. Ett sparat lösenord visas som xxxxx och behålls om du lämnar det oförändrat. Tillåtna scheman är http, https, socks5 och socks5h",
@@ -1014,7 +1013,6 @@
   "network interface not found on the server": "Nätverksgränssnittet hittades inte på servern",
   "Proxy": "Proxy",
   "Proxy or VPN for this exchange": "Proxy eller VPN för denna börs",
-  "set exchange keys before network settings": "Ställ in växlingsnycklarna före nätverksinställningarna",
   "System default route": "Systemets standardrutt",
   "The saved network interface is no longer on the server": "Det sparade nätverksgränssnittet finns inte längre på servern",
   "VPN or network interface": "VPN eller nätverksgränssnitt",
@@ -1035,5 +1033,7 @@
   "Enter an amount of 0 or more": "Ange ett belopp på 0 eller mer",
   "Minimum check amount": "Minsta kontrollbelopp",
   "Sending an email when a deposit is blocked": "Skickar ett e-postmeddelande när en insättning blockeras",
-  "The payer receives this email instead of a payment receipt when AML blocks the deposit": "Betalaren får detta e-postmeddelande i stället för ett betalningskvitto när AML blockerar insättningen"
+  "The payer receives this email instead of a payment receipt when AML blocks the deposit": "Betalaren får detta e-postmeddelande i stället för ett betalningskvitto när AML blockerar insättningen",
+  "Payment": "Betalning",
+  "Select status": "Välj status"
 }

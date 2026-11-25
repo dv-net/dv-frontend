@@ -1004,7 +1004,6 @@
   "Score": "Ocena",
   "Stage": "Faza",
   "Step": "Korak",
-  "Connect the crypto exchange before changing the proxy or VPN": "Povežite kripto borzo pred spremembo proxyja ali VPN-ja",
   "exchange is unreachable with the new network settings": "Borza je z novimi omrežnimi nastavitvami nedosegljiva",
   "Exchange network interface tooltip": "Promet do te borze uporablja izbrani strežniški vmesnik, na primer tunel VPN. Pustite prazno, če želite uporabiti privzeto sistemsko pot",
   "Exchange proxy tooltip": "Zahteve do te borze gredo prek tega posredniškega strežnika. Pustite prazno za neposredno povezavo. Shranjeno geslo je prikazano kot xxxxx in se ohrani, če ga ne spremenite. Dovoljene sheme so http, https, socks5 in socks5h",
@@ -1014,7 +1013,6 @@
   "network interface not found on the server": "Omrežni vmesnik ni bil najden na strežniku",
   "Proxy": "Proxy",
   "Proxy or VPN for this exchange": "Proxy ali VPN za to borzo",
-  "set exchange keys before network settings": "Pred omrežnimi nastavitvami nastavite ključe menjalnice",
   "System default route": "Sistemska privzeta pot",
   "The saved network interface is no longer on the server": "Shranjeni omrežni vmesnik ni več na strežniku",
   "VPN or network interface": "VPN ali omrežni vmesnik",
@@ -1035,5 +1033,7 @@
   "Enter an amount of 0 or more": "Vnesite znesek 0 ali več",
   "Minimum check amount": "Najnižji znesek preverjanja",
   "Sending an email when a deposit is blocked": "Pošiljanje e-pošte, ko je polog blokiran",
-  "The payer receives this email instead of a payment receipt when AML blocks the deposit": "Plačnik prejme to e-poštno sporočilo namesto potrdila o plačilu, ko AML blokira polog"
+  "The payer receives this email instead of a payment receipt when AML blocks the deposit": "Plačnik prejme to e-poštno sporočilo namesto potrdila o plačilu, ko AML blokira polog",
+  "Payment": "Plačilo",
+  "Select status": "Izberite status"
 }

@@ -1004,7 +1004,6 @@
   "Score": "Skóre",
   "Stage": "Fáze",
   "Step": "Krok",
-  "Connect the crypto exchange before changing the proxy or VPN": "Připojte kryptoměnovou burzu před změnou proxy nebo VPN",
   "exchange is unreachable with the new network settings": "Burza je s novým nastavením sítě nedostupná",
   "Exchange network interface tooltip": "Provoz k této burze používá vybrané serverové rozhraní, například tunel VPN. Ponechte prázdné, chcete-li použít výchozí systémovou trasu",
   "Exchange proxy tooltip": "Požadavky na tuto burzu procházejí přes tento proxy server. Pro přímé připojení ponechte prázdné. Uložené heslo se zobrazuje jako xxxxx a bude zachováno, pokud jej ponecháte beze změny. Povolená schémata jsou http, https, socks5 a socks5h",
@@ -1014,7 +1013,6 @@
   "network interface not found on the server": "Síťové rozhraní nebylo na serveru nalezeno",
   "Proxy": "Proxy",
   "Proxy or VPN for this exchange": "Proxy nebo VPN pro tuto burzu",
-  "set exchange keys before network settings": "Nastavte klíče burzy před nastavením sítě",
   "System default route": "Výchozí systémová trasa",
   "The saved network interface is no longer on the server": "Uložené síťové rozhraní se již na serveru nenachází",
   "VPN or network interface": "VPN nebo síťové rozhraní",
@@ -1035,5 +1033,7 @@
   "Enter an amount of 0 or more": "Zadejte částku 0 nebo vyšší",
   "Minimum check amount": "Minimální částka kontroly",
   "Sending an email when a deposit is blocked": "Odeslání e-mailu při zablokování vkladu",
-  "The payer receives this email instead of a payment receipt when AML blocks the deposit": "Plátce obdrží tento e-mail místo potvrzení o platbě, pokud AML zablokuje vklad"
+  "The payer receives this email instead of a payment receipt when AML blocks the deposit": "Plátce obdrží tento e-mail místo potvrzení o platbě, pokud AML zablokuje vklad",
+  "Payment": "Platba",
+  "Select status": "Vyberte stav"
 }

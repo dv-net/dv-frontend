@@ -1004,7 +1004,6 @@
   "Score": "Wynik",
   "Stage": "Etap",
   "Step": "Krok",
-  "Connect the crypto exchange before changing the proxy or VPN": "Połącz giełdę kryptowalut przed zmianą serwera proxy lub VPN",
   "exchange is unreachable with the new network settings": "Giełda jest nieosiągalna przy nowych ustawieniach sieci",
   "Exchange network interface tooltip": "Ruch do tej giełdy korzysta z wybranego interfejsu serwera, na przykład tunelu VPN. Pozostaw puste, aby użyć domyślnej trasy systemowej",
   "Exchange proxy tooltip": "Żądania do tej giełdy przechodzą przez ten proxy. Pozostaw puste, aby użyć połączenia bezpośredniego. Zapisane hasło jest wyświetlane jako xxxxx i zostanie zachowane, jeśli pozostawisz je bez zmian. Dozwolone schematy to http, https, socks5 i socks5h",
@@ -1014,7 +1013,6 @@
   "network interface not found on the server": "Nie znaleziono interfejsu sieciowego na serwerze",
   "Proxy": "Proxy",
   "Proxy or VPN for this exchange": "Proxy lub VPN dla tej giełdy",
-  "set exchange keys before network settings": "Ustaw klucze giełdy przed ustawieniami sieci",
   "System default route": "Domyślna trasa systemowa",
   "The saved network interface is no longer on the server": "Zapisany interfejs sieciowy nie znajduje się już na serwerze",
   "VPN or network interface": "VPN lub interfejs sieciowy",
@@ -1035,5 +1033,7 @@
   "Enter an amount of 0 or more": "Wprowadź kwotę 0 lub większą",
   "Minimum check amount": "Minimalna kwota czeku",
   "Sending an email when a deposit is blocked": "Wysyłanie wiadomości e-mail, gdy depozyt zostanie zablokowany",
-  "The payer receives this email instead of a payment receipt when AML blocks the deposit": "Płatnik otrzymuje tę wiadomość e-mail zamiast potwierdzenia płatności, gdy AML blokuje wpłatę"
+  "The payer receives this email instead of a payment receipt when AML blocks the deposit": "Płatnik otrzymuje tę wiadomość e-mail zamiast potwierdzenia płatności, gdy AML blokuje wpłatę",
+  "Payment": "Płatność",
+  "Select status": "Wybierz status"
 }

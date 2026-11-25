@@ -1004,7 +1004,6 @@
   "Score": "Pontszám",
   "Stage": "Szakasz",
   "Step": "Lépés",
-  "Connect the crypto exchange before changing the proxy or VPN": "Csatlakoztassa a kriptotőzsdét, mielőtt módosítaná a proxyt vagy a VPN-t",
   "exchange is unreachable with the new network settings": "A tőzsde nem érhető el az új hálózati beállításokkal",
   "Exchange network interface tooltip": "Az ehhez a tőzsdéhez irányuló forgalom a kiválasztott szerverinterfészt használja, például egy VPN-alagutat. Hagyja üresen a rendszer alapértelmezett útvonalának használatához",
   "Exchange proxy tooltip": "Az ehhez a tőzsdéhez intézett kérések ezen a proxyn keresztül mennek. Hagyja üresen a közvetlen kapcsolathoz. A mentett jelszó xxxxx-ként jelenik meg, és megmarad, ha változatlanul hagyja. Az engedélyezett sémák: http, https, socks5 és socks5h",
@@ -1014,7 +1013,6 @@
   "network interface not found on the server": "A hálózati interfész nem található a szerveren",
   "Proxy": "Proxy",
   "Proxy or VPN for this exchange": "Proxy vagy VPN ehhez a tőzsdéhez",
-  "set exchange keys before network settings": "Állítsa be a tőzsdei kulcsokat a hálózati beállítások előtt",
   "System default route": "Rendszer alapértelmezett útvonala",
   "The saved network interface is no longer on the server": "A mentett hálózati interfész már nincs a szerveren",
   "VPN or network interface": "VPN vagy hálózati interfész",
@@ -1035,5 +1033,7 @@
   "Enter an amount of 0 or more": "Adjon meg egy 0 vagy annál nagyobb összeget",
   "Minimum check amount": "Minimális ellenőrzési összeg",
   "Sending an email when a deposit is blocked": "E-mail küldése, amikor egy befizetést blokkolnak",
-  "The payer receives this email instead of a payment receipt when AML blocks the deposit": "A fizető ezt az e-mailt kapja fizetési nyugta helyett, amikor az AML blokkolja a befizetést"
+  "The payer receives this email instead of a payment receipt when AML blocks the deposit": "A fizető ezt az e-mailt kapja fizetési nyugta helyett, amikor az AML blokkolja a befizetést",
+  "Payment": "Fizetés",
+  "Select status": "Státusz kiválasztása"
 }

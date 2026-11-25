@@ -1004,7 +1004,6 @@
   "Score": "Skoor",
   "Stage": "Etapp",
   "Step": "Samm",
-  "Connect the crypto exchange before changing the proxy or VPN": "Ühendage krüptobörs enne puhverserveri või VPN-i muutmist",
   "exchange is unreachable with the new network settings": "Börs ei ole uute võrguseadetega kättesaadav",
   "Exchange network interface tooltip": "Sellele börsile suunatud liiklus kasutab valitud serveriliidest, näiteks VPN-tunnelit. Jäta tühjaks, et kasutada süsteemi vaikemarsruuti",
   "Exchange proxy tooltip": "Päringud sellele börsile lähevad läbi selle puhverserveri. Otseühenduse jaoks jätke tühjaks. Salvestatud parool kuvatakse kujul xxxxx ja see säilitatakse, kui jätate selle muutmata. Lubatud skeemid on http, https, socks5 ja socks5h",
@@ -1014,7 +1013,6 @@
   "network interface not found on the server": "Võrguliidest serverist ei leitud",
   "Proxy": "Puhverserver",
   "Proxy or VPN for this exchange": "Selle börsi jaoks puhverserver või VPN",
-  "set exchange keys before network settings": "Seadistage börsi võtmed enne võrguseadeid",
   "System default route": "Süsteemi vaikemarsruut",
   "The saved network interface is no longer on the server": "Salvestatud võrguliidest pole enam serveris",
   "VPN or network interface": "VPN või võrguliides",
@@ -1035,5 +1033,7 @@
   "Enter an amount of 0 or more": "Sisestage summa 0 või suurem",
   "Minimum check amount": "Minimaalne kontrollsumma",
   "Sending an email when a deposit is blocked": "E-kirja saatmine, kui sissemakse blokeeritakse",
-  "The payer receives this email instead of a payment receipt when AML blocks the deposit": "Maksja saab selle e-kirja maksekviitungi asemel, kui AML blokeerib sissemakse"
+  "The payer receives this email instead of a payment receipt when AML blocks the deposit": "Maksja saab selle e-kirja maksekviitungi asemel, kui AML blokeerib sissemakse",
+  "Payment": "Makse",
+  "Select status": "Vali olek"
 }

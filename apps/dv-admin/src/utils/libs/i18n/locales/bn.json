@@ -1004,7 +1004,6 @@
   "Score": "স্কোর",
   "Stage": "পর্যায়",
   "Step": "ধাপ",
-  "Connect the crypto exchange before changing the proxy or VPN": "প্রক্সি বা VPN পরিবর্তন করার আগে ক্রিপ্টো এক্সচেঞ্জ সংযুক্ত করুন",
   "exchange is unreachable with the new network settings": "নতুন নেটওয়ার্ক সেটিংস দিয়ে এক্সচেঞ্জে পৌঁছানো যাচ্ছে না",
   "Exchange network interface tooltip": "এই এক্সচেঞ্জে ট্রাফিক নির্বাচিত সার্ভার ইন্টারফেস ব্যবহার করে, যেমন একটি VPN টানেল। সিস্টেমের ডিফল্ট রুট ব্যবহার করতে খালি রাখুন",
   "Exchange proxy tooltip": "এই exchange-এ করা অনুরোধগুলো এই proxy-এর মাধ্যমে যায়। সরাসরি সংযোগের জন্য খালি রাখুন। সংরক্ষিত password xxxxx হিসেবে দেখানো হয় এবং আপনি এটি অপরিবর্তিত রাখলে সেটি রাখা হবে। অনুমোদিত schemes হলো http, https, socks5 এবং socks5h",
@@ -1014,7 +1013,6 @@
   "network interface not found on the server": "সার্ভারে নেটওয়ার্ক ইন্টারফেস পাওয়া যায়নি",
   "Proxy": "Proxy",
   "Proxy or VPN for this exchange": "এই এক্সচেঞ্জের জন্য Proxy বা VPN",
-  "set exchange keys before network settings": "নেটওয়ার্ক সেটিংসের আগে এক্সচেঞ্জ কীগুলি সেট করুন",
   "System default route": "সিস্টেমের ডিফল্ট রুট",
   "The saved network interface is no longer on the server": "সংরক্ষিত নেটওয়ার্ক ইন্টারফেসটি আর সার্ভারে নেই",
   "VPN or network interface": "VPN অথবা নেটওয়ার্ক ইন্টারফেস",
@@ -1035,5 +1033,7 @@
   "Enter an amount of 0 or more": "০ বা তার বেশি একটি পরিমাণ লিখুন",
   "Minimum check amount": "ন্যূনতম চেকের পরিমাণ",
   "Sending an email when a deposit is blocked": "ডিপোজিট ব্লক করা হলে ইমেইল পাঠানো",
-  "The payer receives this email instead of a payment receipt when AML blocks the deposit": "AML ডিপোজিটটি ব্লক করলে পেমেন্টকারী পেমেন্ট রসিদের পরিবর্তে এই ইমেলটি পান"
+  "The payer receives this email instead of a payment receipt when AML blocks the deposit": "AML ডিপোজিটটি ব্লক করলে পেমেন্টকারী পেমেন্ট রসিদের পরিবর্তে এই ইমেলটি পান",
+  "Payment": "পেমেন্ট",
+  "Select status": "স্ট্যাটাস নির্বাচন করুন"
 }
